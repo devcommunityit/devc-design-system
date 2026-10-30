@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { toAppPath } from './base';
 
 /**
  * Turns plain same-origin `<a href>` clicks (e.g. CardLink, links inside guides) into client-side
@@ -16,8 +17,11 @@ export function useLinkInterception() {
       const url = new URL(anchor.href, window.location.href);
       if (url.origin !== window.location.origin) return;
       if (url.pathname === window.location.pathname && url.hash) return;
+      // Outside the SPA (other base path, static Storybook): let the browser load it.
+      const appPath = toAppPath(url.pathname);
+      if (appPath === null) return;
       event.preventDefault();
-      void navigate(`${url.pathname}${url.search}${url.hash}`);
+      void navigate(`${appPath}${url.search}${url.hash}`);
     }
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);

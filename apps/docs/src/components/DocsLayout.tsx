@@ -5,6 +5,7 @@ import { AppShell, Button, CommandPalette, Footer, Header, Kbd, Link, Sidebar, t
 import { componentsByCategory, components } from '../content/components';
 import { GUIDES } from '../content/guides';
 import { SHOWCASE } from '../content/showcase';
+import { HAS_STORYBOOK, STORYBOOK_PATH } from '../base';
 import { PreferencesMenu } from './PreferencesMenu';
 
 function buildSections(pathname: string): SidebarSection[] {
@@ -109,6 +110,7 @@ export function DocsLayout() {
                 { label: 'Pattern', href: '/pattern' },
                 { label: 'Figma e token', href: '/guide/figma' },
                 { label: 'Changelog', href: '/guide/changelog' },
+                ...(HAS_STORYBOOK ? [{ label: 'Storybook', href: STORYBOOK_PATH }] : []),
               ],
             },
           ]}

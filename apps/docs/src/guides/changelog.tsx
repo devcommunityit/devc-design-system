@@ -21,6 +21,10 @@ export default function Changelog() {
             Distribuzione: dichiarazioni .d.ts risolvibili anche con moduleResolution node16/nodenext, controlli publint e arethetypeswrong
             (npm run lint:package), script npm run release:pack (tarball + SHA-256) e blocco della pubblicazione pubblica finché manca la licenza.
           </li>
+          <li>
+            Documentazione live: build statica per GitHub Pages con base path configurabile, deep link, pagina 404, Storybook in /storybook/ e
+            workflow GitHub Actions che pubblica solo dopo i test e2e.
+          </li>
         </ul>
         <p>
           Il dettaglio è nel file <code>packages/ui/CHANGELOG.md</code>, incluso nel pacchetto.

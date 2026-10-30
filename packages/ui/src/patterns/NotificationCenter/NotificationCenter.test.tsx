@@ -62,7 +62,7 @@ describe('NotificationCenter', () => {
     await waitFor(() => expect(within(dialog).getByRole('list')).toHaveFocus());
     await user.keyboard('{Escape}');
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
-    expect(screen.getByRole('button', { name: 'Notifications' })).toHaveFocus();
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Notifications' })).toHaveFocus());
   });
 
   it('calls onItemAction and closes when a linked title is activated', async () => {

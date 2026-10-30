@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, type ReactNode } from 'react';
-import { Route, Routes, useHref, useNavigate } from 'react-router';
+import { Route, Routes, useHref, useLocation, useNavigate } from 'react-router';
 import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, messagesEn, messagesIt } from '@dev-community/ui';
+import { BASE_URL, isStaticAppPath } from './base';
 import { DocsLayout } from './components/DocsLayout';
 import { DocsSettingsProvider, useDocsSettings } from './settings';
 import { Home } from './pages/Home';
@@ -48,11 +49,19 @@ function Loading() {
 
 export function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   useLinkInterception();
   const routerNavigate = (path: string) => {
-    const url = new URL(path, window.location.href);
+    // Static content published next to the SPA (Storybook) is not a route.
+    if (isStaticAppPath(path)) {
+      window.location.assign(`${BASE_URL}${path.replace(/^\//, '')}`);
+      return;
+    }
+    // Router paths are relative to the base path: compare against the router location, not window.location.
+    const current = new URL(`${location.pathname}${location.search}`, 'http://app.invalid');
+    const url = new URL(path, current);
     // Same-page fragment: let the browser scroll to (and move the focus start point to) the target.
-    if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) {
+    if (url.pathname === current.pathname && url.search === current.search && url.hash) {
       window.location.hash = url.hash;
       return;
     }

@@ -32,6 +32,9 @@ npm run build:storybook
 npm run verify:package   # npm pack + installazione e prove in un consumer separato
 npm run test:e2e         # Playwright sul sito compilato (dopo npm run build)
 npm run verify           # tutto quanto sopra, in sequenza
+npm run build:pages      # sito statico per GitHub Pages (docs + Theme Builder + Storybook)
+npm run preview:pages    # server locale che si comporta come GitHub Pages (porta 4174)
+npm run test:e2e:pages   # Playwright sul sito Pages (base path, deep link, 404, Storybook)
 ```
 
 Per il playground manuale, crea il pacchetto e installalo nel consumer:
@@ -105,6 +108,38 @@ Lo stato di ogni componente e pattern (Implementato, Documentato, Testato, Limit
 *Accessibilità* del sito elenca cosa coprono e le due esclusioni motivate di axe. Le verifiche manuali con screen
 reader e i test su browser diversi da Chromium non sono stati eseguiti. I test automatici non bastano a dichiarare la
 conformità WCAG.
+
+## Documentazione live su GitHub Pages
+
+Il workflow [.github/workflows/pages.yml](.github/workflows/pages.yml) pubblica documentazione, Theme Builder,
+showcase e Storybook (in `/storybook/`) a ogni push su `main` o con l'avvio manuale (`workflow_dispatch`).
+
+Per attivarlo:
+
+1. Pubblica il repository su GitHub.
+2. In **Settings → Pages → Build and deployment**, scegli **Source: GitHub Actions**.
+3. Esegui un push su `main` o avvia il workflow da **Actions**.
+
+Come funziona:
+
+- **Base path:** viene letto da `actions/configure-pages`. È `/<repository>/` per i siti di progetto e `/` per i
+  siti utente o i domini personalizzati. Vite (`DOCS_BASE`) e il router (`basename`) lo usano automaticamente.
+- **Deep link:** `build:pages` genera un `index.html` per ogni rotta nota, così i link diretti rispondono 200.
+  `404.html` mostra la pagina "Pagina non trovata" del sito.
+- **Verifica prima del deploy:** il workflow esegue `test:e2e:pages` sul sito compilato. Se un test fallisce, il
+  deploy non parte.
+- **Registry:** `package-lock.json` punta a un feed npm privato. Solo in CI, `scripts/use-public-registry.mjs`
+  riscrive gli URL verso `registry.npmjs.org`. Gli hash di integrità restano invariati, quindi `npm ci` verifica che i
+  pacchetti siano identici. La riscrittura non va committata.
+
+Anteprima locale con lo stesso base path usato su GitHub:
+
+```bash
+npm run build:pages -- --base /design-system/
+npm run preview:pages -- --base /design-system/   # http://localhost:4174/design-system/
+```
+
+`PAGES_STORYBOOK=false` esclude Storybook dalla build. Il sito non usa servizi esterni: è interamente statico.
 
 ## Figma
 

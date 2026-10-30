@@ -47,6 +47,25 @@ npm run verify         # tutto quanto sopra
         </p>
       </DocSection>
 
+      <DocSection title="Pubblicare la documentazione su GitHub Pages">
+        <p>
+          Il workflow <code>.github/workflows/pages.yml</code> compila il sito con il base path fornito da <code>actions/configure-pages</code>,
+          esegue i test e2e sul risultato e lo pubblica, insieme a Storybook in <code>/storybook/</code>. Il workflow parte a ogni push su{' '}
+          <code>main</code> o manualmente. Per attivarlo, scegli <strong>Settings → Pages → Source: GitHub Actions</strong>.
+        </p>
+        <Code language="bash">{`
+npm run build:pages -- --base /design-system/
+npm run preview:pages -- --base /design-system/   # http://localhost:4174/design-system/
+npm run test:e2e:pages                            # base predefinita: /design-system/
+`}</Code>
+        <p>
+          <code>build:pages</code> genera un <code>index.html</code> per ogni rotta nota, così i link diretti funzionano senza riscritture lato
+          server. Le pagine di guide, componenti e showcase vengono ricavate dai rispettivi elenchi. Le rotte di primo livello, invece, sono
+          elencate in <code>scripts/build-pages.mjs</code>: se aggiungi una rotta di primo livello, aggiungila anche lì. Una rotta mancante viene
+          comunque mostrata tramite <code>404.html</code>, ma con stato HTTP 404.
+        </p>
+      </DocSection>
+
       <DocSection title="Convenzioni dei test">
         <ul>
           <li>

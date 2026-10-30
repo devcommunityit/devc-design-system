@@ -1,0 +1,62 @@
+# Publishes the documentation site (guides, component catalogue, Theme Builder, showcase)
+# and Storybook to GitHub Pages. Requires: Settings → Pages → Source: "GitHub Actions".
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # The lockfile points to a private mirror; runners install the same versions from npmjs.org.
+      - name: Use the public npm registry
+        run: node scripts/use-public-registry.mjs
+
+      - run: npm ci
+
+      - id: pages
+        uses: actions/configure-pages@v6
+
+      # base_path is "/<repo>" for project sites and "" for user/organisation sites or custom domains.
+      - name: Build docs + Storybook
+        run: npm run build:pages -- --base "${{ steps.pages.outputs.base_path }}/"
+
+      - name: Install Playwright (Chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: Test the Pages build under its base path
+        run: npm run test:e2e:pages
+        env:
+          PAGES_BASE: ${{ steps.pages.outputs.base_path }}/
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: apps/docs/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

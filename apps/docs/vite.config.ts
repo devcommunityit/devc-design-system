@@ -1,38 +1,49 @@
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig, type Plugin, type PreviewServer, type ViteDevServer } from 'vite';
 import { cssOptions } from '../../packages/ui/build/css.ts';
 import { getThemeScript } from '../../packages/ui/src/theme/persistence.ts';
 
 const ui = (p: string) => fileURLToPath(new URL(`../../packages/ui/${p}`, import.meta.url));
 
 /**
- * Serves the pre-paint theme script as an external file (`/theme-init.js`), so the site
+ * Serves the pre-paint theme script as an external file (`<base>theme-init.js`), so the site
  * works with a strict `script-src 'self'` CSP without inline scripts or nonces.
  */
 function themeInitScript(): Plugin {
   const code = getThemeScript({ defaultMode: 'system' });
+  let path = '/theme-init.js';
+  const mount = (server: ViteDevServer | PreviewServer) => {
+    server.middlewares.use(path, (_req, res) => {
+      res.setHeader('Content-Type', 'text/javascript; charset=utf-8');
+      res.end(code);
+    });
+  };
   return {
     name: 'dc-theme-init',
-    configureServer(server) {
-      server.middlewares.use('/theme-init.js', (_req, res) => {
-        res.setHeader('Content-Type', 'text/javascript; charset=utf-8');
-        res.end(code);
-      });
+    configResolved(config) {
+      path = `${config.base}theme-init.js`;
     },
-    configurePreviewServer(server) {
-      server.middlewares.use('/theme-init.js', (_req, res) => {
-        res.setHeader('Content-Type', 'text/javascript; charset=utf-8');
-        res.end(code);
-      });
-    },
+    configureServer: mount,
+    configurePreviewServer: mount,
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'theme-init.js', source: code });
     },
   };
 }
 
+/**
+ * Base path of the deployment: `/` by default, `/<repo>/` for GitHub Pages project sites.
+ * Normalised to start and end with `/` (`DOCS_BASE=design-system` → `/design-system/`).
+ */
+function docsBase(): string {
+  const raw = (process.env.DOCS_BASE ?? '/').trim();
+  const trimmed = raw.replace(/^\/+|\/+$/g, '');
+  return trimmed ? `/${trimmed}/` : '/';
+}
+
 export default defineConfig({
+  base: docsBase(),
   plugins: [react(), themeInitScript()],
   css: cssOptions,
   resolve: {
