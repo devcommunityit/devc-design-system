@@ -1,0 +1,100 @@
+.statistic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.label {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-md-size);
+  line-height: var(--dc-typography-label-md-line-height);
+  font-weight: var(--dc-typography-label-md-weight);
+  overflow-wrap: anywhere;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  padding: var(--dc-space-1-5);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+}
+
+.icon > svg {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.value {
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-headline-sm-size);
+  line-height: var(--dc-typography-headline-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.statistic[data-size='sm'] .value {
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.statistic[data-size='lg'] .value {
+  font-size: var(--dc-typography-headline-md-size);
+  line-height: var(--dc-typography-headline-md-line-height);
+}
+
+.trendRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1-5);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-0-5);
+  font-weight: var(--dc-font-weight-semibold);
+  color: var(--dc-color-text-secondary);
+}
+
+.trend[data-sentiment='positive'] {
+  color: var(--dc-color-feedback-success-foreground);
+}
+
+.trend[data-sentiment='negative'] {
+  color: var(--dc-color-feedback-danger-foreground);
+}
+
+.trendIcon {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.trendLabel,
+.description {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

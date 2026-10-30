@@ -1,0 +1,102 @@
+.pagination {
+  container-type: inline-size;
+  min-inline-size: 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.control {
+  --_size: var(--dc-density-control-height-md);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--_size);
+  min-block-size: var(--_size);
+  padding-inline: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid transparent;
+  border-radius: var(--dc-radius-md);
+  background: transparent;
+  color: var(--dc-color-text-primary);
+  font: inherit;
+  font-size: var(--dc-typography-label-lg-size);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.pagination[data-size='sm'] .control {
+  --_size: var(--dc-density-control-height-sm);
+}
+
+.control svg {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.control[data-hovered] {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), transparent);
+}
+
+.control[data-pressed] {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-pressed), transparent);
+}
+
+.control[data-current] {
+  border-color: var(--dc-color-border-selected);
+  background-color: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+  font-weight: var(--dc-typography-title-sm-weight);
+}
+
+.control[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.control[data-disabled] {
+  color: var(--dc-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.ellipsis {
+  display: inline-flex;
+  justify-content: center;
+  min-inline-size: var(--dc-space-6);
+  color: var(--dc-color-text-muted);
+}
+
+.summary {
+  display: none;
+  padding-inline: var(--dc-space-2);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  white-space: nowrap;
+}
+
+@container (width < 420px) {
+  .pageItem {
+    display: none;
+  }
+
+  .summary {
+    display: block;
+  }
+}
+
+@media (forced-colors: active) {
+  .control[data-current] {
+    border-color: Highlight;
+    color: Highlight;
+  }
+}

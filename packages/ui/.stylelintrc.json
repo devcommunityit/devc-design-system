@@ -1,0 +1,16 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": ["**/dist/**", "**/generated/**", "**/node_modules/**"],
+  "rules": {
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "keyframes-name-pattern": null,
+    "no-descending-specificity": null,
+    "declaration-empty-line-before": null,
+    "property-no-vendor-prefix": [true, { "ignoreProperties": ["text-size-adjust", "font-smoothing", "osx-font-smoothing", "appearance"] }],
+    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global"] }],
+    "property-disallowed-list": [["margin-left", "margin-right", "padding-left", "padding-right", "left", "right", "border-left", "border-right"], { "message": "Use logical properties (inline-start/end) for RTL support." }],
+    "declaration-property-value-disallowed-list": [{ "text-align": ["/^(left|right)$/"], "float": ["/^(left|right)$/"], "clear": ["/^(left|right)$/"] }, { "message": "Use logical values (start/end, inline-start/inline-end) for RTL support." }],
+    "color-no-hex": [true, { "message": "Use semantic color tokens (var(--dc-color-*))." }]
+  }
+}

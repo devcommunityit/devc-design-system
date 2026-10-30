@@ -1,0 +1,120 @@
+.slider {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  touch-action: none;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.output {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The track box is taller than the visible rail so the whole area is a touch target. */
+.track {
+  position: relative;
+  block-size: var(--dc-space-10);
+  margin-inline: var(--dc-space-3);
+  cursor: pointer;
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: var(--dc-space-1);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-strong);
+  transform: translateY(-50%);
+}
+
+.fill {
+  position: absolute;
+  inset-block-start: 50%;
+  block-size: var(--dc-space-1);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-action-primary);
+  transform: translateY(-50%);
+}
+
+.thumb {
+  inset-block-start: 50%;
+  box-sizing: border-box;
+  margin-block-start: calc(var(--dc-space-6) / -2);
+  inline-size: var(--dc-space-6);
+  block-size: var(--dc-space-6);
+  border: var(--dc-border-width-thick) solid var(--dc-color-action-primary);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-default);
+  box-shadow: var(--dc-shadow-1);
+  transition: box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.thumb[data-hovered] {
+  box-shadow:
+    var(--dc-shadow-1),
+    0 0 0 var(--dc-space-2) color-mix(in srgb, var(--dc-color-action-primary) var(--dc-state-hover), transparent);
+}
+
+.thumb[data-dragging] {
+  box-shadow:
+    var(--dc-shadow-2),
+    0 0 0 var(--dc-space-2) color-mix(in srgb, var(--dc-color-action-primary) var(--dc-state-pressed), transparent);
+}
+
+.thumb[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.slider[data-disabled] .track {
+  cursor: not-allowed;
+}
+
+.slider[data-disabled] .fill {
+  background-color: var(--dc-color-action-disabled);
+}
+
+.slider[data-disabled] .thumb {
+  border-color: var(--dc-color-action-disabled);
+  box-shadow: none;
+}
+
+.slider[data-disabled] .output {
+  color: var(--dc-color-text-disabled);
+}
+
+.bounds {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .track::before {
+    background-color: GrayText;
+  }
+
+  .fill {
+    background-color: Highlight;
+  }
+
+  .thumb {
+    border-color: ButtonText;
+    background-color: ButtonFace;
+  }
+}

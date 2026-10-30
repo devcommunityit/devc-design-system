@@ -1,0 +1,41 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Combobox'],
+  name: 'Combobox',
+  slug: 'combobox',
+  category: 'forms',
+  summary: 'Campo di testo con lista di suggerimenti filtrabile per la selezione singola, con supporto a risultati asincroni forniti dal consumer.',
+  whenToUse: ['Elenchi lunghi in cui l’utente conosce il valore da cercare.', 'Ricerche remote: il componente non fa richieste di rete, gestisci tu fetch/debounce.'],
+  whenNotToUse: ['Poche opzioni: usa Select o RadioGroup.', 'Più valori: usa MultiSelect.'],
+  props: [
+    { name: 'defaultItems', type: 'Iterable<T>', description: 'Opzioni filtrate automaticamente (contains, sensibile al locale).' },
+    { name: 'items', type: 'Iterable<T>', description: 'Opzioni già filtrate dal consumer (modalità asincrona): nessun filtro interno.' },
+    { name: 'value / defaultValue / onChange', type: 'Key | null', description: 'Chiave selezionata (in alternativa selectedKey / onSelectionChange).' },
+    { name: 'inputValue / defaultInputValue / onInputChange', type: 'string', description: 'Testo di ricerca.' },
+    { name: 'allowsCustomValue', type: 'boolean', default: 'false', description: 'Consente un testo che non corrisponde a un’opzione.' },
+    { name: 'isLoading', type: 'boolean', default: 'false', description: 'Mostra spinner e messaggio di caricamento localizzato.' },
+    { name: 'emptyState', type: 'ReactNode', description: 'Messaggio se non ci sono risultati (predefinito localizzato).' },
+    { name: 'menuTrigger', type: "'input' | 'focus' | 'manual'", default: "'input'", description: 'Quando aprire la lista.' },
+    { name: 'inputRef / inputProps / popoverProps', type: 'Ref / props', description: 'Accesso all’input e al popover.' },
+  ],
+  inherits: 'Props di ComboBox di react-aria-components (name, isRequired, validate…).',
+  keyboard: [
+    { keys: 'Digitazione', action: 'Filtra e apre la lista.' },
+    { keys: 'Freccia giù / su', action: 'Apre la lista e sposta l’opzione attiva.' },
+    { keys: 'Invio', action: 'Seleziona l’opzione attiva.' },
+    { keys: 'Esc', action: 'Chiude la lista; una seconda pressione ripristina il testo.' },
+  ],
+  accessibility: ['Pattern APG Combobox con aria-activedescendant: il focus resta nell’input.', 'Il numero di risultati viene annunciato ai lettori di schermo.'],
+  responsive: ['Il popover segue la larghezza del campo; su touch apre al tocco del pulsante freccia.'],
+  customization: ['Stessa anatomia di TextField; startAdornment per un’icona.'],
+  commonMistakes: ['Passare items (non filtrati) aspettandosi il filtro interno: usa defaultItems.', 'Eseguire una richiesta di rete per ogni tasto senza debounce né annullamento.'],
+  examples: [
+    { name: 'Basic', title: 'Ricerca locale' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'AsyncSimulated', title: 'Risultati asincroni (simulati)' },
+    { name: 'CustomValue', title: 'Valore libero' },
+    { name: 'States', title: 'Stati' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Combobox/Combobox.test.tsx'], limits: ['Nessuna virtualizzazione della lista.'] },
+};

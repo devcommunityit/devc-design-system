@@ -1,0 +1,134 @@
+.badge {
+  --_bg: var(--dc-color-surface-muted);
+  --_fg: var(--dc-color-text-primary);
+  --_border: transparent;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1);
+  max-inline-size: 100%;
+  min-block-size: 1.5rem;
+  padding-block: 0;
+  padding-inline: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid var(--_border);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: inherit;
+  font-size: var(--dc-typography-label-md-size);
+  line-height: var(--dc-typography-label-md-line-height);
+  font-weight: var(--dc-typography-label-md-weight);
+  letter-spacing: var(--dc-typography-label-md-letter-spacing);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.badge[data-size='sm'] {
+  min-block-size: 1.25rem;
+  padding-inline: var(--dc-space-1-5);
+  font-size: var(--dc-typography-label-sm-size);
+  line-height: var(--dc-typography-label-sm-line-height);
+}
+
+.badge[data-tone='brand'] {
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+}
+
+.badge[data-tone='info'] {
+  --_bg: var(--dc-color-feedback-info-surface);
+  --_fg: var(--dc-color-feedback-info-foreground);
+  --_border: var(--dc-color-feedback-info-border);
+}
+
+.badge[data-tone='success'] {
+  --_bg: var(--dc-color-feedback-success-surface);
+  --_fg: var(--dc-color-feedback-success-foreground);
+  --_border: var(--dc-color-feedback-success-border);
+}
+
+.badge[data-tone='warning'] {
+  --_bg: var(--dc-color-feedback-warning-surface);
+  --_fg: var(--dc-color-feedback-warning-foreground);
+  --_border: var(--dc-color-feedback-warning-border);
+}
+
+.badge[data-tone='danger'] {
+  --_bg: var(--dc-color-feedback-danger-surface);
+  --_fg: var(--dc-color-feedback-danger-foreground);
+  --_border: var(--dc-color-feedback-danger-border);
+}
+
+.badge[data-variant='solid'] {
+  --_border: transparent;
+}
+
+.badge[data-variant='solid'][data-tone='neutral'] {
+  --_bg: var(--dc-color-surface-inverse);
+  --_fg: var(--dc-color-text-inverse);
+}
+
+.badge[data-variant='solid'][data-tone='brand'] {
+  --_bg: var(--dc-color-action-primary);
+  --_fg: var(--dc-color-action-primary-foreground);
+}
+
+.badge[data-variant='solid'][data-tone='info'] {
+  --_bg: var(--dc-color-feedback-info-foreground);
+  --_fg: var(--dc-color-feedback-info-surface);
+}
+
+.badge[data-variant='solid'][data-tone='success'] {
+  --_bg: var(--dc-color-feedback-success-foreground);
+  --_fg: var(--dc-color-feedback-success-surface);
+}
+
+.badge[data-variant='solid'][data-tone='warning'] {
+  --_bg: var(--dc-color-feedback-warning-foreground);
+  --_fg: var(--dc-color-feedback-warning-surface);
+}
+
+.badge[data-variant='solid'][data-tone='danger'] {
+  --_bg: var(--dc-color-action-danger);
+  --_fg: var(--dc-color-action-danger-foreground);
+}
+
+.badge[data-variant='outline'] {
+  --_bg: transparent;
+}
+
+.badge[data-variant='outline'][data-tone='neutral'],
+.badge[data-variant='outline'][data-tone='brand'] {
+  --_border: var(--dc-color-border-default);
+}
+
+.dot {
+  flex: none;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: var(--dc-radius-full);
+  background-color: currentcolor;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  inline-size: 1em;
+  block-size: 1em;
+}
+
+.label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (forced-colors: active) {
+  .badge {
+    border-color: CanvasText;
+  }
+}

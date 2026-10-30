@@ -1,0 +1,111 @@
+.avatar {
+  --_size: 2.5rem;
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  overflow: hidden;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-size: calc(var(--_size) * 0.4);
+  font-weight: var(--dc-font-weight-semibold);
+  line-height: 1;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.avatar[data-shape='square'] {
+  border-radius: var(--dc-radius-md);
+}
+
+.avatar[data-size='xs'] {
+  --_size: 1.5rem;
+}
+
+.avatar[data-size='sm'] {
+  --_size: 2rem;
+}
+
+.avatar[data-size='lg'] {
+  --_size: 3rem;
+}
+
+.avatar[data-size='xl'] {
+  --_size: 4rem;
+}
+
+.avatar[data-tone='1'] {
+  --_bg: var(--dc-color-feedback-info-surface);
+  --_fg: var(--dc-color-feedback-info-foreground);
+}
+
+.avatar[data-tone='2'] {
+  --_bg: var(--dc-color-feedback-success-surface);
+  --_fg: var(--dc-color-feedback-success-foreground);
+}
+
+.avatar[data-tone='3'] {
+  --_bg: var(--dc-color-feedback-warning-surface);
+  --_fg: var(--dc-color-feedback-warning-foreground);
+}
+
+.avatar[data-tone='4'] {
+  --_bg: var(--dc-color-surface-muted);
+  --_fg: var(--dc-color-text-primary);
+}
+
+.avatar[data-tone='5'] {
+  --_bg: var(--dc-color-feedback-danger-surface);
+  --_fg: var(--dc-color-feedback-danger-foreground);
+}
+
+.image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  display: inline-flex;
+}
+
+.fallback > svg {
+  inline-size: 55%;
+  block-size: 55%;
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.groupItem {
+  display: inline-flex;
+  border-radius: var(--dc-radius-full);
+  box-shadow: 0 0 0 2px var(--dc-color-surface-default);
+}
+
+.groupItem + .groupItem {
+  margin-inline-start: -0.5rem;
+}
+
+.more {
+  --_bg: var(--dc-color-surface-muted);
+  --_fg: var(--dc-color-text-secondary);
+
+  font-size: calc(var(--_size) * 0.34);
+}
+
+@media (forced-colors: active) {
+  .avatar {
+    border: 1px solid CanvasText;
+  }
+}

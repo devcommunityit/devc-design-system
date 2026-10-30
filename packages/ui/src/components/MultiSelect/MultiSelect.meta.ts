@@ -1,0 +1,50 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['MultiSelect'],
+  name: 'MultiSelect',
+  slug: 'multi-select',
+  category: 'forms',
+  summary: 'Selezione multipla con ricerca: i valori scelti appaiono come chip rimovibili sotto il campo e la lista resta aperta durante la scelta.',
+  whenToUse: ['Scegliere più valori da un elenco medio o lungo.', 'Destinatari, competenze, tag da un vocabolario controllato.'],
+  whenNotToUse: ['Poche opzioni sempre visibili: usa CheckboxGroup.', 'Valori liberi non presenti in un elenco: usa TextField + TagGroup.'],
+  props: [
+    { name: 'options', type: 'MultiSelectOption[]', required: true, description: '{ id, label, description?, isDisabled? }.' },
+    { name: 'value / defaultValue / onChange', type: 'Key[]', description: 'Chiavi selezionate, nell’ordine di scelta.' },
+    { name: 'inputValue / defaultInputValue / onInputChange', type: 'string', description: 'Testo di ricerca; viene svuotato dopo ogni selezione.' },
+    { name: 'filter', type: "'local' | 'none'", default: "'local'", description: 'local: filtra le options per etichetta; none: il consumer passa risultati già filtrati (asincrono).' },
+    { name: 'isLoading', type: 'boolean', default: 'false', description: 'Spinner e messaggio di caricamento localizzato.' },
+    { name: 'emptyState', type: 'ReactNode', description: 'Messaggio se non ci sono risultati.' },
+    { name: 'placeholder', type: 'string', description: 'Suggerimento nell’input (non sostituisce la label).' },
+    { name: 'name / isRequired / validate', type: 'string / boolean / function', description: 'Integrazione con i form e validazione.' },
+    { name: 'isDisabled / isReadOnly / isInvalid', type: 'boolean', description: 'Stati del campo.' },
+    { name: 'inputRef / className / style', type: 'Ref / string / CSSProperties', description: 'Accesso all’input e personalizzazione del contenitore.' },
+  ],
+  keyboard: [
+    { keys: 'Digitazione / Freccia giù', action: 'Filtra e apre la lista.' },
+    { keys: 'Invio', action: 'Aggiunge o rimuove l’opzione attiva; la lista resta aperta.' },
+    { keys: 'Backspace (input vuoto)', action: 'Rimuove l’ultimo valore.' },
+    { keys: 'Esc', action: 'Chiude la lista.' },
+    { keys: 'Tab → frecce → Canc', action: 'Raggiunge i chip e rimuove quello attivo.' },
+  ],
+  accessibility: [
+    'Input con pattern APG Combobox; opzioni con aria-selected e segno di spunta.',
+    'I chip sono un TagGroup etichettato (“Elementi selezionati”) con pulsanti di rimozione nominati.',
+    'Mentre la lista è aperta il resto della pagina, chip inclusi, è nascosto alle tecnologie assistive come previsto dal pattern.',
+  ],
+  responsive: ['I chip vanno a capo sotto il campo, senza ridurre lo spazio di digitazione.'],
+  customization: ['className/style sul contenitore; chip e lista usano i token di Tag e ListBox.'],
+  commonMistakes: ['Con filter="none" dimenticare di aggiornare options in base a inputValue.', 'Usare chiavi diverse per la stessa opzione tra richieste successive.'],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'AsyncSimulated', title: 'Risultati asincroni (simulati)' },
+    { name: 'States', title: 'Stati' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['components/MultiSelect/MultiSelect.test.tsx'],
+    limits: ['Le chiavi selezionate mai presenti in options mostrano String(key) come etichetta.', 'Nessuna virtualizzazione della lista.'],
+  },
+};

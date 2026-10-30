@@ -1,0 +1,11 @@
+node_modules
+dist
+storybook-static
+*.tgz
+.vite
+test-results
+playwright-report
+apps/playground/node_modules
+apps/playground/vendor
+coverage
+packages/ui/.storybook/generated

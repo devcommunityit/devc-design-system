@@ -1,0 +1,55 @@
+/*
+ * Optional, minimal reset. Import only if your app has none:
+ *   import '@dev-community/ui/reset.css';
+ * Wrapped in a cascade layer so any app style wins over it.
+ */
+@layer dc-reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    text-size-adjust: 100%;
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari/iOS still needs the prefix. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-block-size: 100dvh;
+  }
+
+  img,
+  picture,
+  svg,
+  video,
+  canvas {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+  }
+}

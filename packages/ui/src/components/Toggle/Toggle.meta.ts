@@ -1,0 +1,46 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Toggle', 'ToggleGroup'],
+  name: 'Toggle e ToggleGroup',
+  slug: 'toggle',
+  category: 'actions',
+  summary: 'Pulsante a due stati (aria-pressed) e gruppo di toggle con selezione singola o multipla.',
+  whenToUse: ['Opzioni on/off con effetto immediato su un contenuto (grassetto, preferito).', 'Scelta della vista o del periodo in una barra (ToggleGroup singolo).'],
+  whenNotToUse: ['Impostazioni salvate in un form: usa Switch o Checkbox.', 'Navigazione tra pannelli: usa Tabs.'],
+  props: [
+    { name: 'isSelected / defaultSelected', type: 'boolean', description: 'Stato controllato / iniziale (Toggle).' },
+    { name: 'onChange', type: '(isSelected: boolean) => void', description: 'Cambio di stato (Toggle).' },
+    { name: 'variant', type: "'outline' | 'ghost'", default: "'outline'", description: 'Aspetto del Toggle.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Dimensione.' },
+    { name: 'icon', type: 'ReactNode', description: 'Icona decorativa. Senza testo serve aria-label.' },
+    { name: 'id', type: 'Key', description: 'Identificativo dentro ToggleGroup.' },
+    { name: 'selectionMode', type: "'single' | 'multiple'", default: "'single'", description: 'ToggleGroup: singola (radio) o multipla.' },
+    { name: 'selectedKeys / defaultSelectedKeys', type: 'Iterable<Key>', description: 'ToggleGroup: selezione controllata / iniziale.' },
+    { name: 'onSelectionChange', type: '(keys: Set<Key>) => void', description: 'ToggleGroup: cambio selezione.' },
+    { name: 'disallowEmptySelection', type: 'boolean', default: 'false', description: 'ToggleGroup: impedisce di deselezionare l’ultimo elemento.' },
+    { name: 'attached', type: 'boolean', default: 'true', description: 'ToggleGroup: aspetto segmentato.' },
+  ],
+  inherits: 'Props di react-aria-components ToggleButton e ToggleButtonGroup.',
+  keyboard: [
+    { keys: 'Enter / Space', action: 'Inverte lo stato del toggle con il focus.' },
+    { keys: 'Frecce', action: 'ToggleGroup: sposta il focus tra gli elementi (un solo tab stop).' },
+  ],
+  accessibility: [
+    'Toggle singolo: button con aria-pressed.',
+    'ToggleGroup singolo: radiogroup con radio; multiplo: gruppo di button con aria-pressed.',
+    'Lo stato selezionato usa colore, bordo e (in forced-colors) Highlight: non solo il colore.',
+  ],
+  responsive: ['Con molte voci preferisci etichette brevi o icone con aria-label.'],
+  customization: ['Colore selezionato: token action.secondary e border.selected. Selettori [data-selected], [data-icon-only].'],
+  commonMistakes: ['Cambiare l’etichetta in base allo stato: aria-pressed comunica già lo stato.', 'Dimenticare id sugli elementi di ToggleGroup.'],
+  examples: [
+    { name: 'Uncontrolled', title: 'Non controllato' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'SingleGroup', title: 'Gruppo a selezione singola' },
+    { name: 'MultipleGroup', title: 'Gruppo a selezione multipla' },
+    { name: 'TextGroup', title: 'Gruppo con testo e voce disabilitata' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Toggle/Toggle.test.tsx'], limits: [] },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/button/',
+};

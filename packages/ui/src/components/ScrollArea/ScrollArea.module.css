@@ -1,0 +1,25 @@
+.scrollArea {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  max-block-size: var(--_max-block, none);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dc-color-border-strong) transparent;
+}
+
+.scrollArea[data-orientation='vertical'] {
+  overflow: hidden auto;
+}
+
+.scrollArea[data-orientation='horizontal'] {
+  overflow: auto hidden;
+}
+
+.scrollArea[data-orientation='both'] {
+  overflow: auto;
+}
+
+.scrollArea:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}

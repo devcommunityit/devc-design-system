@@ -1,0 +1,25 @@
+{
+  "name": "dc-playground",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Consumer separato: installa @dev-community/ui dal tarball generato con npm pack (non dai sorgenti del workspace).",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "vite preview --port 4174 --strictPort"
+  },
+  "dependencies": {
+    "@dev-community/ui": "file:vendor/dev-community-ui-0.1.0.tgz",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5"
+  }
+}

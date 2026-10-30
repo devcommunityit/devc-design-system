@@ -1,0 +1,45 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Dialog', 'DialogTrigger'],
+  name: 'Dialog',
+  slug: 'dialog',
+  category: 'overlay',
+  summary: 'Finestra modale per attività brevi e focalizzate che richiedono attenzione prima di tornare alla pagina.',
+  whenToUse: ['Form brevi (rinomina, invito).', 'Dettagli che non meritano una pagina.'],
+  whenNotToUse: ['Conferme di azioni distruttive: usa AlertDialog.', 'Contenuti lunghi o flussi multi-step: usa una pagina.', 'Pannelli laterali di filtri: usa Drawer.'],
+  props: [
+    { name: 'title', type: 'ReactNode', required: true, description: 'Titolo visibile, usato come nome accessibile.' },
+    { name: 'description', type: 'ReactNode', description: 'Testo collegato con aria-describedby.' },
+    { name: 'children', type: 'ReactNode | ({ close }) => ReactNode', description: 'Corpo scorrevole.' },
+    { name: 'footer', type: 'ReactNode | ({ close }) => ReactNode', description: 'Azioni allineate alla fine.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl' | 'fullscreen'", default: "'md'", description: 'Larghezza massima.' },
+    { name: 'isOpen / defaultOpen / onOpenChange', type: 'boolean / boolean / (open) => void', description: 'Stato controllato o non controllato (omessi dentro DialogTrigger).' },
+    { name: 'isDismissable', type: 'boolean', default: 'true', description: 'Chiusura con click sul backdrop.' },
+    { name: 'isKeyboardDismissDisabled', type: 'boolean', default: 'false', description: 'Disabilita Escape.' },
+    { name: 'hideCloseButton', type: 'boolean', default: 'false', description: 'Nasconde la X: lascia un altro modo visibile per chiudere.' },
+  ],
+  inherits: 'Props del Dialog di react-aria-components (role, aria-*). DialogTrigger: props di DialogTrigger RAC.',
+  keyboard: [
+    { keys: 'Tab / Shift+Tab', action: 'Ciclo del focus all’interno del dialogo (focus trap).' },
+    { keys: 'Escape', action: 'Chiude il dialogo più in alto e riporta il focus al trigger.' },
+  ],
+  accessibility: [
+    'Pattern APG Dialog (Modal): role="dialog", aria-modal, focus iniziale nel dialogo, contenimento e ripristino del focus.',
+    'Scroll della pagina bloccato e contenuto esterno inerte durante l’apertura.',
+    'Pulsante di chiusura con etichetta localizzata.',
+    'Renderizzato nel portal del ThemeProvider più vicino: eredita tema e densità anche con provider annidati.',
+  ],
+  responsive: ['Su viewport strette occupa quasi tutta la larghezza; il corpo scorre mentre header e footer restano visibili.', 'size="fullscreen" per mobile-first a schermo intero.'],
+  customization: ['className/style sul pannello; token di superficie, raggio ed elevazione.'],
+  commonMistakes: ['Aprire dialoghi senza un trigger e senza gestire il ritorno del focus.', 'Mettere azioni distruttive in un Dialog semplice.'],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'FormDialog', title: 'Con form e azioni' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'LongContent', title: 'Contenuto lungo' },
+    { name: 'Nested', title: 'Annidati' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Dialog/Dialog.test.tsx'], limits: [] },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/',
+};

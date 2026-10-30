@@ -1,0 +1,146 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--dc-space-2) var(--dc-space-3);
+}
+
+.search {
+  flex: 1 1 14rem;
+  max-inline-size: 24rem;
+}
+
+.toolbarExtra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--dc-space-2);
+}
+
+.bulk {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  margin-inline-start: auto;
+}
+
+.selectedCount {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  font-weight: var(--dc-font-weight-medium);
+}
+
+.tableArea {
+  position: relative;
+  min-inline-size: 0;
+}
+
+.loadingBar {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 2;
+}
+
+/* Dim stale rows only: the loading message itself must keep full contrast. */
+.root[data-loading] tbody > tr:not(:has(.state)) {
+  opacity: 0.6;
+}
+
+.selectionCell {
+  inline-size: 2.75rem;
+  padding-inline-end: 0;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.sortable[data-hovered] {
+  color: var(--dc-color-text-primary);
+}
+
+.headerContent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1);
+}
+
+.sortIcon {
+  display: inline-flex;
+  color: var(--dc-color-text-muted);
+}
+
+.sortIcon[data-active] {
+  color: var(--dc-color-text-primary);
+}
+
+.sortIcon > svg {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+}
+
+.missing {
+  color: var(--dc-color-text-muted);
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dc-space-3);
+  padding-block: var(--dc-space-10);
+  padding-inline: var(--dc-space-4);
+  color: var(--dc-color-text-secondary);
+  text-align: center;
+}
+
+.state > [role='alert'],
+.state > [role='status'] {
+  text-align: start;
+}
+
+.stateTitle {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+}
+
+.range {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.pageSize {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--dc-space-2);
+  inline-size: auto;
+}
+
+/* Pagination is a size container (zero intrinsic width): give it a real flex basis so it
+   wraps onto its own line instead of collapsing and overflowing. */
+.pagination {
+  display: flex;
+  flex: 1 1 18rem;
+  justify-content: flex-end;
+  margin-inline-start: auto;
+}

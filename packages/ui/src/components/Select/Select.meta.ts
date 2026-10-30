@@ -1,0 +1,41 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Select'],
+  name: 'Select',
+  slug: 'select',
+  category: 'forms',
+  summary: 'Selezione singola con pulsante e lista in popover, con opzioni ricche (descrizioni, icone, sezioni) e validazione integrata.',
+  whenToUse: ['Da 5 a ~30 opzioni con contenuto ricco.', 'Quando serve uno stile coerente tra browser.'],
+  whenNotToUse: ['Molte opzioni o ricerca: usa Combobox.', 'Selezione multipla: usa MultiSelect.', 'Form che devono funzionare senza JavaScript: usa NativeSelect.'],
+  props: [
+    { name: 'label', type: 'ReactNode', description: 'Etichetta visibile (altrimenti aria-label).' },
+    { name: 'items / children', type: 'Iterable<T> / ReactNode | (item) => ReactNode', required: true, description: 'Opzioni statiche (ListBoxItem, ListBoxSection) o dinamiche.' },
+    { name: 'value / defaultValue / onChange', type: 'Key | null', description: 'Selezione controllata o non controllata.' },
+    { name: 'placeholder', type: 'string', description: 'Testo mostrato senza selezione.' },
+    { name: 'startAdornment', type: 'ReactNode', description: 'Icona all’inizio del trigger.' },
+    { name: 'emptyState', type: 'ReactNode', description: 'Contenuto se non ci sono opzioni.' },
+    { name: 'description / errorMessage', type: 'ReactNode', description: 'Aiuto ed errore collegati.' },
+    { name: 'isRequired / isInvalid / isDisabled', type: 'boolean', description: 'Stati del campo; con name il valore viene inviato con il form.' },
+    { name: 'triggerRef', type: 'Ref<HTMLButtonElement>', description: 'Ref al pulsante (il componente è generico, quindi non usa forwardRef).' },
+    { name: 'popoverProps', type: 'PopoverSurfaceProps', description: 'Posizionamento e classi del popover.' },
+  ],
+  inherits: 'Props di Select di react-aria-components (name, isOpen, onOpenChange, validate…).',
+  keyboard: [
+    { keys: 'Invio / Spazio / Freccia giù', action: 'Apre la lista.' },
+    { keys: 'Frecce, Home, End, lettere', action: 'Navigazione e typeahead.' },
+    { keys: 'Invio', action: 'Seleziona e chiude, il focus torna al pulsante.' },
+    { keys: 'Esc', action: 'Chiude senza modificare.' },
+  ],
+  accessibility: ['Pattern APG “Select-only combobox”; etichetta, descrizione ed errore collegati.', 'Un <select> nascosto partecipa al submit e all’autofill.'],
+  responsive: ['Il popover si adatta alla larghezza del trigger e resta nel viewport.'],
+  customization: ['Stessa anatomia di campo di TextField; classi via className e popoverProps.className.'],
+  commonMistakes: ['Usarlo per azioni immediate: usa DropdownMenu.', 'Passare items al ListBox invece che al Select.'],
+  examples: [
+    { name: 'Basic', title: 'Opzioni dinamiche con descrizione' },
+    { name: 'Controlled', title: 'Controllato con icona' },
+    { name: 'Sections', title: 'Sezioni' },
+    { name: 'States', title: 'Stati' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Select/Select.test.tsx'], limits: [] },
+};

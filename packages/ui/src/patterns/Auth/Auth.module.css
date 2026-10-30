@@ -1,0 +1,124 @@
+.layout {
+  box-sizing: border-box;
+  display: grid;
+  background-color: var(--dc-color-surface-canvas);
+  color: var(--dc-color-text-primary);
+}
+
+.layout[data-full-height] {
+  min-block-size: 100dvh;
+}
+
+@media (width >= 1024px) {
+  .layout[data-has-aside] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.column {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dc-space-6);
+  padding: var(--dc-space-8) var(--dc-space-4);
+  min-inline-size: 0;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-6);
+  inline-size: 100%;
+  max-inline-size: 28rem;
+  padding: clamp(var(--dc-space-5), 5vw, var(--dc-space-8));
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-xl);
+  background-color: var(--dc-color-surface-default);
+  box-shadow: var(--dc-shadow-1);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+}
+
+.description {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+}
+
+.layoutFooter {
+  max-inline-size: 28rem;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  text-align: center;
+}
+
+.aside {
+  display: none;
+}
+
+@media (width >= 1024px) {
+  .aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-inline-size: 0;
+    padding: var(--dc-space-12);
+    background-color: var(--dc-color-surface-subtle);
+    border-inline-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  }
+}
+
+.formFrame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-5);
+}
+
+.form {
+  gap: var(--dc-space-4);
+}
+
+.passwordBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+}
+
+.forgot {
+  align-self: flex-end;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.providers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+}
+
+.formFooter {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  text-align: center;
+}
+
+@media (forced-colors: active) {
+  .card {
+    border-color: CanvasText;
+  }
+}

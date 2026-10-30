@@ -1,0 +1,166 @@
+.button {
+  --_bg: var(--dc-color-action-primary);
+  --_fg: var(--dc-color-action-primary-foreground);
+  --_border: transparent;
+  --_layer: var(--_fg);
+  --_height: var(--dc-density-control-height-md);
+  --_pad: var(--dc-density-control-padding-inline-md);
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dc-space-2);
+  min-block-size: var(--_height);
+  min-inline-size: var(--_height);
+  max-inline-size: 100%;
+  padding-block: var(--dc-space-1);
+  padding-inline: var(--_pad);
+  margin: 0;
+  border: var(--dc-border-width-thin) solid var(--_border);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: inherit;
+  font-size: var(--dc-typography-label-lg-size);
+  line-height: var(--dc-typography-label-lg-line-height);
+  font-weight: var(--dc-typography-label-lg-weight);
+  letter-spacing: var(--dc-typography-label-lg-letter-spacing);
+  text-decoration: none;
+  text-align: center;
+
+  /* Labels stay on one line while they fit; with enlarged text or narrow containers they wrap instead of overflowing (WCAG 1.4.4/1.4.10). */
+  overflow-wrap: break-word;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  transition:
+    background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    transform var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.button[data-size='sm'] {
+  --_height: var(--dc-density-control-height-sm);
+  --_pad: var(--dc-density-control-padding-inline-sm);
+
+  font-size: var(--dc-typography-label-md-size);
+  line-height: var(--dc-typography-label-md-line-height);
+}
+
+.button[data-size='lg'] {
+  --_height: var(--dc-density-control-height-lg);
+  --_pad: var(--dc-density-control-padding-inline-lg);
+}
+
+.button[data-variant='secondary'] {
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+}
+
+.button[data-variant='outline'] {
+  --_bg: transparent;
+  --_fg: var(--dc-color-text-primary);
+  --_border: var(--dc-color-border-default);
+}
+
+.button[data-variant='ghost'] {
+  --_bg: transparent;
+  --_fg: var(--dc-color-text-link);
+}
+
+.button[data-variant='danger'] {
+  --_bg: var(--dc-color-action-danger);
+  --_fg: var(--dc-color-action-danger-foreground);
+}
+
+/* State layers (Material-inspired): tint the background with the foreground color. */
+.button[data-hovered] {
+  background-color: color-mix(in srgb, var(--_layer) var(--dc-state-hover), var(--_bg));
+}
+
+.button[data-variant='primary'][data-hovered],
+.button[data-variant='danger'][data-hovered] {
+  box-shadow: var(--dc-shadow-1);
+}
+
+.button[data-pressed] {
+  background-color: color-mix(in srgb, var(--_layer) var(--dc-state-pressed), var(--_bg));
+  transform: scale(0.98);
+}
+
+.button[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.button[data-disabled] {
+  --_bg: var(--dc-color-action-disabled);
+  --_fg: var(--dc-color-action-disabled-foreground);
+  --_border: transparent;
+
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.button[data-variant='ghost'][data-disabled],
+.button[data-variant='outline'][data-disabled] {
+  --_bg: transparent;
+  --_border: var(--dc-color-border-subtle);
+}
+
+.button[data-pending] {
+  cursor: progress;
+}
+
+/* opacity (not visibility) keeps the label in the accessible name while pending. */
+.button[data-pending] .label,
+.button[data-pending] .icon {
+  opacity: 0;
+}
+
+.spinner {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.button[data-full-width] {
+  display: flex;
+  inline-size: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  inline-size: 1.25em;
+  block-size: 1.25em;
+}
+
+.label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (forced-colors: active) {
+  .button {
+    border-color: ButtonText;
+  }
+
+  .button[data-disabled] {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .button[data-focus-visible] {
+    outline-color: Highlight;
+  }
+}

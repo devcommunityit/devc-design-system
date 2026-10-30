@@ -1,0 +1,33 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Table', 'TableCaption', 'TableHead', 'TableBody', 'TableFoot', 'TableRow', 'TableHeaderCell', 'TableCell'],
+  name: 'Table',
+  slug: 'table',
+  category: 'data',
+  summary: 'Tabella visuale su <table> nativo: solo presentazione, senza stato. Per ordinamento, filtri, selezione e paginazione usa DataTable.',
+  whenToUse: ['Dati statici o già elaborati (riepiloghi, fatture, specifiche).', 'Contenuti renderizzati lato server.'],
+  whenNotToUse: ['Liste interattive con ordinamento o selezione: usa DataTable.', 'Impaginazione di layout: usa Grid.'],
+  props: [
+    { name: 'density', type: "'comfortable' | 'compact'", description: 'Padding delle celle; di default segue la densità del tema.' },
+    { name: 'striped', type: 'boolean', default: 'false', description: 'Righe alternate.' },
+    { name: 'stickyHeader', type: 'boolean', default: 'false', description: 'Intestazione fissa durante lo scroll verticale (con maxHeight).' },
+    { name: 'maxHeight', type: 'string', description: 'Altezza massima dell’area scorrevole.' },
+    { name: 'scrollRegionLabel', type: 'string', description: 'Nome della regione scorrevole (focalizzabile da tastiera quando trabocca).' },
+    { name: 'TableHeaderCell.scope', type: "'col' | 'row' | …", default: "'col'", description: 'Usa scope="row" per l’intestazione di riga.' },
+    { name: 'align', type: "'start' | 'center' | 'end'", description: 'Allineamento logico (RTL) delle celle.' },
+    { name: 'TableCell.numeric', type: 'boolean', description: 'Allinea alla fine con cifre tabulari.' },
+    { name: 'TableRow.isSelected', type: 'boolean', description: 'Evidenziazione visiva; comunica lo stato anche nel contenuto.' },
+  ],
+  inherits: 'Attributi HTML di ciascun elemento della tabella.',
+  keyboard: [{ keys: 'Tab poi frecce', action: 'Se la tabella trabocca, la regione scorrevole è focalizzabile e scorre con le frecce.' }],
+  accessibility: ['Semantica nativa: caption, th con scope, tfoot.', 'TableCaption fornisce il nome accessibile della tabella.'],
+  responsive: ['Overflow orizzontale localizzato nella regione scorrevole: mai sulla pagina.', 'Per mobile valuta colonne prioritarie o una vista a card.'],
+  customization: ['className/style; token --dc-density-cell-padding-*, --dc-color-border-subtle.'],
+  commonMistakes: ['Usare Table per dati che l’utente deve ordinare: perde stato e aria-sort.', 'Omettere caption o un nome accessibile.'],
+  examples: [
+    { name: 'Basic', title: 'Fatture con totale' },
+    { name: 'DenseStriped', title: 'Compatta, a righe alterne, intestazione fissa' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: [] },
+};

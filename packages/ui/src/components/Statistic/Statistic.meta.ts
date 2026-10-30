@@ -1,0 +1,32 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Statistic'],
+  name: 'Statistic',
+  slug: 'statistic',
+  category: 'data',
+  summary: 'KPI con etichetta, valore formattato con Intl e variazione opzionale.',
+  whenToUse: ['Dashboard e riepiloghi numerici.'],
+  whenNotToUse: ['Serie temporali: usa un grafico (non incluso) o una tabella.'],
+  props: [
+    { name: 'label', type: 'ReactNode', required: true, description: 'Nome della metrica.' },
+    { name: 'value', type: 'number | ReactNode', required: true, description: 'I numeri sono formattati con Intl.NumberFormat nel locale corrente.' },
+    { name: 'formatOptions', type: 'Intl.NumberFormatOptions', description: 'Valuta, percentuale, decimali…' },
+    { name: 'trend', type: '{ direction, value, sentiment?, label? }', description: 'Variazione; la direzione è annunciata a parole (localizzate).' },
+    { name: 'description', type: 'ReactNode', description: 'Contesto (periodo, fonte).' },
+    { name: 'emptyValue', type: 'ReactNode', default: "'—'", description: 'Per value null/undefined.' },
+    { name: 'icon', type: 'ReactNode', description: 'Icona decorativa.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Dimensione del valore.' },
+  ],
+  inherits: 'Attributi HTML di <div>.',
+  keyboard: [],
+  accessibility: ['La direzione del trend è testo, non solo freccia o colore.', 'sentiment separa la direzione dal giudizio (es. calo positivo degli abbandoni).'],
+  responsive: ['Valore con cifre tabulari; testo che va a capo nei contenitori stretti.'],
+  customization: ['className/style; token tipografici headline.'],
+  commonMistakes: ['Formattare manualmente i numeri ignorando il locale.'],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'Dashboard', title: 'KPI in dashboard' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: [] },
+};

@@ -1,0 +1,40 @@
+.toggle.toggle {
+  --_bg: transparent;
+  --_fg: var(--dc-color-text-primary);
+  --_border: var(--dc-color-border-default);
+  --_layer: var(--dc-color-text-primary);
+}
+
+.toggle.toggle[data-variant='ghost'] {
+  --_border: transparent;
+}
+
+.toggle.toggle[data-selected] {
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+  --_border: var(--dc-color-border-selected);
+  --_layer: var(--dc-color-action-secondary-foreground);
+}
+
+.toggle.toggle[data-icon-only] {
+  padding-inline: 0;
+  inline-size: var(--_height);
+}
+
+.toggle.toggle[data-disabled] {
+  --_bg: transparent;
+  --_fg: var(--dc-color-text-disabled);
+  --_border: var(--dc-color-border-subtle);
+}
+
+.toggleGroup[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+@media (forced-colors: active) {
+  .toggle.toggle[data-selected] {
+    background-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}

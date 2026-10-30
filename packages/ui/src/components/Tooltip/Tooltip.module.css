@@ -1,0 +1,62 @@
+.tooltip {
+  box-sizing: border-box;
+  max-inline-size: min(20rem, calc(100vw - var(--dc-space-4)));
+  padding-block: var(--dc-space-1);
+  padding-inline: var(--dc-space-2);
+  border-radius: var(--dc-radius-sm);
+  background-color: var(--dc-color-surface-inverse);
+  color: var(--dc-color-text-inverse);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  overflow-wrap: anywhere;
+  box-shadow: var(--dc-shadow-2);
+  z-index: var(--dc-z-tooltip);
+}
+
+.tooltip[data-entering] {
+  animation: dc-tooltip-in var(--dc-motion-duration-fast) var(--dc-motion-easing-decelerate);
+}
+
+.tooltip[data-exiting] {
+  animation: dc-tooltip-in var(--dc-motion-duration-instant) var(--dc-motion-easing-accelerate) reverse;
+}
+
+.arrow svg {
+  display: block;
+  fill: var(--dc-color-surface-inverse);
+}
+
+.tooltip[data-placement='bottom'] .arrow svg {
+  transform: rotate(180deg);
+}
+
+.tooltip[data-placement='left'] .arrow svg {
+  transform: rotate(-90deg);
+}
+
+.tooltip[data-placement='right'] .arrow svg {
+  transform: rotate(90deg);
+}
+
+@keyframes dc-tooltip-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip[data-entering],
+  .tooltip[data-exiting] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .tooltip {
+    border: 1px solid CanvasText;
+  }
+}

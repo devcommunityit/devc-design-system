@@ -1,0 +1,15 @@
+.root,
+.portal {
+  color: var(--dc-color-text-primary);
+  font-family: var(--dc-font-family-sans);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  font-weight: var(--dc-typography-body-md-weight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+.surface {
+  background-color: var(--dc-color-surface-canvas);
+}

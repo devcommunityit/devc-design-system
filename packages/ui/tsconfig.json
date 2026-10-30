@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "paths": {
+      "@dev-community/ui": ["./src/index.ts"],
+      "@dev-community/ui/theme": ["./src/theme/server.ts"]
+    }
+  },
+  "include": ["src", "test", "scripts", "build", ".storybook", "vite.config.ts", "src/**/*.json"]
+}

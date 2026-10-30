@@ -1,0 +1,178 @@
+[
+  {
+    "id": "aurora-light-comfortable",
+    "name": "aurora / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/aurora": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "aurora-light-compact",
+    "name": "aurora / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/aurora": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "aurora-dark-comfortable",
+    "name": "aurora / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/aurora": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "aurora-dark-compact",
+    "name": "aurora / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/aurora": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "lagoon-light-comfortable",
+    "name": "lagoon / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/lagoon": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "lagoon-light-compact",
+    "name": "lagoon / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/lagoon": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "lagoon-dark-comfortable",
+    "name": "lagoon / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/lagoon": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "lagoon-dark-compact",
+    "name": "lagoon / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/lagoon": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "ember-light-comfortable",
+    "name": "ember / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ember": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ember-light-compact",
+    "name": "ember / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ember": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ember-dark-comfortable",
+    "name": "ember / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ember": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "ember-dark-compact",
+    "name": "ember / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ember": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "graphite-light-comfortable",
+    "name": "graphite / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/graphite": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "graphite-light-compact",
+    "name": "graphite / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/graphite": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "graphite-dark-comfortable",
+    "name": "graphite / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/graphite": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "graphite-dark-compact",
+    "name": "graphite / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/graphite": "source",
+      "scheme/dark": "enabled"
+    }
+  }
+]

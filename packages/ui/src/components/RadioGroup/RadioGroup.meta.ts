@@ -1,0 +1,46 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['RadioGroup', 'Radio'],
+  name: 'RadioGroup',
+  slug: 'radio-group',
+  category: 'forms',
+  summary: 'Scelta di una sola opzione tra alternative mutuamente esclusive, tutte visibili, con descrizioni per opzione e validazione del gruppo.',
+  whenToUse: ['Da 2 a ~6 alternative esclusive da confrontare a colpo d’occhio.', 'Quando le opzioni hanno descrizioni o costi diversi.'],
+  whenNotToUse: ['Molte opzioni: usa Select o Combobox.', 'Scelta on/off: usa Switch o Checkbox.', 'Cambio di vista: usa Tabs o ToggleGroup.'],
+  props: [
+    { name: 'label', type: 'ReactNode', description: 'Etichetta del gruppo (o aria-label).' },
+    { name: 'value / defaultValue', type: 'string | null', description: 'Opzione selezionata, controllata o no.' },
+    { name: 'onChange', type: '(value: string) => void', description: 'Riceve il valore scelto.' },
+    { name: 'orientation', type: "'vertical' | 'horizontal'", default: "'vertical'", description: 'Disposizione e direzione delle frecce.' },
+    { name: 'description / errorMessage / isRequired / validate', type: 'FieldBaseProps', description: 'Anatomia e validazione del gruppo.' },
+    { name: 'isDisabled / isReadOnly / isInvalid', type: 'boolean', default: 'false', description: 'Stati del gruppo.' },
+    { name: 'Radio: value', type: 'string', required: true, description: 'Valore dell’opzione.' },
+    { name: 'Radio: description', type: 'ReactNode', description: 'Dettaglio dell’opzione, collegato con aria-describedby.' },
+    { name: 'Radio: isDisabled', type: 'boolean', description: 'Disabilita la singola opzione.' },
+  ],
+  inherits: 'Props di react-aria-components RadioGroup e RadioField (name, form…).',
+  keyboard: [
+    { keys: 'Tab', action: 'Entra nel gruppo sull’opzione selezionata (o la prima).' },
+    { keys: 'Frecce', action: 'Spostano il focus e selezionano l’opzione successiva/precedente (rispetta RTL).' },
+    { keys: 'Spazio', action: 'Seleziona l’opzione con focus.' },
+  ],
+  accessibility: [
+    'Input radio nativi con roving tabindex.',
+    'La descrizione della singola opzione si aggiunge a quella del gruppo nell’annuncio.',
+    'Selezione indicata da un punto interno, non solo dal colore.',
+  ],
+  responsive: ['Il layout orizzontale va a capo; preferisci il verticale con testi lunghi.'],
+  customization: ['Condivide gli stili di Checkbox (data-shape="radio").', 'Colori da color.action.primary.'],
+  commonMistakes: ['Usare onChange per eseguire azioni (la scelta deve essere reversibile prima dell’invio).', 'Lasciare il gruppo senza valore iniziale quando esiste un default sensato.'],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'WithDescriptions', title: 'Opzioni con descrizione' },
+    { name: 'Horizontal', title: 'Orizzontale' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'States', title: 'Stati' },
+    { name: 'Validation', title: 'Validazione' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/RadioGroup/RadioGroup.test.tsx'], limits: [] },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/radio/',
+};

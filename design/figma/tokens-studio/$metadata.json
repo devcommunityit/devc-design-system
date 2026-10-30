@@ -1,0 +1,13 @@
+{
+  "tokenSetOrder": [
+    "base",
+    "density/comfortable",
+    "density/compact",
+    "palette/aurora",
+    "palette/lagoon",
+    "palette/ember",
+    "palette/graphite",
+    "scheme/light",
+    "scheme/dark"
+  ]
+}

@@ -1,0 +1,55 @@
+.spinner {
+  --_size: 1.25rem;
+
+  display: inline-flex;
+  flex: none;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  color: currentcolor;
+  vertical-align: middle;
+}
+
+.spinner[data-size='sm'] {
+  --_size: 1rem;
+}
+
+.spinner[data-size='lg'] {
+  --_size: 2rem;
+}
+
+.svg {
+  inline-size: 100%;
+  block-size: 100%;
+  animation: dc-spin 900ms linear infinite;
+}
+
+.track {
+  stroke: currentcolor;
+  opacity: 0.2;
+}
+
+.arc {
+  stroke: currentcolor;
+  stroke-dasharray: 42 100;
+}
+
+.label {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes dc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    animation-duration: 2400ms;
+  }
+}

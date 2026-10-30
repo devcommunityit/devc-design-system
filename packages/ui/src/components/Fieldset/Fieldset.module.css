@@ -1,0 +1,51 @@
+.fieldset {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.legend {
+  float: inline-start;
+  inline-size: 100%;
+  padding: 0;
+  margin-block-end: var(--dc-space-1);
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-typography-title-md-weight);
+  letter-spacing: var(--dc-typography-title-md-letter-spacing);
+  overflow-wrap: anywhere;
+}
+
+.fieldset[data-legend-variant='label'] .legend {
+  font-size: var(--dc-typography-label-lg-size);
+  line-height: var(--dc-typography-label-lg-line-height);
+  font-weight: var(--dc-typography-label-lg-weight);
+  letter-spacing: var(--dc-typography-label-lg-letter-spacing);
+}
+
+.description {
+  clear: both;
+  margin: 0;
+}
+
+.content {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-density-form-gap);
+  padding-block-start: var(--dc-space-3);
+}
+
+.error {
+  margin: 0;
+  margin-block-start: var(--dc-space-2);
+}
+
+.fieldset:disabled .legend {
+  color: var(--dc-color-text-disabled);
+}

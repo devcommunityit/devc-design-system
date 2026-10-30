@@ -1,0 +1,102 @@
+{
+  "$description": "Fonte unica dei colori. Ogni preset definisce un colore seme; le palette tonali sono generate con HCT (Material Color Utilities). I ruoli semantici mappano un tono (0-100, equivalente a L* CIELAB) per il tema chiaro e scuro.",
+  "presets": {
+    "aurora": { "label": { "it": "Aurora", "en": "Aurora" }, "brand": "#5b5bd6", "description": "Indaco profondo, neutri freddi." },
+    "lagoon": { "label": { "it": "Laguna", "en": "Lagoon" }, "brand": "#0f8b8d", "description": "Verde acqua, neutri leggermente caldi." },
+    "ember": { "label": { "it": "Brace", "en": "Ember" }, "brand": "#d4572f", "description": "Corallo bruciato, energico ma sobrio." },
+    "graphite": { "label": { "it": "Grafite", "en": "Graphite" }, "brand": "#56607a", "description": "Ardesia a bassa saturazione, istituzionale." }
+  },
+  "defaultPreset": "aurora",
+  "feedback": {
+    "danger": "#c62828",
+    "warning": "#b45309",
+    "success": "#2e7d32",
+    "info": "#0b6bcb"
+  },
+  "palettes": {
+    "$description": "Regole di derivazione delle palette dal seme brand (hue e chroma HCT).",
+    "brand": { "minChroma": 28, "maxChroma": 72 },
+    "neutral": { "chromaFactor": 0.08, "maxChroma": 5 },
+    "neutral-variant": { "chromaFactor": 0.16, "maxChroma": 9 }
+  },
+  "roles": {
+    "text.primary": { "palette": "neutral", "light": 10, "dark": 92 },
+    "text.secondary": { "palette": "neutral-variant", "light": 30, "dark": 80 },
+    "text.muted": { "palette": "neutral-variant", "light": 42, "dark": 70 },
+    "text.disabled": { "palette": "neutral", "light": 62, "dark": 42 },
+    "text.inverse": { "palette": "neutral", "light": 96, "dark": 12 },
+    "text.link": { "palette": "brand", "light": 40, "dark": 80 },
+
+    "surface.canvas": { "palette": "neutral", "light": 98, "dark": 6 },
+    "surface.default": { "palette": "neutral", "light": 100, "dark": 10 },
+    "surface.raised": { "palette": "neutral", "light": 100, "dark": 15 },
+    "surface.subtle": { "palette": "neutral", "light": 96, "dark": 13 },
+    "surface.muted": { "palette": "neutral", "light": 94, "dark": 17 },
+    "surface.strong": { "palette": "neutral", "light": 90, "dark": 24 },
+    "surface.inverse": { "palette": "neutral", "light": 20, "dark": 90 },
+    "surface.brand": { "palette": "brand", "light": 96, "dark": 16 },
+
+    "action.primary": { "palette": "brand", "light": 40, "dark": 80 },
+    "action.primary-foreground": { "palette": "brand", "light": 100, "dark": 20 },
+    "action.secondary": { "palette": "brand", "light": 92, "dark": 30 },
+    "action.secondary-foreground": { "palette": "brand", "light": 15, "dark": 92 },
+    "action.neutral": { "palette": "neutral", "light": 93, "dark": 22 },
+    "action.neutral-foreground": { "palette": "neutral", "light": 10, "dark": 92 },
+    "action.danger": { "palette": "danger", "light": 40, "dark": 80 },
+    "action.danger-foreground": { "palette": "danger", "light": 100, "dark": 20 },
+    "action.disabled": { "palette": "neutral", "light": 91, "dark": 20 },
+    "action.disabled-foreground": { "palette": "neutral", "light": 58, "dark": 48 },
+
+    "border.subtle": { "palette": "neutral-variant", "light": 92, "dark": 20 },
+    "border.default": { "palette": "neutral-variant", "light": 86, "dark": 30 },
+    "border.strong": { "palette": "neutral-variant", "light": 52, "dark": 60 },
+    "border.selected": { "palette": "brand", "light": 40, "dark": 80 },
+
+    "focus.ring": { "palette": "brand", "light": 40, "dark": 80 },
+
+    "feedback.danger": { "palette": "danger", "light": 40, "dark": 80 },
+    "feedback.danger-surface": { "palette": "danger", "light": 96, "dark": 16 },
+    "feedback.danger-foreground": { "palette": "danger", "light": 25, "dark": 90 },
+    "feedback.danger-border": { "palette": "danger", "light": 80, "dark": 35 },
+    "feedback.warning": { "palette": "warning", "light": 40, "dark": 80 },
+    "feedback.warning-surface": { "palette": "warning", "light": 96, "dark": 16 },
+    "feedback.warning-foreground": { "palette": "warning", "light": 25, "dark": 90 },
+    "feedback.warning-border": { "palette": "warning", "light": 80, "dark": 35 },
+    "feedback.success": { "palette": "success", "light": 40, "dark": 80 },
+    "feedback.success-surface": { "palette": "success", "light": 96, "dark": 16 },
+    "feedback.success-foreground": { "palette": "success", "light": 25, "dark": 90 },
+    "feedback.success-border": { "palette": "success", "light": 80, "dark": 35 },
+    "feedback.info": { "palette": "info", "light": 40, "dark": 80 },
+    "feedback.info-surface": { "palette": "info", "light": 96, "dark": 16 },
+    "feedback.info-foreground": { "palette": "info", "light": 25, "dark": 90 },
+    "feedback.info-border": { "palette": "info", "light": 80, "dark": 35 },
+
+    "overlay.scrim": { "palette": "neutral", "light": 0, "dark": 0 },
+    "shadow": { "palette": "neutral", "light": 0, "dark": 0 }
+  },
+  "contrastPairs": {
+    "$description": "Coppie testo/sfondo verificate dai test e dal Theme Builder. min: rapporto WCAG richiesto.",
+    "pairs": [
+      ["text.primary", "surface.canvas", 4.5],
+      ["text.primary", "surface.default", 4.5],
+      ["text.primary", "surface.raised", 4.5],
+      ["text.secondary", "surface.default", 4.5],
+      ["text.muted", "surface.default", 4.5],
+      ["text.muted", "surface.canvas", 4.5],
+      ["text.link", "surface.default", 4.5],
+      ["text.inverse", "surface.inverse", 4.5],
+      ["action.primary-foreground", "action.primary", 4.5],
+      ["action.secondary-foreground", "action.secondary", 4.5],
+      ["action.neutral-foreground", "action.neutral", 4.5],
+      ["action.danger-foreground", "action.danger", 4.5],
+      ["border.strong", "surface.default", 3],
+      ["focus.ring", "surface.default", 3],
+      ["focus.ring", "surface.canvas", 3],
+      ["feedback.danger", "surface.default", 4.5],
+      ["feedback.danger-foreground", "feedback.danger-surface", 4.5],
+      ["feedback.warning-foreground", "feedback.warning-surface", 4.5],
+      ["feedback.success-foreground", "feedback.success-surface", 4.5],
+      ["feedback.info-foreground", "feedback.info-surface", 4.5]
+    ]
+  }
+}

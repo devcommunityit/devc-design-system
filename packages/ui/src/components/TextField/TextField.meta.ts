@@ -1,0 +1,75 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['TextField', 'Textarea', 'Input', 'Field', 'Form', 'Label', 'Description', 'FieldError'],
+  name: 'TextField e Field',
+  slug: 'text-field',
+  category: 'forms',
+  summary:
+    'Campi di testo a riga singola (TextField) e multipla (Textarea) con etichetta, descrizione e messaggio di errore collegati automaticamente. Field fornisce la stessa anatomia a controlli personalizzati; Form coordina la validazione.',
+  whenToUse: [
+    'Inserimento di testo libero breve (nome, email, codice) o lungo (note, descrizioni).',
+    'Field: per integrare un controllo nativo o di terze parti mantenendo etichette ed errori coerenti.',
+  ],
+  whenNotToUse: [
+    'Valori numerici con incrementi: usa NumberInput.',
+    'Scelta da un elenco noto: usa Select, Combobox o RadioGroup.',
+    'Password: usa PasswordInput; ricerca: SearchInput (con pulsante di cancellazione).',
+  ],
+  props: [
+    { name: 'label', type: 'ReactNode', description: 'Etichetta visibile. Se assente, fornisci aria-label o aria-labelledby.' },
+    { name: 'description', type: 'ReactNode', description: 'Testo di aiuto collegato con aria-describedby.' },
+    { name: 'errorMessage', type: 'ReactNode | (v: ValidationResult) => ReactNode', description: 'Messaggio mostrato quando il campo è non valido; la funzione riceve i dettagli della validazione.' },
+    { name: 'value / defaultValue', type: 'string', description: 'Modalità controllata o non controllata (non alternare tra le due).' },
+    { name: 'onChange', type: '(value: string) => void', description: 'Riceve il nuovo valore (non l’evento).' },
+    { name: 'isRequired', type: 'boolean', default: 'false', description: 'Campo obbligatorio: required nativo + indicatore visivo e testuale localizzato.' },
+    { name: 'necessityIndicator', type: "'icon' | 'label' | 'none'", default: "'icon'", description: 'Come indicare l’obbligatorietà.' },
+    { name: 'isInvalid', type: 'boolean', description: 'Forza lo stato non valido (es. errore dal server).' },
+    { name: 'validate', type: '(value: string) => string | string[] | true | null | undefined', description: 'Validazione personalizzata; restituisci il messaggio d’errore.' },
+    { name: 'validationBehavior', type: "'native' | 'aria'", default: "'native'", description: 'native: errori mostrati al submit e submit bloccato; aria: errori in tempo reale senza bloccare.' },
+    { name: 'isDisabled / isReadOnly', type: 'boolean', default: 'false', description: 'Stati disabilitato e sola lettura (il valore readonly resta selezionabile e inviato col form).' },
+    { name: 'startAdornment / endAdornment', type: 'ReactNode', description: 'Icona o contenuto prima/dopo l’input (lo start è decorativo).' },
+    { name: 'inputProps', type: 'InputProps', description: 'Props dell’elemento <input> (inputMode, list, enterKeyHint…).' },
+    { name: 'type, name, autoComplete, minLength, maxLength, pattern', type: 'native', description: 'Attributi nativi inoltrati all’input.' },
+    { name: 'Textarea: rows / showCount', type: 'number / boolean', default: '4 / false', description: 'Righe visibili e contatore caratteri (richiede maxLength).' },
+  ],
+  inherits: 'Props di react-aria-components TextField (onFocus, onBlur, onKeyDown, autoFocus, name, form…) e attributi DOM globali sul contenitore.',
+  keyboard: [
+    { keys: 'Tab / Shift+Tab', action: 'Entra ed esce dal campo.' },
+    { keys: 'Enter (in un Form)', action: 'Invia il form; il focus va al primo campo non valido.' },
+  ],
+  accessibility: [
+    '<label for> nativa, descrizione ed errore collegati con aria-describedby.',
+    'Lo stato non valido usa aria-invalid; il messaggio è preceduto da un’icona (non solo colore).',
+    'L’asterisco è aria-hidden: lo screen reader legge il testo localizzato “obbligatorio”.',
+    'Con validationBehavior="native" il submit sposta il focus sul primo campo non valido.',
+    'Il placeholder non sostituisce l’etichetta.',
+  ],
+  responsive: [
+    'Il campo occupa la larghezza del contenitore; etichette e messaggi lunghi vanno a capo.',
+    'Il font dell’input è 16 px per evitare lo zoom automatico su iOS.',
+    'Usa type/inputMode corretti (email, tel, url) per tastiere mobili adeguate.',
+  ],
+  customization: [
+    'Altezza e padding dal token density (comfortable/compact).',
+    'Classi condivise .dc-field-field, .dc-field-control, .dc-field-input; stati [data-invalid], [data-disabled], [data-readonly].',
+    'Bordo: token color.border.default/strong/selected; errore: color.feedback.danger.',
+  ],
+  commonMistakes: [
+    'Mostrare errori solo con il bordo rosso: passa sempre un errorMessage.',
+    'Usare onChange come in un input nativo: qui riceve una stringa.',
+    'Passare value senza onChange (campo bloccato): usa defaultValue o isReadOnly.',
+    'Considerare la validazione client sufficiente: ripetila sempre sul server.',
+  ],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'WithDescriptionAndRequired', title: 'Descrizione e obbligatorietà' },
+    { name: 'States', title: 'Stati' },
+    { name: 'Controlled', title: 'Controllato' },
+    { name: 'Validation', title: 'Validazione e submit' },
+    { name: 'MultiLine', title: 'Textarea con contatore' },
+    { name: 'CustomControl', title: 'Field con controllo personalizzato' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/TextField/TextField.test.tsx'], limits: [] },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/',
+};

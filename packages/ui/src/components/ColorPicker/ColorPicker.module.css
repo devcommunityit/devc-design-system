@@ -1,0 +1,122 @@
+.control {
+  padding-inline-start: var(--dc-space-1);
+}
+
+.input {
+  font-family: var(--dc-font-family-mono);
+  text-transform: uppercase;
+}
+
+.trigger {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: calc(var(--dc-density-control-height-md) - var(--dc-space-2));
+  block-size: calc(var(--dc-density-control-height-md) - var(--dc-space-2));
+  padding: 0;
+  border: 0;
+  border-radius: var(--dc-radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.trigger[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.trigger[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.swatch {
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 100%;
+  min-inline-size: var(--dc-space-6);
+  min-block-size: var(--dc-space-6);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-strong);
+  border-radius: var(--dc-radius-sm);
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  inline-size: calc(var(--dc-space-24) * 2.5);
+  max-inline-size: 100%;
+  padding: var(--dc-space-3);
+  outline: none;
+}
+
+.area {
+  position: relative;
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--dc-radius-md);
+  touch-action: none;
+}
+
+.slider {
+  display: block;
+  inline-size: 100%;
+}
+
+.track {
+  position: relative;
+  block-size: var(--dc-space-6);
+  border-radius: var(--dc-radius-md);
+  touch-action: none;
+}
+
+.thumb {
+  box-sizing: border-box;
+  inline-size: var(--dc-space-5);
+  block-size: var(--dc-space-5);
+  border: var(--dc-border-width-thick) solid var(--dc-color-surface-default);
+  border-radius: var(--dc-radius-full);
+  box-shadow: var(--dc-shadow-2);
+}
+
+.sliderThumb {
+  inset-block-start: 50%;
+}
+
+.thumb[data-focus-visible] {
+  inline-size: var(--dc-space-6);
+  block-size: var(--dc-space-6);
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.swatchItem {
+  inline-size: var(--dc-space-8);
+  block-size: var(--dc-space-8);
+  border-radius: var(--dc-radius-sm);
+  cursor: pointer;
+}
+
+.swatchItem[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.swatchItem[data-selected] {
+  outline: var(--dc-border-width-thick) solid var(--dc-color-border-selected);
+  outline-offset: var(--dc-border-width-thick);
+}
+
+@media (forced-colors: active) {
+  .swatch,
+  .thumb {
+    forced-color-adjust: none;
+  }
+}

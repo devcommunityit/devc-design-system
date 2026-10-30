@@ -1,0 +1,127 @@
+.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-block-size: 1.5rem;
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button[data-label-position='start'] {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  inline-size: 100%;
+}
+
+.track {
+  --_bg: var(--dc-color-surface-strong);
+  --_border: var(--dc-color-border-strong);
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  inline-size: 2.75rem;
+  block-size: 1.5rem;
+  padding-inline: 0.1875rem;
+  border: var(--dc-border-width-thick) solid var(--_border);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_bg);
+  transition:
+    background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+/* 44x40 hit area around the track. */
+.track::after {
+  content: '';
+  position: absolute;
+  inset: -0.5rem -0.25rem;
+}
+
+.thumb {
+  box-sizing: border-box;
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-text-secondary);
+  transition:
+    transform var(--dc-motion-duration-normal) var(--dc-motion-easing-emphasized),
+    inline-size var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    block-size var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.button[data-hovered] .track {
+  --_bg: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), var(--dc-color-surface-strong));
+}
+
+.button[data-selected] .track {
+  --_bg: var(--dc-color-action-primary);
+  --_border: var(--dc-color-action-primary);
+}
+
+.button[data-selected] .thumb {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  background-color: var(--dc-color-action-primary-foreground);
+  transform: translateX(calc(2.75rem - 2 * var(--dc-border-width-thick) - 0.375rem - 1.125rem));
+}
+
+.button[data-selected]:dir(rtl) .thumb {
+  transform: translateX(calc(-1 * (2.75rem - 2 * var(--dc-border-width-thick) - 0.375rem - 1.125rem)));
+}
+
+.button[data-pressed] .thumb {
+  inline-size: 1.25rem;
+}
+
+.button[data-focus-visible] .track {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.button[data-disabled] {
+  color: var(--dc-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.button[data-disabled] .track {
+  --_bg: var(--dc-color-surface-subtle);
+  --_border: var(--dc-color-border-subtle);
+}
+
+.button[data-disabled] .thumb {
+  background-color: var(--dc-color-text-disabled);
+}
+
+.button[data-readonly] {
+  cursor: default;
+}
+
+.indent {
+  padding-inline-start: calc(2.75rem + var(--dc-space-3));
+}
+
+@media (forced-colors: active) {
+  .track {
+    border-color: ButtonText;
+  }
+
+  .thumb {
+    background-color: ButtonText;
+  }
+
+  .button[data-selected] .track {
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .button[data-selected] .thumb {
+    background-color: HighlightText;
+  }
+}

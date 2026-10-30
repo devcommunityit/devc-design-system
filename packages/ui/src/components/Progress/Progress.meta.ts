@@ -1,0 +1,33 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Progress', 'CircularProgress'],
+  name: 'Progress / CircularProgress',
+  slug: 'progress',
+  category: 'feedback',
+  summary: 'Indicatori di avanzamento lineare e circolare, determinati o indeterminati, con valore formattato.',
+  whenToUse: ['Operazioni di durata nota (upload, esportazioni).', 'Quote e percentuali di completamento.'],
+  whenNotToUse: ['Attese brevi senza misura: usa Spinner.', 'Contenuti in caricamento: usa Skeleton.'],
+  props: [
+    { name: 'value', type: 'number', description: 'Valore corrente; senza value è indeterminato.' },
+    { name: 'minValue / maxValue', type: 'number', default: '0 / 100', description: 'Intervallo.' },
+    { name: 'label', type: 'ReactNode', description: 'Progress: etichetta visibile associata.' },
+    { name: 'aria-label', type: 'string', description: 'Nome accessibile senza etichetta visibile (default localizzato “Avanzamento”).' },
+    { name: 'valueLabel / formatOptions', type: 'ReactNode / Intl.NumberFormatOptions', description: 'Testo o formato del valore.' },
+    { name: 'showValue', type: 'boolean', description: 'Mostra il valore (default: sì se determinato; circolare: non in sm).' },
+    { name: 'tone', type: "'brand' | 'success' | 'warning' | 'danger'", default: "'brand'", description: 'Colore dell’indicatore.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Spessore o diametro.' },
+  ],
+  inherits: 'Props di ProgressBar di react-aria-components.',
+  keyboard: [],
+  accessibility: ['role="progressbar" con aria-valuenow/valuetext; indeterminato senza valuenow.', 'Il tono non è l’unico indicatore: il valore resta testuale.', 'Animazioni ridotte con prefers-reduced-motion; colori di sistema in forced-colors.'],
+  responsive: ['Barra a larghezza piena; il cerchio ha dimensioni fisse da token.'],
+  customization: ['className/style; colori dai ruoli action e feedback.'],
+  commonMistakes: ['Aggiornare il valore molte volte al secondo: limita la frequenza per gli screen reader.'],
+  examples: [
+    { name: 'Linear', title: 'Lineare' },
+    { name: 'Circular', title: 'Circolare' },
+    { name: 'Simulated', title: 'Avanzamento simulato' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
+};

@@ -1,0 +1,46 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Slider', 'RangeSlider'],
+  name: 'Slider / RangeSlider',
+  slug: 'slider',
+  category: 'forms',
+  summary: 'Selezione di un valore o di un intervallo numerico trascinando un cursore, con formattazione localizzata.',
+  whenToUse: ['Valori approssimativi in un intervallo noto (volume, prezzo massimo).', 'Filtri di intervallo con RangeSlider.'],
+  whenNotToUse: ['Valori precisi da digitare: usa NumberInput.', 'Intervalli molto ampi in cui un pixel vale molte unità.'],
+  props: [
+    { name: 'label', type: 'ReactNode', description: 'Etichetta visibile, collegata a tutti i cursori.' },
+    { name: 'value / defaultValue / onChange', type: 'number (Slider) · [number, number] (RangeSlider)', description: 'Valore controllato o non controllato.' },
+    { name: 'onChangeEnd', type: '(value) => void', description: 'Chiamato al rilascio: utile per salvare o filtrare.' },
+    { name: 'minValue / maxValue / step', type: 'number', default: '0 / 100 / 1', description: 'Limiti e passo.' },
+    { name: 'formatOptions', type: 'Intl.NumberFormatOptions', description: 'Formattazione del valore (valuta, unità, percentuale) secondo il locale.' },
+    { name: 'showValue', type: 'boolean', default: 'true', description: 'Mostra il valore formattato accanto all’etichetta.' },
+    { name: 'showBounds', type: 'boolean', default: 'false', description: 'Mostra minimo e massimo sotto la traccia.' },
+    { name: 'name / startName / endName', type: 'string', description: 'Nomi dei campi inviati con il form.' },
+    { name: 'thumbLabels', type: '[string, string]', description: 'Nomi accessibili dei due cursori (default localizzati “Minimo”/“Massimo”).' },
+    { name: 'description', type: 'ReactNode', description: 'Testo di aiuto.' },
+    { name: 'isDisabled', type: 'boolean', description: 'Disabilita l’interazione.' },
+  ],
+  inherits: 'Props di Slider di react-aria-components (orientation, isDisabled, aria-*).',
+  keyboard: [
+    { keys: 'Frecce', action: 'Cambia il valore di uno step.' },
+    { keys: 'Pagina su / giù', action: 'Cambia di un passo ampio.' },
+    { keys: 'Home / End', action: 'Minimo / massimo.' },
+    { keys: 'Tab', action: 'Passa al cursore successivo (RangeSlider).' },
+  ],
+  accessibility: [
+    'Ogni cursore è un <input type="range"> nascosto: funziona con screen reader e tastiera.',
+    'Il valore annunciato usa la stessa formattazione Intl mostrata a schermo.',
+    'In RTL la direzione si inverte automaticamente.',
+  ],
+  responsive: ['La traccia occupa tutta la larghezza disponibile; cursori con area di tocco di 24 px.'],
+  customization: ['className e style sul contenitore; i colori derivano da color.action.primary e color.border.*.'],
+  commonMistakes: ['Usare onChange per richieste costose: usa onChangeEnd.', 'Nascondere il valore senza alternativa testuale nei contesti in cui la precisione conta.'],
+  examples: [
+    { name: 'Basic', title: 'Base' },
+    { name: 'Controlled', title: 'Controllato con unità' },
+    { name: 'Range', title: 'Intervallo di prezzo' },
+    { name: 'States', title: 'Stati' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/Slider/Slider.test.tsx'], limits: [] },
+};

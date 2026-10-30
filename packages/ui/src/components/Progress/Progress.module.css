@@ -1,0 +1,184 @@
+.progress {
+  --_color: var(--dc-color-action-primary);
+  --_thickness: var(--dc-space-1-5);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1-5);
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.progress[data-size='sm'] {
+  --_thickness: var(--dc-space-1);
+}
+
+.progress[data-size='lg'] {
+  --_thickness: var(--dc-space-2);
+}
+
+.progress[data-tone='success'],
+.circular[data-tone='success'] {
+  --_color: var(--dc-color-feedback-success);
+}
+
+.progress[data-tone='warning'],
+.circular[data-tone='warning'] {
+  --_color: var(--dc-color-feedback-warning);
+}
+
+.progress[data-tone='danger'],
+.circular[data-tone='danger'] {
+  --_color: var(--dc-color-feedback-danger);
+}
+
+.header {
+  display: flex;
+  gap: var(--dc-space-2);
+  justify-content: space-between;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.label {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.value {
+  color: var(--dc-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  block-size: var(--_thickness);
+  overflow: hidden;
+  border-radius: var(--dc-radius-full);
+  background: var(--dc-color-surface-strong);
+}
+
+.fill {
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--_color);
+  transition: inline-size var(--dc-motion-duration-normal) var(--dc-motion-easing-standard);
+}
+
+.progress[data-indeterminate] .fill {
+  position: absolute;
+  inset-block: 0;
+  inline-size: 40%;
+  animation: dc-progress-slide 1.4s var(--dc-motion-easing-standard) infinite;
+}
+
+@keyframes dc-progress-slide {
+  from {
+    inset-inline-start: -40%;
+  }
+
+  to {
+    inset-inline-start: 100%;
+  }
+}
+
+.circular {
+  --_color: var(--dc-color-action-primary);
+  --_size: var(--dc-space-10);
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+}
+
+.circular[data-size='sm'] {
+  --_size: var(--dc-space-5);
+}
+
+.circular[data-size='lg'] {
+  --_size: var(--dc-space-16);
+}
+
+.ring {
+  inline-size: 100%;
+  block-size: 100%;
+  transform: rotate(-90deg);
+}
+
+.ringTrack,
+.ringFill {
+  fill: none;
+  stroke-width: 3.5;
+}
+
+.ringTrack {
+  stroke: var(--dc-color-surface-strong);
+}
+
+.ringFill {
+  stroke: var(--_color);
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--dc-motion-duration-normal) var(--dc-motion-easing-standard);
+}
+
+.circular[data-indeterminate] .ring {
+  animation: dc-progress-spin 1s linear infinite;
+}
+
+@keyframes dc-progress-spin {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+.ringValue {
+  position: absolute;
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.circular[data-size='md'] .ringValue {
+  font-size: calc(var(--dc-typography-label-sm-size) * 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress[data-indeterminate] .fill {
+    inset-inline-start: 0;
+    inline-size: 100%;
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .circular[data-indeterminate] .ring {
+    animation-duration: 3s;
+  }
+
+  .fill,
+  .ringFill {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .fill {
+    background: Highlight;
+  }
+
+  .ringFill {
+    stroke: Highlight;
+  }
+
+  .track {
+    border: 1px solid CanvasText;
+  }
+}

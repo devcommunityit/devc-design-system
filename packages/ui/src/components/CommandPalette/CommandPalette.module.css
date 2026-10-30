@@ -1,0 +1,114 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-block-start: min(12vh, var(--dc-space-24));
+  padding-inline: var(--dc-space-3);
+  background-color: var(--dc-color-overlay-scrim);
+  z-index: var(--dc-z-modal);
+}
+
+.overlay[data-entering] {
+  animation: dc-command-fade var(--dc-motion-duration-fast) var(--dc-motion-easing-decelerate);
+}
+
+.overlay[data-exiting] {
+  animation: dc-command-fade var(--dc-motion-duration-fast) var(--dc-motion-easing-accelerate) reverse;
+}
+
+.modal {
+  box-sizing: border-box;
+  inline-size: min(100%, var(--dc-container-sm));
+  max-block-size: min(32rem, calc(100dvh - var(--dc-space-8)));
+  display: flex;
+  flex-direction: column;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-xl);
+  background-color: var(--dc-color-surface-raised);
+  color: var(--dc-color-text-primary);
+  box-shadow: var(--dc-shadow-4);
+  overflow: hidden;
+  outline: none;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  flex: 1;
+  outline: none;
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  padding-inline: var(--dc-space-4);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.searchIcon {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  color: var(--dc-color-text-muted);
+}
+
+.input {
+  flex: 1;
+  min-inline-size: 0;
+  min-block-size: var(--dc-density-control-height-lg);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--dc-typography-body-lg-size);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--dc-color-text-muted);
+  opacity: 1;
+}
+
+.input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.searchField:focus-within {
+  box-shadow: inset 0 calc(-1 * var(--dc-border-width-thick)) 0 var(--dc-color-focus-ring);
+}
+
+.menu.menu {
+  flex: 1;
+  min-block-size: 0;
+  overflow: auto;
+  padding: var(--dc-space-2);
+}
+
+.empty {
+  padding: var(--dc-space-6);
+  color: var(--dc-color-text-secondary);
+  text-align: center;
+}
+
+@keyframes dc-command-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-entering],
+  .overlay[data-exiting] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .modal {
+    border: 1px solid CanvasText;
+  }
+}

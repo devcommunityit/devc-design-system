@@ -1,0 +1,160 @@
+/* Shared by Checkbox, Radio and Switch. */
+.field {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.button {
+  --_box: 1.25rem;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  min-block-size: 1.5rem;
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.box {
+  --_border: var(--dc-color-border-strong);
+  --_bg: var(--dc-color-surface-default);
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_box);
+  block-size: var(--_box);
+  margin-block-start: calc((1lh - var(--_box)) / 2);
+  border: var(--dc-border-width-thick) solid var(--_border);
+  border-radius: var(--dc-radius-xs);
+  background-color: var(--_bg);
+  color: var(--dc-color-action-primary-foreground);
+  transition:
+    background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+/* Enlarged invisible hit area: 40px target without changing the layout. */
+.box::after {
+  content: '';
+  position: absolute;
+  inset: -0.625rem;
+  border-radius: var(--dc-radius-full);
+}
+
+.box > svg {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  stroke-width: 3;
+}
+
+.button[data-hovered] .box::after {
+  background-color: color-mix(in srgb, var(--dc-color-action-primary) var(--dc-state-hover), transparent);
+}
+
+.button[data-pressed] .box::after {
+  background-color: color-mix(in srgb, var(--dc-color-action-primary) var(--dc-state-pressed), transparent);
+}
+
+.button[data-selected] .box,
+.button[data-indeterminate] .box {
+  --_border: var(--dc-color-action-primary);
+  --_bg: var(--dc-color-action-primary);
+}
+
+.button[data-focus-visible] .box {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.button[data-invalid] .box {
+  --_border: var(--dc-color-feedback-danger);
+}
+
+.button[data-invalid][data-selected] .box {
+  --_bg: var(--dc-color-feedback-danger);
+}
+
+.button[data-disabled] {
+  color: var(--dc-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.button[data-disabled] .box {
+  --_border: var(--dc-color-border-subtle);
+  --_bg: var(--dc-color-surface-subtle);
+
+  color: var(--dc-color-text-disabled);
+}
+
+.button[data-disabled] .box::after {
+  background: none;
+}
+
+.button[data-readonly] {
+  cursor: default;
+}
+
+.label {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.indent {
+  padding-inline-start: calc(1.25rem + var(--dc-space-3));
+}
+
+.group {
+  border: 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  padding-block: var(--dc-space-1);
+}
+
+.group[data-orientation='horizontal'] .options {
+  flex-flow: row wrap;
+  column-gap: var(--dc-space-6);
+}
+
+/* Radio: round box with an inner dot. */
+.box[data-shape='radio'] {
+  border-radius: var(--dc-radius-full);
+}
+
+.dot {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: var(--dc-radius-full);
+  background-color: currentcolor;
+}
+
+@media (forced-colors: active) {
+  .box {
+    border-color: ButtonText;
+  }
+
+  .button[data-selected] .box,
+  .button[data-indeterminate] .box {
+    background-color: Highlight;
+    border-color: Highlight;
+    color: HighlightText;
+  }
+
+  .button[data-disabled] .box {
+    border-color: GrayText;
+  }
+}

@@ -1,0 +1,40 @@
+.tb-layout {
+  display: grid;
+  gap: var(--dc-space-8);
+  min-inline-size: 0;
+}
+
+@media (width >= 1280px) {
+  .tb-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .tb-previews {
+    position: sticky;
+    inset-block-start: var(--dc-space-20);
+    max-block-size: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+}
+
+.tb-editor,
+.tb-previews {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-6);
+  min-inline-size: 0;
+}
+
+.tb-seeds,
+.tb-roles {
+  display: grid;
+  gap: var(--dc-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+}
+
+.tb-preview {
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-xl);
+}

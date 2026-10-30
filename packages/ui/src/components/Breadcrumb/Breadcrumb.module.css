@@ -1,0 +1,79 @@
+.breadcrumb {
+  min-inline-size: 0;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.link {
+  color: var(--dc-color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--dc-radius-xs);
+  outline: none;
+  overflow-wrap: anywhere;
+}
+
+.link[data-hovered] {
+  color: var(--dc-color-text-link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.link[data-focus-visible],
+.more:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.current {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-typography-label-lg-weight);
+  overflow-wrap: anywhere;
+}
+
+.separator {
+  display: inline-flex;
+  color: var(--dc-color-text-muted);
+}
+
+.separator svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.separator:dir(rtl) svg {
+  transform: scaleX(-1);
+}
+
+.more {
+  min-inline-size: 1.5rem;
+  min-block-size: 1.5rem;
+  padding-inline: var(--dc-space-1);
+  border: 0;
+  border-radius: var(--dc-radius-xs);
+  background: none;
+  color: var(--dc-color-text-secondary);
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.more:hover {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), transparent);
+}

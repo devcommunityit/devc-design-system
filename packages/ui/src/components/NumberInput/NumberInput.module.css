@@ -1,0 +1,20 @@
+.control {
+  padding-inline: var(--dc-space-1);
+}
+
+.input {
+  font-variant-numeric: tabular-nums;
+}
+
+.input[data-steppers] {
+  text-align: center;
+}
+
+.step {
+  margin: 0;
+}
+
+.step[data-disabled] {
+  color: var(--dc-color-text-disabled);
+  cursor: not-allowed;
+}

@@ -1,0 +1,5 @@
+/*
+ * @dev-community/ui styles. Contains tokens (scoped to [data-dc-theme], zero specificity)
+ * and component styles (prefixed `dc-` classes). No global element resets: see reset.css (opt-in).
+ */
+@import url('./generated/tokens.css');
