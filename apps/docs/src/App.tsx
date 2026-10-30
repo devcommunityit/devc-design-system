@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { Route, Routes, useHref, useLocation, useNavigate } from 'react-router';
-import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, messagesEn, messagesIt } from '@dev-community/ui';
+import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, builtInMessages } from '@dev-community/ui';
 import { BASE_URL, isStaticAppPath } from './base';
 import { DocsLayout } from './components/DocsLayout';
-import { DocsSettingsProvider, useDocsSettings } from './settings';
+import { DocsSettingsProvider, docsLocale, useDocsSettings } from './settings';
 import { Home } from './pages/Home';
 import { ComponentsIndex } from './pages/ComponentsIndex';
 import { ComponentPage } from './pages/ComponentPage';
@@ -17,13 +17,14 @@ const Showcase = lazy(() => import('./showcase/ShowcaseRoutes').then((m) => ({ d
 
 function Localized({ children }: { children: ReactNode }) {
   const { language, rtl } = useDocsSettings();
-  const locale = rtl ? 'ar-EG' : language === 'it' ? 'it-IT' : 'en-US';
+  const isRtl = rtl || language === 'ar';
+  const locale = rtl && language !== 'ar' ? 'ar-EG' : docsLocale(language);
   useEffect(() => {
     document.documentElement.lang = rtl ? 'ar' : language;
-    document.documentElement.dir = rtl ? 'rtl' : 'ltr';
-  }, [language, rtl]);
+    document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  }, [language, rtl, isRtl]);
   return (
-    <LocaleProvider locale={locale} messages={language === 'it' ? messagesIt : messagesEn}>
+    <LocaleProvider locale={locale} messages={builtInMessages[language]}>
       {children}
     </LocaleProvider>
   );

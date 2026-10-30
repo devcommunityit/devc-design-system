@@ -85,8 +85,25 @@ export interface ThemeIssue {
   severity: 'error' | 'warning';
   /** JSON path, e.g. `colors.light.text.primary`. */
   path: string;
-  /** Developer-facing English message. Use `code`/`path` to localize. */
+  /** Developer-facing English message. For end users, use `formatThemeIssue(issue, messages)`. */
   message: string;
+  /** Values interpolated by localized messages (see `Messages.themeIssue`). */
+  params?: ThemeIssueParams;
+}
+
+export interface ThemeIssueParams {
+  /** The rejected value, serialized as JSON. */
+  value?: string;
+  /** Expected JSON type for `invalid_type`. */
+  expected?: 'object' | 'string';
+  /** Schema version found in the input. */
+  version?: number;
+  /** Highest schema version supported by this library. */
+  supported?: number;
+  /** Accepted values, e.g. preset names or overridable tokens. */
+  allowed?: readonly string[];
+  /** Size limit for `too_large`, in KB. */
+  limitKb?: number;
 }
 
 export type ThemeValidationResult =

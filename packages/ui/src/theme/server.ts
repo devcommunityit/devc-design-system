@@ -41,6 +41,7 @@ export {
   type Theme,
   type ThemeIssue,
   type ThemeIssueCode,
+  type ThemeIssueParams,
   type ThemeValidationResult,
   type ValidateOptions,
   type OverridableToken,

@@ -2,6 +2,15 @@
  * System strings used by components. Every string is replaceable through
  * `<LocaleProvider messages={...}>`; nothing is hard-coded in components.
  */
+import type { ThemeIssue, ThemeIssueCode, ThemeIssueParams } from '../theme/types';
+import { ar } from './locales/ar';
+import { de } from './locales/de';
+import { es } from './locales/es';
+import { fr } from './locales/fr';
+import { pt } from './locales/pt';
+
+export { ar, de, es, fr, pt };
+
 export interface Messages {
   close: string;
   cancel: string;
@@ -122,6 +131,11 @@ export interface Messages {
   markAsRead: (title: string) => string;
   unread: string;
   noNotifications: string;
+  /**
+   * End-user messages for theme validation issues, one per `ThemeIssue.code`. The JSON path
+   * (`issue.path`) is not included: show it separately. Use `formatThemeIssue(issue, messages)`.
+   */
+  themeIssue: { readonly [C in ThemeIssueCode]: (params: ThemeIssueParams) => string };
 }
 
 export const en: Messages = {
@@ -244,6 +258,23 @@ export const en: Messages = {
   markAsRead: (title) => `Mark "${title}" as read`,
   unread: 'Unread',
   noNotifications: 'No notifications',
+  themeIssue: {
+    invalid_json: () => 'The file is not valid JSON.',
+    too_large: ({ limitKb }) => `The file exceeds ${limitKb ?? ''} KB.`,
+    invalid_type: ({ expected }) => `Wrong type: expected ${expected === 'string' ? 'a string' : 'an object'}.`,
+    missing_field: () => 'A required field is missing.',
+    unsupported_version: ({ version, supported }) => `Schema version ${version ?? '?'} is not supported (up to ${supported ?? '?'}). Update @dev-community/ui.`,
+    invalid_version: () => 'The schema version must be a positive integer.',
+    unknown_key: () => 'Unknown key.',
+    unknown_token: () => 'Unknown or non-customizable token.',
+    unknown_preset: ({ allowed }) => `Unknown preset. Available: ${(allowed ?? []).join(', ')}.`,
+    invalid_name: () => 'The name must start with a letter and contain only a–z, 0–9 and "-" (max 48 characters).',
+    reserved_name: () => 'This name belongs to a built-in preset; choose another one.',
+    invalid_color: ({ value }) => `Expected a hex color such as #1a73e8, got ${value ?? '—'}.`,
+    invalid_length: ({ value }) => `Expected a length such as 8px or 0.5rem, got ${value ?? '—'}.`,
+    invalid_font_family: () => 'The font family may contain only letters, digits, spaces, commas, dashes and balanced quotes.',
+    invalid_label: () => 'The label must be at most 80 characters, without "<" or ">".',
+  },
 };
 
 export const it: Messages = {
@@ -366,12 +397,46 @@ export const it: Messages = {
   markAsRead: (title) => `Segna «${title}» come letta`,
   unread: 'Non letta',
   noNotifications: 'Nessuna notifica',
+  themeIssue: {
+    invalid_json: () => 'Il file non è un JSON valido.',
+    too_large: ({ limitKb }) => `Il file supera ${limitKb ?? ''} KB.`,
+    invalid_type: ({ expected }) => `Tipo non valido: atteso ${expected === 'string' ? 'un testo' : 'un oggetto'}.`,
+    missing_field: () => 'Manca un campo obbligatorio.',
+    unsupported_version: ({ version, supported }) =>
+      `La versione dello schema ${version ?? '?'} non è supportata (massimo ${supported ?? '?'}). Aggiorna @dev-community/ui.`,
+    invalid_version: () => 'La versione dello schema deve essere un intero positivo.',
+    unknown_key: () => 'Chiave sconosciuta.',
+    unknown_token: () => 'Token sconosciuto o non personalizzabile.',
+    unknown_preset: ({ allowed }) => `Preset sconosciuto. Disponibili: ${(allowed ?? []).join(', ')}.`,
+    invalid_name: () => 'Il nome deve iniziare con una lettera e contenere solo a–z, 0–9 e «-» (max 48 caratteri).',
+    reserved_name: () => 'Questo nome appartiene a un preset integrato: scegline un altro.',
+    invalid_color: ({ value }) => `Atteso un colore esadecimale come #1a73e8, ricevuto ${value ?? '—'}.`,
+    invalid_length: ({ value }) => `Attesa una lunghezza come 8px o 0.5rem, ricevuto ${value ?? '—'}.`,
+    invalid_font_family: () => 'La famiglia di caratteri può contenere solo lettere, cifre, spazi, virgole, trattini e virgolette bilanciate.',
+    invalid_label: () => 'L’etichetta deve avere al massimo 80 caratteri, senza «<» o «>».',
+  },
 };
 
-export const builtInMessages: Readonly<Record<string, Messages>> = { en, it };
+/** Language subtags with a built-in bundle. */
+export type BuiltInLanguage = 'en' | 'it' | 'es' | 'fr' | 'de' | 'pt' | 'ar';
+
+/**
+ * Built-in bundles keyed by BCP 47 language subtag. `es`, `fr`, `de`, `pt` (Brazilian usage)
+ * and `ar` are first translations: have them reviewed by native speakers before production use.
+ */
+export const builtInMessages: Readonly<Record<BuiltInLanguage, Messages>> = { en, it, es, fr, de, pt, ar };
+
+function isBuiltInLanguage(lang: string): lang is BuiltInLanguage {
+  return Object.prototype.hasOwnProperty.call(builtInMessages, lang);
+}
 
 /** Picks built-in messages by BCP 47 language subtag, falling back to English. */
 export function getDefaultMessages(locale: string): Messages {
   const lang = locale.toLowerCase().split('-')[0] ?? 'en';
-  return builtInMessages[lang] ?? en;
+  return isBuiltInLanguage(lang) ? builtInMessages[lang] : en;
+}
+
+/** Localized, end-user message for a theme validation issue (without the JSON path). */
+export function formatThemeIssue(issue: ThemeIssue, messages: Messages): string {
+  return messages.themeIssue[issue.code](issue.params ?? {});
 }

@@ -94,7 +94,8 @@ Theme Builder del sito di documentazione.
   Menu, Tooltip, Drawer, Toast) ereditano il tema del provider di origine.
 - Nessun accesso a `window`, `document` o `localStorage` durante l’import. Per SSR senza flash usa `getThemeScript()`
   (compatibile con nonce CSP) oppure i cookie (`getThemePreferencesFromCookie`).
-- I testi di sistema sono traducibili tramite `LocaleProvider` (`messages`); RTL tramite proprietà CSS logiche.
+- I testi di sistema sono traducibili tramite `LocaleProvider` (`messages`), con bundle inclusi per it, en, es, fr, de, pt
+  (Brasile) e ar; RTL tramite proprietà CSS logiche.
 - I link della libreria si collegano al router dell’applicazione con `RouterProvider`.
 - Ogni modulo `.tsx` compilato include la direttiva `'use client'`; `@dev-community/ui/theme` resta un modulo server.
 

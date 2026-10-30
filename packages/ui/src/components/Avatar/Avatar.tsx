@@ -1,5 +1,5 @@
 import { Children, forwardRef, isValidElement, useState, type HTMLAttributes, type ReactElement, type ReactNode } from 'react';
-import { useMessages } from '../../i18n/LocaleProvider';
+import { useLocale, useMessages } from '../../i18n/LocaleProvider';
 import { cx } from '../../utils';
 import styles from './Avatar.module.css';
 
@@ -21,11 +21,12 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /** Up to two initials from a name, locale-aware upper-casing. */
-export function getInitials(name: string): string {
+export function getInitials(name: string, locale?: string): string {
   const parts = name.trim().split(/\s+/u).filter(Boolean);
-  const first = parts[0]?.[0] ?? '';
-  const last = parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? '') : '';
-  return (first + last).toLocaleUpperCase();
+  const first = parts[0] ? Array.from(parts[0])[0] ?? '' : '';
+  const lastPart = parts.length > 1 ? parts[parts.length - 1] : undefined;
+  const last = lastPart ? Array.from(lastPart)[0] ?? '' : '';
+  return (first + last).toLocaleUpperCase(locale);
 }
 
 /** Deterministic tone index (0–5) from the name so fallbacks are varied but stable. */
@@ -39,6 +40,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
   { name, src, size = 'md', shape = 'circle', fallback, isDecorative = false, className, ...rest },
   ref,
 ) {
+  const { locale } = useLocale();
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showImage = Boolean(src) && failedSrc !== src;
   return (
@@ -57,7 +59,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
         <img className={styles.image} src={src} alt="" onError={() => setFailedSrc(src ?? null)} />
       ) : (
         <span className={styles.fallback} aria-hidden="true">
-          {fallback ?? getInitials(name)}
+          {fallback ?? getInitials(name, locale)}
         </span>
       )}
     </span>

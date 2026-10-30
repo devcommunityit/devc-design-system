@@ -61,11 +61,11 @@ const MIGRATIONS: Record<number, (input: Record<string, unknown>) => Record<stri
 function migrate(raw: Record<string, unknown>, issues: ThemeIssue[]): Record<string, unknown> | null {
   const version = raw.schemaVersion;
   if (version === undefined) {
-    issues.push({ code: 'missing_field', severity: 'error', path: 'schemaVersion', message: `"schemaVersion" is required (current: ${THEME_SCHEMA_VERSION}).` });
+    issues.push({ code: 'missing_field', severity: 'error', path: 'schemaVersion', message: `"schemaVersion" is required (current: ${THEME_SCHEMA_VERSION}).`, params: { supported: THEME_SCHEMA_VERSION } });
     return null;
   }
   if (typeof version !== 'number' || !Number.isInteger(version) || version < 1) {
-    issues.push({ code: 'invalid_version', severity: 'error', path: 'schemaVersion', message: '"schemaVersion" must be a positive integer.' });
+    issues.push({ code: 'invalid_version', severity: 'error', path: 'schemaVersion', message: '"schemaVersion" must be a positive integer.', params: { value: JSON.stringify(version) } });
     return null;
   }
   if (version > THEME_SCHEMA_VERSION) {
@@ -74,6 +74,7 @@ function migrate(raw: Record<string, unknown>, issues: ThemeIssue[]): Record<str
       severity: 'error',
       path: 'schemaVersion',
       message: `Theme uses schema version ${version}, but this library supports up to ${THEME_SCHEMA_VERSION}. Update @dev-community/ui.`,
+      params: { version, supported: THEME_SCHEMA_VERSION },
     });
     return null;
   }
@@ -81,7 +82,7 @@ function migrate(raw: Record<string, unknown>, issues: ThemeIssue[]): Record<str
   for (let v = version; v < THEME_SCHEMA_VERSION; v++) {
     const step = MIGRATIONS[v];
     if (!step) {
-      issues.push({ code: 'unsupported_version', severity: 'error', path: 'schemaVersion', message: `No migration from schema version ${v}.` });
+      issues.push({ code: 'unsupported_version', severity: 'error', path: 'schemaVersion', message: `No migration from schema version ${v}.`, params: { version: v, supported: THEME_SCHEMA_VERSION } });
       return null;
     }
     current = step(current);
@@ -91,7 +92,7 @@ function migrate(raw: Record<string, unknown>, issues: ThemeIssue[]): Record<str
 
 function validateColor(value: unknown, path: string, issues: ThemeIssue[]): string | undefined {
   if (typeof value !== 'string' || !isHexColor(value.trim())) {
-    issues.push({ code: 'invalid_color', severity: 'error', path, message: `Expected a hex color like "#1a73e8", got ${JSON.stringify(value)}.` });
+    issues.push({ code: 'invalid_color', severity: 'error', path, message: `Expected a hex color like "#1a73e8", got ${JSON.stringify(value)}.`, params: { value: JSON.stringify(value) } });
     return undefined;
   }
   return normalizeHex(value);
@@ -109,7 +110,7 @@ function unknownIssue(code: 'unknown_key' | 'unknown_token', path: string, opts:
 
 function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): ThemeInput | null {
   if (!isRecord(raw)) {
-    issues.push({ code: 'invalid_type', severity: 'error', path: '', message: 'Theme must be a JSON object.' });
+    issues.push({ code: 'invalid_type', severity: 'error', path: '', message: 'Theme must be a JSON object.', params: { expected: 'object' } });
     return null;
   }
   const migrated = migrate(raw, issues);
@@ -125,9 +126,9 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
   if (typeof name !== 'string') {
     issues.push({ code: 'missing_field', severity: 'error', path: 'name', message: '"name" is required.' });
   } else if (!NAME_RE.test(name)) {
-    issues.push({ code: 'invalid_name', severity: 'error', path: 'name', message: 'Name must start with a letter and contain only a-z, 0-9 and "-" (max 48 chars).' });
+    issues.push({ code: 'invalid_name', severity: 'error', path: 'name', message: 'Name must start with a letter and contain only a-z, 0-9 and "-" (max 48 chars).', params: { value: JSON.stringify(name) } });
   } else if (presetSet.has(name)) {
-    issues.push({ code: 'reserved_name', severity: 'error', path: 'name', message: `"${name}" is a built-in preset name; choose another name.` });
+    issues.push({ code: 'reserved_name', severity: 'error', path: 'name', message: `"${name}" is a built-in preset name; choose another name.`, params: { value: JSON.stringify(name) } });
   } else {
     out.name = name;
   }
@@ -142,7 +143,7 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
 
   if (migrated.extends !== undefined) {
     if (!isPresetName(migrated.extends)) {
-      issues.push({ code: 'unknown_preset', severity: 'error', path: 'extends', message: `Unknown preset ${JSON.stringify(migrated.extends)}. Available: ${PRESET_NAMES.join(', ')}.` });
+      issues.push({ code: 'unknown_preset', severity: 'error', path: 'extends', message: `Unknown preset ${JSON.stringify(migrated.extends)}. Available: ${PRESET_NAMES.join(', ')}.`, params: { value: JSON.stringify(migrated.extends), allowed: PRESET_NAMES } });
     } else {
       out.extends = migrated.extends;
     }
@@ -150,7 +151,7 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
 
   if (migrated.seeds !== undefined) {
     if (!isRecord(migrated.seeds)) {
-      issues.push({ code: 'invalid_type', severity: 'error', path: 'seeds', message: '"seeds" must be an object.' });
+      issues.push({ code: 'invalid_type', severity: 'error', path: 'seeds', message: '"seeds" must be an object.', params: { expected: 'object' } });
     } else {
       const seeds: ThemeSeeds = {};
       for (const [k, v] of Object.entries(migrated.seeds)) {
@@ -167,7 +168,7 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
 
   if (migrated.colors !== undefined) {
     if (!isRecord(migrated.colors)) {
-      issues.push({ code: 'invalid_type', severity: 'error', path: 'colors', message: '"colors" must be an object with "light" and/or "dark".' });
+      issues.push({ code: 'invalid_type', severity: 'error', path: 'colors', message: '"colors" must be an object with "light" and/or "dark".', params: { expected: 'object' } });
     } else {
       out.colors = {};
       for (const [scheme, map] of Object.entries(migrated.colors)) {
@@ -176,7 +177,7 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
           continue;
         }
         if (!isRecord(map)) {
-          issues.push({ code: 'invalid_type', severity: 'error', path: `colors.${scheme}`, message: `"colors.${scheme}" must be an object.` });
+          issues.push({ code: 'invalid_type', severity: 'error', path: `colors.${scheme}`, message: `"colors.${scheme}" must be an object.`, params: { expected: 'object' } });
           continue;
         }
         const target: Partial<Record<ColorRole, string>> = {};
@@ -195,7 +196,7 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
 
   if (migrated.tokens !== undefined) {
     if (!isRecord(migrated.tokens)) {
-      issues.push({ code: 'invalid_type', severity: 'error', path: 'tokens', message: '"tokens" must be an object.' });
+      issues.push({ code: 'invalid_type', severity: 'error', path: 'tokens', message: '"tokens" must be an object.', params: { expected: 'object' } });
     } else {
       const tokens: Partial<Record<OverridableToken, string>> = {};
       for (const [token, value] of Object.entries(migrated.tokens)) {
@@ -206,21 +207,22 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
             severity: opts.unknown === 'ignore' ? 'warning' : 'error',
             path,
             message: `Token "${token}" cannot be overridden. Allowed: ${OVERRIDABLE_TOKENS.join(', ')}.`,
+            params: { allowed: OVERRIDABLE_TOKENS },
           });
           continue;
         }
         if (typeof value !== 'string') {
-          issues.push({ code: 'invalid_type', severity: 'error', path, message: 'Token values must be strings.' });
+          issues.push({ code: 'invalid_type', severity: 'error', path, message: 'Token values must be strings.', params: { expected: 'string' } });
           continue;
         }
         const v = value.trim();
         if (token.startsWith('radius.')) {
           if (!LENGTH_RE.test(v)) {
-            issues.push({ code: 'invalid_length', severity: 'error', path, message: `Expected a length like "8px" or "0.5rem", got ${JSON.stringify(value)}.` });
+            issues.push({ code: 'invalid_length', severity: 'error', path, message: `Expected a length like "8px" or "0.5rem", got ${JSON.stringify(value)}.`, params: { value: JSON.stringify(value) } });
             continue;
           }
         } else if (!FONT_FAMILY_RE.test(v) || /["']/.test(v.replace(/"[^"]*"|'[^']*'/g, ''))) {
-          issues.push({ code: 'invalid_font_family', severity: 'error', path, message: 'Font family may contain only letters, digits, spaces, commas, dashes and balanced quotes.' });
+          issues.push({ code: 'invalid_font_family', severity: 'error', path, message: 'Font family may contain only letters, digits, spaces, commas, dashes and balanced quotes.', params: { value: JSON.stringify(value) } });
           continue;
         }
         tokens[token as OverridableToken] = v;
@@ -279,7 +281,7 @@ export function validateTheme(raw: unknown, options: ValidateOptions = {}): Them
 /** Parses a JSON string and validates it as a theme. Never evaluates or injects CSS. */
 export function parseThemeJson(json: string, options: ValidateOptions = {}): ThemeValidationResult {
   if (json.length > MAX_THEME_JSON_BYTES) {
-    return { success: false, issues: [{ code: 'too_large', severity: 'error', path: '', message: `Theme file exceeds ${MAX_THEME_JSON_BYTES / 1024} KB.` }] };
+    return { success: false, issues: [{ code: 'too_large', severity: 'error', path: '', message: `Theme file exceeds ${MAX_THEME_JSON_BYTES / 1024} KB.`, params: { limitKb: MAX_THEME_JSON_BYTES / 1024 } }] };
   }
   let data: unknown;
   try {

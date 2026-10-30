@@ -6,13 +6,37 @@ export default function LocalizzazioneRtl() {
       <DocSection title="LocaleProvider">
         <p>
           Il core non contiene stringhe obbligatorie in una lingua: ogni testo di sistema (Chiudi, Nessun risultato, Pagina 2 di 5…) proviene da un
-          bundle di messaggi. Sono inclusi <code>it</code> ed <code>en</code>; per le altre lingue si usa l’inglese finché non fornisci le
-          traduzioni. Senza provider vale la locale del browser.
+          bundle di messaggi, compresi gli errori di validazione dei temi. Il bundle viene scelto in base alla lingua della locale; per lingue non
+          incluse si usa l’inglese finché non fornisci le traduzioni. Senza provider vale la locale del browser.
+        </p>
+        <RefTable
+          label="Bundle inclusi"
+          columns={['Lingua', 'Export', 'Note']}
+          rows={[
+            ['Italiano (it)', <code key="it">messagesIt</code>, 'Rivisto'],
+            ['English (en)', <code key="en">messagesEn</code>, 'Rivisto; fallback per lingue non incluse'],
+            ['Español (es)', <code key="es">messagesEs</code>, 'Prima traduzione: da far rivedere a un madrelingua'],
+            ['Français (fr)', <code key="fr">messagesFr</code>, 'Prima traduzione; spazi fini non separabili prima di « : ; ? »'],
+            ['Deutsch (de)', <code key="de">messagesDe</code>, 'Prima traduzione: da far rivedere a un madrelingua'],
+            ['Português (pt)', <code key="pt">messagesPt</code>, 'Uso brasiliano (pt-BR); per pt-PT fornisci un override'],
+            ['العربية (ar)', <code key="ar">messagesAr</code>, 'RTL; sei forme plurali CLDR; le cifre interpolate nei messaggi restano latine'],
+          ]}
+        />
+        <p>
+          I plurali usano <code>Intl.PluralRules</code> (forme CLDR come <code>one</code>, <code>few</code>, <code>many</code>), non il semplice
+          confronto con 1. Le traduzioni diverse da it/en sono una base di partenza: prima della produzione falle rivedere da madrelingua e
+          sostituisci le chiavi necessarie con un override. Tutti i bundle sono inclusi nel pacchetto (circa 7 KB non compressi ciascuno) perché la
+          scelta avviene a runtime in base alla locale.
         </p>
         <Code>{`
-import { LocaleProvider, messagesIt } from '@dev-community/ui';
+import { LocaleProvider } from '@dev-community/ui';
 
 <LocaleProvider locale="it-IT">
+  <App />
+</LocaleProvider>;
+
+// Il bundle è scelto dalla lingua: de-AT → de, es-MX → es, ja → en (fallback)
+<LocaleProvider locale="de-AT">
   <App />
 </LocaleProvider>;
 
@@ -28,16 +52,16 @@ import { LocaleProvider, messagesIt } from '@dev-community/ui';
         <Code>{`
 import { LocaleProvider, messagesEn, type Messages } from '@dev-community/ui';
 
-const de: Messages = {
+const nl: Messages = {
   ...messagesEn,
-  close: 'Schließen',
-  noResults: 'Keine Ergebnisse',
-  pageOf: (page, total) => \`Seite \${page} von \${total}\`,
-  selectedCount: (n) => (n === 1 ? '1 ausgewählt' : \`\${n} ausgewählt\`),
+  close: 'Sluiten',
+  noResults: 'Geen resultaten',
+  pageOf: (page, total) => \`Pagina \${page} van \${total}\`,
+  selectedCount: (n) => \`\${n} geselecteerd\`,
   // …
 };
 
-<LocaleProvider locale="de-DE" messages={de}>
+<LocaleProvider locale="nl-NL" messages={nl}>
   <App />
 </LocaleProvider>;
 `}</Code>
@@ -45,6 +69,26 @@ const de: Messages = {
           <code>useMessages()</code> restituisce i messaggi correnti, <code>useLocale()</code> restituisce <code>{'{ locale, direction }'}</code>.
           I testi dei tuoi contenuti (label, titoli, errori di dominio) restano responsabilità della tua applicazione e del suo sistema di traduzione.
         </p>
+      </DocSection>
+
+      <DocSection title="Errori di validazione dei temi">
+        <p>
+          <code>parseThemeJson</code> e <code>validateTheme</code> restituiscono problemi con <code>code</code>, <code>path</code> e{' '}
+          <code>params</code> strutturati. Il campo <code>message</code> è in inglese ed è pensato per log e sviluppatori; per l’utente finale usa{' '}
+          <code>formatThemeIssue</code>, che traduce con il bundle corrente.
+        </p>
+        <Code>{`
+import { formatThemeIssue, useMessages } from '@dev-community/ui';
+import { parseThemeJson } from '@dev-community/ui/theme';
+
+function useThemeImport() {
+  const messages = useMessages();
+  return (text: string) => {
+    const result = parseThemeJson(text);
+    return result.success ? [] : result.issues.map((i) => \`\${i.path || '—'}: \${formatThemeIssue(i, messages)}\`);
+  };
+}
+`}</Code>
       </DocSection>
 
       <DocSection title="Date, numeri e valute">
@@ -82,14 +126,14 @@ import { parseDate, today, getLocalTimeZone } from '@internationalized/date';
 // La direzione deriva dalla locale; imposta anche lang/dir sul documento o sul contenitore
 <html lang="ar" dir="rtl">
   …
-  <LocaleProvider locale="ar-EG" messages={arabicMessages}>
+  <LocaleProvider locale="ar-EG">{/* usa il bundle messagesAr incluso */}
     <App />
   </LocaleProvider>
 </html>
 `}</Code>
         <p>
-          <code>LocaleProvider</code> non modifica <code>&lt;html lang|dir&gt;</code>: è una scelta dell’applicazione ospite. Nel sito puoi provare
-          l’anteprima RTL dal menu Preferenze in alto.
+          <code>LocaleProvider</code> non modifica <code>&lt;html lang|dir&gt;</code>: è una scelta dell’applicazione ospite. Nel sito puoi scegliere
+          العربية o attivare l’anteprima RTL dal menu Preferenze in alto.
         </p>
       </DocSection>
 

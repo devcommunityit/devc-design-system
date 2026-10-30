@@ -175,6 +175,27 @@ test.describe('tema, persistenza e RTL', () => {
     const width = page.viewportSize()?.width ?? 0;
     expect(box && box.x + box.width).toBeGreaterThan(width - 2);
   });
+
+  test('la lingua dei testi di sistema cambia le etichette della libreria; l’arabo attiva RTL', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 740 });
+    await open(page, '/');
+    await expect(page.getByRole('button', { name: 'Apri menu' })).toBeVisible();
+    let prefs = await openPreferences(page);
+    await prefs.getByRole('button', { name: /Lingua dei testi di sistema/ }).click();
+    await page.getByRole('option', { name: 'Deutsch' }).click();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('button', { name: 'Menü öffnen' })).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+
+    prefs = await openPreferences(page);
+    await prefs.getByRole('button', { name: /Lingua dei testi di sistema/ }).click();
+    await page.getByRole('option', { name: 'العربية' }).click();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('button', { name: 'فتح القائمة' })).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+    await expectNoHorizontalOverflow(page);
+  });
 });
 
 test.describe('overlay', () => {

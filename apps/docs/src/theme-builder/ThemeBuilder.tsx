@@ -22,6 +22,8 @@ import {
   Text,
   TextField,
   Textarea,
+  formatThemeIssue,
+  useMessages,
   useTheme,
   useToast,
   type FileUploadItem,
@@ -57,9 +59,11 @@ function IssueList({ issues }: { issues: ThemeIssue[] }) {
 }
 
 function ListItem({ issue }: { issue: ThemeIssue }) {
+  const messages = useMessages();
   return (
     <li>
-      <code>{issue.path || '(radice)'}</code> — {issue.message} <Text as="span" variant="body-sm" tone="secondary">({issue.code})</Text>
+      <code>{issue.path || '(radice)'}</code> — {formatThemeIssue(issue, messages)}{' '}
+      <Text as="span" variant="body-sm" tone="secondary">({issue.code})</Text>
     </li>
   );
 }

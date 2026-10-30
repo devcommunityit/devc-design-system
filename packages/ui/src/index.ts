@@ -14,7 +14,20 @@ export {
 
 // i18n
 export { LocaleProvider, useMessages, useLocale, type LocaleProviderProps } from './i18n/LocaleProvider';
-export { en as messagesEn, it as messagesIt, getDefaultMessages, type Messages } from './i18n/messages';
+export {
+  en as messagesEn,
+  it as messagesIt,
+  es as messagesEs,
+  fr as messagesFr,
+  de as messagesDe,
+  pt as messagesPt,
+  ar as messagesAr,
+  builtInMessages,
+  getDefaultMessages,
+  formatThemeIssue,
+  type BuiltInLanguage,
+  type Messages,
+} from './i18n/messages';
 
 // Components
 export * from './components/layout';

@@ -15,7 +15,11 @@ export default function Changelog() {
             Componenti aggiuntivi: Toolbar, SplitButton, CopyButton (con useCopyToClipboard), Meter, PinInput, Rating, TreeView, SortableList,
             RelativeTime e il pattern NotificationCenter.
           </li>
-          <li>LocaleProvider con messaggi italiani e inglesi, supporto RTL anche negli overlay in portal.</li>
+          <li>
+            LocaleProvider con messaggi in italiano, inglese, spagnolo, francese, tedesco, portoghese (Brasile) e arabo (le ultime cinque da far
+            rivedere a madrelingua), plurali con Intl.PluralRules, errori dei temi traducibili con formatThemeIssue e supporto RTL anche negli
+            overlay in portal.
+          </li>
           <li>Etichette dei pulsanti e azioni dell’header che vanno a capo invece di uscire dal contenitore con testo ingrandito.</li>
           <li>
             Distribuzione: dichiarazioni .d.ts risolvibili anche con moduleResolution node16/nodenext, controlli publint e arethetypeswrong

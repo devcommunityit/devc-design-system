@@ -121,18 +121,20 @@ export const acme = createTheme({
       <DocSection title="Importazione ed esportazione JSON">
         <p>
           Lo schema è versionato (<code>schemaVersion: 1</code>). <code>parseThemeJson</code> non lancia eccezioni: restituisce un risultato
-          discriminato con errori localizzabili (codice + percorso). Sono accettati solo colori esadecimali, lunghezze CSS semplici e famiglie di font
-          senza caratteri pericolosi: nessun CSS arbitrario raggiunge la pagina.
+          discriminato con errori localizzabili (codice + percorso + parametri, tradotti con <code>formatThemeIssue</code>). Sono accettati solo
+          colori esadecimali, lunghezze CSS semplici e famiglie di font senza caratteri pericolosi: nessun CSS arbitrario raggiunge la pagina.
         </p>
         <Code>{`
+import { formatThemeIssue, useMessages } from '@dev-community/ui';
 import { parseThemeJson, themeToJson } from '@dev-community/ui/theme';
 
+const messages = useMessages();                    // dentro un componente
 const result = parseThemeJson(fileText);           // limite 64 KB
 if (result.success) {
   setTheme(result.theme);
-  result.warnings.forEach((w) => console.warn(w.path, w.message));
+  result.warnings.forEach((w) => console.warn(w.path, w.message)); // message: inglese, per sviluppatori
 } else {
-  setErrors(result.issues.map((i) => \`\${i.path || 'tema'}: \${i.message}\`));
+  setErrors(result.issues.map((i) => \`\${i.path || 'tema'}: \${formatThemeIssue(i, messages)}\`));
 }
 
 const json = themeToJson(acme);                    // per download o salvataggio

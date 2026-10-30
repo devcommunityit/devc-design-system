@@ -1,7 +1,7 @@
 import { Languages, Monitor, Moon, Settings2, Sun } from 'lucide-react';
 import { IconButton, ListBoxItem, Popover, PopoverTrigger, Select, Stack, Switch, Text, Toggle, ToggleGroup, useTheme, type Key, type ThemeMode } from '@dev-community/ui';
 import { PRESET_META, PRESET_NAMES, isPresetName } from '@dev-community/ui/theme';
-import { useDocsSettings } from '../settings';
+import { DOCS_LANGUAGES, isDocsLanguage, useDocsSettings } from '../settings';
 
 const MODES: Array<{ id: ThemeMode; label: string; icon: React.ReactNode }> = [
   { id: 'light', label: 'Chiaro', icon: <Sun /> },
@@ -70,13 +70,18 @@ export function PreferencesMenu() {
             startAdornment={<Languages aria-hidden="true" size={16} />}
             value={language}
             onChange={(key) => {
-              if (key === 'it' || key === 'en') setLanguage(key);
+              if (isDocsLanguage(key)) setLanguage(key);
             }}
           >
-            <ListBoxItem id="it">Italiano</ListBoxItem>
-            <ListBoxItem id="en">English</ListBoxItem>
+            {DOCS_LANGUAGES.map((l) => (
+              <ListBoxItem key={l.id} id={l.id} textValue={l.label}>
+                <span lang={l.id} dir={l.id === 'ar' ? 'rtl' : undefined}>
+                  {l.label}
+                </span>
+              </ListBoxItem>
+            ))}
           </Select>
-          <Switch isSelected={rtl} onChange={setRtl} description="Usa la locale ar-EG e la direzione da destra a sinistra.">
+          <Switch isSelected={rtl} onChange={setRtl} description="Usa la locale ar-EG e la direzione da destra a sinistra (sempre attiva con العربية).">
             Anteprima RTL
           </Switch>
           {persistenceError ? (

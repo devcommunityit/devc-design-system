@@ -107,8 +107,9 @@ export function UiRouter({ children }: { children: React.ReactNode }) {
 
       <DocSection title="Stringhe e lingua">
         <p>
-          Le stringhe di sistema (chiudi, carica altro, nessun risultato…) arrivano da <code>LocaleProvider</code>, con pacchetti italiano e inglese inclusi
-          e override parziali. Vedi <Link href="/guide/localizzazione-rtl">Localizzazione e RTL</Link>.
+          Le stringhe di sistema (chiudi, carica altro, nessun risultato…) arrivano da <code>LocaleProvider</code>, con pacchetti italiano, inglese,
+          spagnolo, francese, tedesco, portoghese (Brasile) e arabo inclusi e override parziali. Vedi{' '}
+          <Link href="/guide/localizzazione-rtl">Localizzazione e RTL</Link>.
         </p>
       </DocSection>
 

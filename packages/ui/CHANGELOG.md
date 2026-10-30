@@ -14,7 +14,13 @@ Prima versione.
   `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, `ocean`, `forest`, `berry`, `saffron`, modalità light/dark/system, densità comfortable/compact.
 - `ThemeProvider` con provider annidabili, persistenza configurabile (localStorage, cookie o adattatore personalizzato)
   e script anti-flash per SSR compatibile con CSP.
-- `LocaleProvider` con messaggi italiani e inglesi sostituibili e supporto RTL.
+- `LocaleProvider` con messaggi sostituibili e supporto RTL. Bundle inclusi: `messagesIt`, `messagesEn`, `messagesEs`,
+  `messagesFr`, `messagesDe`, `messagesPt` (uso brasiliano) e `messagesAr` (RTL), raccolti in `builtInMessages` e scelti da
+  `getDefaultMessages` in base alla lingua della locale (fallback inglese). Le traduzioni es/fr/de/pt/ar sono prime versioni da
+  far rivedere a madrelingua. I plurali usano `Intl.PluralRules`.
+- Errori di validazione dei temi localizzabili: `ThemeIssue.params` (dati strutturati) e `formatThemeIssue(issue, messages)`
+  con la nuova chiave `messages.themeIssue`; `ThemeIssue.message` resta in inglese per log e sviluppatori.
+- `getInitials(name, locale?)` e `Avatar` usano la locale del provider per le maiuscole (es. `i` → `İ` in turco).
 - Componenti di layout, tipografia, azioni, navigazione, form, selettori di date, dati, feedback e overlay.
 - Pattern: `SiteHeader` (con navigazione mobile), `UserMenu` (menu dell'utente autenticato), `AuthLayout`, `LoginForm`, `SignUpForm`, `PasswordResetForm`; `Footer` con colonne e variante compatta.
 - Componenti aggiuntivi: `Toolbar` (con `ToolbarGroup` e `ToolbarSeparator`), `SplitButton`, `CopyButton` con l'hook
