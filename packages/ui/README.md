@@ -3,20 +3,39 @@
 Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 8 preset, temi
 personalizzati), componenti accessibili basati su React Aria e pattern pronti (header, footer, menu utente, autenticazione).
 
-> **Licenza**: non ancora definita. La scelta spetta al proprietario del progetto e va fatta prima di qualsiasi pubblicazione.
+> **Licenza**: non ancora definita (`"license": "UNLICENSED"`, nessun diritto concesso). La scelta spetta al proprietario del
+> progetto; `prepublishOnly` blocca la pubblicazione su npmjs.com finché la licenza non viene scelta.
 
 ## Requisiti
 
 - React e React DOM `^18.3 || ^19` (peer dependencies).
-- Bundler con supporto a ESM e import di file CSS (Vite, Next.js, webpack 5…).
+- Bundler con supporto a ESM e import di file CSS (verificato con Vite; Next.js documentato).
+- Pacchetto solo ESM; tipi validi con `moduleResolution` `bundler`, `node16` e `nodenext`.
 
 ## Installazione
 
+Da tarball (distribuzione interna, nessun registry):
+
+```bash
+# nel repository del design system: build + publint + attw + tarball con checksum
+npm run release:pack
+# nel progetto consumer
+npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
+```
+
+Da registry privato (GitHub Packages, Azure Artifacts, Verdaccio…), con `.npmrc` nel progetto consumer:
+
+```ini
+@dev-community:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+```
+
 ```bash
 npm install @dev-community/ui
-# registry privato: configurare .npmrc, ad esempio
-# @dev-community:registry=https://npm.example.com/
 ```
+
+Per pubblicare su un registry privato impostare `publishConfig.registry` in questo `package.json`, poi
+`npm version <patch|minor|major> -w @dev-community/ui` e `npm publish -w @dev-community/ui`. Il token non va mai committato.
 
 ## Stili
 

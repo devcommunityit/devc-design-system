@@ -17,6 +17,10 @@ export default function Changelog() {
           </li>
           <li>LocaleProvider con messaggi italiani e inglesi, supporto RTL anche negli overlay in portal.</li>
           <li>Etichette dei pulsanti e azioni dell’header che vanno a capo invece di uscire dal contenitore con testo ingrandito.</li>
+          <li>
+            Distribuzione: dichiarazioni .d.ts risolvibili anche con moduleResolution node16/nodenext, controlli publint e arethetypeswrong
+            (npm run lint:package), script npm run release:pack (tarball + SHA-256) e blocco della pubblicazione pubblica finché manca la licenza.
+          </li>
         </ul>
         <p>
           Il dettaglio è nel file <code>packages/ui/CHANGELOG.md</code>, incluso nel pacchetto.

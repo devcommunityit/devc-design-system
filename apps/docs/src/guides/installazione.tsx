@@ -5,8 +5,9 @@ export default function Installazione() {
   return (
     <>
       <Alert tone="warning" title="Pacchetto non pubblicato">
-        Il pacchetto <code>@dev-community/ui</code> non è stato pubblicato su alcun registry e il repository non contiene ancora una licenza. Prima della
-        pubblicazione serve una decisione esplicita su licenza, registry e nome dello scope.
+        Il pacchetto <code>@dev-community/ui</code> è pronto per la distribuzione (tarball, registry privato) ma non è stato pubblicato su alcun registry. La
+        licenza non è stata scelta (<code>"license": "UNLICENSED"</code>): la pubblicazione su npmjs.com è bloccata finché il titolare del progetto non la
+        decide.
       </Alert>
 
       <DocSection title="Requisiti">
@@ -16,37 +17,115 @@ export default function Installazione() {
           rows={[
             ['react, react-dom', '^18.3 || ^19', 'Peer dependency: un’unica copia, quella dell’applicazione.'],
             ['Bundler', 'Qualsiasi con supporto ESM e import CSS', 'Verificato con Vite 8 (apps/playground) e con il sito di documentazione.'],
-            ['TypeScript', '≥ 5.0 (consigliato)', 'Dichiarazioni .d.ts incluse; moduleResolution "bundler" o "node16".'],
+            ['TypeScript', '≥ 5.0 (consigliato)', 'Dichiarazioni .d.ts incluse; moduleResolution "bundler", "node16" o "nodenext" (verificato con arethetypeswrong).'],
             ['Browser', 'Evergreen', 'Usa :focus-visible, color-mix(), container query, proprietà logiche, dvh.'],
           ]}
         />
       </DocSection>
 
-      <DocSection title="Da tarball locale (verifica o distribuzione interna)">
+      <DocSection title="Canali di distribuzione">
+        <RefTable
+          label="Canali di distribuzione"
+          columns={['Canale', 'Stato', 'Quando usarlo']}
+          rows={[
+            ['Tarball (npm run release:pack)', 'Pronto e verificato', 'Distribuzione interna senza registry, prove di integrazione, ambienti offline.'],
+            ['Registry privato (GitHub Packages, Azure Artifacts, Verdaccio, Nexus)', 'Pronto, non ancora pubblicato', 'Più portali che aggiornano la libreria con semver.'],
+            ['npmjs.com pubblico', 'Bloccato finché manca la licenza', 'Solo dopo la scelta della licenza e del nome dello scope.'],
+            ['Dipendenza git (github:org/repo)', 'Non supportato', 'Il pacchetto vive in un workspace (packages/ui) e richiede una build: npm non lo installa correttamente da git.'],
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="Da tarball (distribuzione interna)">
+        <p>
+          Lo script di rilascio compila la libreria, esegue <code>publint</code> e <code>arethetypeswrong</code>, crea il tarball in <code>releases/</code>{' '}
+          (ignorata da git) con il relativo checksum SHA-256. Non pubblica nulla.
+        </p>
         <Code language="bash">{`
 # nel repository del design system
-npm run build -w @dev-community/ui
-npm pack -w @dev-community/ui            # crea dev-community-ui-0.1.0.tgz
+npm run release:pack
+# → releases/dev-community-ui-0.1.0.tgz + .sha256
 
-# nel progetto consumer
-npm install ../design-system/dev-community-ui-0.1.0.tgz
+# nel progetto consumer (percorso relativo o assoluto)
+npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
 `}</Code>
+        <p>
+          npm registra in <code>package.json</code> una dipendenza <code>file:</code>: copia il tarball in una cartella del consumer (per esempio{' '}
+          <code>vendor/</code>) se la pipeline CI non ha accesso al repository del design system.
+        </p>
       </DocSection>
 
       <DocSection title="Da registry privato">
-        <p>Configura lo scope verso il registry dell’organizzazione (GitHub Packages, Azure Artifacts, Verdaccio, Nexus…) in un <code>.npmrc</code> di progetto:</p>
-        <Code language="ini" title=".npmrc">{`
-@dev-community:registry=https://npm.example.internal/
-//npm.example.internal/:_authToken=\${NPM_TOKEN}
+        <p>
+          Lo scope del pacchetto deve corrispondere a quello accettato dal registry: con GitHub Packages lo scope è il nome dell’organizzazione o
+          dell’utente GitHub, quindi potrebbe essere necessario rinominare <code>@dev-community</code>. Nel progetto consumer crea un <code>.npmrc</code>:
+        </p>
+        <Code language="ini" title=".npmrc — GitHub Packages">{`
+@dev-community:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=\${NPM_TOKEN}
+`}</Code>
+        <Code language="ini" title=".npmrc — Azure Artifacts">{`
+@dev-community:registry=https://pkgs.dev.azure.com/<org>/<project>/_packaging/<feed>/npm/registry/
+always-auth=true
+# autenticazione: npx vsts-npm-auth -config .npmrc (Windows) oppure token PAT in ~/.npmrc
 `}</Code>
         <Code language="bash">{`npm install @dev-community/ui`}</Code>
-        <p>Il token va fornito tramite variabile d’ambiente o secret della pipeline, mai committato.</p>
+        <p>
+          Il token va fornito tramite variabile d’ambiente o secret della pipeline, mai committato. Per pubblicare dal repository del design system aggiungi in{' '}
+          <code>packages/ui/package.json</code> il registry di destinazione:
+        </p>
+        <Code language="json" title="packages/ui/package.json">{`
+"publishConfig": {
+  "registry": "https://npm.pkg.github.com/"
+}
+`}</Code>
+        <Code language="bash">{`
+npm version patch -w @dev-community/ui   # oppure minor / major
+npm publish -w @dev-community/ui --dry-run   # controlla contenuto e registry
+npm publish -w @dev-community/ui
+`}</Code>
+        <p>
+          <code>prepublishOnly</code> esegue controllo licenza/registry, build e <code>lint:package</code>: un pacchetto con tipi o export non risolvibili
+          non viene pubblicato.
+        </p>
       </DocSection>
 
       <DocSection title="Da registry pubblico">
         <p>
-          Dopo un’eventuale pubblicazione su npmjs.com l’installazione è la stessa (<code>npm install @dev-community/ui</code>). La pubblicazione richiede
-          licenza, verifica del nome dello scope e una pipeline di rilascio: nessuna di queste è stata configurata.
+          Il campo <code>license</code> vale <code>"UNLICENSED"</code> (nessun diritto concesso a terzi). Lo script{' '}
+          <code>packages/ui/scripts/prepublish-check.mjs</code> blocca <code>npm publish</code> verso <code>registry.npmjs.org</code> finché la licenza non
+          viene scelta dal titolare del progetto e aggiunta con il relativo file <code>LICENSE</code>. Dopo la pubblicazione l’installazione resta{' '}
+          <code>npm install @dev-community/ui</code>.
+        </p>
+      </DocSection>
+
+      <DocSection title="Controlli di qualità del pacchetto">
+        <RefTable
+          label="Controlli del pacchetto"
+          columns={['Comando', 'Cosa verifica']}
+          rows={[
+            [<code key="a">npm run lint:package</code>, 'publint (campi package.json, exports, file inclusi) e arethetypeswrong: tipi risolvibili con moduleResolution bundler e node16/nodenext (ESM).'],
+            [<code key="b">npm run verify:package</code>, 'npm pack + installazione in un consumer separato fuori dal repository: export, tipi, CSS, rendering, interazioni, React non duplicato.'],
+            [<code key="c">npm run release:pack</code>, 'Build + lint:package + tarball con checksum in releases/.'],
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="Versionamento e aggiornamenti">
+        <p>
+          Il pacchetto segue semver. Finché la versione è <code>0.x</code> una release <em>minor</em> può contenere modifiche incompatibili, sempre descritte
+          nel changelog con le istruzioni di migrazione. Nei portali conviene fissare un intervallo stretto (<code>"~0.1.0"</code>) fino alla 1.0, poi{' '}
+          <code>"^1.0.0"</code>. Sono considerate incompatibili: rimozione o rinomina di export, props, token CSS (<code>--dc-*</code>), classi pubbliche e
+          cambi dello schema dei temi senza migrazione.
+        </p>
+      </DocSection>
+
+      <DocSection title="Formato dei moduli">
+        <p>
+          Il pacchetto è <strong>solo ESM</strong> (<code>"type": "module"</code>, nessuna build CommonJS). È verificato con Vite (consumer separato) e
+                    con Next.js solo a livello di documentazione; webpack 5, Rspack ed esbuild supportano ESM e import CSS ma non sono stati provati. Con Node ≥ 20.19 anche <code>require()</code> di ESM è supportato, ma i componenti sono pensati per il bundler. Jest in modalità CommonJS
+          richiede un transform per <code>node_modules/@dev-community</code> e la gestione degli import CSS: questa configurazione non è verificata, per i test
+          dei consumer si consiglia Vitest.
         </p>
       </DocSection>
 

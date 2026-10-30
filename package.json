@@ -23,7 +23,9 @@
     "test": "npm run test -w @dev-community/ui",
     "test:e2e": "playwright test",
     "verify:package": "node scripts/verify-package.mjs",
-    "verify": "npm run lint && npm run typecheck && npm test && npm run build && npm run verify:package && npm run test:e2e"
+    "lint:package": "npm run lint:package -w @dev-community/ui",
+    "release:pack": "node scripts/release-pack.mjs",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build && npm run lint:package && npm run verify:package && npm run test:e2e"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

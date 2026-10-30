@@ -22,6 +22,10 @@ Prima versione.
   `SortableList` (trascinamento più pulsanti Sposta su/giù), `RelativeTime` (`Intl.RelativeTimeFormat`) e il pattern
   `NotificationCenter`. Nuove chiavi in `messages`: `copyFailed`, `moreActions`, `pinDigit`, `ratingValue`, `moveUp`,
   `moveDown`, `itemMoved`, `notificationsUnread`, `markAllRead`, `markAsRead`, `unread`, `noNotifications`.
+- Distribuzione: le dichiarazioni `.d.ts` usano specificatori `.js` espliciti e non importano CSS, quindi sono risolvibili
+  con `moduleResolution` `node16`/`nodenext` oltre che `bundler`; `npm run lint:package` (publint + arethetypeswrong),
+  `npm run release:pack` (tarball con checksum in `releases/`) e controllo `prepublishOnly` che blocca la pubblicazione su
+  npmjs.com finché la licenza resta `UNLICENSED`.
 
 ### Note
 

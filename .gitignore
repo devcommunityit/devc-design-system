@@ -9,3 +9,4 @@ apps/playground/node_modules
 apps/playground/vendor
 coverage
 packages/ui/.storybook/generated
+releases

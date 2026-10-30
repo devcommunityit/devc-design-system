@@ -2,6 +2,17 @@
   "name": "@dev-community/ui",
   "version": "0.1.0",
   "description": "Design system React/TypeScript: token, temi, componenti accessibili e pattern per portali.",
+  "license": "UNLICENSED",
+  "keywords": [
+    "react",
+    "design-system",
+    "components",
+    "accessibility",
+    "react-aria",
+    "theming",
+    "design-tokens",
+    "typescript"
+  ],
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -37,6 +48,8 @@
     "test:watch": "vitest",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:tokens": "node scripts/check-token-refs.mjs",
+    "lint:package": "publint --strict && attw --pack . --profile esm-only --exclude-entrypoints ./styles.css ./reset.css ./tokens.css",
+    "prepublishOnly": "node scripts/prepublish-check.mjs && npm run build && npm run lint:package",
     "stories": "node scripts/generate-stories.mjs",
     "storybook": "npm run stories && storybook dev -p 6006",
     "build-storybook": "npm run stories && storybook build -o storybook-static"
@@ -53,10 +66,12 @@
     "react-aria-components": "^1.22.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@storybook/addon-a11y": "^10.6.3",
     "@storybook/react-vite": "^10.6.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "publint": "^0.3.25",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "storybook": "^10.6.3"
