@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button, IconButton, Popover, PopoverTrigger, Stack, Switch, Text } from '@dev-community/ui';
-import { Info } from 'lucide-react';
+import { Button, IconButton, Inline, Popover, PopoverTrigger, Stack, Switch, Text, TextField } from '@dev-community/ui';
+import { HelpCircle, Info, Pencil } from 'lucide-react';
 
 export function Basic() {
   return (
@@ -26,6 +26,75 @@ export function Interactive() {
             </Switch>
             <Button size="sm" onPress={close}>
               Fatto
+            </Button>
+          </Stack>
+        )}
+      </Popover>
+    </PopoverTrigger>
+  );
+}
+
+export function Controlled() {
+  const [isOpen, setOpen] = useState(false);
+  const [name, setName] = useState('Report trimestrale');
+  const [draft, setDraft] = useState(name);
+  const trimmed = draft.trim();
+  return (
+    <Stack gap={2} align="start">
+      <PopoverTrigger
+        isOpen={isOpen}
+        onOpenChange={(open) => {
+          setOpen(open);
+          if (open) setDraft(name);
+        }}
+      >
+        <Button variant="outline" startIcon={<Pencil />}>
+          Rinomina
+        </Button>
+        <Popover title="Rinomina file" placement="bottom start">
+          <Stack gap={3}>
+            <TextField label="Nome del file" value={draft} onChange={setDraft} isRequired />
+            <Inline gap={2} justify="end">
+              <Button size="sm" variant="ghost" onPress={() => setOpen(false)}>
+                Annulla
+              </Button>
+              <Button
+                size="sm"
+                isDisabled={trimmed === '' || trimmed === name}
+                onPress={() => {
+                  setName(trimmed);
+                  setOpen(false);
+                }}
+              >
+                Salva nome
+              </Button>
+            </Inline>
+          </Stack>
+        </Popover>
+      </PopoverTrigger>
+      <Text variant="body-sm" tone="secondary">
+        Nome attuale: {name} · popover {isOpen ? 'aperto' : 'chiuso'}
+      </Text>
+    </Stack>
+  );
+}
+
+export function WithoutTitle() {
+  return (
+    <PopoverTrigger>
+      <Button variant="ghost" startIcon={<HelpCircle />}>
+        Come calcoliamo il prezzo?
+      </Button>
+      <Popover aria-label="Calcolo del prezzo" showArrow={false} placement="bottom start">
+        {({ close }) => (
+          <Stack gap={2} style={{ maxInlineSize: '22rem' }}>
+            <Text>
+              Il canone mensile comprende 5 utenti e 50 GB di spazio. Ogni utente aggiuntivo costa 4 € al mese e ogni 10 GB in più
+              costano 2 € al mese; i prezzi sono IVA esclusa e fatturati in anticipo.
+            </Text>
+            <Text tone="secondary">Con la fatturazione annuale ottieni due mesi gratuiti sul totale.</Text>
+            <Button size="sm" variant="secondary" onPress={close}>
+              Ho capito
             </Button>
           </Stack>
         )}

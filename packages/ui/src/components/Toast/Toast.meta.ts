@@ -29,6 +29,10 @@ export const doc: ComponentDoc = {
   responsive: ['Larghezza massima 24rem, ridotta su schermi stretti; posizione con proprietà logiche.'],
   customization: ['ToastProvider.className; i toast ereditano il tema del ThemeProvider più vicino tramite portal.'],
   commonMistakes: ['Usare useToast fuori da ToastProvider: viene lanciato un errore esplicito.', 'Affidare a un toast l’unica copia di un’informazione critica.'],
-  examples: [{ name: 'Basic', title: 'Toni, azione e coda' }],
+  examples: [
+    { name: 'Basic', title: 'Toni, azione e coda' },
+    { name: 'Durations', title: 'Durate, toast persistente e chiusura programmatica', description: 'duration in millisecondi o null; dismiss(id) chiude un toast specifico e onClose conta le chiusure.' },
+    { name: 'Placement', title: 'Posizione e coda con maxVisible', description: 'La posizione è controllata dallo stato; con maxVisible={2} il terzo toast attende in coda.' },
+  ],
   status: { implemented: true, documented: true, tests: ['components/Toast/Toast.test.tsx'], limits: ['Nessuna scorciatoia (es. F6) per spostare il focus nella regione: è raggiungibile come landmark e con Tab.'] },
 };

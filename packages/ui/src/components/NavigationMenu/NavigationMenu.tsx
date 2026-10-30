@@ -116,10 +116,11 @@ export const NavigationMenu = forwardRef<HTMLElement, NavigationMenuProps>(funct
                       href={link.href}
                       aria-current={link.current ? 'page' : undefined}
                       className={styles.subLink}
-                      onPress={() => {
-                        if (orientation === 'horizontal') setOpenId(null);
-                      }}
                       {...link.linkProps}
+                      onPress={(event) => {
+                        if (orientation === 'horizontal') setOpenId(null);
+                        link.linkProps?.onPress?.(event);
+                      }}
                     >
                       <span className={styles.subLabel}>{link.label}</span>
                       {link.description ? <span className={styles.subDescription}>{link.description}</span> : null}

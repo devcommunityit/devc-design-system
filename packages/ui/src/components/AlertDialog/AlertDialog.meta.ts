@@ -29,6 +29,9 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Destructive', title: 'Distruttivo' },
     { name: 'AsyncConfirm', title: 'Conferma asincrona' },
+    { name: 'Controlled', title: 'Controllato con etichette personalizzate', description: 'isOpen + onOpenChange: il dialogo si apre solo se ci sono modifiche non salvate; onCancel e onConfirm aggiornano l’esito.' },
+    { name: 'TypeToConfirm', title: 'Conferma disabilitata finché non digiti il nome', description: 'isConfirmDisabled resta attivo finché il testo non corrisponde al nome del repository.' },
+    { name: 'RetryAfterError', title: 'Errore e nuovo tentativo', description: 'Se la Promise di onConfirm viene rifiutata il dialogo resta aperto e mostra l’errore; il secondo tentativo riesce.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Dialog/Dialog.test.tsx'], limits: [] },
   apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/',

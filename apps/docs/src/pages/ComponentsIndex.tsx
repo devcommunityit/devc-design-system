@@ -20,6 +20,7 @@ export function ComponentsIndex() {
   );
   const exportsCount = components.reduce((n, c) => n + c.doc.exports.length, 0);
   const tested = components.filter((c) => c.doc.status.tests.length > 0).length;
+  const examplesCount = components.reduce((n, c) => n + c.doc.examples.length, 0);
 
   return (
     <article className="docs-article docs-article--wide">
@@ -27,9 +28,24 @@ export function ComponentsIndex() {
       <header className="docs-page-header">
         <Heading level={1}>Catalogo componenti</Heading>
         <Text variant="body-lg" tone="secondary">
-          {components.length} pagine di documentazione che coprono {exportsCount} export pubblici; {tested} pagine con test automatici dedicati.
+          {components.length} pagine di documentazione che coprono {exportsCount} export pubblici, con {examplesCount} esempi interattivi; {tested}{' '}
+          pagine con test automatici dedicati.
         </Text>
       </header>
+      <nav aria-label="Categorie di componenti" className="docs-category-nav">
+        <ul>
+          {componentsByCategory().map((group) => (
+            <li key={group.category}>
+              <a href={`#cat-${group.category}`}>
+                {group.label} <span className="docs-category-count">{group.items.length}</span>
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="#matrice">Matrice</a>
+          </li>
+        </ul>
+      </nav>
       <SearchInput label="Filtra il catalogo" value={query} onChange={setQuery} className="docs-filter" />
       {groups.length === 0 ? <Text role="status">Nessun componente corrisponde a “{query}”.</Text> : null}
       {groups.map((group) => (
@@ -59,10 +75,11 @@ export function ComponentsIndex() {
           </Text>
           <RefTable
             label="Matrice di stato dei componenti"
-            columns={['Componente', 'Export', 'Implementato', 'Documentato', 'Test', 'Limiti']}
+            columns={['Componente', 'Export', 'Esempi', 'Implementato', 'Documentato', 'Test', 'Limiti']}
             rows={components.map(({ doc }) => [
               doc.name,
               doc.exports.join(', '),
+              String(doc.examples.length),
               doc.status.implemented ? 'Sì' : 'No',
               doc.status.documented ? 'Sì' : 'No',
               doc.status.tests.length > 0 ? doc.status.tests.join(', ') : '—',

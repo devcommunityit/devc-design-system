@@ -39,7 +39,11 @@ export const doc: ComponentDoc = {
     'useAppShell() espone lo stato per intestazioni personalizzate.',
   ],
   commonMistakes: ['Inserire un secondo <main> nel contenuto.', 'Gestire la navigazione con onNavigate senza href: i link devono restare apribili in una nuova scheda.'],
-  examples: [{ name: 'PortalShell', title: 'Shell di un portale', description: 'I link aggiornano solo lo stato locale dell’esempio.' }],
+  examples: [
+    { name: 'PortalShell', title: 'Shell di un portale', description: 'I link aggiornano solo lo stato locale dell’esempio.' },
+    { name: 'ControlledSidebar', title: 'Drawer controllato e sezioni comprimibili', description: 'isSidebarOpen + onSidebarOpenChange, sezione Report chiusa all’avvio, voce disabilitata e footer della Sidebar; useAppShell() mostra il pulsante solo nel layout compatto.' },
+    { name: 'WithoutSidebar', title: 'Sito pubblico senza Sidebar', description: 'Header con NavigationMenu e azione di accesso, Footer con colonne di link.' },
+  ],
   status: {
     implemented: true,
     documented: true,

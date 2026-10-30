@@ -26,6 +26,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'MultiLine', title: 'Più righe' },
     { name: 'SingleLine', title: 'Una riga' },
+    { name: 'Controlled', title: 'Espansione controllata', description: 'Lo stato espanso di ogni recensione vive nell’esempio; un pulsante esterno le apre o chiude tutte. La seconda è in inglese.' },
+    { name: 'ShortAndNoToggle', title: 'Testo breve e hideToggle', description: 'Senza overflow il pulsante non compare; con hideToggle il testo resta troncato.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Typography/Typography.test.tsx'], limits: [] },
 };

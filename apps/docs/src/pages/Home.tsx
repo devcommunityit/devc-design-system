@@ -1,6 +1,7 @@
-import { Accessibility, Boxes, Languages, Moon, Package, Palette, Rocket, ShieldCheck } from 'lucide-react';
+import { Accessibility, BarChart3, Boxes, Languages, LayoutTemplate, Moon, Package, Palette, Rocket, ShieldCheck, SwatchBook } from 'lucide-react';
 import { Card, CardHeader, CardLink, Grid, Heading, Inline, LinkButton, List, ListItem, Stack, Text } from '@dev-community/ui';
-import { components } from '../content/components';
+import { components, componentsByCategory } from '../content/components';
+import { SHOWCASE } from '../content/showcase';
 import { Code, DocSection } from '../components/Doc';
 import { PageMeta } from '../components/PageMeta';
 
@@ -11,6 +12,9 @@ const FEATURES = [
   { icon: <Accessibility />, title: 'Accessibilità', text: 'HTML semantico, pattern WAI-ARIA APG e controlli axe automatici nei test.', href: '/guide/accessibilita' },
   { icon: <Languages />, title: 'Localizzazione e RTL', text: 'Testi di sistema traducibili, Intl per date e numeri, proprietà CSS logiche.', href: '/guide/localizzazione-rtl' },
   { icon: <ShieldCheck />, title: 'SSR e CSP', text: 'Nessun accesso al DOM all’import, script del tema esterno compatibile con CSP.', href: '/guide/ssr-nextjs' },
+  { icon: <BarChart3 />, title: 'Grafici e dashboard', text: 'Grafici SVG accessibili con tabella dati, KPI, hero card, banner e menu di navigazione.', href: '/guide/grafici-dashboard' },
+  { icon: <SwatchBook />, title: 'Theme Builder', text: 'Crea un tema con anteprima live, controllo del contrasto ed export JSON, CSS e TypeScript.', href: '/theme-builder' },
+  { icon: <LayoutTemplate />, title: 'Pattern e template', text: 'Pagine realistiche: landing, dashboard, elenchi, form, account e stati di errore.', href: '/pattern' },
 ];
 
 export function Home() {
@@ -46,6 +50,33 @@ export function Home() {
           {FEATURES.map((f) => (
             <Card key={f.title} variant="filled">
               <CardHeader media={<span className="docs-feature-icon">{f.icon}</span>} headingLevel={3} title={<CardLink href={f.href}>{f.title}</CardLink>} subtitle={f.text} />
+            </Card>
+          ))}
+        </Grid>
+      </DocSection>
+
+      <DocSection title="Esplora per categoria">
+        <Grid minItemWidth="13rem" gap={3}>
+          {componentsByCategory().map((group) => (
+            <Card key={group.category} variant="outlined">
+              <CardHeader
+                headingLevel={3}
+                title={<CardLink href={`/componenti#cat-${group.category}`}>{group.label}</CardLink>}
+                subtitle={`${group.items.length} ${group.items.length === 1 ? 'pagina' : 'pagine'}: ${group.items
+                  .slice(0, 4)
+                  .map((c) => c.doc.name)
+                  .join(', ')}${group.items.length > 4 ? '…' : ''}`}
+              />
+            </Card>
+          ))}
+        </Grid>
+      </DocSection>
+
+      <DocSection title="Template pronti da esplorare">
+        <Grid minItemWidth="15rem" gap={3}>
+          {SHOWCASE.map((s) => (
+            <Card key={s.slug} variant="filled">
+              <CardHeader headingLevel={3} title={<CardLink href={`/showcase/${s.slug}`}>{s.title}</CardLink>} subtitle={s.description} />
             </Card>
           ))}
         </Grid>

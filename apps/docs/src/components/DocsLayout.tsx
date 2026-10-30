@@ -7,6 +7,7 @@ import { GUIDES } from '../content/guides';
 import { SHOWCASE } from '../content/showcase';
 import { HAS_STORYBOOK, STORYBOOK_PATH } from '../base';
 import { PreferencesMenu } from './PreferencesMenu';
+import { useHashScroll } from '../useHashScroll';
 
 function buildSections(pathname: string): SidebarSection[] {
   const guide = (group: string) =>
@@ -58,6 +59,15 @@ function buildCommands(): CommandPaletteItem[] {
       keywords: [...c.doc.exports, c.doc.category],
     })),
     ...SHOWCASE.map((s) => ({ id: `/showcase/${s.slug}`, label: s.title, description: s.description, section: 'Showcase' })),
+    ...components.flatMap((c) =>
+      c.doc.examples.map((ex) => ({
+        id: `/componenti/${c.doc.slug}#esempio-${ex.name.toLowerCase()}`,
+        label: `${c.doc.name} › ${ex.title}`,
+        description: ex.description,
+        section: 'Esempi',
+        keywords: [c.doc.name, ...c.doc.exports],
+      })),
+    ),
   ];
 }
 
@@ -69,6 +79,7 @@ export function DocsLayout() {
   const sections = useMemo(() => buildSections(initialPath), [initialPath]);
   const commands = useMemo(() => buildCommands(), []);
   const [searchOpen, setSearchOpen] = useState(false);
+  useHashScroll();
 
   return (
     <AppShell

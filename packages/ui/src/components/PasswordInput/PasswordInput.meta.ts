@@ -24,6 +24,8 @@ export const doc: ComponentDoc = {
     { name: 'Basic', title: 'Base' },
     { name: 'NewPassword', title: 'Registrazione con validazione' },
     { name: 'States', title: 'Stati' },
+    { name: 'Controlled', title: 'Valore controllato con requisiti', description: 'Il valore è nello stato dell’esempio: la lista dei requisiti si aggiorna a ogni modifica.' },
+    { name: 'ConfirmPassword', title: 'Conferma password e sola lettura', description: 'Errore mostrato con isInvalid quando le due password differiscono.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/PasswordInput/PasswordInput.test.tsx'], limits: ['Nessun misuratore di robustezza incluso.'] },
 };

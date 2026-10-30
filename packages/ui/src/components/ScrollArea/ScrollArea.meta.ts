@@ -29,6 +29,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'VerticalLog', title: 'Registro verticale' },
     { name: 'Horizontal', title: 'Scorrimento orizzontale' },
+    { name: 'DynamicContent', title: 'Contenuto che cresce', description: 'I commenti si aggiungono con un pulsante: l’area diventa focusabile solo quando il contenuto trabocca.' },
+    { name: 'BothDirections', title: 'Scorrimento in entrambe le direzioni', description: 'Griglia ampia e alta con orientation="both" e altezza massima.' },
   ],
   status: {
     implemented: true,

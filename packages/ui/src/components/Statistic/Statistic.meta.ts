@@ -27,6 +27,9 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Base' },
     { name: 'Dashboard', title: 'KPI in dashboard' },
+    { name: 'SizesAndStates', title: 'Dimensioni, etichette lunghe e dato mancante', description: 'Varianti sm, md e lg; trend in calo ma positivo, unità di misura e valore assente.' },
+    { name: 'LocaleComparison', title: 'Formattazione italiana e inglese', description: 'Lo stesso valore formattato con LocaleProvider it-IT ed en-US, anche in notazione compatta.' },
+    { name: 'LiveValue', title: 'Valore controllato', description: 'Il valore è nello stato dell’esempio; direzione e testo del trend si aggiornano con i pulsanti.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: [] },
 };

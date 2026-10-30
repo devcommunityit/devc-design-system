@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Alert, Button, Link, Stack } from '@dev-community/ui';
+import { CalendarClock } from 'lucide-react';
+import { Alert, Button, Form, Inline, Link, List, Stack, TextField } from '@dev-community/ui';
 
 export function Tones() {
   return (
@@ -57,5 +58,70 @@ export function Live() {
         </Alert>
       ) : null}
     </Stack>
+  );
+}
+export function ContentVariants() {
+  return (
+    <Stack gap={3}>
+      <Alert tone="info">Messaggio senza titolo: il tono è comunque annunciato da un prefisso nascosto.</Alert>
+      <Alert tone="warning" variant="outline" icon={<CalendarClock />} title="Icona personalizzata">
+        La sessione scade tra 5 minuti. Salva il lavoro per non perdere le modifiche.
+      </Alert>
+      <Alert tone="success" icon={null} title="Senza icona" />
+      <Alert tone="danger" title="Import failed (EN)" lang="en">
+        Row 1,204 of “clienti-2025-export-completo-definitivo-v3.csv” contains an invalid VAT number; the remaining rows were not imported.
+      </Alert>
+    </Stack>
+  );
+}
+
+export function ErrorSummary() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const errors = [
+    ...(name.trim() === '' ? [{ field: 'name', text: 'Inserisci il nome.' }] : []),
+    ...(!email.includes('@') ? [{ field: 'email', text: 'Inserisci un’email valida.' }] : []),
+  ];
+  const showSummary = submitted && errors.length > 0;
+  return (
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+    >
+      <Stack gap={4}>
+        {showSummary ? (
+          <Alert tone="danger" live="assertive" title={`Il modulo contiene ${errors.length} ${errors.length === 1 ? 'errore' : 'errori'}`}>
+            <List>
+              {errors.map((err) => (
+                <li key={err.field}>{err.text}</li>
+              ))}
+            </List>
+          </Alert>
+        ) : null}
+        {submitted && errors.length === 0 ? (
+          <Alert tone="success" live="polite" title="Dati validi">
+            Invio simulato in locale: nessun dato lascia il browser.
+          </Alert>
+        ) : null}
+        <TextField label="Nome" value={name} onChange={setName} isInvalid={submitted && name.trim() === ''} errorMessage="Inserisci il nome." />
+        <TextField label="Email" value={email} onChange={setEmail} isInvalid={submitted && !email.includes('@')} errorMessage="Inserisci un’email valida." />
+        <Inline gap={2}>
+          <Button type="submit">Invia</Button>
+          <Button
+            variant="ghost"
+            onPress={() => {
+              setName('');
+              setEmail('');
+              setSubmitted(false);
+            }}
+          >
+            Azzera
+          </Button>
+        </Inline>
+      </Stack>
+    </Form>
   );
 }

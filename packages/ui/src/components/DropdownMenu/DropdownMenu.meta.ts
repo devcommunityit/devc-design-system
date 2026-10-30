@@ -41,6 +41,8 @@ export const doc: ComponentDoc = {
     { name: 'Basic', title: 'Azioni con sottomenu' },
     { name: 'IconTrigger', title: 'Trigger con IconButton' },
     { name: 'Selectable', title: 'Sezioni con selezione' },
+    { name: 'Controlled', title: 'Apertura controllata e voci disabilitate', description: 'isOpen + onOpenChange sul DropdownMenu; disabledKeys disattiva l’azione già applicata.' },
+    { name: 'LongList', title: 'Elenco lungo con etichette estese', description: 'Selezione singola obbligatoria; il popover scorre e le etichette lunghe vanno a capo.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/DropdownMenu/DropdownMenu.test.tsx'], limits: [] },
   apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/',

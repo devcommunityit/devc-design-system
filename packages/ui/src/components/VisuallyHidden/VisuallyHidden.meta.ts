@@ -18,6 +18,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Contesto aggiuntivo' },
     { name: 'SkipLink', title: 'Skip link' },
+    { name: 'RepeatedActions', title: 'Azioni ripetute con contesto', description: 'Ogni pulsante “Rimuovi” ha un nome accessibile univoco grazie al nome del file nascosto.' },
+    { name: 'LiveAnnouncement', title: 'Annuncio nascosto', description: 'Una regione live nascosta annuncia la quantità aggiornata dai pulsanti.' },
   ],
-  status: { implemented: true, documented: true, tests: [], limits: ['Coperto indirettamente dai test di Skeleton, DataTable e Statistic.'] },
+  status: { implemented: true, documented: true, tests: ['components/VisuallyHidden/VisuallyHidden.test.tsx'], limits: [] },
 };

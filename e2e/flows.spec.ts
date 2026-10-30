@@ -78,7 +78,7 @@ test.describe('ricerca e collegamenti', () => {
 
   test('i collegamenti interni della documentazione portano a pagine esistenti e ad ancore presenti', async ({ page }) => {
     test.setTimeout(240_000);
-    const seeds = ['/', '/componenti', '/pattern', '/guide/quick-start', '/guide/integrazione', '/guide/temi', '/guide/personalizzazione', '/guide/contribuire', '/guide/figma', '/componenti/dialog'];
+    const seeds = ['/', '/componenti', '/pattern', '/guide/quick-start', '/guide/integrazione', '/guide/temi', '/guide/personalizzazione', '/guide/contribuire', '/guide/figma', '/guide/grafici-dashboard', '/componenti/dialog'];
     const targets = new Set<string>();
     for (const seed of seeds) {
       await open(page, seed);
@@ -101,6 +101,35 @@ test.describe('ricerca e collegamenti', () => {
     }
     expect(broken).toEqual([]);
     expect(targets.size).toBeGreaterThan(50);
+  });
+
+  test('indice della pagina, esempi raggiungibili dalla ricerca e navigazione precedente/successivo', async ({ page }) => {
+    await open(page, '/componenti/tabs');
+    const toc = page.getByRole('navigation', { name: 'In questa pagina' });
+    await expect(toc).toBeVisible();
+    await toc.getByRole('link', { name: 'Tastiera' }).click();
+    await expect(page).toHaveURL(/\/componenti\/tabs#tastiera$/);
+    await expect(page.getByRole('heading', { level: 2, name: 'Tastiera' })).toBeInViewport();
+
+    const pager = page.getByRole('navigation', { name: 'Componente precedente e successivo' });
+    const nextHref = await pager.locator('a[rel="next"]').getAttribute('href');
+    await pager.locator('a[rel="next"]').click();
+    await expect(page).toHaveURL(new RegExp(`${nextHref ?? ''}$`));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+
+    await page.keyboard.press('Control+k');
+    await page.keyboard.type('DataTable › ');
+    const option = page.getByRole('dialog').getByRole('menuitem').first();
+    await expect(option).toContainText('DataTable ›');
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/componenti\/data-table#esempio-[a-z0-9]+$/);
+    const hash = await page.evaluate(() => window.location.hash.slice(1));
+    await expect(page.locator(`[id="${hash}"]`)).toBeInViewport();
+
+    await open(page, '/guide/temi');
+    const guideToc = page.getByRole('navigation', { name: 'In questa pagina' });
+    await expect(guideToc.getByRole('link').first()).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Guida precedente e successiva' }).locator('a[rel="next"]')).toBeVisible();
   });
 
   test('gli indirizzi sconosciuti mostrano la pagina 404', async ({ page }) => {

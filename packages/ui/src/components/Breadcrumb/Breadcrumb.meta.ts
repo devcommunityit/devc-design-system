@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Base' },
     { name: 'Collapsed', title: 'Compresso con maxItems' },
+    { name: 'FolderNavigation', title: 'Navigazione tra cartelle con stato', description: 'Il percorso è nello stato: linkProps.onPress torna a una cartella superiore, i pulsanti aprono le sottocartelle.' },
+    { name: 'LongLabels', title: 'Etichette lunghe e pagina corrente con href', description: 'Le voci lunghe vanno a capo in un contenitore stretto; isCurrent rende l’ultima voce pagina corrente anche con href.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Breadcrumb/Breadcrumb.test.tsx'], limits: [] },
   apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/',

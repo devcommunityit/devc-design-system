@@ -25,6 +25,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Filters', title: 'Pannello filtri' },
     { name: 'Placements', title: 'Posizioni' },
+    { name: 'Controlled', title: 'Controllato con descrizione e contenuto lungo', description: 'isOpen + onOpenChange senza DialogTrigger; le righe lunghe vanno a capo dentro il pannello.' },
+    { name: 'NestedConfirm', title: 'AlertDialog annidato nel pannello', description: 'La conferma distruttiva si apre sopra il Drawer; con Annulla o Esc il focus torna al pulsante Rimuovi nel pannello.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Dialog/Dialog.test.tsx'], limits: [] },
   apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/',

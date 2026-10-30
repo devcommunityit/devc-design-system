@@ -25,6 +25,10 @@ export const doc: ComponentDoc = {
   responsive: ['Target di almeno 48 px; rispetta env(safe-area-inset-bottom).', 'Con position fixed riserva spazio in fondo al contenuto (AppShell lo gestisce).'],
   customization: ['Selettori: .dc-bottom-navigation-item[aria-current="page"].'],
   commonMistakes: ['Usare la barra per azioni (es. “Salva”) invece che per destinazioni.', 'Nascondere le etichette.'],
-  examples: [{ name: 'Basic', title: 'Controllata con badge' }],
+  examples: [
+    { name: 'Basic', title: 'Controllata con badge' },
+    { name: 'UncontrolledLinks', title: 'Cinque destinazioni come link, non controllata', description: 'defaultValue imposta la voce iniziale; onChange registra le ultime destinazioni. I badge hanno un badgeLabel accessibile.' },
+    { name: 'LongLabels', title: 'Tre destinazioni con etichette lunghe', description: 'Valore controllato modificabile anche da pulsanti esterni; le etichette lunghe vanno a capo in uno spazio stretto.' },
+  ],
   status: { implemented: true, documented: true, tests: ['components/BottomNavigation/BottomNavigation.test.tsx'], limits: [] },
 };

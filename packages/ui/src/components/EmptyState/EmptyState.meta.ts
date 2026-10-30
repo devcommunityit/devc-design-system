@@ -25,6 +25,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'NoData', title: 'Nessun dato' },
     { name: 'NoResults', title: 'Nessun risultato' },
+    { name: 'Sizes', title: 'Dimensioni e testi lunghi', description: 'Varianti sm, md e lg; l’ultima ha contenuto in inglese e una descrizione lunga.' },
+    { name: 'ErrorWithRetry', title: 'Errore con nuovo tentativo', description: 'Caricamento simulato in locale: il primo tentativo fallisce, “Riprova” porta allo stato vuoto.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
 };

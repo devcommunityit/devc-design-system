@@ -30,6 +30,8 @@ export const doc: ComponentDoc = {
     { name: 'Tones', title: 'Toni' },
     { name: 'WithActions', title: 'Azioni e chiusura' },
     { name: 'Live', title: 'Annuncio dinamico' },
+    { name: 'ContentVariants', title: 'Senza titolo, icone e testi lunghi', description: 'Alert solo testo, icona personalizzata o assente e un messaggio lungo in inglese.' },
+    { name: 'ErrorSummary', title: 'Riepilogo errori di un modulo', description: 'All’invio un Alert assertivo elenca gli errori; i campi mostrano il proprio messaggio. Invio simulato in locale.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
 };

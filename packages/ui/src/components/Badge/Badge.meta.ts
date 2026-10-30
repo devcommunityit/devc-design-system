@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Tones', title: 'Toni' },
     { name: 'Variants', title: 'Varianti, pallino e icona' },
+    { name: 'SizesAndLongLabels', title: 'Dimensioni, testi lunghi e lingue', description: 'Confronto sm/md, un’etichetta lunga che va a capo e testi in inglese marcati con lang="en".' },
+    { name: 'LiveCount', title: 'Contatore controllato', description: 'Il conteggio è nello stato dell’esempio: tono e formato “99+” cambiano con il valore.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Badge/Badge.test.tsx'], limits: [] },
 };

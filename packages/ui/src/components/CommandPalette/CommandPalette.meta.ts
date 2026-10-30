@@ -31,7 +31,11 @@ export const doc: ComponentDoc = {
   responsive: ['Larghezza massima limitata; su mobile occupa quasi tutta la viewport con elenco scorrevole.'],
   customization: ['Superficie: surface.raised con shadow-4; selettori .dc-command-palette-dialog, .dc-command-palette-search-field.'],
   commonMistakes: ['Abilitare hotkey in più istanze contemporaneamente.', 'Eseguire comandi distruttivi senza conferma (AlertDialog).'],
-  examples: [{ name: 'Basic', title: 'Con sezioni e cambio tema' }],
+  examples: [
+    { name: 'Basic', title: 'Con sezioni e cambio tema' },
+    { name: 'RecentCommands', title: 'Comandi raggruppati con sezione Recenti', description: 'I comandi eseguiti compaiono in cima nella sezione Recenti; le scorciatoie mostrate sono solo indicazioni visive.' },
+    { name: 'ControlledStates', title: 'Apertura controllata, voci disabilitate e stato vuoto', description: 'Le voci si abilitano in base allo stato del progetto; emptyState personalizza il messaggio senza risultati.' },
+  ],
   status: {
     implemented: true,
     documented: true,

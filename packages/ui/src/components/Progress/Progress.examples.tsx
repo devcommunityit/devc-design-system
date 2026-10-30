@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, CircularProgress, Inline, Progress, Stack } from '@dev-community/ui';
+import { Button, CircularProgress, Inline, Progress, Stack, Switch, Text } from '@dev-community/ui';
 
 export function Linear() {
   return (
@@ -50,6 +50,58 @@ export function Simulated() {
           Azzera
         </Button>
       </Inline>
+    </Stack>
+  );
+}
+type StorageTone = 'brand' | 'warning' | 'danger';
+
+function toneFor(value: number): StorageTone {
+  if (value >= 90) return 'danger';
+  if (value >= 70) return 'warning';
+  return 'brand';
+}
+
+export function Controlled() {
+  const [value, setValue] = useState(40);
+  const tone = toneFor(value);
+  const step = (delta: number) => setValue((v) => Math.min(100, Math.max(0, v + delta)));
+  return (
+    <Stack gap={3}>
+      <Progress label="Spazio di archiviazione" value={value} tone={tone} valueLabel={`${value} GB di 100 GB`} />
+      <Inline gap={4} align="center">
+        <CircularProgress value={value} tone={tone} aria-label="Spazio di archiviazione (circolare)" />
+        <Text>
+          Valore corrente: {value} GB{tone === 'danger' ? ' — quasi pieno' : tone === 'warning' ? ' — attenzione' : ''}
+        </Text>
+      </Inline>
+      <Inline gap={2}>
+        <Button size="sm" variant="secondary" onPress={() => step(-10)} isDisabled={value <= 0}>
+          −10 GB
+        </Button>
+        <Button size="sm" variant="secondary" onPress={() => step(10)} isDisabled={value >= 100}>
+          +10 GB
+        </Button>
+        <Button size="sm" variant="ghost" onPress={() => setValue(40)}>
+          Ripristina
+        </Button>
+      </Inline>
+    </Stack>
+  );
+}
+
+export function SizesAndFormats() {
+  const [indeterminate, setIndeterminate] = useState(false);
+  return (
+    <Stack gap={4}>
+      <Switch isSelected={indeterminate} onChange={setIndeterminate}>
+        Durata sconosciuta (indeterminato)
+      </Switch>
+      <Progress size="sm" label="Piccolo" value={indeterminate ? undefined : 30} />
+      <Progress size="md" label="Medio" value={indeterminate ? undefined : 55} tone="success" />
+      <Progress size="lg" label="Grande" value={indeterminate ? undefined : 80} tone="warning" />
+      <Progress label="File caricati" value={7} minValue={0} maxValue={12} formatOptions={{ style: 'decimal' }} valueLabel="7 di 12 file" />
+      <Progress aria-label="Avanzamento senza etichetta visibile" value={45} showValue={false} />
+      <Progress label="Elaborazione dell’archivio storico degli ordini dal 2015 a oggi, inclusi resi e note di credito" value={12} />
     </Stack>
   );
 }

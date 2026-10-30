@@ -22,6 +22,8 @@ export const doc: ComponentDoc = {
     { name: 'Sizes', title: 'Dimensioni' },
     { name: 'WithText', title: 'Con testo visibile' },
     { name: 'InButton', title: 'Dentro un pulsante' },
+    { name: 'SimulatedLoading', title: 'Caricamento controllato', description: 'Il pulsante avvia un caricamento simulato in locale (setTimeout con pulizia); Annulla lo interrompe.' },
+    { name: 'LocalizedLabels', title: 'Etichette localizzate e personalizzate', description: 'Etichetta predefinita in italiano e in inglese (LocaleProvider en-US) e un testo personalizzato lungo.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Button/Button.test.tsx'], limits: [] },
 };

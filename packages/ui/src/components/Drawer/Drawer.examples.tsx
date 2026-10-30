@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Checkbox, CheckboxGroup, DialogTrigger, Drawer, Inline, Stack, Text } from '@dev-community/ui';
+import { AlertDialog, Button, Checkbox, CheckboxGroup, DialogTrigger, Drawer, Inline, Stack, Text } from '@dev-community/ui';
 
 export function Filters() {
   const [applied, setApplied] = useState<string[]>([]);
@@ -60,5 +60,103 @@ export function Placements() {
         </Drawer>
       </DialogTrigger>
     </Inline>
+  );
+}
+
+const orderLines = [
+  { id: 'l1', name: 'Monitor 27" QHD', qty: 2, price: '578,00 €' },
+  { id: 'l2', name: 'Docking station USB-C con alimentazione da 100 W e tre uscite video', qty: 1, price: '189,90 €' },
+  { id: 'l3', name: 'Tastiera wireless', qty: 3, price: '147,00 €' },
+];
+
+export function Controlled() {
+  const [isOpen, setOpen] = useState(false);
+  const [openings, setOpenings] = useState(0);
+  return (
+    <Stack gap={2} align="start">
+      <Button
+        variant="secondary"
+        onPress={() => {
+          setOpen(true);
+          setOpenings((n) => n + 1);
+        }}
+      >
+        Dettagli ordine
+      </Button>
+      <Text>
+        Pannello {isOpen ? 'aperto' : 'chiuso'} · aperture: {openings}
+      </Text>
+      <Drawer
+        isOpen={isOpen}
+        onOpenChange={setOpen}
+        title="Ordine n. 4821"
+        description="Effettuato il 12 marzo 2025 · 3 articoli"
+        footer={<Button onPress={() => setOpen(false)}>Chiudi dettagli</Button>}
+      >
+        <Stack gap={3}>
+          {orderLines.map((line) => (
+            <Inline key={line.id} gap={3} justify="between" align="start">
+              <Text style={{ minInlineSize: 0, overflowWrap: 'anywhere' }}>
+                {line.qty} × {line.name}
+              </Text>
+              <Text weight="bold">{line.price}</Text>
+            </Inline>
+          ))}
+          <Text tone="secondary">Spedizione con corriere espresso, consegna prevista entro 48 ore lavorative.</Text>
+        </Stack>
+      </Drawer>
+    </Stack>
+  );
+}
+
+const initialMembers = ['Giulia Verdi', 'Luca Neri', 'Sara Gallo'];
+
+export function NestedConfirm() {
+  const [members, setMembers] = useState(initialMembers);
+  const [lastRemoved, setLastRemoved] = useState<string | null>(null);
+  return (
+    <Stack gap={2} align="start">
+      <DialogTrigger>
+        <Button variant="secondary">Gestisci team ({members.length})</Button>
+        <Drawer
+          title="Membri del team"
+          description="La rimozione chiede conferma con un AlertDialog sopra al pannello."
+          footer={
+            <Button variant="secondary" isDisabled={members.length === initialMembers.length} onPress={() => setMembers(initialMembers)}>
+              Ripristina demo
+            </Button>
+          }
+        >
+          {members.length ? (
+            <Stack gap={2}>
+              {members.map((name) => (
+                <Inline key={name} gap={2} justify="between" align="center">
+                  <Text>{name}</Text>
+                  <DialogTrigger>
+                    <Button size="sm" variant="ghost" aria-label={`Rimuovi ${name}`}>
+                      Rimuovi
+                    </Button>
+                    <AlertDialog
+                      title={`Rimuovere ${name}?`}
+                      tone="danger"
+                      confirmLabel="Rimuovi"
+                      onConfirm={() => {
+                        setMembers((prev) => prev.filter((m) => m !== name));
+                        setLastRemoved(name);
+                      }}
+                    >
+                      {name} perderà l’accesso ai progetti del team. Potrai invitarlo di nuovo in seguito.
+                    </AlertDialog>
+                  </DialogTrigger>
+                </Inline>
+              ))}
+            </Stack>
+          ) : (
+            <Text tone="secondary">Nessun membro nel team.</Text>
+          )}
+        </Drawer>
+      </DialogTrigger>
+      <Text>Ultima rimozione: {lastRemoved ?? 'nessuna'}</Text>
+    </Stack>
   );
 }

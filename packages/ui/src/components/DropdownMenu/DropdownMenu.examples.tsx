@@ -1,4 +1,4 @@
-import { Copy, Download, MoreVertical, Pencil, Share2, Trash2 } from 'lucide-react';
+import { Archive, Copy, Download, FilePen, FolderOpen, MoreVertical, Pencil, Send, Share2, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import {
   Button,
@@ -89,5 +89,78 @@ export function Selectable() {
         </MenuSection>
       </Menu>
     </DropdownMenu>
+  );
+}
+
+const statuses = [
+  { id: 'draft', label: 'Bozza', action: 'Riporta in bozza', icon: <FilePen /> },
+  { id: 'published', label: 'Pubblicato', action: 'Pubblica', icon: <Send /> },
+  { id: 'archived', label: 'Archiviato', action: 'Archivia', icon: <Archive /> },
+];
+
+export function Controlled() {
+  const [isOpen, setOpen] = useState(false);
+  const [status, setStatus] = useState('draft');
+  const currentLabel = statuses.find((s) => s.id === status)?.label;
+  return (
+    <Stack gap={3} align="start">
+      <DropdownMenu isOpen={isOpen} onOpenChange={setOpen}>
+        <Button variant="outline">Stato: {currentLabel}</Button>
+        <Menu
+          aria-label="Cambia stato"
+          disabledKeys={[status]}
+          onAction={(key) => {
+            const next = statuses.find((s) => s.id === key);
+            if (next) setStatus(next.id);
+          }}
+        >
+          {statuses.map((s) => (
+            <MenuItem key={s.id} id={s.id} icon={s.icon}>
+              {s.action}
+            </MenuItem>
+          ))}
+        </Menu>
+      </DropdownMenu>
+      <Text variant="body-sm" tone="secondary">
+        Menu {isOpen ? 'aperto' : 'chiuso'} · l’azione corrispondente allo stato attuale è disabilitata.
+      </Text>
+    </Stack>
+  );
+}
+
+const projects = [
+  { id: 'p-1', label: 'Portale clienti', description: 'Aggiornato ieri' },
+  { id: 'p-2', label: 'Migrazione del gestionale di magazzino verso la nuova piattaforma cloud', description: 'Aggiornato 3 giorni fa' },
+  { id: 'p-3', label: 'App mobile prenotazioni' },
+  { id: 'p-4', label: 'Rinnovo sito istituzionale con nuova identità visiva e accessibilità AA' },
+  { id: 'p-5', label: 'Integrazione fatturazione elettronica SDI' },
+  { id: 'p-6', label: 'Dashboard direzionale' },
+  { id: 'p-7', label: 'Intranet aziendale' },
+  { id: 'p-8', label: 'Campagna newsletter primavera' },
+  { id: 'p-9', label: 'Analisi dei tempi di consegna regionali per il secondo trimestre' },
+  { id: 'p-10', label: 'Sistema ticket di assistenza' },
+];
+
+export function LongList() {
+  const [selected, setSelected] = useState<Selection>(new Set(['p-3']));
+  const current = selected === 'all' ? undefined : projects.find((p) => selected.has(p.id));
+  return (
+    <Stack gap={3} align="start" style={{ maxInlineSize: '24rem' }}>
+      <DropdownMenu>
+        <Button variant="outline" startIcon={<FolderOpen />}>
+          Cambia progetto
+        </Button>
+        <Menu aria-label="Progetti" selectionMode="single" disallowEmptySelection selectedKeys={selected} onSelectionChange={setSelected}>
+          {projects.map((p) => (
+            <MenuItem key={p.id} id={p.id} description={p.description}>
+              {p.label}
+            </MenuItem>
+          ))}
+        </Menu>
+      </DropdownMenu>
+      <Text variant="body-sm" tone="secondary">
+        Progetto attivo: {current?.label ?? 'nessuno'}
+      </Text>
+    </Stack>
   );
 }

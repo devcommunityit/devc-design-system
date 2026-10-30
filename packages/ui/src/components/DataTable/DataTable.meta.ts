@@ -54,6 +54,7 @@ export const doc: ComponentDoc = {
     { name: 'LocalFilters', title: 'Filtri, ricerca, selezione e azioni di massa', description: 'La rimozione agisce solo sullo stato locale dell’esempio.' },
     { name: 'ServerSide', title: 'Modalità server (simulata)', description: 'Latenza ed errori simulati in locale: sostituisci fakeFetch con la tua API.' },
     { name: 'States', title: 'Stati: nessun dato, caricamento, errore' },
+    { name: 'CompactSticky', title: 'Compatta, a righe alterne, intestazione fissa e selezione singola', description: 'Senza paginazione, con altezza massima; i clienti sospesi sono disabilitati e le date mancanti mostrano un trattino.' },
   ],
   status: {
     implemented: true,

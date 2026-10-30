@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
     { name: 'Linear', title: 'Lineare' },
     { name: 'Circular', title: 'Circolare' },
     { name: 'Simulated', title: 'Avanzamento simulato' },
+    { name: 'Controlled', title: 'Valore controllato', description: 'Pulsanti −10/+10 aggiornano barra lineare e circolare; il tono cambia alle soglie del 70% e del 90%.' },
+    { name: 'SizesAndFormats', title: 'Dimensioni, formati e indeterminato', description: 'Tre dimensioni con interruttore per lo stato indeterminato, intervallo personalizzato, etichetta nascosta ed etichetta lunga.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
 };

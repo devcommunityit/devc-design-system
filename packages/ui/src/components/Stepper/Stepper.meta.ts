@@ -27,6 +27,7 @@ export const doc: ComponentDoc = {
     { name: 'Interactive', title: 'Interattivo' },
     { name: 'WithError', title: 'Con errore' },
     { name: 'Vertical', title: 'Verticale' },
+    { name: 'GuidedForm', title: 'Modulo guidato con validazione', description: 'Avanti valida i campi del passaggio: se mancano dati il passaggio mostra hasError; i passaggi completati permettono di tornare indietro.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Stepper/Stepper.test.tsx'], limits: [] },
 };

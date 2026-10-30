@@ -1,11 +1,18 @@
-import { DOC_PAGES, SHOWCASE_PAGES, componentSlugs, expect, expectNoA11yViolations, open, test } from './fixtures';
+import { DOC_PAGES, SHOWCASE_PAGES, componentSlugs, expect, expectNoA11yViolations, guideSlugs, open, test } from './fixtures';
 
 /**
  * Automated checks only: they catch a subset of WCAG failures (names, roles, contrast of rendered
  * pairs, ARIA misuse). Keyboard, focus and overlay behaviour are covered by the other specs;
  * conformance still requires manual review (see /guide/accessibilita).
  */
-const pages = [...DOC_PAGES, ...SHOWCASE_PAGES.map((slug) => `/showcase/${slug}`), ...componentSlugs().map((slug) => `/componenti/${slug}`)];
+const pages = [
+  ...new Set([
+    ...DOC_PAGES,
+    ...guideSlugs().map((slug) => `/guide/${slug}`),
+    ...SHOWCASE_PAGES.map((slug) => `/showcase/${slug}`),
+    ...componentSlugs().map((slug) => `/componenti/${slug}`),
+  ]),
+];
 
 for (const scheme of ['light', 'dark'] as const) {
   test.describe(`axe, tema ${scheme}`, () => {

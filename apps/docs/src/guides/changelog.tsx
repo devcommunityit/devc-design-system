@@ -37,6 +37,11 @@ export default function Changelog() {
             Documentazione live: build statica per GitHub Pages con base path configurabile, deep link, pagina 404, Storybook in /storybook/ e
             workflow GitHub Actions che pubblica solo dopo i test e2e.
           </li>
+          <li>
+            Sito di documentazione: indice «In questa pagina» e navigazione precedente/successivo in componenti e guide, navigazione per categorie nel
+            catalogo, ricerca estesa ai singoli esempi con deep link, link a Storybook per ogni esempio, guida «Grafici e dashboard» ed esempi
+            aggiuntivi (controllati, stati, contenuti lunghi) nelle pagine componente.
+          </li>
         </ul>
         <p>
           Il dettaglio è nel file <code>packages/ui/CHANGELOG.md</code>, incluso nel pacchetto.

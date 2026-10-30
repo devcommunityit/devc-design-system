@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Informativo' },
     { name: 'Interactive', title: 'Con controlli' },
+    { name: 'Controlled', title: 'Controllato con modulo di modifica', description: 'isOpen + onOpenChange su PopoverTrigger: Salva aggiorna il nome e chiude, Annulla chiude senza modifiche.' },
+    { name: 'WithoutTitle', title: 'Senza titolo, senza freccia e testo lungo', description: 'Nome accessibile da aria-label; il contenuto lungo va a capo entro una larghezza massima.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Popover/Popover.test.tsx'], limits: [] },
 };

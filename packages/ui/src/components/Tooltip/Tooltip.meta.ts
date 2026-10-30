@@ -29,6 +29,8 @@ export const doc: ComponentDoc = {
     { name: 'Basic', title: 'Base' },
     { name: 'Placements', title: 'Posizionamento (logico, rispetta RTL)' },
     { name: 'IconToolbar', title: 'Barra di icon button' },
+    { name: 'Controlled', title: 'Stato controllato e apertura immediata', description: 'isOpen + onOpenChange con delay={0}; il contenuto cambia dopo l’azione del pulsante.' },
+    { name: 'Variants', title: 'Testo lungo, senza freccia e disattivato', description: 'Scorciatoia nel testo, contenuto lungo che va a capo, showArrow={false} e isDisabled controllato da uno Switch. L’informazione resta disponibile anche come testo visibile.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: ['Non disponibile su touch (comportamento intenzionale del pattern).'] },
   apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/',

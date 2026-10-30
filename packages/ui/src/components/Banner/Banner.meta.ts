@@ -23,6 +23,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Toni' },
     { name: 'Dismissible', title: 'Chiudibile' },
+    { name: 'ToneAndAction', title: 'Tono controllato, azione e chiusura', description: 'Il tono è scelto con un RadioGroup; l’azione aggiorna un contatore e la chiusura nasconde il banner.' },
+    { name: 'StickyInScrollArea', title: 'Banner fisso in un contenitore che scorre', description: 'Con sticky il banner resta in cima allo ScrollArea durante lo scorrimento.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
 };

@@ -26,6 +26,7 @@ interface Customer {
 const cities = ['Bologna', 'Milano', 'Torino', 'Napoli', 'Roma', 'Firenze', 'Bari'];
 const names = ['Acme', 'Bottega Rossi', 'Studio Verdi', 'Officine Neri', 'Gallo & Figli', 'Riva Logistica', 'Fontana Design', 'Conti Alimentari', 'Moretti Tech', 'Esposito Casa', 'Ferri Energia', 'Lombardi Viaggi'];
 const statuses: Status[] = ['attivo', 'attivo', 'sospeso', 'attivo', 'invitato'];
+const statusValues: Status[] = ['attivo', 'sospeso', 'invitato'];
 
 /** Deterministic sample data: same output on every render and in tests. */
 export const customers: Customer[] = Array.from({ length: 57 }, (_, i) => ({
@@ -73,8 +74,8 @@ export function LocalFilters() {
           <NativeSelect
             label="Stato"
             value={status}
-            onChange={(e) => setStatus(e.target.value as '' | Status)}
-            options={[{ value: '', label: 'Tutti' }, ...(['attivo', 'sospeso', 'invitato'] as const).map((s) => ({ value: s, label: s }))]}
+            onChange={(e) => setStatus(statusValues.find((s) => s === e.target.value) ?? '')}
+            options={[{ value: '', label: 'Tutti' }, ...statusValues.map((s) => ({ value: s, label: s }))]}
           />
         }
         selectionMode="multiple"
@@ -185,14 +186,17 @@ export function ServerSide() {
   );
 }
 
+type DemoState = 'empty' | 'loading' | 'error';
+const demoStates: DemoState[] = ['empty', 'loading', 'error'];
+
 export function States() {
-  const [state, setState] = useState<'empty' | 'loading' | 'error'>('empty');
+  const [state, setState] = useState<DemoState>('empty');
   return (
     <Stack gap={3}>
       <NativeSelect
         label="Stato da mostrare"
         value={state}
-        onChange={(e) => setState(e.target.value as typeof state)}
+        onChange={(e) => setState(demoStates.find((s) => s === e.target.value) ?? 'empty')}
         options={[
           { value: 'empty', label: 'Nessun dato' },
           { value: 'loading', label: 'Caricamento' },
@@ -209,6 +213,37 @@ export function States() {
         onRetry={() => setState('empty')}
         density="compact"
       />
+    </Stack>
+  );
+}
+export function CompactSticky() {
+  const [selected, setSelected] = useState<ReadonlySet<string>>(new Set(['C-1003']));
+  const current = customers.find((c) => selected.has(c.id));
+  return (
+    <Stack gap={3}>
+      <DataTable
+        aria-label="Clienti, vista compatta"
+        columns={columns}
+        rows={customers.slice(0, 20)}
+        getRowId={(c) => c.id}
+        density="compact"
+        striped
+        stickyHeader
+        maxHeight="18rem"
+        paginated={false}
+        selectionMode="single"
+        selectedIds={selected}
+        onSelectionChange={setSelected}
+        isRowDisabled={(c) => c.status === 'sospeso'}
+      />
+      <Text variant="body-sm" tone="secondary" role="status">
+        {current
+          ? `Selezionato: ${current.name} · ultimo ordine: ${current.lastOrder ? current.lastOrder.toLocaleDateString('it-IT') : 'nessun dato'}`
+          : 'Nessun cliente selezionato. I clienti sospesi non sono selezionabili.'}
+      </Text>
+      <Button size="sm" variant="ghost" onPress={() => setSelected(new Set())} isDisabled={selected.size === 0}>
+        Deseleziona
+      </Button>
     </Stack>
   );
 }

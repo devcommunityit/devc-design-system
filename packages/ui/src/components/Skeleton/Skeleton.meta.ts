@@ -22,6 +22,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Shapes', title: 'Forme' },
     { name: 'Toggle', title: 'Alternanza con il contenuto' },
+    { name: 'CardPlaceholder', title: 'Scheda profilo in caricamento', description: 'Lo skeleton riproduce la struttura della scheda reale; il pulsante alterna i due stati.' },
+    { name: 'ListPlaceholder', title: 'Elenco in caricamento', description: 'Righe con larghezze diverse per un effetto più naturale, con testo di stato nascosto.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Alert/Feedback.test.tsx'], limits: [] },
 };

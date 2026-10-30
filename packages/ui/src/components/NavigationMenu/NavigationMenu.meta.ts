@@ -34,6 +34,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Horizontal', title: 'Orizzontale con pannelli' },
     { name: 'Vertical', title: 'Verticale' },
+    { name: 'CurrentPage', title: 'Pagina corrente gestita dallo stato', description: 'current e linkProps.onPress aggiornano aria-current; il gruppo Servizi segnala quando contiene la pagina corrente.' },
+    { name: 'LongLabels', title: 'Etichette lunghe in spazio ridotto', description: 'Voci e descrizioni lunghe vanno a capo senza overflow orizzontale.' },
   ],
   status: {
     implemented: true,

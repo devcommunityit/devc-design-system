@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
     { name: 'Basic', title: 'Base' },
     { name: 'LiveFilter', title: 'Filtro locale' },
     { name: 'SubmitAndPending', title: 'Invio e caricamento' },
+    { name: 'Controlled', title: 'Valore controllato e onClear', description: 'Il valore vive nello stato dell’esempio: i pulsanti lo modificano dall’esterno e onClear conta le cancellazioni.' },
+    { name: 'States', title: 'Stati: disabilitato, sola lettura, non valido', description: 'Errore con descrizione e campo obbligatorio; l’ultimo campo mostra contenuti in inglese.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/SearchInput/SearchInput.test.tsx'], limits: [] },
 };

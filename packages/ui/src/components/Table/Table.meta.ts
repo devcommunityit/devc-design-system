@@ -28,6 +28,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Fatture con totale' },
     { name: 'DenseStriped', title: 'Compatta, a righe alterne, intestazione fissa' },
+    { name: 'SelectableRows', title: 'Righe selezionabili con totale', description: 'Selezione controllata con caselle etichettate, “seleziona tutto” indeterminato e riga evidenziata con isSelected.' },
+    { name: 'WideWithMissingData', title: 'Tabella larga con dati mancanti', description: 'Scorrimento orizzontale, testi lunghi, celle vuote con testo nascosto e interruttori per densità e righe alterne.' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: [] },
 };

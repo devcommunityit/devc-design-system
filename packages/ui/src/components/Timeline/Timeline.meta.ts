@@ -24,6 +24,8 @@ export const doc: ComponentDoc = {
   examples: [
     { name: 'Basic', title: 'Storico ordine' },
     { name: 'WithIcons', title: 'Icone ed errori' },
+    { name: 'Controlled', title: 'Eventi controllati e ordinamento', description: 'Gli eventi sono nello stato dell’esempio: si aggiungono con un pulsante e l’ordine si inverte con lo Switch.' },
+    { name: 'LongAndMissing', title: 'Testi lunghi e data mancante', description: 'Titoli lunghi che vanno a capo, un evento senza orario e uno in inglese con lang="en".' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Data.test.tsx'], limits: [] },
 };
