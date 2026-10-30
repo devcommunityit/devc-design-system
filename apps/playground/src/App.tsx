@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   Alert,
+  BarChart,
   Button,
   Card,
   Container,
@@ -9,6 +10,7 @@ import {
   Footer,
   Header,
   Heading,
+  KpiCard,
   LocaleProvider,
   LoginForm,
   MenuItem,
@@ -115,6 +117,16 @@ function Content() {
               </Text>
               <ToastButton />
             </Stack>
+
+            <KpiCard label="Ordini" value={1312} trend={{ direction: 'up', value: '+4%' }} sparkline={[1180, 1220, 1250, 1290, 1312]} />
+            <BarChart
+              title="Ordini per trimestre"
+              categories={['T1', 'T2', 'T3', 'T4']}
+              series={[
+                { id: 'nord', label: 'Nord', data: [120, 140, 135, 160] },
+                { id: 'sud', label: 'Sud', data: [80, 95, 110, 105] },
+              ]}
+            />
 
             <Card data-testid="login-card">
               <Stack gap={3}>

@@ -95,7 +95,8 @@ export const initialOrders: Order[] = Array.from({ length: 96 }, (_, i) => {
     date: `2025-${pad(month)}-${pad(1 + ((i * 13) % 28))}`,
     total: 180 + ((i * 7919) % 9200),
     items: 1 + ((i * 3) % 14),
-    status: orderStatuses[i % orderStatuses.length] ?? 'consegnato',
+    // Offset by the year index so that statuses are not tied to the month (i % 12).
+    status: orderStatuses[(i + Math.floor(i / 12)) % orderStatuses.length] ?? 'consegnato',
   };
 });
 

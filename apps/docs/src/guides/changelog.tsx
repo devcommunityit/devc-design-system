@@ -14,6 +14,10 @@ export default function Changelog() {
           </li>
           <li>ThemeProvider con provider annidati, portal tematizzati, persistenza opzionale e strategia per CSP restrittive.</li>
           <li>Catalogo completo di layout, tipografia, azioni, navigazione, form, dati, feedback e overlay.</li>
+          <li>
+            Grafici SVG senza dipendenze (Sparkline, LineChart, BarChart, DonutChart, ChartLegend) con tabella dati, navigazione da tastiera e
+            ruoli colore categoriali data.1–data.6; componenti per dashboard (HeroCard, PromoBanner, KpiCard, QuickAction) e NavList.
+          </li>
           <li>Pattern: SiteHeader con menu mobile, Footer, UserMenu, AuthLayout, LoginForm, SignUpForm, PasswordResetForm.</li>
           <li>
             Componenti aggiuntivi: Toolbar, SplitButton, CopyButton (con useCopyToClipboard), Meter, PinInput, Rating, TreeView, SortableList,

@@ -1,0 +1,293 @@
+.figure {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  margin: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.title {
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-typography-title-sm-weight);
+  overflow-wrap: anywhere;
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  overflow-wrap: anywhere;
+}
+
+/* Focusable plot area (role="group"). */
+.plot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+  border-radius: var(--dc-radius-sm);
+  outline: none;
+}
+
+.plot:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.svg {
+  display: block;
+  inline-size: 100%;
+  overflow: visible;
+  font-family: inherit;
+}
+
+.gridLine {
+  stroke: var(--dc-color-border-subtle);
+  stroke-width: 1;
+  shape-rendering: crispedges;
+}
+
+.axisLine {
+  stroke: var(--dc-color-border-strong);
+  stroke-width: 1;
+  shape-rendering: crispedges;
+}
+
+.tickLabel {
+  fill: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-label-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.line {
+  fill: none;
+  stroke: var(--_series);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.area {
+  fill: var(--_series);
+  fill-opacity: 0.16;
+  stroke: none;
+}
+
+.marker {
+  fill: var(--dc-color-surface-default);
+  stroke: var(--_series);
+  stroke-width: 2;
+}
+
+.markerActive {
+  fill: var(--_series);
+  stroke: var(--dc-color-surface-default);
+}
+
+.guide {
+  stroke: var(--dc-color-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.activeBand {
+  fill: var(--dc-color-surface-subtle);
+}
+
+.fill {
+  fill: var(--_series);
+  stroke: var(--dc-color-surface-default);
+  stroke-width: 1;
+}
+
+.patternOverlay {
+  pointer-events: none;
+}
+
+.patternStroke {
+  fill: none;
+  stroke: var(--dc-color-surface-default);
+  stroke-opacity: 0.7;
+  stroke-width: 1.2;
+}
+
+.swatch {
+  flex: none;
+  overflow: visible;
+}
+
+.hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+/* Tooltip-like readout of the active category, above the plot (never covers data). */
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1) var(--dc-space-3);
+  min-block-size: calc(var(--dc-typography-body-sm-size) * var(--dc-typography-body-sm-line-height));
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+.readoutTitle {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.readoutItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1);
+}
+
+.readoutValue {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-medium);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-2) var(--dc-space-4);
+  min-inline-size: 0;
+}
+
+.toggle {
+  margin-inline-start: auto;
+}
+
+.tableWrap {
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption {
+  padding-block-end: var(--dc-space-2);
+  color: var(--dc-color-text-secondary);
+  font-weight: var(--dc-font-weight-medium);
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding-block: var(--dc-space-1-5);
+  padding-inline: var(--dc-space-2);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: start;
+}
+
+.table thead th {
+  color: var(--dc-color-text-secondary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.table tbody th {
+  font-weight: var(--dc-font-weight-medium);
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .line,
+  .area,
+  .fill {
+    animation: fade-in var(--dc-motion-duration-slow) var(--dc-motion-easing-decelerate);
+  }
+
+  .marker,
+  .fill {
+    transition: opacity var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (forced-colors: active) {
+  .line,
+  .marker {
+    stroke: CanvasText;
+  }
+
+  .area {
+    fill: CanvasText;
+    fill-opacity: 0.2;
+  }
+
+  .markerActive,
+  .guide {
+    fill: Highlight;
+    stroke: Highlight;
+  }
+
+  .fill {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .patternStroke {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+
+  .activeBand {
+    fill: none;
+    stroke: Highlight;
+    stroke-width: 2;
+  }
+
+  .gridLine,
+  .axisLine {
+    stroke: GrayText;
+  }
+
+  .tickLabel {
+    fill: CanvasText;
+  }
+
+  .plot:focus-visible {
+    outline-color: Highlight;
+  }
+}

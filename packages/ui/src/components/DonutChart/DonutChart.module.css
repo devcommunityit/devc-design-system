@@ -1,0 +1,47 @@
+/* Shared plot, slice and table styles live in ../charts-internal/Chart.module.css. */
+.donutChart {
+  inline-size: 100%;
+}
+
+.svg {
+  max-inline-size: var(--_size);
+  block-size: auto;
+  margin-inline: auto;
+}
+
+.track {
+  fill: none;
+  stroke: var(--dc-color-surface-subtle);
+}
+
+.svg .slice {
+  stroke-width: 2;
+}
+
+.centerValue {
+  fill: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-title-lg-size);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.centerLabel {
+  fill: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-md-size);
+}
+
+@media (forced-colors: active) {
+  .track {
+    stroke: GrayText;
+  }
+
+  .centerValue,
+  .centerLabel {
+    fill: CanvasText;
+  }
+
+  .svg [data-active] > .slice {
+    stroke: Highlight;
+    stroke-width: 3;
+  }
+}

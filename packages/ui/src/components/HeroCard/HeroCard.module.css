@@ -1,0 +1,129 @@
+.hero {
+  --_bg: var(--dc-color-action-primary);
+  --_fg: var(--dc-color-action-primary-foreground);
+  --_fill: var(--dc-look-fill-primary);
+  --_border: transparent;
+
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-6);
+  min-inline-size: 0;
+  padding: clamp(var(--dc-space-5), 4vw, var(--dc-space-10));
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--_border);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--_bg);
+  background-image: var(--_fill);
+  color: var(--_fg);
+  overflow-wrap: anywhere;
+}
+
+/* Gradient fill only in the expressive look; solid brand surface in the standard look. */
+.hero[data-variant='brand'] {
+  box-shadow: var(--dc-look-shadow-primary);
+}
+
+/* Two-tone gradient in every look. Both ends pair with a foreground of the same lightness, so primary-foreground stays readable. */
+.hero[data-variant='accent'] {
+  --_fill: var(--dc-gradient-accent);
+
+  box-shadow: var(--dc-look-shadow-primary);
+}
+
+.hero[data-variant='subtle'] {
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+  --_fill: var(--dc-look-fill-tonal);
+  --_border: var(--dc-color-border-subtle);
+}
+
+.content {
+  display: flex;
+  flex: 1 1 20rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  padding: var(--dc-space-2);
+  border-radius: var(--dc-look-radius-control);
+  background-color: color-mix(in srgb, currentcolor 16%, transparent);
+}
+
+.icon > svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--dc-typography-label-lg-size);
+  line-height: var(--dc-typography-label-lg-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  letter-spacing: var(--dc-typography-label-lg-letter-spacing);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-headline-md-size);
+  line-height: var(--dc-typography-headline-md-line-height);
+  font-weight: var(--dc-typography-headline-md-weight);
+  letter-spacing: var(--dc-typography-headline-md-letter-spacing);
+  text-wrap: balance;
+}
+
+.description {
+  max-inline-size: 60ch;
+  font-size: var(--dc-typography-body-lg-size);
+  line-height: var(--dc-typography-body-lg-line-height);
+}
+
+.description > :where(p) {
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-3);
+  margin-block-start: var(--dc-space-2);
+}
+
+.media {
+  display: flex;
+  flex: 0 1 16rem;
+  justify-content: center;
+  min-inline-size: 0;
+}
+
+.media > :where(img, svg) {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+@media (width < 640px) {
+  .title {
+    font-size: var(--dc-typography-headline-sm-size);
+    line-height: var(--dc-typography-headline-sm-line-height);
+  }
+}
+
+@media (forced-colors: active) {
+  .hero {
+    border-color: CanvasText;
+    background-image: none;
+  }
+}

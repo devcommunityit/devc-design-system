@@ -1,0 +1,18 @@
+.sparkline {
+  display: inline-block;
+  flex: none;
+  max-inline-size: 100%;
+  block-size: auto;
+  overflow: visible;
+  vertical-align: middle;
+}
+
+.dot {
+  fill: var(--_series);
+}
+
+@media (forced-colors: active) {
+  .dot {
+    fill: CanvasText;
+  }
+}

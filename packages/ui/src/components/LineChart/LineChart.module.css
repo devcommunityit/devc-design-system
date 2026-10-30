@@ -1,0 +1,4 @@
+/* Shared plot, axis, series and table styles live in ../charts-internal/Chart.module.css. */
+.lineChart {
+  inline-size: 100%;
+}

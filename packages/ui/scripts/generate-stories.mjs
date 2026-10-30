@@ -18,6 +18,8 @@ const CATEGORY_LABELS = {
   navigation: 'Navigazione',
   forms: 'Form',
   data: 'Contenuti e dati',
+  charts: 'Grafici',
+  dashboard: 'Dashboard',
   feedback: 'Feedback',
   overlay: 'Overlay',
   patterns: 'Pattern',

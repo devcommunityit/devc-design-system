@@ -414,3 +414,40 @@ test.describe('form e template', () => {
     await expect(page.getByRole('row').nth(1)).toBeVisible();
   });
 });
+
+test.describe('dashboard di amministrazione', () => {
+  test('grafici da tastiera, tabella dati, disposizione delle barre, NavList e banner', async ({ page }) => {
+    await open(page, '/showcase/admin');
+    await expectNoA11yViolations(page);
+
+    const plot = page.getByRole('group', { name: 'Ricavi mensili e obiettivo' });
+    await plot.focus();
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    await expect(plot.locator('[aria-live="polite"]')).toContainText('Feb');
+    await page.keyboard.press('End');
+    await expect(plot.locator('[aria-live="polite"]')).toContainText('Dic');
+
+    const lineFigure = page.getByRole('figure', { name: 'Ricavi mensili e obiettivo' });
+    const tableToggle = lineFigure.getByRole('button', { name: 'Mostra tabella dati' });
+    await tableToggle.click();
+    await expect(lineFigure.getByRole('table', { name: 'Ricavi mensili e obiettivo' })).toBeVisible();
+    await expect(lineFigure.getByRole('button', { name: 'Nascondi tabella dati' })).toHaveAttribute('aria-expanded', 'true');
+
+    const barFigure = page.getByRole('figure', { name: 'Ricavi per area geografica' });
+    await page.getByRole('radio', { name: 'Affiancate' }).or(page.getByRole('button', { name: 'Affiancate' })).click();
+    await expect(barFigure).toBeVisible();
+    const legendNord = barFigure.getByRole('button', { name: 'Nord' });
+    await legendNord.click();
+    await expect(legendNord).toHaveAttribute('aria-pressed', 'false');
+
+    const sections = page.getByRole('navigation', { name: 'Sezioni della dashboard' });
+    await sections.getByRole('link', { name: 'Composizione' }).click();
+    await expect(sections.getByRole('link', { name: 'Composizione' })).toHaveAttribute('aria-current', 'page');
+    await expect(page.locator('#composizione')).toBeFocused();
+
+    await page.getByRole('button', { name: 'Ignora' }).click();
+    await expect(page.getByRole('link', { name: /Completa la configurazione del workspace/ })).toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+  });
+});

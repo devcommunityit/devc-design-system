@@ -7,3 +7,4 @@ export * from './DropdownMenu';
 export * from './Stepper';
 export * from './BottomNavigation';
 export * from './CommandPalette';
+export * from './NavList';

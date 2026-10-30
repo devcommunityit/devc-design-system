@@ -131,6 +131,17 @@ export interface Messages {
   markAsRead: (title: string) => string;
   unread: string;
   noNotifications: string;
+  chartData: string;
+  showChartData: string;
+  hideChartData: string;
+  chartCategory: string;
+  chartTotal: string;
+  chartKeyboardHint: string;
+  chartValue: string;
+  expandNavigation: string;
+  collapseNavigation: string;
+  /** Text summary of a series (values already formatted), used by Sparkline. */
+  chartSummary: (values: { first: string; last: string; min: string; max: string }) => string;
   /**
    * End-user messages for theme validation issues, one per `ThemeIssue.code`. The JSON path
    * (`issue.path`) is not included: show it separately. Use `formatThemeIssue(issue, messages)`.
@@ -258,6 +269,16 @@ export const en: Messages = {
   markAsRead: (title) => `Mark "${title}" as read`,
   unread: 'Unread',
   noNotifications: 'No notifications',
+  chartData: 'Chart data',
+  showChartData: 'Show data table',
+  hideChartData: 'Hide data table',
+  chartCategory: 'Category',
+  chartTotal: 'Total',
+  chartKeyboardHint: 'Use the arrow keys to move between data points.',
+  chartValue: 'Value',
+  expandNavigation: 'Expand navigation',
+  collapseNavigation: 'Collapse navigation',
+  chartSummary: ({ first, last, min, max }) => `From ${first} to ${last}; minimum ${min}, maximum ${max}.`,
   themeIssue: {
     invalid_json: () => 'The file is not valid JSON.',
     too_large: ({ limitKb }) => `The file exceeds ${limitKb ?? ''} KB.`,
@@ -397,6 +418,16 @@ export const it: Messages = {
   markAsRead: (title) => `Segna «${title}» come letta`,
   unread: 'Non letta',
   noNotifications: 'Nessuna notifica',
+  chartData: 'Dati del grafico',
+  showChartData: 'Mostra tabella dati',
+  hideChartData: 'Nascondi tabella dati',
+  chartCategory: 'Categoria',
+  chartTotal: 'Totale',
+  chartKeyboardHint: 'Usa i tasti freccia per spostarti tra i punti dati.',
+  chartValue: 'Valore',
+  expandNavigation: 'Espandi navigazione',
+  collapseNavigation: 'Comprimi navigazione',
+  chartSummary: ({ first, last, min, max }) => `Da ${first} a ${last}; minimo ${min}, massimo ${max}.`,
   themeIssue: {
     invalid_json: () => 'Il file non è un JSON valido.',
     too_large: ({ limitKb }) => `Il file supera ${limitKb ?? ''} KB.`,

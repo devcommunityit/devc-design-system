@@ -88,6 +88,10 @@ usare esclusivamente i ruoli semantici (`color.*`), come nel codice.
   gradiente lineare tra `color/action/primary` e `color/accent/default` (stesso tono), con raggio `radius/full` per i
   controlli e `radius/xl` per i contenitori. I ruoli `color.accent.*` invece sono esportati come tutti gli altri ruoli.
 
+- Grafici (`Sparkline`, `LineChart`, `BarChart`, `DonutChart`): non esistono componenti Figma generati; vanno
+  costruiti a mano usando i ruoli `color/data/1`…`color/data/6` (esportati come gli altri ruoli), con tratteggi e
+  marcatori diversi per serie come nel codice.
+
 ## Aggiornamenti
 
 Dopo una modifica ai token: `npm run tokens`, commit dei JSON rigenerati, poi in Tokens Studio "Pull from Git" e

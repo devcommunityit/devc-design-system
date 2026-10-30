@@ -29,6 +29,15 @@ Prima versione.
 - Errori di validazione dei temi localizzabili: `ThemeIssue.params` (dati strutturati) e `formatThemeIssue(issue, messages)`
   con la nuova chiave `messages.themeIssue`; `ThemeIssue.message` resta in inglese per log e sviluppatori.
 - `getInitials(name, locale?)` e `Avatar` usano la locale del provider per le maiuscole (es. `i` → `İ` in turco).
+- Grafici SVG senza dipendenze (categoria `charts`): `Sparkline`, `LineChart` (linea/area), `BarChart` (verticale/
+  orizzontale, affiancato/impilato), `DonutChart` e `ChartLegend`. Navigazione da tastiera tra i punti con annuncio
+  `aria-live`, tabella dati accessibile, tratteggi e marcatori per non affidarsi al solo colore. Nuovi ruoli colore
+  categoriali `color.data.1`…`color.data.6` (`--dc-color-data-N`) generati dal brand con HCT e inclusi nel gate di
+  contrasto (3:1 su `surface.default`).
+- Componenti per dashboard (categoria `dashboard`): `HeroCard`, `PromoBanner` (banner interamente cliccabile, link o
+  pulsante), `KpiCard` (con sparkline) e `QuickAction`. `NavList` per menu verticali/orizzontali con o senza icone,
+  gruppi espandibili e rail compattabile. Nuove chiavi in `messages`: `chartData`, `showChartData`, `hideChartData`,
+  `chartCategory`, `chartValue`, `chartTotal`, `chartKeyboardHint`, `chartSummary`, `expandNavigation`, `collapseNavigation`.
 - Componenti di layout, tipografia, azioni, navigazione, form, selettori di date, dati, feedback e overlay.
 - Pattern: `SiteHeader` (con navigazione mobile), `UserMenu` (menu dell'utente autenticato), `AuthLayout`, `LoginForm`, `SignUpForm`, `PasswordResetForm`; `Footer` con colonne e variante compatta.
 - Componenti aggiuntivi: `Toolbar` (con `ToolbarGroup` e `ToolbarSeparator`), `SplitButton`, `CopyButton` con l'hook

@@ -1,4 +1,4 @@
-import { AlertTriangle, BookOpen, ClipboardList, FileText, LayoutDashboard, LogOut, Moon, Settings, Sun, User, Users } from 'lucide-react';
+import { AlertTriangle, BarChart3, BookOpen, ClipboardList, FileText, LayoutDashboard, LogOut, Moon, Settings, Sun, User, Users } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 import { Outlet, Route, Routes, useLocation, useNavigate } from 'react-router';
 import {
@@ -21,6 +21,7 @@ import {
 import { PageMeta } from '../components/PageMeta';
 import { Landing } from './Landing';
 import { Dashboard } from './Dashboard';
+import { AdminDashboard } from './AdminDashboard';
 import { CustomerList } from './CustomerList';
 import { CustomerDetail } from './CustomerDetail';
 import { RequestForm } from './RequestForm';
@@ -36,6 +37,7 @@ const sections: SidebarSection[] = [
     id: 'main',
     items: [
       { id: 'dashboard', label: 'Dashboard', href: '/showcase/dashboard', icon: <LayoutDashboard /> },
+      { id: 'admin', label: 'Amministrazione', href: '/showcase/admin', icon: <BarChart3 /> },
       { id: 'elenco', label: 'Clienti', href: '/showcase/elenco', icon: <Users /> },
       { id: 'modulo', label: 'Nuova richiesta', href: '/showcase/modulo', icon: <ClipboardList /> },
     ],
@@ -63,7 +65,7 @@ const sections: SidebarSection[] = [
 const DEMO_NOW = '2025-03-14T10:00:00Z';
 
 const initialNotifications: NotificationItem[] = [
-  { id: 'n1', title: 'Ordine ORD-24187 da spedire', description: 'Consegna prevista entro venerdì.', date: '2025-03-14T09:20:00Z', href: '/showcase/dashboard' },
+  { id: 'n1', title: 'Ordine ORD-24186 da spedire', description: 'Consegna prevista entro venerdì.', date: '2025-03-14T09:20:00Z', href: '/showcase/dashboard' },
   { id: 'n2', title: 'Fontana Design ha rinnovato il piano', date: '2025-03-13T15:00:00Z', href: '/showcase/dettaglio' },
   { id: 'n3', title: 'Pagamento non riuscito: Caruso Ottica', description: 'Verifica il metodo di pagamento.', date: '2025-03-12T08:30:00Z', href: '/showcase/elenco' },
   { id: 'n4', title: 'Richiesta di supporto chiusa', date: '2025-03-10T11:00:00Z', read: true },
@@ -182,6 +184,7 @@ export function ShowcaseRoutes() {
       <Route element={<PortalLayout />}>
         <Route index element={<Page title="Dashboard" description="Dashboard del portale dimostrativo."><Dashboard /></Page>} />
         <Route path="dashboard" element={<Page title="Dashboard" description="Dashboard del portale dimostrativo."><Dashboard /></Page>} />
+        <Route path="admin" element={<Page title="Amministrazione" description="Dashboard di amministrazione con grafici, KPI e azioni rapide."><AdminDashboard /></Page>} />
         <Route path="elenco" element={<Page title="Clienti" description="Elenco clienti con filtri e DataTable."><CustomerList /></Page>} />
         <Route path="dettaglio" element={<Page title="Dettaglio cliente" description="Pagina di dettaglio cliente."><CustomerDetail /></Page>} />
         <Route path="modulo" element={<Page title="Nuova richiesta" description="Form articolato con validazione."><RequestForm /></Page>} />

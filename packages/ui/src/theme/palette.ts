@@ -7,7 +7,19 @@ import { Hct, TonalPalette, argbFromHex, hexFromArgb } from '@material/material-
  * This file must only use erasable TypeScript syntax (it is executed by Node type stripping).
  */
 
-export type PaletteName = 'brand' | 'tertiary' | 'neutral' | 'neutral-variant' | 'danger' | 'warning' | 'success' | 'info';
+export type PaletteName =
+  | 'brand'
+  | 'tertiary'
+  | 'neutral'
+  | 'neutral-variant'
+  | 'danger'
+  | 'warning'
+  | 'success'
+  | 'info'
+  | 'data-3'
+  | 'data-4'
+  | 'data-5'
+  | 'data-6';
 
 export const PALETTE_NAMES: readonly PaletteName[] = [
   'brand',
@@ -18,6 +30,10 @@ export const PALETTE_NAMES: readonly PaletteName[] = [
   'warning',
   'success',
   'info',
+  'data-3',
+  'data-4',
+  'data-5',
+  'data-6',
 ];
 
 export interface PaletteRules {
@@ -26,6 +42,11 @@ export interface PaletteRules {
   tertiary: { hueShift: number; minChroma: number; maxChroma: number };
   neutral: { chromaFactor: number; maxChroma: number };
   'neutral-variant': { chromaFactor: number; maxChroma: number };
+  /**
+   * Categorical data-visualization hues: series 1 and 2 reuse brand and tertiary, series 3-6 rotate
+   * the brand hue by `hueShifts` with a fixed chroma so every series has a similar visual weight.
+   */
+  data: { hueShifts: readonly [number, number, number, number]; chroma: number };
 }
 
 export interface PaletteSeeds {
@@ -89,6 +110,7 @@ export function createTonalPalettes(seeds: PaletteSeeds, rules: PaletteRules): T
     ? paletteFromHex(seeds.tertiary, tertiaryChroma)
     : TonalPalette.fromHueAndChroma((brand.hue + rules.tertiary.hueShift + 360) % 360, tertiaryChroma(brand.chroma));
   const fixed = (hex: string) => paletteFromHex(hex);
+  const dataHue = (i: 0 | 1 | 2 | 3) => TonalPalette.fromHueAndChroma((brand.hue + rules.data.hueShifts[i] + 360) % 360, rules.data.chroma);
   const palettes: Record<PaletteName, TonalPalette> = {
     brand,
     tertiary,
@@ -98,6 +120,10 @@ export function createTonalPalettes(seeds: PaletteSeeds, rules: PaletteRules): T
     warning: fixed(seeds.warning),
     success: fixed(seeds.success),
     info: fixed(seeds.info),
+    'data-3': dataHue(0),
+    'data-4': dataHue(1),
+    'data-5': dataHue(2),
+    'data-6': dataHue(3),
   };
   const result = {} as TonalPalettes;
   for (const name of PALETTE_NAMES) {

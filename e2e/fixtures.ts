@@ -95,5 +95,5 @@ export function componentSlugs(): string[] {
   return slugs.sort();
 }
 
-export const SHOWCASE_PAGES = ['dashboard', 'elenco', 'dettaglio', 'modulo', 'impostazioni', 'account', 'errori', 'accesso', 'landing'];
+export const SHOWCASE_PAGES = ['dashboard', 'admin', 'elenco', 'dettaglio', 'modulo', 'impostazioni', 'account', 'errori', 'accesso', 'landing'];
 export const DOC_PAGES = ['/', '/componenti', '/pattern', '/theme-builder', '/guide/quick-start', '/guide/temi', '/guide/token', '/guide/accessibilita'];

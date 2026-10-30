@@ -9,6 +9,8 @@ export type ComponentCategory =
   | 'navigation'
   | 'forms'
   | 'data'
+  | 'charts'
+  | 'dashboard'
   | 'feedback'
   | 'overlay'
   | 'patterns';

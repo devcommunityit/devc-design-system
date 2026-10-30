@@ -210,6 +210,32 @@
         "$value": "{palette.info.80}"
       }
     },
+    "data": {
+      "1": {
+        "$type": "color",
+        "$value": "{palette.brand.45}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{palette.tertiary.45}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{palette.data-3.45}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{palette.data-4.45}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{palette.data-5.45}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{palette.data-6.45}"
+      }
+    },
     "overlay": {
       "scrim": {
         "$type": "color",

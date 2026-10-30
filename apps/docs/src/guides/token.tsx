@@ -19,6 +19,12 @@ export default function Token() {
           <code>color.header-home</code>. I componenti consumano esclusivamente token semantici; un controllo automatico (
           <code>scripts/check-token-refs.mjs</code>) segnala riferimenti a variabili inesistenti.
         </p>
+        <p>
+          Per la visualizzazione dei dati esistono sei ruoli categoriali <code>color.data.1</code>…<code>color.data.6</code>{' '}
+          (<code>--dc-color-data-N</code>): <code>data.1</code> è il brand, <code>data.2</code> il terziario, gli altri sono tinte ruotate dal
+          brand con HCT. Ogni ruolo ha contrasto minimo 3:1 sulla superficie predefinita. I grafici li combinano sempre con tratteggi, marcatori
+          e legenda, quindi l&apos;informazione non dipende dal solo colore.
+        </p>
       </DocSection>
 
       <DocSection title="Da nome a variabile CSS">

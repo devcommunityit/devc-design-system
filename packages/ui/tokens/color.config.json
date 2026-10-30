@@ -23,7 +23,8 @@
     "brand": { "minChroma": 28, "maxChroma": 72 },
     "tertiary": { "hueShift": 60, "minChroma": 32, "maxChroma": 64 },
     "neutral": { "chromaFactor": 0.08, "maxChroma": 5 },
-    "neutral-variant": { "chromaFactor": 0.16, "maxChroma": 9 }
+    "neutral-variant": { "chromaFactor": 0.16, "maxChroma": 9 },
+    "data": { "hueShifts": [180, 240, 120, 300], "chroma": 52 }
   },
   "roles": {
     "text.primary": { "palette": "neutral", "light": 10, "dark": 92 },
@@ -81,6 +82,13 @@
     "feedback.info-foreground": { "palette": "info", "light": 25, "dark": 90 },
     "feedback.info-border": { "palette": "info", "light": 80, "dark": 35 },
 
+    "data.1": { "palette": "brand", "light": 45, "dark": 75 },
+    "data.2": { "palette": "tertiary", "light": 45, "dark": 75 },
+    "data.3": { "palette": "data-3", "light": 45, "dark": 75 },
+    "data.4": { "palette": "data-4", "light": 45, "dark": 75 },
+    "data.5": { "palette": "data-5", "light": 45, "dark": 75 },
+    "data.6": { "palette": "data-6", "light": 45, "dark": 75 },
+
     "overlay.scrim": { "palette": "neutral", "light": 0, "dark": 0 },
     "shadow": { "palette": "neutral", "light": 0, "dark": 0 }
   },
@@ -105,6 +113,12 @@
       ["action.primary-foreground", "accent.default", 4.5],
       ["accent.container-foreground", "accent.container", 4.5],
       ["action.secondary-foreground", "accent.container", 4.5],
+      ["data.1", "surface.default", 3],
+      ["data.2", "surface.default", 3],
+      ["data.3", "surface.default", 3],
+      ["data.4", "surface.default", 3],
+      ["data.5", "surface.default", 3],
+      ["data.6", "surface.default", 3],
       ["border.strong", "surface.default", 3],
       ["focus.ring", "surface.default", 3],
       ["focus.ring", "surface.canvas", 3],

@@ -105,6 +105,26 @@ Con `forced-colors` i gradienti sono disattivati; nei browser senza interpolazio
 Lo stile si persiste come le altre preferenze (`persistence={{ keys: ['look'] }}`) e `getThemeScript({ defaultLook })`
 lo applica prima del primo paint.
 
+## Grafici e dashboard
+
+```tsx
+import { BarChart, KpiCard, NavList } from '@dev-community/ui';
+
+<KpiCard label="Ordini" value={1312} trend={{ direction: 'up', value: '+4%' }} sparkline={[1180, 1220, 1250, 1290, 1312]} />
+<BarChart
+  title="Ordini per trimestre"
+  categories={['T1', 'T2', 'T3', 'T4']}
+  series={[{ id: 'nord', label: 'Nord', data: [120, 140, 135, 160] }]}
+  layout="stacked"
+/>
+```
+
+- Grafici SVG senza dipendenze: `Sparkline`, `LineChart` (linea/area), `BarChart` (verticale/orizzontale, affiancato/impilato),
+  `DonutChart`, `ChartLegend`. Colori dai ruoli `--dc-color-data-1…6`, più tratteggi e marcatori per serie; navigazione da
+  tastiera con annuncio `aria-live` e tabella dati accessibile. Niente zoom, assi temporali o curve.
+- Dashboard: `HeroCard`, `PromoBanner` (l'intera superficie è un link o un pulsante), `KpiCard`, `QuickAction`.
+- `NavList`: menu verticale od orizzontale, con o senza icone, gruppi espandibili e rail compattabile con tooltip.
+
 ## Punti chiave
 
 - `ThemeProvider` annidabili: ciascuno ha la propria modalità, palette, densità e stile; gli overlay in portal (Dialog, Popover,

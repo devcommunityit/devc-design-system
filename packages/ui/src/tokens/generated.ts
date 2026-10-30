@@ -52,6 +52,12 @@ export const COLOR_ROLES = [
   "feedback.info-surface",
   "feedback.info-foreground",
   "feedback.info-border",
+  "data.1",
+  "data.2",
+  "data.3",
+  "data.4",
+  "data.5",
+  "data.6",
   "overlay.scrim",
   "shadow"
 ] as const;
@@ -303,6 +309,36 @@ export const ROLE_SPECS = {
     "light": 80,
     "dark": 35
   },
+  "data.1": {
+    "palette": "brand",
+    "light": 45,
+    "dark": 75
+  },
+  "data.2": {
+    "palette": "tertiary",
+    "light": 45,
+    "dark": 75
+  },
+  "data.3": {
+    "palette": "data-3",
+    "light": 45,
+    "dark": 75
+  },
+  "data.4": {
+    "palette": "data-4",
+    "light": 45,
+    "dark": 75
+  },
+  "data.5": {
+    "palette": "data-5",
+    "light": 45,
+    "dark": 75
+  },
+  "data.6": {
+    "palette": "data-6",
+    "light": 45,
+    "dark": 75
+  },
   "overlay.scrim": {
     "palette": "neutral",
     "light": 0,
@@ -447,6 +483,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#5b5bd6",
+      "data.2": "#ae3f8c",
+      "data.3": "#756c00",
+      "data.4": "#007a54",
+      "data.5": "#ab5019",
+      "data.6": "#007491",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -500,6 +542,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#b1b2ff",
+      "data.2": "#ff97d7",
+      "data.3": "#c8bc37",
+      "data.4": "#50ce9a",
+      "data.5": "#ffa271",
+      "data.6": "#34c7f5",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -555,6 +603,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#007779",
+      "data.2": "#416ca4",
+      "data.3": "#b0494d",
+      "data.4": "#8f6200",
+      "data.5": "#8c52a9",
+      "data.6": "#3f7824",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -608,6 +662,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#63c8ca",
+      "data.2": "#91bbf8",
+      "data.3": "#ff9e9e",
+      "data.4": "#efac2e",
+      "data.5": "#e0a0fe",
+      "data.6": "#8bc96a",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -663,6 +723,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#b9441d",
+      "data.2": "#7f6900",
+      "data.3": "#007588",
+      "data.4": "#4c65bf",
+      "data.5": "#007b41",
+      "data.6": "#9c4d95",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -716,6 +782,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#ffa184",
+      "data.2": "#dbb500",
+      "data.3": "#16cae8",
+      "data.4": "#a4b5ff",
+      "data.5": "#67cd88",
+      "data.6": "#f59ae8",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -771,6 +843,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#5a6a91",
+      "data.2": "#855d88",
+      "data.3": "#866600",
+      "data.4": "#257a34",
+      "data.5": "#b04b3c",
+      "data.6": "#007681",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -824,6 +902,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#a8b8e3",
+      "data.2": "#d9a9d9",
+      "data.3": "#e3b22b",
+      "data.4": "#77cb7b",
+      "data.5": "#ffa090",
+      "data.6": "#00ccde",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -879,6 +963,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#1269cb",
+      "data.2": "#964bad",
+      "data.3": "#8a6400",
+      "data.4": "#34792c",
+      "data.5": "#b04a45",
+      "data.6": "#00767d",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -932,6 +1022,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#93b9ff",
+      "data.2": "#ea9bff",
+      "data.3": "#e9af2b",
+      "data.4": "#81ca73",
+      "data.5": "#ff9f97",
+      "data.6": "#00ccd7",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -987,6 +1083,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#2a784b",
+      "data.2": "#007589",
+      "data.3": "#9e4c92",
+      "data.4": "#ae4d2b",
+      "data.5": "#5064bf",
+      "data.6": "#7e6900",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -1040,6 +1142,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#7bc994",
+      "data.2": "#60c6df",
+      "data.3": "#f799e5",
+      "data.4": "#ffa181",
+      "data.5": "#a6b5ff",
+      "data.6": "#d6b72e",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -1095,6 +1203,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#be3274",
+      "data.2": "#a35700",
+      "data.3": "#007964",
+      "data.4": "#00729f",
+      "data.5": "#657100",
+      "data.6": "#725bba",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -1148,6 +1262,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#ff9abf",
+      "data.2": "#ffa355",
+      "data.3": "#32cfaf",
+      "data.4": "#56c3ff",
+      "data.5": "#b3c148",
+      "data.6": "#c1adff",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -1203,6 +1323,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#8b6400",
+      "data.2": "#3b7831",
+      "data.3": "#2d6abc",
+      "data.4": "#9151a5",
+      "data.5": "#00777c",
+      "data.6": "#b04a45",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -1256,6 +1382,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#e7b03b",
+      "data.2": "#88c977",
+      "data.3": "#92baff",
+      "data.4": "#e69ef9",
+      "data.5": "#00ccd6",
+      "data.6": "#ff9f98",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -1311,6 +1443,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#f0f3ff",
       "feedback.info-foreground": "#003b76",
       "feedback.info-border": "#a8c8ff",
+      "data.1": "#3064d5",
+      "data.2": "#b24270",
+      "data.3": "#846700",
+      "data.4": "#1a7a39",
+      "data.5": "#af4c37",
+      "data.6": "#007684",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     },
@@ -1364,6 +1502,12 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "feedback.info-surface": "#002753",
       "feedback.info-foreground": "#d6e3ff",
       "feedback.info-border": "#00529f",
+      "data.1": "#9eb7ff",
+      "data.2": "#ff9bbd",
+      "data.3": "#dfb32b",
+      "data.4": "#71cc80",
+      "data.5": "#ffa08b",
+      "data.6": "#04cbe2",
       "overlay.scrim": "#000000",
       "shadow": "#000000"
     }
@@ -1393,10 +1537,19 @@ export const PALETTE_RULES = {
   "neutral-variant": {
     "chromaFactor": 0.16,
     "maxChroma": 9
+  },
+  "data": {
+    "hueShifts": [
+      180,
+      240,
+      120,
+      300
+    ],
+    "chroma": 52
   }
 } as const;
 
-export const CONTRAST_PAIRS: ReadonlyArray<readonly [ColorRole, ColorRole, number]> = [["text.primary","surface.canvas",4.5],["text.primary","surface.default",4.5],["text.primary","surface.raised",4.5],["text.secondary","surface.default",4.5],["text.muted","surface.default",4.5],["text.muted","surface.canvas",4.5],["text.link","surface.default",4.5],["accent.default","surface.default",4.5],["accent.default","surface.canvas",4.5],["text.inverse","surface.inverse",4.5],["action.primary-foreground","action.primary",4.5],["action.secondary-foreground","action.secondary",4.5],["action.neutral-foreground","action.neutral",4.5],["action.danger-foreground","action.danger",4.5],["accent.foreground","accent.default",4.5],["action.primary-foreground","accent.default",4.5],["accent.container-foreground","accent.container",4.5],["action.secondary-foreground","accent.container",4.5],["border.strong","surface.default",3],["focus.ring","surface.default",3],["focus.ring","surface.canvas",3],["feedback.danger","surface.default",4.5],["feedback.danger-foreground","feedback.danger-surface",4.5],["feedback.warning-foreground","feedback.warning-surface",4.5],["feedback.success-foreground","feedback.success-surface",4.5],["feedback.info-foreground","feedback.info-surface",4.5]];
+export const CONTRAST_PAIRS: ReadonlyArray<readonly [ColorRole, ColorRole, number]> = [["text.primary","surface.canvas",4.5],["text.primary","surface.default",4.5],["text.primary","surface.raised",4.5],["text.secondary","surface.default",4.5],["text.muted","surface.default",4.5],["text.muted","surface.canvas",4.5],["text.link","surface.default",4.5],["accent.default","surface.default",4.5],["accent.default","surface.canvas",4.5],["text.inverse","surface.inverse",4.5],["action.primary-foreground","action.primary",4.5],["action.secondary-foreground","action.secondary",4.5],["action.neutral-foreground","action.neutral",4.5],["action.danger-foreground","action.danger",4.5],["accent.foreground","accent.default",4.5],["action.primary-foreground","accent.default",4.5],["accent.container-foreground","accent.container",4.5],["action.secondary-foreground","accent.container",4.5],["data.1","surface.default",3],["data.2","surface.default",3],["data.3","surface.default",3],["data.4","surface.default",3],["data.5","surface.default",3],["data.6","surface.default",3],["border.strong","surface.default",3],["focus.ring","surface.default",3],["focus.ring","surface.canvas",3],["feedback.danger","surface.default",4.5],["feedback.danger-foreground","feedback.danger-surface",4.5],["feedback.warning-foreground","feedback.warning-surface",4.5],["feedback.success-foreground","feedback.success-surface",4.5],["feedback.info-foreground","feedback.info-surface",4.5]];
 
 /** Non-color tokens: dotted path -> CSS value. CSS variable = --dc-<path with dashes>. */
 export const BASE_TOKENS = {

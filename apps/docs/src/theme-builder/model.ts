@@ -44,6 +44,7 @@ export const ROLE_GROUPS: RoleGroup[] = [
   { id: 'surface', label: 'Superfici', roles: byPrefix('surface.').filter((r) => r !== 'surface.brand') },
   { id: 'border', label: 'Bordi', roles: byPrefix('border.') },
   { id: 'feedback', label: 'Feedback', roles: byPrefix('feedback.') },
+  { id: 'data', label: 'Dati e grafici', roles: byPrefix('data.') },
 ];
 
 export interface BuilderState {

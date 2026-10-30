@@ -305,3 +305,12 @@
     border-color: Highlight;
   }
 }
+
+.sc-admin-section {
+  scroll-margin-block-start: var(--dc-space-10);
+}
+
+.sc-admin-section:focus {
+  outline: none;
+}
+

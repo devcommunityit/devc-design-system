@@ -1,0 +1,94 @@
+.legend {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1) var(--dc-space-4);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.legend[data-toggleable] {
+  gap: var(--dc-space-1) var(--dc-space-2);
+}
+
+.item {
+  display: flex;
+  min-inline-size: 0;
+}
+
+.static,
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.button {
+  box-sizing: border-box;
+  min-block-size: var(--dc-density-control-height-sm);
+  margin: 0;
+  padding-block: var(--dc-space-1);
+  padding-inline: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-full);
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.button:hover {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), transparent);
+}
+
+.button:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.label {
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.value {
+  color: var(--dc-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Hidden series: dimmed key, struck-through label and dashed border (not color alone). */
+.item[data-hidden] .button {
+  border-style: dashed;
+}
+
+.item[data-hidden] .label {
+  color: var(--dc-color-text-muted);
+  text-decoration: line-through;
+}
+
+.item[data-hidden] svg {
+  opacity: 0.35;
+}
+
+@media (forced-colors: active) {
+  .button {
+    border-color: ButtonText;
+  }
+
+  .button[aria-pressed='true'] {
+    border-width: var(--dc-border-width-thick);
+  }
+
+  .button:focus-visible {
+    outline-color: Highlight;
+  }
+}

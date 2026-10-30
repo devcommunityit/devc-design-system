@@ -261,12 +261,29 @@ await step('Browser: rendering, stili, interazioni, persistenza, portal, console
     await dialog.waitFor({ state: 'detached' });
     assert(await isFocusedSoon(opener), 'focus not restored after closing the dialog');
 
+    const plot = page.getByRole('group', { name: 'Ordini per trimestre' });
+    await plot.focus();
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    assert((await plot.locator('[aria-live="polite"]').textContent())?.includes('T2'), 'chart keyboard announcement missing');
+    const usesDataToken = await page.getByRole('figure', { name: 'Ordini per trimestre' }).evaluate((figure) => {
+      const probe = document.createElement('span');
+      probe.style.color = 'var(--dc-color-data-1)';
+      figure.append(probe);
+      const expected = getComputedStyle(probe).color;
+      probe.remove();
+      return [...figure.querySelectorAll('svg rect')].some((rect) => getComputedStyle(rect).fill === expected);
+    });
+    assert(usesDataToken, 'chart bars not coloured by the --dc-color-data-1 token');
+    await page.getByRole('button', { name: 'Mostra tabella dati' }).click();
+    await page.getByRole('table', { name: 'Ordini per trimestre' }).waitFor();
+
     await trigger.click();
     await page.getByRole('menuitem', { name: 'Esci' }).click();
     await page.getByText('Ospite').waitFor();
 
     assert(errors.length === 0, `console:\n  ${errors.join('\n  ')}`);
-    return 'token, stili, click/Enter, persistenza, toast, validazione form, menu utente, dialog annidato, ripristino focus';
+    return 'token, stili, click/Enter, persistenza, toast, validazione form, menu utente, dialog annidato, ripristino focus, grafico da tastiera';
   } finally {
     await browser.close();
     await new Promise((r) => server.httpServer.close(r));
