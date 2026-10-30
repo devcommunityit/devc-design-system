@@ -2,3 +2,4 @@
 export * from './UserMenu';
 export * from './SiteHeader';
 export * from './Auth';
+export * from './NotificationCenter';

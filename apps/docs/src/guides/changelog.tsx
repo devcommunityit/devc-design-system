@@ -11,6 +11,10 @@ export default function Changelog() {
           <li>ThemeProvider con provider annidati, portal tematizzati, persistenza opzionale e strategia per CSP restrittive.</li>
           <li>Catalogo completo di layout, tipografia, azioni, navigazione, form, dati, feedback e overlay.</li>
           <li>Pattern: SiteHeader con menu mobile, Footer, UserMenu, AuthLayout, LoginForm, SignUpForm, PasswordResetForm.</li>
+          <li>
+            Componenti aggiuntivi: Toolbar, SplitButton, CopyButton (con useCopyToClipboard), Meter, PinInput, Rating, TreeView, SortableList,
+            RelativeTime e il pattern NotificationCenter.
+          </li>
           <li>LocaleProvider con messaggi italiani e inglesi, supporto RTL anche negli overlay in portal.</li>
           <li>Etichette dei pulsanti e azioni dell’header che vanno a capo invece di uscire dal contenitore con testo ingrandito.</li>
         </ul>

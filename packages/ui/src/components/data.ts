@@ -9,4 +9,6 @@ export * from './Table';
 export * from './DataTable';
 export * from './DescriptionList';
 export * from './Timeline';
-export * from './Statistic';
+export * from './Statistic';export * from './TreeView';
+export * from './SortableList';
+export * from './RelativeTime';

@@ -17,6 +17,11 @@ Prima versione.
 - `LocaleProvider` con messaggi italiani e inglesi sostituibili e supporto RTL.
 - Componenti di layout, tipografia, azioni, navigazione, form, selettori di date, dati, feedback e overlay.
 - Pattern: `SiteHeader` (con navigazione mobile), `UserMenu` (menu dell'utente autenticato), `AuthLayout`, `LoginForm`, `SignUpForm`, `PasswordResetForm`; `Footer` con colonne e variante compatta.
+- Componenti aggiuntivi: `Toolbar` (con `ToolbarGroup` e `ToolbarSeparator`), `SplitButton`, `CopyButton` con l'hook
+  `useCopyToClipboard` (usato anche da `CodeBlock`), `Meter`, `PinInput`, `Rating`, `TreeView`/`TreeViewItem`,
+  `SortableList` (trascinamento più pulsanti Sposta su/giù), `RelativeTime` (`Intl.RelativeTimeFormat`) e il pattern
+  `NotificationCenter`. Nuove chiavi in `messages`: `copyFailed`, `moreActions`, `pinDigit`, `ratingValue`, `moveUp`,
+  `moveDown`, `itemMoved`, `notificationsUnread`, `markAllRead`, `markAsRead`, `unread`, `noNotifications`.
 
 ### Note
 

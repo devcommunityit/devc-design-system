@@ -44,6 +44,9 @@ proprietà Figma coincidono con i nomi delle props.
 | | `size` | sm, md, lg | |
 | | `selected` | boolean | |
 | ToggleGroup | `selectionMode` | single, multiple | Composto di Toggle |
+| Toolbar | `orientation` | horizontal, vertical | `variant` plain, surface; gruppi + separatore perpendicolare |
+| SplitButton | `variant`, `size` | come Button (senza ghost) | Button + IconButton chevron uniti; `open` boolean con Menu |
+| CopyButton | `status` | idle, copied, error | Icona copia/spunta/croce + testo; `iconOnly` boolean |
 
 ## Form
 
@@ -76,6 +79,8 @@ Tutti i campi condividono l'anatomia **Field**, costruita in Auto Layout vertica
 | TimeInput | `hourCycle` | 12, 24 |
 | FileUpload | `dragging` | boolean; elenco file con `status` pending, uploading, success, error |
 | ColorPicker | `open` | boolean |
+| PinInput | `length` 4, 6; `size` sm, md, lg | cella: empty, filled, focus, invalid, disabled; `mask` boolean |
+| Rating | `size` sm, md, lg | stella piena/vuota (forma, non solo colore); `preview`, `readonly`, `disabled` |
 
 ## Navigazione
 
@@ -115,6 +120,9 @@ Tutti i campi condividono l'anatomia **Field**, costruita in Auto Layout vertica
 | Timeline | item `tone` | neutral, info, success, warning, danger |
 | Statistic | `size` | sm, md, lg; trend su/giù (icona + testo, non solo colore) |
 | Calendar | giorno | default, today, selected, range-start/middle/end, disabled, unavailable, focus-visible |
+| TreeView | `size` | sm, md; riga: level 1–3, expanded/collapsed/leaf, selected, disabled, con/senza checkbox |
+| SortableList | riga | default, focus-visible, dragging; indicatore di rilascio; pulsanti Sposta su/giù |
+| RelativeTime | — | testo inline; nessun componente Figma dedicato (usa stile `body-sm`) |
 
 ## Feedback
 
@@ -133,6 +141,7 @@ Tutti i campi condividono l'anatomia **Field**, costruita in Auto Layout vertica
 | Spinner | `size` | sm, md, lg |
 | Skeleton | `shape` | text, rect, circle |
 | EmptyState | `size` | sm, md, lg; con/senza azione |
+| Meter | `tone` | brand, success, warning, danger; `size` sm, md, lg; con descrizione |
 
 ## Overlay
 
@@ -170,6 +179,7 @@ body ×3, label ×3).
 | UserMenu | Trigger (Avatar + nome + chevron) + Menu con blocco identità e “Esci” | `showName` always, wide, never; `open` boolean |
 | AuthLayout | Pannello centrato con brand, titolo, contenuto, footer | desktop, mobile |
 | LoginForm / SignUpForm / PasswordResetForm | Field + Button + Link | `state` default, submitting, error; reset: richiesta, confermata |
+| NotificationCenter | IconButton campanella + badge conteggio + Popover con elenco | `unread` 0, alcuni, 99+; `open` boolean; vuoto |
 
 ## Esempi di pagina
 

@@ -1,0 +1,124 @@
+.rating {
+  --_star: 1.5rem;
+}
+
+.rating[data-size='sm'] {
+  --_star: 1.125rem;
+}
+
+.rating[data-size='lg'] {
+  --_star: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.stars {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Target size ≥ 24×24 CSS px (WCAG 2.5.8) even for small stars. */
+  min-inline-size: max(var(--_star), 1.5rem);
+  min-block-size: max(var(--_star), 1.5rem);
+  padding: var(--dc-space-0-5);
+  border-radius: var(--dc-radius-sm);
+  color: var(--dc-color-border-strong);
+  cursor: pointer;
+  transition: color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.star {
+  inline-size: var(--_star);
+  block-size: var(--_star);
+  fill: transparent;
+  stroke: currentcolor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.item[data-filled] {
+  color: var(--dc-color-feedback-warning);
+}
+
+.item[data-filled] .star {
+  fill: currentcolor;
+}
+
+.item[data-preview][data-filled] {
+  color: var(--dc-color-action-primary);
+}
+
+.item[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: 0;
+}
+
+.item[data-pressed] .star {
+  transform: scale(0.9);
+}
+
+.rating[data-readonly] .item,
+.rating[data-disabled] .item {
+  cursor: default;
+}
+
+.rating[data-disabled] .item {
+  color: var(--dc-color-text-disabled);
+}
+
+.rating[data-disabled] .item[data-filled] .star {
+  fill: var(--dc-color-text-disabled);
+}
+
+.rating[data-invalid] .item:not([data-filled]) {
+  color: var(--dc-color-feedback-danger);
+}
+
+.value {
+  color: var(--dc-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+
+  .item[data-pressed] .star {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .item {
+    color: ButtonText;
+  }
+
+  .item[data-filled] {
+    color: Highlight;
+  }
+
+  .rating[data-disabled] .item {
+    color: GrayText;
+  }
+}

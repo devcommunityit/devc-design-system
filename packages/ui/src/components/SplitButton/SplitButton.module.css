@@ -1,0 +1,16 @@
+.splitButton {
+  flex-wrap: nowrap;
+}
+
+/* Filled variants have no border: draw a divider so the two buttons read as separate targets. */
+.splitButton[data-variant='primary'] .menuButton,
+.splitButton[data-variant='secondary'] .menuButton,
+.splitButton[data-variant='danger'] .menuButton {
+  border-inline-start-color: color-mix(in srgb, var(--_fg) 40%, transparent);
+}
+
+@media (forced-colors: active) {
+  .menuButton {
+    border-inline-start-color: ButtonText;
+  }
+}

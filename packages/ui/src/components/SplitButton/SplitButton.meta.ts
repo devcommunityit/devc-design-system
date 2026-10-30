@@ -1,0 +1,45 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['SplitButton'],
+  name: 'SplitButton',
+  slug: 'split-button',
+  category: 'actions',
+  summary: 'Azione principale affiancata da un pulsante che apre un menu di azioni secondarie correlate. Due pulsanti reali in un gruppo con nome.',
+  whenToUse: ['Un’azione predefinita con varianti (Salva / Salva come copia, Invia / Pianifica invio).'],
+  whenNotToUse: ['Azioni non correlate: usa pulsanti separati o un DropdownMenu.', 'Quando non c’è un’azione predefinita evidente: usa solo DropdownMenu.'],
+  props: [
+    { name: 'children', type: 'ReactNode', required: true, description: 'Etichetta dell’azione principale.' },
+    { name: 'onPress', type: '(e: PressEvent) => void', description: 'Azione principale.' },
+    { name: 'menu', type: 'ReactNode', required: true, description: 'MenuItem (con id), MenuSection, MenuSeparator.' },
+    { name: 'onAction', type: '(key: Key) => void', description: 'Chiamata con l’id della voce scelta.' },
+    { name: 'disabledKeys', type: 'Iterable<Key>', description: 'Voci del menu disabilitate.' },
+    { name: 'menuLabel', type: 'string', default: 'messages.moreActions', description: 'Nome accessibile del pulsante menu.' },
+    { name: 'variant', type: "'primary' | 'secondary' | 'outline' | 'danger'", default: "'primary'", description: 'Aspetto di entrambi i pulsanti.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Dimensione.' },
+    { name: 'isPending', type: 'boolean', description: 'Spinner sull’azione principale; il menu resta disponibile.' },
+    { name: 'isDisabled', type: 'boolean', description: 'Disabilita entrambi i pulsanti.' },
+    { name: 'startIcon', type: 'ReactNode', description: 'Icona decorativa dell’azione principale.' },
+    { name: 'type', type: "'button' | 'submit' | 'reset'", default: "'button'", description: 'Tipo del pulsante principale (submit in un form).' },
+  ],
+  inherits: 'className, id e aria-label sul gruppo (role="group"; nome predefinito: l’etichetta se è testo).',
+  keyboard: [
+    { keys: 'Tab', action: 'Raggiunge prima l’azione principale, poi il pulsante menu.' },
+    { keys: 'Enter / Spazio / ↓ / ↑', action: 'Sul pulsante menu: apre il menu.' },
+    { keys: 'Esc', action: 'Chiude il menu e riporta il focus sul pulsante menu.' },
+  ],
+  accessibility: [
+    'Il pulsante menu ha aria-haspopup e aria-expanded; il menu segue il pattern APG Menu Button.',
+    'Le voci pericolose (tone="danger") devono essere comprensibili anche dal testo.',
+  ],
+  responsive: ['Il pulsante menu mantiene la dimensione minima del target; il menu non supera la larghezza del viewport.'],
+  customization: ['Selettore [data-variant] sul gruppo; le voci accettano icon, tone, shortcut di MenuItem.'],
+  commonMistakes: ['Lasciare il pulsante menu senza nome se cambi la lingua: passa menuLabel o usa messages.', 'Inserire nel menu l’azione principale duplicata.'],
+  examples: [
+    { name: 'Basic', title: 'Salva con opzioni' },
+    { name: 'Pending', title: 'Azione in corso (English)' },
+    { name: 'SizesAndDisabled', title: 'Dimensioni e stato disabilitato' },
+  ],
+  status: { implemented: true, documented: true, tests: ['components/SplitButton/SplitButton.test.tsx'], limits: [] },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/',
+};

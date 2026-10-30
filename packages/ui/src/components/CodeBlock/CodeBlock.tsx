@@ -1,8 +1,9 @@
-import { forwardRef, useEffect, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { Button as RACButton } from 'react-aria-components';
 import { Check, Copy, WrapText } from 'lucide-react';
 import { useMessages } from '../../i18n/LocaleProvider';
 import { cx } from '../../utils';
+import { useCopyToClipboard } from '../CopyButton/CopyButton';
 import styles from './CodeBlock.module.css';
 
 export interface CodeBlockProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> {
@@ -32,24 +33,7 @@ export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function Cod
 ) {
   const messages = useMessages();
   const [wrap, setWrap] = useState(defaultWrap);
-  const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle');
-  const timer = useRef<number | undefined>(undefined);
-
-  useEffect(() => () => window.clearTimeout(timer.current), []);
-
-  const copy = async () => {
-    try {
-      if (typeof navigator === 'undefined' || !navigator.clipboard) throw new Error('Clipboard API unavailable');
-      await navigator.clipboard.writeText(code);
-      setStatus('copied');
-      onCopyCode?.(code);
-    } catch {
-      setStatus('error');
-    }
-    window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => setStatus('idle'), 2000);
-  };
-
+  const { status, copy } = useCopyToClipboard({ onCopy: onCopyCode });
   const label = typeof title === 'string' ? title : language ? `${messages.codeBlock} ${language}` : messages.codeBlock;
   return (
     <div ref={ref} className={cx(styles.codeBlock, className)} data-wrap={wrap || undefined} style={style} {...rest}>
@@ -61,7 +45,7 @@ export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function Cod
             <span className={styles.srOnly}>{messages.wrapLines}</span>
           </RACButton>
           {copyable ? (
-            <RACButton className={styles.tool} onPress={copy}>
+            <RACButton className={styles.tool} onPress={() => void copy(code)}>
               {status === 'copied' ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
               <span className={styles.toolLabel}>{status === 'copied' ? messages.copied : messages.copy}</span>
             </RACButton>

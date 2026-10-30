@@ -1,0 +1,173 @@
+.tree {
+  --_indent: var(--dc-space-5);
+  --_row: var(--dc-density-control-height-md);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-0-5);
+  min-inline-size: 0;
+  padding: var(--dc-space-1);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  outline: none;
+}
+
+.tree[data-size='sm'] {
+  --_indent: var(--dc-space-4);
+  --_row: var(--dc-density-control-height-sm);
+}
+
+.tree[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.tree[data-empty] {
+  padding: var(--dc-space-4);
+  color: var(--dc-color-text-secondary);
+}
+
+.item {
+  border-radius: var(--dc-radius-sm);
+  outline: none;
+  cursor: default;
+  transition: background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.item[data-hovered] {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), transparent);
+}
+
+.item[data-pressed] {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-pressed), transparent);
+}
+
+.item[data-selected] {
+  background-color: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+}
+
+.item[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: calc(var(--dc-focus-ring-width) * -1);
+}
+
+.item[data-disabled] {
+  color: var(--dc-color-text-disabled);
+}
+
+.item[data-href] {
+  cursor: pointer;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-block-size: var(--_row);
+  min-inline-size: 0;
+  padding-inline-end: var(--dc-space-2);
+}
+
+.chevron,
+.chevronSpacer {
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin-inline-start: var(--dc-space-1);
+}
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--dc-radius-xs);
+  background: none;
+  color: var(--dc-color-text-secondary);
+  cursor: pointer;
+}
+
+.chevron > svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+  transition: transform var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.chevron[data-hovered] {
+  background-color: color-mix(in srgb, var(--dc-color-text-primary) var(--dc-state-hover), transparent);
+}
+
+.chevron[data-focus-visible] {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+}
+
+.item[data-expanded] .chevron > svg {
+  transform: rotate(90deg);
+}
+
+/* The chevron points along the reading direction. */
+[dir='rtl'] .chevron > svg {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .item[data-expanded] .chevron > svg {
+  transform: rotate(90deg);
+}
+
+.checkbox {
+  flex: none;
+  align-items: center;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--dc-color-text-secondary);
+}
+
+.icon > svg {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.item[data-selected] .icon {
+  color: inherit;
+}
+
+.title {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  flex: none;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .chevron > svg {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .item[data-selected] {
+    background-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+
+  .item[data-focus-visible] {
+    outline-color: Highlight;
+  }
+}

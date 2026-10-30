@@ -14,3 +14,5 @@ export * from './Select';
 export * from './Combobox';
 export * from './Tag';
 export * from './MultiSelect';
+export * from './PinInput';
+export * from './Rating';

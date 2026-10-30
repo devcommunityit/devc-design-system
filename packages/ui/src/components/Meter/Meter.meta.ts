@@ -1,0 +1,45 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['Meter'],
+  name: 'Meter',
+  slug: 'meter',
+  category: 'feedback',
+  summary: 'Misura scalare in un intervallo noto (role="meter"): spazio occupato, quote, capacità, robustezza di una password. Soglie opzionali cambiano il tono.',
+  whenToUse: ['Valori che rappresentano un livello, non l’avanzamento di un’attività.'],
+  whenNotToUse: ['Caricamenti o attività in corso: usa Progress o CircularProgress.', 'Valori senza minimo/massimo significativi: usa Statistic.'],
+  props: [
+    { name: 'value', type: 'number', default: '0', description: 'Valore corrente.' },
+    { name: 'minValue / maxValue', type: 'number', default: '0 / 100', description: 'Intervallo.' },
+    { name: 'label', type: 'ReactNode', description: 'Etichetta visibile; altrimenti aria-label.' },
+    { name: 'valueLabel', type: 'ReactNode', description: 'Testo del valore (es. “7,2 GB / 10 GB”), anche per aria-valuetext.' },
+    { name: 'formatOptions', type: 'Intl.NumberFormatOptions', default: "{ style: 'percent' }", description: 'Formattazione del valore secondo la locale.' },
+    { name: 'showValue', type: 'boolean', default: 'true', description: 'Mostra il valore formattato.' },
+    { name: 'tone', type: "'brand' | 'success' | 'warning' | 'danger'", description: 'Tono fisso; se assente è calcolato dalle soglie (o brand).' },
+    { name: 'thresholds', type: '{ warning?: number; danger?: number }', description: 'Soglie crescenti incluse; senza superarle il tono è success.' },
+    { name: 'description', type: 'ReactNode', description: 'Testo d’aiuto collegato con aria-describedby.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Spessore della barra.' },
+  ],
+  inherits: 'Props di react-aria-components Meter.',
+  keyboard: [],
+  accessibility: [
+    'role="meter" con aria-valuenow/min/max e aria-valuetext localizzato.',
+    'Il tono è solo un aiuto visivo: esprimi il significato anche nel testo (valueLabel, description).',
+    'In forced-colors la barra usa colori di sistema.',
+  ],
+  responsive: ['Occupa la larghezza del contenitore; etichetta e valore vanno a capo con testi lunghi.'],
+  customization: ['Selettori [data-tone], [data-size].'],
+  commonMistakes: ['Usarlo per un caricamento.', 'Affidare “pieno/quasi pieno” al solo colore.', 'Soglie per valori decrescenti (es. batteria): imposta tone in modo esplicito.'],
+  examples: [
+    { name: 'Basic', title: 'Spazio di archiviazione' },
+    { name: 'Thresholds', title: 'Soglie interattive' },
+    { name: 'CustomRange', title: 'Intervalli e formati personalizzati (English)' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['components/Meter/Meter.test.tsx'],
+    limits: ['Le soglie presuppongono che valori più alti siano peggiori.'],
+  },
+  apg: 'https://www.w3.org/WAI/ARIA/apg/patterns/meter/',
+};

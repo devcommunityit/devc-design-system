@@ -110,6 +110,18 @@ export interface Messages {
   authAcceptTermsRequired: string;
   authResetLinkSent: string;
   authResetLinkSentTitle: string;
+  copyFailed: string;
+  moreActions: string;
+  pinDigit: (index: number, total: number) => string;
+  ratingValue: (value: number, max: number) => string;
+  moveUp: (label: string) => string;
+  moveDown: (label: string) => string;
+  itemMoved: (label: string, position: number, total: number) => string;
+  notificationsUnread: (count: number) => string;
+  markAllRead: string;
+  markAsRead: (title: string) => string;
+  unread: string;
+  noNotifications: string;
 }
 
 export const en: Messages = {
@@ -220,6 +232,18 @@ export const en: Messages = {
   authAcceptTermsRequired: 'You must accept the terms to continue.',
   authResetLinkSentTitle: 'Check your inbox',
   authResetLinkSent: 'If an account exists for this address, you will receive a link to reset your password.',
+  copyFailed: 'Copy failed',
+  moreActions: 'More actions',
+  pinDigit: (index, total) => `Character ${index} of ${total}`,
+  ratingValue: (value, max) => (value === 1 ? `1 star out of ${max}` : `${value} stars out of ${max}`),
+  moveUp: (label) => `Move ${label} up`,
+  moveDown: (label) => `Move ${label} down`,
+  itemMoved: (label, position, total) => `${label} moved to position ${position} of ${total}`,
+  notificationsUnread: (count) => (count === 0 ? 'Notifications' : count === 1 ? 'Notifications, 1 unread' : `Notifications, ${count} unread`),
+  markAllRead: 'Mark all as read',
+  markAsRead: (title) => `Mark "${title}" as read`,
+  unread: 'Unread',
+  noNotifications: 'No notifications',
 };
 
 export const it: Messages = {
@@ -330,6 +354,18 @@ export const it: Messages = {
   authAcceptTermsRequired: 'Per continuare devi accettare le condizioni.',
   authResetLinkSentTitle: 'Controlla la posta',
   authResetLinkSent: 'Se esiste un account con questo indirizzo, riceverai un link per reimpostare la password.',
+  copyFailed: 'Copia non riuscita',
+  moreActions: 'Altre azioni',
+  pinDigit: (index, total) => `Carattere ${index} di ${total}`,
+  ratingValue: (value, max) => (value === 1 ? `1 stella su ${max}` : `${value} stelle su ${max}`),
+  moveUp: (label) => `Sposta ${label} in su`,
+  moveDown: (label) => `Sposta ${label} in giù`,
+  itemMoved: (label, position, total) => `${label} spostato in posizione ${position} di ${total}`,
+  notificationsUnread: (count) => (count === 0 ? 'Notifiche' : count === 1 ? 'Notifiche, 1 non letta' : `Notifiche, ${count} non lette`),
+  markAllRead: 'Segna tutte come lette',
+  markAsRead: (title) => `Segna «${title}» come letta`,
+  unread: 'Non letta',
+  noNotifications: 'Nessuna notifica',
 };
 
 export const builtInMessages: Readonly<Record<string, Messages>> = { en, it };

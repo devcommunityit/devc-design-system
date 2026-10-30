@@ -1,0 +1,17 @@
+/* Doubled class: beats `.button[data-variant]` regardless of stylesheet order. */
+.copyButton.copyButton[data-status='copied'] {
+  --_border: var(--dc-color-feedback-success-border);
+}
+
+.copyButton.copyButton[data-status='error'] {
+  --_border: var(--dc-color-feedback-danger-border);
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

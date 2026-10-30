@@ -1,21 +1,21 @@
-import { AlertTriangle, Bell, BookOpen, ClipboardList, FileText, LayoutDashboard, LogOut, Moon, Settings, Sun, User, Users } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { AlertTriangle, BookOpen, ClipboardList, FileText, LayoutDashboard, LogOut, Moon, Settings, Sun, User, Users } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
 import { Outlet, Route, Routes, useLocation, useNavigate } from 'react-router';
 import {
   AppShell,
   Badge,
+  Button,
   Footer,
   Header,
   IconButton,
   Inline,
   MenuItem,
-  Popover,
-  PopoverTrigger,
+  NotificationCenter,
   Sidebar,
-  Stack,
   Text,
   UserMenu,
   useTheme,
+  type NotificationItem,
   type SidebarSection,
 } from '@dev-community/ui';
 import { PageMeta } from '../components/PageMeta';
@@ -59,10 +59,14 @@ const sections: SidebarSection[] = [
   },
 ];
 
-const notifications = [
-  { id: 'n1', title: 'Ordine ORD-24187 da spedire', time: 'oggi' },
-  { id: 'n2', title: 'Fontana Design ha rinnovato il piano', time: 'ieri' },
-  { id: 'n3', title: 'Pagamento non riuscito: Caruso Ottica', time: '2 giorni fa' },
+// Fixed reference instant so relative times are deterministic in the demo.
+const DEMO_NOW = '2025-03-14T10:00:00Z';
+
+const initialNotifications: NotificationItem[] = [
+  { id: 'n1', title: 'Ordine ORD-24187 da spedire', description: 'Consegna prevista entro venerdì.', date: '2025-03-14T09:20:00Z', href: '/showcase/dashboard' },
+  { id: 'n2', title: 'Fontana Design ha rinnovato il piano', date: '2025-03-13T15:00:00Z', href: '/showcase/dettaglio' },
+  { id: 'n3', title: 'Pagamento non riuscito: Caruso Ottica', description: 'Verifica il metodo di pagamento.', date: '2025-03-12T08:30:00Z', href: '/showcase/elenco' },
+  { id: 'n4', title: 'Richiesta di supporto chiusa', date: '2025-03-10T11:00:00Z', read: true },
 ];
 
 function ModeToggle() {
@@ -79,22 +83,28 @@ function ModeToggle() {
 }
 
 function Notifications() {
+  const [items, setItems] = useState(initialNotifications);
+  const markRead = (id: string) => setItems((list) => list.map((n) => (n.id === id ? { ...n, read: true } : n)));
   return (
-    <PopoverTrigger>
-      <IconButton variant="ghost" label={`Notifiche, ${notifications.length} non lette`} icon={<Bell />} />
-      <Popover title="Notifiche" placement="bottom end">
-        <Stack as="ul" gap={3} className="sc-plain-list">
-          {notifications.map((n) => (
-            <li key={n.id}>
-              <Text weight="medium">{n.title}</Text>
-              <Text variant="body-sm" tone="secondary">
-                {n.time}
-              </Text>
-            </li>
-          ))}
-        </Stack>
-      </Popover>
-    </PopoverTrigger>
+    <NotificationCenter
+      items={items}
+      now={DEMO_NOW}
+      onMarkRead={markRead}
+      onMarkAllRead={() => setItems((list) => list.map((n) => ({ ...n, read: true })))}
+      onItemAction={markRead}
+      footer={({ close }) => (
+        <Button
+          variant="ghost"
+          size="sm"
+          onPress={() => {
+            setItems(initialNotifications);
+            close();
+          }}
+        >
+          Ripristina notifiche demo
+        </Button>
+      )}
+    />
   );
 }
 
