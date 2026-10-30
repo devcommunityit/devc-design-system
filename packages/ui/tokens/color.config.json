@@ -4,7 +4,11 @@
     "aurora": { "label": { "it": "Aurora", "en": "Aurora" }, "brand": "#5b5bd6", "description": "Indaco profondo, neutri freddi." },
     "lagoon": { "label": { "it": "Laguna", "en": "Lagoon" }, "brand": "#0f8b8d", "description": "Verde acqua, neutri leggermente caldi." },
     "ember": { "label": { "it": "Brace", "en": "Ember" }, "brand": "#d4572f", "description": "Corallo bruciato, energico ma sobrio." },
-    "graphite": { "label": { "it": "Grafite", "en": "Graphite" }, "brand": "#56607a", "description": "Ardesia a bassa saturazione, istituzionale." }
+    "graphite": { "label": { "it": "Grafite", "en": "Graphite" }, "brand": "#56607a", "description": "Ardesia a bassa saturazione, istituzionale." },
+    "ocean": { "label": { "it": "Oceano", "en": "Ocean" }, "brand": "#1f6fd1", "description": "Blu deciso, affidabile; adatto a portali di servizi." },
+    "forest": { "label": { "it": "Foresta", "en": "Forest" }, "brand": "#2f7d4f", "description": "Verde bosco, naturale e rassicurante." },
+    "berry": { "label": { "it": "Bacca", "en": "Berry" }, "brand": "#b4236b", "description": "Magenta intenso, contemporaneo e riconoscibile." },
+    "saffron": { "label": { "it": "Zafferano", "en": "Saffron" }, "brand": "#b8860b", "description": "Oro caldo, elegante; i toni scuri restano leggibili." }
   },
   "defaultPreset": "aurora",
   "feedback": {

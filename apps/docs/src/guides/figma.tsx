@@ -16,7 +16,7 @@ export default function Figma() {
           columns={['Percorso nel repository', 'Contenuto']}
           rows={[
             [<code key="1">design/figma/tokens.dtcg.json</code>, 'Tutti i token in formato W3C Design Tokens (DTCG): base, densità, palette tonali e ruoli colore per preset e schema'],
-            [<code key="2">design/figma/tokens-studio/</code>, 'Set per Tokens Studio: base, density/*, palette/*, scheme/light|dark, con $themes (4 preset × 2 schemi × 2 densità)'],
+            [<code key="2">design/figma/tokens-studio/</code>, 'Set per Tokens Studio: base, density/*, palette/*, scheme/light|dark, con $themes (8 preset × 2 schemi × 2 densità)'],
             [<code key="3">design/figma/README.md</code>, 'Procedura di importazione e mapping token ↔ variabili Figma ↔ CSS'],
             [<code key="4">design/figma/components.md</code>, 'Specifiche di componenti, varianti, proprietà e stati da costruire in Figma'],
             [<code key="5">@dev-community/ui/tokens.json</code>, 'Lo stesso file DTCG, distribuito con il pacchetto'],
@@ -37,7 +37,7 @@ export default function Figma() {
           </li>
           <li>
             Usa “Export to Figma → Variables” scegliendo i temi da <code>$themes.json</code>: palette come collezione con modalità aurora, lagoon,
-            ember, graphite; schema come modalità light/dark; densità come modalità comfortable/compact.
+                        ember, graphite, ocean, forest, berry, saffron; schema come modalità light/dark; densità come modalità comfortable/compact.
           </li>
           <li>Crea gli stili tipografici dai token <code>typography.*</code> e gli effetti dai token <code>shadow.*</code>.</li>
           <li>Ripeti l’importazione dopo ogni rilascio che modifica i token; il flusso è solo codice → Figma.</li>

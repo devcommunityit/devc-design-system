@@ -174,5 +174,181 @@
       "palette/graphite": "source",
       "scheme/dark": "enabled"
     }
+  },
+  {
+    "id": "ocean-light-comfortable",
+    "name": "ocean / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ocean": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ocean-light-compact",
+    "name": "ocean / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ocean": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ocean-dark-comfortable",
+    "name": "ocean / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ocean": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "ocean-dark-compact",
+    "name": "ocean / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ocean": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "forest-light-comfortable",
+    "name": "forest / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/forest": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "forest-light-compact",
+    "name": "forest / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/forest": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "forest-dark-comfortable",
+    "name": "forest / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/forest": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "forest-dark-compact",
+    "name": "forest / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/forest": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "berry-light-comfortable",
+    "name": "berry / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/berry": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "berry-light-compact",
+    "name": "berry / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/berry": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "berry-dark-comfortable",
+    "name": "berry / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/berry": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "berry-dark-compact",
+    "name": "berry / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/berry": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "saffron-light-comfortable",
+    "name": "saffron / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/saffron": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "saffron-light-compact",
+    "name": "saffron / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/saffron": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "saffron-dark-comfortable",
+    "name": "saffron / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/saffron": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "saffron-dark-compact",
+    "name": "saffron / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/saffron": "source",
+      "scheme/dark": "enabled"
+    }
   }
 ]

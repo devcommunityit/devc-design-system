@@ -232,6 +232,32 @@ body {
   border-color: transparent;
 }
 
+/* Themes guide: inline preset swatches */
+.docs-preset-name {
+  white-space: nowrap;
+}
+
+.docs-preset-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  white-space: nowrap;
+}
+
+.docs-preset-swatch-chip {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-radius-sm);
+}
+
+.docs-preset-swatch-pair {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-3);
+}
+
 .docs-type-scale,
 .docs-scale {
   display: flex;
@@ -273,6 +299,7 @@ body {
 
 @media (forced-colors: active) {
   .docs-swatch-chip,
+  .docs-preset-swatch-chip,
   .docs-scale-bar {
     forced-color-adjust: none;
   }

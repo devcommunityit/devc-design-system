@@ -1,5 +1,15 @@
 import { Alert, Link } from '@dev-community/ui';
+import { PRESET_COLORS, PRESET_META, PRESET_NAMES } from '@dev-community/ui/theme';
 import { Code, DocSection, RefTable } from '../components/Doc';
+
+function Swatch({ color }: { color: string }) {
+  return (
+    <span className="docs-preset-swatch">
+      <span className="docs-preset-swatch-chip" style={{ backgroundColor: color }} aria-hidden="true" />
+      <code>{color}</code>
+    </span>
+  );
+}
 
 export default function Temi() {
   return (
@@ -10,7 +20,7 @@ export default function Temi() {
           columns={['Concetto', 'Valori', 'Prop di ThemeProvider']}
           rows={[
             ['Modalità', <code key="m">light | dark | system</code>, <code key="mp">mode / defaultMode / onModeChange</code>],
-            ['Palette (brand)', <code key="p">aurora | lagoon | ember | graphite | Theme personalizzato</code>, <code key="pp">theme / defaultTheme / onThemeChange</code>],
+            ['Palette (brand)', <code key="p">{PRESET_NAMES.join(' | ')} | Theme personalizzato</code>, <code key="pp">theme / defaultTheme / onThemeChange</code>],
             ['Schema risolto', <code key="r">light | dark</code>, <code key="rp">useTheme().resolvedScheme (sola lettura)</code>],
             ['Densità', <code key="d">comfortable | compact</code>, <code key="dp">density / defaultDensity / onDensityChange</code>],
           ]}
@@ -20,6 +30,27 @@ export default function Temi() {
           controlli. Con <code>system</code> lo schema segue <code>prefers-color-scheme</code>; durante il rendering server{' '}
           <code>resolvedScheme</code> vale <code>light</code> finché il client non conosce la preferenza.
         </p>
+      </DocSection>
+
+      <DocSection title="Preset inclusi">
+        <p>
+          Otto preset generati dallo stesso algoritmo (palette tonali HCT da un colore seme). Ogni preset supera le coppie di contrasto dichiarate
+          in chiaro e in scuro; la colonna «Primario» mostra il ruolo <code>action.primary</code> effettivamente generato.
+        </p>
+        <RefTable
+          label="Preset cromatici"
+          columns={['Nome', 'Etichetta', 'Seme', 'Primario chiaro / scuro', 'Carattere']}
+          rows={PRESET_NAMES.map((name) => [
+            <code key="n" className="docs-preset-name">{name}</code>,
+            <span key="l" className="docs-preset-name">{PRESET_META[name].label.it}</span>,
+            <Swatch key="s" color={PRESET_META[name].brand} />,
+            <span key="p" className="docs-preset-swatch-pair">
+              <Swatch color={PRESET_COLORS[name].light['action.primary']} />
+              <Swatch color={PRESET_COLORS[name].dark['action.primary']} />
+            </span>,
+            PRESET_META[name].description,
+          ])}
+        />
       </DocSection>
 
       <DocSection title="Uso controllato e non controllato">

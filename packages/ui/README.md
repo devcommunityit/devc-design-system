@@ -1,6 +1,6 @@
 # @dev-community/ui
 
-Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 4 preset, temi
+Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 8 preset, temi
 personalizzati), componenti accessibili basati su React Aria e pattern pronti (header, footer, menu utente, autenticazione).
 
 > **Licenza**: non ancora definita. La scelta spetta al proprietario del progetto e va fatta prima di qualsiasi pubblicazione.

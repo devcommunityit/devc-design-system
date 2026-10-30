@@ -11,7 +11,7 @@ Prima versione.
 
 - Token primitivi e semantici con un'unica fonte (`src/tokens/source`), generati in CSS custom properties, TypeScript e DTCG.
 - Motore dei temi: `createTheme`, `validateTheme`, `parseThemeJson` / `themeToJson` (schema versionato, `schemaVersion: 1`),
-  `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, modalità light/dark/system, densità comfortable/compact.
+  `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, `ocean`, `forest`, `berry`, `saffron`, modalità light/dark/system, densità comfortable/compact.
 - `ThemeProvider` con provider annidabili, persistenza configurabile (localStorage, cookie o adattatore personalizzato)
   e script anti-flash per SSR compatibile con CSP.
 - `LocaleProvider` con messaggi italiani e inglesi sostituibili e supporto RTL.
