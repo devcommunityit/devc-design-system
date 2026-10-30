@@ -24,7 +24,7 @@ modificarli a mano: cambia la sorgente e rigenera con `npm run tokens`.
 | `palette/aurora`, `lagoon`, `ember`, `graphite` | Palette tonali (0–100) di brand, neutral, neutral-variant e feedback | `palette.brand.40` |
 | `scheme/light`, `scheme/dark` | Ruoli semantici come **alias** delle palette | `color.text.primary` = `{palette.neutral.10}` |
 
-`$themes.json` definisce 32 temi (8 preset × 2 schemi × 2 densità), ad esempio `aurora / dark / compact`. In ogni tema
+`$themes.json` definisce 36 temi (9 preset × 2 schemi × 2 densità), ad esempio `aurora / dark / compact`. In ogni tema
 la palette è marcata `source` (risolve gli alias, non diventa variabile), mentre `base`, `density` e `scheme` sono
 `enabled`.
 
@@ -83,6 +83,10 @@ usare esclusivamente i ruoli semantici (`color.*`), come nel codice.
 - Icone: la libreria usa [Lucide](https://lucide.dev/) (licenza ISC); in Figma si può usare il plugin o il kit Lucide.
 - Esempi di pagina desktop e mobile, partendo dai template della showcase (`/showcase` nel sito di documentazione).
 - Pubblicazione come libreria del team.
+- Stile `expressive` (`--dc-look-*`) e gradienti (`--dc-gradient-*`): sono espressioni CSS (`linear-gradient` con
+  interpolazione `oklch`) e non vengono esportati come variabili. In Figma vanno ricostruiti come stili di riempimento a
+  gradiente lineare tra `color/action/primary` e `color/accent/default` (stesso tono), con raggio `radius/full` per i
+  controlli e `radius/xl` per i contenitori. I ruoli `color.accent.*` invece sono esportati come tutti gli altri ruoli.
 
 ## Aggiornamenti
 

@@ -18,8 +18,8 @@ export function Basic() {
 
 export function Variants() {
   return (
-    <Grid columns={{ base: 1, md: 3 }} gap={4}>
-      {(['outlined', 'elevated', 'filled'] as const).map((variant) => (
+    <Grid columns={{ base: 1, md: 2 }} gap={4}>
+      {(['outlined', 'elevated', 'filled', 'accent'] as const).map((variant) => (
         <Card key={variant} variant={variant}>
           <CardHeader title={`Variante ${variant}`} headingLevel={3} />
           <CardBody>

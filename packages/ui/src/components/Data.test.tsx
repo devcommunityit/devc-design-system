@@ -15,6 +15,15 @@ import { Timeline, TimelineItem } from './Timeline';
 import { Tooltip } from './Tooltip';
 
 describe('Card', () => {
+  it('exposes the accent variant as a data attribute', () => {
+    render(
+      <Card variant="accent" data-testid="accent">
+        <CardBody>Featured</CardBody>
+      </Card>,
+    );
+    expect(screen.getByTestId('accent')).toHaveAttribute('data-variant', 'accent');
+  });
+
   it('renders semantic parts, heading level and a stretched link', async () => {
     const { container } = render(
       <Card as="article" isSelected aria-labelledby="c-title">

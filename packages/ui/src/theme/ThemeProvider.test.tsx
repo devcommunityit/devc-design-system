@@ -98,6 +98,65 @@ describe('ThemeProvider', () => {
     expect(dialog.closest('[lang]')).toHaveAttribute('lang', 'ar-EG');
   });
 
+  it('applies the look independently of the palette, inherits it and carries it into portals', async () => {
+    const user = userEvent.setup();
+    const onLookChange = vi.fn();
+    function LookProbe() {
+      const t = useTheme();
+      return (
+        <button onClick={() => t.setLook(t.look === 'standard' ? 'expressive' : 'standard')}>
+          look:{t.look}|{t.theme.name}
+        </button>
+      );
+    }
+    render(
+      <ThemeProvider data-testid="outer" theme="nebula" defaultLook="expressive" onLookChange={onLookChange}>
+        <ThemeProvider data-testid="inner" theme="ember">
+          <DialogTrigger>
+            <RacButton>Open</RacButton>
+            <Modal>
+              <Dialog>
+                <Heading slot="title">Hello</Heading>
+              </Dialog>
+            </Modal>
+          </DialogTrigger>
+        </ThemeProvider>
+        <LookProbe />
+      </ThemeProvider>,
+    );
+    expect(screen.getByTestId('outer')).toHaveAttribute('data-dc-look', 'expressive');
+    expect(screen.getByTestId('inner')).toHaveAttribute('data-dc-look', 'expressive');
+    expect(screen.getByTestId('inner')).toHaveAttribute('data-dc-palette', 'ember');
+    await user.click(screen.getByRole('button', { name: 'Open' }));
+    const container = (await screen.findByRole('dialog')).closest('[data-dc-portal]');
+    expect(container).toHaveAttribute('data-dc-look', 'expressive');
+    expect(container).toHaveAttribute('data-dc-palette', 'ember');
+    await user.keyboard('{Escape}');
+    await user.click(screen.getByRole('button', { name: /^look:expressive\|nebula$/ }));
+    expect(onLookChange).toHaveBeenCalledWith('standard');
+    expect(screen.getByTestId('outer')).toHaveAttribute('data-dc-look', 'standard');
+    expect(screen.getByTestId('outer')).toHaveAttribute('data-dc-palette', 'nebula');
+  });
+
+  it('defaults to the standard look and persists the look when requested', async () => {
+    const storage = memoryStorage({ k: JSON.stringify({ look: 'expressive' }) });
+    function LookToggle() {
+      const t = useTheme();
+      return <button onClick={() => t.setLook('standard')}>look:{t.look}</button>;
+    }
+    const { unmount } = render(<ThemeProvider data-testid="plain" />);
+    expect(screen.getByTestId('plain')).toHaveAttribute('data-dc-look', 'standard');
+    unmount();
+    render(
+      <ThemeProvider persistence={{ storage, key: 'k', keys: ['look'] }}>
+        <LookToggle />
+      </ThemeProvider>,
+    );
+    const button = screen.getByRole('button', { name: 'look:expressive' });
+    await userEvent.click(button);
+    expect(JSON.parse(storage.data.k ?? '{}')).toEqual({ look: 'standard' });
+  });
+
   it('does not touch storage unless persistence is enabled', () => {
     const spy = vi.spyOn(Storage.prototype, 'getItem');
     render(<ThemeProvider />);

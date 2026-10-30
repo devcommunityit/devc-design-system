@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
-import { expect, expectNoHorizontalOverflow, open, test } from './fixtures';
+import { expect, expectNoA11yViolations, expectNoHorizontalOverflow, open, test } from './fixtures';
 
 async function isFocused(locator: Locator): Promise<boolean> {
   return locator.evaluate((el) => el === document.activeElement);
@@ -146,6 +146,36 @@ test.describe('tema, persistenza e RTL', () => {
     await expect(html).toHaveAttribute('data-dc-density', 'compact');
   });
 
+  test('lo stile espressivo è indipendente dalla palette, si salva e arriva agli overlay in portal', async ({ page }) => {
+    await open(page, '/componenti/button');
+    const html = page.locator('html');
+    await expect(html).toHaveAttribute('data-dc-look', 'expressive');
+    const primary = page.locator('main button[data-variant="primary"]').first();
+    const box = await primary.boundingBox();
+    const gradients = (el: Element) => getComputedStyle(el).backgroundImage.split('gradient(').length - 1;
+    expect(await primary.evaluate(gradients), 'state layer + two-tone fill').toBe(2);
+
+    const prefs = await openPreferences(page);
+    const portal = prefs.locator('xpath=ancestor::*[@data-dc-portal][1]');
+    await expect(portal).toHaveAttribute('data-dc-look', 'expressive');
+    const palette = await html.getAttribute('data-dc-palette');
+    await prefs.getByRole('switch', { name: /Stile espressivo/ }).uncheck({ force: true });
+    await expect(html).toHaveAttribute('data-dc-look', 'standard');
+    await expect(portal).toHaveAttribute('data-dc-look', 'standard');
+    await expect(html).toHaveAttribute('data-dc-palette', palette ?? '');
+    await page.keyboard.press('Escape');
+    await expect(prefs).toBeHidden();
+
+    expect(await primary.evaluate(gradients), 'state layer only').toBe(1);
+    const standardBox = await primary.boundingBox();
+    expect(standardBox?.height).toBe(box?.height);
+    expect(standardBox?.width).toBe(box?.width);
+    await expectNoA11yViolations(page);
+
+    await page.reload();
+    await page.getByRole('heading', { level: 1 }).first().waitFor();
+    await expect(html).toHaveAttribute('data-dc-look', 'standard');
+  });
   test('il cambio di palette mantiene struttura e dimensioni', async ({ page }) => {
     await open(page, '/componenti/button');
     const sample = page.locator('main button[data-variant="primary"]').first();

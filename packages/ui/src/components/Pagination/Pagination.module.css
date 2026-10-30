@@ -55,6 +55,7 @@
 .control[data-current] {
   border-color: var(--dc-color-border-selected);
   background-color: var(--dc-color-action-secondary);
+  background-image: var(--dc-look-fill-tonal);
   color: var(--dc-color-action-secondary-foreground);
   font-weight: var(--dc-typography-title-sm-weight);
 }

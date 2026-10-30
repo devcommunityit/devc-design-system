@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig, type Plugin, type PreviewServer, type ViteDevServer } from 'vite';
 import { cssOptions } from '../../packages/ui/build/css.ts';
 import { getThemeScript } from '../../packages/ui/src/theme/persistence.ts';
+import { DOCS_DEFAULT_LOOK, DOCS_DEFAULT_THEME } from './src/docs-defaults.ts';
 
 const ui = (p: string) => fileURLToPath(new URL(`../../packages/ui/${p}`, import.meta.url));
 
@@ -11,7 +12,7 @@ const ui = (p: string) => fileURLToPath(new URL(`../../packages/ui/${p}`, import
  * works with a strict `script-src 'self'` CSP without inline scripts or nonces.
  */
 function themeInitScript(): Plugin {
-  const code = getThemeScript({ defaultMode: 'system' });
+  const code = getThemeScript({ defaultMode: 'system', defaultTheme: DOCS_DEFAULT_THEME, defaultLook: DOCS_DEFAULT_LOOK });
   let path = '/theme-init.js';
   const mount = (server: ViteDevServer | PreviewServer) => {
     server.middlewares.use(path, (_req, res) => {

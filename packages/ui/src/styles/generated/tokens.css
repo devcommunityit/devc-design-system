@@ -165,6 +165,10 @@
   --dc-color-action-neutral-foreground: #1b1b20;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #9f337f;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffd8eb;
+  --dc-color-accent-container-foreground: #3b002c;
   --dc-color-action-disabled: #e7e4ea;
   --dc-color-action-disabled-foreground: #8d8a90;
   --dc-color-border-subtle: #eae6f3;
@@ -229,6 +233,10 @@
   --dc-color-action-neutral-foreground: #1b1b20;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #9f337f;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffd8eb;
+  --dc-color-accent-container-foreground: #3b002c;
   --dc-color-action-disabled: #e7e4ea;
   --dc-color-action-disabled-foreground: #8d8a90;
   --dc-color-border-subtle: #eae6f3;
@@ -278,6 +286,10 @@
   --dc-color-action-neutral-foreground: #eae7ed;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #ffaedd;
+  --dc-color-accent-foreground: #60004a;
+  --dc-color-accent-container: #821665;
+  --dc-color-accent-container-foreground: #ffd8eb;
   --dc-color-action-disabled: #313035;
   --dc-color-action-disabled-foreground: #737177;
   --dc-color-border-subtle: #302f39;
@@ -328,6 +340,10 @@
     --dc-color-action-neutral-foreground: #eae7ed;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #ffaedd;
+    --dc-color-accent-foreground: #60004a;
+    --dc-color-accent-container: #821665;
+    --dc-color-accent-container-foreground: #ffd8eb;
     --dc-color-action-disabled: #313035;
     --dc-color-action-disabled-foreground: #737177;
     --dc-color-border-subtle: #302f39;
@@ -379,6 +395,10 @@
   --dc-color-action-neutral-foreground: #191c1c;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #336096;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #d4e3ff;
+  --dc-color-accent-container-foreground: #001c39;
   --dc-color-action-disabled: #e4e5e5;
   --dc-color-action-disabled-foreground: #8a8c8b;
   --dc-color-border-subtle: #e2eae9;
@@ -428,6 +448,10 @@
   --dc-color-action-neutral-foreground: #e7e8e8;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #a4c8ff;
+  --dc-color-accent-foreground: #00315d;
+  --dc-color-accent-container: #15487d;
+  --dc-color-accent-container-foreground: #d4e3ff;
   --dc-color-action-disabled: #2e3131;
   --dc-color-action-disabled-foreground: #707272;
   --dc-color-border-subtle: #2b3232;
@@ -478,6 +502,10 @@
     --dc-color-action-neutral-foreground: #e7e8e8;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #a4c8ff;
+    --dc-color-accent-foreground: #00315d;
+    --dc-color-accent-container: #15487d;
+    --dc-color-accent-container-foreground: #d4e3ff;
     --dc-color-action-disabled: #2e3131;
     --dc-color-action-disabled-foreground: #707272;
     --dc-color-border-subtle: #2b3232;
@@ -529,6 +557,10 @@
   --dc-color-action-neutral-foreground: #221a18;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #715d00;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffe178;
+  --dc-color-accent-container-foreground: #231b00;
   --dc-color-action-disabled: #f2e2de;
   --dc-color-action-disabled-foreground: #958985;
   --dc-color-border-subtle: #fde3dc;
@@ -578,6 +610,10 @@
   --dc-color-action-neutral-foreground: #f5e5e1;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #ebc300;
+  --dc-color-accent-foreground: #3b2f00;
+  --dc-color-accent-container: #554500;
+  --dc-color-accent-container-foreground: #ffe178;
   --dc-color-action-disabled: #372e2c;
   --dc-color-action-disabled-foreground: #7b6f6c;
   --dc-color-border-subtle: #3c2d28;
@@ -628,6 +664,10 @@
     --dc-color-action-neutral-foreground: #f5e5e1;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #ebc300;
+    --dc-color-accent-foreground: #3b2f00;
+    --dc-color-accent-container: #554500;
+    --dc-color-accent-container-foreground: #ffe178;
     --dc-color-action-disabled: #372e2c;
     --dc-color-action-disabled-foreground: #7b6f6c;
     --dc-color-border-subtle: #3c2d28;
@@ -679,6 +719,10 @@
   --dc-color-action-neutral-foreground: #1c1b1c;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #78517b;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffd6fd;
+  --dc-color-accent-container-foreground: #2f0d33;
   --dc-color-action-disabled: #e8e4e6;
   --dc-color-action-disabled-foreground: #8d8b8c;
   --dc-color-border-subtle: #eae7eb;
@@ -728,6 +772,10 @@
   --dc-color-action-neutral-foreground: #eae7e8;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #e7b7e7;
+  --dc-color-accent-foreground: #46234a;
+  --dc-color-accent-container: #5f3962;
+  --dc-color-accent-container-foreground: #ffd6fd;
   --dc-color-action-disabled: #313031;
   --dc-color-action-disabled-foreground: #737273;
   --dc-color-border-subtle: #303033;
@@ -778,6 +826,10 @@
     --dc-color-action-neutral-foreground: #eae7e8;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #e7b7e7;
+    --dc-color-accent-foreground: #46234a;
+    --dc-color-accent-container: #5f3962;
+    --dc-color-accent-container-foreground: #ffd6fd;
     --dc-color-action-disabled: #313031;
     --dc-color-action-disabled-foreground: #737273;
     --dc-color-border-subtle: #303033;
@@ -829,6 +881,10 @@
   --dc-color-action-neutral-foreground: #1a1c1f;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #893ea0;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #fbd7ff;
+  --dc-color-accent-container-foreground: #330044;
   --dc-color-action-disabled: #e5e5ea;
   --dc-color-action-disabled-foreground: #8b8b90;
   --dc-color-border-subtle: #e5e8f3;
@@ -878,6 +934,10 @@
   --dc-color-action-neutral-foreground: #e8e7ec;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #f0b0ff;
+  --dc-color-accent-foreground: #54006d;
+  --dc-color-accent-container: #6e2386;
+  --dc-color-accent-container-foreground: #fbd7ff;
   --dc-color-action-disabled: #2f3034;
   --dc-color-action-disabled-foreground: #717276;
   --dc-color-border-subtle: #2d3039;
@@ -928,6 +988,10 @@
     --dc-color-action-neutral-foreground: #e8e7ec;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #f0b0ff;
+    --dc-color-accent-foreground: #54006d;
+    --dc-color-accent-container: #6e2386;
+    --dc-color-accent-container-foreground: #fbd7ff;
     --dc-color-action-disabled: #2f3034;
     --dc-color-action-disabled-foreground: #717276;
     --dc-color-border-subtle: #2d3039;
@@ -979,6 +1043,10 @@
   --dc-color-action-neutral-foreground: #1a1c1a;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #00687a;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #acedff;
+  --dc-color-accent-container-foreground: #001f26;
   --dc-color-action-disabled: #e5e6e1;
   --dc-color-action-disabled-foreground: #8a8c88;
   --dc-color-border-subtle: #e4eae2;
@@ -1028,6 +1096,10 @@
   --dc-color-action-neutral-foreground: #e8e8e4;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #6fd4ed;
+  --dc-color-accent-foreground: #003640;
+  --dc-color-accent-container: #004e5c;
+  --dc-color-accent-container-foreground: #acedff;
   --dc-color-action-disabled: #2f312e;
   --dc-color-action-disabled-foreground: #71736f;
   --dc-color-border-subtle: #2c322c;
@@ -1078,6 +1150,10 @@
     --dc-color-action-neutral-foreground: #e8e8e4;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #6fd4ed;
+    --dc-color-accent-foreground: #003640;
+    --dc-color-accent-container: #004e5c;
+    --dc-color-accent-container-foreground: #acedff;
     --dc-color-action-disabled: #2f312e;
     --dc-color-action-disabled-foreground: #71736f;
     --dc-color-border-subtle: #2c322c;
@@ -1129,6 +1205,10 @@
   --dc-color-action-neutral-foreground: #211a1c;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #914d00;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffdcc3;
+  --dc-color-accent-container-foreground: #2f1500;
   --dc-color-action-disabled: #f0e2e4;
   --dc-color-action-disabled-foreground: #94898b;
   --dc-color-border-subtle: #f9e3e8;
@@ -1178,6 +1258,10 @@
   --dc-color-action-neutral-foreground: #f3e5e7;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #ffb77e;
+  --dc-color-accent-foreground: #4d2600;
+  --dc-color-accent-container: #6e3900;
+  --dc-color-accent-container-foreground: #ffdcc3;
   --dc-color-action-disabled: #362e30;
   --dc-color-action-disabled-foreground: #7a6f72;
   --dc-color-border-subtle: #3a2d31;
@@ -1228,6 +1312,10 @@
     --dc-color-action-neutral-foreground: #f3e5e7;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #ffb77e;
+    --dc-color-accent-foreground: #4d2600;
+    --dc-color-accent-container: #6e3900;
+    --dc-color-accent-container-foreground: #ffdcc3;
     --dc-color-action-disabled: #362e30;
     --dc-color-action-disabled-foreground: #7a6f72;
     --dc-color-border-subtle: #3a2d31;
@@ -1279,6 +1367,10 @@
   --dc-color-action-neutral-foreground: #1e1b16;
   --dc-color-action-danger: #b91d20;
   --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #2f6b26;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #b0f49e;
+  --dc-color-accent-container-foreground: #002200;
   --dc-color-action-disabled: #ece4dc;
   --dc-color-action-disabled-foreground: #918b83;
   --dc-color-border-subtle: #f3e6d5;
@@ -1328,6 +1420,10 @@
   --dc-color-action-neutral-foreground: #efe7de;
   --dc-color-action-danger: #ffb4ac;
   --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #95d784;
+  --dc-color-accent-foreground: #003a01;
+  --dc-color-accent-container: #14520f;
+  --dc-color-accent-container-foreground: #b0f49e;
   --dc-color-action-disabled: #34302a;
   --dc-color-action-disabled-foreground: #77716a;
   --dc-color-border-subtle: #362f24;
@@ -1378,6 +1474,10 @@
     --dc-color-action-neutral-foreground: #efe7de;
     --dc-color-action-danger: #ffb4ac;
     --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #95d784;
+    --dc-color-accent-foreground: #003a01;
+    --dc-color-accent-container: #14520f;
+    --dc-color-accent-container-foreground: #b0f49e;
     --dc-color-action-disabled: #34302a;
     --dc-color-action-disabled-foreground: #77716a;
     --dc-color-border-subtle: #362f24;
@@ -1385,6 +1485,168 @@
     --dc-color-border-strong: #9a8f80;
     --dc-color-border-selected: #f7bd48;
     --dc-color-focus-ring: #f7bd48;
+    --dc-color-feedback-danger: #ffb4ac;
+    --dc-color-feedback-danger-surface: #580005;
+    --dc-color-feedback-danger-foreground: #ffdad6;
+    --dc-color-feedback-danger-border: #a70b16;
+    --dc-color-feedback-warning: #ffb68e;
+    --dc-color-feedback-warning-surface: #461b00;
+    --dc-color-feedback-warning-foreground: #ffdbca;
+    --dc-color-feedback-warning-border: #893c00;
+    --dc-color-feedback-success: #88d982;
+    --dc-color-feedback-success-surface: #003007;
+    --dc-color-feedback-success-foreground: #a3f69c;
+    --dc-color-feedback-success-border: #076019;
+    --dc-color-feedback-info: #a8c8ff;
+    --dc-color-feedback-info-surface: #002753;
+    --dc-color-feedback-info-foreground: #d6e3ff;
+    --dc-color-feedback-info-border: #00529f;
+    --dc-color-overlay-scrim: #000000;
+    --dc-color-shadow: #000000;
+  }
+}
+
+:where([data-dc-theme][data-dc-palette="nebula"]) {
+  --dc-color-text-primary: #1a1b1f;
+  --dc-color-text-secondary: #444650;
+  --dc-color-text-muted: #61636d;
+  --dc-color-text-disabled: #96959b;
+  --dc-color-text-inverse: #f4f3f8;
+  --dc-color-text-link: #1d57c8;
+  --dc-color-surface-canvas: #faf8fe;
+  --dc-color-surface-default: #ffffff;
+  --dc-color-surface-raised: #ffffff;
+  --dc-color-surface-subtle: #f4f3f8;
+  --dc-color-surface-muted: #efedf3;
+  --dc-color-surface-strong: #e3e2e7;
+  --dc-color-surface-inverse: #2f3035;
+  --dc-color-surface-brand: #f2f3ff;
+  --dc-color-action-primary: #1d57c8;
+  --dc-color-action-primary-foreground: #ffffff;
+  --dc-color-action-secondary: #e2e7ff;
+  --dc-color-action-secondary-foreground: #00215d;
+  --dc-color-action-neutral: #eceaf0;
+  --dc-color-action-neutral-foreground: #1a1b1f;
+  --dc-color-action-danger: #b91d20;
+  --dc-color-action-danger-foreground: #ffffff;
+  --dc-color-accent-default: #a33663;
+  --dc-color-accent-foreground: #ffffff;
+  --dc-color-accent-container: #ffd9e3;
+  --dc-color-accent-container-foreground: #3e001e;
+  --dc-color-action-disabled: #e6e4ea;
+  --dc-color-action-disabled-foreground: #8b8b90;
+  --dc-color-border-subtle: #e7e7f3;
+  --dc-color-border-default: #d5d6e2;
+  --dc-color-border-strong: #7a7c86;
+  --dc-color-border-selected: #1d57c8;
+  --dc-color-focus-ring: #1d57c8;
+  --dc-color-feedback-danger: #b91d20;
+  --dc-color-feedback-danger-surface: #fff0ef;
+  --dc-color-feedback-danger-foreground: #7d000a;
+  --dc-color-feedback-danger-border: #ffb4ac;
+  --dc-color-feedback-warning: #9b4500;
+  --dc-color-feedback-warning-surface: #fff1eb;
+  --dc-color-feedback-warning-foreground: #652a00;
+  --dc-color-feedback-warning-border: #ffb68e;
+  --dc-color-feedback-success: #1b6d24;
+  --dc-color-feedback-success-surface: #d5ffcc;
+  --dc-color-feedback-success-foreground: #00460e;
+  --dc-color-feedback-success-border: #88d982;
+  --dc-color-feedback-info: #005eb5;
+  --dc-color-feedback-info-surface: #f0f3ff;
+  --dc-color-feedback-info-foreground: #003b76;
+  --dc-color-feedback-info-border: #a8c8ff;
+  --dc-color-overlay-scrim: #000000;
+  --dc-color-shadow: #000000;
+}
+:where([data-dc-theme][data-dc-palette="nebula"][data-dc-scheme="dark"]) {
+  --dc-color-text-primary: #e9e7ed;
+  --dc-color-text-secondary: #c5c6d1;
+  --dc-color-text-muted: #a9aab6;
+  --dc-color-text-disabled: #636368;
+  --dc-color-text-inverse: #1f1f24;
+  --dc-color-text-link: #b2c5ff;
+  --dc-color-surface-canvas: #121317;
+  --dc-color-surface-default: #1a1b1f;
+  --dc-color-surface-raised: #25262a;
+  --dc-color-surface-subtle: #212126;
+  --dc-color-surface-muted: #292a2e;
+  --dc-color-surface-strong: #38393d;
+  --dc-color-surface-inverse: #e3e2e7;
+  --dc-color-surface-brand: #002362;
+  --dc-color-action-primary: #b2c5ff;
+  --dc-color-action-primary-foreground: #002b73;
+  --dc-color-action-secondary: #0040a2;
+  --dc-color-action-secondary-foreground: #e2e7ff;
+  --dc-color-action-neutral: #343439;
+  --dc-color-action-neutral-foreground: #e9e7ed;
+  --dc-color-action-danger: #ffb4ac;
+  --dc-color-action-danger-foreground: #690007;
+  --dc-color-accent-default: #ffb0c9;
+  --dc-color-accent-foreground: #640034;
+  --dc-color-accent-container: #841c4b;
+  --dc-color-accent-container-foreground: #ffd9e3;
+  --dc-color-action-disabled: #2f3035;
+  --dc-color-action-disabled-foreground: #727277;
+  --dc-color-border-subtle: #2e3039;
+  --dc-color-border-default: #444650;
+  --dc-color-border-strong: #8e909b;
+  --dc-color-border-selected: #b2c5ff;
+  --dc-color-focus-ring: #b2c5ff;
+  --dc-color-feedback-danger: #ffb4ac;
+  --dc-color-feedback-danger-surface: #580005;
+  --dc-color-feedback-danger-foreground: #ffdad6;
+  --dc-color-feedback-danger-border: #a70b16;
+  --dc-color-feedback-warning: #ffb68e;
+  --dc-color-feedback-warning-surface: #461b00;
+  --dc-color-feedback-warning-foreground: #ffdbca;
+  --dc-color-feedback-warning-border: #893c00;
+  --dc-color-feedback-success: #88d982;
+  --dc-color-feedback-success-surface: #003007;
+  --dc-color-feedback-success-foreground: #a3f69c;
+  --dc-color-feedback-success-border: #076019;
+  --dc-color-feedback-info: #a8c8ff;
+  --dc-color-feedback-info-surface: #002753;
+  --dc-color-feedback-info-foreground: #d6e3ff;
+  --dc-color-feedback-info-border: #00529f;
+  --dc-color-overlay-scrim: #000000;
+  --dc-color-shadow: #000000;
+}
+@media (prefers-color-scheme: dark) {
+  :where([data-dc-theme][data-dc-palette="nebula"][data-dc-scheme="system"]) {
+    --dc-color-text-primary: #e9e7ed;
+    --dc-color-text-secondary: #c5c6d1;
+    --dc-color-text-muted: #a9aab6;
+    --dc-color-text-disabled: #636368;
+    --dc-color-text-inverse: #1f1f24;
+    --dc-color-text-link: #b2c5ff;
+    --dc-color-surface-canvas: #121317;
+    --dc-color-surface-default: #1a1b1f;
+    --dc-color-surface-raised: #25262a;
+    --dc-color-surface-subtle: #212126;
+    --dc-color-surface-muted: #292a2e;
+    --dc-color-surface-strong: #38393d;
+    --dc-color-surface-inverse: #e3e2e7;
+    --dc-color-surface-brand: #002362;
+    --dc-color-action-primary: #b2c5ff;
+    --dc-color-action-primary-foreground: #002b73;
+    --dc-color-action-secondary: #0040a2;
+    --dc-color-action-secondary-foreground: #e2e7ff;
+    --dc-color-action-neutral: #343439;
+    --dc-color-action-neutral-foreground: #e9e7ed;
+    --dc-color-action-danger: #ffb4ac;
+    --dc-color-action-danger-foreground: #690007;
+    --dc-color-accent-default: #ffb0c9;
+    --dc-color-accent-foreground: #640034;
+    --dc-color-accent-container: #841c4b;
+    --dc-color-accent-container-foreground: #ffd9e3;
+    --dc-color-action-disabled: #2f3035;
+    --dc-color-action-disabled-foreground: #727277;
+    --dc-color-border-subtle: #2e3039;
+    --dc-color-border-default: #444650;
+    --dc-color-border-strong: #8e909b;
+    --dc-color-border-selected: #b2c5ff;
+    --dc-color-focus-ring: #b2c5ff;
     --dc-color-feedback-danger: #ffb4ac;
     --dc-color-feedback-danger-surface: #580005;
     --dc-color-feedback-danger-foreground: #ffdad6;
@@ -1430,6 +1692,10 @@
   --dc-color-action-neutral-foreground: var(--dc-light-color-action-neutral-foreground);
   --dc-color-action-danger: var(--dc-light-color-action-danger);
   --dc-color-action-danger-foreground: var(--dc-light-color-action-danger-foreground);
+  --dc-color-accent-default: var(--dc-light-color-accent-default);
+  --dc-color-accent-foreground: var(--dc-light-color-accent-foreground);
+  --dc-color-accent-container: var(--dc-light-color-accent-container);
+  --dc-color-accent-container-foreground: var(--dc-light-color-accent-container-foreground);
   --dc-color-action-disabled: var(--dc-light-color-action-disabled);
   --dc-color-action-disabled-foreground: var(--dc-light-color-action-disabled-foreground);
   --dc-color-border-subtle: var(--dc-light-color-border-subtle);
@@ -1479,6 +1745,10 @@
   --dc-color-action-neutral-foreground: var(--dc-dark-color-action-neutral-foreground);
   --dc-color-action-danger: var(--dc-dark-color-action-danger);
   --dc-color-action-danger-foreground: var(--dc-dark-color-action-danger-foreground);
+  --dc-color-accent-default: var(--dc-dark-color-accent-default);
+  --dc-color-accent-foreground: var(--dc-dark-color-accent-foreground);
+  --dc-color-accent-container: var(--dc-dark-color-accent-container);
+  --dc-color-accent-container-foreground: var(--dc-dark-color-accent-container-foreground);
   --dc-color-action-disabled: var(--dc-dark-color-action-disabled);
   --dc-color-action-disabled-foreground: var(--dc-dark-color-action-disabled-foreground);
   --dc-color-border-subtle: var(--dc-dark-color-border-subtle);
@@ -1529,6 +1799,10 @@
     --dc-color-action-neutral-foreground: var(--dc-dark-color-action-neutral-foreground);
     --dc-color-action-danger: var(--dc-dark-color-action-danger);
     --dc-color-action-danger-foreground: var(--dc-dark-color-action-danger-foreground);
+    --dc-color-accent-default: var(--dc-dark-color-accent-default);
+    --dc-color-accent-foreground: var(--dc-dark-color-accent-foreground);
+    --dc-color-accent-container: var(--dc-dark-color-accent-container);
+    --dc-color-accent-container-foreground: var(--dc-dark-color-accent-container-foreground);
     --dc-color-action-disabled: var(--dc-dark-color-action-disabled);
     --dc-color-action-disabled-foreground: var(--dc-dark-color-action-disabled-foreground);
     --dc-color-border-subtle: var(--dc-dark-color-border-subtle);
@@ -1557,6 +1831,28 @@
   }
 }
 
+/* Look: standard by default, expressive adds two-tone gradients, glow and rounder shapes. */
+:where([data-dc-theme]) {
+  --dc-gradient-accent: linear-gradient(in oklch 115deg, var(--dc-color-action-primary), var(--dc-color-accent-default));
+  --dc-gradient-accent-sheen: linear-gradient(in oklch 115deg, var(--dc-color-action-primary) 0%, var(--dc-color-accent-default) 50%, var(--dc-color-action-primary) 100%);
+  --dc-gradient-accent-subtle: linear-gradient(in oklch 115deg, var(--dc-color-action-secondary), var(--dc-color-accent-container));
+  --dc-gradient-text: linear-gradient(in oklch 90deg, var(--dc-color-text-link), var(--dc-color-accent-default));
+  --dc-look-fill-primary: none;
+  --dc-look-fill-tonal: none;
+  --dc-look-fill-size: 100% 100%;
+  --dc-look-shadow-primary: var(--dc-shadow-1);
+  --dc-look-radius-control: var(--dc-radius-md);
+  --dc-look-radius-container: var(--dc-radius-lg);
+}
+:where([data-dc-theme][data-dc-look="expressive"]) {
+  --dc-look-fill-primary: var(--dc-gradient-accent-sheen);
+  --dc-look-fill-tonal: var(--dc-gradient-accent-subtle);
+  --dc-look-fill-size: 200% 100%;
+  --dc-look-shadow-primary: 0 0.375rem 1.25rem -0.375rem color-mix(in srgb, var(--dc-color-accent-default) 55%, transparent), 0 0.25rem 0.75rem -0.25rem color-mix(in srgb, var(--dc-color-action-primary) 50%, transparent);
+  --dc-look-radius-control: var(--dc-radius-full);
+  --dc-look-radius-container: var(--dc-radius-xl);
+}
+
 :where([data-dc-theme][data-dc-scheme="light"]) { color-scheme: light; }
 :where([data-dc-theme][data-dc-scheme="dark"]) { color-scheme: dark; }
 :where([data-dc-theme][data-dc-scheme="system"]) { color-scheme: light dark; }
@@ -1575,5 +1871,12 @@
     --dc-color-border-strong: CanvasText;
     --dc-color-border-default: CanvasText;
     --dc-color-border-selected: Highlight;
+    --dc-gradient-accent: none;
+    --dc-gradient-accent-sheen: none;
+    --dc-gradient-accent-subtle: none;
+    --dc-gradient-text: none;
+    --dc-look-fill-primary: none;
+    --dc-look-fill-tonal: none;
+    --dc-look-shadow-primary: none;
   }
 }

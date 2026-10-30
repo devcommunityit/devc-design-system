@@ -14,6 +14,7 @@
   --_fg: var(--dc-color-action-secondary-foreground);
   --_border: var(--dc-color-border-selected);
   --_layer: var(--dc-color-action-secondary-foreground);
+  --_fill: var(--dc-look-fill-tonal);
 }
 
 .toggle.toggle[data-icon-only] {
@@ -25,6 +26,7 @@
   --_bg: transparent;
   --_fg: var(--dc-color-text-disabled);
   --_border: var(--dc-color-border-subtle);
+  --_fill: none;
 }
 
 .toggleGroup[data-orientation='vertical'] {

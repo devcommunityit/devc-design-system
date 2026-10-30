@@ -7,10 +7,11 @@ import { Hct, TonalPalette, argbFromHex, hexFromArgb } from '@material/material-
  * This file must only use erasable TypeScript syntax (it is executed by Node type stripping).
  */
 
-export type PaletteName = 'brand' | 'neutral' | 'neutral-variant' | 'danger' | 'warning' | 'success' | 'info';
+export type PaletteName = 'brand' | 'tertiary' | 'neutral' | 'neutral-variant' | 'danger' | 'warning' | 'success' | 'info';
 
 export const PALETTE_NAMES: readonly PaletteName[] = [
   'brand',
+  'tertiary',
   'neutral',
   'neutral-variant',
   'danger',
@@ -21,12 +22,16 @@ export const PALETTE_NAMES: readonly PaletteName[] = [
 
 export interface PaletteRules {
   brand: { minChroma: number; maxChroma: number };
+  /** Second accent hue (Material "tertiary"): brand hue rotated by `hueShift` degrees unless seeded. */
+  tertiary: { hueShift: number; minChroma: number; maxChroma: number };
   neutral: { chromaFactor: number; maxChroma: number };
   'neutral-variant': { chromaFactor: number; maxChroma: number };
 }
 
 export interface PaletteSeeds {
   brand: string;
+  /** Optional seed for the second accent; defaults to the brand hue rotated by `rules.tertiary.hueShift`. */
+  tertiary?: string;
   danger: string;
   warning: string;
   success: string;
@@ -79,9 +84,14 @@ export function createTonalPalettes(seeds: PaletteSeeds, rules: PaletteRules): T
       ? Math.min(c * 2, rules['neutral-variant'].maxChroma)
       : Math.min(c * rules['neutral-variant'].chromaFactor, rules['neutral-variant'].maxChroma),
   );
+  const tertiaryChroma = (c: number) => clamp(c, rules.tertiary.minChroma, rules.tertiary.maxChroma);
+  const tertiary = seeds.tertiary
+    ? paletteFromHex(seeds.tertiary, tertiaryChroma)
+    : TonalPalette.fromHueAndChroma((brand.hue + rules.tertiary.hueShift + 360) % 360, tertiaryChroma(brand.chroma));
   const fixed = (hex: string) => paletteFromHex(hex);
   const palettes: Record<PaletteName, TonalPalette> = {
     brand,
+    tertiary,
     neutral,
     'neutral-variant': neutralVariant,
     danger: fixed(seeds.danger),

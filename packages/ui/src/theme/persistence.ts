@@ -1,10 +1,12 @@
-import { DENSITY_TOKENS, PRESET_NAMES, type Density } from '../tokens/generated';
+import { DEFAULT_LOOK, DENSITY_TOKENS, LOOK_TOKENS, PRESET_NAMES, type Density, type Look } from '../tokens/generated';
 import type { ThemeMode } from './types';
 
 /** Stored theme preferences. Only names are stored, never theme definitions. */
 export interface ThemePreferences {
   mode?: ThemeMode;
   density?: Density;
+  /** Visual look (standard or expressive), independent of palette and density. */
+  look?: Look;
   /** Preset or custom theme name. Custom themes must be supplied again by the app. */
   theme?: string;
 }
@@ -38,6 +40,7 @@ export function sanitizePreferences(value: unknown): ThemePreferences {
   const prefs: ThemePreferences = {};
   if (typeof v.mode === 'string' && MODES.includes(v.mode)) prefs.mode = v.mode as ThemeMode;
   if (typeof v.density === 'string' && v.density in DENSITY_TOKENS) prefs.density = v.density as Density;
+  if (typeof v.look === 'string' && v.look in LOOK_TOKENS) prefs.look = v.look as Look;
   if (typeof v.theme === 'string' && NAME_RE.test(v.theme)) prefs.theme = v.theme;
   return prefs;
 }
@@ -115,6 +118,7 @@ export interface ThemeScriptOptions {
   defaultMode?: ThemeMode;
   defaultTheme?: string;
   defaultDensity?: Density;
+  defaultLook?: Look;
 }
 
 /**
@@ -123,7 +127,7 @@ export interface ThemeScriptOptions {
  * The script contains only validated literals; it never evaluates stored data.
  */
 export function getThemeScript(options: ThemeScriptOptions = {}): string {
-  const { storageKey = DEFAULT_STORAGE_KEY, defaultMode = 'system', defaultTheme = PRESET_NAMES[0], defaultDensity = 'comfortable' } = options;
-  const cfg = JSON.stringify({ k: storageKey, m: defaultMode, t: defaultTheme, d: defaultDensity, presets: PRESET_NAMES, densities: Object.keys(DENSITY_TOKENS) }).replace(/</g, '\\u003c');
-  return `(function(){var c=${cfg};var e=document.documentElement;var p={};try{p=JSON.parse(localStorage.getItem(c.k)||'{}')||{}}catch(_){}var m=['light','dark','system'].indexOf(p.mode)>-1?p.mode:c.m;var t=c.presets.indexOf(p.theme)>-1?p.theme:c.t;var d=c.densities.indexOf(p.density)>-1?p.density:c.d;e.setAttribute('data-dc-theme','');e.setAttribute('data-dc-scheme',m);e.setAttribute('data-dc-palette',t);e.setAttribute('data-dc-density',d);})();`;
+  const { storageKey = DEFAULT_STORAGE_KEY, defaultMode = 'system', defaultTheme = PRESET_NAMES[0], defaultDensity = 'comfortable', defaultLook = DEFAULT_LOOK } = options;
+  const cfg = JSON.stringify({ k: storageKey, m: defaultMode, t: defaultTheme, d: defaultDensity, l: defaultLook, presets: PRESET_NAMES, densities: Object.keys(DENSITY_TOKENS), looks: Object.keys(LOOK_TOKENS) }).replace(/</g, '\\u003c');
+  return `(function(){var c=${cfg};var e=document.documentElement;var p={};try{p=JSON.parse(localStorage.getItem(c.k)||'{}')||{}}catch(_){}var m=['light','dark','system'].indexOf(p.mode)>-1?p.mode:c.m;var t=c.presets.indexOf(p.theme)>-1?p.theme:c.t;var d=c.densities.indexOf(p.density)>-1?p.density:c.d;var l=c.looks.indexOf(p.look)>-1?p.look:c.l;e.setAttribute('data-dc-theme','');e.setAttribute('data-dc-scheme',m);e.setAttribute('data-dc-palette',t);e.setAttribute('data-dc-density',d);e.setAttribute('data-dc-look',l);})();`;
 }

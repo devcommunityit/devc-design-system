@@ -45,6 +45,15 @@ describe('createTheme', () => {
     }
   });
 
+  it('derives the tertiary accent from an explicit seed, else from the brand hue', () => {
+    const derived = createTheme({ name: 'acme', seeds: { brand: '#0a7d4f' } });
+    const seeded = createTheme({ name: 'acme-2', seeds: { brand: '#0a7d4f', tertiary: '#b5367a' } });
+    expect(derived.colors.light['accent.default']).not.toBe(derived.colors.light['action.primary']);
+    expect(seeded.colors.light['accent.default']).not.toBe(derived.colors.light['accent.default']);
+    expect(seeded.colors.light['action.primary']).toBe(derived.colors.light['action.primary']);
+    expect(() => createTheme({ name: 'bad', seeds: { tertiary: 'pink' } })).toThrow(ThemeValidationError);
+  });
+
   it('keeps generated preset palettes above the declared contrast minimums', () => {
     for (const name of PRESET_NAMES) {
       for (const scheme of ['light', 'dark'] as const) {
@@ -133,6 +142,9 @@ describe('SSR helpers', () => {
     expect(getThemePreferencesFromCookie(`a=1; dc-theme=${value}`)).toEqual({ mode: 'dark', theme: 'lagoon' });
     expect(getThemePreferencesFromCookie('dc-theme=%7Bbroken')).toEqual({});
     expect(getThemePreferencesFromCookie(undefined)).toEqual({});
+    const looks = encodeURIComponent(JSON.stringify({ look: 'expressive' }));
+    expect(getThemePreferencesFromCookie(`dc-theme=${looks}`)).toEqual({ look: 'expressive' });
+    expect(getThemePreferencesFromCookie(`dc-theme=${encodeURIComponent(JSON.stringify({ look: 'neon' }))}`)).toEqual({});
   });
 
   it('generates a self-contained theme script', () => {
@@ -142,5 +154,20 @@ describe('SSR helpers', () => {
     document.documentElement.removeAttribute('data-dc-scheme');
     new Function(script)();
     expect(document.documentElement.getAttribute('data-dc-scheme')).toBe('dark');
+  });
+
+  it('applies the default look, or a valid stored look, before first paint', () => {
+    const run = (stored: string | null) => {
+      localStorage.removeItem('look-k');
+      if (stored !== null) localStorage.setItem('look-k', stored);
+      new Function(getThemeScript({ storageKey: 'look-k', defaultLook: 'expressive' }))();
+      return document.documentElement.getAttribute('data-dc-look');
+    };
+    expect(run(null)).toBe('expressive');
+    expect(run(JSON.stringify({ look: 'standard' }))).toBe('standard');
+    expect(run(JSON.stringify({ look: 'neon' }))).toBe('expressive');
+    localStorage.removeItem('look-k');
+    new Function(getThemeScript({ storageKey: 'look-k' }))();
+    expect(document.documentElement.getAttribute('data-dc-look')).toBe('standard');
   });
 });

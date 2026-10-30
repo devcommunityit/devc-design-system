@@ -1,6 +1,6 @@
 # @dev-community/ui
 
-Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 8 preset, temi
+Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 9 preset, temi
 personalizzati), componenti accessibili basati su React Aria e pattern pronti (header, footer, menu utente, autenticazione).
 
 > **Licenza**: non ancora definita (`"license": "UNLICENSED"`, nessun diritto concesso). La scelta spetta al proprietario del
@@ -16,23 +16,23 @@ personalizzati), componenti accessibili basati su React Aria e pattern pronti (h
 
 Da tarball (distribuzione interna, nessun registry):
 
-```bash
+``bash
 # nel repository del design system: build + publint + attw + tarball con checksum
 npm run release:pack
 # nel progetto consumer
 npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
-```
+``
 
 Da registry privato (GitHub Packages, Azure Artifacts, Verdaccio…), con `.npmrc` nel progetto consumer:
 
-```ini
+``ini
 @dev-community:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
-```
+``
 
-```bash
+``bash
 npm install @dev-community/ui
-```
+``
 
 Per pubblicare su un registry privato impostare `publishConfig.registry` in questo `package.json`, poi
 `npm version <patch|minor|major> -w @dev-community/ui` e `npm publish -w @dev-community/ui`. Il token non va mai committato.
@@ -41,10 +41,10 @@ Per pubblicare su un registry privato impostare `publishConfig.registry` in ques
 
 Importa il foglio di stile **una sola volta**, nel punto d’ingresso dell’applicazione:
 
-```ts
+``ts
 import '@dev-community/ui/styles.css';   // token + stili dei componenti (obbligatorio)
 import '@dev-community/ui/reset.css';    // opzionale: reset minimo, opt-in
-```
+``
 
 Tutte le classi e le variabili usano il prefisso `dc` (`.dc-…`, `--dc-…`). `styles.css` non contiene selettori globali
 su `html`, `body` o `*`: il reset è separato e facoltativo. Tailwind non è richiesto.
@@ -53,7 +53,7 @@ Altri export: `@dev-community/ui/tokens.css` (solo variabili), `@dev-community/u
 
 ## Esempio minimo
 
-```tsx
+``tsx
 import '@dev-community/ui/styles.css';
 import { ThemeProvider, LocaleProvider, Button } from '@dev-community/ui';
 
@@ -68,11 +68,11 @@ export function App() {
     </LocaleProvider>
   );
 }
-```
+``
 
 ## Tema personalizzato
 
-```ts
+``ts
 import { createTheme } from '@dev-community/ui/theme'; // entry server-safe, senza React/DOM
 
 export const acme = createTheme({
@@ -83,14 +83,31 @@ export const acme = createTheme({
   tokens: { 'radius.md': '0.5rem' },
 });
 // <ThemeProvider theme={acme} themes={[acme]}>…</ThemeProvider>
-```
+``
 
 Il contrasto delle palette personalizzate **non** è garantito automaticamente: verificalo con `contrastRatio()` o con il
 Theme Builder del sito di documentazione.
 
+## Stile espressivo (Material 3 / Gemini)
+
+Lo stile (`look`) è indipendente da palette e densità. `standard` è il predefinito; `expressive` usa controlli a
+pillola, contenitori più arrotondati e riempimenti bicolore brand → terziario sulle azioni primarie e sugli stati
+selezionati. Il preset `nebula` offre un accoppiamento blu → magenta in stile Gemini.
+
+```tsx
+<ThemeProvider defaultTheme="nebula" defaultLook="expressive">
+  <Heading level={1} gradient>Titolo bicolore</Heading>
+  <Card variant="accent">Cornice con gradiente</Card>
+</ThemeProvider>
+```
+
+Con `forced-colors` i gradienti sono disattivati; nei browser senza interpolazione `in oklch` resta il colore pieno.
+Lo stile si persiste come le altre preferenze (`persistence={{ keys: ['look'] }}`) e `getThemeScript({ defaultLook })`
+lo applica prima del primo paint.
+
 ## Punti chiave
 
-- `ThemeProvider` annidabili: ciascuno ha la propria modalità, palette e densità; gli overlay in portal (Dialog, Popover,
+- `ThemeProvider` annidabili: ciascuno ha la propria modalità, palette, densità e stile; gli overlay in portal (Dialog, Popover,
   Menu, Tooltip, Drawer, Toast) ereditano il tema del provider di origine.
 - Nessun accesso a `window`, `document` o `localStorage` durante l’import. Per SSR senza flash usa `getThemeScript()`
   (compatibile con nonce CSP) oppure i cookie (`getThemePreferencesFromCookie`).

@@ -218,6 +218,7 @@
   block-size: 7rem;
   border-radius: var(--dc-radius-full);
   background-color: var(--dc-color-surface-brand);
+  background-image: var(--dc-gradient-accent-subtle);
   box-shadow: var(--dc-shadow-1);
 }
 

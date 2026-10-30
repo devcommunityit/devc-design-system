@@ -7,7 +7,11 @@ export default function Changelog() {
       <DocSection title="0.1.0 — prima versione (non pubblicata)">
         <ul>
           <li>Token DTCG come unica fonte; output CSS, TypeScript, DTCG e Tokens Studio generati.</li>
-          <li>Temi: modalità light/dark/system, preset aurora, lagoon, ember, graphite, ocean, forest, berry, saffron, densità comoda/compatta, createTheme, schema JSON v1.</li>
+          <li>Temi: modalità light/dark/system, preset aurora, lagoon, ember, graphite, ocean, forest, berry, saffron, nebula, densità comoda/compatta, createTheme, schema JSON v1.</li>
+          <li>
+            Stile expressive ispirato a Material 3 (prop look di ThemeProvider), palette terziaria con ruoli accent.*, gradienti bicolore,
+            Heading gradient e Card variant="accent".
+          </li>
           <li>ThemeProvider con provider annidati, portal tematizzati, persistenza opzionale e strategia per CSP restrittive.</li>
           <li>Catalogo completo di layout, tipografia, azioni, navigazione, form, dati, feedback e overlay.</li>
           <li>Pattern: SiteHeader con menu mobile, Footer, UserMenu, AuthLayout, LoginForm, SignUpForm, PasswordResetForm.</li>

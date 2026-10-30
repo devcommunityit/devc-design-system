@@ -66,6 +66,8 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   size?: Extract<TypographyRole, 'display' | `headline-${string}` | `title-${string}`>;
   tone?: TextTone;
   align?: 'start' | 'center' | 'end';
+  /** Two-tone gradient fill (brand → tertiary). Decorative emphasis only; falls back to solid text in forced-colors. @default false */
+  gradient?: boolean;
 }
 
 const defaultHeadingSize = {
@@ -79,7 +81,7 @@ const defaultHeadingSize = {
 
 /** Semantic heading (`h1`–`h6`) whose visual size can differ from its level. */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(function Heading(
-  { level, size, tone = 'primary', align, className, ...rest },
+  { level, size, tone = 'primary', align, gradient = false, className, ...rest },
   ref,
 ) {
   return createElement(`h${level}`, {
@@ -87,6 +89,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(function Hea
     'data-variant': size ?? defaultHeadingSize[level],
     'data-tone': tone,
     'data-align': align,
+    'data-gradient': gradient || undefined,
     className: cx(styles.text, styles.heading, className),
     ...rest,
   });

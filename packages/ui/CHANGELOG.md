@@ -11,9 +11,17 @@ Prima versione.
 
 - Token primitivi e semantici con un'unica fonte (`src/tokens/source`), generati in CSS custom properties, TypeScript e DTCG.
 - Motore dei temi: `createTheme`, `validateTheme`, `parseThemeJson` / `themeToJson` (schema versionato, `schemaVersion: 1`),
-  `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, `ocean`, `forest`, `berry`, `saffron`, modalità light/dark/system, densità comfortable/compact.
+  `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, `ocean`, `forest`, `berry`, `saffron`, `nebula`, modalità light/dark/system, densità comfortable/compact.
 - `ThemeProvider` con provider annidabili, persistenza configurabile (localStorage, cookie o adattatore personalizzato)
   e script anti-flash per SSR compatibile con CSP.
+- Stile (`look`) indipendente da palette e densità: `standard` (predefinito) ed `expressive` ispirato a Material 3,
+  con controlli a pillola, contenitori più arrotondati e riempimenti bicolore. Nuove prop `look` / `defaultLook` /
+  `onLookChange` di `ThemeProvider`, `useTheme().look` / `setLook`, chiave di persistenza `look`, attributo
+  `data-dc-look` e opzione `getThemeScript({ defaultLook })`. Token `--dc-look-*` e `--dc-gradient-*` (disattivati con
+  `forced-colors`), esportazioni `LOOK_TOKENS`, `LOOK_NAMES`, `DEFAULT_LOOK`, `GRADIENT_TOKENS`.
+- Palette terziaria (seme `seeds.tertiary`, altrimenti brand ruotato di 60°) e ruoli `color.accent.default`,
+  `accent.foreground`, `accent.container`, `accent.container-foreground`, inclusi nel gate di contrasto.
+- `Heading` con prop `gradient` (testo bicolore, solo se supportato) e `Card` con variante `accent` (cornice a gradiente).
 - `LocaleProvider` con messaggi sostituibili e supporto RTL. Bundle inclusi: `messagesIt`, `messagesEn`, `messagesEs`,
   `messagesFr`, `messagesDe`, `messagesPt` (uso brasiliano) e `messagesAr` (RTL), raccolti in `builtInMessages` e scelti da
   `getDefaultMessages` in base alla lingua della locale (fallback inglese). Le traduzioni es/fr/de/pt/ar sono prime versioni da

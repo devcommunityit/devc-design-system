@@ -32,16 +32,17 @@ import {
   TextField,
   ThemeProvider,
   Tooltip,
+  type Look,
   type Theme,
 } from '@dev-community/ui';
 
 /** Representative components rendered with a fixed scheme. Overlays use the provider portal, so they inherit this theme. */
-export function Preview({ theme, scheme }: { theme: Theme; scheme: 'light' | 'dark' }) {
+export function Preview({ theme, scheme, look }: { theme: Theme; scheme: 'light' | 'dark'; look: Look }) {
   const [notify, setNotify] = useState(true);
   const [count, setCount] = useState(0);
   const label = scheme === 'light' ? 'chiaro' : 'scuro';
   return (
-    <ThemeProvider theme={theme} mode={scheme} surface className="tb-preview" data-scheme={scheme}>
+    <ThemeProvider theme={theme} mode={scheme} look={look} surface className="tb-preview" data-scheme={scheme}>
       <Stack gap={4}>
         <Inline justify="between" align="center" wrap gap={2}>
           <Heading level={3} size="title-md">
@@ -113,7 +114,7 @@ export function Preview({ theme, scheme }: { theme: Theme; scheme: 'light' | 'da
             </Text>
           </TabPanel>
         </Tabs>
-        <TagGroup label="Etichette">
+        <TagGroup label="Etichette" selectionMode="multiple" defaultSelectedKeys={['a']}>
           <Tag id="a">Design</Tag>
           <Tag id="b">Accessibilità</Tag>
           <Tag id="c">Token</Tag>

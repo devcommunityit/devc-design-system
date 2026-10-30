@@ -31,6 +31,7 @@
 
 .step[data-status='complete']:not(:last-child)::after {
   background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-look-fill-primary);
 }
 
 .button {
@@ -87,8 +88,10 @@ button.button:hover .label {
 }
 
 .step[data-status='complete'] .marker {
-  border-color: var(--dc-color-action-primary);
+  border-color: transparent;
   background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-look-fill-primary);
+  background-origin: border-box;
   color: var(--dc-color-action-primary-foreground);
 }
 

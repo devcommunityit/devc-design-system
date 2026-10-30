@@ -3,6 +3,7 @@ import { Route, Routes, useHref, useLocation, useNavigate } from 'react-router';
 import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, builtInMessages } from '@dev-community/ui';
 import { BASE_URL, isStaticAppPath } from './base';
 import { DocsLayout } from './components/DocsLayout';
+import { DOCS_DEFAULT_LOOK, DOCS_DEFAULT_THEME } from './docs-defaults';
 import { DocsSettingsProvider, docsLocale, useDocsSettings } from './settings';
 import { Home } from './pages/Home';
 import { ComponentsIndex } from './pages/ComponentsIndex';
@@ -70,7 +71,13 @@ export function App() {
   };
   return (
     <RouterProvider navigate={routerNavigate} useHref={useRouterHref}>
-      <ThemeProvider applyToDocument persistence={{ keys: ['mode', 'theme', 'density'] }} defaultMode="system">
+      <ThemeProvider
+        applyToDocument
+        persistence={{ keys: ['mode', 'theme', 'density', 'look'] }}
+        defaultMode="system"
+        defaultTheme={DOCS_DEFAULT_THEME}
+        defaultLook={DOCS_DEFAULT_LOOK}
+      >
         <DocsSettingsProvider>
           <Localized>
             <ToastProvider>

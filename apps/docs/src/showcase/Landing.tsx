@@ -176,7 +176,7 @@ export function Landing() {
               <Badge tone="brand" variant="soft">
                 Template dimostrativo
               </Badge>
-              <Heading level={1} size="display" id="hero-title">
+              <Heading level={1} size="display" id="hero-title" gradient>
                 Il portale clienti che il tuo team userà davvero
               </Heading>
               <Text variant="body-lg" tone="secondary" className="sc-hero-text">
@@ -267,7 +267,7 @@ export function Landing() {
               return (
                 <Card
                   key={p.id}
-                  variant={p.featured ? "elevated" : "outlined"}
+                  variant={p.featured ? "accent" : "outlined"}
                   className={
                     p.featured ? "sc-plan sc-plan--featured" : "sc-plan"
                   }

@@ -37,6 +37,17 @@ describe('Text / Heading', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Big h2' })).toHaveAttribute('data-variant', 'display');
     expect(screen.getByRole('heading', { level: 4, name: 'Default h4' })).toHaveAttribute('data-variant', 'title-lg');
   });
+
+  it('Heading gradient is an opt-in data attribute that keeps the accessible name', () => {
+    render(
+      <>
+        <Heading level={2} gradient>Gradient</Heading>
+        <Heading level={2}>Plain</Heading>
+      </>,
+    );
+    expect(screen.getByRole('heading', { name: 'Gradient' })).toHaveAttribute('data-gradient');
+    expect(screen.getByRole('heading', { name: 'Plain' })).not.toHaveAttribute('data-gradient');
+  });
 });
 
 describe('Link', () => {

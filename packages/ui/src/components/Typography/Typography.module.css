@@ -109,6 +109,15 @@
   text-wrap: balance;
 }
 
+/* Only when gradients with oklch interpolation and text clipping are supported; otherwise the solid tone stays. */
+@supports (background-clip: text) and (background-image: linear-gradient(in oklch 90deg, red, blue)) {
+  .heading[data-gradient] {
+    background-image: var(--dc-gradient-text);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 .text[data-variant='display'],
 .text[data-variant^='headline'] {
   font-family: var(--dc-font-family-sans);
@@ -284,6 +293,11 @@
 }
 
 @media (forced-colors: active) {
+  .heading[data-gradient] {
+    background-image: none;
+    -webkit-text-fill-color: currentcolor;
+  }
+
   .kbd {
     border-color: CanvasText;
   }

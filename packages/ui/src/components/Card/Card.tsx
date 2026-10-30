@@ -6,7 +6,7 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
   /** Semantic element. Use `article` for self-contained content, `li` inside lists. @default 'div' */
   as?: 'div' | 'article' | 'section' | 'li';
   /** @default 'outlined' */
-  variant?: 'outlined' | 'elevated' | 'filled';
+  variant?: 'outlined' | 'elevated' | 'filled' | 'accent';
   /** Inner padding. @default 'md' */
   padding?: 'none' | 'sm' | 'md' | 'lg';
   /** Visually marks the card as selected (pair with a selected control or text). */

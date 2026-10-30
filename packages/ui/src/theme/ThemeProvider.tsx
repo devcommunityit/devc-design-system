@@ -15,7 +15,7 @@ import {
 } from 'react';
 import { UNSAFE_PortalProvider } from 'react-aria';
 import { useLocale } from 'react-aria-components';
-import { DEFAULT_PRESET, TOKEN_PREFIX, type Density, type PresetName } from '../tokens/generated';
+import { DEFAULT_LOOK, DEFAULT_PRESET, TOKEN_PREFIX, type Density, type Look, type PresetName } from '../tokens/generated';
 import { getPreset, isPresetName } from './createTheme';
 import { themeToStyle } from './cssVars';
 import {
@@ -32,7 +32,7 @@ import styles from './ThemeProvider.module.css';
 
 const useIsoLayoutEffect = typeof document === 'undefined' ? useEffect : useLayoutEffect;
 
-export type PersistedKey = 'mode' | 'theme' | 'density';
+export type PersistedKey = 'mode' | 'theme' | 'density' | 'look';
 
 export interface ThemePersistenceOptions {
   /** Storage adapter. Default: localStorage (accessed lazily, only in the browser). */
@@ -53,6 +53,9 @@ export interface ThemeContextValue {
   setTheme: (theme: PresetName | Theme) => void;
   density: Density;
   setDensity: (density: Density) => void;
+  /** Visual style: `standard` (sober) or `expressive` (two-tone gradients, glow, rounder shapes). */
+  look: Look;
+  setLook: (look: Look) => void;
   /** Last persistence error, if any. */
   persistenceError: ThemePersistenceError | null;
   /** Element that receives portalled overlays for this provider. */
@@ -76,6 +79,10 @@ export interface ThemeProviderProps extends Omit<HTMLAttributes<HTMLDivElement>,
   density?: Density;
   defaultDensity?: Density;
   onDensityChange?: (density: Density) => void;
+  /** Controlled look. Independent of palette and density; nested providers inherit it. */
+  look?: Look;
+  defaultLook?: Look;
+  onLookChange?: (look: Look) => void;
   /** Opt-in persistence. `false` (default) never touches storage. */
   persistence?: boolean | ThemePersistenceOptions;
   onPersistenceError?: (error: ThemePersistenceError) => void;
@@ -106,7 +113,7 @@ function toTheme(value: PresetName | Theme): Theme {
 }
 
 /**
- * Provides mode, palette and density to a subtree. Providers can be nested: unspecified
+ * Provides mode, palette, density and look to a subtree. Providers can be nested: unspecified
  * values are inherited. Portalled overlays rendered inside are mounted in a container that
  * carries the same theme attributes, so they match the provider they originate from.
  */
@@ -123,6 +130,9 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
     density: densityProp,
     defaultDensity,
     onDensityChange,
+    look: lookProp,
+    defaultLook,
+    onLookChange,
     persistence = false,
     onPersistenceError,
     themeStrategy = 'inline',
@@ -139,11 +149,13 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
   const [modeState, setModeState] = useState<ThemeMode | undefined>(defaultMode);
   const [themeState, setThemeState] = useState<Theme | undefined>(() => (defaultTheme ? toTheme(defaultTheme) : undefined));
   const [densityState, setDensityState] = useState<Density | undefined>(defaultDensity);
+  const [lookState, setLookState] = useState<Look | undefined>(defaultLook);
   const [persistenceError, setPersistenceError] = useState<ThemePersistenceError | null>(null);
 
   const mode: ThemeMode = modeProp ?? modeState ?? parent?.mode ?? 'system';
   const theme: Theme = themeProp ? toTheme(themeProp) : (themeState ?? parent?.theme ?? getPreset(DEFAULT_PRESET));
   const density: Density = densityProp ?? densityState ?? parent?.density ?? 'comfortable';
+  const look: Look = lookProp ?? lookState ?? parent?.look ?? DEFAULT_LOOK;
 
   const systemScheme = useSyncExternalStore(subscribeScheme, getSchemeSnapshot, getServerScheme);
   const resolvedScheme: ResolvedScheme = mode === 'system' ? systemScheme : mode;
@@ -170,9 +182,9 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
     [onPersistenceError],
   );
 
-  const latest = useRef({ mode, theme, density });
+  const latest = useRef({ mode, theme, density, look });
   useIsoLayoutEffect(() => {
-    latest.current = { mode, theme, density };
+    latest.current = { mode, theme, density, look };
   });
 
   const persist = useCallback(
@@ -182,10 +194,11 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
       const current = latest.current;
       const keys = persistKeysKey.split(',');
       const prefs: ThemePreferences = {};
-      const next = { mode: current.mode, theme: current.theme.name, density: current.density, ...patch };
+      const next = { mode: current.mode, theme: current.theme.name, density: current.density, look: current.look, ...patch };
       if (keys.includes('mode')) prefs.mode = next.mode;
       if (keys.includes('theme')) prefs.theme = next.theme;
       if (keys.includes('density')) prefs.density = next.density;
+      if (keys.includes('look')) prefs.look = next.look;
       try {
         storage.set(storageKey, serializePreferences(prefs));
         setPersistenceError(null);
@@ -212,6 +225,7 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
     }
     if (persistKeys.includes('mode') && prefs.mode && modeProp === undefined) setModeState(prefs.mode);
     if (persistKeys.includes('density') && prefs.density && densityProp === undefined) setDensityState(prefs.density);
+    if (persistKeys.includes('look') && prefs.look && lookProp === undefined) setLookState(prefs.look);
     if (persistKeys.includes('theme') && prefs.theme && themeProp === undefined) {
       const found = isPresetName(prefs.theme) ? getPreset(prefs.theme) : themes?.find((t) => t.name === prefs.theme);
       if (found) setThemeState(found);
@@ -243,6 +257,14 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
     },
     [onDensityChange, persist],
   );
+  const setLook = useCallback(
+    (next: Look) => {
+      setLookState(next);
+      onLookChange?.(next);
+      persist({ look: next });
+    },
+    [onLookChange, persist],
+  );
 
   const inlineVars = useMemo<Record<string, string> | undefined>(
     () => (theme.kind === 'custom' && themeStrategy === 'inline' ? themeToStyle(theme) : undefined),
@@ -255,10 +277,11 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
       [`data-${TOKEN_PREFIX}-scheme`]: mode,
       [`data-${TOKEN_PREFIX}-resolved-scheme`]: resolvedScheme,
       [`data-${TOKEN_PREFIX}-density`]: density,
+      [`data-${TOKEN_PREFIX}-look`]: look,
     };
     if (inlineVars) attrs[`data-${TOKEN_PREFIX}-palette-source`] = 'inline';
     return attrs;
-  }, [theme.name, mode, resolvedScheme, density, inlineVars]);
+  }, [theme.name, mode, resolvedScheme, density, look, inlineVars]);
 
   // Portal container: created lazily on the client, kept in sync with this provider.
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
@@ -295,8 +318,8 @@ export const ThemeProvider = forwardRef<HTMLDivElement, ThemeProviderProps>(func
   const getContainer = useCallback(() => portalContainer ?? document.body, [portalContainer]);
 
   const value = useMemo<ThemeContextValue>(
-    () => ({ mode, setMode, resolvedScheme, theme, setTheme, density, setDensity, persistenceError, portalContainer }),
-    [mode, setMode, resolvedScheme, theme, setTheme, density, setDensity, persistenceError, portalContainer],
+    () => ({ mode, setMode, resolvedScheme, theme, setTheme, density, setDensity, look, setLook, persistenceError, portalContainer }),
+    [mode, setMode, resolvedScheme, theme, setTheme, density, setDensity, look, setLook, persistenceError, portalContainer],
   );
 
   const rootClass = [styles.root, surface ? styles.surface : undefined, className].filter(Boolean).join(' ');

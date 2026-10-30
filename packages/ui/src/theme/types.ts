@@ -24,6 +24,11 @@ export type OverridableToken = (typeof OVERRIDABLE_TOKENS)[number];
 export interface ThemeSeeds {
   /** Brand seed (hex). Generates the brand tonal palette. */
   brand?: string;
+  /**
+   * Optional second accent seed (hex), Material "tertiary". Used by `color.accent.*` and the
+   * two-tone gradients. Defaults to the preset's tertiary seed or the brand hue rotated by 60°.
+   */
+  tertiary?: string;
   /** Optional neutral seed (hex); defaults to a low-chroma brand hue. */
   neutral?: string;
   danger?: string;

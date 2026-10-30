@@ -28,7 +28,7 @@ export const MAX_THEME_JSON_BYTES = 64 * 1024;
 const NAME_RE = /^[a-z][a-z0-9-]{0,47}$/;
 const LENGTH_RE = /^(?:0|\d{1,3}(?:\.\d{1,3})?(?:px|rem|em))$/;
 const FONT_FAMILY_RE = /^[A-Za-z0-9 ,"'-]{1,300}$/;
-const SEED_KEYS = ['brand', 'neutral', 'danger', 'warning', 'success', 'info'] as const;
+const SEED_KEYS = ['brand', 'tertiary', 'neutral', 'danger', 'warning', 'success', 'info'] as const;
 const TOP_KEYS = ['schemaVersion', 'name', 'label', 'extends', 'seeds', 'colors', 'tokens'] as const;
 
 const colorRoleSet = new Set<string>(COLOR_ROLES);
@@ -243,6 +243,8 @@ function resolveTheme(input: ThemeInput): Theme {
     const palettes = createTonalPalettes(
       {
         brand: seeds.brand ?? PRESET_META[base].brand,
+        // A new brand seed re-derives the tertiary hue unless it is seeded explicitly.
+        tertiary: seeds.tertiary ?? (seeds.brand ? undefined : PRESET_META[base].tertiary),
         neutral: seeds.neutral,
         danger: seeds.danger ?? FEEDBACK_SEEDS.danger,
         warning: seeds.warning ?? FEEDBACK_SEEDS.warning,

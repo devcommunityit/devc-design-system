@@ -285,6 +285,7 @@
   inline-size: 3px;
   border-radius: var(--dc-radius-full);
   background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-look-fill-primary);
 }
 
 .sidebarLink[data-disabled] {

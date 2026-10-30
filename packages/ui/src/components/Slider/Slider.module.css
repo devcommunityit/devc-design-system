@@ -45,6 +45,7 @@
   block-size: var(--dc-space-1);
   border-radius: var(--dc-radius-full);
   background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-look-fill-primary);
   transform: translateY(-50%);
 }
 
@@ -84,6 +85,7 @@
 
 .slider[data-disabled] .fill {
   background-color: var(--dc-color-action-disabled);
+  background-image: none;
 }
 
 .slider[data-disabled] .thumb {

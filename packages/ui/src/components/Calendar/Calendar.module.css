@@ -139,6 +139,8 @@
 .cell[data-selection-end] {
   --_bg: var(--dc-color-action-primary);
 
+  background-image: var(--dc-look-fill-primary);
+
   color: var(--dc-color-action-primary-foreground);
   font-weight: var(--dc-font-weight-bold);
 }
@@ -167,6 +169,8 @@
 
 .cell[data-invalid][data-selected] {
   --_bg: var(--dc-color-feedback-danger);
+
+  background-image: none;
 
   color: var(--dc-color-feedback-danger-foreground);
 }

@@ -21,6 +21,7 @@ export type SeedKey = keyof ThemeSeeds;
 
 export const SEED_KEYS: Array<{ key: SeedKey; label: string; help: string }> = [
   { key: 'brand', label: 'Brand', help: 'Genera azioni primarie, link, focus e superfici brand.' },
+  { key: 'tertiary', label: 'Terziario', help: 'Secondo accento (Material tertiary): ruoli accent.* e gradienti bicolore. Se assente deriva dal preset o dal brand ruotato di 60°.' },
   { key: 'neutral', label: 'Neutro', help: 'Testi, superfici e bordi. Se assente deriva dal brand con croma bassa.' },
   { key: 'danger', label: 'Errore', help: 'Feedback di errore e azioni distruttive.' },
   { key: 'warning', label: 'Avviso', help: 'Feedback di attenzione.' },
@@ -38,6 +39,7 @@ const byPrefix = (prefix: string) => COLOR_ROLES.filter((r) => r.startsWith(pref
 
 export const ROLE_GROUPS: RoleGroup[] = [
   { id: 'brand', label: 'Brand e azioni', roles: [...byPrefix('action.'), 'surface.brand', 'focus.ring'] },
+  { id: 'accent', label: 'Accento terziario', roles: byPrefix('accent.') },
   { id: 'text', label: 'Testo', roles: byPrefix('text.') },
   { id: 'surface', label: 'Superfici', roles: byPrefix('surface.').filter((r) => r !== 'surface.brand') },
   { id: 'border', label: 'Bordi', roles: byPrefix('border.') },
@@ -63,6 +65,7 @@ export function seedValue(state: BuilderState, key: SeedKey): string | undefined
   if (explicit) return explicit;
   if (key === 'brand') return PRESET_META[state.base].brand;
   if (key === 'neutral') return undefined;
+  if (key === 'tertiary') return state.seeds.brand ? undefined : PRESET_META[state.base].tertiary;
   return FEEDBACK_SEEDS[key];
 }
 

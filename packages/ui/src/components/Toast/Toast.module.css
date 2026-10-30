@@ -48,7 +48,7 @@
   align-items: flex-start;
   padding: var(--dc-space-3) var(--dc-space-3) var(--dc-space-3) var(--dc-space-4);
   border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
-  border-radius: var(--dc-radius-lg);
+  border-radius: var(--dc-look-radius-container);
   background: var(--dc-color-surface-raised);
   box-shadow: var(--dc-shadow-3);
   color: var(--dc-color-text-primary);

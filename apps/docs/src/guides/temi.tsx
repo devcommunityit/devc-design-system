@@ -14,7 +14,7 @@ function Swatch({ color }: { color: string }) {
 export default function Temi() {
   return (
     <>
-      <DocSection title="Quattro concetti indipendenti">
+      <DocSection title="Cinque concetti indipendenti">
         <RefTable
           label="Concetti del tema"
           columns={['Concetto', 'Valori', 'Prop di ThemeProvider']}
@@ -23,18 +23,19 @@ export default function Temi() {
             ['Palette (brand)', <code key="p">{PRESET_NAMES.join(' | ')} | Theme personalizzato</code>, <code key="pp">theme / defaultTheme / onThemeChange</code>],
             ['Schema risolto', <code key="r">light | dark</code>, <code key="rp">useTheme().resolvedScheme (sola lettura)</code>],
             ['Densità', <code key="d">comfortable | compact</code>, <code key="dp">density / defaultDensity / onDensityChange</code>],
+            ['Stile (look)', <code key="lk">standard | expressive</code>, <code key="lkp">look / defaultLook / onLookChange</code>],
           ]}
         />
         <p>
-          Cambiare palette o densità non altera struttura, tipografia o comportamento: cambiano solo le variabili di colore o le dimensioni dei
-          controlli. Con <code>system</code> lo schema segue <code>prefers-color-scheme</code>; durante il rendering server{' '}
+          Cambiare palette, densità o stile non altera struttura, tipografia o comportamento: cambiano solo le variabili di colore o le dimensioni dei
+          controlli (lo stile cambia solo raggi e riempimenti, mai le dimensioni). Con <code>system</code> lo schema segue <code>prefers-color-scheme</code>; durante il rendering server{' '}
           <code>resolvedScheme</code> vale <code>light</code> finché il client non conosce la preferenza.
         </p>
       </DocSection>
 
       <DocSection title="Preset inclusi">
         <p>
-          Otto preset generati dallo stesso algoritmo (palette tonali HCT da un colore seme). Ogni preset supera le coppie di contrasto dichiarate
+          {PRESET_NAMES.length} preset generati dallo stesso algoritmo (palette tonali HCT da un colore seme). Ogni preset supera le coppie di contrasto dichiarate
           in chiaro e in scuro; la colonna «Primario» mostra il ruolo <code>action.primary</code> effettivamente generato.
         </p>
         <RefTable
@@ -51,6 +52,48 @@ export default function Temi() {
             PRESET_META[name].description,
           ])}
         />
+      </DocSection>
+
+      <DocSection title="Stile espressivo e accento terziario">
+        <p>
+          Ispirato a Material Design 3, ogni tema genera anche una palette <strong>terziaria</strong> (seme <code>seeds.tertiary</code>, oppure il
+          brand ruotato di 60° in tonalità) che alimenta i ruoli <code>color.accent.*</code> e i gradienti bicolore{' '}
+          <code>--dc-gradient-accent</code>, <code>--dc-gradient-accent-sheen</code>, <code>--dc-gradient-accent-subtle</code> e{' '}
+          <code>--dc-gradient-text</code>. Il preset <code>nebula</code> usa un accoppiamento blu → magenta in stile Gemini.
+        </p>
+        <p>
+          Lo <strong>stile</strong> (<code>look</code>) è una dimensione separata da palette e densità. <code>standard</code> (predefinito della
+          libreria) mantiene riempimenti pieni e raggi misurati. <code>expressive</code> applica forme a pillola ai controlli, contenitori più
+          arrotondati, riempimenti bicolore con un leggero riflesso al passaggio del puntatore sulle azioni primarie (Button, Switch, Checkbox,
+          Slider, Progress, Tabs, Tag, Calendar, Stepper, Badge) e riempimenti tonali sugli elementi selezionati (Toggle, Pagination,
+          BottomNavigation, TreeView). Questo sito usa <code>expressive</code> con <code>nebula</code>: puoi cambiarli dalle preferenze.
+        </p>
+        <Code>{`
+<ThemeProvider defaultTheme="nebula" defaultLook="expressive">
+  <App />
+</ThemeProvider>;
+
+// Accento esplicito in un tema personalizzato
+const tema = createTheme({ name: 'brand-x', seeds: { brand: '#0b57d0', tertiary: '#b5367a' } });
+
+// Elementi opt-in, indipendenti dallo stile
+<Heading level={1} gradient>Titolo bicolore</Heading>;
+<Card variant="accent">Cornice con gradiente</Card>;
+`}</Code>
+        <Alert tone="info" title="Assunzione architetturale: gradienti con uno scopo">
+          La direzione iniziale evitava gradienti decorativi diffusi. Su richiesta esplicita lo stile <code>expressive</code> introduce gradienti
+          bicolore, ma solo su elementi con significato (azione primaria, stato selezionato, progresso, enfasi del titolo) e mai come sfondo di
+          pagina. Gli estremi del gradiente (<code>action.primary</code> e <code>accent.default</code>) hanno lo stesso tono HCT, quindi il
+          testo sovrapposto mantiene il contrasto verificato dal gate dei preset. Il movimento è limitato a transizioni di{' '}
+          <code>background-position</code> con i token di durata (azzerati da <code>prefers-reduced-motion</code>); non ci sono animazioni
+          infinite. Con <code>forced-colors</code> tutti i gradienti diventano <code>none</code>; nei browser senza interpolazione{' '}
+          <code>in oklch</code> resta il colore pieno.
+        </Alert>
+        <p>
+          Lo stile non fa parte del JSON del tema né delle variabili Figma: è un insieme di espressioni CSS (<code>--dc-look-*</code>) emesse
+          sotto <code>[data-dc-look=&quot;expressive&quot;]</code>. Per i temi personalizzati verifica comunque il contrasto dei ruoli{' '}
+          <code>accent.*</code> nel <Link href="/theme-builder">Theme Builder</Link>.
+        </p>
       </DocSection>
 
       <DocSection title="Uso controllato e non controllato">

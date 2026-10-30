@@ -9,7 +9,7 @@
   min-inline-size: 0;
   padding: var(--_pad);
   border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
-  border-radius: var(--dc-radius-lg);
+  border-radius: var(--dc-look-radius-container);
   background-color: var(--dc-color-surface-default);
   color: var(--dc-color-text-primary);
   overflow-wrap: anywhere;
@@ -39,6 +39,16 @@
 .card[data-variant='filled'] {
   border-color: transparent;
   background-color: var(--dc-color-surface-subtle);
+}
+
+/* Two-tone frame: the gradient shows only in the border box, the surface covers the padding box. */
+.card[data-variant='accent'] {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--dc-color-surface-raised), var(--dc-color-surface-raised)) padding-box,
+    var(--dc-gradient-accent) border-box;
+  background-color: var(--dc-color-surface-raised);
+  box-shadow: var(--dc-shadow-1);
 }
 
 .card[data-selected] {
@@ -155,6 +165,10 @@
 }
 
 @media (forced-colors: active) {
+  .card[data-variant='accent'] {
+    border-color: CanvasText;
+  }
+
   .card[data-selected] {
     border-width: var(--dc-border-width-thick);
     border-color: Highlight;

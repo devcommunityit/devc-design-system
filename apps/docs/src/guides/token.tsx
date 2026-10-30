@@ -77,13 +77,14 @@ const style = {
 
       <DocSection title="Categorie">
         <ul>
-          <li><strong>Colore</strong>: text, surface, border, action, feedback, focus, overlay.</li>
+          <li><strong>Colore</strong>: text, surface, border, action, accent (terziario), feedback, focus, overlay.</li>
           <li><strong>Tipografia</strong>: famiglie, pesi e 13 ruoli (display → label-sm) con size, line-height, weight, letter-spacing.</li>
           <li><strong>Spaziatura</strong>: scala a passi di 4px (space.0 → space.24, più space.0-5 e space.1-5).</li>
           <li><strong>Raggi, bordi, ombre</strong>: radius.none → full, border.width.*, shadow.1 → 4.</li>
           <li><strong>Dimensioni</strong>: altezze dei controlli e padding (densità), larghezze dei contenitori.</li>
           <li><strong>Z-index</strong>: livelli nominati per sticky, overlay, toast.</li>
           <li><strong>Motion</strong>: durate e curve, azzerate con prefers-reduced-motion.</li>
+          <li><strong>Stile e gradienti</strong>: gradient.accent, accent-sheen, accent-subtle, text e i valori look.* (fill-primary, fill-tonal, fill-size, shadow-primary, radius-control, radius-container) per gli stili standard ed expressive. Fonte: <code>tokens/look.config.json</code>.</li>
         </ul>
         <p>
           Valori e anteprime sono in <Link href="/guide/fondamenta">Fondamenta visive</Link>.

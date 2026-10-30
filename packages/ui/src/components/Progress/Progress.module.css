@@ -1,5 +1,6 @@
 .progress {
   --_color: var(--dc-color-action-primary);
+  --_fill: var(--dc-look-fill-primary);
   --_thickness: var(--dc-space-1-5);
 
   display: flex;
@@ -15,6 +16,12 @@
 
 .progress[data-size='lg'] {
   --_thickness: var(--dc-space-2);
+}
+
+.progress[data-tone='success'],
+.progress[data-tone='warning'],
+.progress[data-tone='danger'] {
+  --_fill: none;
 }
 
 .progress[data-tone='success'],
@@ -63,7 +70,8 @@
 .fill {
   block-size: 100%;
   border-radius: inherit;
-  background: var(--_color);
+  background-color: var(--_color);
+  background-image: var(--_fill);
   transition: inline-size var(--dc-motion-duration-normal) var(--dc-motion-easing-standard);
 }
 

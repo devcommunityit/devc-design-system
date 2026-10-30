@@ -4,7 +4,7 @@
   max-inline-size: min(var(--dc-container-sm), calc(100vw - var(--dc-space-4)));
   overflow: auto;
   border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
-  border-radius: var(--dc-radius-lg);
+  border-radius: var(--dc-look-radius-container);
   background-color: var(--dc-color-surface-raised);
   color: var(--dc-color-text-primary);
   box-shadow: var(--dc-shadow-3);

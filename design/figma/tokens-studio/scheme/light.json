@@ -102,6 +102,24 @@
         "$value": "{palette.neutral.58}"
       }
     },
+    "accent": {
+      "default": {
+        "$type": "color",
+        "$value": "{palette.tertiary.40}"
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{palette.tertiary.100}"
+      },
+      "container": {
+        "$type": "color",
+        "$value": "{palette.tertiary.90}"
+      },
+      "container-foreground": {
+        "$type": "color",
+        "$value": "{palette.tertiary.10}"
+      }
+    },
     "border": {
       "subtle": {
         "$type": "color",

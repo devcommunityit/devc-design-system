@@ -15,6 +15,7 @@ import {
   ListBoxItem,
   Select,
   Stack,
+  Switch,
   Tab,
   TabList,
   TabPanel,
@@ -27,6 +28,7 @@ import {
   useTheme,
   useToast,
   type FileUploadItem,
+  type Look,
 } from '@dev-community/ui';
 import { MAX_THEME_JSON_BYTES, PRESET_META, PRESET_NAMES, isPresetName, parseThemeJson, themeToCss, themeToJson, type ThemeIssue } from '@dev-community/ui/theme';
 import { DocSection, RefTable } from '../components/Doc';
@@ -97,6 +99,7 @@ export function ThemeBuilder() {
   const toast = useToast();
   const [state, setState] = useState<BuilderState>(() => initialState(isPresetName(site.theme.name) ? site.theme.name : 'aurora'));
   const [editScheme, setEditScheme] = useState<Scheme>('light');
+  const [previewLook, setPreviewLook] = useState<Look>(site.look);
   const [importText, setImportText] = useState('');
   const [importIssues, setImportIssues] = useState<ThemeIssue[] | null>(null);
   const [files, setFiles] = useState<FileUploadItem[]>([]);
@@ -289,8 +292,15 @@ export function ThemeBuilder() {
           <Heading level={2} className="tb-visually-compact">
             Anteprima live
           </Heading>
-          <Preview theme={theme} scheme="light" />
-          <Preview theme={theme} scheme="dark" />
+          <Switch
+            isSelected={previewLook === 'expressive'}
+            onChange={(on) => setPreviewLook(on ? 'expressive' : 'standard')}
+            description="Lo stile è indipendente dal tema: stessa palette, forme e riempimenti diversi. Non viene esportato nel JSON."
+          >
+            Anteprima con stile espressivo
+          </Switch>
+          <Preview theme={theme} scheme="light" look={previewLook} />
+          <Preview theme={theme} scheme="dark" look={previewLook} />
         </div>
       </div>
 

@@ -25,6 +25,10 @@ export const COLOR_ROLES = [
   "action.neutral-foreground",
   "action.danger",
   "action.danger-foreground",
+  "accent.default",
+  "accent.foreground",
+  "accent.container",
+  "accent.container-foreground",
   "action.disabled",
   "action.disabled-foreground",
   "border.subtle",
@@ -164,6 +168,26 @@ export const ROLE_SPECS = {
     "light": 100,
     "dark": 20
   },
+  "accent.default": {
+    "palette": "tertiary",
+    "light": 40,
+    "dark": 80
+  },
+  "accent.foreground": {
+    "palette": "tertiary",
+    "light": 100,
+    "dark": 20
+  },
+  "accent.container": {
+    "palette": "tertiary",
+    "light": 90,
+    "dark": 30
+  },
+  "accent.container-foreground": {
+    "palette": "tertiary",
+    "light": 10,
+    "dark": 90
+  },
   "action.disabled": {
     "palette": "neutral",
     "light": 91,
@@ -291,11 +315,11 @@ export const ROLE_SPECS = {
   }
 } as const;
 
-export const PRESET_NAMES = ["aurora","lagoon","ember","graphite","ocean","forest","berry","saffron"] as const;
+export const PRESET_NAMES = ["aurora","lagoon","ember","graphite","ocean","forest","berry","saffron","nebula"] as const;
 export type PresetName = (typeof PRESET_NAMES)[number];
 export const DEFAULT_PRESET: PresetName = "aurora";
 
-export const PRESET_META: Record<PresetName, { label: { it: string; en: string }; brand: string; description: string }> = {
+export const PRESET_META: Record<PresetName, { label: { it: string; en: string }; brand: string; tertiary?: string; description: string }> = {
   "aurora": {
     "label": {
       "it": "Aurora",
@@ -359,6 +383,15 @@ export const PRESET_META: Record<PresetName, { label: { it: string; en: string }
     },
     "brand": "#b8860b",
     "description": "Oro caldo, elegante; i toni scuri restano leggibili."
+  },
+  "nebula": {
+    "label": {
+      "it": "Nebula",
+      "en": "Nebula"
+    },
+    "brand": "#3d6fe0",
+    "tertiary": "#c4507e",
+    "description": "Blu elettrico con accento rosa: bicolore, pensato per lo stile expressive (gradiente blu → viola → rosa)."
   }
 };
 
@@ -387,6 +420,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#1b1b20",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#9f337f",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#ffd8eb",
+      "accent.container-foreground": "#3b002c",
       "action.disabled": "#e7e4ea",
       "action.disabled-foreground": "#8d8a90",
       "border.subtle": "#eae6f3",
@@ -436,6 +473,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#eae7ed",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#ffaedd",
+      "accent.foreground": "#60004a",
+      "accent.container": "#821665",
+      "accent.container-foreground": "#ffd8eb",
       "action.disabled": "#313035",
       "action.disabled-foreground": "#737177",
       "border.subtle": "#302f39",
@@ -487,6 +528,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#191c1c",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#336096",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#d4e3ff",
+      "accent.container-foreground": "#001c39",
       "action.disabled": "#e4e5e5",
       "action.disabled-foreground": "#8a8c8b",
       "border.subtle": "#e2eae9",
@@ -536,6 +581,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#e7e8e8",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#a4c8ff",
+      "accent.foreground": "#00315d",
+      "accent.container": "#15487d",
+      "accent.container-foreground": "#d4e3ff",
       "action.disabled": "#2e3131",
       "action.disabled-foreground": "#707272",
       "border.subtle": "#2b3232",
@@ -587,6 +636,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#221a18",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#715d00",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#ffe178",
+      "accent.container-foreground": "#231b00",
       "action.disabled": "#f2e2de",
       "action.disabled-foreground": "#958985",
       "border.subtle": "#fde3dc",
@@ -636,6 +689,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#f5e5e1",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#ebc300",
+      "accent.foreground": "#3b2f00",
+      "accent.container": "#554500",
+      "accent.container-foreground": "#ffe178",
       "action.disabled": "#372e2c",
       "action.disabled-foreground": "#7b6f6c",
       "border.subtle": "#3c2d28",
@@ -687,6 +744,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#1c1b1c",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#78517b",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#ffd6fd",
+      "accent.container-foreground": "#2f0d33",
       "action.disabled": "#e8e4e6",
       "action.disabled-foreground": "#8d8b8c",
       "border.subtle": "#eae7eb",
@@ -736,6 +797,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#eae7e8",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#e7b7e7",
+      "accent.foreground": "#46234a",
+      "accent.container": "#5f3962",
+      "accent.container-foreground": "#ffd6fd",
       "action.disabled": "#313031",
       "action.disabled-foreground": "#737273",
       "border.subtle": "#303033",
@@ -787,6 +852,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#1a1c1f",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#893ea0",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#fbd7ff",
+      "accent.container-foreground": "#330044",
       "action.disabled": "#e5e5ea",
       "action.disabled-foreground": "#8b8b90",
       "border.subtle": "#e5e8f3",
@@ -836,6 +905,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#e8e7ec",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#f0b0ff",
+      "accent.foreground": "#54006d",
+      "accent.container": "#6e2386",
+      "accent.container-foreground": "#fbd7ff",
       "action.disabled": "#2f3034",
       "action.disabled-foreground": "#717276",
       "border.subtle": "#2d3039",
@@ -887,6 +960,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#1a1c1a",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#00687a",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#acedff",
+      "accent.container-foreground": "#001f26",
       "action.disabled": "#e5e6e1",
       "action.disabled-foreground": "#8a8c88",
       "border.subtle": "#e4eae2",
@@ -936,6 +1013,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#e8e8e4",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#6fd4ed",
+      "accent.foreground": "#003640",
+      "accent.container": "#004e5c",
+      "accent.container-foreground": "#acedff",
       "action.disabled": "#2f312e",
       "action.disabled-foreground": "#71736f",
       "border.subtle": "#2c322c",
@@ -987,6 +1068,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#211a1c",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#914d00",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#ffdcc3",
+      "accent.container-foreground": "#2f1500",
       "action.disabled": "#f0e2e4",
       "action.disabled-foreground": "#94898b",
       "border.subtle": "#f9e3e8",
@@ -1036,6 +1121,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#f3e5e7",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#ffb77e",
+      "accent.foreground": "#4d2600",
+      "accent.container": "#6e3900",
+      "accent.container-foreground": "#ffdcc3",
       "action.disabled": "#362e30",
       "action.disabled-foreground": "#7a6f72",
       "border.subtle": "#3a2d31",
@@ -1087,6 +1176,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#1e1b16",
       "action.danger": "#b91d20",
       "action.danger-foreground": "#ffffff",
+      "accent.default": "#2f6b26",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#b0f49e",
+      "accent.container-foreground": "#002200",
       "action.disabled": "#ece4dc",
       "action.disabled-foreground": "#918b83",
       "border.subtle": "#f3e6d5",
@@ -1136,6 +1229,10 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "action.neutral-foreground": "#efe7de",
       "action.danger": "#ffb4ac",
       "action.danger-foreground": "#690007",
+      "accent.default": "#95d784",
+      "accent.foreground": "#003a01",
+      "accent.container": "#14520f",
+      "accent.container-foreground": "#b0f49e",
       "action.disabled": "#34302a",
       "action.disabled-foreground": "#77716a",
       "border.subtle": "#362f24",
@@ -1143,6 +1240,114 @@ export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string
       "border.strong": "#9a8f80",
       "border.selected": "#f7bd48",
       "focus.ring": "#f7bd48",
+      "feedback.danger": "#ffb4ac",
+      "feedback.danger-surface": "#580005",
+      "feedback.danger-foreground": "#ffdad6",
+      "feedback.danger-border": "#a70b16",
+      "feedback.warning": "#ffb68e",
+      "feedback.warning-surface": "#461b00",
+      "feedback.warning-foreground": "#ffdbca",
+      "feedback.warning-border": "#893c00",
+      "feedback.success": "#88d982",
+      "feedback.success-surface": "#003007",
+      "feedback.success-foreground": "#a3f69c",
+      "feedback.success-border": "#076019",
+      "feedback.info": "#a8c8ff",
+      "feedback.info-surface": "#002753",
+      "feedback.info-foreground": "#d6e3ff",
+      "feedback.info-border": "#00529f",
+      "overlay.scrim": "#000000",
+      "shadow": "#000000"
+    }
+  },
+  "nebula": {
+    "light": {
+      "text.primary": "#1a1b1f",
+      "text.secondary": "#444650",
+      "text.muted": "#61636d",
+      "text.disabled": "#96959b",
+      "text.inverse": "#f4f3f8",
+      "text.link": "#1d57c8",
+      "surface.canvas": "#faf8fe",
+      "surface.default": "#ffffff",
+      "surface.raised": "#ffffff",
+      "surface.subtle": "#f4f3f8",
+      "surface.muted": "#efedf3",
+      "surface.strong": "#e3e2e7",
+      "surface.inverse": "#2f3035",
+      "surface.brand": "#f2f3ff",
+      "action.primary": "#1d57c8",
+      "action.primary-foreground": "#ffffff",
+      "action.secondary": "#e2e7ff",
+      "action.secondary-foreground": "#00215d",
+      "action.neutral": "#eceaf0",
+      "action.neutral-foreground": "#1a1b1f",
+      "action.danger": "#b91d20",
+      "action.danger-foreground": "#ffffff",
+      "accent.default": "#a33663",
+      "accent.foreground": "#ffffff",
+      "accent.container": "#ffd9e3",
+      "accent.container-foreground": "#3e001e",
+      "action.disabled": "#e6e4ea",
+      "action.disabled-foreground": "#8b8b90",
+      "border.subtle": "#e7e7f3",
+      "border.default": "#d5d6e2",
+      "border.strong": "#7a7c86",
+      "border.selected": "#1d57c8",
+      "focus.ring": "#1d57c8",
+      "feedback.danger": "#b91d20",
+      "feedback.danger-surface": "#fff0ef",
+      "feedback.danger-foreground": "#7d000a",
+      "feedback.danger-border": "#ffb4ac",
+      "feedback.warning": "#9b4500",
+      "feedback.warning-surface": "#fff1eb",
+      "feedback.warning-foreground": "#652a00",
+      "feedback.warning-border": "#ffb68e",
+      "feedback.success": "#1b6d24",
+      "feedback.success-surface": "#d5ffcc",
+      "feedback.success-foreground": "#00460e",
+      "feedback.success-border": "#88d982",
+      "feedback.info": "#005eb5",
+      "feedback.info-surface": "#f0f3ff",
+      "feedback.info-foreground": "#003b76",
+      "feedback.info-border": "#a8c8ff",
+      "overlay.scrim": "#000000",
+      "shadow": "#000000"
+    },
+    "dark": {
+      "text.primary": "#e9e7ed",
+      "text.secondary": "#c5c6d1",
+      "text.muted": "#a9aab6",
+      "text.disabled": "#636368",
+      "text.inverse": "#1f1f24",
+      "text.link": "#b2c5ff",
+      "surface.canvas": "#121317",
+      "surface.default": "#1a1b1f",
+      "surface.raised": "#25262a",
+      "surface.subtle": "#212126",
+      "surface.muted": "#292a2e",
+      "surface.strong": "#38393d",
+      "surface.inverse": "#e3e2e7",
+      "surface.brand": "#002362",
+      "action.primary": "#b2c5ff",
+      "action.primary-foreground": "#002b73",
+      "action.secondary": "#0040a2",
+      "action.secondary-foreground": "#e2e7ff",
+      "action.neutral": "#343439",
+      "action.neutral-foreground": "#e9e7ed",
+      "action.danger": "#ffb4ac",
+      "action.danger-foreground": "#690007",
+      "accent.default": "#ffb0c9",
+      "accent.foreground": "#640034",
+      "accent.container": "#841c4b",
+      "accent.container-foreground": "#ffd9e3",
+      "action.disabled": "#2f3035",
+      "action.disabled-foreground": "#727277",
+      "border.subtle": "#2e3039",
+      "border.default": "#444650",
+      "border.strong": "#8e909b",
+      "border.selected": "#b2c5ff",
+      "focus.ring": "#b2c5ff",
       "feedback.danger": "#ffb4ac",
       "feedback.danger-surface": "#580005",
       "feedback.danger-foreground": "#ffdad6",
@@ -1176,6 +1381,11 @@ export const PALETTE_RULES = {
     "minChroma": 28,
     "maxChroma": 72
   },
+  "tertiary": {
+    "hueShift": 60,
+    "minChroma": 32,
+    "maxChroma": 64
+  },
   "neutral": {
     "chromaFactor": 0.08,
     "maxChroma": 5
@@ -1186,7 +1396,7 @@ export const PALETTE_RULES = {
   }
 } as const;
 
-export const CONTRAST_PAIRS: ReadonlyArray<readonly [ColorRole, ColorRole, number]> = [["text.primary","surface.canvas",4.5],["text.primary","surface.default",4.5],["text.primary","surface.raised",4.5],["text.secondary","surface.default",4.5],["text.muted","surface.default",4.5],["text.muted","surface.canvas",4.5],["text.link","surface.default",4.5],["text.inverse","surface.inverse",4.5],["action.primary-foreground","action.primary",4.5],["action.secondary-foreground","action.secondary",4.5],["action.neutral-foreground","action.neutral",4.5],["action.danger-foreground","action.danger",4.5],["border.strong","surface.default",3],["focus.ring","surface.default",3],["focus.ring","surface.canvas",3],["feedback.danger","surface.default",4.5],["feedback.danger-foreground","feedback.danger-surface",4.5],["feedback.warning-foreground","feedback.warning-surface",4.5],["feedback.success-foreground","feedback.success-surface",4.5],["feedback.info-foreground","feedback.info-surface",4.5]];
+export const CONTRAST_PAIRS: ReadonlyArray<readonly [ColorRole, ColorRole, number]> = [["text.primary","surface.canvas",4.5],["text.primary","surface.default",4.5],["text.primary","surface.raised",4.5],["text.secondary","surface.default",4.5],["text.muted","surface.default",4.5],["text.muted","surface.canvas",4.5],["text.link","surface.default",4.5],["accent.default","surface.default",4.5],["accent.default","surface.canvas",4.5],["text.inverse","surface.inverse",4.5],["action.primary-foreground","action.primary",4.5],["action.secondary-foreground","action.secondary",4.5],["action.neutral-foreground","action.neutral",4.5],["action.danger-foreground","action.danger",4.5],["accent.foreground","accent.default",4.5],["action.primary-foreground","accent.default",4.5],["accent.container-foreground","accent.container",4.5],["action.secondary-foreground","accent.container",4.5],["border.strong","surface.default",3],["focus.ring","surface.default",3],["focus.ring","surface.canvas",3],["feedback.danger","surface.default",4.5],["feedback.danger-foreground","feedback.danger-surface",4.5],["feedback.warning-foreground","feedback.warning-surface",4.5],["feedback.success-foreground","feedback.success-surface",4.5],["feedback.info-foreground","feedback.info-surface",4.5]];
 
 /** Non-color tokens: dotted path -> CSS value. CSS variable = --dc-<path with dashes>. */
 export const BASE_TOKENS = {
@@ -1353,6 +1563,36 @@ export const DENSITY_TOKENS = {
   }
 } as const;
 export type Density = keyof typeof DENSITY_TOKENS;
+
+/** Visual style, independent of palette and density. Values are CSS expressions on --dc-look-*. */
+export const LOOK_TOKENS = {
+  "standard": {
+    "fill-primary": "none",
+    "fill-tonal": "none",
+    "fill-size": "100% 100%",
+    "shadow-primary": "var(--dc-shadow-1)",
+    "radius-control": "var(--dc-radius-md)",
+    "radius-container": "var(--dc-radius-lg)"
+  },
+  "expressive": {
+    "fill-primary": "var(--dc-gradient-accent-sheen)",
+    "fill-tonal": "var(--dc-gradient-accent-subtle)",
+    "fill-size": "200% 100%",
+    "shadow-primary": "0 0.375rem 1.25rem -0.375rem color-mix(in srgb, var(--dc-color-accent-default) 55%, transparent), 0 0.25rem 0.75rem -0.25rem color-mix(in srgb, var(--dc-color-action-primary) 50%, transparent)",
+    "radius-control": "var(--dc-radius-full)",
+    "radius-container": "var(--dc-radius-xl)"
+  }
+} as const;
+export type Look = keyof typeof LOOK_TOKENS;
+export const LOOK_NAMES = ["standard","expressive"] as const;
+export const DEFAULT_LOOK: Look = "standard";
+/** Gradients always available as --dc-gradient-*. */
+export const GRADIENT_TOKENS = {
+  "accent": "linear-gradient(in oklch 115deg, var(--dc-color-action-primary), var(--dc-color-accent-default))",
+  "accent-sheen": "linear-gradient(in oklch 115deg, var(--dc-color-action-primary) 0%, var(--dc-color-accent-default) 50%, var(--dc-color-action-primary) 100%)",
+  "accent-subtle": "linear-gradient(in oklch 115deg, var(--dc-color-action-secondary), var(--dc-color-accent-container))",
+  "text": "linear-gradient(in oklch 90deg, var(--dc-color-text-link), var(--dc-color-accent-default))"
+} as const;
 
 /** Mobile-first min-width breakpoints in CSS px. Not available as CSS variables (invalid in @media). */
 export const breakpoints = {

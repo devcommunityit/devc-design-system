@@ -21,7 +21,7 @@ export function Home() {
         <Text variant="label-lg" tone="link">
           Design system · v0.1.0
         </Text>
-        <Heading level={1} size="display">
+        <Heading level={1} size="display" gradient>
           Componenti accessibili e temi coerenti per i tuoi portali
         </Heading>
         <Text variant="body-lg" tone="secondary" className="docs-hero-lead">

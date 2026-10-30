@@ -82,6 +82,7 @@
   block-size: var(--dc-border-width-thick);
   border-radius: var(--dc-radius-full);
   background-color: currentcolor;
+  background-image: var(--dc-look-fill-primary);
 }
 
 .tabs[data-variant='line'] .list[data-orientation='vertical'] .tab[data-selected]::after {
@@ -138,6 +139,7 @@
   }
 
   .tabs[data-variant='line'] .tab[data-selected]::after {
+    background-image: none;
     background-color: Highlight;
   }
 

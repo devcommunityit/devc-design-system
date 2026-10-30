@@ -41,6 +41,14 @@ export function HeadingLevels() {
   );
 }
 
+export function GradientHeading() {
+  return (
+    <Heading level={2} size="display" gradient>
+      Interfacce che si adattano al tuo brand
+    </Heading>
+  );
+}
+
 export function SingleLineTruncate() {
   return (
     <div style={{ maxInlineSize: '16rem' }}>

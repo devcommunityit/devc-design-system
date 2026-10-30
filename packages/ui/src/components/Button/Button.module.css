@@ -3,6 +3,8 @@
   --_fg: var(--dc-color-action-primary-foreground);
   --_border: transparent;
   --_layer: var(--_fg);
+  --_fill: none;
+  --_state: transparent;
   --_height: var(--dc-density-control-height-md);
   --_pad: var(--dc-density-control-padding-inline-md);
 
@@ -19,8 +21,13 @@
   padding-inline: var(--_pad);
   margin: 0;
   border: var(--dc-border-width-thin) solid var(--_border);
-  border-radius: var(--dc-radius-md);
+  border-radius: var(--dc-look-radius-control);
   background-color: var(--_bg);
+
+  /* State layer above an optional look fill (gradient in the expressive look, none otherwise). */
+  background-image: linear-gradient(var(--_state), var(--_state)), var(--_fill);
+  background-size: 100% 100%, var(--dc-look-fill-size);
+  background-position: 0 0, 0% 50%;
   color: var(--_fg);
   font-family: inherit;
   font-size: var(--dc-typography-label-lg-size);
@@ -38,6 +45,7 @@
   outline: none;
   transition:
     background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    background-position var(--dc-motion-duration-slow) var(--dc-motion-easing-standard),
     border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
     box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
     transform var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
@@ -56,9 +64,14 @@
   --_pad: var(--dc-density-control-padding-inline-lg);
 }
 
+.button[data-variant='primary'] {
+  --_fill: var(--dc-look-fill-primary);
+}
+
 .button[data-variant='secondary'] {
   --_bg: var(--dc-color-action-secondary);
   --_fg: var(--dc-color-action-secondary-foreground);
+  --_fill: var(--dc-look-fill-tonal);
 }
 
 .button[data-variant='outline'] {
@@ -79,16 +92,23 @@
 
 /* State layers (Material-inspired): tint the background with the foreground color. */
 .button[data-hovered] {
-  background-color: color-mix(in srgb, var(--_layer) var(--dc-state-hover), var(--_bg));
+  --_state: color-mix(in srgb, var(--_layer) var(--dc-state-hover), transparent);
+
+  /* Iridescent shift of the expressive gradient; a no-op when the fill is none. */
+  background-position: 0 0, 100% 50%;
 }
 
-.button[data-variant='primary'][data-hovered],
+.button[data-variant='primary'][data-hovered] {
+  box-shadow: var(--dc-look-shadow-primary);
+}
+
 .button[data-variant='danger'][data-hovered] {
   box-shadow: var(--dc-shadow-1);
 }
 
 .button[data-pressed] {
-  background-color: color-mix(in srgb, var(--_layer) var(--dc-state-pressed), var(--_bg));
+  --_state: color-mix(in srgb, var(--_layer) var(--dc-state-pressed), transparent);
+
   transform: scale(0.98);
 }
 
@@ -101,6 +121,8 @@
   --_bg: var(--dc-color-action-disabled);
   --_fg: var(--dc-color-action-disabled-foreground);
   --_border: transparent;
+  --_fill: none;
+  --_state: transparent;
 
   cursor: not-allowed;
   box-shadow: none;
@@ -153,6 +175,7 @@
 @media (forced-colors: active) {
   .button {
     border-color: ButtonText;
+    background-image: none;
   }
 
   .button[data-disabled] {

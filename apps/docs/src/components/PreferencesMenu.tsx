@@ -13,9 +13,9 @@ function isMode(key: Key): key is ThemeMode {
   return key === 'light' || key === 'dark' || key === 'system';
 }
 
-/** Site-wide appearance and locale preferences (persisted by ThemeProvider for theme/mode/density). */
+/** Site-wide appearance and locale preferences (persisted by ThemeProvider for theme/mode/density/look). */
 export function PreferencesMenu() {
-  const { mode, setMode, theme, setTheme, density, setDensity, persistenceError } = useTheme();
+  const { mode, setMode, theme, setTheme, density, setDensity, look, setLook, persistenceError } = useTheme();
   const { language, setLanguage, rtl, setRtl } = useDocsSettings();
   return (
     <PopoverTrigger>
@@ -62,6 +62,13 @@ export function PreferencesMenu() {
               </ListBoxItem>
             )}
           </Select>
+          <Switch
+            isSelected={look === 'expressive'}
+            onChange={(on) => setLook(on ? 'expressive' : 'standard')}
+            description="Forme arrotondate, riempimenti bicolore brand → terziario e alone sulle azioni primarie."
+          >
+            Stile espressivo
+          </Switch>
           <Switch isSelected={density === 'compact'} onChange={(on) => setDensity(on ? 'compact' : 'comfortable')}>
             Densità compatta
           </Switch>
@@ -90,7 +97,7 @@ export function PreferencesMenu() {
             </Text>
           ) : (
             <Text variant="body-sm" tone="secondary">
-              Tema, modalità e densità sono salvati in questo browser.
+              Tema, modalità, densità e stile sono salvati in questo browser.
             </Text>
           )}
         </Stack>

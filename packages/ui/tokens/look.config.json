@@ -1,0 +1,28 @@
+{
+  "$description": "Fonte unica dello stile (look), dimensione indipendente da palette, schema e densità. I valori sono espressioni CSS: i riferimenti {gruppo.token} diventano var(--dc-gruppo-token) e si risolvono sull'elemento ThemeProvider, quindi seguono palette, schema e provider annidati. 'gradient.*' è sempre disponibile per gli opt-in espliciti; 'look.*' cambia con data-dc-look. I gradienti uniscono action.primary (brand) e accent.default (tertiary): entrambi hanno lo stesso tono HCT, quindi il contrasto del testo in primo piano resta quello verificato per i due colori pieni.",
+  "defaultLook": "standard",
+  "gradient": {
+    "accent": "linear-gradient(in oklch 115deg, {color.action.primary}, {color.accent.default})",
+    "accent-sheen": "linear-gradient(in oklch 115deg, {color.action.primary} 0%, {color.accent.default} 50%, {color.action.primary} 100%)",
+    "accent-subtle": "linear-gradient(in oklch 115deg, {color.action.secondary}, {color.accent.container})",
+    "text": "linear-gradient(in oklch 90deg, {color.text.link}, {color.accent.default})"
+  },
+  "looks": {
+    "standard": {
+      "fill-primary": "none",
+      "fill-tonal": "none",
+      "fill-size": "100% 100%",
+      "shadow-primary": "{shadow.1}",
+      "radius-control": "{radius.md}",
+      "radius-container": "{radius.lg}"
+    },
+    "expressive": {
+      "fill-primary": "{gradient.accent-sheen}",
+      "fill-tonal": "{gradient.accent-subtle}",
+      "fill-size": "200% 100%",
+      "shadow-primary": "0 0.375rem 1.25rem -0.375rem color-mix(in srgb, {color.accent.default} 55%, transparent), 0 0.25rem 0.75rem -0.25rem color-mix(in srgb, {color.action.primary} 50%, transparent)",
+      "radius-control": "{radius.full}",
+      "radius-container": "{radius.xl}"
+    }
+  }
+}

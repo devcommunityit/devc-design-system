@@ -70,6 +70,9 @@
 .button[data-indeterminate] .box {
   --_border: var(--dc-color-action-primary);
   --_bg: var(--dc-color-action-primary);
+
+  background-image: var(--dc-look-fill-primary);
+  background-origin: border-box;
 }
 
 .button[data-focus-visible] .box {
@@ -83,6 +86,8 @@
 
 .button[data-invalid][data-selected] .box {
   --_bg: var(--dc-color-feedback-danger);
+
+  background-image: none;
 }
 
 .button[data-disabled] {
@@ -93,6 +98,8 @@
 .button[data-disabled] .box {
   --_border: var(--dc-color-border-subtle);
   --_bg: var(--dc-color-surface-subtle);
+
+  background-image: none;
 
   color: var(--dc-color-text-disabled);
 }

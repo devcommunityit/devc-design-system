@@ -60,5 +60,10 @@ export {
   CONTRAST_PAIRS,
   BASE_TOKENS,
   DENSITY_TOKENS,
+  LOOK_TOKENS,
+  LOOK_NAMES,
+  DEFAULT_LOOK,
+  GRADIENT_TOKENS,
   breakpoints,
+  type Look,
 } from '../tokens/generated';

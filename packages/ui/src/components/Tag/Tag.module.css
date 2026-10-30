@@ -55,8 +55,10 @@
 }
 
 .tag[data-selected] {
-  border-color: var(--dc-color-action-primary);
+  border-color: transparent;
   background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-look-fill-primary);
+  background-origin: border-box;
   color: var(--dc-color-action-primary-foreground);
 }
 
@@ -73,6 +75,7 @@
 
 .tag[data-disabled] {
   border-color: var(--dc-color-border-subtle);
+  background-image: none;
   color: var(--dc-color-text-disabled);
   cursor: not-allowed;
 }

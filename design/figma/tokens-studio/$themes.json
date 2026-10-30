@@ -350,5 +350,49 @@
       "palette/saffron": "source",
       "scheme/dark": "enabled"
     }
+  },
+  {
+    "id": "nebula-light-comfortable",
+    "name": "nebula / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/nebula": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "nebula-light-compact",
+    "name": "nebula / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/nebula": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "nebula-dark-comfortable",
+    "name": "nebula / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/nebula": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "nebula-dark-compact",
+    "name": "nebula / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/nebula": "source",
+      "scheme/dark": "enabled"
+    }
   }
 ]

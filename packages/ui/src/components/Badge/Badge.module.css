@@ -72,6 +72,8 @@
 .badge[data-variant='solid'][data-tone='brand'] {
   --_bg: var(--dc-color-action-primary);
   --_fg: var(--dc-color-action-primary-foreground);
+
+  background-image: var(--dc-look-fill-primary);
 }
 
 .badge[data-variant='solid'][data-tone='info'] {

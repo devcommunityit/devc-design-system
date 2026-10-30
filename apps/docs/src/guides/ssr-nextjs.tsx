@@ -28,7 +28,7 @@ export default function SsrNextjs() {
 
       <DocSection title="Evitare il flash del tema: cookie (consigliato)">
         <p>
-          Se l’utente sceglie esplicitamente chiaro/scuro, palette o densità, il server deve conoscerle per produrre il markup corretto. Salva le
+          Se l’utente sceglie esplicitamente chiaro/scuro, palette, densità o stile, il server deve conoscerle per produrre il markup corretto. Salva le
           preferenze in un cookie e passale al provider come valori iniziali.
         </p>
         <Code title="app/providers.tsx">{`
@@ -45,7 +45,8 @@ export function Providers({ initial, children }: { initial: ThemePreferences; ch
         defaultMode={initial.mode ?? 'system'}
         defaultTheme={initial.theme && isPresetName(initial.theme) ? initial.theme : 'aurora'}
         defaultDensity={initial.density ?? 'comfortable'}
-        persistence={{ storage, keys: ['mode', 'theme', 'density'] }}
+        defaultLook={initial.look ?? 'standard'}
+        persistence={{ storage, keys: ['mode', 'theme', 'density', 'look'] }}
         surface
       >
         {children}

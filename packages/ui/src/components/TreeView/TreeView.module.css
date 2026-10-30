@@ -47,6 +47,7 @@
 
 .item[data-selected] {
   background-color: var(--dc-color-action-secondary);
+  background-image: var(--dc-look-fill-tonal);
   color: var(--dc-color-action-secondary-foreground);
 }
 

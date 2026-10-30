@@ -10,7 +10,7 @@ export const doc: ComponentDoc = {
   whenNotToUse: ['Per incorniciare ogni sezione della pagina: usa Section.', 'Per dati tabellari confrontabili: usa Table o DataTable.'],
   props: [
     { name: 'as', type: "'div' | 'article' | 'section' | 'li'", default: "'div'", description: 'Elemento semantico; usa li dentro un elenco.' },
-    { name: 'variant', type: "'outlined' | 'elevated' | 'filled'", default: "'outlined'", description: 'Enfasi della superficie.' },
+    { name: 'variant', type: "'outlined' | 'elevated' | 'filled' | 'accent'", default: "'outlined'", description: 'Enfasi della superficie. accent usa una cornice bicolore (gradiente brand → terziario) per contenuti in evidenza; con forced-colors diventa un bordo di sistema.' },
     { name: 'padding', type: "'none' | 'sm' | 'md' | 'lg'", default: "'md'", description: 'Spaziatura interna (segue la densità).' },
     { name: 'isSelected', type: 'boolean', description: 'Stato selezionato (bordo e data-selected). Non sostituisce un controllo con stato accessibile.' },
     { name: 'CardHeader.title / subtitle / media / actions', type: 'ReactNode', description: 'Intestazione con titolo (heading), sottotitolo, media iniziale e azioni.' },
