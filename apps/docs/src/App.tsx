@@ -9,11 +9,13 @@ import { Home } from './pages/Home';
 import { ComponentsIndex } from './pages/ComponentsIndex';
 import { ComponentPage } from './pages/ComponentPage';
 import { GuidePage } from './pages/GuidePage';
+import { FoundationPage } from './pages/FoundationPage';
 import { NotFound } from './pages/NotFound';
 import { PatternsIndex } from './pages/PatternsIndex';
 import { useLinkInterception } from './useLinkInterception';
 
 const ThemeBuilder = lazy(() => import('./theme-builder/ThemeBuilder').then((m) => ({ default: m.ThemeBuilder })));
+const ThemeDesigner = lazy(() => import('./theme-designer/ThemeDesigner').then((m) => ({ default: m.ThemeDesigner })));
 const Showcase = lazy(() => import('./showcase/ShowcaseRoutes').then((m) => ({ default: m.ShowcaseRoutes })));
 
 function Localized({ children }: { children: ReactNode }) {
@@ -87,9 +89,11 @@ export function App() {
                   <Route element={<DocsLayout />}>
                     <Route index element={<Home />} />
                     <Route path="guide/:slug" element={<GuidePage />} />
+                    <Route path="foundations/:slug" element={<FoundationPage />} />
                     <Route path="componenti" element={<ComponentsIndex />} />
                     <Route path="componenti/:slug" element={<ComponentPage />} />
                     <Route path="theme-builder" element={<ThemeBuilder />} />
+                    <Route path="theme-designer" element={<ThemeDesigner />} />
                     <Route path="pattern" element={<PatternsIndex />} />
                     <Route path="*" element={<NotFound />} />
                   </Route>

@@ -33,6 +33,17 @@ export default function Fondamenta() {
         </p>
       </DocSection>
 
+      <DocSection title="Fondamenta nel dettaglio">
+        <p>Consulta le anteprime e i riferimenti per ciascuna famiglia di token:</p>
+        <ul>
+          <li><Link href="/foundations/typography">Typography</Link>: gerarchie e ruoli tipografici.</li>
+          <li><Link href="/foundations/spacing">Spacing</Link>: scala di spazi e ritmo del layout.</li>
+          <li><Link href="/foundations/rounded">Rounded</Link>: raggi e forme delle superfici.</li>
+          <li><Link href="/foundations/colors">Colors</Link>: ruoli cromatici per temi e modalità.</li>
+          <li><Link href="/foundations/shadows">Shadows</Link>: elevazione e superfici sovrapposte.</li>
+        </ul>
+      </DocSection>
+
       <DocSection title="Colore">
         {GROUPS.map((group) => (
           <section key={group} aria-label={`Ruoli ${group}`}>

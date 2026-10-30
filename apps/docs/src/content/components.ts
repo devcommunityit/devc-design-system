@@ -29,12 +29,14 @@ export const CATEGORY_LABELS: Record<ComponentCategory, string> = {
   data: 'Contenuti e dati',
   charts: 'Grafici',
   dashboard: 'Dashboard',
+  ai: 'AI',
+  website: 'Gestione siti',
   feedback: 'Feedback',
   overlay: 'Overlay',
   patterns: 'Pattern',
 };
 
-export const CATEGORY_ORDER: ComponentCategory[] = ['layout', 'typography', 'actions', 'navigation', 'forms', 'data', 'charts', 'dashboard', 'feedback', 'overlay', 'patterns'];
+export const CATEGORY_ORDER: ComponentCategory[] = ['layout', 'typography', 'actions', 'navigation', 'forms', 'data', 'charts', 'dashboard', 'ai', 'website', 'feedback', 'overlay', 'patterns'];
 
 export const components: ComponentEntry[] = Object.entries(metaModules)
   .map(([path, mod]) => {

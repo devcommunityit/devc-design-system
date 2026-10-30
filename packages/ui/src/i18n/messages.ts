@@ -12,6 +12,24 @@ import { pt } from './locales/pt';
 export { ar, de, es, fr, pt };
 
 export interface Messages {
+  aiPrompt: string;
+  aiSend: string;
+  aiStop: string;
+  aiUser: string;
+  aiAssistant: string;
+  aiSystem: string;
+  aiGenerating: string;
+  aiSuggestions: string;
+  aiSources: string;
+  aiFeedback: string;
+  aiHelpful: string;
+  aiNotHelpful: string;
+  publishDraft: string;
+  publishPublished: string;
+  publishScheduled: string;
+  publishArchived: string;
+  bulkActions: string;
+  seoPreview: string;
   close: string;
   cancel: string;
   confirm: string;
@@ -150,6 +168,24 @@ export interface Messages {
 }
 
 export const en: Messages = {
+  aiPrompt: 'Write a prompt',
+  aiSend: 'Send',
+  aiStop: 'Stop generating',
+  aiUser: 'You',
+  aiAssistant: 'Assistant',
+  aiSystem: 'System',
+  aiGenerating: 'Generating response…',
+  aiSuggestions: 'Suggested prompts',
+  aiSources: 'Sources',
+  aiFeedback: 'Response feedback',
+  aiHelpful: 'Helpful',
+  aiNotHelpful: 'Not helpful',
+  publishDraft: 'Draft',
+  publishPublished: 'Published',
+  publishScheduled: 'Scheduled',
+  publishArchived: 'Archived',
+  bulkActions: 'Bulk actions',
+  seoPreview: 'Search result preview',
   close: 'Close',
   cancel: 'Cancel',
   confirm: 'Confirm',
@@ -299,6 +335,24 @@ export const en: Messages = {
 };
 
 export const it: Messages = {
+  aiPrompt: 'Scrivi una richiesta',
+  aiSend: 'Invia',
+  aiStop: 'Interrompi generazione',
+  aiUser: 'Tu',
+  aiAssistant: 'Assistente',
+  aiSystem: 'Sistema',
+  aiGenerating: 'Generazione della risposta…',
+  aiSuggestions: 'Richieste suggerite',
+  aiSources: 'Fonti',
+  aiFeedback: 'Valutazione della risposta',
+  aiHelpful: 'Utile',
+  aiNotHelpful: 'Non utile',
+  publishDraft: 'Bozza',
+  publishPublished: 'Pubblicato',
+  publishScheduled: 'Programmato',
+  publishArchived: 'Archiviato',
+  bulkActions: 'Azioni collettive',
+  seoPreview: 'Anteprima del risultato di ricerca',
   close: 'Chiudi',
   cancel: 'Annulla',
   confirm: 'Conferma',

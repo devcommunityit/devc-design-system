@@ -1,4 +1,4 @@
-import { Accessibility, BarChart3, Boxes, Languages, LayoutTemplate, Moon, Package, Palette, Rocket, ShieldCheck, SwatchBook } from 'lucide-react';
+import { Accessibility, BarChart3, Boxes, Languages, LayoutTemplate, Moon, Package, Palette, Rocket, Ruler, ShieldCheck, SlidersHorizontal, SwatchBook } from 'lucide-react';
 import { Card, CardHeader, CardLink, Grid, Heading, Inline, LinkButton, List, ListItem, Stack, Text } from '@dev-community/ui';
 import { components, componentsByCategory } from '../content/components';
 import { SHOWCASE } from '../content/showcase';
@@ -7,12 +7,15 @@ import { PageMeta } from '../components/PageMeta';
 
 const FEATURES = [
   { icon: <Boxes />, title: 'Catalogo completo', text: 'Layout, tipografia, azioni, navigazione, form, dati, feedback e overlay con API coerenti.', href: '/componenti' },
+  { icon: <Ruler />, title: 'Fondamenta', text: 'Typography, spacing, rounded, colors e shadows con anteprime collegate ai token del tema.', href: '/foundations/typography' },
   { icon: <Palette />, title: 'Temi e token', text: 'Token DTCG come unica fonte, palette preimpostate e temi personalizzati validati.', href: '/guide/temi' },
   { icon: <Moon />, title: 'Chiaro, scuro, sistema', text: 'Modalità e densità indipendenti dalla palette; provider annidati anche nei portal.', href: '/guide/temi' },
   { icon: <Accessibility />, title: 'Accessibilità', text: 'HTML semantico, pattern WAI-ARIA APG e controlli axe automatici nei test.', href: '/guide/accessibilita' },
   { icon: <Languages />, title: 'Localizzazione e RTL', text: 'Testi di sistema traducibili, Intl per date e numeri, proprietà CSS logiche.', href: '/guide/localizzazione-rtl' },
   { icon: <ShieldCheck />, title: 'SSR e CSP', text: 'Nessun accesso al DOM all’import, script del tema esterno compatibile con CSP.', href: '/guide/ssr-nextjs' },
   { icon: <BarChart3 />, title: 'Grafici e dashboard', text: 'Grafici SVG accessibili con tabella dati, KPI, hero card, banner e menu di navigazione.', href: '/guide/grafici-dashboard' },
+  { icon: <Boxes />, title: 'AI e gestione siti', text: 'Prompt, conversazioni, fonti, feedback e strumenti per workflow editoriali e anteprime SEO.', href: '/guide/ai-content' },
+  { icon: <SlidersHorizontal />, title: 'Theme Designer', text: 'Scegli accento, grigi, aspetto, raggio e stile e guarda tutte le varianti dei componenti cambiare in tempo reale.', href: '/theme-designer' },
   { icon: <SwatchBook />, title: 'Theme Builder', text: 'Crea un tema con anteprima live, controllo del contrasto ed export JSON, CSS e TypeScript.', href: '/theme-builder' },
   { icon: <LayoutTemplate />, title: 'Pattern e template', text: 'Pagine realistiche: landing, dashboard, elenchi, form, account e stati di errore.', href: '/pattern' },
 ];

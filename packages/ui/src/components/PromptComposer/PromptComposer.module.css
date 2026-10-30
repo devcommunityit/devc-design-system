@@ -1,0 +1,24 @@
+.composer {
+  display: grid;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-raised);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+}
+
+.context {
+  min-inline-size: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  overflow-wrap: anywhere;
+}

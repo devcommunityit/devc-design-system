@@ -278,12 +278,26 @@ await step('Browser: rendering, stili, interazioni, persistenza, portal, console
     await page.getByRole('button', { name: 'Mostra tabella dati' }).click();
     await page.getByRole('table', { name: 'Ordini per trimestre' }).waitFor();
 
+    await page.getByRole('button', { name: 'Riassumi la pagina' }).click();
+    const composer = page.getByRole('textbox', { name: 'Richiesta consumer' });
+    assert((await composer.inputValue()) === 'Riassumi questa pagina', 'prompt suggestion did not fill the compiled composer');
+    await composer.press('Enter');
+    await page.getByText('Richiesta locale: Riassumi questa pagina', { exact: true }).waitFor();
+    assert((await composer.inputValue()) === '', 'consumer did not reset the compiled composer');
+    const helpful = page.getByRole('button', { name: 'Utile', exact: true });
+    await helpful.click();
+    assert((await helpful.getAttribute('aria-pressed')) === 'true', 'compiled feedback did not update');
+    await page.getByRole('link', { name: 'Esempio locale' }).waitFor();
+    await page.getByRole('button', { name: 'Pubblica pagina locale' }).click();
+    await page.locator('[data-publish-status="published"]').waitFor();
+    await page.getByRole('figure', { name: 'Anteprima del risultato di ricerca' }).waitFor();
+
     await trigger.click();
     await page.getByRole('menuitem', { name: 'Esci' }).click();
     await page.getByText('Ospite').waitFor();
 
     assert(errors.length === 0, `console:\n  ${errors.join('\n  ')}`);
-    return 'token, stili, click/Enter, persistenza, toast, validazione form, menu utente, dialog annidato, ripristino focus, grafico da tastiera';
+    return 'token, stili, click/Enter, persistenza, toast, form, menu, portal/focus, grafici, prompt AI, feedback, fonti, pubblicazione locale, anteprima SEO';
   } finally {
     await browser.close();
     await new Promise((r) => server.httpServer.close(r));

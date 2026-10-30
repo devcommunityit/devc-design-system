@@ -66,6 +66,17 @@ test.describe('navigazione mobile', () => {
 });
 
 test.describe('ricerca e collegamenti', () => {
+  test('le fondamenta sono raggiungibili dalla navigazione e le pagine si collegano tra loro', async ({ page }) => {
+    await open(page, '/foundations/typography');
+    await expect(page.getByRole('heading', { name: 'Typography', level: 1 })).toBeVisible();
+    await page.getByRole('link', { name: 'Spacing', exact: true }).first().click();
+    await expect(page).toHaveURL(/\/foundations\/spacing$/);
+    await expect(page.getByRole('heading', { name: 'Scala di spaziatura' })).toBeVisible();
+    await page.getByRole('link', { name: 'Rounded', exact: true }).first().click();
+    await expect(page).toHaveURL(/\/foundations\/rounded$/);
+    await expect(page.getByRole('heading', { name: 'Scala dei raggi' })).toBeVisible();
+  });
+
   test('Ctrl+K apre la ricerca e porta alla pagina scelta', async ({ page }) => {
     await open(page, '/');
     await page.keyboard.press('Control+k');
@@ -78,7 +89,7 @@ test.describe('ricerca e collegamenti', () => {
 
   test('i collegamenti interni della documentazione portano a pagine esistenti e ad ancore presenti', async ({ page }) => {
     test.setTimeout(240_000);
-    const seeds = ['/', '/componenti', '/pattern', '/guide/quick-start', '/guide/integrazione', '/guide/temi', '/guide/personalizzazione', '/guide/contribuire', '/guide/figma', '/guide/grafici-dashboard', '/componenti/dialog'];
+    const seeds = ['/', '/componenti', '/pattern', '/guide/quick-start', '/guide/integrazione', '/guide/temi', '/guide/personalizzazione', '/guide/contribuire', '/guide/figma', '/guide/grafici-dashboard', '/guide/ai-content', '/foundations/typography', '/foundations/spacing', '/foundations/rounded', '/foundations/colors', '/foundations/shadows', '/componenti/dialog'];
     const targets = new Set<string>();
     for (const seed of seeds) {
       await open(page, seed);
@@ -130,6 +141,40 @@ test.describe('ricerca e collegamenti', () => {
     const guideToc = page.getByRole('navigation', { name: 'In questa pagina' });
     await expect(guideToc.getByRole('link').first()).toBeVisible();
     await expect(page.getByRole('navigation', { name: 'Guida precedente e successiva' }).locator('a[rel="next"]')).toBeVisible();
+  });
+
+  test('indice della pagina: colonna a destra su desktop, pannello apribile su mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await open(page, '/componenti/tabs');
+    const toc = page.getByRole('navigation', { name: 'In questa pagina' });
+    const heading = page.getByRole('heading', { level: 1 });
+    const tocBox = await toc.boundingBox();
+    const headingBox = await heading.boundingBox();
+    expect(tocBox && headingBox && tocBox.x > headingBox.x + headingBox.width).toBeTruthy();
+    await expect(toc.getByRole('button', { name: /In questa pagina/ })).toBeHidden();
+    await toc.getByRole('link', { name: 'Props' }).click();
+    await expect(toc.getByRole('link', { name: 'Props' })).toHaveAttribute('aria-current', 'location');
+    await page.mouse.wheel(0, 400);
+    await expect(toc).toBeInViewport();
+
+    await page.setViewportSize({ width: 375, height: 800 });
+    await open(page, '/componenti/tabs');
+    const toggle = toc.getByRole('button', { name: /In questa pagina/ });
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toc.getByRole('link', { name: 'Tastiera' })).toBeHidden();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await page.keyboard.press('Escape');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeFocused();
+    await toggle.click();
+    await toc.getByRole('link', { name: 'Tastiera' }).click();
+    await expect(page).toHaveURL(/#tastiera$/);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toContainText('Tastiera');
+    const headingTop = await page.getByRole('heading', { level: 2, name: 'Tastiera' }).evaluate((el) => el.getBoundingClientRect().top);
+    const tocBottom = await toc.evaluate((el) => el.getBoundingClientRect().bottom);
+    expect(headingTop).toBeGreaterThanOrEqual(tocBottom);
   });
 
   test('gli indirizzi sconosciuti mostrano la pagina 404', async ({ page }) => {
@@ -343,6 +388,70 @@ test.describe('overlay', () => {
     await expect(page.getByRole('tooltip')).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('tooltip')).toBeHidden();
+  });
+});
+
+test.describe('Theme Designer', () => {
+  test('accento, aspetto, raggio e scala cambiano solo l’anteprima; i portal ne ereditano il tema', async ({ page }) => {
+    await open(page, '/theme-designer');
+    const stage = page.locator('.td-stage');
+    const html = page.locator('html');
+    const sitePalette = await html.getAttribute('data-dc-palette');
+    const cssVar = (name: string) => stage.evaluate((el, n) => getComputedStyle(el).getPropertyValue(n).trim(), name);
+
+    const before = await cssVar('--dc-color-action-primary');
+    await page.getByRole('radio', { name: 'Indaco' }).check();
+    await expect(stage).toHaveAttribute('data-dc-palette', 'designer-indaco');
+    expect(await cssVar('--dc-color-action-primary')).not.toBe(before);
+
+    await page.getByRole('radio', { name: 'Scuro' }).click();
+    await expect(stage).toHaveAttribute('data-dc-resolved-scheme', 'dark');
+    await expect(html).toHaveAttribute('data-dc-resolved-scheme', 'light');
+    expect(await html.getAttribute('data-dc-palette')).toBe(sitePalette);
+
+    await page.getByRole('radio', { name: 'Nessuno' }).click();
+    expect(await cssVar('--dc-radius-md')).toBe('0');
+    await page.getByRole('radio', { name: '110%' }).click();
+    expect(await page.locator('.td-preview').evaluate((el) => el.style.zoom)).toBe('1.1');
+    await page.getByRole('radio', { name: 'Traslucido' }).click();
+    await expect(stage).toHaveAttribute('data-panel', 'translucent');
+
+    const trigger = stage.getByRole('button', { name: 'Apri dialogo' });
+    await trigger.click();
+    const dialog = page.getByRole('dialog', { name: 'Nuovo progetto' });
+    await expect(dialog).toBeVisible();
+    const host = await dialog.evaluate((el) => {
+      const portal = el.closest('[data-dc-portal]');
+      return portal ? { palette: portal.getAttribute('data-dc-palette'), scheme: portal.getAttribute('data-dc-resolved-scheme') } : null;
+    });
+    expect(host).toEqual({ palette: 'designer-indaco', scheme: 'dark' });
+    expect(await dialog.evaluate((el) => getComputedStyle(el).getPropertyValue('--dc-radius-md').trim())).toBe('0');
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect.poll(() => isFocused(trigger)).toBe(true);
+
+    await expectNoA11yViolations(page);
+
+    await page.getByRole('button', { name: 'Ripristina' }).click();
+    await expect(stage).toHaveAttribute('data-dc-resolved-scheme', 'light');
+    await expect(stage).not.toHaveAttribute('data-dc-palette', 'designer-indaco');
+  });
+
+  test('il pannello si nasconde e il tema si copia come TypeScript', async ({ page, context }) => {
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await open(page, '/theme-designer');
+    const toggle = page.getByRole('button', { name: 'Pannello tema' });
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.getByRole('radio', { name: 'Scuro' })).toBeHidden();
+    await toggle.click();
+    await page.getByRole('radio', { name: 'Giada' }).check();
+    await page.getByRole('button', { name: 'Copia tema' }).click();
+    await expect(page.getByText('Tema copiato').first()).toBeVisible();
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copied).toContain('createTheme(');
+    expect(copied).toContain('designer-giada');
   });
 });
 

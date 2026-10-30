@@ -18,6 +18,7 @@ export const GUIDES: GuideEntry[] = [
   { slug: 'temi', title: 'Temi', description: 'Modalità, palette, densità, createTheme, persistenza e JSON.', group: 'foundations' },
   { slug: 'accessibilita', title: 'Accessibilità', description: 'Obiettivi WCAG 2.2 AA, cosa è verificato e cosa resta al consumer.', group: 'foundations' },
   { slug: 'grafici-dashboard', title: 'Grafici e dashboard', description: 'Scegliere il grafico, colori dei dati, accessibilità e composizione di una dashboard.', group: 'guides' },
+  { slug: 'ai-content', title: 'AI e gestione contenuti', description: 'Assistenti componibili, feedback, fonti e strumenti editoriali senza backend impliciti.', group: 'guides' },
   { slug: 'localizzazione-rtl', title: 'Localizzazione e RTL', description: 'LocaleProvider, messaggi traducibili, Intl, proprietà logiche.', group: 'guides' },
   { slug: 'ssr-nextjs', title: 'SSR e Next.js', description: 'Confini client, flash del tema, hydration e CSP.', group: 'guides' },
   { slug: 'personalizzazione', title: 'Personalizzazione', description: 'className, data attribute, token e override sicuri.', group: 'guides' },

@@ -1,0 +1,11 @@
+.feedback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-1);
+}
+
+.feedback [aria-pressed="true"] {
+  background: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+  border-color: var(--dc-color-border-selected);
+}

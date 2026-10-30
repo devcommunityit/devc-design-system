@@ -172,182 +172,186 @@ export function ComponentPage() {
   const importLine = `import { ${doc.exports.join(", ")} } from '@dev-community/ui';`;
 
   return (
-    <article className="docs-article">
+    <article className="docs-article docs-article--toc">
       <PageMeta title={doc.name} description={doc.summary} />
-      <Breadcrumb>
-        <BreadcrumbItem href="/">Documentazione</BreadcrumbItem>
-        <BreadcrumbItem href="/componenti">Componenti</BreadcrumbItem>
-        <BreadcrumbItem>{doc.name}</BreadcrumbItem>
-      </Breadcrumb>
-      <header className="docs-page-header">
-        <Inline gap={2} align="center" wrap>
-          <Badge tone="brand" variant="soft">
-            {CATEGORY_LABELS[doc.category]}
-          </Badge>
-          {doc.status.tests.length > 0 ? (
-            <Badge tone="success" variant="soft" icon={<CheckCircle2 />}>
-              Testato
+      <div className="docs-article-head">
+        <Breadcrumb>
+          <BreadcrumbItem href="/">Documentazione</BreadcrumbItem>
+          <BreadcrumbItem href="/componenti">Componenti</BreadcrumbItem>
+          <BreadcrumbItem>{doc.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <header className="docs-page-header">
+          <Inline gap={2} align="center" wrap>
+            <Badge tone="brand" variant="soft">
+              {CATEGORY_LABELS[doc.category]}
             </Badge>
-          ) : null}
-        </Inline>
-        <Heading level={1}>{doc.name}</Heading>
-        <Text variant="body-lg" tone="secondary">
-          {doc.summary}
-        </Text>
-      </header>
+            {doc.status.tests.length > 0 ? (
+              <Badge tone="success" variant="soft" icon={<CheckCircle2 />}>
+                Testato
+              </Badge>
+            ) : null}
+          </Inline>
+          <Heading level={1}>{doc.name}</Heading>
+          <Text variant="body-lg" tone="secondary">
+            {doc.summary}
+          </Text>
+        </header>
+      </div>
 
       <PageToc items={toc} />
 
-      <DocSection title="Quando usarlo">
-        <div className="docs-two-col">
-          <div>
-            <Heading level={3} size="title-sm">
-              Usalo per
-            </Heading>
-            <Bullets items={doc.whenToUse} />
+      <div className="docs-article-body">
+        <DocSection title="Quando usarlo">
+          <div className="docs-two-col">
+            <div>
+              <Heading level={3} size="title-sm">
+                Usalo per
+              </Heading>
+              <Bullets items={doc.whenToUse} />
+            </div>
+            <div>
+              <Heading level={3} size="title-sm">
+                Evitalo per
+              </Heading>
+              <Bullets items={doc.whenNotToUse} />
+            </div>
           </div>
-          <div>
-            <Heading level={3} size="title-sm">
-              Evitalo per
-            </Heading>
-            <Bullets items={doc.whenNotToUse} />
-          </div>
-        </div>
-      </DocSection>
+        </DocSection>
 
-      <DocSection title="Import">
-        <Code language="ts">{importLine}</Code>
-        <Text variant="body-sm" tone="secondary">
-          Gli stili sono inclusi in{" "}
-          <InlineCode>@dev-community/ui/styles.css</InlineCode>, da importare
-          una sola volta nell’applicazione.
-        </Text>
-      </DocSection>
-
-      <DocSection title="Esempi">
-        <Suspense fallback={<Skeleton height="240px" />}>
-          <ErrorBoundary fallback={(error) => <LoadError error={error} />}>
-            <Stack gap={8}>
-              {doc.examples.map((ex, i) => (
-                <ExampleView
-                  key={ex.name}
-                  entry={entry}
-                  name={ex.name}
-                  title={ex.title}
-                  description={ex.description}
-                  minimal={i === 0}
-                />
-              ))}
-            </Stack>
-          </ErrorBoundary>
-        </Suspense>
-      </DocSection>
-
-      <DocSection title="Props">
-        {doc.props.length > 0 ? (
-          <RefTable
-            label={`Props di ${doc.name}`}
-            columns={["Prop", "Tipo", "Default", "Descrizione"]}
-            rows={doc.props.map((p) => [
-              <InlineCode key="n">
-                {p.required ? `${p.name}*` : p.name}
-              </InlineCode>,
-              <InlineCode key="t">{p.type}</InlineCode>,
-              p.default ? <InlineCode key="d">{p.default}</InlineCode> : "—",
-              p.description,
-            ])}
-          />
-        ) : (
-          <Text tone="secondary">
-            Nessuna prop specifica oltre a quelle ereditate.
-          </Text>
-        )}
-        {doc.props.some((p) => p.required) ? (
+        <DocSection title="Import">
+          <Code language="ts">{importLine}</Code>
           <Text variant="body-sm" tone="secondary">
-            * obbligatoria
+            Gli stili sono inclusi in{" "}
+            <InlineCode>@dev-community/ui/styles.css</InlineCode>, da importare
+            una sola volta nell’applicazione.
           </Text>
-        ) : null}
-        {doc.inherits ? (
-          <Text variant="body-sm" tone="secondary">
-            Inoltre: {doc.inherits}
-          </Text>
-        ) : null}
-      </DocSection>
+        </DocSection>
 
-      <DocSection title="Tastiera">
-        {doc.keyboard.length > 0 ? (
+        <DocSection title="Esempi">
+          <Suspense fallback={<Skeleton height="240px" />}>
+            <ErrorBoundary fallback={(error) => <LoadError error={error} />}>
+              <Stack gap={8}>
+                {doc.examples.map((ex, i) => (
+                  <ExampleView
+                    key={ex.name}
+                    entry={entry}
+                    name={ex.name}
+                    title={ex.title}
+                    description={ex.description}
+                    minimal={i === 0}
+                  />
+                ))}
+              </Stack>
+            </ErrorBoundary>
+          </Suspense>
+        </DocSection>
+
+        <DocSection title="Props">
+          {doc.props.length > 0 ? (
+            <RefTable
+              label={`Props di ${doc.name}`}
+              columns={["Prop", "Tipo", "Default", "Descrizione"]}
+              rows={doc.props.map((p) => [
+                <InlineCode key="n">
+                  {p.required ? `${p.name}*` : p.name}
+                </InlineCode>,
+                <InlineCode key="t">{p.type}</InlineCode>,
+                p.default ? <InlineCode key="d">{p.default}</InlineCode> : "—",
+                p.description,
+              ])}
+            />
+          ) : (
+            <Text tone="secondary">
+              Nessuna prop specifica oltre a quelle ereditate.
+            </Text>
+          )}
+          {doc.props.some((p) => p.required) ? (
+            <Text variant="body-sm" tone="secondary">
+              * obbligatoria
+            </Text>
+          ) : null}
+          {doc.inherits ? (
+            <Text variant="body-sm" tone="secondary">
+              Inoltre: {doc.inherits}
+            </Text>
+          ) : null}
+        </DocSection>
+
+        <DocSection title="Tastiera">
+          {doc.keyboard.length > 0 ? (
+            <RefTable
+              label={`Interazioni da tastiera di ${doc.name}`}
+              columns={["Tasti", "Azione"]}
+              rows={doc.keyboard.map((k) => [
+                <Kbd key="k">{k.keys}</Kbd>,
+                k.action,
+              ])}
+            />
+          ) : (
+            <Text tone="secondary">
+              Nessuna interazione da tastiera propria: il componente non è
+              interattivo o usa elementi nativi.
+            </Text>
+          )}
+        </DocSection>
+
+        <DocSection title="Accessibilità">
+          <Bullets items={doc.accessibility} />
+          {doc.apg ? (
+            <Link href={doc.apg} external>
+              Pattern WAI-ARIA APG di riferimento{" "}
+              <ExternalLink aria-hidden="true" size={14} />
+            </Link>
+          ) : null}
+        </DocSection>
+
+        <DocSection title="Comportamento responsive">
+          <Bullets items={doc.responsive} />
+        </DocSection>
+
+        <DocSection title="Personalizzazione">
+          <Bullets items={doc.customization} />
+        </DocSection>
+
+        <DocSection title="Errori comuni">
+          <Bullets items={doc.commonMistakes} />
+        </DocSection>
+
+        <DocSection title="Stato e limiti">
           <RefTable
-            label={`Interazioni da tastiera di ${doc.name}`}
-            columns={["Tasti", "Azione"]}
-            rows={doc.keyboard.map((k) => [
-              <Kbd key="k">{k.keys}</Kbd>,
-              k.action,
-            ])}
+            label={`Stato di ${doc.name}`}
+            columns={["Aspetto", "Stato"]}
+            rows={[
+              ["Implementato", doc.status.implemented ? "Sì" : "No"],
+              ["Documentato", doc.status.documented ? "Sì" : "No"],
+              [
+                "Test",
+                doc.status.tests.length > 0
+                  ? doc.status.tests.join(", ")
+                  : "Nessun test dedicato",
+              ],
+            ]}
           />
-        ) : (
-          <Text tone="secondary">
-            Nessuna interazione da tastiera propria: il componente non è
-            interattivo o usa elementi nativi.
-          </Text>
-        )}
-      </DocSection>
+          <Heading level={3} size="title-sm">
+            Limiti noti
+          </Heading>
+          <Bullets items={doc.status.limits} />
+        </DocSection>
 
-      <DocSection title="Accessibilità">
-        <Bullets items={doc.accessibility} />
-        {doc.apg ? (
-          <Link href={doc.apg} external>
-            Pattern WAI-ARIA APG di riferimento{" "}
-            <ExternalLink aria-hidden="true" size={14} />
-          </Link>
-        ) : null}
-      </DocSection>
-
-      <DocSection title="Comportamento responsive">
-        <Bullets items={doc.responsive} />
-      </DocSection>
-
-      <DocSection title="Personalizzazione">
-        <Bullets items={doc.customization} />
-      </DocSection>
-
-      <DocSection title="Errori comuni">
-        <Bullets items={doc.commonMistakes} />
-      </DocSection>
-
-      <DocSection title="Stato e limiti">
-        <RefTable
-          label={`Stato di ${doc.name}`}
-          columns={["Aspetto", "Stato"]}
-          rows={[
-            ["Implementato", doc.status.implemented ? "Sì" : "No"],
-            ["Documentato", doc.status.documented ? "Sì" : "No"],
-            [
-              "Test",
-              doc.status.tests.length > 0
-                ? doc.status.tests.join(", ")
-                : "Nessun test dedicato",
-            ],
-          ]}
+        <PrevNext
+          label="Componente precedente e successivo"
+          prev={
+            prev
+              ? { href: `/componenti/${prev.doc.slug}`, label: prev.doc.name }
+              : undefined
+          }
+          next={
+            next
+              ? { href: `/componenti/${next.doc.slug}`, label: next.doc.name }
+              : undefined
+          }
         />
-        <Heading level={3} size="title-sm">
-          Limiti noti
-        </Heading>
-        <Bullets items={doc.status.limits} />
-      </DocSection>
-
-      <PrevNext
-        label="Componente precedente e successivo"
-        prev={
-          prev
-            ? { href: `/componenti/${prev.doc.slug}`, label: prev.doc.name }
-            : undefined
-        }
-        next={
-          next
-            ? { href: `/componenti/${next.doc.slug}`, label: next.doc.name }
-            : undefined
-        }
-      />
+      </div>
     </article>
   );
 }

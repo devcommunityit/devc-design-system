@@ -1,0 +1,6 @@
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}

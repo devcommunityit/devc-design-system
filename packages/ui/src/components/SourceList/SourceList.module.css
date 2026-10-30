@@ -1,0 +1,22 @@
+.sources {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.label {
+  font-weight: var(--dc-typography-label-md-weight);
+}
+
+.list {
+  display: grid;
+  gap: var(--dc-space-2);
+  margin: 0;
+  padding-inline-start: var(--dc-space-6);
+  overflow-wrap: anywhere;
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}

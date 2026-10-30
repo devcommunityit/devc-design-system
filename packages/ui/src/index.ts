@@ -39,6 +39,8 @@ export * from './components/pickers';
 export * from './components/data';
 export * from './components/charts';
 export * from './components/dashboard';
+export * from './components/ai';
+export * from './components/website';
 export * from './components/feedback';
 export * from './components/overlays';
 

@@ -1,0 +1,297 @@
+.td-stage {
+  container-type: inline-size;
+  position: relative;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-xl);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 0% 0%, color-mix(in srgb, var(--dc-color-action-primary) 10%, transparent), transparent),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--dc-color-accent-default) 10%, transparent), transparent);
+}
+
+.td-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--dc-space-4);
+}
+
+.td-layout {
+  display: grid;
+  gap: var(--dc-space-6);
+  min-inline-size: 0;
+}
+
+.td-preview,
+.td-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-10);
+  min-inline-size: 0;
+}
+
+.td-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+}
+
+.td-grid-2 {
+  display: grid;
+  gap: var(--dc-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+}
+
+/* Specimen matrix: overflow stays inside the wrapper, never on the page. */
+.td-matrix-wrap {
+  padding-block: var(--dc-space-2);
+}
+
+.td-matrix {
+  border-collapse: separate;
+  border-spacing: var(--dc-space-3) var(--dc-space-2);
+}
+
+.td-matrix th {
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-typography-label-sm-weight);
+  color: var(--dc-color-text-secondary);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.td-matrix thead th {
+  text-align: center;
+}
+
+.td-matrix td {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.td-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Theme panel */
+.td-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-5);
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-raised);
+  box-shadow: var(--dc-shadow-3);
+  min-inline-size: 0;
+}
+
+.td-stage[data-panel='translucent'] .td-surface {
+  background-color: color-mix(in srgb, var(--dc-color-surface-default) 72%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+
+.td-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.td-fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.td-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-1) var(--dc-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0;
+  margin-block-end: var(--dc-space-2);
+}
+
+.td-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.td-swatch {
+  position: relative;
+  display: inline-flex;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+
+.td-swatch-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.td-swatch-dot {
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: var(--dc-radius-full);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dc-color-text-primary) 18%, transparent);
+  transition: transform var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+  forced-color-adjust: none;
+  pointer-events: none;
+}
+
+.td-swatch-input:checked + .td-swatch-dot {
+  box-shadow:
+    0 0 0 2px var(--dc-color-surface-raised),
+    0 0 0 4px var(--dc-color-text-primary);
+}
+
+.td-swatch-input:focus-visible + .td-swatch-dot {
+  outline: var(--dc-border-width-thick) solid var(--dc-color-focus-ring);
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .td-swatch:hover .td-swatch-dot {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .td-swatch-dot {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .td-swatch-input:checked + .td-swatch-dot {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+
+.td-segments {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.td-segments--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.td-segments--5 {
+  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+  gap: var(--dc-space-1);
+}
+
+.td-segments--5 > * {
+  padding-inline: 0;
+  white-space: nowrap;
+}
+
+.td-segments > * {
+  min-inline-size: 0;
+  justify-content: center;
+}
+
+.td-radius > * {
+  block-size: auto;
+  padding-block: var(--dc-space-2);
+}
+
+.td-radius-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  align-items: center;
+}
+
+.td-radius-sample {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border-block-start: 2px solid var(--dc-color-action-primary);
+  border-inline-end: 2px solid var(--dc-color-action-primary);
+  background-color: var(--dc-color-action-secondary);
+}
+
+.td-radius-label {
+  font-size: var(--dc-typography-label-sm-size);
+  line-height: var(--dc-typography-label-sm-line-height);
+  /* Words never split mid-letter; very narrow panels wrap between cells instead. */
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+.td-contrast-ok {
+  display: flex;
+  gap: var(--dc-space-2);
+  align-items: flex-start;
+}
+
+.td-contrast-ok svg {
+  flex: none;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-block-start: 0.15em;
+  color: var(--dc-color-feedback-success);
+}
+
+.td-actions {
+  display: grid;
+  gap: var(--dc-space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.td-actions > :first-child {
+  grid-column: 1 / -1;
+}
+
+.td-code summary {
+  cursor: pointer;
+  font-size: var(--dc-typography-label-md-size);
+  color: var(--dc-color-text-link);
+  padding-block: var(--dc-space-1);
+}
+
+.td-code[open] summary {
+  margin-block-end: var(--dc-space-2);
+}
+
+@container (width >= 58rem) {
+  .td-layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: start;
+  }
+
+  .td-panel {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    inset-block-start: var(--dc-space-20);
+    max-block-size: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+
+  .td-preview {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .td-stage[data-panel-open='false'] .td-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

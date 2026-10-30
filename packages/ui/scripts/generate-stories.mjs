@@ -20,6 +20,8 @@ const CATEGORY_LABELS = {
   data: 'Contenuti e dati',
   charts: 'Grafici',
   dashboard: 'Dashboard',
+  ai: 'AI',
+  website: 'Gestione siti',
   feedback: 'Feedback',
   overlay: 'Overlay',
   patterns: 'Pattern',

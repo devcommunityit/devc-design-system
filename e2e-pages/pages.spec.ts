@@ -13,7 +13,22 @@ test.describe('GitHub Pages (sotto-percorso)', () => {
     await expect(page.locator('html')).toHaveAttribute('data-dc-palette', /.+/);
   });
 
-  for (const path of ['/componenti/button', '/guide/temi', '/theme-builder', '/showcase/dashboard', '/showcase/elenco', '/pattern']) {
+  for (const path of [
+    '/componenti/button',
+    '/guide/temi',
+    '/guide/ai-content',
+    '/componenti/prompt-composer',
+    '/foundations/typography',
+    '/foundations/spacing',
+    '/foundations/rounded',
+    '/foundations/colors',
+    '/foundations/shadows',
+    '/theme-builder',
+    '/theme-designer',
+    '/showcase/dashboard',
+    '/showcase/elenco',
+    '/pattern',
+  ]) {
     test(`link diretto ${path} risponde 200 e mostra la pagina`, async ({ page }) => {
       const response = await page.goto(url(path));
       expect(response?.status()).toBe(200);

@@ -78,7 +78,9 @@
   content: '';
   position: absolute;
   inset-inline: var(--dc-space-2);
-  inset-block-end: calc(-1 * var(--dc-border-width-thin));
+
+  /* Kept inside the scrollport: a negative offset makes the horizontal list scroll vertically. */
+  inset-block-end: 0;
   block-size: var(--dc-border-width-thick);
   border-radius: var(--dc-radius-full);
   background-color: currentcolor;

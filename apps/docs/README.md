@@ -37,6 +37,9 @@ alla radice del repository; questo README non avvia deploy.
   personalizzazione, Figma, troubleshooting, contributi e changelog.
 - **Catalogo componenti e pattern**: le descrizioni e gli esempi provengono dai
   metadati dei componenti in `packages/ui`, condivisi con Storybook.
+- **Theme Designer**: anteprima a matrice dei componenti con pannello tema
+  (accento, grigi, chiaro/scuro, raggio, scala, stile, densità) e copia del
+  codice `createTheme`.
 - **Theme Builder**: crea e modifica temi, controlla il contrasto, visualizza
   l'anteprima e importa/esporta JSON o CSS.
 - **Showcase**: pagine dimostrative con dati locali deterministici; i flussi di

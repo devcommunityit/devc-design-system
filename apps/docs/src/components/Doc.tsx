@@ -1,12 +1,20 @@
 import {
   Component,
   useEffect,
+  useId,
+  useMemo,
+  useRef,
   useState,
   type ErrorInfo,
   type ReactNode,
   type RefObject,
 } from "react";
-import { ArrowLeft, ArrowRight, Link as LinkIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
+  Link as LinkIcon,
+} from "lucide-react";
 import {
   Alert,
   CodeBlock,
@@ -19,6 +27,7 @@ import {
   TableHeaderCell,
   TableRow,
   Text,
+  VisuallyHidden,
 } from "@dev-community/ui";
 import { slugify } from "../content/source";
 
@@ -149,24 +158,156 @@ export interface TocItem {
   children?: TocItem[];
 }
 
-/** "On this page" navigation with direct links to the page sections. */
+/**
+ * Id of the section currently read: the last target whose top has reached its own
+ * scroll-margin line (the same position an anchor jump scrolls it to).
+ */
+function useActiveSection(ids: string[]): string | undefined {
+  const [active, setActive] = useState<string>();
+  const key = ids.join("|");
+  useEffect(() => {
+    const targets = key ? key.split("|") : [];
+    if (targets.length === 0) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      let current: string | undefined;
+      let currentTop = -Infinity;
+      let last: string | undefined;
+      let lastTop = -Infinity;
+      for (const id of targets) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top > lastTop) {
+          last = id;
+          lastTop = top;
+        }
+        const margin = parseFloat(getComputedStyle(el).scrollMarginBlockStart) || 0;
+        if (top - margin <= 1 && top > currentTop) {
+          current = id;
+          currentTop = top;
+        }
+      }
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      setActive(atBottom && window.scrollY > 0 ? last : current);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [key]);
+  return active;
+}
+
+/**
+ * "On this page" navigation. In a wide main area it is a sticky right-hand column
+ * (see `.docs-article--toc`); in narrow ones a sticky bar that opens a panel.
+ * The section being read is marked with `aria-current="location"`.
+ */
 export function PageToc({ items }: { items: TocItem[] }) {
+  const [open, setOpen] = useState(false);
+  const listId = useId();
+  const navRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const listRef = useRef<HTMLOListElement>(null);
+  const ids = useMemo(
+    () => items.flatMap((i) => [i.id, ...(i.children ?? []).map((c) => c.id)]),
+    [items],
+  );
+  const activeId = useActiveSection(ids);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!navRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [open]);
+
+  // Keep the current entry visible when the list scrolls inside its own box.
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list || !activeId || list.scrollHeight <= list.clientHeight) return;
+    const link = list.querySelector<HTMLElement>('[aria-current="location"]');
+    if (!link) return;
+    const linkBox = link.getBoundingClientRect();
+    const listBox = list.getBoundingClientRect();
+    if (linkBox.top < listBox.top) list.scrollTop -= listBox.top - linkBox.top + 8;
+    else if (linkBox.bottom > listBox.bottom)
+      list.scrollTop += linkBox.bottom - listBox.bottom + 8;
+  }, [activeId, open]);
+
   if (items.length < 2) return null;
+  const activeLabel =
+    items.find((i) => i.id === activeId)?.label ??
+    items.find((i) => i.children?.some((c) => c.id === activeId))?.label;
+  const link = (item: TocItem) => (
+    <a
+      href={`#${item.id}`}
+      aria-current={item.id === activeId ? "location" : undefined}
+      onClick={() => setOpen(false)}
+    >
+      {item.label}
+    </a>
+  );
+
   return (
-    <nav className="docs-toc" aria-label="In questa pagina">
-      <Text as="p" variant="label-md" tone="secondary">
+    <nav
+      ref={navRef}
+      className="docs-toc"
+      aria-label="In questa pagina"
+      data-open={open || undefined}
+    >
+      <Text as="p" variant="label-md" tone="secondary" className="docs-toc-title">
         In questa pagina
       </Text>
-      <ol className="docs-toc-list">
+      <button
+        ref={toggleRef}
+        type="button"
+        className="docs-toc-toggle"
+        aria-expanded={open}
+        aria-controls={listId}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span className="docs-toc-toggle-label">In questa pagina</span>
+        {activeLabel ? (
+          <span className="docs-toc-current">
+            <VisuallyHidden>, sezione corrente: </VisuallyHidden>
+            {activeLabel}
+          </span>
+        ) : (
+          <span className="docs-toc-current" />
+        )}
+        <ChevronDown aria-hidden="true" size={16} />
+      </button>
+      <ol ref={listRef} id={listId} className="docs-toc-list">
         {items.map((item) => (
           <li key={item.id}>
-            <a href={`#${item.id}`}>{item.label}</a>
+            {link(item)}
             {item.children && item.children.length > 0 ? (
-              <ol className="docs-toc-list docs-toc-list--nested">
+              <ol className="docs-toc-sublist">
                 {item.children.map((child) => (
-                  <li key={child.id}>
-                    <a href={`#${child.id}`}>{child.label}</a>
-                  </li>
+                  <li key={child.id}>{link(child)}</li>
                 ))}
               </ol>
             ) : null}

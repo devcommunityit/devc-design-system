@@ -6,6 +6,18 @@ personalizzati), componenti accessibili basati su React Aria e pattern pronti (h
 > **Licenza**: non ancora definita (`"license": "UNLICENSED"`, nessun diritto concesso). La scelta spetta al proprietario del
 > progetto; `prepublishOnly` blocca la pubblicazione su npmjs.com finché la licenza non viene scelta.
 
+## Interfacce AI e gestione siti
+
+- AI: `PromptComposer`, `ChatMessage`, `PromptSuggestions`, `SourceList`, `ResponseFeedback`.
+- Gestione contenuti: `PublishStatus`, `BulkActionBar`, `SeoPreview`.
+
+Sono componenti UI senza client AI o richieste di rete implicite. Usa `onSend`, `onStop`, `onAction` e `onChange`
+per collegare servizi e persistenza del consumer. I messaggi di sistema sono localizzati nei sette bundle esistenti.
+`ChatMessage` rende testo o ReactNode, senza inserire HTML o interpretare Markdown. `PublishStatus` non pubblica contenuti
+e `SeoPreview` non modifica metadati né garantisce ranking nei motori di ricerca.
+
+Il sito documenta le API e offre esempi condivisi con Storybook e una guida **AI e gestione contenuti**.
+
 ## Requisiti
 
 - React e React DOM `^18.3 || ^19` (peer dependencies).

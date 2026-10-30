@@ -9,6 +9,9 @@ Prima versione.
 
 ### Aggiunto
 
+- Interfacce AI: `PromptComposer`, `ChatMessage`, `PromptSuggestions`, `SourceList`, `ResponseFeedback`, senza backend o client AI impliciti.
+- Gestione siti: `PublishStatus`, `BulkActionBar`, `SeoPreview`, con azioni e persistenza delegate al consumer.
+  Nuovi messaggi di sistema nei sette bundle, categorie AI/Gestione siti, esempi condivisi con Storybook e guida con demo locale dichiarata.
 - Token primitivi e semantici con un'unica fonte (`src/tokens/source`), generati in CSS custom properties, TypeScript e DTCG.
 - Motore dei temi: `createTheme`, `validateTheme`, `parseThemeJson` / `themeToJson` (schema versionato, `schemaVersion: 1`),
   `themeToCss`, preset `aurora`, `lagoon`, `ember`, `graphite`, `ocean`, `forest`, `berry`, `saffron`, `nebula`, modalità light/dark/system, densità comfortable/compact.

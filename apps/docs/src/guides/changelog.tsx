@@ -14,6 +14,12 @@ export default function Changelog() {
           </li>
           <li>ThemeProvider con provider annidati, portal tematizzati, persistenza opzionale e strategia per CSP restrittive.</li>
           <li>Catalogo completo di layout, tipografia, azioni, navigazione, form, dati, feedback e overlay.</li>
+          <li>Componenti AI: PromptComposer, ChatMessage, PromptSuggestions, SourceList e ResponseFeedback. Gestione siti: PublishStatus, BulkActionBar e SeoPreview. Etichette in sette lingue ed esempi locali dichiarati; nessun backend AI, pubblicazione o SEO automatici.</li>
+          <li>
+            Documentazione: pagina Theme Designer con matrice di varianti e stati e pannello tema (accento, grigi, aspetto, raggio, stile,
+            densità). Scala dell’anteprima e pannelli traslucidi sono ricette CSS della pagina, non token della libreria.
+          </li>
+          <li>Tabs: l’indicatore della variante line resta dentro l’area di scorrimento ed evita una barra di scorrimento verticale spuria.</li>
           <li>
             Grafici SVG senza dipendenze (Sparkline, LineChart, BarChart, DonutChart, ChartLegend) con tabella dati, navigazione da tastiera e
             ruoli colore categoriali data.1–data.6; componenti per dashboard (HeroCard, PromoBanner, KpiCard, QuickAction) e NavList.

@@ -2,8 +2,10 @@ import { useState } from 'react';
 import {
   Alert,
   BarChart,
+  BulkActionBar,
   Button,
   Card,
+  ChatMessage,
   Container,
   Dialog,
   DialogTrigger,
@@ -14,8 +16,14 @@ import {
   LocaleProvider,
   LoginForm,
   MenuItem,
+  PromptComposer,
+  PromptSuggestions,
+  PublishStatus,
   Radio,
   RadioGroup,
+  ResponseFeedback,
+  SeoPreview,
+  SourceList,
   Stack,
   Text,
   ThemeProvider,
@@ -25,6 +33,7 @@ import {
   useToast,
   type Key,
   type LoginFormValues,
+  type PublicationStatus,
   type ThemeMode,
 } from '@dev-community/ui';
 // Server-safe entry: no React, no DOM.
@@ -92,6 +101,43 @@ function ToastButton() {
   );
 }
 
+function AiAndContent() {
+  const [prompt, setPrompt] = useState('');
+  const [request, setRequest] = useState('');
+  const [status, setStatus] = useState<PublicationStatus>('draft');
+  return (
+    <Card>
+      <Stack gap={4}>
+        <Heading level={2} id="consumer-ai">AI e contenuti dal pacchetto compilato</Heading>
+        <Text>Demo locale: nessun modello AI o CMS collegato.</Text>
+        <PromptSuggestions
+          items={[{ id: 'summary', label: 'Riassumi la pagina', prompt: 'Riassumi questa pagina' }]}
+          onAction={(item) => setPrompt(item.prompt)}
+        />
+        <PromptComposer
+          label="Richiesta consumer"
+          value={prompt}
+          onChange={setPrompt}
+          onSend={(text) => { setRequest(text); setPrompt(''); }}
+        />
+        <ChatMessage footer={
+          <>
+            <SourceList sources={[{ id: 'local', title: 'Esempio locale', href: '#consumer-ai' }]} />
+            <ResponseFeedback />
+          </>
+        }>
+          {request ? `Richiesta locale: ${request}` : 'Nessuna richiesta inviata.'}
+        </ChatMessage>
+        <PublishStatus status={status} />
+        <BulkActionBar count={1}>
+          <Button size="sm" isDisabled={status === 'published'} onPress={() => setStatus('published')}>Pubblica pagina locale</Button>
+        </BulkActionBar>
+        <SeoPreview title="Anteprima consumer" url="https://example.test/consumer" description="Metadati solo dimostrativi." />
+      </Stack>
+    </Card>
+  );
+}
+
 function Content() {
   const [user, setUser] = useState<string | null>(null);
   const [counter, setCounter] = useState(0);
@@ -127,6 +173,7 @@ function Content() {
                 { id: 'sud', label: 'Sud', data: [80, 95, 110, 105] },
               ]}
             />
+            <AiAndContent />
 
             <Card data-testid="login-card">
               <Stack gap={3}>

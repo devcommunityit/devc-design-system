@@ -49,8 +49,10 @@ const routes = [
   'componenti',
   'pattern',
   'theme-builder',
+  'theme-designer',
   'showcase',
   ...slugs(resolve(docs, 'src/content/guides.ts')).map((s) => `guide/${s}`),
+  ...slugs(resolve(docs, 'src/content/foundations.ts')).map((s) => `foundations/${s}`),
   ...metaSlugs.map((s) => `componenti/${s}`),
   ...slugs(resolve(docs, 'src/content/showcase.ts')).map((s) => `showcase/${s}`),
 ];

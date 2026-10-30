@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import { BookOpen, Boxes, Compass, LayoutTemplate, Palette, Search } from 'lucide-react';
+import { BookOpen, Boxes, Compass, Layers3, LayoutTemplate, Palette, Ruler, Search, SlidersHorizontal, SquareDashed, Type } from 'lucide-react';
 import { AppShell, Button, CommandPalette, Footer, Header, Kbd, Link, Sidebar, type CommandPaletteItem, type SidebarSection } from '@dev-community/ui';
 import { componentsByCategory, components } from '../content/components';
 import { GUIDES } from '../content/guides';
+import { FOUNDATIONS, type FoundationSlug } from '../content/foundations';
 import { SHOWCASE } from '../content/showcase';
 import { HAS_STORYBOOK, STORYBOOK_PATH } from '../base';
 import { PreferencesMenu } from './PreferencesMenu';
@@ -12,6 +13,13 @@ import { useHashScroll } from '../useHashScroll';
 function buildSections(pathname: string): SidebarSection[] {
   const guide = (group: string) =>
     GUIDES.filter((g) => g.group === group).map((g) => ({ id: `/guide/${g.slug}`, label: g.title, href: `/guide/${g.slug}` }));
+  const foundationIcons: Record<FoundationSlug, ReactNode> = {
+    typography: <Type />,
+    spacing: <Ruler />,
+    rounded: <SquareDashed />,
+    colors: <Palette />,
+    shadows: <Layers3 />,
+  };
   return [
     {
       id: 'start',
@@ -21,7 +29,21 @@ function buildSections(pathname: string): SidebarSection[] {
     {
       id: 'foundations',
       title: 'Fondamenta',
-      items: [...guide('foundations'), { id: '/theme-builder', label: 'Theme Builder', href: '/theme-builder', icon: <Palette /> }],
+      items: FOUNDATIONS.map((foundation) => ({
+        id: `/foundations/${foundation.slug}`,
+        label: foundation.title,
+        href: `/foundations/${foundation.slug}`,
+        icon: foundationIcons[foundation.slug],
+      })),
+    },
+    {
+      id: 'theme-guides',
+      title: 'Temi e principi',
+      items: [
+        { id: '/theme-designer', label: 'Theme Designer', href: '/theme-designer', icon: <SlidersHorizontal /> },
+        { id: '/theme-builder', label: 'Theme Builder', href: '/theme-builder', icon: <Palette /> },
+        ...guide('foundations'),
+      ],
     },
     {
       id: 'components',
@@ -48,9 +70,16 @@ function buildCommands(): CommandPaletteItem[] {
   return [
     { id: '/', label: 'Introduzione', section: 'Pagine' },
     { id: '/componenti', label: 'Catalogo componenti', section: 'Pagine', keywords: ['matrice', 'catalog'] },
+    { id: '/theme-designer', label: 'Theme Designer', section: 'Pagine', keywords: ['tema', 'accento', 'raggio', 'anteprima', 'varianti'] },
     { id: '/theme-builder', label: 'Theme Builder', section: 'Pagine', keywords: ['tema', 'colori', 'palette'] },
     { id: '/pattern', label: 'Pattern e template', section: 'Pagine', keywords: ['showcase'] },
     ...GUIDES.map((g) => ({ id: `/guide/${g.slug}`, label: g.title, description: g.description, section: 'Guide' })),
+    ...FOUNDATIONS.map((foundation) => ({
+      id: `/foundations/${foundation.slug}`,
+      label: foundation.title,
+      description: foundation.description,
+      section: 'Fondamenta',
+    })),
     ...components.map((c) => ({
       id: `/componenti/${c.doc.slug}`,
       label: c.doc.name,

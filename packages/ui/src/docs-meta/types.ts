@@ -11,6 +11,8 @@ export type ComponentCategory =
   | 'data'
   | 'charts'
   | 'dashboard'
+  | 'ai'
+  | 'website'
   | 'feedback'
   | 'overlay'
   | 'patterns';

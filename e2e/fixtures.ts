@@ -96,7 +96,24 @@ export function componentSlugs(): string[] {
 }
 
 export const SHOWCASE_PAGES = ['dashboard', 'admin', 'elenco', 'dettaglio', 'modulo', 'impostazioni', 'account', 'errori', 'accesso', 'landing'];
-export const DOC_PAGES = ['/', '/componenti', '/pattern', '/theme-builder', '/guide/quick-start', '/guide/temi', '/guide/token', '/guide/accessibilita', '/guide/grafici-dashboard'];
+export const DOC_PAGES = [
+  '/',
+  '/componenti',
+  '/pattern',
+  '/theme-builder',
+  '/theme-designer',
+  '/guide/quick-start',
+  '/guide/temi',
+  '/guide/token',
+  '/guide/accessibilita',
+  '/guide/grafici-dashboard',
+  '/guide/ai-content',
+  '/foundations/typography',
+  '/foundations/spacing',
+  '/foundations/rounded',
+  '/foundations/colors',
+  '/foundations/shadows',
+];
 
 /** Guide slugs read from the docs registry (apps/docs/src/content/guides.ts). */
 export function guideSlugs(): string[] {

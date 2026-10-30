@@ -22,7 +22,7 @@ test.describe('zoom e reflow', () => {
   for (const width of [640, 320]) {
     test.describe(`${width} CSS px, densità 2x`, () => {
       test.use({ viewport: { width, height: 400 }, deviceScaleFactor: 2 });
-      for (const path of ['/', '/theme-builder', '/showcase/elenco', '/showcase/modulo', '/showcase/landing']) {
+      for (const path of ['/', '/theme-builder', '/theme-designer', '/showcase/elenco', '/showcase/modulo', '/showcase/landing']) {
         test(path, async ({ page }) => {
           await open(page, path);
           await expectNoHorizontalOverflow(page);
@@ -31,7 +31,7 @@ test.describe('zoom e reflow', () => {
     });
   }
 
-  for (const path of ['/', '/theme-builder', '/showcase/landing', '/showcase/dashboard', '/showcase/modulo', '/showcase/accesso', '/showcase/account']) {
+  for (const path of ['/', '/theme-builder', '/theme-designer', '/showcase/landing', '/showcase/dashboard', '/showcase/modulo', '/showcase/accesso', '/showcase/account']) {
     test(`testo ingrandito al 200% (solo font) senza overflow globale: ${path}`, async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 800 });
       await open(page, path);
