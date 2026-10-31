@@ -1,0 +1,27 @@
+.form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--dc-space-2);
+}
+
+.message {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.form[data-status='error'] .message {
+  color: var(--dc-color-feedback-danger-foreground);
+}
+
+.form[data-status='applied'] .message {
+  color: var(--dc-color-feedback-success-foreground);
+}
+
+@media (width <= 32rem) {
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

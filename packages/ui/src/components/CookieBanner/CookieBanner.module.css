@@ -1,0 +1,28 @@
+.banner {
+  display: grid;
+  gap: var(--dc-space-4);
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.intro {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.title,
+.description {
+  margin: 0;
+}
+
+.title {
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+}

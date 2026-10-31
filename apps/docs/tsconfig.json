@@ -5,6 +5,9 @@
     "paths": {
       "@dev-community/ui": ["../../packages/ui/src/index.ts"],
       "@dev-community/ui/theme": ["../../packages/ui/src/theme/server.ts"],
+      "@dev-community/ui/editor": ["../../packages/ui/src/editor.ts"],
+      "@dev-community/ui/patterns": ["../../packages/ui/src/patterns-entry.ts"],
+      "@dev-community/ui/widgets": ["../../packages/ui/src/widgets.ts"],
       "@ui-src/*": ["../../packages/ui/src/*"]
     }
   },

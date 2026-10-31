@@ -1,0 +1,161 @@
+{
+  "source": "8c3b8b002235",
+  "summary": "Article card for community portals: a dark-gradient cover (code snippet or image), tags, clickable title, excerpt, author with avatar, date and reading time, and a reactions bar (likes, comments, bookmarks) that can be interactive.",
+  "whenToUse": [
+    "Highlighting an article or community blog post (featured variant).",
+    "Listing articles in a grid of compact cards with author and reactions.",
+    "Reusing ReactionBar under an article or any content with likes and bookmarks."
+  ],
+  "whenNotToUse": [
+    "Dense lists of voted posts: use PostList.",
+    "Discussion threads without excerpt or cover: use DiscussionList.",
+    "Generic content without author or reactions: use Card."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Article title; with href the whole card becomes clickable (stretched link)."
+    },
+    {
+      "name": "href",
+      "description": "Article URL."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Title level."
+    },
+    {
+      "name": "variant",
+      "description": "featured: cover beside the content (wide container) or above it (narrow); compact: no cover and tighter layout."
+    },
+    {
+      "name": "cover",
+      "description": "Cover content (a code <pre>, an image). Featured variant only."
+    },
+    {
+      "name": "image",
+      "description": "Article cover image. Replaces cover; use alt=\"\" if decorative."
+    },
+    {
+      "name": "tone",
+      "description": "Colors of the cover glows."
+    },
+    {
+      "name": "tags",
+      "description": "Chips or Badges above the title."
+    },
+    {
+      "name": "excerpt",
+      "description": "Short summary."
+    },
+    {
+      "name": "author",
+      "description": "Author: visible name and Avatar (image or initials)."
+    },
+    {
+      "name": "date",
+      "description": "Publication date: a Date becomes RelativeTime, anything else is shown as is."
+    },
+    {
+      "name": "readingMinutes",
+      "description": "Reading time in minutes (“9 min read”)."
+    },
+    {
+      "name": "likes / comments / bookmarks",
+      "description": "Reaction counts, formatted with Intl (compact notation)."
+    },
+    {
+      "name": "isLiked / onLike",
+      "description": "With onLike, the like becomes a toggle button (aria-pressed)."
+    },
+    {
+      "name": "isBookmarked / onBookmark",
+      "description": "With onBookmark, the bookmark becomes a toggle button (aria-pressed)."
+    },
+    {
+      "name": "commentsHref",
+      "description": "Turns the comment count into a link."
+    },
+    {
+      "name": "ReactionBar.formatOptions",
+      "description": "Count format when using ReactionBar on its own."
+    },
+    {
+      "name": "isLoading",
+      "description": "Renders a SkeletonCard of the same shape in its place (cover only in the featured variant), with aria-busy and hidden, non-live “Loading…” text, keeping className and style so it stays in the grid. Wrap the area in SkeletonGroup for a single announcement."
+    }
+  ],
+  "inherits": "ArticleCard: HTML attributes of <article>. ReactionBar: HTML attributes of <div>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the title link, then to interactive tags and reactions."
+    },
+    {
+      "keys": "Invio",
+      "action": "Opens the article from the title link."
+    },
+    {
+      "keys": "Spazio / Invio",
+      "action": "Toggles like and bookmark."
+    }
+  ],
+  "accessibility": [
+    "<article> element named by the title (aria-labelledby); the title is a heading of the chosen level.",
+    "The title link covers the whole card via a pseudo-element: a single tab stop, while tags and reactions stay on top and clickable.",
+    "Interactive like and bookmark are React Aria ToggleButtons with aria-pressed; the name includes label and count (“Likes: 412”).",
+    "Icons are decorative; static counts have their label in visually hidden text.",
+    "The avatar is decorative because the author's name is already visible.",
+    "In forced-colors mode the cover uses Canvas/CanvasText and the active reaction state uses Highlight."
+  ],
+  "responsive": [
+    "Container query: above 40rem wide the cover sits beside the content, below it moves to the top.",
+    "Tags, metadata and reactions wrap; it stays usable at 320px.",
+    "Use Grid with minItemWidth for grids of compact cards."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, --dc-color-surface-inverse and --dc-color-text-inverse (cover, limited lightening via relative color), --dc-color-action-primary, --dc-color-accent-default and --dc-color-data-1…6 for the glows, --dc-color-accent-container for the active like.",
+    "Stable selectors: .dc-article-card-card[data-variant][data-tone], .dc-article-card-cover, .dc-article-card-body, .dc-article-card-reaction[data-kind][data-selected]."
+  ],
+  "commonMistakes": [
+    "Putting links or buttons in the title: the whole card is already the link; use tags and reactions for other actions.",
+    "Passing isLiked without updating the likes count: the number shown always comes from props.",
+    "Using a cover with important text and no alternative: the cover is content like any other, so give images an alt."
+  ],
+  "examples": [
+    {
+      "name": "Featured",
+      "title": "Featured",
+      "description": "Cover with a code snippet, tags and static reactions."
+    },
+    {
+      "name": "ArticleImage",
+      "title": "Photo cover",
+      "description": "Responsive image with explicit alternative text."
+    },
+    {
+      "name": "InteractiveReactions",
+      "title": "Interactive reactions",
+      "description": "Like and bookmark as toggles with state in the parent component."
+    },
+    {
+      "name": "Compact",
+      "title": "Compact",
+      "description": "Grid of cards without a cover."
+    },
+    {
+      "name": "StandaloneReactionBar",
+      "title": "Standalone ReactionBar"
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "The compact variant ignores cover.",
+    "The count does not change on its own when toggled: update it in the parent (even in uncontrolled mode).",
+    "In browsers without relative color syntax the cover uses --dc-color-surface-inverse, which is light in the dark theme."
+  ]
+}

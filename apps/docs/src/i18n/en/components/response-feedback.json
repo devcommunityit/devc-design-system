@@ -1,0 +1,68 @@
+{
+  "source": "452155af406f",
+  "summary": "Helpful/not helpful rating with exclusive, clearable selection, controlled or uncontrolled.",
+  "whenToUse": [
+    "Collecting an explicit rating of the response.",
+    "Connecting feedback to telemetry managed by the consumer."
+  ],
+  "whenNotToUse": [
+    "Automatically measuring a model's correctness or safety.",
+    "Collecting personal data without an appropriate privacy notice."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled or initial value."
+    },
+    {
+      "name": "onChange",
+      "description": "Selection, changed answer, or null when clicking again."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables both buttons."
+    }
+  ],
+  "inherits": "HTML attributes of div, aria-label, className, style and an HTMLDivElement ref.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus between the two buttons."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Selects or clears the feedback."
+    }
+  ],
+  "accessibility": [
+    "Localized visible text and aria-pressed state.",
+    "The selection also has a border, not just a color change."
+  ],
+  "responsive": [
+    "Buttons can wrap."
+  ],
+  "customization": [
+    "All labels can be overridden via LocaleProvider."
+  ],
+  "commonMistakes": [
+    "Switching between controlled and uncontrolled during the component's lifetime.",
+    "Treating the callback as actual persistence."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Local feedback"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled value and reset"
+    },
+    {
+      "name": "Localized",
+      "title": "Arabic, RTL and display only"
+    }
+  ],
+  "limits": [
+    "No networking, analytics or persistence."
+  ]
+}

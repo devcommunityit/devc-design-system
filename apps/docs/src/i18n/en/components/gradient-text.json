@@ -1,0 +1,54 @@
+{
+  "source": "6ae5f78b2324",
+  "summary": "Inline text filled with the brand gradient (background-clip: text) to highlight part of a heading. Falls back to a solid color where clipping isn't supported and in forced-colors mode.",
+  "whenToUse": [
+    "Highlighting a few keywords in a hero or section heading.",
+    "Short numbers or slogans on community landing pages."
+  ],
+  "whenNotToUse": [
+    "Paragraphs or long text: it reduces readability.",
+    "Communicating a status (error, success): use Text tones or a Badge."
+  ],
+  "props": [
+    {
+      "name": "as",
+      "description": "Inline element to render (strong/em for semantic emphasis)."
+    },
+    {
+      "name": "tone",
+      "description": "brand: primary → accent; text: link → accent for body text; inverse: light tints for inverse surfaces (dark heroes)."
+    }
+  ],
+  "inherits": "HTML attributes of the chosen element; ref to the element.",
+  "keyboard": [],
+  "accessibility": [
+    "The text remains real text: no impact on the accessible name; use as=\"strong\" or \"em\" if the emphasis is semantic.",
+    "In forced-colors mode the gradient is removed and the text uses CanvasText; without background-clip support it stays a solid color with adequate contrast.",
+    "The gradient stops are tokens designed for text: still check the contrast against the actual background (use inverse on dark surfaces)."
+  ],
+  "responsive": [
+    "Inline: wraps with the heading; box-decoration-break: clone keeps the gradient on every line."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent (brand), --dc-gradient-text (text), --dc-color-surface-brand and --dc-color-accent-container (inverse).",
+    "Stable selector: .dc-gradient-text-gradient-text[data-tone]."
+  ],
+  "commonMistakes": [
+    "Using tone=\"brand\" on a dark background in the light theme: contrast is low; use inverse.",
+    "Applying it to whole paragraphs or to links (the gradient hides the link color)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "In a heading"
+    },
+    {
+      "name": "Tones",
+      "title": "Tones",
+      "description": "brand, text, and inverse on an inverse surface."
+    }
+  ],
+  "limits": [
+    "The gradient requires background-clip: text and oklch interpolation; otherwise the solid color remains."
+  ]
+}

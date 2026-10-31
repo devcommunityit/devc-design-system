@@ -12,6 +12,8 @@ const externals = [
   '@internationalized/date',
   'lucide-react',
   '@material/material-color-utilities',
+  '@tiptap',
+  '@floating-ui/dom',
 ];
 
 const isExternal = (id: string) => externals.some((dep) => id === dep || id.startsWith(`${dep}/`));
@@ -29,6 +31,9 @@ export default defineConfig({
       entry: {
         index: 'src/index.ts',
         'theme/server': 'src/theme/server.ts',
+        editor: 'src/editor.ts',
+        patterns: 'src/patterns-entry.ts',
+        widgets: 'src/widgets.ts',
       },
       formats: ['es'],
       cssFileName: 'styles',
@@ -48,7 +53,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: false,
     setupFiles: ['./test/setup.ts'],
-    alias: { '@dev-community/ui/theme': new URL('./src/theme/server.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), '@dev-community/ui': new URL('./src/index.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1') },
+    alias: { '@dev-community/ui/editor': new URL('./src/editor.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), '@dev-community/ui/patterns': new URL('./src/patterns-entry.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), '@dev-community/ui/widgets': new URL('./src/widgets.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), '@dev-community/ui/theme': new URL('./src/theme/server.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), '@dev-community/ui': new URL('./src/index.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1') },
     css: { modules: { classNameStrategy: 'non-scoped' } },
     include: ['src/**/*.test.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
   },

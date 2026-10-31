@@ -1,0 +1,101 @@
+{
+  "source": "fb14eeb0a7f2",
+  "summary": "Signed-in user menu for the header: avatar (with fallback initials), name, email and role, customizable items, and a separate “Esci” (Sign out) item.",
+  "whenToUse": [
+    "In the actions area of Header, SiteHeader, or AppShell when the user is signed in."
+  ],
+  "whenNotToUse": [
+    "For signed-out users: show an “Accedi” (Sign in) Button or Link.",
+    "As the portal's main navigation: use Sidebar or NavigationMenu."
+  ],
+  "props": [
+    {
+      "name": "user",
+      "description": "Identity shown in the trigger and in the block at the top of the menu."
+    },
+    {
+      "name": "children",
+      "description": "Menu items (profile, settings, organization switcher…)."
+    },
+    {
+      "name": "onAction",
+      "description": "Called for items without href. Items with href navigate (RouterProvider)."
+    },
+    {
+      "name": "onSignOut",
+      "description": "When provided, adds an “Esci” (Sign out) item at the bottom, after a separator. It does not perform any sign-out: the consumer does."
+    },
+    {
+      "name": "signOutLabel",
+      "description": "Text of the sign-out item."
+    },
+    {
+      "name": "showName",
+      "description": "Visibility of the name next to the avatar; “wide” shows it from 768 px."
+    },
+    {
+      "name": "placement",
+      "description": "Menu position relative to the trigger."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled open state."
+    },
+    {
+      "name": "className",
+      "description": "Additional class on the trigger."
+    }
+  ],
+  "inherits": "Items are DropdownMenu MenuItems, with all their props (href, isDisabled, tone, shortcut…).",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio / ↓",
+      "action": "Opens the menu and moves focus to the first item."
+    },
+    {
+      "keys": "↑ / ↓ / Home / End",
+      "action": "Moves between items."
+    },
+    {
+      "keys": "Enter",
+      "action": "Activates the item and closes the menu."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the menu and returns focus to the trigger."
+    }
+  ],
+  "accessibility": [
+    "The trigger is a <button> named “Menu account, {nome}” with aria-haspopup/aria-expanded.",
+    "The menu takes its name from the trigger; the identity block (email, role) is linked with aria-describedby but is not a menu item, so it does not interfere with keyboard navigation.",
+    "The avatar is decorative: the name is always available as accessible text.",
+    "Built on react-aria-components (APG Menu Button pattern)."
+  ],
+  "responsive": [
+    "Below 768 px (showName=\"wide\") only the avatar remains visible; the full name is in the menu.",
+    "The panel never exceeds the viewport width; long names and emails wrap instead of being cut off."
+  ],
+  "customization": [
+    "Use MenuSection with title for groups (e.g. “Organization”).",
+    "Use USER_MENU_SIGN_OUT_KEY if you handle all actions in onAction and need to detect sign-out."
+  ],
+  "commonMistakes": [
+    "Signing out only on the client: always invalidate the session on the server.",
+    "Putting critical information (e.g. password expiration) only in the menu: also show it on the page."
+  ],
+  "examples": [
+    {
+      "name": "LoggedUserHeader",
+      "title": "Header with a signed-in user",
+      "description": "Items show the chosen action; “Esci” replaces the menu with the “Accedi” button (local state)."
+    },
+    {
+      "name": "AlwaysShowName",
+      "title": "Always-visible name and English labels",
+      "description": "Long name and email, custom sign-out text."
+    }
+  ],
+  "limits": [
+    "Account/organization switching must be composed by the consumer with MenuSection and MenuItem."
+  ]
+}

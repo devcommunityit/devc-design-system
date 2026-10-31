@@ -1,0 +1,65 @@
+{
+  "source": "9719899cf16f",
+  "summary": "Two resizable panes with a separator operable by pointer and keyboard.",
+  "whenToUse": [
+    "Showing an editor and a preview side by side.",
+    "Separating dashboard panels."
+  ],
+  "whenNotToUse": [
+    "Static layouts that already adapt with Grid or Stack."
+  ],
+  "props": [
+    {
+      "name": "primary / secondary",
+      "description": "Content of the two panes."
+    },
+    {
+      "name": "orientation",
+      "description": "Orientation of the separator and the split."
+    },
+    {
+      "name": "primarySize / defaultPrimarySize",
+      "description": "Controlled or initial size of the primary pane, as a percentage."
+    },
+    {
+      "name": "minPrimarySize / maxPrimarySize",
+      "description": "Percentage limits of the primary pane."
+    },
+    {
+      "name": "onPrimarySizeChange",
+      "description": "Reports the new sizes."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Frecce",
+      "action": "Resize the primary pane; Shift increases the step."
+    },
+    {
+      "keys": "Home / End",
+      "action": "Jump to the minimum and maximum limits."
+    }
+  ],
+  "accessibility": [
+    "The separator exposes its role, orientation, value, and limits through ARIA.",
+    "Both panes have a configurable accessible name."
+  ],
+  "responsive": [
+    "Inner content scrolls within its own pane; switch orientation on narrow layouts."
+  ],
+  "customization": [
+    "Uses the --dc-color-* tokens and the intrinsic size of the content."
+  ],
+  "commonMistakes": [
+    "Give the container a height when using orientation=\"horizontal\"."
+  ],
+  "examples": [
+    {
+      "name": "EditorPreview",
+      "title": "Editor and preview"
+    }
+  ],
+  "limits": [
+    "Does not persist sizes or handle mobile layouts automatically."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "source": "24cf74d2a652",
+  "summary": "Display-only event ticket with attendee details and a QR slot provided by the consumer.",
+  "whenToUse": [
+    "Showing an issued ticket and the details needed at the entrance."
+  ],
+  "whenNotToUse": [
+    "Creating tickets, QR codes, or scanning flows."
+  ],
+  "props": [
+    {
+      "name": "eventName",
+      "description": "Event name."
+    },
+    {
+      "name": "attendeeName",
+      "description": "Attendee name."
+    },
+    {
+      "name": "ticketName",
+      "description": "Ticket type."
+    },
+    {
+      "name": "ticketCode",
+      "description": "Code already assigned by the consumer."
+    },
+    {
+      "name": "qrVisual",
+      "description": "QR visual generated and passed in by the consumer; it is not created here."
+    }
+  ],
+  "inherits": "HTML attributes of <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches any interactive controls provided in the QR visual."
+    }
+  ],
+  "accessibility": [
+    "The details are structured in a description list; the optional QR visual is placed in a slot provided by the consumer."
+  ],
+  "responsive": [
+    "Details are laid out in adaptive columns; the code block moves below the content on narrow screens."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Provide the QR visual from a consumer-side generator; the component neither creates nor validates codes."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Ticket with provided visual"
+    }
+  ],
+  "limits": [
+    "No issuing, downloading, or QR generation."
+  ]
+}

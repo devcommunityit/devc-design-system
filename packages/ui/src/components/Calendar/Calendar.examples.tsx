@@ -55,3 +55,7 @@ export function Localized() {
     </Stack>
   );
 }
+
+export function MonthYear() {
+  return <Calendar aria-label="Data di nascita" showMonthYearPicker defaultValue={parseDate('1988-03-21')} />;
+}

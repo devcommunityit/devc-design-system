@@ -1,0 +1,79 @@
+{
+  "source": "d2e788147921",
+  "summary": "Page section header: eyebrow, title, description, and an end-aligned actions slot (tabs, filters, “see all”) that wraps below the text in narrow containers.",
+  "whenToUse": [
+    "Opening the sections of a landing page or portal (events, articles, speakers).",
+    "Placing filters or a “see all” link next to the title."
+  ],
+  "whenNotToUse": [
+    "Main page title (h1) with breadcrumbs: use Heading or the page header pattern.",
+    "Headings inside a card: use the card title."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Section title."
+    },
+    {
+      "name": "eyebrow",
+      "description": "Eyebrow above the title (category, context)."
+    },
+    {
+      "name": "description",
+      "description": "Supporting text below the title."
+    },
+    {
+      "name": "actions",
+      "description": "End slot: tabs, filters, links, or buttons."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level in the document structure."
+    },
+    {
+      "name": "size",
+      "description": "Visual size of the title, independent of the level."
+    },
+    {
+      "name": "titleId",
+      "description": "Id of the title, used to label the enclosing <section aria-labelledby>. Generated if omitted."
+    }
+  ],
+  "inherits": "HTML attributes of the <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "The title is a real heading (h2 by default): choose headingLevel based on the page structure.",
+    "The eyebrow precedes the title in reading order; don’t use it for essential information that isn’t also in the title.",
+    "Link the section to the title with <section aria-labelledby={titleId}> to create a named region."
+  ],
+  "responsive": [
+    "Text and actions sit on the same row and wrap when there isn’t enough space (flex-wrap).",
+    "Below 640 px, md/lg titles drop to headline-sm."
+  ],
+  "customization": [
+    "Tokens: --dc-color-text-link for the eyebrow, headline/title type scale.",
+    "Stable selectors: .dc-section-header-section-header[data-size], .dc-section-header-title, .dc-section-header-actions."
+  ],
+  "commonMistakes": [
+    "Using size to change the hierarchy: the level is set with headingLevel.",
+    "Putting too many actions in the slot: prefer one filter and one link."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "With filters",
+      "description": "Eyebrow, title, and a ToggleGroup at the end."
+    },
+    {
+      "name": "WithDescription",
+      "title": "With description and link"
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes and levels"
+    }
+  ],
+  "limits": [
+    "Start alignment only; for centered headers use Heading and Text."
+  ]
+}

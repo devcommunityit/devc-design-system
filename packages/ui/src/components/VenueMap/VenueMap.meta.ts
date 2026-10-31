@@ -1,0 +1,47 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  entry: 'widgets',
+  exports: ['VenueMap', 'VenueMapProps', 'VenueMapDirections', 'venueMapEmbedUrl', 'venueMapLinks'],
+  name: 'VenueMap',
+  slug: 'venue-map',
+  category: 'community',
+  summary: 'Mappa della sede di un evento con OpenStreetMap caricato solo dopo il consenso, indirizzo e link alle indicazioni.',
+  whenToUse: ['Mostrare dove si svolge un meetup, una conferenza o un workshop.', 'Offrire indicazioni stradali verso la sede con Google Maps, Apple Maps o OpenStreetMap.'],
+  whenNotToUse: ['Riepiloghi compatti della sede nelle liste: usa VenueCard con mapHref.', 'Mappe con più punti, percorsi o layer personalizzati: integra una libreria cartografica dedicata.', 'Piantine interne della sede: usa VenueFloorPlan.'],
+  props: [
+    { name: 'name', type: 'string', required: true, description: 'Nome della sede, usato nel titolo dell’iframe, nel segnaposto e nei link.' },
+    { name: 'latitude / longitude', type: 'number', required: true, description: 'Coordinate WGS84 della sede, usate per il marker e per le indicazioni.' },
+    { name: 'address', type: 'ReactNode', description: 'Indirizzo mostrato nella didascalia dentro un elemento address.' },
+    { name: 'zoom', type: 'number', default: '16', description: 'Livello di zoom OpenStreetMap, limitato tra 3 e 19.' },
+    { name: 'isLoaded / defaultLoaded', type: 'boolean', default: 'false', description: 'Consenso controllato o iniziale: l’iframe viene creato solo quando è true.' },
+    { name: 'onLoadedChange', type: '(isLoaded: boolean) => void', description: 'Notifica quando l’utente carica la mappa; usalo per ricordare il consenso.' },
+    { name: 'directions', type: "ReadonlyArray<'osm' | 'google' | 'apple'>", default: "['osm', 'google', 'apple']", description: 'Link esterni da mostrare sotto la mappa; un array vuoto li nasconde.' },
+    { name: 'aspectRatio', type: 'string', default: "'16 / 9'", description: 'Proporzioni CSS dell’area mappa.' },
+    { name: 'placeholder', type: 'ReactNode', description: 'Contenuto personalizzato del segnaposto prima del consenso, per esempio un’immagine statica.' },
+    { name: 'consentNote', type: 'ReactNode', description: 'Sostituisce la nota privacy predefinita accanto al pulsante di caricamento.' },
+  ],
+  inherits: 'HTMLAttributes<HTMLElement> (senza children), applicati al figure radice.',
+  keyboard: [{ keys: 'Tab', action: 'Raggiunge il pulsante "Carica mappa", poi la mappa e i link alle indicazioni.' }, { keys: 'Invio / Spazio', action: 'Carica la mappa dal pulsante del segnaposto.' }],
+  accessibility: [
+    'Prima del consenso il segnaposto illustrato è decorativo; nome della sede e nota privacy sono testo leggibile.',
+    'L’iframe ha un titolo che include il nome della sede ed è caricato in modalità lazy e sandbox.',
+    'I link esterni annunciano che si aprono in una nuova scheda.',
+    'Dopo il caricamento il focus passa alla mappa, perché il pulsante scompare.',
+    'L’indirizzo resta disponibile come testo anche quando la mappa non è caricata.',
+  ],
+  responsive: ['La mappa occupa la larghezza del contenitore e mantiene le proporzioni di aspectRatio.', 'Nei contenitori stretti il riquadro del consenso usa margini e testo ridotti grazie alle container query.'],
+  customization: ['Personalizza colori e bordi con i token --dc-color-* e --dc-look-radius-container.', 'Passa placeholder per mostrare un’immagine statica della zona al posto dell’illustrazione.'],
+  commonMistakes: ['Impostare defaultLoaded a true senza un consenso già raccolto: la richiesta a OpenStreetMap partirebbe al primo render.', 'Invertire latitudine e longitudine: la latitudine è il primo valore (es. 45.48 per Milano).'],
+  examples: [
+    { name: 'Basic', title: 'Sede con indirizzo' },
+    { name: 'Controlled', title: 'Consenso controllato' },
+    { name: 'CustomLinks', title: 'Link e proporzioni personalizzati' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['components/VenueMap/VenueMap.test.tsx'],
+    limits: ['Usa l’embed pubblico di OpenStreetMap: niente stili personalizzati, più marker o percorsi.', 'Il consenso non viene persistito: salvalo tu tramite onLoadedChange.'],
+  },
+};

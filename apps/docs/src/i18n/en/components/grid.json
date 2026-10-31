@@ -1,0 +1,63 @@
+{
+  "source": "259ad8285eff",
+  "summary": "CSS grid with a responsive column count (breakpoints sm 640, md 768, lg 1024, xl 1280 px) or intrinsic “auto-fit” columns with a minimum width.",
+  "whenToUse": [
+    "KPI dashboards, card galleries, main layout + side panel."
+  ],
+  "whenNotToUse": [
+    "One-dimensional lists: use Stack/Inline.",
+    "Tabular data: use Table or DataTable."
+  ],
+  "props": [
+    {
+      "name": "columns",
+      "description": "Fixed or per-breakpoint columns (mobile-first: each value applies until the next one)."
+    },
+    {
+      "name": "minItemWidth",
+      "description": "Minimum CSS length per column in auto-fit mode; takes precedence over columns."
+    },
+    {
+      "name": "gap / rowGap",
+      "description": "Spacing between cells."
+    },
+    {
+      "name": "as",
+      "description": "Semantic element (with ul/ol use GridItem as=\"li\")."
+    },
+    {
+      "name": "GridItem.span",
+      "description": "Columns spanned; below 640 px an item with span takes the full row."
+    }
+  ],
+  "inherits": "Global HTML attributes; ref to the element.",
+  "keyboard": [],
+  "accessibility": [
+    "Reading order follows the DOM: do not use the grid to visually reorder meaningful content."
+  ],
+  "responsive": [
+    "Media queries use literal px values (custom properties are not allowed in conditions).",
+    "Auto-fit mode adapts to the container without breakpoints."
+  ],
+  "customization": [
+    "Local variables --_cols-{base,sm,md,lg,xl}, --_min, --_gap; selector .dc-layout-grid[data-mode]."
+  ],
+  "commonMistakes": [
+    "Setting columns={4} without a base: on mobile the 4 columns become too narrow. Use { base: 1, md: 2, lg: 4 }."
+  ],
+  "examples": [
+    {
+      "name": "ResponsiveColumns",
+      "title": "Responsive columns"
+    },
+    {
+      "name": "AutoFit",
+      "title": "Auto-fit with minimum width"
+    },
+    {
+      "name": "Spanning",
+      "title": "Items spanning multiple columns"
+    }
+  ],
+  "limits": []
+}

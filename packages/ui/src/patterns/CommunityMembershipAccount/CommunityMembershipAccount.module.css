@@ -1,0 +1,340 @@
+.root {
+  display: grid;
+  gap: var(--dc-space-4);
+  inline-size: 100%;
+  max-inline-size: 56rem;
+  color: var(--dc-color-text-primary);
+}
+
+.membershipSection,
+.panel {
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-lg);
+  background: var(--dc-color-surface-default);
+}
+
+.membershipSection {
+  display: grid;
+  gap: var(--dc-space-4);
+  border-color: var(--dc-color-border-default);
+}
+
+.sectionHeading,
+.cardTop,
+.couponTop,
+.usageLabel,
+.subscriptionInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+}
+
+.sectionHeading {
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  margin: 0 0 var(--dc-space-1);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.muted {
+  margin: var(--dc-space-1) 0 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.memberCard {
+  display: grid;
+  gap: var(--dc-space-4);
+  padding: var(--dc-space-4);
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0, color-mix(in srgb, var(--dc-color-action-primary) 22%, transparent), transparent 55%),
+    var(--dc-color-surface-subtle);
+}
+
+.cardBrand {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-bold);
+  letter-spacing: 0.08em;
+}
+
+.cardIdentity h3 {
+  margin: 0;
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.cardIdentity p {
+  margin: var(--dc-space-1) 0 0;
+  color: var(--dc-color-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.cardDetails,
+.summaryList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: var(--dc-space-3);
+  margin: 0;
+}
+
+.cardDetails dt,
+.summaryList dt {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.cardDetails dd,
+.summaryList dd {
+  margin: var(--dc-space-1) 0 0;
+  font-weight: var(--dc-font-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: var(--dc-space-3);
+}
+
+.cadenceGroup {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.cadenceGroup > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--dc-space-2);
+}
+
+.cadenceRadio,
+.paymentMethod {
+  flex: 1 1 10rem;
+  min-block-size: 5.5rem;
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-radius-md);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.cadenceRadio:has(button[data-selected]),
+.paymentMethod:has(button[data-selected]) {
+  border-color: var(--dc-color-action-primary);
+  background: var(--dc-color-surface-brand);
+  box-shadow: inset 0 0 0 var(--dc-border-width-thin) var(--dc-color-action-primary);
+}
+
+.cadenceOption {
+  display: grid;
+  gap: var(--dc-space-1);
+  inline-size: 100%;
+}
+
+.cadenceName {
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.cadencePrice {
+  font-size: var(--dc-typography-title-sm-size);
+  font-weight: var(--dc-font-weight-bold);
+}
+
+.savings {
+  color: var(--dc-color-feedback-success-foreground);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.subscriptionInfo {
+  flex-wrap: wrap;
+  padding-block-start: var(--dc-space-2);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.usage {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.usageLabel {
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.summaryList {
+  grid-template-columns: 1fr;
+  gap: var(--dc-space-2);
+}
+
+.summaryList > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+}
+
+.summaryList dd {
+  margin: 0;
+  text-align: end;
+}
+
+.summaryList .total {
+  padding-block-start: var(--dc-space-2);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  font-size: var(--dc-typography-title-sm-size);
+}
+
+.coupon {
+  padding: var(--dc-space-3);
+  border-radius: var(--dc-radius-md);
+  background: var(--dc-color-surface-subtle);
+}
+
+.couponInput {
+  display: grid;
+  justify-items: start;
+  gap: var(--dc-space-2);
+}
+
+.coupon code {
+  margin-inline-start: var(--dc-space-1);
+  font-family: var(--dc-font-family-mono);
+}
+
+.coupon .muted {
+  margin-block-end: 0;
+}
+
+.paymentMethods {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.paymentMethod {
+  flex-basis: 100%;
+  min-block-size: 3.25rem;
+  padding: var(--dc-space-2) var(--dc-space-3);
+  border-color: var(--dc-color-border-subtle);
+}
+
+.paymentCopy {
+  display: grid;
+  flex: 1;
+  gap: var(--dc-space-0-5);
+  min-inline-size: 0;
+}
+
+.paymentCopy span {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.invoiceTable {
+  min-inline-size: 35rem;
+}
+
+.preferenceList {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.preferenceList > * {
+  padding-block: var(--dc-space-2);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.cookieList {
+  display: grid;
+  gap: var(--dc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cookieList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+  padding-block: var(--dc-space-2);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.cookieList li > div {
+  display: grid;
+  gap: var(--dc-space-0-5);
+}
+
+.cookieList li > div > span {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (width <= 40rem) {
+  .membershipSection,
+  .panel {
+    padding: var(--dc-space-3);
+  }
+
+  .cadenceGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .cadenceGroup > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (forced-colors: active) {
+  .memberCard,
+  .cadenceRadio,
+  .paymentMethod {
+    border: 1px solid CanvasText;
+  }
+
+  .cadenceRadio:has(button[data-selected]),
+  .paymentMethod:has(button[data-selected]) {
+    outline: 2px solid Highlight;
+    outline-offset: 1px;
+  }
+}

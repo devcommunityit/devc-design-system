@@ -4,7 +4,10 @@
     "types": ["node"],
     "paths": {
       "@dev-community/ui": ["./src/index.ts"],
-      "@dev-community/ui/theme": ["./src/theme/server.ts"]
+      "@dev-community/ui/theme": ["./src/theme/server.ts"],
+      "@dev-community/ui/editor": ["./src/editor.ts"],
+      "@dev-community/ui/patterns": ["./src/patterns-entry.ts"],
+      "@dev-community/ui/widgets": ["./src/widgets.ts"]
     }
   },
   "include": ["src", "test", "scripts", "build", ".storybook", "vite.config.ts", "src/**/*.json"]

@@ -1,0 +1,76 @@
+{
+  "source": "d68399cb3ac7",
+  "summary": "Single-line or multiline field with @mention and #hashtag suggestions, insertable via keyboard or pointer.",
+  "whenToUse": [
+    "Comments, discussions and messages that support mentions."
+  ],
+  "whenNotToUse": [
+    "Text without mentions: use Textarea."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Label associated with the field."
+    },
+    {
+      "name": "suggestions",
+      "description": "Candidate people, provided by the consumer."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled or initial text."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives the updated text."
+    },
+    {
+      "name": "onMentionSelect",
+      "description": "Notifies when a mention is selected."
+    },
+    {
+      "name": "hashtagSuggestions / onHashtagSelect",
+      "description": "Enables local hashtag suggestions and notifies the selection."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Freccia su/giù",
+      "action": "Moves the selection between suggestions."
+    },
+    {
+      "keys": "Invio",
+      "action": "Inserts the selected mention."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the suggestions."
+    }
+  ],
+  "accessibility": [
+    "Labeled field with a suggestion list: combobox for the single-line field, multiline textbox for the textarea.",
+    "The list state and the active option are exposed through ARIA."
+  ],
+  "responsive": [
+    "The suggestion list uses the field width and has a maximum height with scrolling."
+  ],
+  "customization": [
+    "Customize borders, surfaces and focus ring with --dc-color-* tokens and CSS Modules."
+  ],
+  "commonMistakes": [
+    "Pass stable, unique handles; the component does not perform remote searches."
+  ],
+  "examples": [
+    {
+      "name": "DiscussionComment",
+      "title": "Comment with mentions"
+    },
+    {
+      "name": "MultilineHashtags",
+      "title": "Multiline text and hashtags"
+    }
+  ],
+  "limits": [
+    "Suggestions are provided by the consumer; it does not perform remote searches or create new handles."
+  ]
+}

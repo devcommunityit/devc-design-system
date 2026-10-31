@@ -1,0 +1,148 @@
+{
+  "source": "056ac5e0a07f",
+  "summary": "Typed table engine: sorting, search, filters, selection, and pagination, in local or server-controlled mode. Uses Table styles.",
+  "whenToUse": [
+    "Management lists (customers, orders, tickets).",
+    "Server-side paginated datasets."
+  ],
+  "whenNotToUse": [
+    "Static data without interaction: use Table.",
+    "Tens of thousands of rows locally: paginate on the server (no virtualization)."
+  ],
+  "props": [
+    {
+      "name": "columns",
+      "description": "id, header, accessor, cell, sortable, sortFn, searchable, isRowHeader, align, minWidth, hideHeader."
+    },
+    {
+      "name": "rows",
+      "description": "Local: all rows. Server: only the current page."
+    },
+    {
+      "name": "getRowId",
+      "description": "Stable, unique identifier (string | number)."
+    },
+    {
+      "name": "mode",
+      "description": "In server mode the component reports state changes and does not reprocess rows."
+    },
+    {
+      "name": "totalRows",
+      "description": "Server: total number of rows matching the filters."
+    },
+    {
+      "name": "sort / defaultSort / onSortChange",
+      "description": "{ column, direction }; controlled or uncontrolled."
+    },
+    {
+      "name": "searchable, search / defaultSearch / onSearchChange",
+      "description": "Search field in the toolbar (case- and accent-insensitive in local mode)."
+    },
+    {
+      "name": "filter",
+      "description": "Local: predicate for your filter controls."
+    },
+    {
+      "name": "isFiltered / onClearFilters",
+      "description": "Distinguishes “no results” from “no data” and clears the filters."
+    },
+    {
+      "name": "toolbar",
+      "description": "Additional controls (filters, export)."
+    },
+    {
+      "name": "page, pageSize, pageSizeOptions…",
+      "description": "Controlled or uncontrolled pagination; paginated={false} disables it."
+    },
+    {
+      "name": "selectionMode, selectedIds / defaultSelectedIds / onSelectionChange",
+      "description": "Selection is preserved across pages; “select all” acts on the visible page."
+    },
+    {
+      "name": "renderBulkActions",
+      "description": "Actions on selected rows."
+    },
+    {
+      "name": "onRowAction",
+      "description": "Primary row action (Enter or click)."
+    },
+    {
+      "name": "isRowDisabled",
+      "description": "Non-selectable rows."
+    },
+    {
+      "name": "isLoading, error, onRetry, emptyState, noResultsState",
+      "description": "Loading, error, no data, and no results states."
+    },
+    {
+      "name": "density, striped, stickyHeader, maxHeight",
+      "description": "Same as Table."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Frecce",
+      "action": "Move focus between rows and cells (grid pattern)."
+    },
+    {
+      "keys": "Invio",
+      "action": "On a sortable header: sorts. On a row: onRowAction."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Selects or deselects the row."
+    },
+    {
+      "keys": "Tab",
+      "action": "Leaves the grid toward the toolbar and pagination."
+    }
+  ],
+  "accessibility": [
+    "WAI-ARIA grid pattern via react-aria; aria-sort on sorted columns.",
+    "Selection checkboxes with localized names; selection count and row range announced as status.",
+    "Each state (error, empty, loading) has explicit text, not just icons or colors.",
+    "Missing values are shown as “—” and always sorted last."
+  ],
+  "responsive": [
+    "Strategy: localized horizontal scroll with a row header column; toolbar and footer wrap.",
+    "For mobile, reduce columns (computed columns prop) or offer a card view."
+  ],
+  "customization": [
+    "cell for custom rendering; sortFn for specific sorting; className/style."
+  ],
+  "commonMistakes": [
+    "Passing all rows in server mode: pass only the page and totalRows.",
+    "Using the index as getRowId: the selection shifts after sorting or filtering.",
+    "Creating new columns on every render without useMemo in very large tables."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Local with initial sorting"
+    },
+    {
+      "name": "LocalFilters",
+      "title": "Filters, search, selection, and bulk actions",
+      "description": "Removal only affects the example's local state."
+    },
+    {
+      "name": "ServerSide",
+      "title": "Server mode (simulated)",
+      "description": "Latency and errors simulated locally: replace fakeFetch with your API."
+    },
+    {
+      "name": "States",
+      "title": "States: no data, loading, error"
+    },
+    {
+      "name": "CompactSticky",
+      "title": "Compact, striped, sticky header, and single selection",
+      "description": "Without pagination, with a max height; suspended customers are disabled and missing dates show a dash."
+    }
+  ],
+  "limits": [
+    "No virtualization.",
+    "No column resizing or reordering.",
+    "“Select all” is limited to the visible page."
+  ]
+}

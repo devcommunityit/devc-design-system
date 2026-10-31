@@ -1,0 +1,96 @@
+{
+  "source": "be38469967c7",
+  "summary": "Always-visible list of selectable options (APG Listbox pattern). It is also the surface used by Select, Combobox and MultiSelect.",
+  "whenToUse": [
+    "Choosing among options that must stay visible, for example in a side panel.",
+    "Options with a description or icon."
+  ],
+  "whenNotToUse": [
+    "Navigation or actions: use NavigationMenu or DropdownMenu.",
+    "A few mutually exclusive options in a form: RadioGroup is simpler."
+  ],
+  "props": [
+    {
+      "name": "selectionMode",
+      "description": "Selection mode."
+    },
+    {
+      "name": "selectedKeys / defaultSelectedKeys / onSelectionChange",
+      "description": "Controlled or uncontrolled selection."
+    },
+    {
+      "name": "items",
+      "description": "Dynamic collection with a render function as children."
+    },
+    {
+      "name": "variant",
+      "description": "plain is used inside popovers."
+    },
+    {
+      "name": "renderEmptyState",
+      "description": "Content when the collection is empty; default: localized “no options” message."
+    },
+    {
+      "name": "ListBoxItem: description / icon / isDisabled",
+      "description": "Secondary text, leading icon, disabled option."
+    },
+    {
+      "name": "ListBoxSection: title",
+      "description": "Group heading."
+    }
+  ],
+  "inherits": "Props of react-aria-components ListBox (aria-label required without a visible label).",
+  "keyboard": [
+    {
+      "keys": "Frecce su/giù, Home, End",
+      "action": "Moves focus between options."
+    },
+    {
+      "keys": "Spazio / Invio",
+      "action": "Selects the option."
+    },
+    {
+      "keys": "Lettere",
+      "action": "Typeahead on the option text."
+    },
+    {
+      "keys": "Shift + frecce",
+      "action": "Extends the selection in multiple mode."
+    }
+  ],
+  "accessibility": [
+    "role=\"listbox\" with aria-selected; selected options also show a check mark (not just color).",
+    "Provide aria-label or aria-labelledby."
+  ],
+  "responsive": [
+    "Fluid width; rows wrap with long text."
+  ],
+  "customization": [
+    "Tokens --dc-color-action-*, --dc-radius-*; data-selected / data-focus-visible for states."
+  ],
+  "commonMistakes": [
+    "Using ListBox as an action menu.",
+    "Omitting textValue when the option content is not plain text."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Single selection"
+    },
+    {
+      "name": "MultipleControlled",
+      "title": "Controlled multiple selection"
+    },
+    {
+      "name": "Sections",
+      "title": "Sections"
+    },
+    {
+      "name": "Empty",
+      "title": "Empty state"
+    }
+  ],
+  "limits": [
+    "No virtualization: designed for moderately sized lists."
+  ]
+}

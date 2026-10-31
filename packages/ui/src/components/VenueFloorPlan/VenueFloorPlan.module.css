@@ -1,0 +1,330 @@
+.root {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.levels {
+  align-self: flex-start;
+}
+
+.body {
+  display: grid;
+  gap: var(--dc-space-4);
+}
+
+@container (width >= 48rem) {
+  .body {
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+    align-items: start;
+  }
+}
+
+.planColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.plan {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-subtle);
+  font-family: inherit;
+}
+
+.outline {
+  fill: var(--dc-color-surface-default);
+  stroke: var(--dc-color-border-strong);
+  stroke-width: 4;
+}
+
+.area {
+  cursor: pointer;
+  outline: none;
+}
+
+.area,
+.swatch {
+  --fp-fill: var(--dc-color-accent-container);
+  --fp-stroke: var(--dc-color-accent-default);
+  --fp-text: var(--dc-color-accent-container-foreground);
+}
+
+:is(.area, .swatch)[data-kind='stage'] {
+  --fp-fill: var(--dc-color-action-primary);
+  --fp-stroke: var(--dc-color-action-primary);
+  --fp-text: var(--dc-color-action-primary-foreground);
+}
+
+:is(.area, .swatch)[data-kind='booth'],
+:is(.area, .swatch)[data-kind='info'] {
+  --fp-fill: var(--dc-color-feedback-info-surface);
+  --fp-stroke: var(--dc-color-feedback-info-border);
+  --fp-text: var(--dc-color-feedback-info-foreground);
+}
+
+:is(.area, .swatch)[data-kind='food'] {
+  --fp-fill: var(--dc-color-feedback-warning-surface);
+  --fp-stroke: var(--dc-color-feedback-warning-border);
+  --fp-text: var(--dc-color-feedback-warning-foreground);
+}
+
+:is(.area, .swatch)[data-kind='entrance'],
+:is(.area, .swatch)[data-kind='outdoor'] {
+  --fp-fill: var(--dc-color-feedback-success-surface);
+  --fp-stroke: var(--dc-color-feedback-success-border);
+  --fp-text: var(--dc-color-feedback-success-foreground);
+}
+
+:is(.area, .swatch)[data-kind='restroom'],
+:is(.area, .swatch)[data-kind='service'] {
+  --fp-fill: var(--dc-color-surface-muted);
+  --fp-stroke: var(--dc-color-border-default);
+  --fp-text: var(--dc-color-text-secondary);
+}
+
+.shape {
+  fill: var(--fp-fill);
+  stroke: var(--fp-stroke);
+  stroke-width: 2;
+  transition: stroke-width var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.area[data-kind='outdoor'] .shape {
+  stroke-dasharray: 10 6;
+}
+
+.label {
+  fill: var(--fp-text);
+  font-weight: var(--dc-font-weight-semibold);
+  pointer-events: none;
+}
+
+.area:hover .shape {
+  stroke-width: 4;
+}
+
+.area[data-highlighted] .shape {
+  stroke: var(--dc-color-accent-default);
+  stroke-width: 5;
+  stroke-dasharray: 12 6;
+}
+
+.area[data-selected] .shape {
+  stroke: var(--dc-color-text-primary);
+  stroke-width: 6;
+  stroke-dasharray: none;
+}
+
+.area:focus-visible .shape {
+  stroke: var(--dc-color-focus-ring);
+  stroke-width: 8;
+  stroke-dasharray: none;
+}
+
+.area[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.marker {
+  pointer-events: none;
+}
+
+.markerHalo,
+.markerDot {
+  fill: var(--dc-color-action-primary);
+}
+
+.marker[data-tone='danger'] .markerHalo,
+.marker[data-tone='danger'] .markerDot {
+  fill: var(--dc-color-action-danger);
+}
+
+.markerHalo {
+  opacity: 0.25;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dc-venue-pulse 1.8s ease-out infinite;
+}
+
+.markerDot {
+  stroke: var(--dc-color-surface-default);
+  stroke-width: 3;
+}
+
+.markerLabel {
+  fill: var(--dc-color-text-primary);
+  stroke: var(--dc-color-surface-default);
+  stroke-width: 5;
+  paint-order: stroke;
+  font-size: 26px;
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+@keyframes dc-venue-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.hint {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2) var(--dc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.swatch {
+  flex: none;
+  inline-size: var(--dc-space-4);
+  block-size: var(--dc-space-4);
+  border: var(--dc-border-width-thick) solid var(--fp-stroke);
+  border-radius: var(--dc-radius-sm);
+  background: var(--fp-fill);
+}
+
+.swatch[data-kind='outdoor'] {
+  border-style: dashed;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+}
+
+.detailsHeader .swatch {
+  inline-size: var(--dc-space-6);
+  block-size: var(--dc-space-6);
+}
+
+.detailsTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--dc-typography-title-sm-size);
+}
+
+.detailsKind,
+.empty {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.empty {
+  margin: 0;
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.factIcon {
+  inline-size: var(--dc-space-4);
+  block-size: var(--dc-space-4);
+  color: var(--dc-color-text-secondary);
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.description > :first-child {
+  margin-block-start: 0;
+}
+
+.description > :last-child {
+  margin-block-end: 0;
+}
+
+.clear {
+  margin-inline-start: calc(-1 * var(--dc-space-2));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .markerHalo {
+    animation: none;
+  }
+
+  .shape {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .shape {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .label,
+  .markerLabel {
+    fill: CanvasText;
+  }
+
+  .area[data-selected] .shape {
+    stroke: Highlight;
+  }
+
+  .area:focus-visible .shape {
+    stroke: Highlight;
+  }
+
+  .markerDot,
+  .markerHalo {
+    fill: Highlight;
+  }
+}

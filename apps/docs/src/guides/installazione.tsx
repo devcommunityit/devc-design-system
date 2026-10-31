@@ -5,9 +5,8 @@ export default function Installazione() {
   return (
     <>
       <Alert tone="warning" title="Pacchetto non pubblicato">
-        Il pacchetto <code>@dev-community/ui</code> è pronto per la distribuzione (tarball, registry privato) ma non è stato pubblicato su alcun registry. La
-        licenza non è stata scelta (<code>"license": "UNLICENSED"</code>): la pubblicazione su npmjs.com è bloccata finché il titolare del progetto non la
-        decide.
+        Il pacchetto <code>@dev-community/ui</code> è pronto per la distribuzione (tarball, registry privato) ma non è stato pubblicato su alcun registry. È
+        distribuito con licenza MIT (file <code>LICENSE</code> incluso nel pacchetto).
       </Alert>
 
       <DocSection title="Requisiti">
@@ -28,9 +27,10 @@ export default function Installazione() {
           label="Canali di distribuzione"
           columns={['Canale', 'Stato', 'Quando usarlo']}
           rows={[
-            ['Tarball (npm run release:pack)', 'Pronto e verificato', 'Distribuzione interna senza registry, prove di integrazione, ambienti offline.'],
-            ['Registry privato (GitHub Packages, Azure Artifacts, Verdaccio, Nexus)', 'Pronto, non ancora pubblicato', 'Più portali che aggiornano la libreria con semver.'],
-            ['npmjs.com pubblico', 'Bloccato finché manca la licenza', 'Solo dopo la scelta della licenza e del nome dello scope.'],
+            ['Tarball (npm run release:pack o asset della GitHub Release)', 'Pronto e verificato', 'Distribuzione interna senza registry, prove di integrazione, ambienti offline.'],
+            ['GitHub Packages (workflow Release)', 'Automatizzato, prima pubblicazione da eseguire', 'Più portali che aggiornano la libreria con semver.'],
+            ['Altri registry privati (Azure Artifacts, Verdaccio, Nexus)', 'Pubblicazione manuale', 'Quando i portali non possono usare GitHub Packages.'],
+            ['npmjs.com pubblico', 'Consentito (licenza MIT), prima pubblicazione da eseguire', 'Dopo aver verificato la disponibilità dello scope @dev-community.'],
             ['Dipendenza git (github:org/repo)', 'Non supportato', 'Il pacchetto vive in un workspace (packages/ui) e richiede una build: npm non lo installa correttamente da git.'],
           ]}
         />
@@ -57,8 +57,11 @@ npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
 
       <DocSection title="Da registry privato">
         <p>
-          Lo scope del pacchetto deve corrispondere a quello accettato dal registry: con GitHub Packages lo scope è il nome dell’organizzazione o
-          dell’utente GitHub, quindi potrebbe essere necessario rinominare <code>@dev-community</code>. Nel progetto consumer crea un <code>.npmrc</code>:
+          Il workflow <code>.github/workflows/release.yml</code> pubblica <code>@dev-community/ui</code> e <code>@dev-community/ui-mcp</code> su GitHub
+          Packages e crea una GitHub Release con il tarball e il checksum allegati. GitHub Packages accetta solo lo scope del proprietario del repository:
+          il repository deve appartenere all’organizzazione o all’utente <code>dev-community</code>, altrimenti va rinominato lo scope. Nel progetto consumer
+          crea un <code>.npmrc</code> e fornisci un token con permesso <code>read:packages</code> (in GitHub Actions basta{' '}
+          <code>secrets.GITHUB_TOKEN</code> se il pacchetto concede l’accesso al repository del portale):
         </p>
         <Code language="ini" title=".npmrc — GitHub Packages">{`
 @dev-community:registry=https://npm.pkg.github.com/
@@ -70,31 +73,45 @@ always-auth=true
 # autenticazione: npx vsts-npm-auth -config .npmrc (Windows) oppure token PAT in ~/.npmrc
 `}</Code>
         <Code language="bash">{`npm install @dev-community/ui`}</Code>
+        <p>Il token va fornito tramite variabile d’ambiente o secret della pipeline, mai committato.</p>
+      </DocSection>
+
+      <DocSection title="Rilasciare una nuova versione">
         <p>
-          Il token va fornito tramite variabile d’ambiente o secret della pipeline, mai committato. Per pubblicare dal repository del design system aggiungi in{' '}
-          <code>packages/ui/package.json</code> il registry di destinazione:
+          Entrambi i pacchetti hanno già <code>publishConfig.registry</code> impostato su GitHub Packages. Un rilascio parte in uno di due modi:
         </p>
-        <Code language="json" title="packages/ui/package.json">{`
-"publishConfig": {
-  "registry": "https://npm.pkg.github.com/"
-}
-`}</Code>
+        <RefTable
+          label="Avvio di un rilascio"
+          columns={['Modo', 'Cosa fa']}
+          rows={[
+            ['Actions → Release → Run workflow', 'Scegli pacchetto (ui o mcp) e incremento (patch, minor, major o pre*). Il workflow aggiorna package.json, package-lock.json e il CHANGELOG (la sezione «Non rilasciato» diventa la nuova versione), esegue tutti i controlli, poi crea commit e tag e li invia.'],
+            [<code key="t">git tag ui-v0.2.0 && git push origin ui-v0.2.0</code>, 'Per una versione già aggiornata a mano in package.json. Il tag deve coincidere con la versione (ui-v… oppure mcp-v…).'],
+          ]}
+        />
+        <p>
+          Il workflow esegue lint, typecheck, test, build e, per la libreria, <code>verify:package</code>; poi pubblica esattamente il tarball allegato alla
+          release. Le versioni di anteprima (<code>0.3.0-beta.0</code>) usano il dist-tag dell’identificativo (<code>beta</code>, <code>next</code>) e non
+          diventano <code>latest</code>: installale con <code>npm install @dev-community/ui@next</code>. Ogni esecuzione del workflow CI su una pull request
+          carica inoltre i tarball come artifact, per provare una modifica in un portale prima del rilascio.
+        </p>
         <Code language="bash">{`
+# rilascio manuale da terminale (alternativa al workflow)
 npm version patch -w @dev-community/ui   # oppure minor / major
 npm publish -w @dev-community/ui --dry-run   # controlla contenuto e registry
 npm publish -w @dev-community/ui
 `}</Code>
         <p>
           <code>prepublishOnly</code> esegue controllo licenza/registry, build e <code>lint:package</code>: un pacchetto con tipi o export non risolvibili
-          non viene pubblicato.
+          non viene pubblicato. Se il branch <code>main</code> è protetto, consenti a GitHub Actions di eseguire il push del commit di rilascio oppure usa il
+          rilascio tramite tag.
         </p>
       </DocSection>
 
       <DocSection title="Da registry pubblico">
         <p>
-          Il campo <code>license</code> vale <code>"UNLICENSED"</code> (nessun diritto concesso a terzi). Lo script{' '}
-          <code>packages/ui/scripts/prepublish-check.mjs</code> blocca <code>npm publish</code> verso <code>registry.npmjs.org</code> finché la licenza non
-          viene scelta dal titolare del progetto e aggiunta con il relativo file <code>LICENSE</code>. Dopo la pubblicazione l’installazione resta{' '}
+          Il campo <code>license</code> vale <code>"MIT"</code> e il file <code>LICENSE</code> è incluso nel tarball. Lo script{' '}
+          <code>packages/ui/scripts/prepublish-check.mjs</code> blocca <code>npm publish</code> verso <code>registry.npmjs.org</code> solo se la licenza
+          manca o vale <code>UNLICENSED</code>. Dopo la pubblicazione l’installazione resta{' '}
           <code>npm install @dev-community/ui</code>.
         </p>
       </DocSection>
@@ -106,7 +123,8 @@ npm publish -w @dev-community/ui
           rows={[
             [<code key="a">npm run lint:package</code>, 'publint (campi package.json, exports, file inclusi) e arethetypeswrong: tipi risolvibili con moduleResolution bundler e node16/nodenext (ESM).'],
             [<code key="b">npm run verify:package</code>, 'npm pack + installazione in un consumer separato fuori dal repository: export, tipi, CSS, rendering, interazioni, React non duplicato.'],
-            [<code key="c">npm run release:pack</code>, 'Build + lint:package + tarball con checksum in releases/.'],
+            [<code key="s">npm run size</code>, 'size-limit: dimensione minificata e gzip di scenari tipici (ThemeProvider + Button, dashboard, entry completa, editor, CSS) confrontata con i budget in .size-limit.json; fallisce in CI se un budget viene superato.'],
+            [<code key="c">npm run release:pack</code>, 'Build + lint:package + tarball con checksum in releases/ (--package mcp per il server MCP).'],
           ]}
         />
       </DocSection>

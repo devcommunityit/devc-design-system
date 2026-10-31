@@ -1,0 +1,106 @@
+{
+  "source": "36accae3a3f9",
+  "summary": "Multiline field for AI prompts, with keyboard submit, generating state and a stop action. No networking or model dependencies.",
+  "whenToUse": [
+    "Composing prompts in assistants and writing tools.",
+    "Connecting a frontend to an AI service managed by the consumer."
+  ],
+  "whenNotToUse": [
+    "Generic forms: use Textarea.",
+    "Authenticating requests or storing API keys in the browser."
+  ],
+  "props": [
+    {
+      "name": "onSend",
+      "description": "Receives the text with leading/trailing whitespace trimmed. Does not clear the field."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled value or uncontrolled initial value."
+    },
+    {
+      "name": "onChange",
+      "description": "Text changes, including spaces and newlines."
+    },
+    {
+      "name": "isGenerating",
+      "description": "Prevents duplicate submissions; the text stays editable."
+    },
+    {
+      "name": "onStop",
+      "description": "Shows the stop button while generating. The consumer must cancel the request."
+    },
+    {
+      "name": "label / placeholder",
+      "description": "Localized defaults. Use a visible, contextual label."
+    },
+    {
+      "name": "footer",
+      "description": "Notes, estimated cost or integration status."
+    },
+    {
+      "name": "textareaProps",
+      "description": "Textarea attributes and events; onKeyDown runs before the shortcut and can prevent it."
+    },
+    {
+      "name": "isInvalid / minLength / maxLength",
+      "description": "An explicit error or a trimmed text length out of bounds prevents submission."
+    }
+  ],
+  "inherits": "Textarea props: label, description, errorMessage, isDisabled, isReadOnly, isInvalid, maxLength, rows, name, className and style. Ref to the textarea.",
+  "keyboard": [
+    {
+      "keys": "Invio",
+      "action": "Submits when the text is not empty and the control is enabled."
+    },
+    {
+      "keys": "Maiusc+Invio",
+      "action": "Inserts a new line."
+    },
+    {
+      "keys": "Invio durante composizione IME",
+      "action": "Does not submit the prompt."
+    }
+  ],
+  "accessibility": [
+    "Label and descriptions are associated by Textarea.",
+    "The button stays keyboard-reachable and has localized text.",
+    "No nested form is created."
+  ],
+  "responsive": [
+    "Textarea and actions follow the container; footer and buttons wrap."
+  ],
+  "customization": [
+    "Semantic tokens for surface, border, spacing and radii.",
+    "className/style apply to the field; textareaProps to the native control."
+  ],
+  "commonMistakes": [
+    "Forgetting to handle errors and cancellation in the consumer.",
+    "Clearing the field without keeping the prompt when a request fails.",
+    "Treating onSend as server-side validation."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic and shortcuts"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled value and explicit reset"
+    },
+    {
+      "name": "GenerationState",
+      "title": "Generating state and local stop"
+    },
+    {
+      "name": "AssistantWorkspace",
+      "title": "Full assistant with local response",
+      "description": "Suggestions, messages, sources and feedback; no AI model connected."
+    }
+  ],
+  "limits": [
+    "No AI client, uploads, persistence or token management.",
+    "The consumer validates content and permissions and handles async errors.",
+    "The component does not automatically manage conversation scrolling."
+  ]
+}

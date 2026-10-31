@@ -1,0 +1,132 @@
+{
+  "source": "6e4bf3001f95",
+  "summary": "Responsive, UI-only console for community and event organizers, combining check-in, imports, moderation, mailing, integrations, audit history, and analytics.",
+  "whenToUse": [
+    "As an operations overview for a community program or event, when the host app owns data and actions."
+  ],
+  "whenNotToUse": [
+    "For a public-facing event page or attendee registration flow.",
+    "When this component is expected to persist data, send email, call integrations, or make moderation decisions."
+  ],
+  "props": [
+    {
+      "name": "communityName / eventTitle",
+      "description": "Context labels shown in the console header."
+    },
+    {
+      "name": "attendees",
+      "description": "Attendee records with registered, checked-in, or no-show status."
+    },
+    {
+      "name": "csvPreview",
+      "description": "Externally parsed CSV preview, mapping options, and target fields."
+    },
+    {
+      "name": "auditEvents",
+      "description": "Audit history ordered by the host application."
+    },
+    {
+      "name": "reports",
+      "description": "Pending moderation reports."
+    },
+    {
+      "name": "audienceSegments",
+      "description": "Mailing audience segments and controlled selection state."
+    },
+    {
+      "name": "campaign",
+      "description": "Read-only campaign content and delivery statistics."
+    },
+    {
+      "name": "integrations",
+      "description": "Display-only connection, webhook, and API status cards."
+    },
+    {
+      "name": "communityMetrics / eventMetrics",
+      "description": "Externally supplied metric cards."
+    },
+    {
+      "name": "attendanceBreakdown",
+      "description": "Event attendance breakdown visualized as accessible labelled bars."
+    },
+    {
+      "name": "onCheckIn / onMarkNoShow",
+      "description": "Optional attendee status action callbacks."
+    },
+    {
+      "name": "onCsvMappingChange",
+      "description": "Reports a mapping change; parsing and persistence remain external."
+    },
+    {
+      "name": "onImportCsv",
+      "description": "Optional callback to continue the host application import flow."
+    },
+    {
+      "name": "onReviewReport / onDismissReport",
+      "description": "Optional moderation queue action callbacks."
+    },
+    {
+      "name": "onAudienceSegmentChange",
+      "description": "Controls audience segment selection."
+    },
+    {
+      "name": "onPreviewCampaign",
+      "description": "Optional callback to open a host-provided campaign preview."
+    },
+    {
+      "name": "onManageIntegration",
+      "description": "Optional callback for the host to manage integration setup."
+    },
+    {
+      "name": "className",
+      "description": "Additional class on the console root."
+    }
+  ],
+  "inherits": "All record data is supplied by the consumer; callbacks are omitted to render a read-only UI.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Moves through actions, mapping controls, and audience checkboxes."
+    },
+    {
+      "keys": "Enter / Space",
+      "action": "Activates buttons and toggles audience selection."
+    },
+    {
+      "keys": "Arrow keys",
+      "action": "Uses native select behavior for CSV column mapping."
+    }
+  ],
+  "accessibility": [
+    "Section titles use headings; attendee and CSV data use captioned semantic tables.",
+    "Status is communicated by text as well as color, and analytics bars include an accessible text summary.",
+    "Audience checkboxes are controlled by the consumer and are disabled without a change callback."
+  ],
+  "responsive": [
+    "The two-column work areas collapse to one column on narrow viewports; tables scroll in their own labelled regions."
+  ],
+  "customization": [
+    "Provide only the data and callbacks relevant to a deployment; omitted collections render concise empty states."
+  ],
+  "commonMistakes": [
+    "Treating callbacks as backend operations: they are delegated to the host application.",
+    "Passing raw CSV content: supply only parsed preview rows and do persistence in the host.",
+    "Using campaign preview as a send action: no email delivery is implemented."
+  ],
+  "examples": [
+    {
+      "name": "OperationsDashboard",
+      "title": "Operations dashboard",
+      "description": "A complete organizer view populated with external sample data and local demonstration callbacks."
+    },
+    {
+      "name": "ReadOnlyConsole",
+      "title": "Read-only console",
+      "description": "A minimal read-only setup that omits callbacks."
+    }
+  ],
+  "limits": [
+    "No persistence, CSV parsing, sending, integration/API calls, or moderation backend.",
+    "Filtering, pagination, sorting, and data fetching are owned by the host application."
+  ]
+}

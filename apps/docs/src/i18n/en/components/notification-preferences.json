@@ -1,0 +1,59 @@
+{
+  "source": "d8066d62a170",
+  "summary": "Notification preferences by category and channel.",
+  "whenToUse": [
+    "Allowing independent choices for email, push and other channels."
+  ],
+  "whenNotToUse": [
+    "To display received notifications, use NotificationCenter."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the matrix."
+    },
+    {
+      "name": "categories",
+      "description": "Categories with id and name."
+    },
+    {
+      "name": "channels",
+      "description": "Channels with id and name."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Map from channel id to active category ids."
+    },
+    {
+      "name": "isCellDisabled",
+      "description": "Disables unavailable combinations."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Spazio",
+      "action": "Navigates and toggles the checkboxes."
+    }
+  ],
+  "accessibility": [
+    "The table associates headers with controls that have accessible names."
+  ],
+  "responsive": [
+    "The table scrolls within its container."
+  ],
+  "customization": [
+    "Colors and spacing come from tokens."
+  ],
+  "commonMistakes": [
+    "The component does not send notifications and does not save choices automatically."
+  ],
+  "examples": [
+    {
+      "name": "Channels",
+      "title": "Channels"
+    }
+  ],
+  "limits": [
+    "Persistence is left to the consumer."
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "source": "4fd86ebfd072",
+  "summary": "Inline contextual message with a tone (info, success, warning, error), title, actions and optional dismissal.",
+  "whenToUse": [
+    "Form error summaries.",
+    "Warnings related to a section of the page."
+  ],
+  "whenNotToUse": [
+    "Page-wide messages: use Banner.",
+    "Ephemeral confirmations: use Toast.",
+    "Blocking decisions: use AlertDialog."
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "description": "Colors, icon and hidden label."
+    },
+    {
+      "name": "variant",
+      "description": "Tonal surface or accent border."
+    },
+    {
+      "name": "title",
+      "description": "Bold title."
+    },
+    {
+      "name": "actions",
+      "description": "Buttons or links after the message."
+    },
+    {
+      "name": "onDismiss",
+      "description": "Shows the close button; visibility is up to you."
+    },
+    {
+      "name": "icon",
+      "description": "Replaces or hides (null) the tone icon."
+    },
+    {
+      "name": "live",
+      "description": "status/alert role for messages that appear dynamically."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the actions and the close button."
+    }
+  ],
+  "accessibility": [
+    "The tone is conveyed through localized hidden text (“Error:”), icon and color.",
+    "Use live only for messages inserted after page load; don't overuse assertive."
+  ],
+  "responsive": [
+    "Text and actions wrap; no fixed width."
+  ],
+  "customization": [
+    "className/style; colors come from color.feedback.* tokens."
+  ],
+  "commonMistakes": [
+    "Setting live on messages present at load: they are announced needlessly or ignored."
+  ],
+  "examples": [
+    {
+      "name": "Tones",
+      "title": "Tones"
+    },
+    {
+      "name": "WithActions",
+      "title": "Actions and dismissal"
+    },
+    {
+      "name": "Live",
+      "title": "Dynamic announcement"
+    },
+    {
+      "name": "ContentVariants",
+      "title": "No title, icons and long text",
+      "description": "Text-only Alert, custom or no icon, and a long message in English."
+    },
+    {
+      "name": "ErrorSummary",
+      "title": "Form error summary",
+      "description": "On submit, an assertive Alert lists the errors; each field shows its own message. Submission is simulated locally."
+    }
+  ],
+  "limits": []
+}

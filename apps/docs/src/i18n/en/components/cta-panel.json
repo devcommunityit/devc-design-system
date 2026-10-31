@@ -1,0 +1,87 @@
+{
+  "source": "04030010f297",
+  "summary": "Dark call-to-action section with glows (or brand gradient) that closes a landing page: eyebrow, title, description, actions, and optional numbered steps in an ordered list that adapts to the container width.",
+  "whenToUse": [
+    "Final call to action on a community landing page: call for speakers, sign-up, becoming a mentor or organizer.",
+    "Explain in a few numbered steps what happens after the click."
+  ],
+  "whenNotToUse": [
+    "Welcome or summary at the top of a dashboard: use HeroCard (brand/accent/subtle surface, with media).",
+    "Compact, fully clickable promotion (a single link or button): use PromoBanner.",
+    "Sign-up with an email field: use NewsletterCard.",
+    "Interactive procedure with step status: use Stepper."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title; also gives the region its name."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level of the title."
+    },
+    {
+      "name": "eyebrow",
+      "description": "Chip above the title (campaign, date, category)."
+    },
+    {
+      "name": "description",
+      "description": "Supporting text."
+    },
+    {
+      "name": "actions",
+      "description": "Buttons or links (Button / LinkButton)."
+    },
+    {
+      "name": "steps",
+      "description": "Numbered steps, rendered as <ol>."
+    },
+    {
+      "name": "variant",
+      "description": "dark: inverse surface with glows; brand: accent gradient."
+    }
+  ],
+  "inherits": "HTML attributes of <section> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "It is a <section> named by its title (aria-labelledby).",
+    "Steps are an ordered list (<ol>): numbering comes from the semantics; the visible number is aria-hidden so it is not read twice.",
+    "Text always uses the foreground paired with the surface (text-inverse on dark, action-primary-foreground on brand): contrast is guaranteed in light and dark themes.",
+    "Glows and gradients are decorative and are removed in forced-colors mode, where borders and numbers use CanvasText."
+  ],
+  "responsive": [
+    "Container query on the panel: from 48rem, text and steps sit side by side, with steps in a column.",
+    "Below 48rem the steps go below the text in an auto-fit grid (a row when there is room, a column in narrow containers); works down to 320px.",
+    "Padding and title size shrink in narrow containers."
+  ],
+  "customization": [
+    "Tokens: --dc-color-surface-inverse / --dc-color-text-inverse (dark), --dc-gradient-accent and --dc-color-action-primary-foreground (brand), --dc-color-action-primary and --dc-color-accent-default for the glows, --dc-look-radius-container.",
+    "Stable selectors: .dc-cta-panel-cta[data-variant][data-has-steps], .dc-cta-panel-steps, .dc-cta-panel-step, .dc-cta-panel-number, .dc-cta-panel-actions."
+  ],
+  "commonMistakes": [
+    "Using ghost or outline buttons on the brand variant: their color is not designed for the gradient; prefer secondary.",
+    "Writing numbers in step titles: numbering is automatic.",
+    "Placing multiple CtaPanels on the same page: they lose effectiveness; keep one per landing page."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Call for speakers",
+      "description": "Dark variant with actions and four steps."
+    },
+    {
+      "name": "Brand",
+      "title": "Brand variant",
+      "description": "Accent gradient without steps."
+    },
+    {
+      "name": "NarrowWithDescriptions",
+      "title": "Narrow container",
+      "description": "Steps with descriptions stacked in a column."
+    }
+  ],
+  "limits": [
+    "In the dark theme the dark variant becomes a light panel (inverse surface) to keep contrast with the page.",
+    "Steps are informational: for states (completed, current) use Stepper."
+  ]
+}

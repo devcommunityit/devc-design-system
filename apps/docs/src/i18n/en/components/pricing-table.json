@@ -1,0 +1,87 @@
+{
+  "source": "2e138c2ab898",
+  "summary": "Semantic table for comparing plans and features, with optional selection.",
+  "whenToUse": [
+    "Comparing prices and features of plans or service tiers.",
+    "Offering a controlled plan choice and receiving the selected id in the caller."
+  ],
+  "whenNotToUse": [
+    "Displaying metrics or data unrelated to plans: use a dedicated data table.",
+    "Building a checkout flow: the choice is reported to the caller and does not start transactions."
+  ],
+  "props": [
+    {
+      "name": "caption",
+      "description": "Accessible table caption."
+    },
+    {
+      "name": "plans",
+      "description": "Plans displayed as columns, each with id, name and price."
+    },
+    {
+      "name": "features",
+      "description": "Comparison rows; each row maps values to plan ids."
+    },
+    {
+      "name": "selectedPlanId",
+      "description": "Id of the selected plan, controlled by the caller."
+    },
+    {
+      "name": "onSelectPlan",
+      "description": "Callback invoked when a plan's button is pressed."
+    },
+    {
+      "name": "selectLabel",
+      "description": "Visible label of the selection buttons; follows LocaleProvider by default."
+    },
+    {
+      "name": "featureColumnLabel",
+      "description": "Header of the features column; follows LocaleProvider by default."
+    },
+    {
+      "name": "includedLabel",
+      "description": "Accessible name for a positive boolean value; follows LocaleProvider by default."
+    },
+    {
+      "name": "notIncludedLabel",
+      "description": "Accessible name for a negative boolean value; follows LocaleProvider by default."
+    }
+  ],
+  "inherits": "HTML attributes of <div>; ref forwarded to the scrollable container.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the selection buttons in plan order."
+    },
+    {
+      "keys": "Enter / Space",
+      "action": "Selects the focused plan."
+    }
+  ],
+  "accessibility": [
+    "Uses an HTML table with caption, column headers and row headers.",
+    "Selection uses native buttons and aria-pressed; the selected state is controlled by selectedPlanId.",
+    "Boolean values have customizable accessible labels in addition to the visual symbols."
+  ],
+  "responsive": [
+    "The table keeps columns readable and scrolls horizontally in narrow containers."
+  ],
+  "customization": [
+    "`className` on the container; colors, surfaces, borders and spacing use the `--dc-*` tokens."
+  ],
+  "commonMistakes": [
+    "Using the same `id` key for multiple plans or forgetting plan keys in feature values.",
+    "Expecting the component to change the selection: update selectedPlanId in the caller after onSelectPlan.",
+    "Passing numeric amounts and expecting automatic formatting: price is presentational content provided by the caller."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Plan comparison",
+      "description": "Prices, feature values and controlled selection."
+    }
+  ],
+  "limits": [
+    "Does not format prices or handle checkout; content and the purchase flow belong to the app."
+  ]
+}

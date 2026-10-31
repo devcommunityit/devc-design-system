@@ -1,0 +1,94 @@
+{
+  "source": "4400cbb63a4b",
+  "summary": "Modal dialog that interrupts the flow to ask for confirmation of an important or irreversible action.",
+  "whenToUse": [
+    "Destructive or irreversible actions.",
+    "Confirmations with significant consequences."
+  ],
+  "whenNotToUse": [
+    "Informational messages: use Alert or Toast.",
+    "Easily undoable actions: prefer a Toast with “Undo”."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "A clear question (“Delete the project?”)."
+    },
+    {
+      "name": "children",
+      "description": "Consequences of the action."
+    },
+    {
+      "name": "onConfirm",
+      "description": "If it returns a Promise, shows the pending state; stays open if the Promise rejects."
+    },
+    {
+      "name": "onCancel",
+      "description": "Called on Cancel or Escape."
+    },
+    {
+      "name": "tone",
+      "description": "Destructive style for the title and confirm button."
+    },
+    {
+      "name": "confirmLabel / cancelLabel",
+      "description": "Use specific verbs (“Delete”)."
+    },
+    {
+      "name": "isConfirmDisabled",
+      "description": "Disables the confirm button."
+    }
+  ],
+  "inherits": "Dialog props except footer, size and hideCloseButton.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Toggles between Cancel and Confirm (focus trap)."
+    },
+    {
+      "keys": "Escape",
+      "action": "Same as Cancel."
+    }
+  ],
+  "accessibility": [
+    "role=\"alertdialog\"; initial focus goes to Cancel to prevent accidental confirmation.",
+    "Clicking the backdrop does not close the dialog.",
+    "The pending state is announced on the confirm button."
+  ],
+  "responsive": [
+    "Narrow width; buttons wrap on small screens."
+  ],
+  "customization": [
+    "className/style."
+  ],
+  "commonMistakes": [
+    "Generic “OK/Cancel” labels.",
+    "Using it for every action: it trains users to confirm without reading."
+  ],
+  "examples": [
+    {
+      "name": "Destructive",
+      "title": "Destructive"
+    },
+    {
+      "name": "AsyncConfirm",
+      "title": "Async confirmation"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with custom labels",
+      "description": "isOpen + onOpenChange: the dialog opens only when there are unsaved changes; onCancel and onConfirm update the outcome."
+    },
+    {
+      "name": "TypeToConfirm",
+      "title": "Confirm disabled until you type the name",
+      "description": "isConfirmDisabled stays on until the text matches the repository name."
+    },
+    {
+      "name": "RetryAfterError",
+      "title": "Error and retry",
+      "description": "If the onConfirm Promise rejects, the dialog stays open and shows the error; the second attempt succeeds."
+    }
+  ],
+  "limits": []
+}

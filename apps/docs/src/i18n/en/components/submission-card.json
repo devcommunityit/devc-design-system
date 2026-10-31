@@ -1,0 +1,60 @@
+{
+  "source": "dbfca35f1d23",
+  "summary": "Informational card for a proposal submitted to a call for papers.",
+  "whenToUse": [
+    "Showing the summary, author, and status of a proposal."
+  ],
+  "whenNotToUse": [
+    "Editing, submitting, or assigning a submission without consumer-provided callbacks."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Proposal title."
+    },
+    {
+      "name": "summary",
+      "description": "Short abstract."
+    },
+    {
+      "name": "submitter",
+      "description": "Author or group of authors."
+    },
+    {
+      "name": "status",
+      "description": "Status provided by the consumer."
+    },
+    {
+      "name": "action",
+      "description": "Controls provided and managed by the consumer."
+    }
+  ],
+  "inherits": "HTML attributes of <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the title link and the controls provided in the action slot."
+    }
+  ],
+  "accessibility": [
+    "The title labels the article; status, metadata, and actions are not made interactive automatically."
+  ],
+  "responsive": [
+    "Metadata and header wrap when space is limited."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Do not use the card for the review workflow: controls remain the app's responsibility."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Proposal under review"
+    }
+  ],
+  "limits": [
+    "No built-in persistence or CFP workflow."
+  ]
+}

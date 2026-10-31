@@ -1,0 +1,56 @@
+{
+  "source": "69c09e1e30e0",
+  "summary": "Accessible countdown to the start of an event, without actions or event management.",
+  "whenToUse": [
+    "Show the time remaining until a date and time."
+  ],
+  "whenNotToUse": [
+    "Handling registration opening or other automatic actions at the deadline."
+  ],
+  "props": [
+    {
+      "name": "targetDate",
+      "description": "Target date and time."
+    },
+    {
+      "name": "label",
+      "description": "Readable title of the countdown."
+    },
+    {
+      "name": "expiredContent",
+      "description": "Content shown after the deadline."
+    }
+  ],
+  "inherits": "HTML attributes of <section> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Does not introduce interactive controls."
+    }
+  ],
+  "accessibility": [
+    "Each unit has its own visible label; the countdown does not use a live announcement every second, to avoid continuous announcements."
+  ],
+  "responsive": [
+    "Units wrap onto multiple rows if there is not enough space."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Pass a valid date with an explicit time zone when using a string."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Upcoming event"
+    },
+    {
+      "name": "Expired",
+      "title": "Event started"
+    }
+  ],
+  "limits": [
+    "The countdown is presentational and does not trigger actions at the deadline."
+  ]
+}

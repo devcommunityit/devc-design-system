@@ -1,0 +1,72 @@
+{
+  "source": "8698c5db856c",
+  "summary": "Explains why there is no content (no data, no results, error, first use) and what to do next.",
+  "whenToUse": [
+    "Empty lists, tables, and dashboards.",
+    "Searches with no results."
+  ],
+  "whenNotToUse": [
+    "Field errors: use the field's error message."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title (heading)."
+    },
+    {
+      "name": "description",
+      "description": "Explanation and next step."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon or illustration."
+    },
+    {
+      "name": "actions",
+      "description": "Primary actions."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Level consistent with the page structure."
+    },
+    {
+      "name": "size",
+      "description": "Spacing and title scale."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [],
+  "accessibility": [
+    "Title as a real heading; icon is aria-hidden."
+  ],
+  "responsive": [
+    "Centered, with a readable maximum width and actions that wrap."
+  ],
+  "customization": [
+    "className/style."
+  ],
+  "commonMistakes": [
+    "Generic messages (“No data”) that don't say what to do."
+  ],
+  "examples": [
+    {
+      "name": "NoData",
+      "title": "No data"
+    },
+    {
+      "name": "NoResults",
+      "title": "No results"
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes and long text",
+      "description": "sm, md, and lg variants; the last one has English content and a long description."
+    },
+    {
+      "name": "ErrorWithRetry",
+      "title": "Error with retry",
+      "description": "Simulated local loading: the first attempt fails, and “Riprova” leads to the empty state."
+    }
+  ],
+  "limits": []
+}

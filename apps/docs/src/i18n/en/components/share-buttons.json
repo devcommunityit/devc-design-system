@@ -1,0 +1,118 @@
+{
+  "source": "50bd8094be56",
+  "summary": "Share bar for articles and events: a “Share” button that opens the system’s native share sheet (where available), share links for LinkedIn, X, Facebook, WhatsApp, Telegram, Bluesky, and email, and a “Copy link” button with an announced confirmation.",
+  "whenToUse": [
+    "At the end of or next to the title of an article, event, or talk.",
+    "On the registration confirmation page, to invite other attendees."
+  ],
+  "whenNotToUse": [
+    "Links to the community’s profiles: use SocialLinks.",
+    "Copying a value that isn’t a link (token, command): use CopyButton."
+  ],
+  "props": [
+    {
+      "name": "url",
+      "description": "Absolute URL to share."
+    },
+    {
+      "name": "title",
+      "description": "Title: email subject and fallback text for X, Telegram, WhatsApp, and Bluesky."
+    },
+    {
+      "name": "text",
+      "description": "Short message accompanying the link."
+    },
+    {
+      "name": "networks",
+      "description": "Networks to show, in order. Mastodon is not included: there is no universal share URL (it depends on the instance)."
+    },
+    {
+      "name": "showNativeShare",
+      "description": "“Share” button that opens navigator.share; appears only after mount and only where the API exists."
+    },
+    {
+      "name": "showCopy",
+      "description": "“Copy link” button (useCopyToClipboard) with the result in a polite live region."
+    },
+    {
+      "name": "variant",
+      "description": "icon: round icon-only buttons; pill: icon + name."
+    },
+    {
+      "name": "size",
+      "description": "Button size."
+    },
+    {
+      "name": "tone",
+      "description": "Same as SocialLinks; inverse for dark sections."
+    },
+    {
+      "name": "onShare",
+      "description": "For analytics: link pressed, native share completed, or link copied."
+    },
+    {
+      "name": "aria-label",
+      "description": "Group name."
+    }
+  ],
+  "inherits": "HTML attributes of the <div> (id, style, data-*); ref to the role=\"group\" container.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves from one button to the next."
+    },
+    {
+      "keys": "Enter",
+      "action": "Opens the share link or activates the button."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Activates “Share” or “Copy link”."
+    }
+  ],
+  "accessibility": [
+    "role=\"group\" container with a name (“Share” by default).",
+    "Each link is named messages.shareOn(network), e.g. “Share on LinkedIn”, plus “(opens in a new tab)”; in pill, the visible name is contained in the accessible name.",
+    "“Copy link” becomes “Link copied” and the result (including errors) is announced by a role=\"status\" live region.",
+    "The native button is detected after mount: no difference between the server HTML and the first render.",
+    "Decorative icons; 44 px targets on touch, no transitions with prefers-reduced-motion, system colors in forced-colors mode."
+  ],
+  "responsive": [
+    "Buttons wrap in narrow containers; on mobile the native button offers all installed apps."
+  ],
+  "customization": [
+    "Uses the same styles and tokens as SocialLinks (.dc-social-links-link[data-network|data-target]).",
+    "getShareUrl(network, { url, title, text }) is a pure function for building the same URLs elsewhere (menus, emails).",
+    "Stable selectors: .dc-share-buttons-group, [data-target=\"native\"], [data-target=\"copy\"][data-status]."
+  ],
+  "commonMistakes": [
+    "Passing a relative URL: networks require absolute URLs.",
+    "Showing too many networks: pick the ones your audience actually uses and leave the rest to the native button.",
+    "Expecting onShare after the actual post: for links it only indicates that the share page was opened."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Pill",
+      "title": "Pills and more networks",
+      "description": "pill variant, size sm, custom group name."
+    },
+    {
+      "name": "WithAnalytics",
+      "title": "With analytics",
+      "description": "onShare reports the channel used."
+    },
+    {
+      "name": "Inverse",
+      "title": "On a dark section"
+    }
+  ],
+  "limits": [
+    "Mastodon is not supported: it requires knowing the user’s instance.",
+    "No official brand logos: generic icons from lucide-react.",
+    "The native button does not appear in the first render (detected after mount)."
+  ]
+}

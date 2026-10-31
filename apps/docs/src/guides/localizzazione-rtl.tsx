@@ -25,8 +25,10 @@ export default function LocalizzazioneRtl() {
         <p>
           I plurali usano <code>Intl.PluralRules</code> (forme CLDR come <code>one</code>, <code>few</code>, <code>many</code>), non il semplice
           confronto con 1. Le traduzioni diverse da it/en sono una base di partenza: prima della produzione falle rivedere da madrelingua e
-          sostituisci le chiavi necessarie con un override. Tutti i bundle sono inclusi nel pacchetto (circa 7 KB non compressi ciascuno) perché la
-          scelta avviene a runtime in base alla locale.
+          sostituisci le chiavi necessarie con un override. <code>LocaleProvider</code> include di
+          default solo <code>it</code> ed <code>en</code> (fallback inglese per le altre lingue): per le altre lingue importa il bundle e passalo in{' '}
+          <code>messages</code>, così l’app scarica solo le lingue che usa (circa 11 KB minificati ciascuno). <code>builtInMessages</code> e{' '}
+          <code>getDefaultMessages</code> scelgono a runtime tra tutti e sette i bundle, ma li includono tutti nella build.
         </p>
         <Code>{`
 import { LocaleProvider } from '@dev-community/ui';
@@ -35,8 +37,17 @@ import { LocaleProvider } from '@dev-community/ui';
   <App />
 </LocaleProvider>;
 
-// Il bundle è scelto dalla lingua: de-AT → de, es-MX → es, ja → en (fallback)
-<LocaleProvider locale="de-AT">
+// Altre lingue: importa solo il bundle che serve (tree shaking)
+import { messagesDe } from '@dev-community/ui';
+
+<LocaleProvider locale="de-AT" messages={messagesDe}>
+  <App />
+</LocaleProvider>;
+
+// Scelta a runtime tra tutte le lingue (include tutti i bundle): de-AT → de, ja → en
+import { getDefaultMessages } from '@dev-community/ui';
+
+<LocaleProvider locale={userLocale} messages={getDefaultMessages(userLocale)}>
   <App />
 </LocaleProvider>;
 
@@ -126,7 +137,7 @@ import { parseDate, today, getLocalTimeZone } from '@internationalized/date';
 // La direzione deriva dalla locale; imposta anche lang/dir sul documento o sul contenitore
 <html lang="ar" dir="rtl">
   …
-  <LocaleProvider locale="ar-EG">{/* usa il bundle messagesAr incluso */}
+  <LocaleProvider locale="ar-EG" messages={messagesAr}>
     <App />
   </LocaleProvider>
 </html>

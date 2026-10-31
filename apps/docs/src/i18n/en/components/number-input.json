@@ -1,0 +1,85 @@
+{
+  "source": "d01e7890a9f1",
+  "summary": "Localized numeric input: parses and formats with Intl.NumberFormat (currencies, percentages, units), clamps to min/max and increments with buttons, arrow keys and the mouse wheel.",
+  "whenToUse": [
+    "Quantities, amounts, percentages with optional limits."
+  ],
+  "whenNotToUse": [
+    "Numeric codes (ZIP code, phone, IBAN): use TextField with inputMode=\"numeric\".",
+    "Approximate values within a range: use Slider."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue",
+      "description": "Numeric value (NaN when empty)."
+    },
+    {
+      "name": "onChange",
+      "description": "Called on commit (blur, Enter, step)."
+    },
+    {
+      "name": "minValue / maxValue / step",
+      "description": "Limits and step."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format (currency, percent, unit, decimals)."
+    },
+    {
+      "name": "hideSteppers",
+      "description": "Hides the −/+ buttons."
+    },
+    {
+      "name": "startAdornment",
+      "description": "Decorative icon."
+    }
+  ],
+  "inherits": "Props of the react-aria-components NumberField.",
+  "keyboard": [
+    {
+      "keys": "Freccia su/giù",
+      "action": "Increments/decrements by step."
+    },
+    {
+      "keys": "Pagina su/giù",
+      "action": "Larger steps."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "Jumps to the minimum/maximum."
+    }
+  ],
+  "accessibility": [
+    "Buttons have localized labels and are excluded from the Tab order (avoiding redundant stops).",
+    "The formatted value is read by screen readers."
+  ],
+  "responsive": [
+    "Numeric/decimal keyboard on mobile depending on the format."
+  ],
+  "customization": [
+    "Tabular figures; value centered when buttons are visible."
+  ],
+  "commonMistakes": [
+    "Expecting onChange on every keystroke: it fires on commit.",
+    "Using it for identifiers with leading zeros."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Formats",
+      "title": "Formats"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

@@ -1,0 +1,51 @@
+{
+  "source": "3d32dbaaa2f9",
+  "summary": "Text available to assistive technologies but not visible.",
+  "whenToUse": [
+    "Additional context for screen readers (units, status).",
+    "Skip links visible only on focus (isFocusable)."
+  ],
+  "whenNotToUse": [
+    "Hiding information useful to everyone: make it visible.",
+    "Naming a control: prefer label or aria-label."
+  ],
+  "props": [
+    {
+      "name": "isFocusable",
+      "description": "Becomes visible when a descendant receives focus."
+    }
+  ],
+  "inherits": "HTML attributes of <span>.",
+  "keyboard": [],
+  "accessibility": [
+    "clip/1px technique compatible with zoom and forced-colors."
+  ],
+  "responsive": [],
+  "customization": [
+    "className/style."
+  ],
+  "commonMistakes": [
+    "Using it on focusable content without isFocusable: focus becomes invisible."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Additional context"
+    },
+    {
+      "name": "SkipLink",
+      "title": "Skip link"
+    },
+    {
+      "name": "RepeatedActions",
+      "title": "Repeated actions with context",
+      "description": "Each “Rimuovi” button has a unique accessible name thanks to the hidden file name."
+    },
+    {
+      "name": "LiveAnnouncement",
+      "title": "Hidden announcement",
+      "description": "A hidden live region announces the quantity updated by the buttons."
+    }
+  ],
+  "limits": []
+}

@@ -1,0 +1,72 @@
+{
+  "source": "c24a8c791c5e",
+  "summary": "Groups related fields with native <fieldset> and <legend>, a description, and an error that applies to the whole group.",
+  "whenToUse": [
+    "Form sections (address, billing details).",
+    "Errors that depend on multiple fields (date ranges)."
+  ],
+  "whenNotToUse": [
+    "Checkbox or radio groups: CheckboxGroup and RadioGroup already include a group label.",
+    "Purely visual separation: use Section or Divider."
+  ],
+  "props": [
+    {
+      "name": "legend",
+      "description": "Group title, announced when entering the fields."
+    },
+    {
+      "name": "description",
+      "description": "Text linked to the fieldset via aria-describedby."
+    },
+    {
+      "name": "errorMessage / isInvalid",
+      "description": "Group error, shown and linked only when isInvalid."
+    },
+    {
+      "name": "legendVariant",
+      "description": "Legend style: section title or field label."
+    },
+    {
+      "name": "disabled",
+      "description": "Natively disables descendants."
+    }
+  ],
+  "inherits": "Native <fieldset> attributes (name, form, disabled…).",
+  "keyboard": [
+    {
+      "keys": "—",
+      "action": "No interaction of its own."
+    }
+  ],
+  "accessibility": [
+    "Native semantics: the legend gives context to the fields.",
+    "The group error is linked to the fieldset; also mark the individual fields involved as invalid."
+  ],
+  "responsive": [
+    "Inner fields use Stack/Inline with wrap to adapt."
+  ],
+  "customization": [
+    "No border by default; spacing from density.form-gap."
+  ],
+  "commonMistakes": [
+    "Relying on disabled for styling: react-aria controls don't detect it, so also pass isDisabled.",
+    "Nesting fieldsets unnecessarily: it makes announcements verbose."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Address"
+    },
+    {
+      "name": "GroupError",
+      "title": "Group error"
+    },
+    {
+      "name": "Disabled",
+      "title": "Disabled"
+    }
+  ],
+  "limits": [
+    "Native disabled doesn't update the visual states of react-aria controls: pass isDisabled to the fields as well."
+  ]
+}

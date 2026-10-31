@@ -12,8 +12,10 @@ import {
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUp,
   ChevronDown,
   Link as LinkIcon,
+  ListTree,
 } from "lucide-react";
 import {
   Alert,
@@ -30,6 +32,7 @@ import {
   VisuallyHidden,
 } from "@dev-community/ui";
 import { slugify } from "../content/source";
+import { useI18n } from "../settings";
 
 /** Section with a linkable heading (direct links to sections). */
 export function DocSection({
@@ -43,6 +46,7 @@ export function DocSection({
   level?: 2 | 3;
   children: ReactNode;
 }) {
+  const { t } = useI18n();
   const anchor = id ?? slugify(title);
   return (
     <section className="docs-section" aria-labelledby={anchor}>
@@ -51,7 +55,7 @@ export function DocSection({
         <a
           className="docs-anchor"
           href={`#${anchor}`}
-          aria-label={`Link diretto alla sezione ${title}`}
+          aria-label={t.doc.anchor(title)}
         >
           <LinkIcon aria-hidden="true" size={14} />
         </a>
@@ -145,8 +149,9 @@ export class ErrorBoundary extends Component<
 }
 
 export function LoadError({ error }: { error: Error }) {
+  const { t } = useI18n();
   return (
-    <Alert tone="danger" title="Impossibile caricare il contenuto">
+    <Alert tone="danger" title={t.doc.loadError}>
       {error.message}
     </Alert>
   );
@@ -215,6 +220,7 @@ function useActiveSection(ids: string[]): string | undefined {
  * The section being read is marked with `aria-current="location"`.
  */
 export function PageToc({ items }: { items: TocItem[] }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const listId = useId();
   const navRef = useRef<HTMLElement>(null);
@@ -258,9 +264,20 @@ export function PageToc({ items }: { items: TocItem[] }) {
   }, [activeId, open]);
 
   if (items.length < 2) return null;
-  const activeLabel =
-    items.find((i) => i.id === activeId)?.label ??
-    items.find((i) => i.children?.some((c) => c.id === activeId))?.label;
+  const activeIndex = items.findIndex(
+    (i) => i.id === activeId || i.children?.some((c) => c.id === activeId),
+  );
+  const activeLabel = activeIndex >= 0 ? items[activeIndex]?.label : undefined;
+  const backToTop = () => {
+    setOpen(false);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    const heading = navRef.current?.closest("article")?.querySelector<HTMLElement>("h1");
+    if (heading) {
+      if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
+  };
   const link = (item: TocItem) => (
     <a
       href={`#${item.id}`}
@@ -275,11 +292,12 @@ export function PageToc({ items }: { items: TocItem[] }) {
     <nav
       ref={navRef}
       className="docs-toc"
-      aria-label="In questa pagina"
+      aria-label={t.doc.onThisPage}
       data-open={open || undefined}
     >
       <Text as="p" variant="label-md" tone="secondary" className="docs-toc-title">
-        In questa pagina
+        <ListTree aria-hidden="true" size={16} />
+        {t.doc.onThisPage}
       </Text>
       <button
         ref={toggleRef}
@@ -289,17 +307,23 @@ export function PageToc({ items }: { items: TocItem[] }) {
         aria-controls={listId}
         onClick={() => setOpen((value) => !value)}
       >
-        <span className="docs-toc-toggle-label">In questa pagina</span>
+        <span className="docs-toc-toggle-label">{t.doc.onThisPage}</span>
         {activeLabel ? (
           <span className="docs-toc-current">
-            <VisuallyHidden>, sezione corrente: </VisuallyHidden>
+            <VisuallyHidden>{t.doc.currentSection}</VisuallyHidden>
             {activeLabel}
           </span>
         ) : (
           <span className="docs-toc-current" />
         )}
+        {activeIndex >= 0 ? (
+          <span className="docs-toc-count" aria-hidden="true">
+            {activeIndex + 1}/{items.length}
+          </span>
+        ) : null}
         <ChevronDown aria-hidden="true" size={16} />
       </button>
+      <span className="docs-toc-progress" aria-hidden="true" />
       <ol ref={listRef} id={listId} className="docs-toc-list">
         {items.map((item) => (
           <li key={item.id}>
@@ -314,6 +338,10 @@ export function PageToc({ items }: { items: TocItem[] }) {
           </li>
         ))}
       </ol>
+      <button type="button" className="docs-toc-top" onClick={backToTop}>
+        <ArrowUp aria-hidden="true" size={14} />
+        {t.doc.backToTop}
+      </button>
     </nav>
   );
 }
@@ -336,7 +364,7 @@ export function useSectionHeadings(
       }));
       setItems((prev) =>
         prev.length === next.length &&
-        prev.every((p, i) => p.id === next[i]?.id)
+        prev.every((p, i) => p.id === next[i]?.id && p.label === next[i]?.label)
           ? prev
           : next,
       );
@@ -364,6 +392,7 @@ export function PrevNext({
   next?: PagerLink;
   label: string;
 }) {
+  const { t } = useI18n();
   if (!prev && !next) return null;
   return (
     <nav className="docs-pager" aria-label={label}>
@@ -371,7 +400,7 @@ export function PrevNext({
         <Link href={prev.href} className="docs-pager-link" rel="prev">
           <ArrowLeft aria-hidden="true" size={16} />
           <span>
-            <span className="docs-pager-hint">Precedente</span>
+            <span className="docs-pager-hint">{t.doc.previous}</span>
             <span className="docs-pager-title">{prev.label}</span>
           </span>
         </Link>
@@ -385,7 +414,7 @@ export function PrevNext({
           rel="next"
         >
           <span>
-            <span className="docs-pager-hint">Successivo</span>
+            <span className="docs-pager-hint">{t.doc.next}</span>
             <span className="docs-pager-title">{next.label}</span>
           </span>
           <ArrowRight aria-hidden="true" size={16} />

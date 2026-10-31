@@ -14,6 +14,7 @@ export const doc: ComponentDoc = {
     { name: 'isDateUnavailable', type: '(date) => boolean', description: 'Giorni non selezionabili (barrati, non solo colorati).' },
     { name: 'firstDayOfWeek', type: "'sun' | 'mon' | … | 'sat'", description: 'Sostituisce il primo giorno della settimana dedotto dal locale.' },
     { name: 'visibleMonths', type: 'number', default: '1', description: 'Mesi affiancati (vanno a capo su schermi stretti).' },
+    { name: 'showMonthYearPicker', type: 'boolean', default: 'false', description: 'Selettori nativi di mese e anno al posto del titolo, per saltare rapidamente a date lontane.' },
     { name: 'errorMessage', type: 'ReactNode', description: 'Mostrato se isInvalid o la data selezionata è non disponibile.' },
     { name: 'allowsNonContiguousRanges', type: 'boolean', description: 'RangeCalendar: consente intervalli che includono giorni non disponibili.' },
   ],
@@ -39,6 +40,7 @@ export const doc: ComponentDoc = {
     { name: 'Controlled', title: 'Controllato con limiti e weekend non disponibili' },
     { name: 'Range', title: 'Intervallo su due mesi' },
     { name: 'Localized', title: 'Localizzazione e inizio settimana' },
+    { name: 'MonthYear', title: 'Selettori di mese e anno' },
   ],
   status: { implemented: true, documented: true, tests: ['components/Calendar/Calendar.test.tsx'], limits: ['Solo calendario gregoriano negli esempi; altri sistemi sono supportati da @internationalized/date ma non sono testati.'] },
 };

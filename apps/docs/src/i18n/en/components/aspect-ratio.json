@@ -1,0 +1,37 @@
+{
+  "source": "d7bd020f9306",
+  "summary": "Keeps a fixed width/height ratio; inner images, videos and iframes cover the box.",
+  "whenToUse": [
+    "Media previews, maps, embedded videos, card covers."
+  ],
+  "whenNotToUse": [
+    "Text content of variable height: it may get clipped."
+  ],
+  "props": [
+    {
+      "name": "ratio",
+      "description": "Width / height ratio, e.g. 16 / 9."
+    }
+  ],
+  "inherits": "HTML attributes of <div>; ref to the <div>.",
+  "keyboard": [],
+  "accessibility": [
+    "Inner images still need an appropriate alt; iframes need a title."
+  ],
+  "responsive": [
+    "Width is fluid; height derives from the ratio (CSS aspect-ratio property)."
+  ],
+  "customization": [
+    "Local variable --_ratio; selector .dc-layout-aspect-ratio."
+  ],
+  "commonMistakes": [
+    "Adding long text that gets clipped on narrow viewports."
+  ],
+  "examples": [
+    {
+      "name": "Ratios",
+      "title": "Common ratios"
+    }
+  ],
+  "limits": []
+}

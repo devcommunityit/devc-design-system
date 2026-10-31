@@ -1,0 +1,123 @@
+{
+  "source": "f0038c182b77",
+  "summary": "A single field for date and time: typeable segments and one popover with a calendar, time list, shortcuts, and a “Now” button.",
+  "whenToUse": [
+    "Appointments, bookings, scheduled publishing: date and time in a single field.",
+    "Fixed-step time slots (15/30/60 min) with unavailable times."
+  ],
+  "whenNotToUse": [
+    "Date only: use DatePicker.",
+    "Time only: use TimePicker (with a list) or TimeInput (segments only).",
+    "Date ranges: use DateRangePicker."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Standard field anatomy."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Civil date and time or zoned instant: the time zone is preserved."
+    },
+    {
+      "name": "granularity",
+      "description": "Segments displayed in the field."
+    },
+    {
+      "name": "timeStep",
+      "description": "Step in minutes for the time list. The field still accepts any typed time."
+    },
+    {
+      "name": "isTimeUnavailable",
+      "description": "Disables individual times in the list."
+    },
+    {
+      "name": "minValue / maxValue / isDateUnavailable",
+      "description": "Constraints; on the minimum/maximum day, out-of-range times are disabled."
+    },
+    {
+      "name": "presets",
+      "description": "Shortcuts (Today, Tomorrow, In a week, or custom); they keep the selected time."
+    },
+    {
+      "name": "showNowButton",
+      "description": "“Now” button in the popover footer."
+    },
+    {
+      "name": "showMonthYearPicker",
+      "description": "Month and year selectors in the calendar header."
+    },
+    {
+      "name": "isClearable",
+      "description": "Button to clear the field."
+    },
+    {
+      "name": "hourCycle",
+      "description": "Forces the hour format (follows the locale by default)."
+    },
+    {
+      "name": "popoverProps",
+      "description": "Popover placement and classes."
+    }
+  ],
+  "inherits": "react-aria-components DatePicker props (name, isRequired, validate, hideTimeZone, firstDayOfWeek…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Next segment, then the field buttons."
+    },
+    {
+      "keys": "Frecce su/giù, cifre",
+      "action": "Edits the segment."
+    },
+    {
+      "keys": "Alt + Freccia giù",
+      "action": "Opens the popover."
+    },
+    {
+      "keys": "Frecce nel calendario / nell’elenco orari",
+      "action": "Moves the day or time; Enter selects."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the popover; focus returns to the field."
+    }
+  ],
+  "accessibility": [
+    "The popover is a dialog with a calendar (grid) and a time list (listbox “Choose time”), labeled and localized.",
+    "Unavailable times are aria-disabled and skipped during navigation.",
+    "The popover does not close when a day is chosen: confirm with a time, “Done”, “Now”, or Esc."
+  ],
+  "responsive": [
+    "Above 40rem the calendar and time list sit side by side; below, the times move under the calendar and the shortcuts become scrollable chips."
+  ],
+  "customization": [
+    "className on the field, popoverProps.className on the popover; colors and radii from --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Using ZonedDateTime for “wall clock” times (e.g. store opening): use CalendarDateTime.",
+    "Expecting timeStep to prevent off-step times: it only limits the list; validate with validate if needed.",
+    "Serializing a CalendarDateTime with toDate().toISOString(): use toString() or convert explicitly with toZoned()."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Appointments",
+      "title": "Slots with constraints"
+    },
+    {
+      "name": "Zoned",
+      "title": "Instant with time zone"
+    },
+    {
+      "name": "PresetsClearable",
+      "title": "Shortcuts and clearing"
+    }
+  ],
+  "limits": [
+    "The time list shows hours and minutes: with granularity=\"second\" seconds can only be adjusted via the segments."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@dev-community/ui-mcp",
+  "version": "0.1.0",
+  "description": "Server MCP per @dev-community/ui: catalogo componenti, token, temi, setup, pattern e validazione del codice generato.",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "design-system",
+    "react",
+    "design-tokens"
+  ],
+  "type": "module",
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "dc-ui-mcp": "./dist/stdio.js",
+    "dc-ui-mcp-http": "./dist/http.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "data": "node scripts/build-data.mjs",
+    "build": "npm run data && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "npm run data && vitest run",
+    "start": "node dist/stdio.js",
+    "start:http": "node dist/http.js",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/stdio.js",
+    "prepublishOnly": "node ../ui/scripts/prepublish-check.mjs && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "typescript": "^5.9.3",
+    "zod": "^4.6.7"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

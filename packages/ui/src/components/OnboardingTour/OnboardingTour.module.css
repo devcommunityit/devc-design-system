@@ -1,0 +1,9 @@
+.highlight {
+  position: fixed;
+  z-index: calc(var(--dc-z-popover) - 1);
+  box-sizing: border-box;
+  border: var(--dc-border-width-thick) solid var(--dc-color-focus-ring);
+  border-radius: var(--dc-radius-sm);
+  outline: var(--dc-border-width-thick) solid var(--dc-color-surface-default);
+  pointer-events: none;
+}

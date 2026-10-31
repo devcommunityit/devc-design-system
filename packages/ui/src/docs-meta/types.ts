@@ -13,6 +13,8 @@ export type ComponentCategory =
   | 'dashboard'
   | 'ai'
   | 'website'
+  | 'community'
+  | 'editor'
   | 'feedback'
   | 'overlay'
   | 'patterns';
@@ -26,6 +28,8 @@ export interface PropDoc {
 }
 
 export interface ComponentDoc {
+  /** Package subpath the exports live in, when not the root entry (e.g. 'editor' → '@dev-community/ui/editor'). */
+  entry?: 'editor' | 'patterns' | 'widgets';
   /** Export name(s) documented on this page, e.g. ['Tabs', 'TabList', 'Tab', 'TabPanel']. */
   exports: string[];
   /** Page title. */

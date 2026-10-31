@@ -1,0 +1,52 @@
+{
+  "source": "b0502b5498b1",
+  "summary": "Controlled summary of a subscription's status and consumer actions.",
+  "whenToUse": [
+    "Showing subscription status, details, and actions in an account area."
+  ],
+  "whenNotToUse": [
+    "Changing the status or charging a payment."
+  ],
+  "props": [
+    {
+      "name": "title / status / statusLabel",
+      "description": "Name and current status."
+    },
+    {
+      "name": "detail",
+      "description": "Additional information such as the next renewal date."
+    },
+    {
+      "name": "onPrimaryAction / onSecondaryAction",
+      "description": "Callbacks for the optional actions."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Reaches and activates the actions."
+    }
+  ],
+  "accessibility": [
+    "The status is conveyed by a text label in addition to color."
+  ],
+  "responsive": [
+    "Title, status, and actions wrap in narrow layouts."
+  ],
+  "customization": [
+    "Composed with Button and --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Relying on color alone to convey the status."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Active status"
+    }
+  ],
+  "limits": [
+    "Does not perform mutations or payments."
+  ]
+}

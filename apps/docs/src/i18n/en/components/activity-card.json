@@ -1,0 +1,74 @@
+{
+  "source": "95de9e6b7119",
+  "summary": "Activity feed for dashboards: a vertical timeline with avatar, author, action, time in a <time> element and a decorative colored status dot.",
+  "whenToUse": [
+    "Showing the latest user or system actions (publications, comments, approvals).",
+    "Providing recent context next to dashboard KPIs."
+  ],
+  "whenNotToUse": [
+    "Steps of a process or the history of a single object: use Timeline.",
+    "Notifications that require action: use Toast, Alert or a notification center.",
+    "Long logs that need filtering: use DataTable with pagination."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Card title; also provides the list's accessible name."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Title level."
+    },
+    {
+      "name": "items",
+      "description": "Activities in reverse chronological order; time is preformatted text, dateTime the ISO value for <time>."
+    },
+    {
+      "name": "footer",
+      "description": "Link to the full log, or a note."
+    },
+    {
+      "name": "emptyState",
+      "description": "Shown instead of the list when items is empty."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "<ul> list named by the title (aria-labelledby); each item is a complete “author + action” sentence.",
+    "Avatar, status dot and timeline line are decorative (aria-hidden): the author's name is visible text.",
+    "The tone carries no exclusive information: state the outcome in the action (“failed”, “approved”).",
+    "The time uses <time dateTime> for an unambiguous reading."
+  ],
+  "responsive": [
+    "Text and time wrap; avatar and line stay aligned to the start of the row (RTL support via logical properties)."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, feedback colors for status dots, --dc-color-border-subtle for the line.",
+    "Stable selectors: .dc-activity-card-activity, .dc-activity-card-item[data-tone], .dc-activity-card-dot, .dc-activity-card-time, .dc-activity-card-footer."
+  ],
+  "commonMistakes": [
+    "Conveying the outcome through the dot color alone.",
+    "Omitting dateTime with relative times (“yesterday”): the machine value helps assistive technologies and extensions.",
+    "Making the whole row clickable: put explicit links in the action."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithTones",
+      "title": "Tones and links",
+      "description": "All tones, links in the action, and a footer."
+    },
+    {
+      "name": "Empty",
+      "title": "Empty state"
+    }
+  ],
+  "limits": [
+    "Times are not formatted by the component: pass already localized text (e.g. with RelativeTime).",
+    "No built-in pagination or progressive loading."
+  ]
+}

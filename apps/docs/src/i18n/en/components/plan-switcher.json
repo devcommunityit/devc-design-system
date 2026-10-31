@@ -1,0 +1,57 @@
+{
+  "source": "7221918a1292",
+  "summary": "Segmented control for choosing a plan or billing cycle.",
+  "whenToUse": [
+    "Offering a compact choice between plan alternatives."
+  ],
+  "whenNotToUse": [
+    "Comparing prices and features together: use PricingTable."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Group label."
+    },
+    {
+      "name": "options",
+      "description": "Available alternatives."
+    },
+    {
+      "name": "value",
+      "description": "Controlled selected id."
+    },
+    {
+      "name": "onChange",
+      "description": "Reports a selection."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Reaches and selects an option."
+    }
+  ],
+  "accessibility": [
+    "The group has an accessible name.",
+    "The choice is exposed with aria-pressed and remains controlled by the caller."
+  ],
+  "responsive": [
+    "Options wrap when space is limited."
+  ],
+  "customization": [
+    "Uses Button and --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting the value to change without updating the value prop."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Billing cycle switch"
+    }
+  ],
+  "limits": [
+    "Does not start a purchase."
+  ]
+}

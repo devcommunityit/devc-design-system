@@ -1,0 +1,82 @@
+{
+  "source": "eb0dfe8fbaaf",
+  "summary": "Temporary non-blocking notifications with queueing, accessible announcements, pause on hover, and dismissal.",
+  "whenToUse": [
+    "Action confirmations (saved, sent) and quick undo."
+  ],
+  "whenNotToUse": [
+    "Errors that require user action: use an Alert next to the problem.",
+    "Information users need to keep: also show it on the page."
+  ],
+  "props": [
+    {
+      "name": "ToastProvider.maxVisible",
+      "description": "Number of visible toasts; the rest wait in the queue."
+    },
+    {
+      "name": "ToastProvider.placement",
+      "description": "Position (logical properties, RTL-compatible)."
+    },
+    {
+      "name": "ToastProvider.queue",
+      "description": "External queue for showing toasts from non-React code."
+    },
+    {
+      "name": "show(options)",
+      "description": "Adds a toast."
+    },
+    {
+      "name": "duration",
+      "description": "null = stays until dismissed."
+    },
+    {
+      "name": "dismiss(id) / clear()",
+      "description": "Dismisses one or all toasts."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the action and close button (the region is a “Notifiche” landmark)."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Runs the action or dismisses."
+    }
+  ],
+  "accessibility": [
+    "Announced through persistent live regions: polite for info/success/warning, assertive for errors.",
+    "The timer pauses on hover or focus (WCAG 2.2.1); errors and toasts with an action never disappear on their own.",
+    "Focus is not moved: the toast does not interrupt the user.",
+    "Animation is disabled with prefers-reduced-motion."
+  ],
+  "responsive": [
+    "Maximum width of 24rem, reduced on narrow screens; positioned with logical properties."
+  ],
+  "customization": [
+    "ToastProvider.className; toasts inherit the theme of the nearest ThemeProvider through a portal."
+  ],
+  "commonMistakes": [
+    "Using useToast outside ToastProvider: an explicit error is thrown.",
+    "Relying on a toast as the only place where critical information appears."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Tones, action, and queue"
+    },
+    {
+      "name": "Durations",
+      "title": "Durations, persistent toast, and programmatic dismissal",
+      "description": "duration in milliseconds or null; dismiss(id) closes a specific toast and onClose counts the dismissals."
+    },
+    {
+      "name": "Placement",
+      "title": "Placement and queue with maxVisible",
+      "description": "The placement is controlled by state; with maxVisible={2} the third toast waits in the queue."
+    }
+  ],
+  "limits": [
+    "No shortcut (e.g. F6) to move focus into the region: it is reachable as a landmark and with Tab."
+  ]
+}

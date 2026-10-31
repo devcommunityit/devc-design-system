@@ -24,9 +24,74 @@ export function seriesColor(index: number): string {
 }
 
 /** Inline style exposing the series color as `--_series` (CSS can override it, e.g. in forced colors). */
-export function seriesStyle(index: number): CSSProperties {
+export function seriesStyle(index: number, paint?: SeriesPaint): CSSProperties {
   const style: CSSVariables = { '--_series': seriesColor(index) };
+  if (paint?.fill) style['--_paint'] = `url(#${paint.fill})`;
+  if (paint?.area) style['--_area'] = `url(#${paint.area})`;
   return style;
+}
+
+/** Gradient ids used by the vivid appearance (`--_paint` for fills, `--_area` for areas). */
+export interface SeriesPaint {
+  fill?: string;
+  area?: string;
+}
+
+export type GradientKind = 'fill' | 'area';
+export type GradientDirection = 'vertical' | 'horizontal' | 'diagonal';
+
+/** Id of the gradient of a series index, defined by `GradientDefs`. */
+export function gradientId(prefix: string, kind: GradientKind, index: number): string {
+  return `${prefix}-${kind === 'area' ? 'a' : 'g'}${wrapIndex(index, DATA_COLOR_COUNT)}`;
+}
+
+/** `seriesStyle` with the gradients of `GradientDefs` (only painted in the vivid appearance). */
+export function vividSeriesStyle(prefix: string, index: number, kinds: readonly GradientKind[] = ['fill']): CSSProperties {
+  return seriesStyle(index, {
+    fill: kinds.includes('fill') ? gradientId(prefix, 'fill', index) : undefined,
+    area: kinds.includes('area') ? gradientId(prefix, 'area', index) : undefined,
+  });
+}
+
+export interface GradientDefsProps {
+  prefix: string;
+  /** Series indexes that need a gradient. */
+  indexes: readonly number[];
+  kind?: GradientKind;
+  /**
+   * `vertical`: bright at the top (columns, areas); `horizontal`: bright at the end (bars, rings);
+   * `diagonal`: slices. @default 'vertical'
+   */
+  direction?: GradientDirection;
+  /** Class names of the two stops (from Chart.module.css): base color and vivid end. */
+  stopBaseClassName?: string;
+  stopVividClassName?: string;
+}
+
+const DIRECTION: Record<GradientDirection, { x2: number; y2: number; reverse: boolean }> = {
+  vertical: { x2: 0, y2: 1, reverse: true },
+  horizontal: { x2: 1, y2: 0, reverse: false },
+  diagonal: { x2: 1, y2: 1, reverse: true },
+};
+
+/**
+ * One linear gradient per series index, from the data color to a mix with the accent color
+ * (same lightness, so the contrast with the surface is kept). Stops read `--_series` from the
+ * inline style of each gradient.
+ */
+export function GradientDefs({ prefix, indexes, kind = 'fill', direction = 'vertical', stopBaseClassName, stopVividClassName }: GradientDefsProps) {
+  const { x2, y2, reverse } = DIRECTION[direction];
+  const unique = [...new Set(indexes.map((i) => wrapIndex(i, DATA_COLOR_COUNT)))];
+  return (
+    <defs>
+      {unique.map((i) => (
+        <linearGradient key={i} id={gradientId(prefix, kind, i)} x1={0} y1={0} x2={x2} y2={y2} style={seriesStyle(i)}>
+          <stop offset="0%" className={reverse ? stopVividClassName : stopBaseClassName} />
+          <stop offset="100%" className={reverse ? stopBaseClassName : stopVividClassName} />
+        </linearGradient>
+      ))}
+    </defs>
+  );
 }
 
 const DASHES: ReadonlyArray<string | undefined> = [undefined, '6 4', '2 3', '10 4 2 4', '1 5', '12 6'];

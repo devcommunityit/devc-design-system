@@ -7,7 +7,7 @@ export default function Changelog() {
       <DocSection title="0.1.0 — prima versione (non pubblicata)">
         <ul>
           <li>Token DTCG come unica fonte; output CSS, TypeScript, DTCG e Tokens Studio generati.</li>
-          <li>Temi: modalità light/dark/system, preset aurora, lagoon, ember, graphite, ocean, forest, berry, saffron, nebula, densità comoda/compatta, createTheme, schema JSON v1.</li>
+          <li>Temi: modalità light/dark/system, 26 preset (9 originali, 8 a tinta unica e 9 a gradiente bicolore), densità comoda/compatta, createTheme, schema JSON v1.</li>
           <li>
             Stile expressive ispirato a Material 3 (prop look di ThemeProvider), palette terziaria con ruoli accent.*, gradienti bicolore,
             Heading gradient e Card variant="accent".
@@ -83,9 +83,9 @@ export default function Changelog() {
       </DocSection>
 
       <DocSection title="Prima della pubblicazione">
-        <Alert tone="warning" title="Decisione necessaria: licenza">
-          Il pacchetto non dichiara una licenza. La scelta (ad esempio proprietaria, MIT, Apache-2.0) è una decisione legale del proprietario del
-          progetto e va presa prima di pubblicare su un registry pubblico o privato.
+        <Alert tone="info" title="Licenza: MIT">
+          Il progetto è rilasciato con licenza MIT (© 2026 Dev Community). Il file <code>LICENSE</code> è incluso nei pacchetti{' '}
+          <code>@dev-community/ui</code> e <code>@dev-community/ui-mcp</code>.
         </Alert>
       </DocSection>
     </>

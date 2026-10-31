@@ -226,6 +226,70 @@
   white-space: nowrap;
 }
 
+/* Gradient stops (GradientDefs): base data color → mix with the accent at a similar lightness. */
+.stopBase {
+  stop-color: var(--_series);
+}
+
+.stopVivid {
+  stop-color: color-mix(in oklch, var(--_series) 62%, var(--dc-color-accent-default));
+}
+
+.stopAreaTop {
+  stop-color: var(--_series);
+  stop-opacity: 0.5;
+}
+
+.stopAreaBottom {
+  stop-color: color-mix(in oklch, var(--_series) 62%, var(--dc-color-accent-default));
+  stop-opacity: 0.02;
+}
+
+/*
+ * Vivid appearance: appearance="vivid", or appearance="auto" inside the expressive look.
+ * Same theme colors (and contrast) as the flat style, painted with gradients, rounded shapes and a glow.
+ */
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .fill {
+  fill: var(--_paint, var(--_series));
+  stroke-width: 1.5;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) :is(rect.fill, rect.patternOverlay) {
+  rx: 4px;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .area {
+  fill: var(--_area, var(--_series));
+  fill-opacity: 1;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .line {
+  stroke-width: 2.75;
+  filter: drop-shadow(0 0.25rem 0.375rem color-mix(in srgb, var(--_series) 45%, transparent));
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .marker {
+  fill: var(--_series);
+  stroke: var(--dc-color-surface-default);
+  stroke-width: 1.5;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .markerActive {
+  filter: drop-shadow(0 0 0.375rem var(--_series));
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .gridLine {
+  stroke-dasharray: 2 4;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .activeBand {
+  fill: color-mix(in srgb, var(--dc-color-action-primary) 9%, transparent);
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) [data-active] > .fill {
+  filter: drop-shadow(0 0.25rem 0.5rem color-mix(in srgb, var(--_series) 55%, transparent));
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .line,
   .area,
@@ -246,23 +310,33 @@
 }
 
 @media (forced-colors: active) {
+  .figure * {
+    filter: none !important;
+  }
+
   .line,
-  .marker {
+  .marker,
+  .figure .line,
+  .figure .marker {
     stroke: CanvasText;
   }
 
-  .area {
+  .area,
+  .figure .area {
     fill: CanvasText;
     fill-opacity: 0.2;
   }
 
   .markerActive,
-  .guide {
+  .guide,
+  .figure .markerActive,
+  .figure .guide {
     fill: Highlight;
     stroke: Highlight;
   }
 
-  .fill {
+  .fill,
+  .figure .fill {
     fill: Canvas;
     stroke: CanvasText;
   }

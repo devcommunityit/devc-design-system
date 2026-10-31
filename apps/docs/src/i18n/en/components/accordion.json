@@ -1,0 +1,83 @@
+{
+  "source": "5f6f89f80009",
+  "summary": "Expandable sections with a button header. Collapsible is a single section; Accordion coordinates a group of them.",
+  "whenToUse": [
+    "FAQs and long content that users read selectively.",
+    "Rarely needed advanced options."
+  ],
+  "whenNotToUse": [
+    "Content almost everyone needs to read: show it directly.",
+    "Navigation between parallel views: use Tabs."
+  ],
+  "props": [
+    {
+      "name": "AccordionItem/Collapsible.title",
+      "description": "Text of the header button."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Level of the heading that wraps the button."
+    },
+    {
+      "name": "meta",
+      "description": "Non-interactive accessory content next to the title (badges, counters)."
+    },
+    {
+      "name": "variant",
+      "description": "With or without a border."
+    },
+    {
+      "name": "isExpanded / defaultExpanded / onExpandedChange",
+      "description": "Controlled or uncontrolled state of the section."
+    },
+    {
+      "name": "Accordion.allowsMultipleExpanded",
+      "description": "Allows multiple sections to be open."
+    },
+    {
+      "name": "Accordion.expandedKeys / defaultExpandedKeys / onExpandedChange",
+      "description": "Group state; requires an id on each section."
+    }
+  ],
+  "inherits": "Props of react-aria-components Disclosure and DisclosureGroup (including isDisabled).",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio",
+      "action": "Opens or closes the section."
+    },
+    {
+      "keys": "Tab",
+      "action": "Moves to the next header or to the open content."
+    }
+  ],
+  "accessibility": [
+    "Button with aria-expanded and aria-controls inside a heading.",
+    "Collapsed content is also hidden from assistive technologies.",
+    "The chevron is decorative."
+  ],
+  "responsive": [
+    "Long titles wrap; the icon stays aligned with the first line."
+  ],
+  "customization": [
+    "className/style; border, surface and motion tokens (motion disabled with prefers-reduced-motion)."
+  ],
+  "commonMistakes": [
+    "Placing interactive elements in the title: the title is already a button.",
+    "Forgetting ids when controlling Accordion with expandedKeys."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "FAQ (one section at a time)"
+    },
+    {
+      "name": "Multiple",
+      "title": "Multiple open sections"
+    },
+    {
+      "name": "ControlledCollapsible",
+      "title": "Controlled Collapsible"
+    }
+  ],
+  "limits": []
+}

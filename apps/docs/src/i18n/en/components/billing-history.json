@@ -1,0 +1,53 @@
+{
+  "source": "6ee9858ca80a",
+  "summary": "Table of invoices and billing transactions supplied by the caller.",
+  "whenToUse": [
+    "Showing an invoice history in an account area."
+  ],
+  "whenNotToUse": [
+    "Generating invoices or performing downloads on its own."
+  ],
+  "props": [
+    {
+      "name": "title / records",
+      "description": "Title and history rows."
+    },
+    {
+      "name": "onDownload",
+      "description": "Optional callback for an invoice."
+    },
+    {
+      "name": "downloadLabel",
+      "description": "Accessible label of the action."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Reaches and activates invoice actions."
+    }
+  ],
+  "accessibility": [
+    "HTML table with column and row headers.",
+    "Amounts and statuses are text."
+  ],
+  "responsive": [
+    "The table scrolls horizontally in narrow containers."
+  ],
+  "customization": [
+    "Uses Button for actions and --dc-* tokens for the table."
+  ],
+  "commonMistakes": [
+    "Expecting the action to download or request an invoice without a consumer callback."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Invoice history"
+    }
+  ],
+  "limits": [
+    "Does not fetch invoices or start downloads."
+  ]
+}

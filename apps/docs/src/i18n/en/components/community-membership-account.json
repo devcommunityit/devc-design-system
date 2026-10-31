@@ -1,0 +1,102 @@
+{
+  "source": "4078c9461d46",
+  "summary": "Controlled membership account view: digital card, plan and summary, payment, status and usage, invoices, and preferences.",
+  "whenToUse": [
+    "In a community account area to summarize membership, billing, and preferences."
+  ],
+  "whenNotToUse": [
+    "To collect or process payments: the pattern displays presentational data and notifies the consumer of selections.",
+    "To execute privacy requests or save consents: the application integration must handle those actions."
+  ],
+  "props": [
+    {
+      "name": "member",
+      "description": "Identity and metadata shown on the digital card."
+    },
+    {
+      "name": "plans",
+      "description": "Presentational monthly and yearly labels and amounts."
+    },
+    {
+      "name": "billingCadence / onBillingCadenceChange",
+      "description": "Controlled billing cadence selection."
+    },
+    {
+      "name": "orderSummary",
+      "description": "Total, discount, and coupon status; does not perform checkout."
+    },
+    {
+      "name": "couponInput",
+      "description": "Controlled field and callbacks to enter/apply a coupon; the consumer handles validation and response."
+    },
+    {
+      "name": "paymentMethods",
+      "description": "Already available payment methods to display and select."
+    },
+    {
+      "name": "selectedPaymentMethodId / onPaymentMethodChange",
+      "description": "Controlled method selection; does not collect card data."
+    },
+    {
+      "name": "subscription",
+      "description": "Status, next billing date, and optional usage."
+    },
+    {
+      "name": "invoices",
+      "description": "Invoice history rows, with an optional consumer-provided link."
+    },
+    {
+      "name": "communicationPreferences / onCommunicationPreferenceChange",
+      "description": "Controlled preferences; the consumer decides whether and how to save them."
+    },
+    {
+      "name": "cookiePreferences",
+      "description": "Read-only summary of cookie preferences."
+    },
+    {
+      "name": "onRequestDataExport / onRequestDeletion",
+      "description": "Optional request button callbacks; no request is executed or confirmed by the pattern."
+    },
+    {
+      "name": "className",
+      "description": "Additional class on the container."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches plan controls, payment methods, preferences, and actions."
+    },
+    {
+      "keys": "Spazio / Invio",
+      "action": "Activates the focused cadence or action; native radios follow browser behavior."
+    }
+  ],
+  "accessibility": [
+    "Sections have headings; card, radio controls, switches, and invoice table keep native semantics.",
+    "Cadence is indicated by aria-pressed in addition to visual styling; states are labeled with text in Badges.",
+    "Usage is exposed with the progress element and an accessible name."
+  ],
+  "responsive": [
+    "Panels adapt to the container; invoice history scrolls horizontally on narrow viewports."
+  ],
+  "customization": [
+    "Data, callbacks, surfaces, spacing, states, and typography are provided by the consumer or --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting the pattern to charge, update, or persist data: all mutations remain the consumer's responsibility.",
+    "Interpreting export or deletion callbacks as confirmation of completion: they are only request handlers."
+  ],
+  "examples": [
+    {
+      "name": "ControlledMembership",
+      "title": "Controlled membership",
+      "description": "Card, monthly/yearly switch, and local callbacks for selections and requests."
+    }
+  ],
+  "limits": [
+    "Does not perform checkout, collect payment data, or save consents.",
+    "Privacy callbacks only notify the consumer; the pattern does not state that an export or deletion has occurred.",
+    "Monetary values and dates are formatted by the consumer."
+  ]
+}

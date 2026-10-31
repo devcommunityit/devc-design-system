@@ -15,36 +15,52 @@ import {
   type ThemeIssue,
   type ThemeSeeds,
 } from '@dev-community/ui/theme';
+import type { DocsLang, Localized } from '../i18n/lang';
 
 export type Scheme = 'light' | 'dark';
 export type SeedKey = keyof ThemeSeeds;
 
-export const SEED_KEYS: Array<{ key: SeedKey; label: string; help: string }> = [
-  { key: 'brand', label: 'Brand', help: 'Genera azioni primarie, link, focus e superfici brand.' },
-  { key: 'tertiary', label: 'Terziario', help: 'Secondo accento (Material tertiary): ruoli accent.* e gradienti bicolore. Se assente deriva dal preset o dal brand ruotato di 60°.' },
-  { key: 'neutral', label: 'Neutro', help: 'Testi, superfici e bordi. Se assente deriva dal brand con croma bassa.' },
-  { key: 'danger', label: 'Errore', help: 'Feedback di errore e azioni distruttive.' },
-  { key: 'warning', label: 'Avviso', help: 'Feedback di attenzione.' },
-  { key: 'success', label: 'Successo', help: 'Feedback di conferma.' },
-  { key: 'info', label: 'Informazione', help: 'Feedback informativi.' },
+export const SEED_KEYS: Array<{ key: SeedKey; label: Localized; help: Localized }> = [
+  {
+    key: 'brand',
+    label: { it: 'Brand', en: 'Brand' },
+    help: { it: 'Genera azioni primarie, link, focus e superfici brand.', en: 'Drives primary actions, links, focus and brand surfaces.' },
+  },
+  {
+    key: 'tertiary',
+    label: { it: 'Terziario', en: 'Tertiary' },
+    help: {
+      it: 'Secondo accento (Material tertiary): ruoli accent.* e gradienti bicolore. Se assente deriva dal preset o dal brand ruotato di 60°.',
+      en: 'Second accent (Material tertiary): accent.* roles and two-tone gradients. If omitted it comes from the preset or from the brand rotated by 60°.',
+    },
+  },
+  {
+    key: 'neutral',
+    label: { it: 'Neutro', en: 'Neutral' },
+    help: { it: 'Testi, superfici e bordi. Se assente deriva dal brand con croma bassa.', en: 'Text, surfaces and borders. If omitted it derives from the brand with low chroma.' },
+  },
+  { key: 'danger', label: { it: 'Errore', en: 'Error' }, help: { it: 'Feedback di errore e azioni distruttive.', en: 'Error feedback and destructive actions.' } },
+  { key: 'warning', label: { it: 'Avviso', en: 'Warning' }, help: { it: 'Feedback di attenzione.', en: 'Warning feedback.' } },
+  { key: 'success', label: { it: 'Successo', en: 'Success' }, help: { it: 'Feedback di conferma.', en: 'Confirmation feedback.' } },
+  { key: 'info', label: { it: 'Informazione', en: 'Information' }, help: { it: 'Feedback informativi.', en: 'Informational feedback.' } },
 ];
 
 export interface RoleGroup {
   id: string;
-  label: string;
+  label: Localized;
   roles: ColorRole[];
 }
 
 const byPrefix = (prefix: string) => COLOR_ROLES.filter((r) => r.startsWith(prefix));
 
 export const ROLE_GROUPS: RoleGroup[] = [
-  { id: 'brand', label: 'Brand e azioni', roles: [...byPrefix('action.'), 'surface.brand', 'focus.ring'] },
-  { id: 'accent', label: 'Accento terziario', roles: byPrefix('accent.') },
-  { id: 'text', label: 'Testo', roles: byPrefix('text.') },
-  { id: 'surface', label: 'Superfici', roles: byPrefix('surface.').filter((r) => r !== 'surface.brand') },
-  { id: 'border', label: 'Bordi', roles: byPrefix('border.') },
-  { id: 'feedback', label: 'Feedback', roles: byPrefix('feedback.') },
-  { id: 'data', label: 'Dati e grafici', roles: byPrefix('data.') },
+  { id: 'brand', label: { it: 'Brand e azioni', en: 'Brand and actions' }, roles: [...byPrefix('action.'), 'surface.brand', 'focus.ring'] },
+  { id: 'accent', label: { it: 'Accento terziario', en: 'Tertiary accent' }, roles: byPrefix('accent.') },
+  { id: 'text', label: { it: 'Testo', en: 'Text' }, roles: byPrefix('text.') },
+  { id: 'surface', label: { it: 'Superfici', en: 'Surfaces' }, roles: byPrefix('surface.').filter((r) => r !== 'surface.brand') },
+  { id: 'border', label: { it: 'Bordi', en: 'Borders' }, roles: byPrefix('border.') },
+  { id: 'feedback', label: { it: 'Feedback', en: 'Feedback' }, roles: byPrefix('feedback.') },
+  { id: 'data', label: { it: 'Dati e grafici', en: 'Data and charts' }, roles: byPrefix('data.') },
 ];
 
 export interface BuilderState {
@@ -56,8 +72,13 @@ export interface BuilderState {
   overrides: Record<Scheme, Partial<Record<ColorRole, string>>>;
 }
 
-export function initialState(base: PresetName): BuilderState {
-  return { name: 'mio-tema', label: 'Il mio tema', base, seeds: {}, overrides: { light: {}, dark: {} } };
+const DEFAULT_THEME: Localized<{ name: string; label: string }> = {
+  it: { name: 'mio-tema', label: 'Il mio tema' },
+  en: { name: 'my-theme', label: 'My theme' },
+};
+
+export function initialState(base: PresetName, lang: DocsLang = 'it'): BuilderState {
+  return { ...DEFAULT_THEME[lang], base, seeds: {}, overrides: { light: {}, dark: {} } };
 }
 
 /** Seed value shown in the editor: explicit seed, else the preset default. */

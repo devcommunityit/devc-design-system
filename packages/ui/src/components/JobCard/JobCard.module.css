@@ -1,0 +1,59 @@
+.card {
+  display: grid;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.header {
+  display: grid;
+  gap: var(--dc-space-1);
+}
+
+.title,
+.company,
+.description {
+  margin: 0;
+}
+
+.title {
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.title a {
+  color: inherit;
+}
+
+.company {
+  color: var(--dc-color-text-secondary);
+}
+
+.description {
+  overflow-wrap: anywhere;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-3) var(--dc-space-5);
+  margin: 0;
+}
+
+.details > div {
+  display: grid;
+  gap: var(--dc-space-1);
+}
+
+.details dt {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.details dd {
+  margin: 0;
+}

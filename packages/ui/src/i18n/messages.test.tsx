@@ -7,7 +7,8 @@ import { PasswordInput } from '../components/PasswordInput';
 import { parseThemeJson } from '../theme/createTheme';
 import type { ThemeIssueCode } from '../theme/types';
 import { LocaleProvider, useLocale } from './LocaleProvider';
-import { builtInMessages, formatThemeIssue, getDefaultMessages, type BuiltInLanguage, type Messages } from './messages';
+import { builtInMessages, getDefaultMessages, type BuiltInLanguage } from './builtIn';
+import { formatThemeIssue, getCoreMessages, type Messages } from './messages';
 import { pluralCategory } from './plural';
 
 const LANGUAGES: BuiltInLanguage[] = ['en', 'it', 'es', 'fr', 'de', 'pt', 'ar'];
@@ -100,6 +101,12 @@ describe('built-in message bundles', () => {
     expect(getDefaultMessages('ja-JP')).toBe(builtInMessages.en);
     expect(getDefaultMessages('constructor')).toBe(builtInMessages.en);
   });
+
+  it('LocaleProvider defaults ship only the core bundles (it, en)', () => {
+    expect(getCoreMessages('it-CH')).toBe(builtInMessages.it);
+    expect(getCoreMessages('en-GB')).toBe(builtInMessages.en);
+    expect(getCoreMessages('de-DE')).toBe(builtInMessages.en);
+  });
 });
 
 describe('plurals', () => {
@@ -142,7 +149,7 @@ describe('formatThemeIssue', () => {
 describe('components under built-in locales', () => {
   it('use German strings and plural forms', () => {
     render(
-      <LocaleProvider locale="de-DE">
+      <LocaleProvider locale="de-DE" messages={builtInMessages.de}>
         <PasswordInput label="Passwort" />
         <Pagination totalPages={4} />
         <FileUpload label="Anhänge" maxFiles={1} />
@@ -159,7 +166,7 @@ describe('components under built-in locales', () => {
       return <output>{useLocale().direction}</output>;
     }
     render(
-      <LocaleProvider locale="ar-EG">
+      <LocaleProvider locale="ar-EG" messages={builtInMessages.ar}>
         <Direction />
         <Pagination totalPages={4} />
       </LocaleProvider>,

@@ -1,0 +1,111 @@
+{
+  "source": "75be352d4f06",
+  "summary": "Community leaderboard of people: rank, avatar, name, subtitle and Intl-formatted points. The top three get gold, silver and bronze badges; highlightId highlights the current user.",
+  "whenToUse": [
+    "Top contributors, speakers or most active members of a community portal.",
+    "Gamification: showing users their position among others (highlightId)."
+  ],
+  "whenNotToUse": [
+    "Rankings of metrics not tied to people (most-read articles, products): use RankingCard, which shows proportional bars and has no avatars.",
+    "Data to sort, filter or paginate: use DataTable.",
+    "Detailed profile of a single person: use a profile card."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "People already in ranking order (the first is #1, or start)."
+    },
+    {
+      "name": "title",
+      "description": "Title; also names the list. Without a title pass aria-label or aria-labelledby (they are applied to the list)."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Title heading level."
+    },
+    {
+      "name": "highlightId",
+      "description": "Id of the row to highlight (e.g. the current user), marked with aria-current."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Points format."
+    },
+    {
+      "name": "maxItems",
+      "description": "Shows only the first N items."
+    },
+    {
+      "name": "start",
+      "description": "Rank of the first item, for subsequent pages."
+    },
+    {
+      "name": "variant",
+      "description": "card: bordered surface; plain: no frame."
+    },
+    {
+      "name": "footer",
+      "description": "Link to the full leaderboard or a note."
+    },
+    {
+      "name": "isLoading",
+      "description": "Replaces the rows with a SkeletonList (aria-busy) while keeping the title and footer."
+    },
+    {
+      "name": "loadingRows",
+      "description": "Skeleton rows during isLoading."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*); aria-label and aria-labelledby go on the <ol> list.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves from one profile link to the next (only for rows with href)."
+    }
+  ],
+  "accessibility": [
+    "Ordered <ol> list named by the title (aria-labelledby) or by aria-label; the rank is also visible text.",
+    "Gold, silver and bronze are not the only cue: the rank number is always written.",
+    "The avatar is decorative because the name is visible; points are localized text (“12,840 pt”).",
+    "The highlightId row has aria-current=\"true\" and is highlighted with a border and background, not just color.",
+    "In forced-colors, badges and the current row use Canvas/CanvasText and Highlight."
+  ],
+  "responsive": [
+    "Name and subtitle wrap; rank, avatar and points stay fixed: usable at 320px.",
+    "plain variant for placing it in a sidebar or an existing Card."
+  ],
+  "customization": [
+    "Tokens: --dc-color-feedback-warning-* (gold), --dc-color-surface-strong (silver), --dc-color-data-5 (bronze), --dc-color-action-secondary and --dc-look-fill-tonal for the current row, --dc-gradient-accent for the badge of a user outside the podium.",
+    "Stable selectors: .dc-leaderboard-leaderboard[data-variant], .dc-leaderboard-item[data-top][data-current], .dc-leaderboard-rank, .dc-leaderboard-points."
+  ],
+  "commonMistakes": [
+    "Passing unsorted items: the component does not reorder them.",
+    "Using Leaderboard for metrics not tied to people: RankingCard is a better fit.",
+    "Forgetting to name the list when there is no title."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "HighlightCurrentUser",
+      "title": "Current user and footer",
+      "description": "highlightId and a link to the full leaderboard."
+    },
+    {
+      "name": "PlainWithStart",
+      "title": "Frameless, from start",
+      "description": "Ranks 11–13 with the current user highlighted."
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "Podium badges depend on the actual rank (start + index): with start > 3 there are no medals.",
+    "No automatic sorting or tie handling."
+  ]
+}

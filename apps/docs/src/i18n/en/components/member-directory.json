@@ -1,0 +1,67 @@
+{
+  "source": "fb82cf065f9c",
+  "summary": "Filterable directory composed of the existing profile cards.",
+  "whenToUse": [
+    "Showing a searchable collection of community members."
+  ],
+  "whenNotToUse": [
+    "For a single person use ProfileCard; for a compact list use a table."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the directory."
+    },
+    {
+      "name": "searchLabel",
+      "description": "Label of the search field."
+    },
+    {
+      "name": "members",
+      "description": "Members rendered through ProfileCard."
+    },
+    {
+      "name": "query",
+      "description": "Controlled value used to filter members."
+    },
+    {
+      "name": "onQueryChange",
+      "description": "Request to update the search."
+    },
+    {
+      "name": "heading",
+      "description": "Optional directory title."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content shown when there are no matches."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the search field and then the profile links and actions."
+    }
+  ],
+  "accessibility": [
+    "The section has an accessible name and the search field uses the visible label."
+  ],
+  "responsive": [
+    "The grid adapts to the available width and stays single-column in narrow containers."
+  ],
+  "customization": [
+    "The cards are ProfileCard instances; colors and spacing use --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "The component only filters local text: remote search remains the consumer's responsibility."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Directory"
+    }
+  ],
+  "limits": [
+    "Non-text fields in jobTitle are not included in the search."
+  ]
+}

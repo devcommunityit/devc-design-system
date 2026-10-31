@@ -1,0 +1,16 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+/* Copy feedback: the border reflects the outcome, the text says it. */
+.group [data-target='copy'][data-status='copied'] {
+  --_border: var(--dc-color-feedback-success-border);
+}
+
+.group [data-target='copy'][data-status='error'] {
+  --_border: var(--dc-color-feedback-danger-border);
+}

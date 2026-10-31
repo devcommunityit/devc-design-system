@@ -1,0 +1,104 @@
+{
+  "source": "aa7a2eddf144",
+  "summary": "Localized monthly grid for picking a date or a range, with bounds and unavailable dates.",
+  "whenToUse": [
+    "Availability shown inline on the page (bookings, schedules).",
+    "Range selection where the month context helps."
+  ],
+  "whenNotToUse": [
+    "Compact form field: use DatePicker / DateRangePicker.",
+    "Distant dates (e.g. date of birth): typing is faster."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled date or range."
+    },
+    {
+      "name": "minValue / maxValue",
+      "description": "Bounds: out-of-range days are disabled and navigation stops."
+    },
+    {
+      "name": "isDateUnavailable",
+      "description": "Non-selectable days (struck through, not just colored)."
+    },
+    {
+      "name": "firstDayOfWeek",
+      "description": "Overrides the first day of the week inferred from the locale."
+    },
+    {
+      "name": "visibleMonths",
+      "description": "Months shown side by side (they wrap on narrow screens)."
+    },
+    {
+      "name": "showMonthYearPicker",
+      "description": "Native month and year selects in place of the heading, to jump quickly to distant dates."
+    },
+    {
+      "name": "errorMessage",
+      "description": "Shown when isInvalid is set or the selected date is unavailable."
+    },
+    {
+      "name": "allowsNonContiguousRanges",
+      "description": "RangeCalendar: allows ranges that include unavailable days."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Calendar / RangeCalendar (focusedValue, isReadOnly, isDisabled…).",
+  "keyboard": [
+    {
+      "keys": "Frecce",
+      "action": "Previous/next day, previous/next week."
+    },
+    {
+      "keys": "Pagina su / giù",
+      "action": "Previous/next month (Shift: year)."
+    },
+    {
+      "keys": "Home / End",
+      "action": "Start / end of the week."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Selects (in RangeCalendar: start, then end)."
+    }
+  ],
+  "accessibility": [
+    "APG “Date picker dialog” pattern for the grid; day headers have full names.",
+    "Today, selection, and unavailability are not conveyed by color alone (border, fill, strikethrough)."
+  ],
+  "responsive": [
+    "Cells have a minimum touch target; multiple months wrap instead of overflowing."
+  ],
+  "customization": [
+    "className on the container; colors derive from the color.action.* and color.surface.* roles."
+  ],
+  "commonMistakes": [
+    "Converting a CalendarDate to a Date using the local time zone: the day can shift. Use date.toString() (YYYY-MM-DD).",
+    "Using new Date() as value: use parseDate or today(getLocalTimeZone())."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with bounds and unavailable weekends"
+    },
+    {
+      "name": "Range",
+      "title": "Range across two months"
+    },
+    {
+      "name": "Localized",
+      "title": "Localization and first day of the week"
+    },
+    {
+      "name": "MonthYear",
+      "title": "Month and year selects"
+    }
+  ],
+  "limits": [
+    "Examples use the Gregorian calendar only; other systems are supported by @internationalized/date but are not tested."
+  ]
+}

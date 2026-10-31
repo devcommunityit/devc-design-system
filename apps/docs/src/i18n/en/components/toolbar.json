@@ -1,0 +1,86 @@
+{
+  "source": "c11247b0d151",
+  "summary": "role=\"toolbar\" container with a single tab stop: arrow keys move focus between buttons, toggles, and menus, even across groups and separators.",
+  "whenToUse": [
+    "Editor formatting bars.",
+    "Controls for a map, canvas, or viewer.",
+    "Compact actions above a table or document."
+  ],
+  "whenNotToUse": [
+    "Navigating between pages: use NavigationMenu or Tabs.",
+    "Two or three independent buttons: ButtonGroup or Inline is enough.",
+    "Text fields: arrow keys move the caret and conflict with toolbar navigation."
+  ],
+  "props": [
+    {
+      "name": "aria-label / aria-labelledby",
+      "description": "Accessible name of the toolbar."
+    },
+    {
+      "name": "orientation",
+      "description": "Axis for arrow-key navigation and layout."
+    },
+    {
+      "name": "variant",
+      "description": "With or without border and background."
+    },
+    {
+      "name": "ToolbarGroup aria-label",
+      "description": "Group name (role=\"group\"), announced on entry."
+    },
+    {
+      "name": "ToolbarSeparator",
+      "description": "Divider oriented perpendicular to the toolbar."
+    }
+  ],
+  "inherits": "Props of react-aria-components Toolbar (className, style, data-*, events).",
+  "keyboard": [
+    {
+      "keys": "← / → (orizzontale), ↑ / ↓ (verticale)",
+      "action": "Moves focus to the previous/next control; follows the reading direction in RTL."
+    },
+    {
+      "keys": "Home / End",
+      "action": "First / last control."
+    },
+    {
+      "keys": "Tab",
+      "action": "Leaves the toolbar (single tab stop)."
+    }
+  ],
+  "accessibility": [
+    "APG Toolbar pattern implemented by react-aria-components.",
+    "Separators have role=\"separator\" and the correct aria-orientation.",
+    "Disabled controls are skipped by arrow keys."
+  ],
+  "responsive": [
+    "The toolbar wraps onto multiple rows in narrow viewports; with many actions, move the less frequently used ones into a DropdownMenu."
+  ],
+  "customization": [
+    "Selectors [data-variant], [data-orientation].",
+    "Use IconButton and Toggle variant=\"ghost\" for a compact look."
+  ],
+  "commonMistakes": [
+    "Using ToggleGroup selectionMode=\"multiple\" inside the toolbar: prefer ToolbarGroup with controlled Toggles (see the Editor example).",
+    "Forgetting the accessible name.",
+    "Adding a TextField: arrow keys would be captured by the toolbar.",
+    "Using icon-only buttons without a label (label / aria-label)."
+  ],
+  "examples": [
+    {
+      "name": "Editor",
+      "title": "Formatting bar"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical toolbar"
+    },
+    {
+      "name": "Plain",
+      "title": "Plain variant (English)"
+    }
+  ],
+  "limits": [
+    "Inside a Toolbar, a multiple-selection ToggleGroup in react-aria-components 1.22 renders role=\"group\" with aria-orientation (a disallowed attribute, flagged by axe): use ToolbarGroup with independent Toggles. A single-selection ToggleGroup (radiogroup) is correct."
+  ]
+}

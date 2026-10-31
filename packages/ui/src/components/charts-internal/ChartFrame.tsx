@@ -25,20 +25,29 @@ export interface ChartBaseProps extends Omit<HTMLAttributes<HTMLElement>, 'title
   description?: ReactNode;
   /** Intl.NumberFormat options for values and axis ticks (currency, percent, compact…). */
   formatOptions?: Intl.NumberFormatOptions;
+  /**
+   * Visual style. `vivid` adds gradients, rounded shapes and a soft glow (same theme colors, same
+   * contrast); `auto` is flat in the standard look and vivid in the expressive look. @default 'auto'
+   */
+  appearance?: ChartAppearance;
 }
+
+export type ChartAppearance = 'auto' | 'flat' | 'vivid';
 
 export interface ChartFrameProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   title?: ReactNode;
   description?: ReactNode;
   titleId: string;
   legend?: ReactNode;
-  table: ChartTableData;
+  /** Data table revealed by a toggle; omit it when the plot already exposes the data (e.g. role="meter"). */
+  table?: ChartTableData;
+  appearance?: ChartAppearance;
   children: ReactNode;
 }
 
 /** `<figure>` with caption, plot, legend and a toggle revealing an accessible data table. */
 export const ChartFrame = forwardRef<HTMLElement, ChartFrameProps>(function ChartFrame(
-  { title, description, titleId, legend, table, className, children, ...rest },
+  { title, description, titleId, legend, table, appearance = 'auto', className, children, ...rest },
   ref,
 ) {
   const t = useMessages();
@@ -46,7 +55,7 @@ export const ChartFrame = forwardRef<HTMLElement, ChartFrameProps>(function Char
   const [showTable, setShowTable] = useState(false);
   const hasTitle = title !== undefined && title !== null && title !== '';
   return (
-    <figure ref={ref} className={cx(styles.figure, className)} {...rest}>
+    <figure ref={ref} data-chart-appearance={appearance} className={cx(styles.figure, className)} {...rest}>
       {hasTitle || description ? (
         <figcaption className={styles.caption}>
           {hasTitle ? (
@@ -58,44 +67,50 @@ export const ChartFrame = forwardRef<HTMLElement, ChartFrameProps>(function Char
         </figcaption>
       ) : null}
       {children}
-      <div className={styles.footer}>
-        {legend}
-        <Button
-          variant="ghost"
-          size="sm"
-          className={styles.toggle}
-          aria-expanded={showTable}
-          aria-controls={tableId}
-          onPress={() => setShowTable((v) => !v)}
-        >
-          {showTable ? t.hideChartData : t.showChartData}
-        </Button>
-      </div>
-      <div className={styles.tableWrap} id={tableId} hidden={!showTable}>
-        <table className={styles.table}>
-          <caption>{hasTitle ? title : t.chartData}</caption>
-          <thead>
-            <tr>
-              <th scope="col">{t.chartCategory}</th>
-              {table.columns.map((column, i) => (
-                <th key={i} scope="col">
-                  {column}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.rows.map((row) => (
-              <tr key={row.key}>
-                <th scope="row">{row.header}</th>
-                {row.cells.map((cell, i) => (
-                  <td key={i}>{cell}</td>
+      {legend || table ? (
+        <div className={styles.footer}>
+          {legend}
+          {table ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              className={styles.toggle}
+              aria-expanded={showTable}
+              aria-controls={tableId}
+              onPress={() => setShowTable((v) => !v)}
+            >
+              {showTable ? t.hideChartData : t.showChartData}
+            </Button>
+          ) : null}
+        </div>
+      ) : null}
+      {table ? (
+        <div className={styles.tableWrap} id={tableId} hidden={!showTable}>
+          <table className={styles.table}>
+            <caption>{hasTitle ? title : t.chartData}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t.chartCategory}</th>
+                {table.columns.map((column, i) => (
+                  <th key={i} scope="col">
+                    {column}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {table.rows.map((row) => (
+                <tr key={row.key}>
+                  <th scope="row">{row.header}</th>
+                  {row.cells.map((cell, i) => (
+                    <td key={i}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
     </figure>
   );
 });

@@ -1,0 +1,83 @@
+{
+  "source": "c70d88be717b",
+  "summary": "Dashboard ranking: ordered list with position badges (top three highlighted), label and description, a decorative proportional bar and a value formatted with Intl.",
+  "whenToUse": [
+    "Showing the top items of a metric (most-read articles, best-selling products, most active authors).",
+    "Giving an at-a-glance view of the proportions among the top entries."
+  ],
+  "whenNotToUse": [
+    "Data to sort, filter or paginate: use DataTable.",
+    "Comparisons across series or over time: use BarChart or LineChart."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Card title; also provides the list's accessible name."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level of the title."
+    },
+    {
+      "name": "items",
+      "description": "Items already in ranking order (the first is #1)."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value format (currency, percent, unit…)."
+    },
+    {
+      "name": "maxItems",
+      "description": "Shows only the first N items."
+    },
+    {
+      "name": "barStyle",
+      "description": "Bar color: one data color per row (--dc-color-data-1…6) or the brand gradient."
+    },
+    {
+      "name": "footer",
+      "description": "Link to the full list or a note."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "<ol> list named by the title (aria-labelledby): the position is announced by the list and written in the badge.",
+    "Bars are aria-hidden: the value is always formatted text.",
+    "Highlighting the top three doesn't rely on color alone: the position number is visible.",
+    "In forced-colors mode badges and bars use Canvas/CanvasText/Highlight with a border."
+  ],
+  "responsive": [
+    "Long labels wrap; the value stays aligned to the end of the row.",
+    "Use Grid with minItemWidth to place multiple rankings side by side."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, --dc-color-data-1…6, --dc-gradient-accent, --dc-color-action-secondary for badges.",
+    "Stable selectors: .dc-ranking-card-ranking[data-bar-style], .dc-ranking-card-item[data-top], .dc-ranking-card-rank, .dc-ranking-card-bar[data-series]."
+  ],
+  "commonMistakes": [
+    "Passing unsorted items: the component doesn't reorder, positions follow the array order.",
+    "Conveying information through the bar alone: include it in the value or description.",
+    "Showing dozens of rows: limit with maxItems and add a link in the footer."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Gradient",
+      "title": "Gradient bars",
+      "description": "Currency values and a link to the full list."
+    },
+    {
+      "name": "MaxItems",
+      "title": "Maximum number of items",
+      "description": "maxItems and a responsive grid."
+    }
+  ],
+  "limits": [
+    "Bars are proportional to the largest visible absolute value: negative values are shown as positive lengths.",
+    "No automatic sorting or row interaction."
+  ]
+}

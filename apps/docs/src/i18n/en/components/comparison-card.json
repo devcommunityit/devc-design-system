@@ -1,0 +1,83 @@
+{
+  "source": "151080387e56",
+  "summary": "Comparison between two periods: current and previous values with proportional bars and a percentage change badge, with the direction written out for screen readers.",
+  "whenToUse": [
+    "Compare a metric between the current and previous period (month, quarter, year).",
+    "Highlight whether a change is positive or negative relative to the business goal."
+  ],
+  "whenNotToUse": [
+    "Trends over many periods: use LineChart or KpiCard with a trend line.",
+    "Comparisons between more than two values: use BarChart or RankingCard."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Metric name."
+    },
+    {
+      "name": "current",
+      "description": "Current period."
+    },
+    {
+      "name": "previous",
+      "description": "Comparison period."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value format (and of the absolute difference when the previous value is 0)."
+    },
+    {
+      "name": "higherIsBetter",
+      "description": "Whether an increase is positive; with false, a decrease is shown as positive (e.g. errors, durations)."
+    },
+    {
+      "name": "description",
+      "description": "Context (source, note)."
+    },
+    {
+      "name": "headingLevel",
+      "description": "When set, the label becomes a heading of that level."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "Periods and values are a description list (<dl>): period name in <dt>, formatted value in <dd>.",
+    "The direction of the change is written out for screen readers (“increase”, “decrease”, “unchanged”), not conveyed only by arrow or color.",
+    "Bars are aria-hidden: values are always text.",
+    "In forced-colors mode the badge has a border and the bars use Highlight/GrayText."
+  ],
+  "responsive": [
+    "Rows span the full width; the badge wraps below the label in narrow containers.",
+    "Use Grid with minItemWidth to place multiple comparisons side by side."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, --dc-gradient-accent / --dc-color-data-1 for the current bar, --dc-color-border-strong for the previous one, feedback surfaces and foregrounds for the badge.",
+    "Stable selectors: .dc-comparison-card-comparison[data-direction][data-sentiment], .dc-comparison-card-delta, .dc-comparison-card-row[data-period], .dc-comparison-card-bar."
+  ],
+  "commonMistakes": [
+    "Forgetting higherIsBetter={false} for metrics where a decrease is positive.",
+    "Passing already formatted values as strings: numbers are required to compute bars and change.",
+    "Comparing periods of different length without stating it in the period label."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "LowerIsBetter",
+      "title": "Positive decrease",
+      "description": "higherIsBetter={false} with values in hours."
+    },
+    {
+      "name": "Dashboard",
+      "title": "Multiple comparisons",
+      "description": "Responsive grid, including a previous period equal to 0."
+    }
+  ],
+  "limits": [
+    "When the previous value is 0 the percentage is undefined: the badge shows the formatted absolute difference.",
+    "Bars are proportional to absolute values: with negative values they only indicate magnitude."
+  ]
+}

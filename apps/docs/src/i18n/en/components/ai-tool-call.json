@@ -1,0 +1,64 @@
+{
+  "source": "ea72e99eba93",
+  "summary": "Status and human approval for an operation invoked by an AI assistant.",
+  "whenToUse": [
+    "Showing operations that are running, completed, failed or awaiting approval."
+  ],
+  "whenNotToUse": [
+    "Conversational messages: use ChatMessage."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Human-readable name of the operation."
+    },
+    {
+      "name": "status",
+      "description": "Invocation status."
+    },
+    {
+      "name": "description / details",
+      "description": "Short context and expandable details."
+    },
+    {
+      "name": "onApprove / onReject",
+      "description": "Actions shown in the approval state, when provided."
+    },
+    {
+      "name": "statusLabels",
+      "description": "Localized labels for the statuses."
+    },
+    {
+      "name": "approveLabel / rejectLabel / detailsLabel",
+      "description": "Override the localized control labels."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Spazio",
+      "action": "Standard controls expand details and trigger actions."
+    }
+  ],
+  "accessibility": [
+    "Status updates are announced via a live region.",
+    "The failed state uses role=alert; approvals are explicit actions."
+  ],
+  "responsive": [
+    "Header and actions wrap in narrow containers."
+  ],
+  "customization": [
+    "Variants use status tokens and can be overridden with external CSS."
+  ],
+  "commonMistakes": [
+    "The component only displays status: wire up the actions and update status in the consumer."
+  ],
+  "examples": [
+    {
+      "name": "Approval",
+      "title": "Approval request"
+    }
+  ],
+  "limits": [
+    "Actions and operation status are managed by the consumer."
+  ]
+}

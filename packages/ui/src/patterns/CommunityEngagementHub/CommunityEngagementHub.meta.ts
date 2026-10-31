@@ -1,0 +1,61 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  entry: 'patterns',
+  exports: [
+    'CommunityEngagementHub',
+    'type CommunityEngagementHubProps',
+    'type CommunityMember',
+    'type CommunitySponsor',
+    'type CommunityTestimonial',
+    'type CommunityPoll',
+    'type CommunityPollOption',
+    'type CommunityNpsFeedback',
+    'type CommunityQuestion',
+    'type VolunteerShift',
+    'type CommunityJob',
+    'type CommunityBadge',
+    'type CommunityRaffle',
+    'type RaffleEntry',
+  ],
+  name: 'CommunityEngagementHub',
+  slug: 'community-engagement-hub',
+  category: 'patterns',
+  summary: 'Una raccolta modulare di directory, attività, riconoscimenti e opportunità per coinvolgere i membri della community.',
+  whenToUse: ['Come pagina o sezione configurabile per portali di community con più iniziative e contenuti.'],
+  whenNotToUse: ['Per sostituire un backend, un sistema di autenticazione, sondaggi persistenti o una piattaforma per concorsi.'],
+  props: [
+    { name: 'title / description', type: 'ReactNode', description: 'Titolo e testo introduttivo del pannello.' },
+    { name: 'members / sponsors / testimonials', type: 'CommunityMember[] / CommunitySponsor[] / CommunityTestimonial[]', description: 'Riepiloghi dei membri, sponsor e testimonianze.' },
+    { name: 'polls / nps / questions', type: 'CommunityPoll[] / CommunityNpsFeedback / CommunityQuestion[]', description: 'Sondaggi, valutazione NPS 0–10 e domande con voti/risposte.' },
+    { name: 'invite', type: '{ url; referralCode?; message? }', description: 'Informazioni di invito; l’eventuale condivisione è delegata al callback.' },
+    { name: 'volunteerShifts / jobs', type: 'VolunteerShift[] / CommunityJob[]', description: 'Turni di volontariato selezionabili e offerte di lavoro collegate.' },
+    { name: 'badges / streakDays', type: 'CommunityBadge[] / number', description: 'Collezione di badge e serie di partecipazione forniti dal consumer.' },
+    { name: 'raffle', type: 'CommunityRaffle', description: 'Lista delle partecipazioni e vincitore eventualmente scelto altrove.' },
+    { name: 'onPollVote / onNpsRate / onQuestionVote / onQuestionReact', type: '(id, value) => void', description: 'Callback puri d’azione; il componente non persiste voti o reazioni.' },
+    { name: 'onInviteShare / onShiftSelect / onRaffleEnter', type: '(value) => void', description: 'Azioni delegate al consumer, senza inviti, prenotazioni o estrazioni automatiche.' },
+  ],
+  keyboard: [
+    { keys: 'Tab', action: 'Sposta il focus tra pulsanti e collegamenti del contenuto.' },
+    { keys: 'Enter / Spazio', action: 'Attiva un’azione con il pulsante nativo React Aria.' },
+  ],
+  accessibility: [
+    'Le sezioni hanno etichette leggibili, ogni partecipante è identificato anche dal nome e i controlli hanno etichette testuali.',
+    'I dati di andamento e vincita sono presentati in forma testuale oltre agli indicatori visivi.',
+  ],
+  responsive: ['Le griglie si adattano alla larghezza disponibile e gli elenchi mantengono le azioni utilizzabili su viewport stretti.'],
+  customization: ['Le sezioni sono attivate dai rispettivi dati; colori, tipografia e spaziatura usano i token --dc-*.'],
+  commonMistakes: [
+    'Il parent deve aggiornare i dati dopo i callback: la selezione non è salvata localmente.',
+    'Il vincitore del raffle deve essere scelto e fornito da un processo esterno; qui non avviene alcuna estrazione.',
+  ],
+  examples: [
+    { name: 'CommunityOverview', title: 'Panoramica di una community', description: 'Directory, attività, feedback NPS, opportunità e contenuti controllati tramite props.' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['patterns/CommunityEngagementHub/CommunityEngagementHub.test.tsx'],
+    limits: ['Nessuna persistenza, invio di inviti, autenticazione, votazione o selezione casuale del vincitore.'],
+  },
+};

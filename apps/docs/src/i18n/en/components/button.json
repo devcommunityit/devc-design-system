@@ -1,0 +1,114 @@
+{
+  "source": "841f3acb0b5c",
+  "summary": "Triggers an action on the current page (save, submit, open a dialog). LinkButton looks the same but is a real link for navigation.",
+  "whenToUse": [
+    "Actions that change data or state: saving, submitting a form, opening an overlay.",
+    "One primary action per visual area; use secondary, outline, or ghost for the others."
+  ],
+  "whenNotToUse": [
+    "To navigate to another page: use LinkButton or Link.",
+    "For a persistent on/off state: use Toggle or Switch.",
+    "For icon-only buttons without text: use IconButton with an accessible name."
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "description": "Visual emphasis."
+    },
+    {
+      "name": "size",
+      "description": "Height and padding; the theme density scales all sizes."
+    },
+    {
+      "name": "onPress",
+      "description": "Activation from mouse, touch, keyboard, and screen readers."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables the button (native disabled attribute)."
+    },
+    {
+      "name": "isPending",
+      "description": "Loading state: shows a spinner and blocks presses, but keeps focus and announces the wait."
+    },
+    {
+      "name": "type",
+      "description": "Native type; use submit in forms."
+    },
+    {
+      "name": "startIcon / endIcon",
+      "description": "Decorative icons (aria-hidden) before/after the label."
+    },
+    {
+      "name": "fullWidth",
+      "description": "Takes up the full available width."
+    },
+    {
+      "name": "className",
+      "description": "Additional class; can depend on state (isHovered, isPressed, isFocusVisible…)."
+    }
+  ],
+  "inherits": "All props of the react-aria-components Button (onPressStart, onHoverChange, form, name, value, autoFocus…) and global DOM attributes, including data-* and aria-*.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the button."
+    },
+    {
+      "keys": "Enter / Space",
+      "action": "Activates the button."
+    }
+  ],
+  "accessibility": [
+    "Always renders a <button> element (or <a> for LinkButton): no clickable divs.",
+    "In the pending state the button stays focusable and the wait is announced to screen readers.",
+    "Keyboard focus shows a high-contrast ring (data-focus-visible), including in forced-colors mode.",
+    "The minimum height meets the 24×24 CSS px target size (WCAG 2.5.8); in comfortable density it is 40 px."
+  ],
+  "responsive": [
+    "Text does not wrap: use short labels or fullWidth on mobile.",
+    "On touch devices the minimum target area stays adequate even with size=\"sm\"."
+  ],
+  "customization": [
+    "Colors: the theme's action.* tokens (e.g. --dc-color-action-primary).",
+    "Radius: radius.md token (can be overridden in createTheme via tokens).",
+    "Stable selectors: .dc-button-button[data-variant][data-size], states [data-hovered], [data-pressed], [data-focus-visible], [data-disabled], [data-pending]."
+  ],
+  "commonMistakes": [
+    "Using onClick: prefer onPress, which handles touch and keyboard consistently.",
+    "Forgetting type=\"submit\" in forms.",
+    "Using Button with a handler that sets window.location: use LinkButton."
+  ],
+  "examples": [
+    {
+      "name": "Variants",
+      "title": "Variants"
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    },
+    {
+      "name": "WithIcons",
+      "title": "With icons"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    },
+    {
+      "name": "AsyncAction",
+      "title": "Async action",
+      "description": "The pending state is controlled by the consumer; here the wait is simulated with a local timer."
+    },
+    {
+      "name": "AsLink",
+      "title": "LinkButton"
+    },
+    {
+      "name": "FullWidth",
+      "title": "Full width"
+    }
+  ],
+  "limits": []
+}

@@ -1,0 +1,131 @@
+{
+  "source": "ee43a9f29343",
+  "summary": "Dark card with a glow for newsletter sign-up: title, description, email field with native validation and a “Subscribe” button with a pending state; the outcome is announced in a live region.",
+  "whenToUse": [
+    "Collecting newsletter sign-ups in a sidebar, footer or at the end of an article.",
+    "Quick single-field (email) sign-ups with immediate feedback."
+  ],
+  "whenNotToUse": [
+    "Forms with multiple fields or consent checkboxes: use Form, TextField and Checkbox.",
+    "Calls to action without input: use CtaPanel or HeroCard.",
+    "System messages after submitting a complex form: use Alert or Toast."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title; also provides the name of the region."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level."
+    },
+    {
+      "name": "eyebrow",
+      "description": "Chip above the title (e.g. “Newsletter”)."
+    },
+    {
+      "name": "description",
+      "description": "Supporting text (frequency, content)."
+    },
+    {
+      "name": "onSubmit",
+      "description": "Called with the email (trimmed) on valid submission. If it returns a Promise, the card stays pending until it resolves (rejection → error)."
+    },
+    {
+      "name": "status",
+      "description": "Controlled status; when omitted, the card manages it based on onSubmit."
+    },
+    {
+      "name": "successMessage",
+      "description": "Announced in role=\"status\" when the status is success."
+    },
+    {
+      "name": "errorMessage",
+      "description": "Announced in role=\"alert\" when the status is error."
+    },
+    {
+      "name": "value",
+      "description": "Controlled email."
+    },
+    {
+      "name": "defaultValue",
+      "description": "Initial email (uncontrolled); cleared after a successful sign-up."
+    },
+    {
+      "name": "onChange",
+      "description": "Called on every email change."
+    },
+    {
+      "name": "placeholder",
+      "description": "Format example (e.g. “nome@email.it”); does not replace the label."
+    },
+    {
+      "name": "emailLabel",
+      "description": "Accessible name of the email field."
+    },
+    {
+      "name": "submitLabel",
+      "description": "Button text."
+    },
+    {
+      "name": "name",
+      "description": "name attribute of the field."
+    },
+    {
+      "name": "footer",
+      "description": "Note below the form (privacy, unsubscribe)."
+    }
+  ],
+  "inherits": "HTML attributes of <section> (id, style, data-*, aria-*), excluding onSubmit/onChange/defaultValue, which are replaced by dedicated props.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus between the email field and the button."
+    },
+    {
+      "keys": "Invio",
+      "action": "In the email field, submits the form (if the address is valid)."
+    }
+  ],
+  "accessibility": [
+    "The card is a <section> named by its title; the field has the accessible name “Email” (localized aria-label) even without a visible label.",
+    "Native validation: type=\"email\", required and autocomplete=\"email\"; an invalid address blocks submission and shows the browser message next to the field.",
+    "While pending, the button uses Button’s isPending: it stays focusable, is aria-disabled and announces progress; a second submission is ignored.",
+    "Outcome in always-present live regions: role=\"status\" for success, role=\"alert\" for errors.",
+    "The panel uses the inverse surface with the matching inverse text: dark on a light page, light on a dark page, with guaranteed contrast in both schemes; the glows are decorative and disappear in forced-colors mode."
+  ],
+  "responsive": [
+    "Field and button sit on the same row; below ~20rem the button wraps and takes the full width.",
+    "Works from 320px; the title uses text-wrap: balance."
+  ],
+  "customization": [
+    "Tokens: --dc-color-surface-inverse / --dc-color-text-inverse, --dc-color-action-primary and --dc-color-accent-default for the glows, --dc-look-radius-container.",
+    "Stable selectors: .dc-newsletter-card-newsletter[data-status], .dc-newsletter-card-form, .dc-newsletter-card-message[data-kind], .dc-newsletter-card-footer."
+  ],
+  "commonMistakes": [
+    "Using the placeholder as the only label: the accessible label is already provided, the placeholder is just an example.",
+    "Handling the pending state without returning the Promise from onSubmit: the card does not show the pending state.",
+    "Announcing success with a separate Toast: the message is already in a live region."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "Uncontrolled: the onSubmit Promise triggers the pending state."
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled",
+      "description": "Controlled value and status, custom messages and privacy note."
+    },
+    {
+      "name": "Narrow",
+      "title": "Narrow containers",
+      "description": "The button wraps; controlled success status."
+    }
+  ],
+  "limits": [
+    "A single field (email): for name or consent, compose a form with TextField and Checkbox.",
+    "In the dark theme the panel becomes light (inverse surface): it is not an always-dark panel."
+  ]
+}

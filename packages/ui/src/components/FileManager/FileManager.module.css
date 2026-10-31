@@ -1,0 +1,97 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  min-block-size: var(--dc-density-control-height-lg);
+  padding: var(--dc-space-2) var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-md);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.item[data-selected] {
+  border-color: var(--dc-color-border-selected);
+  background: var(--dc-color-surface-brand);
+}
+
+.selection {
+  flex: none;
+}
+
+.icon {
+  flex: none;
+  inline-size: var(--dc-space-6);
+  block-size: var(--dc-space-6);
+  color: var(--dc-color-text-muted);
+}
+
+.details {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--dc-space-0-5);
+  min-inline-size: 0;
+}
+
+.name {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.description,
+.metadata {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.emptyState {
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) dashed var(--dc-color-border-default);
+  border-radius: var(--dc-radius-md);
+  color: var(--dc-color-text-secondary);
+  text-align: center;
+}
+
+@media (width <= 35rem) {
+  .item {
+    flex-wrap: wrap;
+  }
+
+  .details {
+    flex-basis: calc(100% - var(--dc-space-16));
+  }
+
+  .actions {
+    margin-inline-start: calc(var(--dc-space-6) + var(--dc-space-3));
+  }
+}
+
+@media (forced-colors: active) {
+  .item[data-selected] {
+    outline: var(--dc-border-width-thick) solid Highlight;
+    outline-offset: calc(var(--dc-border-width-thick) * -1);
+  }
+}

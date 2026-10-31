@@ -1,0 +1,19 @@
+.widget {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.widget [role='radiogroup'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-1);
+}
+
+.scaleLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}

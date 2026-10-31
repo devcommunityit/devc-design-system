@@ -1,0 +1,72 @@
+{
+  "source": "6d7a58fc8672",
+  "summary": "Square, icon-only button for frequent, recognizable actions (close, edit, settings).",
+  "whenToUse": [
+    "Toolbars, card headers and table rows with little space.",
+    "Universally understood icons (close, search, menu)."
+  ],
+  "whenNotToUse": [
+    "Ambiguous or rare actions: prefer Button with text.",
+    "On/off states: use Toggle with an icon and aria-label."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Accessible name (aria-label). Required."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon, hidden from assistive technologies."
+    },
+    {
+      "name": "variant",
+      "description": "Visual emphasis."
+    },
+    {
+      "name": "size",
+      "description": "Side of the square, equal to the control height."
+    },
+    {
+      "name": "isPending / isDisabled",
+      "description": "Same as Button."
+    }
+  ],
+  "inherits": "All Button props except children, startIcon, endIcon and fullWidth.",
+  "keyboard": [
+    {
+      "keys": "Enter / Space",
+      "action": "Activates the button."
+    }
+  ],
+  "accessibility": [
+    "The accessible name comes from label: TypeScript makes it required.",
+    "For sighted users, if the icon is not obvious, add a Tooltip with the same text.",
+    "The minimum side is 24 px even in compact density (WCAG 2.5.8)."
+  ],
+  "responsive": [
+    "Stable size: it does not stretch in flexible containers (flex: none)."
+  ],
+  "customization": [
+    "Same variables as Button; selector .dc-icon-button-icon-button."
+  ],
+  "commonMistakes": [
+    "Passing visible text as children: use Button.",
+    "Using generic labels such as “Button” or “Icon”."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "The counter shows that presses are handled."
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

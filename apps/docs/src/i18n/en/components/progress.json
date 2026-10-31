@@ -1,0 +1,87 @@
+{
+  "source": "044758c1a771",
+  "summary": "Linear and circular progress indicators, determinate or indeterminate, with a formatted value.",
+  "whenToUse": [
+    "Operations of known duration (uploads, exports).",
+    "Quotas and completion percentages."
+  ],
+  "whenNotToUse": [
+    "Short unmeasured waits: use Spinner.",
+    "Loading content: use Skeleton."
+  ],
+  "props": [
+    {
+      "name": "value",
+      "description": "Current value; without value it is indeterminate."
+    },
+    {
+      "name": "minValue / maxValue",
+      "description": "Range."
+    },
+    {
+      "name": "label",
+      "description": "Progress: associated visible label."
+    },
+    {
+      "name": "aria-label",
+      "description": "Accessible name without a visible label (localized default “Avanzamento”)."
+    },
+    {
+      "name": "valueLabel / formatOptions",
+      "description": "Value text or format."
+    },
+    {
+      "name": "showValue",
+      "description": "Shows the value (default: yes when determinate; circular: not in sm)."
+    },
+    {
+      "name": "tone",
+      "description": "Indicator color."
+    },
+    {
+      "name": "size",
+      "description": "Thickness or diameter."
+    }
+  ],
+  "inherits": "ProgressBar props from react-aria-components.",
+  "keyboard": [],
+  "accessibility": [
+    "role=\"progressbar\" with aria-valuenow/valuetext; indeterminate without valuenow.",
+    "Tone is not the only indicator: the value remains as text.",
+    "Reduced animations with prefers-reduced-motion; system colors in forced-colors mode."
+  ],
+  "responsive": [
+    "Full-width bar; the circle has fixed token-based dimensions."
+  ],
+  "customization": [
+    "className/style; colors from the action and feedback roles."
+  ],
+  "commonMistakes": [
+    "Updating the value many times per second: throttle updates for screen readers."
+  ],
+  "examples": [
+    {
+      "name": "Linear",
+      "title": "Linear"
+    },
+    {
+      "name": "Circular",
+      "title": "Circular"
+    },
+    {
+      "name": "Simulated",
+      "title": "Simulated progress"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled value",
+      "description": "−10/+10 buttons update the linear and circular bars; the tone changes at the 70% and 90% thresholds."
+    },
+    {
+      "name": "SizesAndFormats",
+      "title": "Sizes, formats and indeterminate",
+      "description": "Three sizes with a toggle for the indeterminate state, custom range, hidden label and long label."
+    }
+  ],
+  "limits": []
+}

@@ -1,0 +1,84 @@
+{
+  "source": "e2f9e3cf2079",
+  "summary": "Search field (type=\"search\") with icon, clear button, Enter to submit, and loading indicator. Searching, debouncing, and requests are up to the consumer.",
+  "whenToUse": [
+    "Local filtering of lists and tables.",
+    "Global search that leads to a results page."
+  ],
+  "whenNotToUse": [
+    "Picking a value from suggestions: use Combobox.",
+    "Command search: use CommandPalette."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Search text."
+    },
+    {
+      "name": "onSubmit",
+      "description": "Called on Enter."
+    },
+    {
+      "name": "onClear",
+      "description": "Called by the button or Escape."
+    },
+    {
+      "name": "isPending",
+      "description": "Shows a Spinner with a “Loading…” announcement."
+    },
+    {
+      "name": "label / aria-label",
+      "description": "Visible or accessible label (one of the two is required)."
+    }
+  ],
+  "inherits": "Props of the react-aria-components SearchField.",
+  "keyboard": [
+    {
+      "keys": "Enter",
+      "action": "Submits (onSubmit)."
+    },
+    {
+      "keys": "Escape",
+      "action": "Clears the field."
+    }
+  ],
+  "accessibility": [
+    "Native role=\"searchbox\"; labelled “Clear” button, hidden when empty.",
+    "Announce the number of results with an aria-live region in the consumer."
+  ],
+  "responsive": [
+    "Takes the width of the container."
+  ],
+  "customization": [
+    "WebKit’s native clear button is hidden to avoid duplicates."
+  ],
+  "commonMistakes": [
+    "Firing a request on every keystroke without debouncing.",
+    "Not announcing the number of results."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "LiveFilter",
+      "title": "Local filter"
+    },
+    {
+      "name": "SubmitAndPending",
+      "title": "Submit and loading"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled value and onClear",
+      "description": "The value lives in the example’s state: the buttons change it externally and onClear counts the clears."
+    },
+    {
+      "name": "States",
+      "title": "States: disabled, read-only, invalid",
+      "description": "Error with description and required field; the last field shows English content."
+    }
+  ],
+  "limits": []
+}

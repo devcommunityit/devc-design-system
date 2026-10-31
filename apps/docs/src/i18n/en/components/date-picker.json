@@ -1,0 +1,140 @@
+{
+  "source": "7f0126a1ed98",
+  "summary": "Date field with typeable segments and a calendar in a popover; supports dates without time, dates with time, and zoned instants.",
+  "whenToUse": [
+    "Dates in forms, with fast typing and an optional calendar.",
+    "Ranges (stays, reports) with DateRangePicker."
+  ],
+  "whenNotToUse": [
+    "Date and time with a time list: use DateTimePicker.",
+    "Time only: use TimePicker or TimeInput.",
+    "Always-visible calendar: use Calendar."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Standard field anatomy."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "The value type determines the meaning: civil date or zoned instant."
+    },
+    {
+      "name": "granularity",
+      "description": "Displayed segments."
+    },
+    {
+      "name": "minValue / maxValue / isDateUnavailable",
+      "description": "Constraints, also validated on submit."
+    },
+    {
+      "name": "firstDayOfWeek",
+      "description": "First day of the week in the calendar."
+    },
+    {
+      "name": "visibleMonths",
+      "description": "Months in the popover."
+    },
+    {
+      "name": "presets",
+      "description": "Shortcuts in the popover. \"default\": Today/Tomorrow/In a week (range: Last 7/30 days, This month, Last month). Out-of-range shortcuts are disabled."
+    },
+    {
+      "name": "isClearable",
+      "description": "Button to clear the field."
+    },
+    {
+      "name": "showMonthYearPicker",
+      "description": "Month and year selectors in the calendar header."
+    },
+    {
+      "name": "calendarErrorMessage",
+      "description": "Message in the calendar for unavailable dates."
+    },
+    {
+      "name": "name (startName / endName)",
+      "description": "ISO values submitted with the form."
+    },
+    {
+      "name": "isRequired / isInvalid / isDisabled / isReadOnly",
+      "description": "Field states."
+    },
+    {
+      "name": "popoverProps",
+      "description": "Popover placement and classes."
+    }
+  ],
+  "inherits": "react-aria-components DatePicker / DateRangePicker props (hourCycle, hideTimeZone, validate…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Next segment, then the calendar button."
+    },
+    {
+      "keys": "Frecce su/giù, cifre",
+      "action": "Edits the segment."
+    },
+    {
+      "keys": "Backspace",
+      "action": "Clears the segment."
+    },
+    {
+      "keys": "Alt + Freccia giù",
+      "action": "Opens the calendar; Esc closes it and focus returns to the field."
+    }
+  ],
+  "accessibility": [
+    "Segments as labeled spinbuttons; button with the localized name “Open calendar”.",
+    "The popover is a dialog with focus on the selected date and focus restored on close.",
+    "The popover inherits the theme of the originating ThemeProvider, even when nested."
+  ],
+  "responsive": [
+    "The field shrinks with the container; the popover stays within the viewport and months wrap."
+  ],
+  "customization": [
+    "className on the field, popoverProps.className on the popover."
+  ],
+  "commonMistakes": [
+    "Converting a CalendarDate to a JavaScript Date with toDate(local time zone) and then serializing to UTC: the day can shift. Serialize with toString().",
+    "Using ZonedDateTime for civil dates (birthdays, deadlines): use CalendarDate.",
+    "Expecting onChange on every keystroke: the value is committed when the field is complete and loses focus."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with limits"
+    },
+    {
+      "name": "Range",
+      "title": "Range"
+    },
+    {
+      "name": "ZonedInstant",
+      "title": "Instant with time zone"
+    },
+    {
+      "name": "Validation",
+      "title": "Form validation"
+    },
+    {
+      "name": "Presets",
+      "title": "Shortcuts and clearing"
+    },
+    {
+      "name": "RangePresets",
+      "title": "Range with shortcuts"
+    },
+    {
+      "name": "CustomPresets",
+      "title": "Custom shortcuts"
+    }
+  ],
+  "limits": [
+    "With ZonedDateTime, changing the day across a daylight saving time transition can shift the local time (e.g. 01:30 → 02:30): this is @internationalized/date behavior and should be verified in critical cases.",
+    "No free-text input (e.g. “tomorrow”): use shortcuts (presets)."
+  ]
+}

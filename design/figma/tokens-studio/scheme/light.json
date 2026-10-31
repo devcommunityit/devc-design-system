@@ -217,7 +217,7 @@
       },
       "2": {
         "$type": "color",
-        "$value": "{palette.tertiary.45}"
+        "$value": "{palette.data-2.45}"
       },
       "3": {
         "$type": "color",

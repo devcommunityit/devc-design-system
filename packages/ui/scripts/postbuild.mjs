@@ -15,7 +15,7 @@ for (const [from, to] of copies) copyFileSync(resolve(root, from), resolve(dist,
 copyFileSync(resolve(repo, 'design/figma/tokens.dtcg.json'), resolve(dist, 'tokens.dtcg.json'));
 
 const problems = [];
-for (const file of ['index.js', 'index.d.ts', 'styles.css', 'theme/server.js', 'theme/server.d.ts', 'tokens.css', 'reset.css', 'tokens.dtcg.json']) {
+for (const file of ['index.js', 'index.d.ts', 'styles.css', 'theme/server.js', 'theme/server.d.ts', 'editor.js', 'editor.d.ts', 'patterns.js', 'patterns-entry.d.ts', 'widgets.js', 'widgets.d.ts', 'tokens.css', 'reset.css', 'tokens.dtcg.json']) {
   if (!existsSync(resolve(dist, file))) problems.push(`missing dist/${file}`);
 }
 
@@ -54,6 +54,15 @@ if (!styles.includes('--dc-color-text-primary')) problems.push('styles.css does 
 if (/(^|[,{}])\s*(html|body|\*)\s*[{,]/m.test(styles)) problems.push('styles.css contains global element selectors');
 const server = readFileSync(resolve(dist, 'theme/server.js'), 'utf8');
 if (server.includes('use client')) problems.push('theme/server.js must not be a client module');
+// The main entry must stay free of the editor engine: Tiptap is only reachable from dist/editor.js.
+const reachable = new Set();
+const visit = (file) => {
+  if (reachable.has(file) || !existsSync(file)) return;
+  reachable.add(file);
+  for (const [, spec] of readFileSync(file, 'utf8').matchAll(/\bfrom\s*['"](\.{1,2}\/[^'"]+)['"]/g)) visit(resolve(dirname(file), spec));
+};
+visit(resolve(dist, 'index.js'));
+for (const file of reachable) if (/from\s*['"]@tiptap\//.test(readFileSync(file, 'utf8'))) problems.push(`${relative(dist, file)} (reachable from index.js) imports @tiptap`);
 
 if (problems.length) {
   console.error(`postbuild checks failed:\n- ${problems.join('\n- ')}`);

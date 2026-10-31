@@ -5,12 +5,13 @@ import { ChartLegend } from '../ChartLegend/ChartLegend';
 import {
   ChartFrame,
   ChartPlot,
+  GradientDefs,
   PatternDefs,
   Swatch,
   arcPath,
   patternFill,
-  seriesStyle,
   svgId,
+  vividSeriesStyle,
   useChartNavigation,
   useNumberFormatter,
   type ChartBaseProps,
@@ -114,13 +115,14 @@ export const DonutChart = forwardRef<HTMLElement, DonutChartProps>(function Donu
       >
         <svg className={cx(chart.svg, styles.svg)} viewBox={`0 0 ${c * 2} ${c * 2}`} aria-hidden="true" focusable="false">
           <PatternDefs prefix={prefix} className={chart.patternStroke} />
+          <GradientDefs prefix={prefix} indexes={data.map((_, i) => i)} direction="diagonal" stopBaseClassName={chart.stopBase} stopVividClassName={chart.stopVivid} />
           <circle className={styles.track} cx={c} cy={c} r={outer - ring / 2} strokeWidth={ring} />
           {slices.map(({ d, i, a0, a1 }) => {
             if (a1 - a0 <= 0) return null;
             const geometry = arcPath(c, c, inner, active === i ? outer + pad - 2 : outer, a0, a1);
             const texture = patternFill(prefix, i);
             return (
-              <g key={d.id} style={seriesStyle(i)} data-active={active === i || undefined} onPointerEnter={() => setActive(i)}>
+              <g key={d.id} style={vividSeriesStyle(prefix, i)} data-active={active === i || undefined} onPointerEnter={() => setActive(i)}>
                 <path className={cx(chart.fill, styles.slice)} d={geometry} />
                 {texture ? <path className={chart.patternOverlay} fill={texture} d={geometry} /> : null}
               </g>

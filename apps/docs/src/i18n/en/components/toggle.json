@@ -1,0 +1,107 @@
+{
+  "source": "2e1a672597d5",
+  "summary": "Two-state button (aria-pressed) and toggle group with single or multiple selection.",
+  "whenToUse": [
+    "On/off options with an immediate effect on content (bold, favorite).",
+    "Choosing a view or time period in a bar (single-selection ToggleGroup)."
+  ],
+  "whenNotToUse": [
+    "Settings saved in a form: use Switch or Checkbox.",
+    "Navigating between panels: use Tabs."
+  ],
+  "props": [
+    {
+      "name": "isSelected / defaultSelected",
+      "description": "Controlled / initial state (Toggle)."
+    },
+    {
+      "name": "onChange",
+      "description": "State change (Toggle)."
+    },
+    {
+      "name": "variant",
+      "description": "Toggle appearance."
+    },
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon. Without text, aria-label is required."
+    },
+    {
+      "name": "id",
+      "description": "Identifier within ToggleGroup."
+    },
+    {
+      "name": "selectionMode",
+      "description": "ToggleGroup: single (radio) or multiple."
+    },
+    {
+      "name": "selectedKeys / defaultSelectedKeys",
+      "description": "ToggleGroup: controlled / initial selection."
+    },
+    {
+      "name": "onSelectionChange",
+      "description": "ToggleGroup: selection change."
+    },
+    {
+      "name": "disallowEmptySelection",
+      "description": "ToggleGroup: prevents deselecting the last item."
+    },
+    {
+      "name": "attached",
+      "description": "ToggleGroup: segmented appearance."
+    }
+  ],
+  "inherits": "Props of react-aria-components ToggleButton and ToggleButtonGroup.",
+  "keyboard": [
+    {
+      "keys": "Enter / Space",
+      "action": "Toggles the state of the focused toggle."
+    },
+    {
+      "keys": "Frecce",
+      "action": "ToggleGroup: moves focus between items (single tab stop)."
+    }
+  ],
+  "accessibility": [
+    "Standalone Toggle: button with aria-pressed.",
+    "Single-selection ToggleGroup: radiogroup with radios; multiple: group of buttons with aria-pressed.",
+    "The selected state uses color, border, and (in forced-colors) Highlight: not color alone."
+  ],
+  "responsive": [
+    "With many items, prefer short labels or icons with aria-label."
+  ],
+  "customization": [
+    "Selected color: action.secondary and border.selected tokens. Selectors [data-selected], [data-icon-only]."
+  ],
+  "commonMistakes": [
+    "Changing the label based on state: aria-pressed already conveys the state.",
+    "Forgetting id on ToggleGroup items."
+  ],
+  "examples": [
+    {
+      "name": "Uncontrolled",
+      "title": "Uncontrolled"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "SingleGroup",
+      "title": "Single-selection group"
+    },
+    {
+      "name": "MultipleGroup",
+      "title": "Multiple-selection group"
+    },
+    {
+      "name": "TextGroup",
+      "title": "Group with text and a disabled item"
+    }
+  ],
+  "limits": []
+}

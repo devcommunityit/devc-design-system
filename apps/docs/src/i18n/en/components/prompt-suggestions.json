@@ -1,0 +1,68 @@
+{
+  "source": "10dc5a147ca1",
+  "summary": "Group of actionable suggestions, each with a short label and a separate prompt, without automatic submission.",
+  "whenToUse": [
+    "Helping users start a conversation.",
+    "Filling a composer with contextual prompts."
+  ],
+  "whenNotToUse": [
+    "Persistent selections: use ToggleGroup.",
+    "Navigation: use links or NavList."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Each item has a unique id, label, prompt and optional icon."
+    },
+    {
+      "name": "onAction",
+      "description": "The consumer decides whether to fill a field or start an action."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables all buttons."
+    }
+  ],
+  "inherits": "HTML attributes of the group, aria-label, className, style and an HTMLDivElement ref.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches each suggestion."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Activates the suggestion."
+    }
+  ],
+  "accessibility": [
+    "Real buttons with text names; icons are decorative.",
+    "Localized group name, overridable with aria-label."
+  ],
+  "responsive": [
+    "Suggestions wrap; no forced horizontal scrolling."
+  ],
+  "customization": [
+    "Items can include an original icon provided by the consumer."
+  ],
+  "commonMistakes": [
+    "Using duplicate ids.",
+    "Submitting prompts automatically without making that behavior clear."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Suggested prompts"
+    },
+    {
+      "name": "FillComposer",
+      "title": "Filling the composer"
+    },
+    {
+      "name": "Disabled",
+      "title": "Disabled state"
+    }
+  ],
+  "limits": [
+    "No generation or ranking of suggestions."
+  ]
+}

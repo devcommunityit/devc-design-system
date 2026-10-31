@@ -1,0 +1,65 @@
+{
+  "source": "4e2ea38bd06c",
+  "summary": "Editorial preview of a page’s title, URL, and description, without changing metadata or promising rankings.",
+  "whenToUse": [
+    "Page and article editors.",
+    "Previewing SEO text before the consumer saves the metadata."
+  ],
+  "whenNotToUse": [
+    "Reproducing the exact output of a specific search engine.",
+    "Automatically validating SEO, indexing, or URLs."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title rendered as text, not HTML."
+    },
+    {
+      "name": "url",
+      "description": "Editorial URL shown as non-clickable text, isolated as LTR."
+    },
+    {
+      "name": "description",
+      "description": "Text description, with no invisible truncation."
+    },
+    {
+      "name": "siteName",
+      "description": "Optional site name."
+    }
+  ],
+  "inherits": "HTML attributes of the figure (title is the editorial title), aria-label, className, style, and HTMLElement ref.",
+  "keyboard": [],
+  "accessibility": [
+    "Figure named with a localized string.",
+    "No fake links or injected HTML content.",
+    "The full content remains available even with long text."
+  ],
+  "responsive": [
+    "Long URLs wrap without overflow; bdi isolates URLs in RTL contexts."
+  ],
+  "customization": [
+    "Text, surface, border, and title tokens."
+  ],
+  "commonMistakes": [
+    "Assuming the preview updates document.title or the meta description.",
+    "Promising the exact layout of a search engine."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Editorial preview"
+    },
+    {
+      "name": "Editor",
+      "title": "Local metadata editor"
+    },
+    {
+      "name": "LongContent",
+      "title": "RTL and long URLs"
+    }
+  ],
+  "limits": [
+    "No metadata changes, saving, URL validation, SEO analysis, or social preview.",
+    "Does not replicate the layout or truncation of specific search engines."
+  ]
+}

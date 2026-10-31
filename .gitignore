@@ -9,4 +9,7 @@ apps/playground/node_modules
 apps/playground/vendor
 coverage
 packages/ui/.storybook/generated
+packages/mcp/data
 releases
+release-out
+packages-out

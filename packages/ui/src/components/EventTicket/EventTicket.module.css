@@ -1,0 +1,117 @@
+.ticket {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--dc-space-4);
+  max-inline-size: 42rem;
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  box-shadow: var(--dc-shadow-1);
+}
+
+.header,
+.details {
+  grid-column: 1;
+}
+
+.header {
+  padding-block-end: var(--dc-space-3);
+  border-block-end: var(--dc-border-width-thin) dashed var(--dc-color-border-default);
+}
+
+.eyebrow,
+.codeLabel {
+  margin: 0;
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: var(--dc-space-1) 0 0;
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--dc-space-3);
+  margin: 0;
+}
+
+.details > div {
+  min-inline-size: 0;
+}
+
+.details dt {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.details dd {
+  margin: var(--dc-space-1) 0 0;
+  font-weight: var(--dc-font-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.code {
+  display: flex;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 8rem;
+  padding-inline-start: var(--dc-space-4);
+  border-inline-start: var(--dc-border-width-thin) dashed var(--dc-color-border-default);
+}
+
+.qr {
+  display: grid;
+  place-items: center;
+  max-inline-size: 8rem;
+  max-block-size: 8rem;
+}
+
+.qr > * {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+.codeValue {
+  margin: 0;
+  font-family: var(--dc-font-family-mono);
+  font-size: var(--dc-typography-body-sm-size);
+  font-weight: var(--dc-font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+@media (width <= 34rem) {
+  .ticket {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .header,
+  .details,
+  .code {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .code {
+    padding: var(--dc-space-3) 0 0;
+    border-block-start: var(--dc-border-width-thin) dashed var(--dc-color-border-default);
+    border-inline-start: 0;
+  }
+}
+
+@media (forced-colors: active) {
+  .ticket {
+    border-color: CanvasText;
+  }
+}

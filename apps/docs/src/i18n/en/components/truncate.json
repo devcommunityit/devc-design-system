@@ -1,0 +1,65 @@
+{
+  "source": "ce91d2ac7539",
+  "summary": "Clamps text to a number of lines and, only when the text actually overflows, shows a “Mostra di più / Mostra meno” (Show more / Show less) button to reveal the full content.",
+  "whenToUse": [
+    "Long descriptions in cards and lists; notes and comments."
+  ],
+  "whenNotToUse": [
+    "Critical information or instructions: show them in full."
+  ],
+  "props": [
+    {
+      "name": "lines",
+      "description": "Visible lines; 1 uses a single-line ellipsis."
+    },
+    {
+      "name": "isExpanded / defaultExpanded / onExpandedChange",
+      "description": "Controlled or uncontrolled expanded state."
+    },
+    {
+      "name": "hideToggle",
+      "description": "Hides the button (only if the full text is available elsewhere)."
+    }
+  ],
+  "inherits": "HTML attributes of <div>; ref to the container.",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio",
+      "action": "Expands or collapses the text."
+    }
+  ],
+  "accessibility": [
+    "The button is a real <button> with aria-expanded and aria-controls: no functionality is available only on hover.",
+    "Truncated text stays in the DOM: screen readers still read the full content."
+  ],
+  "responsive": [
+    "Overflow is re-measured on resize (ResizeObserver)."
+  ],
+  "customization": [
+    "--_lines variable; selectors .dc-truncate-content[data-expanded], .dc-truncate-toggle."
+  ],
+  "commonMistakes": [
+    "Truncating titles needed to tell similar items apart."
+  ],
+  "examples": [
+    {
+      "name": "MultiLine",
+      "title": "Multiple lines"
+    },
+    {
+      "name": "SingleLine",
+      "title": "Single line"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled expansion",
+      "description": "Each review's expanded state lives in the example; an external button expands or collapses them all. The second one is in English."
+    },
+    {
+      "name": "ShortAndNoToggle",
+      "title": "Short text and hideToggle",
+      "description": "Without overflow the button does not appear; with hideToggle the text stays truncated."
+    }
+  ],
+  "limits": []
+}

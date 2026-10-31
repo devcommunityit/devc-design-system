@@ -1,5 +1,5 @@
 import { Alert, Link } from '@dev-community/ui';
-import { PRESET_COLORS, PRESET_META, PRESET_NAMES } from '@dev-community/ui/theme';
+import { PRESET_COLORS, PRESET_META, PRESET_NAMES, type PresetKind, type PresetName } from '@dev-community/ui/theme';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 function Swatch({ color }: { color: string }) {
@@ -7,6 +7,23 @@ function Swatch({ color }: { color: string }) {
     <span className="docs-preset-swatch">
       <span className="docs-preset-swatch-chip" style={{ backgroundColor: color }} aria-hidden="true" />
       <code>{color}</code>
+    </span>
+  );
+}
+
+const KIND_LABEL: Record<PresetKind, string> = {
+  solid: 'Tinta unica',
+  gradient: 'Gradiente',
+  auto: 'Accento derivato',
+};
+
+function GradientPreview({ name }: { name: PresetName }) {
+  const light = PRESET_COLORS[name].light;
+  const dark = PRESET_COLORS[name].dark;
+  return (
+    <span className="docs-preset-gradient" aria-hidden="true">
+      <span style={{ backgroundImage: `linear-gradient(115deg, ${light['action.primary']}, ${light['accent.default']})` }} />
+      <span style={{ backgroundImage: `linear-gradient(115deg, ${dark['action.primary']}, ${dark['accent.default']})` }} />
     </span>
   );
 }
@@ -36,15 +53,39 @@ export default function Temi() {
       <DocSection title="Preset inclusi">
         <p>
           {PRESET_NAMES.length} preset generati dallo stesso algoritmo (palette tonali HCT da un colore seme). Ogni preset supera le coppie di contrasto dichiarate
-          in chiaro e in scuro; la colonna «Primario» mostra il ruolo <code>action.primary</code> effettivamente generato.
+          in chiaro e in scuro; la colonna «Primario» mostra il ruolo <code>action.primary</code> effettivamente generato, la colonna «Gradiente» il riempimento
+          expressive (<code>action.primary</code> → <code>accent.default</code>) in chiaro e in scuro.
+        </p>
+        <ul>
+          <li>
+            <strong>Tinta unica</strong> ({PRESET_NAMES.filter((n) => PRESET_META[n].kind === 'solid').length}): il seme terziario coincide con il
+            brand, quindi anche i gradienti dello stile expressive restano monocromatici.
+          </li>
+          <li>
+            <strong>Gradiente</strong> ({PRESET_NAMES.filter((n) => PRESET_META[n].kind === 'gradient').length}): due semi espliciti (
+            <code>brand</code> + <code>tertiary</code>) per riempimenti bicolore.
+          </li>
+          <li>
+            <strong>Accento derivato</strong> ({PRESET_NAMES.filter((n) => PRESET_META[n].kind === 'auto').length}): solo il brand; l&apos;accento
+            è il brand ruotato di 60° in tonalità.
+          </li>
+        </ul>
+        <p>
+          Il tipo è esposto in <code>PRESET_META[name].kind</code>. Nei preset a tinta unica la serie 2 dei grafici usa comunque una tonalità
+          ruotata, così le serie restano distinguibili.
         </p>
         <RefTable
           label="Preset cromatici"
-          columns={['Nome', 'Etichetta', 'Seme', 'Primario chiaro / scuro', 'Carattere']}
+          columns={['Nome', 'Etichetta', 'Tipo', 'Semi', 'Gradiente', 'Primario chiaro / scuro', 'Carattere']}
           rows={PRESET_NAMES.map((name) => [
             <code key="n" className="docs-preset-name">{name}</code>,
             <span key="l" className="docs-preset-name">{PRESET_META[name].label.it}</span>,
-            <Swatch key="s" color={PRESET_META[name].brand} />,
+            KIND_LABEL[PRESET_META[name].kind],
+            <span key="s" className="docs-preset-swatch-pair">
+              <Swatch color={PRESET_META[name].brand} />
+              {PRESET_META[name].kind === 'gradient' && PRESET_META[name].tertiary ? <Swatch color={PRESET_META[name].tertiary} /> : null}
+            </span>,
+            <GradientPreview key="g" name={name} />,
             <span key="p" className="docs-preset-swatch-pair">
               <Swatch color={PRESET_COLORS[name].light['action.primary']} />
               <Swatch color={PRESET_COLORS[name].dark['action.primary']} />
@@ -59,7 +100,8 @@ export default function Temi() {
           Ispirato a Material Design 3, ogni tema genera anche una palette <strong>terziaria</strong> (seme <code>seeds.tertiary</code>, oppure il
           brand ruotato di 60° in tonalità) che alimenta i ruoli <code>color.accent.*</code> e i gradienti bicolore{' '}
           <code>--dc-gradient-accent</code>, <code>--dc-gradient-accent-sheen</code>, <code>--dc-gradient-accent-subtle</code> e{' '}
-          <code>--dc-gradient-text</code>. Il preset <code>nebula</code> usa un accoppiamento blu → magenta in stile Gemini.
+          <code>--dc-gradient-text</code>. Il preset <code>nebula</code> usa un accoppiamento blu → magenta in stile Gemini; <code>sunset</code>, <code>borealis</code>,{' '}
+          <code>candy</code>, <code>dusk</code>, <code>glacier</code> e gli altri preset «Gradiente» offrono altre coppie pronte.
         </p>
         <p>
           Lo <strong>stile</strong> (<code>look</code>) è una dimensione separata da palette e densità. <code>standard</code> (predefinito della

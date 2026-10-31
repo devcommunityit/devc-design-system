@@ -394,5 +394,753 @@
       "palette/nebula": "source",
       "scheme/dark": "enabled"
     }
+  },
+  {
+    "id": "ruby-light-comfortable",
+    "name": "ruby / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ruby": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ruby-light-compact",
+    "name": "ruby / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ruby": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "ruby-dark-comfortable",
+    "name": "ruby / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/ruby": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "ruby-dark-compact",
+    "name": "ruby / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/ruby": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "tangerine-light-comfortable",
+    "name": "tangerine / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/tangerine": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "tangerine-light-compact",
+    "name": "tangerine / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/tangerine": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "tangerine-dark-comfortable",
+    "name": "tangerine / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/tangerine": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "tangerine-dark-compact",
+    "name": "tangerine / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/tangerine": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "mint-light-comfortable",
+    "name": "mint / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/mint": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "mint-light-compact",
+    "name": "mint / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/mint": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "mint-dark-comfortable",
+    "name": "mint / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/mint": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "mint-dark-compact",
+    "name": "mint / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/mint": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "sky-light-comfortable",
+    "name": "sky / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/sky": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "sky-light-compact",
+    "name": "sky / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/sky": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "sky-dark-comfortable",
+    "name": "sky / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/sky": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "sky-dark-compact",
+    "name": "sky / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/sky": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "violet-light-comfortable",
+    "name": "violet / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/violet": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "violet-light-compact",
+    "name": "violet / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/violet": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "violet-dark-comfortable",
+    "name": "violet / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/violet": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "violet-dark-compact",
+    "name": "violet / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/violet": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "cocoa-light-comfortable",
+    "name": "cocoa / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/cocoa": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "cocoa-light-compact",
+    "name": "cocoa / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/cocoa": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "cocoa-dark-comfortable",
+    "name": "cocoa / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/cocoa": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "cocoa-dark-compact",
+    "name": "cocoa / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/cocoa": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "olive-light-comfortable",
+    "name": "olive / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/olive": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "olive-light-compact",
+    "name": "olive / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/olive": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "olive-dark-comfortable",
+    "name": "olive / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/olive": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "olive-dark-compact",
+    "name": "olive / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/olive": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "lavender-light-comfortable",
+    "name": "lavender / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/lavender": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "lavender-light-compact",
+    "name": "lavender / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/lavender": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "lavender-dark-comfortable",
+    "name": "lavender / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/lavender": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "lavender-dark-compact",
+    "name": "lavender / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/lavender": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "sunset-light-comfortable",
+    "name": "sunset / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/sunset": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "sunset-light-compact",
+    "name": "sunset / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/sunset": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "sunset-dark-comfortable",
+    "name": "sunset / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/sunset": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "sunset-dark-compact",
+    "name": "sunset / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/sunset": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "borealis-light-comfortable",
+    "name": "borealis / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/borealis": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "borealis-light-compact",
+    "name": "borealis / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/borealis": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "borealis-dark-comfortable",
+    "name": "borealis / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/borealis": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "borealis-dark-compact",
+    "name": "borealis / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/borealis": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "citrus-light-comfortable",
+    "name": "citrus / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/citrus": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "citrus-light-compact",
+    "name": "citrus / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/citrus": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "citrus-dark-comfortable",
+    "name": "citrus / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/citrus": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "citrus-dark-compact",
+    "name": "citrus / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/citrus": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "candy-light-comfortable",
+    "name": "candy / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/candy": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "candy-light-compact",
+    "name": "candy / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/candy": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "candy-dark-comfortable",
+    "name": "candy / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/candy": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "candy-dark-compact",
+    "name": "candy / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/candy": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "tropical-light-comfortable",
+    "name": "tropical / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/tropical": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "tropical-light-compact",
+    "name": "tropical / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/tropical": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "tropical-dark-comfortable",
+    "name": "tropical / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/tropical": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "tropical-dark-compact",
+    "name": "tropical / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/tropical": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "dusk-light-comfortable",
+    "name": "dusk / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/dusk": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "dusk-light-compact",
+    "name": "dusk / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/dusk": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "dusk-dark-comfortable",
+    "name": "dusk / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/dusk": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "dusk-dark-compact",
+    "name": "dusk / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/dusk": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "flame-light-comfortable",
+    "name": "flame / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/flame": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "flame-light-compact",
+    "name": "flame / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/flame": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "flame-dark-comfortable",
+    "name": "flame / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/flame": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "flame-dark-compact",
+    "name": "flame / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/flame": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "glacier-light-comfortable",
+    "name": "glacier / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/glacier": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "glacier-light-compact",
+    "name": "glacier / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/glacier": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "glacier-dark-comfortable",
+    "name": "glacier / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/glacier": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "glacier-dark-compact",
+    "name": "glacier / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/glacier": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "orchid-light-comfortable",
+    "name": "orchid / light / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/orchid": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "orchid-light-compact",
+    "name": "orchid / light / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/orchid": "source",
+      "scheme/light": "enabled"
+    }
+  },
+  {
+    "id": "orchid-dark-comfortable",
+    "name": "orchid / dark / comfortable",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/comfortable": "enabled",
+      "palette/orchid": "source",
+      "scheme/dark": "enabled"
+    }
+  },
+  {
+    "id": "orchid-dark-compact",
+    "name": "orchid / dark / compact",
+    "group": "dc",
+    "selectedTokenSets": {
+      "base": "enabled",
+      "density/compact": "enabled",
+      "palette/orchid": "source",
+      "scheme/dark": "enabled"
+    }
   }
 ]

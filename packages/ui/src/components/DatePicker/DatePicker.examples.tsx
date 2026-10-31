@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Button,
   type CalendarDate,
+  type DatePreset,
   DatePicker,
   DateRangePicker,
   Form,
@@ -76,4 +77,22 @@ export function Validation() {
       </Stack>
     </Form>
   );
+}
+
+export function Presets() {
+  return <DatePicker label="Scadenza" presets="default" isClearable />;
+}
+
+export function RangePresets() {
+  return <DateRangePicker label="Periodo del report" presets="default" isClearable visibleMonths={2} />;
+}
+
+const quarterPresets: DatePreset[] = [
+  { id: 'eom', label: 'Fine mese', value: ({ today }) => today.set({ day: today.calendar.getDaysInMonth(today) }) },
+  { id: 'q', label: 'Tra 3 mesi', value: ({ today }) => today.add({ months: 3 }) },
+  { id: 'y', label: 'Tra un anno', value: ({ today }) => today.add({ years: 1 }) },
+];
+
+export function CustomPresets() {
+  return <DatePicker label="Rinnovo contratto" presets={quarterPresets} />;
 }

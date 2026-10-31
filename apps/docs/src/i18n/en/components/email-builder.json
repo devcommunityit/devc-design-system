@@ -1,0 +1,158 @@
+{
+  "source": "113bcb4832fd",
+  "summary": "Block-based email editor (Mailchimp-style): palette, reorderable WYSIWYG canvas, settings panel, isolated preview, and HTML export compatible with email clients. Import it from @dev-community/ui/editor.",
+  "whenToUse": [
+    "Composing newsletters, event invitations, or simple transactional messages directly in the product.",
+    "Saving the email as structured data (EmailDocument JSON) and generating the HTML on the client or server with renderEmailHtml.",
+    "Offering non-technical editors a limited set of blocks (blockTypes prop)."
+  ],
+  "whenNotToUse": [
+    "Web pages or articles: use RichTextEditor.",
+    "Templates with complex conditional logic, AMP, or hand-written HTML: use a dedicated template engine.",
+    "Sending emails: the component only produces HTML and text; sending is left to the backend."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled or initial document. It is serializable JSON: save it as is."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives a new immutable document on every change (blocks, text, settings)."
+    },
+    {
+      "name": "onExport",
+      "description": "Shows the “Export HTML” button and receives the output of renderEmailHtml."
+    },
+    {
+      "name": "label / aria-label",
+      "description": "Visible title or accessible name of the group. Default: the editor's localized label."
+    },
+    {
+      "name": "isReadOnly",
+      "description": "Hides block actions and disables the palette and fields: canvas, preview, and HTML copy remain available."
+    },
+    {
+      "name": "blockTypes",
+      "description": "Blocks offered in the palette (and accepted via drag and drop)."
+    },
+    {
+      "name": "mode / defaultMode / onModeChange",
+      "description": "Edit or preview mode (sandboxed iframe with the same HTML as the export)."
+    },
+    {
+      "name": "previewDevice / defaultPreviewDevice / onPreviewDeviceChange",
+      "description": "Width of the canvas and preview: settings.width or 375px."
+    },
+    {
+      "name": "emailLang",
+      "description": "lang attribute of the generated HTML; dir follows the LocaleProvider."
+    },
+    {
+      "name": "className",
+      "description": "Class on the root container."
+    },
+    {
+      "name": "renderEmailHtml(doc, { lang, dir })",
+      "description": "Complete HTML document: role=\"presentation\" tables, inline styles, hidden preheader, media queries for mobile, MSO ghost tables for Outlook."
+    },
+    {
+      "name": "renderEmailText(doc)",
+      "description": "Plain-text alternative (the text/plain part of the multipart message)."
+    },
+    {
+      "name": "createEmailDocument / createEmailBlock",
+      "description": "Create documents and blocks with default values and unique ids (crypto.randomUUID with fallback)."
+    },
+    {
+      "name": "insert/update/remove/move/duplicateEmailBlock, updateEmailSettings",
+      "description": "Return a new EmailDocument without modifying the original."
+    },
+    {
+      "name": "sanitizeEmailUrl / escapeEmailHtml",
+      "description": "Allow only http(s), mailto, tel, and {{...}} merge tags; any other URL becomes “#”. Text and attributes are escaped."
+    }
+  ],
+  "inherits": "None: the component composes the library's GridList, Toolbar, ToggleGroup, Tabs, TextField, NumberInput, Select, and ColorPicker.",
+  "keyboard": [
+    {
+      "keys": "Frecce su/giù",
+      "action": "Move focus (and selection) between canvas blocks."
+    },
+    {
+      "keys": "Tab",
+      "action": "From the selected block, enters the action bar and the inline text editor."
+    },
+    {
+      "keys": "Esc",
+      "action": "On the canvas, deselects the block: the panel shows the email settings."
+    },
+    {
+      "keys": "Invio sul maniglia di trascinamento, frecce, Invio",
+      "action": "Reorders the block with React Aria keyboard drag and drop (Esc cancels)."
+    },
+    {
+      "keys": "Frecce nella barra azioni",
+      "action": "Move up/down, duplicate, delete."
+    },
+    {
+      "keys": "Ctrl/⌘+B, I, U",
+      "action": "Bold, italic, underline in the inline editor."
+    },
+    {
+      "keys": "Invio / Esc nel campo link",
+      "action": "Applies or removes the link."
+    }
+  ],
+  "accessibility": [
+    "The canvas is a grid (role=\"grid\") that exposes the name and position of each block to screen readers.",
+    "Additions, removals, moves, and HTML copies are announced in a polite live region.",
+    "Every drag action has a single-pointer alternative (move up/down buttons, WCAG 2.5.7).",
+    "The preview is a sandboxed iframe with no permissions and a title.",
+    "Images require alt text: it is a block field and ends up in the alt attribute.",
+    "Respects forced-colors and prefers-reduced-motion."
+  ],
+  "responsive": [
+    "From 1200px: three columns (palette, canvas, settings).",
+    "Below 1200px: palette and settings move into tabs next to the canvas; the canvas scrolls horizontally if the email is wider.",
+    "The Desktop/Mobile switcher shows the email at settings.width or at 375px; the exported HTML stacks columns below 620px."
+  ],
+  "customization": [
+    "UI built with semantic tokens (--dc-*), light/dark theme, and RTL via logical properties.",
+    "The email content uses the document colors (settings), because email clients require literal colors.",
+    "Fonts: pick a safe stack from emailFontStacks."
+  ],
+  "commonMistakes": [
+    "Inserting arbitrary HTML into blocks: rich text is Tiptap JSON and the renderer only allows a closed list of nodes and marks.",
+    "Forgetting the unsubscribe link in the footer (use a merge tag such as {{unsubscribe_url}}).",
+    "Using images without alt text or with non-https URLs.",
+    "Expecting identical rendering in every client: always test with tools such as Litmus or Email on Acid."
+  ],
+  "examples": [
+    {
+      "name": "Newsletter",
+      "title": "Community newsletter",
+      "description": "Complete document: title, intro, image, button, two columns of events, social links, and a footer with unsubscribe."
+    },
+    {
+      "name": "ControlledExport",
+      "title": "Controlled with HTML export",
+      "description": "State in the consumer, HTML length, and export callback."
+    },
+    {
+      "name": "EmptyStart",
+      "title": "Starting from an empty document"
+    },
+    {
+      "name": "RestrictedReadOnly",
+      "title": "Limited blocks and read-only"
+    }
+  ],
+  "limits": [
+    "No VML button for Outlook: the button is a table cell with a padded link (renders correctly, with square corners in desktop Outlook).",
+    "Media queries are not supported by every client: the hybrid layout stays readable without them.",
+    "Dragging from the palette is pointer-only (HTML5); with the keyboard, blocks are added with Enter/Space.",
+    "No image uploads, template library, dedicated undo/redo, or email sending.",
+    "Social links are text links, without logos."
+  ]
+}

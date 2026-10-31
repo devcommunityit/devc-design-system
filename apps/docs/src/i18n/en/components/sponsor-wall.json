@@ -1,0 +1,51 @@
+{
+  "source": "34f5c7f8ab70",
+  "summary": "Semantic list of sponsors with logos and optional links.",
+  "whenToUse": [
+    "Giving visibility to partners and sponsors of a community or event."
+  ],
+  "whenNotToUse": [
+    "To compare plans or prices, use PricingTable."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the section."
+    },
+    {
+      "name": "sponsors",
+      "description": "Sponsors with a name, logo, and optional link."
+    },
+    {
+      "name": "heading",
+      "description": "Optional heading."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the links of sponsors that have an href."
+    }
+  ],
+  "accessibility": [
+    "Logos are decorative when the sponsor's visible name is present."
+  ],
+  "responsive": [
+    "Items are laid out in a grid that adapts to the container."
+  ],
+  "customization": [
+    "Uses CSS modules and --dc-* tokens; the logo is a ReactNode slot."
+  ],
+  "commonMistakes": [
+    "Provide an understandable name even when the logo is purely graphical."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Sponsors"
+    }
+  ],
+  "limits": [
+    "Logos must be provided by the consumer."
+  ]
+}

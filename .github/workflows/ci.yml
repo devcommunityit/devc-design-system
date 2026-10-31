@@ -1,0 +1,87 @@
+# Quality gate for pull requests and main: lint, types, unit tests, package checks, e2e.
+# Each run also uploads installable .tgz files (ui + mcp) so a change can be tried in a
+# React project before it is released: `npm install ./dev-community-ui-<version>.tgz`.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Lint, types, unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # The lockfile points to a private mirror; runners install the same versions from npmjs.org.
+      - name: Use the public npm registry
+        run: node scripts/use-public-registry.mjs
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+  package:
+    name: Build, package checks, e2e
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Use the public npm registry
+        run: node scripts/use-public-registry.mjs
+
+      - run: npm ci
+      - run: npm run build
+
+      # Fails when a scenario in packages/ui/.size-limit.json exceeds its gzip budget.
+      - name: Bundle size budget
+        run: npm run size
+
+      - name: Install Playwright (Chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify the packed library in an external consumer
+        run: npm run verify:package -- --skip-build
+
+      - name: End-to-end tests (docs site)
+        run: npm run test:e2e
+
+      - name: Pack @dev-community/ui
+        run: node scripts/release-pack.mjs --package ui --skip-build --out packages-out
+
+      - name: Pack @dev-community/ui-mcp
+        run: node scripts/release-pack.mjs --package mcp --skip-build --out packages-out
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: packages-${{ github.sha }}
+          path: packages-out/
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

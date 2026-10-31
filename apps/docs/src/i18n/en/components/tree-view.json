@@ -1,0 +1,125 @@
+{
+  "source": "27521b6b963f",
+  "summary": "Hierarchical list (role=\"treegrid\") for folders, categories, permissions, or org charts, with expansion, type-to-search, and optional checkbox selection.",
+  "whenToUse": [
+    "Nested structures explorable across multiple levels.",
+    "Selecting nodes in a hierarchy (permissions, categories)."
+  ],
+  "whenNotToUse": [
+    "Main site navigation: use Sidebar or NavigationMenu.",
+    "A single level: use a list or Accordion.",
+    "Tabular data with columns: use DataTable."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the tree."
+    },
+    {
+      "name": "expandedKeys / defaultExpandedKeys",
+      "description": "Controlled / initial expanded nodes."
+    },
+    {
+      "name": "onExpandedChange",
+      "description": "Expansion change."
+    },
+    {
+      "name": "selectionMode",
+      "description": "Node selection."
+    },
+    {
+      "name": "selectedKeys / defaultSelectedKeys / onSelectionChange",
+      "description": "Controlled / initial selection."
+    },
+    {
+      "name": "selectionBehavior",
+      "description": "toggle shows the checkboxes."
+    },
+    {
+      "name": "disabledKeys",
+      "description": "Non-interactive nodes."
+    },
+    {
+      "name": "onAction",
+      "description": "Action on a node (Enter, double-click with replace)."
+    },
+    {
+      "name": "size",
+      "description": "Row density."
+    },
+    {
+      "name": "TreeViewItem title",
+      "description": "Node label."
+    },
+    {
+      "name": "TreeViewItem textValue",
+      "description": "Text used for search; required if title is not a string."
+    },
+    {
+      "name": "TreeViewItem icon / description",
+      "description": "Decorative icon and secondary text."
+    },
+    {
+      "name": "TreeViewItem id",
+      "description": "Node identifier."
+    }
+  ],
+  "inherits": "Props of react-aria-components Tree and TreeItem (items with a render function, href, renderEmptyState…).",
+  "keyboard": [
+    {
+      "keys": "↑ / ↓",
+      "action": "Previous / next visible node."
+    },
+    {
+      "keys": "→ / ←",
+      "action": "Expands / collapses (reversed in RTL); on an already expanded node, → moves into its children."
+    },
+    {
+      "keys": "Home / End",
+      "action": "First / last visible node."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Selects (when selection is enabled)."
+    },
+    {
+      "keys": "Lettere",
+      "action": "Text search (typeahead)."
+    }
+  ],
+  "accessibility": [
+    "Built on react-aria-components Tree: aria-level, aria-expanded, aria-selected, and a single tab stop.",
+    "The expand button has a name localized by react-aria; icons are hidden from assistive technologies.",
+    "The expanded state is indicated by the arrow rotation, not by color."
+  ],
+  "responsive": [
+    "Per-level indentation is compact; with many levels, place the tree in a ScrollArea to avoid page-wide horizontal overflow."
+  ],
+  "customization": [
+    "Selectors [data-size], [data-selected], [data-expanded], [data-disabled].",
+    "Local --_indent variable for indentation."
+  ],
+  "commonMistakes": [
+    "Using non-text titles without textValue.",
+    "Forgetting unique ids on nodes.",
+    "Loading thousands of fully expanded nodes: expand on demand."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Project files"
+    },
+    {
+      "name": "ControlledSelection",
+      "title": "Controlled expansion and selection (English)"
+    },
+    {
+      "name": "Checkboxes",
+      "title": "Multiple selection with checkboxes"
+    }
+  ],
+  "limits": [
+    "No built-in lazy loading of children: handle it in the consumer by updating items in onExpandedChange.",
+    "No drag-and-drop between nodes."
+  ]
+}

@@ -1,0 +1,200 @@
+.ranking {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-typography-title-sm-weight);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.rank {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-muted);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-md-size);
+  line-height: 1;
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.item[data-top] .rank {
+  background-color: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+}
+
+.item[data-top='1'] .rank {
+  background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-gradient-accent);
+  color: var(--dc-color-action-primary-foreground);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.labelGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1-5);
+  min-inline-size: 0;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--dc-color-text-secondary);
+}
+
+.icon > svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.label {
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.value {
+  flex: none;
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.description {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.track {
+  display: block;
+  block-size: 0.375rem;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-muted);
+  overflow: hidden;
+}
+
+.bar {
+  --_bar: var(--dc-color-data-1);
+
+  display: block;
+  inline-size: calc(var(--_ratio, 0) * 100%);
+  block-size: 100%;
+  border-radius: inherit;
+  background-color: var(--_bar);
+  transition: inline-size var(--dc-motion-duration-slow) var(--dc-motion-easing-emphasized);
+}
+
+.bar[data-series='2'] {
+  --_bar: var(--dc-color-data-2);
+}
+
+.bar[data-series='3'] {
+  --_bar: var(--dc-color-data-3);
+}
+
+.bar[data-series='4'] {
+  --_bar: var(--dc-color-data-4);
+}
+
+.bar[data-series='5'] {
+  --_bar: var(--dc-color-data-5);
+}
+
+.bar[data-series='6'] {
+  --_bar: var(--dc-color-data-6);
+}
+
+.ranking[data-bar-style='gradient'] .bar {
+  background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-gradient-accent);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  margin-block-start: auto;
+  padding-block-start: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ranking {
+    border-color: CanvasText;
+  }
+
+  .rank,
+  .item[data-top] .rank {
+    border: var(--dc-border-width-thin) solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .track {
+    border: var(--dc-border-width-thin) solid CanvasText;
+  }
+
+  .bar,
+  .ranking[data-bar-style='gradient'] .bar {
+    background: Highlight;
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "source": "45a7310eac7a",
+  "summary": "Searchable multiple selection: chosen values appear as removable chips below the field and the list stays open while selecting.",
+  "whenToUse": [
+    "Choosing multiple values from a medium or long list.",
+    "Recipients, skills, tags from a controlled vocabulary."
+  ],
+  "whenNotToUse": [
+    "A few always-visible options: use CheckboxGroup.",
+    "Free-form values not in a list: use TextField + TagGroup."
+  ],
+  "props": [
+    {
+      "name": "options",
+      "description": "{ id, label, description?, isDisabled? }."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Selected keys, in selection order."
+    },
+    {
+      "name": "inputValue / defaultInputValue / onInputChange",
+      "description": "Search text; cleared after each selection."
+    },
+    {
+      "name": "filter",
+      "description": "local: filters options by label; none: the consumer passes already filtered results (async)."
+    },
+    {
+      "name": "isLoading",
+      "description": "Spinner and localized loading message."
+    },
+    {
+      "name": "emptyState",
+      "description": "Message shown when there are no results."
+    },
+    {
+      "name": "placeholder",
+      "description": "Hint inside the input (does not replace the label)."
+    },
+    {
+      "name": "name / isRequired / validate",
+      "description": "Form integration and validation."
+    },
+    {
+      "name": "isDisabled / isReadOnly / isInvalid",
+      "description": "Field states."
+    },
+    {
+      "name": "inputRef / className / style",
+      "description": "Access to the input and container customization."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Digitazione / Freccia giù",
+      "action": "Filters and opens the list."
+    },
+    {
+      "keys": "Invio",
+      "action": "Adds or removes the focused option; the list stays open."
+    },
+    {
+      "keys": "Backspace (input vuoto)",
+      "action": "Removes the last value."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the list."
+    },
+    {
+      "keys": "Tab → frecce → Canc",
+      "action": "Moves to the chips and removes the focused one."
+    }
+  ],
+  "accessibility": [
+    "Input following the APG Combobox pattern; options with aria-selected and a checkmark.",
+    "Chips are a labeled TagGroup (“Elementi selezionati”) with named remove buttons.",
+    "While the list is open, the rest of the page, chips included, is hidden from assistive technologies as the pattern prescribes."
+  ],
+  "responsive": [
+    "Chips wrap below the field without reducing the typing area."
+  ],
+  "customization": [
+    "className/style on the container; chips and list use the Tag and ListBox tokens."
+  ],
+  "commonMistakes": [
+    "With filter=\"none\", forgetting to update options based on inputValue.",
+    "Using different keys for the same option across subsequent requests."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "AsyncSimulated",
+      "title": "Async results (simulated)"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": [
+    "Selected keys not present in options display String(key) as their label.",
+    "No list virtualization."
+  ]
+}

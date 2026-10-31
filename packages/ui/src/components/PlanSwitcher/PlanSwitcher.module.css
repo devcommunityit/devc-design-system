@@ -1,0 +1,28 @@
+.root {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.label {
+  font-size: var(--dc-typography-label-md-size);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.option {
+  display: grid;
+  justify-items: start;
+  gap: var(--dc-space-0-5);
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}

@@ -1,0 +1,109 @@
+{
+  "source": "f969a1af1e76",
+  "summary": "List of actions or options that opens from a button, with sections, submenus, and selection.",
+  "whenToUse": [
+    "Secondary actions on an item (“More actions”).",
+    "View options with single or multiple selection."
+  ],
+  "whenNotToUse": [
+    "Choosing a value in a form: use Select or Combobox.",
+    "Site navigation: use NavigationMenu."
+  ],
+  "props": [
+    {
+      "name": "DropdownMenu: isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled open state."
+    },
+    {
+      "name": "Menu: onAction",
+      "description": "Item activated."
+    },
+    {
+      "name": "Menu: selectionMode, selectedKeys, onSelectionChange",
+      "description": "Menu-level selection."
+    },
+    {
+      "name": "Menu: placement",
+      "description": "Popover placement."
+    },
+    {
+      "name": "Menu: inline",
+      "description": "Renders the menu without a popover (e.g. inside other overlays)."
+    },
+    {
+      "name": "MenuItem: icon / description / shortcut",
+      "description": "Additional item content."
+    },
+    {
+      "name": "MenuItem: tone",
+      "description": "Highlights destructive actions."
+    },
+    {
+      "name": "MenuSection: title + selezione",
+      "description": "Group with a header and its own selection."
+    }
+  ],
+  "inherits": "Props of react-aria-components MenuTrigger, Menu, MenuItem, MenuSection, SubmenuTrigger.",
+  "keyboard": [
+    {
+      "keys": "Enter / Space / Freccia giù",
+      "action": "Opens the menu from the button."
+    },
+    {
+      "keys": "Frecce su/giù, Home/End",
+      "action": "Move focus between items."
+    },
+    {
+      "keys": "Lettere",
+      "action": "Typeahead to the first matching item."
+    },
+    {
+      "keys": "Freccia destra / sinistra",
+      "action": "Opens / closes a submenu (reversed in RTL)."
+    },
+    {
+      "keys": "Escape",
+      "action": "Closes the menu and returns focus to the button."
+    }
+  ],
+  "accessibility": [
+    "APG Menu Button pattern: menu/menuitem roles, menuitemcheckbox/menuitemradio with selection.",
+    "Selection is indicated by a checkmark icon, not by color alone.",
+    "The popover is rendered in the portal of the nearest ThemeProvider and inherits its theme."
+  ],
+  "responsive": [
+    "The popover repositions to stay within the viewport and scrolls when the list is long."
+  ],
+  "customization": [
+    "Surface: PopoverSurface (surface.raised, shadow-3). Items: .dc-dropdown-menu-item[data-focused], [data-tone='danger']."
+  ],
+  "commonMistakes": [
+    "Uncontrolled menu with selection: the state is lost on close; use selectedKeys + onSelectionChange.",
+    "Using a menu for the main site navigation."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Actions with submenu"
+    },
+    {
+      "name": "IconTrigger",
+      "title": "Trigger with IconButton"
+    },
+    {
+      "name": "Selectable",
+      "title": "Sections with selection"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled open state and disabled items",
+      "description": "isOpen + onOpenChange on DropdownMenu; disabledKeys disables the action that is already applied."
+    },
+    {
+      "name": "LongList",
+      "title": "Long list with long labels",
+      "description": "Required single selection; the popover scrolls and long labels wrap."
+    }
+  ],
+  "limits": []
+}

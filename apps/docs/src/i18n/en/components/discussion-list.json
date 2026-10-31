@@ -1,0 +1,98 @@
+{
+  "source": "92ba356a8402",
+  "summary": "Numbered list (01, 02…) of forum discussions: clickable title, reply count, last activity (text or RelativeTime), optional tag, and a “New” indicator.",
+  "whenToUse": [
+    "“Hot discussions” or “Recent questions” sidebar in a community portal.",
+    "Short thread lists where order matters (activity ranking, top of the week)."
+  ],
+  "whenNotToUse": [
+    "Posts with thumbnail and votes: use PostList.",
+    "Articles with cover and excerpt: use ArticleCard.",
+    "Long lists to filter or sort: use DataTable."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Threads already in display order."
+    },
+    {
+      "name": "headingLevel",
+      "description": "When set, titles become headings of that level."
+    },
+    {
+      "name": "start",
+      "description": "Number of the first item (also the list's native start), useful for pagination."
+    },
+    {
+      "name": "items[].time",
+      "description": "Last activity: a Date becomes RelativeTime."
+    },
+    {
+      "name": "items[].replies",
+      "description": "Reply count, formatted with Intl and pluralized (“84 replies”)."
+    },
+    {
+      "name": "items[].isNew",
+      "description": "Shows the “New” label next to the title."
+    },
+    {
+      "name": "isLoading",
+      "description": "Replaces rows with a SkeletonList (aria-busy) while keeping the <ol> element."
+    },
+    {
+      "name": "loadingRows",
+      "description": "Skeleton rows during isLoading."
+    }
+  ],
+  "inherits": "HTML attributes of <ol> (id, aria-label, aria-labelledby, data-*).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves from one discussion link to the next (and to any interactive tags)."
+    }
+  ],
+  "accessibility": [
+    "Ordered list <ol>: position is announced by the list; the visible two-digit numbers are decorative (aria-hidden).",
+    "The title link covers the row (stretched link); the tag stays on top and clickable.",
+    "Name the list with aria-label or aria-labelledby pointing to the section title.",
+    "Replies are localized, pluralized text; RelativeTime exposes the exact date in datetime and title."
+  ],
+  "responsive": [
+    "Fixed-width number, title, and metadata wrap: usable down to 320px.",
+    "Designed for sidebars and narrow columns; no frame — place it in a Card if needed."
+  ],
+  "customization": [
+    "Tokens: --dc-font-family-mono for numbers, --dc-color-border-subtle for dashed dividers, --dc-color-accent-container for “New”.",
+    "Stable selectors: .dc-discussion-list-list, .dc-discussion-list-item, .dc-discussion-list-number, .dc-discussion-list-new."
+  ],
+  "commonMistakes": [
+    "Writing the number in the title: numbering is automatic (use start to continue from a previous page).",
+    "Leaving the list unnamed when the section has a visible title: link it with aria-labelledby.",
+    "Formatting “84 replies” by hand: pass the number in replies."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "InCard",
+      "title": "In a Card",
+      "description": "Section title linked with aria-labelledby and dates with RelativeTime."
+    },
+    {
+      "name": "StartNumber",
+      "title": "Numbering from start",
+      "description": "Second page starting again from 11."
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "Numbers have at least two digits (01…99, then 100…).",
+    "No built-in pagination or sorting."
+  ]
+}

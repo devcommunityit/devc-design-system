@@ -1,0 +1,61 @@
+{
+  "source": "838d840eca90",
+  "summary": "Controlled field to submit a coupon code and display an external status.",
+  "whenToUse": [
+    "Collect a discount code in an app-managed checkout."
+  ],
+  "whenNotToUse": [
+    "Validating or applying coupons on the client: delegate the logic to the caller."
+  ],
+  "props": [
+    {
+      "name": "value / onChange",
+      "description": "Controlled code."
+    },
+    {
+      "name": "onApply",
+      "description": "Submits the value, without validation."
+    },
+    {
+      "name": "label / applyLabel",
+      "description": "Visible labels for the field and the action."
+    },
+    {
+      "name": "status",
+      "description": "Result controlled by the caller."
+    },
+    {
+      "name": "message",
+      "description": "Optional message associated with the status."
+    }
+  ],
+  "inherits": "HTML attributes of <form>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio",
+      "action": "Edits the code and submits the form."
+    }
+  ],
+  "accessibility": [
+    "TextField provides an associated label.",
+    "Errors and states are announced in a live region."
+  ],
+  "responsive": [
+    "The button moves below the field on narrow viewports."
+  ],
+  "customization": [
+    "Composed with TextField and Button; CSS with --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting the component to validate or apply the coupon."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Coupon field"
+    }
+  ],
+  "limits": [
+    "No local validation or application."
+  ]
+}

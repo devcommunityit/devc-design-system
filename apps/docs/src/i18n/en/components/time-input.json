@@ -1,0 +1,89 @@
+{
+  "source": "7170ab593827",
+  "summary": "Segmented, localized time field (12/24-hour) with limits and validation.",
+  "whenToUse": [
+    "Times without a date (opening time, daily reminder)."
+  ],
+  "whenNotToUse": [
+    "Date and time together: use DateTimePicker.",
+    "Choosing from regular slots in a list: use TimePicker.",
+    "Durations: use NumberInput with a unit."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Standard field anatomy."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled time."
+    },
+    {
+      "name": "granularity",
+      "description": "Visible segments."
+    },
+    {
+      "name": "hourCycle",
+      "description": "Forces the format; by default it depends on the locale."
+    },
+    {
+      "name": "minValue / maxValue",
+      "description": "Validated limits."
+    },
+    {
+      "name": "showIcon",
+      "description": "Decorative clock icon."
+    },
+    {
+      "name": "isRequired / isInvalid / isDisabled / isReadOnly",
+      "description": "Field states."
+    }
+  ],
+  "inherits": "Props of react-aria-components TimeField (name, validate, hideTimeZone…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Next segment."
+    },
+    {
+      "keys": "Frecce su/giù, cifre",
+      "action": "Changes the segment."
+    },
+    {
+      "keys": "Backspace",
+      "action": "Clears the segment."
+    }
+  ],
+  "accessibility": [
+    "Each segment is a spinbutton with a name (hour, minutes) and a text value.",
+    "The icon is decorative (aria-hidden)."
+  ],
+  "responsive": [
+    "Fluid width; segments have a sufficient touch area."
+  ],
+  "customization": [
+    "className and style on the field."
+  ],
+  "commonMistakes": [
+    "Storing the time as a Date: use Time.toString() (HH:mm:ss)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with limits"
+    },
+    {
+      "name": "HourCycle",
+      "title": "12-hour and seconds"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

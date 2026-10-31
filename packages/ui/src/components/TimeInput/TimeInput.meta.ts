@@ -7,7 +7,7 @@ export const doc: ComponentDoc = {
   category: 'forms',
   summary: 'Campo orario a segmenti, localizzato (12/24 ore) con limiti e validazione.',
   whenToUse: ['Orari senza data (apertura, promemoria giornaliero).'],
-  whenNotToUse: ['Data e ora insieme: usa DatePicker con granularity="minute".', 'Durate: usa NumberInput con unità.'],
+  whenNotToUse: ['Data e ora insieme: usa DateTimePicker.', 'Scelta da slot regolari con elenco: usa TimePicker.', 'Durate: usa NumberInput con unità.'],
   props: [
     { name: 'label / description / errorMessage', type: 'ReactNode', description: 'Anatomia di campo standard.' },
     { name: 'value / defaultValue / onChange', type: 'Time | CalendarDateTime | ZonedDateTime | null', description: 'Orario controllato o non controllato.' },

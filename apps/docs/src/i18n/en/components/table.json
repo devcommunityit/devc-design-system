@@ -1,0 +1,93 @@
+{
+  "source": "471790203a10",
+  "summary": "Visual table built on a native <table>: presentation only, stateless. For sorting, filtering, selection, and pagination use DataTable.",
+  "whenToUse": [
+    "Static or pre-processed data (summaries, invoices, specifications).",
+    "Server-rendered content."
+  ],
+  "whenNotToUse": [
+    "Interactive lists with sorting or selection: use DataTable.",
+    "Page layout: use Grid."
+  ],
+  "props": [
+    {
+      "name": "density",
+      "description": "Cell padding; by default follows the theme density."
+    },
+    {
+      "name": "striped",
+      "description": "Alternating rows."
+    },
+    {
+      "name": "stickyHeader",
+      "description": "Header stays fixed during vertical scrolling (with maxHeight)."
+    },
+    {
+      "name": "maxHeight",
+      "description": "Maximum height of the scroll area."
+    },
+    {
+      "name": "scrollRegionLabel",
+      "description": "Name of the scroll region (keyboard-focusable when it overflows)."
+    },
+    {
+      "name": "TableHeaderCell.scope",
+      "description": "Use scope=\"row\" for row headers."
+    },
+    {
+      "name": "align",
+      "description": "Logical (RTL) alignment of the cells."
+    },
+    {
+      "name": "TableCell.numeric",
+      "description": "Aligns to the end with tabular figures."
+    },
+    {
+      "name": "TableRow.isSelected",
+      "description": "Visual highlight; also convey the state in the content."
+    }
+  ],
+  "inherits": "HTML attributes of each table element.",
+  "keyboard": [
+    {
+      "keys": "Tab poi frecce",
+      "action": "If the table overflows, the scroll region is focusable and scrolls with the arrow keys."
+    }
+  ],
+  "accessibility": [
+    "Native semantics: caption, th with scope, tfoot.",
+    "TableCaption provides the table's accessible name."
+  ],
+  "responsive": [
+    "Horizontal overflow is confined to the scroll region: never on the page.",
+    "On mobile, consider priority columns or a card view."
+  ],
+  "customization": [
+    "className/style; --dc-density-cell-padding-*, --dc-color-border-subtle tokens."
+  ],
+  "commonMistakes": [
+    "Using Table for data the user needs to sort: it lacks state and aria-sort.",
+    "Omitting the caption or an accessible name."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Invoices with total"
+    },
+    {
+      "name": "DenseStriped",
+      "title": "Compact, striped, sticky header"
+    },
+    {
+      "name": "SelectableRows",
+      "title": "Selectable rows with total",
+      "description": "Controlled selection with labeled checkboxes, an indeterminate “select all”, and a row highlighted with isSelected."
+    },
+    {
+      "name": "WideWithMissingData",
+      "title": "Wide table with missing data",
+      "description": "Horizontal scrolling, long text, empty cells with hidden text, and switches for density and striped rows."
+    }
+  ],
+  "limits": []
+}

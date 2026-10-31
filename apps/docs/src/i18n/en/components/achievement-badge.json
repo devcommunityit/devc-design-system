@@ -1,0 +1,118 @@
+{
+  "source": "7154d671d507",
+  "summary": "Gamification medal for the community: a hexagonal or circular medallion with the tier's icon and color (bronze, silver, gold, platinum, brand), a title, a localized earned date, or a locked state with progress.",
+  "whenToUse": [
+    "Showing achievements earned on a member's profile (“First talk”, “Top contributor”).",
+    "Listing badges still to unlock, with progress toward the goal.",
+    "Celebrating a just-reached achievement on a page or in a dialog."
+  ],
+  "whenNotToUse": [
+    "Status labels or short categories: use Badge.",
+    "Counts or dots on avatars and icons: use IndicatorBadge.",
+    "Rankings with positions and scores: use Leaderboard or RankingCard.",
+    "Progress toward a numeric goal in a dashboard: use GoalCard."
+  ],
+  "props": [
+    {
+      "name": "icon",
+      "description": "Decorative icon in the medallion."
+    },
+    {
+      "name": "title",
+      "description": "Name of the achievement."
+    },
+    {
+      "name": "description",
+      "description": "What the achievement rewards."
+    },
+    {
+      "name": "tier",
+      "description": "Medal tier and color; brand uses the accent gradient and has no default name."
+    },
+    {
+      "name": "tierLabel",
+      "description": "Overrides the localized tier name (required to show it with the brand tier)."
+    },
+    {
+      "name": "earnedAt",
+      "description": "Date earned, shown as “Earned on …” via Intl.DateTimeFormat; ignored when locked."
+    },
+    {
+      "name": "dateFormatOptions",
+      "description": "Date format."
+    },
+    {
+      "name": "isLocked",
+      "description": "Not yet earned: grayscale medal, padlock and “Locked” text."
+    },
+    {
+      "name": "progress",
+      "description": "Progress toward a locked achievement (Progress bar with a “6 / 10” value)."
+    },
+    {
+      "name": "shape",
+      "description": "Medallion shape; in forced-colors mode it always becomes a circle."
+    },
+    {
+      "name": "size",
+      "description": "Size of the medallion and title."
+    },
+    {
+      "name": "layout",
+      "description": "Medal above centered text, or beside it."
+    },
+    {
+      "name": "headingLevel",
+      "description": "When set, the title becomes a heading of that level."
+    },
+    {
+      "name": "AchievementBadgeGroup.minItemWidth",
+      "description": "Minimum column width of the <ul> grid that wraps each badge in an <li>."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (AchievementBadge) and <ul> (AchievementBadgeGroup).",
+  "keyboard": [],
+  "accessibility": [
+    "The medallion is decorative (aria-hidden): title, tier, locked state and date are visible, localized text.",
+    "The tier is a Badge with text (“Gold”), not conveyed by color alone; the locked state is spelled out (“Locked”) in addition to the grayscale.",
+    "The progress bar is a Progress (role=\"progressbar\") named by the title, with a “6 / 10” text value.",
+    "AchievementBadgeGroup is a <ul> list: give it an aria-label (“Earned badges”).",
+    "In forced-colors mode the medallion becomes a circle with a system border (dashed when locked)."
+  ],
+  "responsive": [
+    "AchievementBadgeGroup uses an auto-fill grid with minItemWidth: columns shrink in narrow containers.",
+    "The inline layout suits profile sidebars; stacked suits grids and celebrations."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent-sheen (brand); metal tiers are derived with color-mix from --dc-color-feedback-warning (bronze, gold), --dc-color-border-strong/--dc-color-text-muted (silver), --dc-color-feedback-info-border/--dc-color-data-6 (platinum).",
+    "Stable selectors: .dc-achievement-badge-achievement[data-tier][data-shape][data-size][data-layout][data-locked], .dc-achievement-badge-medal, .dc-achievement-badge-face, .dc-achievement-badge-group."
+  ],
+  "commonMistakes": [
+    "Using a meaningful icon without a title: the medallion is decorative, the meaning lives in the text.",
+    "Passing dates as ambiguous strings (“12/03/2026”): use Date or ISO 8601.",
+    "Showing progress on an already earned badge: it is ignored and only works with isLocked."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Tiers",
+      "title": "Tiers",
+      "description": "Bronze, silver, gold, platinum and brand with a custom name."
+    },
+    {
+      "name": "Locked",
+      "title": "Locked with progress"
+    },
+    {
+      "name": "SizesAndLayout",
+      "title": "Sizes and inline layout"
+    }
+  ],
+  "limits": [
+    "There are no dedicated metal tokens: gold, silver, bronze and platinum are derived from semantic colors and change with the theme.",
+    "The brand tier has no localized name: use tierLabel to show one."
+  ]
+}

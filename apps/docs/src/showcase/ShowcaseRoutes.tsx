@@ -20,7 +20,10 @@ import {
 } from '@dev-community/ui';
 import { PageMeta } from '../components/PageMeta';
 import { Landing } from './Landing';
+import { Community } from './Community';
+import { Editor } from './Editor';
 import { Dashboard } from './Dashboard';
+import { Kanban } from './Kanban';
 import { AdminDashboard } from './AdminDashboard';
 import { CustomerList } from './CustomerList';
 import { CustomerDetail } from './CustomerDetail';
@@ -37,6 +40,7 @@ const sections: SidebarSection[] = [
     id: 'main',
     items: [
       { id: 'dashboard', label: 'Dashboard', href: '/showcase/dashboard', icon: <LayoutDashboard /> },
+      { id: 'kanban', label: 'Kanban', href: '/showcase/kanban', icon: <ClipboardList /> },
       { id: 'admin', label: 'Amministrazione', href: '/showcase/admin', icon: <BarChart3 /> },
       { id: 'elenco', label: 'Clienti', href: '/showcase/elenco', icon: <Users /> },
       { id: 'modulo', label: 'Nuova richiesta', href: '/showcase/modulo', icon: <ClipboardList /> },
@@ -180,10 +184,13 @@ export function ShowcaseRoutes() {
   return (
     <Routes>
       <Route path="landing" element={<Page title="Landing page" description="Template di landing page."><Landing /></Page>} />
+      <Route path="community" element={<Page title="Community" description="Portale di una community di sviluppatori."><Community /></Page>} />
+      <Route path="editor" element={<Page title="Studio contenuti" description="Editor WYSIWYG per articoli e newsletter."><Editor /></Page>} />
       <Route path="accesso" element={<Page title="Accesso" description="Login, registrazione e recupero password dimostrativi."><AuthPage /></Page>} />
       <Route element={<PortalLayout />}>
         <Route index element={<Page title="Dashboard" description="Dashboard del portale dimostrativo."><Dashboard /></Page>} />
         <Route path="dashboard" element={<Page title="Dashboard" description="Dashboard del portale dimostrativo."><Dashboard /></Page>} />
+        <Route path="kanban" element={<Page title="Kanban" description="Workflow di progetto con drag & drop e cambio di stato."><Kanban /></Page>} />
         <Route path="admin" element={<Page title="Amministrazione" description="Dashboard di amministrazione con grafici, KPI e azioni rapide."><AdminDashboard /></Page>} />
         <Route path="elenco" element={<Page title="Clienti" description="Elenco clienti con filtri e DataTable."><CustomerList /></Page>} />
         <Route path="dettaglio" element={<Page title="Dettaglio cliente" description="Pagina di dettaglio cliente."><CustomerDetail /></Page>} />

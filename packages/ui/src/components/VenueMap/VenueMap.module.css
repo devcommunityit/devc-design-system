@@ -1,0 +1,150 @@
+.root {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--dc-venue-map-ratio, 16 / 9);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-muted);
+}
+
+.iframe {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* Stylised streets: two grids of thin lines over the muted surface, purely decorative. */
+.illustration {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 6px), var(--dc-color-surface-default) calc(50% - 6px) calc(50% + 6px), transparent calc(50% + 6px)),
+    linear-gradient(0deg, transparent calc(40% - 5px), var(--dc-color-surface-default) calc(40% - 5px) calc(40% + 5px), transparent calc(40% + 5px)),
+    repeating-linear-gradient(90deg, transparent 0 63px, var(--dc-color-border-subtle) 63px 64px),
+    repeating-linear-gradient(0deg, transparent 0 63px, var(--dc-color-border-subtle) 63px 64px),
+    var(--dc-color-surface-subtle);
+}
+
+.placeholder > :not(.consent) {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.pin {
+  inline-size: var(--dc-space-10);
+  block-size: var(--dc-space-10);
+  margin-block-end: 30%;
+  color: var(--dc-color-action-primary);
+}
+
+.consent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-2);
+  max-inline-size: min(28rem, calc(100% - 2 * var(--dc-space-3)));
+  margin-block-start: 22%;
+  padding: var(--dc-space-3) var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-raised);
+  box-shadow: var(--dc-shadow-2);
+  text-align: center;
+}
+
+.venue {
+  margin: 0;
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.note {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--dc-space-2) var(--dc-space-4);
+}
+
+.address {
+  color: var(--dc-color-text-secondary);
+  font-style: normal;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2) var(--dc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  color: var(--dc-color-text-link);
+  font-size: var(--dc-typography-body-sm-size);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.link:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Small frames: the consent box takes the whole area instead of floating under the pin. */
+@container (width < 26rem) {
+  .consent {
+    margin-block-start: 0;
+  }
+
+  .pin {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .frame,
+  .consent {
+    border-color: CanvasText;
+  }
+}

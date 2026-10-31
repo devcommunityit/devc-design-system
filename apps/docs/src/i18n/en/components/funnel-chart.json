@@ -1,0 +1,101 @@
+{
+  "source": "96ecf6030fe9",
+  "summary": "SVG funnel chart: one centered bar per stage, proportional to the first, with value and conversion rate, keyboard navigation, and an accessible data table.",
+  "whenToUse": [
+    "Showing how many people or how much value moves from one stage of a process to the next (purchase, sign-up, sales pipeline).",
+    "Spotting the stage with the biggest drop-off."
+  ],
+  "whenNotToUse": [
+    "Categories without a process order: use BarChart.",
+    "Parts of a total: use DonutChart.",
+    "Trends over time: use LineChart."
+  ],
+  "props": [
+    {
+      "name": "data",
+      "description": "Stages from top to bottom; the first is 100% conversion. Negative values count as 0."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of the values in the current locale; conversions always use Intl with style percent."
+    },
+    {
+      "name": "height",
+      "description": "Height in px of each stage (minimum 16)."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses gradients, rounded corners, and colored connectors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area, then to the table button."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Next/previous stage: highlights the stage and announces its label, value, and conversion."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last stage."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> with <figcaption>; focusable role=\"group\" area with a hint and aria-live=\"polite\" announcements.",
+    "Labels, values, and conversions are written next to each bar: color isn't needed to read the chart.",
+    "Data table with \"Value\" and \"Conversion\" columns (share of the first stage).",
+    "In forced-colors mode, bars become Canvas with a CanvasText border; the active stage has a Highlight border."
+  ],
+  "responsive": [
+    "Width measured with ResizeObserver: label and value columns take at most 30% each; long labels are truncated (full text in the active readout and the table).",
+    "Entry animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints the bars with gradients between --dc-color-data-N and --dc-color-accent-default; it falls back to flat in forced-colors mode.",
+    "Colors: --dc-color-data-1…6 (cycled, one per stage); connectors --dc-color-surface-subtle.",
+    "Stable selectors: .dc-funnel-chart-funnelChart (active stage: g[data-active]), .dc-funnel-chart-connector, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "Unordered or non-sequential stages: conversion is always calculated against the first stage.",
+    "Using increasing values: the funnel loses its meaning; use BarChart."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Currency",
+      "title": "Currency and stage height"
+    },
+    {
+      "name": "InCard",
+      "title": "In a card"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradients and colored connectors with the theme colors."
+    }
+  ],
+  "limits": [
+    "Conversion is relative to the first stage only (not between consecutive stages).",
+    "If a stage exceeds the first, widths are scaled to the maximum value.",
+    "On very narrow screens, labels and values take up to 60% of the width."
+  ]
+}

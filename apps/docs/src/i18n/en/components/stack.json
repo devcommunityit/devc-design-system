@@ -1,0 +1,70 @@
+{
+  "source": "0753e9ba13f9",
+  "summary": "Flow primitives: Stack stacks elements vertically, Inline lays them out horizontally (following the writing direction) with wrapping. Spacing always uses the token scale.",
+  "whenToUse": [
+    "Spacing adjacent elements consistently without manual margins.",
+    "Action bars, tag groups, title + action rows."
+  ],
+  "whenNotToUse": [
+    "Two-dimensional column layouts: use Grid.",
+    "To semantically group related buttons: use ButtonGroup."
+  ],
+  "props": [
+    {
+      "name": "gap",
+      "description": "Step on the spacing scale (--dc-space-N)."
+    },
+    {
+      "name": "align",
+      "description": "Alignment on the cross axis."
+    },
+    {
+      "name": "justify",
+      "description": "Distribution on the main axis."
+    },
+    {
+      "name": "wrap",
+      "description": "Inline only: wraps when there is not enough space."
+    },
+    {
+      "name": "as",
+      "description": "Rendered semantic element."
+    }
+  ],
+  "inherits": "Global HTML attributes (id, aria-*, data-*, style, className) and native events; ref to the rendered element.",
+  "keyboard": [],
+  "accessibility": [
+    "Adds no roles: semantics depend on `as`. With as=\"ul\", children must be <li>.",
+    "Visual order matches DOM order (no reordering via CSS)."
+  ],
+  "responsive": [
+    "Inline wraps by default: no horizontal overflow at 320 px.",
+    "Uses logical properties, so the order flips automatically in RTL."
+  ],
+  "customization": [
+    "Selectors: .dc-stack-stack, .dc-stack-inline; spacing lives in the local --_gap variable."
+  ],
+  "commonMistakes": [
+    "Adding margins to children to “fix” spacing: change the gap instead.",
+    "Using wrap={false} with long content on mobile."
+  ],
+  "examples": [
+    {
+      "name": "VerticalStack",
+      "title": "Vertical stack"
+    },
+    {
+      "name": "InlineWrapping",
+      "title": "Wrapping inline"
+    },
+    {
+      "name": "Justified",
+      "title": "Distributed title and action"
+    },
+    {
+      "name": "SemanticElement",
+      "title": "Semantic element (list)"
+    }
+  ],
+  "limits": []
+}

@@ -2,12 +2,15 @@
   "name": "@dev-community/docs",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -p tsconfig.json && vite build",
     "preview": "vite preview --port 4173 --strictPort",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "i18n:extract": "node scripts/i18n-components.mjs extract",
+    "i18n:check": "node scripts/i18n-components.mjs check"
   },
   "dependencies": {
     "@dev-community/ui": "^0.1.0",

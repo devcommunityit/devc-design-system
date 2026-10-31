@@ -1,0 +1,64 @@
+{
+  "source": "d43657f06703",
+  "summary": "Bar of controlled filters with saved views managed by the consumer.",
+  "whenToUse": [
+    "Placing filters and views above a table or list."
+  ],
+  "whenNotToUse": [
+    "Complex filters with many dependencies: use a dedicated form or DataTable."
+  ],
+  "props": [
+    {
+      "name": "filters",
+      "description": "Controlled filters and their options."
+    },
+    {
+      "name": "views",
+      "description": "Saved views provided by the consumer."
+    },
+    {
+      "name": "activeViewId / onViewChange",
+      "description": "Selected view and selection callback."
+    },
+    {
+      "name": "onSaveView",
+      "description": "Required to show the save command; persistence is up to the consumer."
+    },
+    {
+      "name": "onDeleteView",
+      "description": "Shows the delete command for the active view."
+    },
+    {
+      "name": "onClear",
+      "description": "Optional action to clear the filters."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / frecce",
+      "action": "Uses native select controls to choose filters and views."
+    }
+  ],
+  "accessibility": [
+    "Each select has an associated label.",
+    "Native controls keep their keyboard navigation."
+  ],
+  "responsive": [
+    "Filters wrap and take the available width on narrow screens."
+  ],
+  "customization": [
+    "Customize colors via --dc-color-* tokens and sizes with external CSS."
+  ],
+  "commonMistakes": [
+    "Don't expect automatic persistence: save views and apply their values in the consumer."
+  ],
+  "examples": [
+    {
+      "name": "SavedViews",
+      "title": "Filters and saved views"
+    }
+  ],
+  "limits": [
+    "Views and persistence are fully controlled by the consumer."
+  ]
+}

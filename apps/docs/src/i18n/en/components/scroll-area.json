@@ -1,0 +1,72 @@
+{
+  "source": "351bf0731555",
+  "summary": "Container with native scrolling and thin themed scrollbars. When the content overflows and an accessible name is present, it becomes a keyboard-focusable region.",
+  "whenToUse": [
+    "Logs, long lists in fixed-height panels, horizontal filter rows on mobile."
+  ],
+  "whenNotToUse": [
+    "For the whole page: let the document scroll.",
+    "Tables: Table and DataTable already handle horizontal overflow."
+  ],
+  "props": [
+    {
+      "name": "orientation",
+      "description": "Scroll direction."
+    },
+    {
+      "name": "maxHeight",
+      "description": "Maximum height (CSS length) beyond which it scrolls."
+    },
+    {
+      "name": "aria-label / aria-labelledby",
+      "description": "Name of the region; required for it to become focusable when it overflows."
+    }
+  ],
+  "inherits": "HTML attributes of the <div>; ref to the container.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the region (only if the content overflows)."
+    },
+    {
+      "keys": "Frecce / Pagina su-giù / Home / Fine",
+      "action": "Native browser scrolling."
+    }
+  ],
+  "accessibility": [
+    "No scrollbar emulation: scrolling stays native (touch, wheel, keyboard, assistive technologies).",
+    "The region is focusable only when needed, to avoid adding unnecessary tab stops (WCAG 2.1.1)."
+  ],
+  "responsive": [
+    "Horizontal mode prevents page-level overflow on narrow viewports."
+  ],
+  "customization": [
+    "Scrollbar color: border.strong token; selector .dc-scroll-area-scroll-area[data-orientation][data-overflowing]."
+  ],
+  "commonMistakes": [
+    "Omitting aria-label: the overflowing region would not be reachable by keyboard."
+  ],
+  "examples": [
+    {
+      "name": "VerticalLog",
+      "title": "Vertical log"
+    },
+    {
+      "name": "Horizontal",
+      "title": "Horizontal scrolling"
+    },
+    {
+      "name": "DynamicContent",
+      "title": "Growing content",
+      "description": "Comments are added with a button: the area becomes focusable only when the content overflows."
+    },
+    {
+      "name": "BothDirections",
+      "title": "Scrolling in both directions",
+      "description": "Wide, tall grid with orientation=\"both\" and a maximum height."
+    }
+  ],
+  "limits": [
+    "Overflow detection uses ResizeObserver; without it, measurement happens only on mount and when children change."
+  ]
+}

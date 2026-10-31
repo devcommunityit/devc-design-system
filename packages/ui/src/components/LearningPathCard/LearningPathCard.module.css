@@ -1,0 +1,182 @@
+.path {
+  --_tile: var(--dc-gradient-accent);
+  --_tile-bg: var(--dc-color-action-primary);
+  --_tile-fg: var(--dc-color-action-primary-foreground);
+
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+  transition:
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    translate var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.path[data-tone='accent'] {
+  --_tile: linear-gradient(in oklch 115deg, var(--dc-color-accent-default), var(--dc-color-action-primary));
+  --_tile-bg: var(--dc-color-accent-default);
+}
+
+.path[data-tone='subtle'] {
+  --_tile: var(--dc-gradient-accent-subtle);
+  --_tile-bg: var(--dc-color-action-secondary);
+  --_tile-fg: var(--dc-color-action-secondary-foreground);
+}
+
+.path[data-tone='neutral'] {
+  --_tile: none;
+  --_tile-bg: var(--dc-color-surface-muted);
+  --_tile-fg: var(--dc-color-text-secondary);
+}
+
+.path[data-linked]:hover {
+  border-color: var(--dc-color-border-strong);
+  box-shadow: var(--dc-look-shadow-primary);
+  translate: 0 calc(var(--dc-space-1) * -0.5);
+}
+
+.path:has(.link:focus-visible) {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 2.875rem;
+  block-size: 2.875rem;
+  border-radius: var(--dc-radius-md);
+  background-color: var(--_tile-bg);
+  background-image: var(--_tile);
+  color: var(--_tile-fg);
+  box-shadow: var(--dc-look-shadow-primary);
+}
+
+.icon > svg {
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+}
+
+.new {
+  margin-inline-start: auto;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.description > :where(p) {
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1-5) var(--dc-space-3);
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1-5);
+  margin-block-start: auto;
+}
+
+.progressText {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  margin-block-start: auto;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.progress + .footer {
+  margin-block-start: 0;
+}
+
+/* Interactive content stays clickable above the stretched title link. */
+.footer :where(a, button, input, select, textarea, [tabindex]) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path {
+    transition: none;
+  }
+
+  .path[data-linked]:hover {
+    translate: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .path {
+    border-color: CanvasText;
+  }
+
+  .icon {
+    border: var(--dc-border-width-thin) solid CanvasText;
+  }
+
+  .path:has(.link:focus-visible) {
+    outline-color: Highlight;
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "source": "cef09937b7ac",
+  "summary": "Inline micro-chart (line or area) to show a trend next to a number; the accessible name summarizes first, last, minimum, and maximum.",
+  "whenToUse": [
+    "Compact trend inside KPIs, tables, or cards.",
+    "When the shape of the trend matters more than individual values."
+  ],
+  "whenNotToUse": [
+    "When you need axes, individual values, or multiple series: use LineChart.",
+    "As the only carrier of important data: always show the value as text too."
+  ],
+  "props": [
+    {
+      "name": "data",
+      "description": "Values in order; non-finite values leave a gap."
+    },
+    {
+      "name": "label",
+      "description": "What the data represents; becomes the accessible name together with the localized summary."
+    },
+    {
+      "name": "variant",
+      "description": "Line only or line with area."
+    },
+    {
+      "name": "width",
+      "description": "Width in px (never wider than the container)."
+    },
+    {
+      "name": "height",
+      "description": "Height in px."
+    },
+    {
+      "name": "colorIndex",
+      "description": "Data color index (--dc-color-data-N, cyclic)."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value format in the accessible summary."
+    }
+  ],
+  "inherits": "SVG attributes of the <svg> (className, style, data-*, aria-*…); the ref points to the <svg>.",
+  "keyboard": [],
+  "accessibility": [
+    "role=\"img\" with aria-label \"<label>: From <first> to <last>; minimum <min>, maximum <max>.\" (chartSummary message, localized, numbers formatted with Intl).",
+    "It is not focusable and has no interactions: the current value must also be shown as text.",
+    "In forced-colors mode the line and end point use CanvasText."
+  ],
+  "responsive": [
+    "max-inline-size: 100% and proportional height: it shrinks in narrow containers."
+  ],
+  "customization": [
+    "Color: colorIndex or the --_series variable on the element.",
+    "Stable selectors: .dc-sparkline-sparkline[data-variant], .dc-chart-line, .dc-chart-area."
+  ],
+  "commonMistakes": [
+    "Using a generic label such as \"chart\": describe the metric and the period.",
+    "Relying on the sparkline alone for data the user needs to read precisely."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Area",
+      "title": "Area and currency"
+    },
+    {
+      "name": "Colors",
+      "title": "Data colors"
+    },
+    {
+      "name": "InCard",
+      "title": "In a KPI"
+    }
+  ],
+  "limits": [
+    "A single series, no axes or interaction."
+  ]
+}

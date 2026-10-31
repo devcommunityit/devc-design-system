@@ -1,0 +1,7 @@
+.poll {
+  min-inline-size: 0;
+}
+
+.options {
+  inline-size: 100%;
+}

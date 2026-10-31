@@ -59,3 +59,20 @@ export function NegativeValues() {
     />
   );
 }
+
+export function Vivid() {
+  return (
+    <BarChart
+      appearance="vivid"
+      title="Ricavi per area"
+      description="Migliaia di euro"
+      categories={quarters}
+      series={[
+        { id: 'north', label: 'Nord', data: [120, 135, 150, 170] },
+        { id: 'center', label: 'Centro', data: [90, 95, 110, 105] },
+        { id: 'south', label: 'Sud', data: [60, 72, 80, 96] },
+      ]}
+      formatOptions={{ style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }}
+    />
+  );
+}

@@ -1,0 +1,16 @@
+.table {
+  min-inline-size: 32rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(tr, td)[data-kind='added'] {
+  background: var(--dc-color-feedback-success-surface);
+}
+
+.table :is(tr, td)[data-kind='removed'] {
+  background: var(--dc-color-feedback-danger-surface);
+}
+
+.line {
+  white-space: pre;
+}

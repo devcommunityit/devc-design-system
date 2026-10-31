@@ -1,0 +1,64 @@
+{
+  "source": "d1f876314dd0",
+  "summary": "Shows the current count of consecutive days and, optionally, the personal best.",
+  "whenToUse": [
+    "Showing a daily streak or a record already calculated by the application."
+  ],
+  "whenNotToUse": [
+    "Calculating, incrementing, or persisting an activity streak."
+  ],
+  "props": [
+    {
+      "name": "days",
+      "description": "Current number of consecutive days."
+    },
+    {
+      "name": "label",
+      "description": "Accessible title of the count."
+    },
+    {
+      "name": "dayLabel / daysLabel",
+      "description": "Localizable singular and plural labels."
+    },
+    {
+      "name": "longestStreak",
+      "description": "Optional personal best."
+    },
+    {
+      "name": "longestLabel",
+      "description": "Localizable label for the record."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [],
+  "accessibility": [
+    "The title is a heading and the counts are visible text, not conveyed by color or icon alone.",
+    "Numbers are formatted according to the active locale; singular/plural labels are configurable."
+  ],
+  "responsive": [
+    "The container shrinks to its parent and the values stay readable."
+  ],
+  "customization": [
+    "Uses --dc-* tokens; className and HTML attributes are forwarded to the section."
+  ],
+  "commonMistakes": [
+    "Using the component to track events or manage a streak: values are provided by the application."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Streak and record"
+    },
+    {
+      "name": "SingularAndZero",
+      "title": "Singular and zero"
+    }
+  ],
+  "limits": [
+    "Does not track, calculate, or persist streaks."
+  ]
+}

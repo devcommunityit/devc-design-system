@@ -1,0 +1,91 @@
+{
+  "source": "61264153dc4d",
+  "summary": "Short text description shown on mouse hover or keyboard focus.",
+  "whenToUse": [
+    "Clarifying what a control does, especially icon buttons.",
+    "Showing keyboard shortcuts."
+  ],
+  "whenNotToUse": [
+    "Essential information or interactive content: use Popover or visible text.",
+    "As the only channel on touch devices: the tooltip does not appear on tap."
+  ],
+  "props": [
+    {
+      "name": "content",
+      "description": "Tooltip text (non-interactive)."
+    },
+    {
+      "name": "children",
+      "description": "Focusable trigger from the library (Button, IconButton, Link…) or wrapped in react-aria's Focusable."
+    },
+    {
+      "name": "placement",
+      "description": "Preferred placement; flips when there is not enough space."
+    },
+    {
+      "name": "delay",
+      "description": "Opening delay on mouse hover (ms). Keyboard focus opens it immediately."
+    },
+    {
+      "name": "showArrow",
+      "description": "Shows the arrow pointing to the trigger."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled state."
+    }
+  ],
+  "inherits": "Props of react-aria-components TooltipTrigger.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Focusing the trigger shows the tooltip."
+    },
+    {
+      "keys": "Escape",
+      "action": "Hides the tooltip without moving focus."
+    }
+  ],
+  "accessibility": [
+    "Linked to the trigger with aria-describedby: it supplements, not replaces, the accessible name.",
+    "Dismissible with Escape without moving focus (WCAG 1.4.13); content must stay short.",
+    "Rendered in the portal of the originating ThemeProvider."
+  ],
+  "responsive": [
+    "Limited maximum width; text wraps automatically."
+  ],
+  "customization": [
+    "className on Tooltip; TooltipContent for custom compositions with TooltipTrigger."
+  ],
+  "commonMistakes": [
+    "Using a <span> as the trigger: it is not focusable.",
+    "Putting links or buttons inside the tooltip."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Placements",
+      "title": "Placement (logical, RTL-aware)"
+    },
+    {
+      "name": "IconToolbar",
+      "title": "Icon button bar"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled state and immediate opening",
+      "description": "isOpen + onOpenChange with delay={0}; the content changes after the button action."
+    },
+    {
+      "name": "Variants",
+      "title": "Long text, no arrow, and disabled",
+      "description": "Shortcut in the text, long wrapping content, showArrow={false}, and isDisabled controlled by a Switch. The information is also available as visible text."
+    }
+  ],
+  "limits": [
+    "Not available on touch (intentional behavior of the pattern)."
+  ]
+}

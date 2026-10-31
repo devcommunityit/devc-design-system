@@ -1,0 +1,102 @@
+{
+  "source": "b85559b10281",
+  "summary": "Switches between related panels in the same context without changing page.",
+  "whenToUse": [
+    "Alternative views of the same object (overview, activity, settings).",
+    "Parallel content that users do not need to compare at the same time."
+  ],
+  "whenNotToUse": [
+    "Navigation between pages with different URLs: use NavigationMenu or links.",
+    "Sequential steps: use Stepper.",
+    "Filters or view switching: use ToggleGroup."
+  ],
+  "props": [
+    {
+      "name": "selectedKey / defaultSelectedKey",
+      "description": "Selected tab (controlled / initial)."
+    },
+    {
+      "name": "onSelectionChange",
+      "description": "Tab change."
+    },
+    {
+      "name": "variant",
+      "description": "Underline indicator or filled segment."
+    },
+    {
+      "name": "orientation",
+      "description": "Layout of the TabList."
+    },
+    {
+      "name": "keyboardActivation",
+      "description": "Manual: arrow keys only move focus, Enter/Space activate."
+    },
+    {
+      "name": "fullWidth",
+      "description": "Tabs take up the full width."
+    },
+    {
+      "name": "Tab: icon / badge",
+      "description": "Decorative icon and trailing content (e.g. Badge)."
+    },
+    {
+      "name": "Tab: isDisabled",
+      "description": "Non-selectable tab, skipped by the arrow keys."
+    }
+  ],
+  "inherits": "Props of react-aria-components Tabs, TabList, Tab, TabPanel.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Enters the TabList on the selected tab, then moves to the panel."
+    },
+    {
+      "keys": "Frecce sinistra/destra (su/giù se verticale)",
+      "action": "Previous/next tab; in RTL the direction is reversed."
+    },
+    {
+      "keys": "Home / End",
+      "action": "First / last tab."
+    },
+    {
+      "keys": "Enter / Space",
+      "action": "Activates the tab (in manual mode)."
+    }
+  ],
+  "accessibility": [
+    "APG Tabs pattern: tablist, tab with aria-selected, tabpanel with aria-labelledby.",
+    "The TabList needs an aria-label if there is no visible heading.",
+    "The panel is focusable only if it contains no interactive elements."
+  ],
+  "responsive": [
+    "The TabList scrolls horizontally with local overflow: no page-level scrolling.",
+    "On mobile, prefer the line variant with short labels."
+  ],
+  "customization": [
+    "Indicator: text.link color; pill: surface.muted and surface.raised.",
+    "Selectors: .dc-tabs-tab[data-selected], [data-focus-visible], [data-disabled]."
+  ],
+  "commonMistakes": [
+    "Using Tabs as page navigation with URLs: use links with aria-current.",
+    "Mismatched ids between Tab and TabPanel."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "PillWithIcons",
+      "title": "Pill with icons and badges"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with manual activation"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    }
+  ],
+  "limits": []
+}

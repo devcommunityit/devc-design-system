@@ -1,0 +1,87 @@
+{
+  "source": "6fba1d3ca3e3",
+  "summary": "Hero announcement pill: a gradient-highlighted label (“New”), short text and an arrow. Becomes a link with href, a button with onPress, and static text otherwise.",
+  "whenToUse": [
+    "Announcing news above a hero title (call for speakers, new release, event).",
+    "Linking in one click to a page with more details."
+  ],
+  "whenNotToUse": [
+    "System messages or persistent warnings: use Banner or Alert.",
+    "Status labels in tables or cards: use Badge."
+  ],
+  "props": [
+    {
+      "name": "children",
+      "description": "Announcement text."
+    },
+    {
+      "name": "badge",
+      "description": "Highlighted label; null to hide it."
+    },
+    {
+      "name": "href",
+      "description": "Destination: renders an <a href> (React Aria Link, with target, rel, routing)."
+    },
+    {
+      "name": "onPress",
+      "description": "Action: renders a <button>. Ignored when href is present."
+    },
+    {
+      "name": "tone",
+      "description": "brand for light surfaces; inverse (glass effect, inherits the text color) for dark heroes."
+    },
+    {
+      "name": "showArrow",
+      "description": "Trailing arrow (mirrored in RTL)."
+    }
+  ],
+  "inherits": "Props of React Aria Link (with href), Button (with onPress) or HTML attributes of <span>; ref to the root element.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the pill when it is a link or button."
+    },
+    {
+      "keys": "Enter",
+      "action": "Follows the link or triggers the action."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Triggers the action (button only)."
+    }
+  ],
+  "accessibility": [
+    "The accessible name is the visible text: label + announcement (e.g. “New Call for Speakers 2027 open”).",
+    "The arrow is decorative (aria-hidden).",
+    "Visible focus ring with --dc-color-focus-ring; in forced-colors mode a CanvasText border and LinkText text when interactive."
+  ],
+  "responsive": [
+    "Text wraps inside the pill in narrow containers; the maximum width is 100% of the container."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent and --dc-color-action-primary-foreground for the label, --dc-color-surface-brand for tone=\"brand\".",
+    "Stable selectors: .dc-announcement-pill-pill[data-tone][data-interactive], .dc-announcement-pill-badge, .dc-announcement-pill-arrow."
+  ],
+  "commonMistakes": [
+    "Long text: the pill is meant for a single line; details belong on the linked page.",
+    "Using tone=\"brand\" on a dark hero: use inverse."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Link"
+    },
+    {
+      "name": "Inverse",
+      "title": "On a dark hero",
+      "description": "Inverse tone with glass effect."
+    },
+    {
+      "name": "Static",
+      "title": "Static, custom label"
+    }
+  ],
+  "limits": [
+    "Only one highlighted label per pill."
+  ]
+}

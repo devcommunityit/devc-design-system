@@ -1,0 +1,77 @@
+{
+  "source": "1fde9c5f151d",
+  "summary": "Chart legend: a color key with dash pattern/marker or texture, an optional value, and, if needed, buttons to show/hide series.",
+  "whenToUse": [
+    "Already included in LineChart, BarChart, and DonutChart; use it on its own for custom visualizations that use the same data colors.",
+    "Filtering visible series with toggle buttons (isToggleable)."
+  ],
+  "whenNotToUse": [
+    "For complex filters or multi-selection across many items: use Checkbox or a ToggleButtonGroup.",
+    "To label a single value: write the text directly."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Items; colorIndex (0-based) selects the --dc-color-data-N color, dash pattern, marker, and texture."
+    },
+    {
+      "name": "swatch",
+      "description": "Line key with marker (line charts) or square with texture (bars, slices)."
+    },
+    {
+      "name": "isToggleable",
+      "description": "Each item becomes a <button> with aria-pressed (pressed = series visible)."
+    },
+    {
+      "name": "hiddenItems / defaultHiddenItems",
+      "description": "Ids of the hidden items (controlled / uncontrolled)."
+    },
+    {
+      "name": "onHiddenItemsChange",
+      "description": "Called on every toggle."
+    }
+  ],
+  "inherits": "HTML attributes of <ul>; the ref points to the list.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus between the legend buttons (only with isToggleable)."
+    },
+    {
+      "keys": "Enter / Spazio",
+      "action": "Shows or hides the series."
+    }
+  ],
+  "accessibility": [
+    "Semantic <ul>/<li> list; the graphic keys are decorative (aria-hidden) and the name is the item text.",
+    "Toggles are real <button> elements with aria-pressed; the hidden state is visible without color too (strikethrough text, dashed border, dimmed key).",
+    "Button targets ≥ 24 px (density sm control height)."
+  ],
+  "responsive": [
+    "Items wrap and long labels break across lines."
+  ],
+  "customization": [
+    "Stable selectors: .dc-chart-legend-legend[data-toggleable], .dc-chart-legend-item[data-hidden], .dc-chart-legend-button."
+  ],
+  "commonMistakes": [
+    "Using colorIndex values different from those of the associated chart: the legend no longer matches the data.",
+    "Hiding all series without an obvious way to restore them."
+  ],
+  "examples": [
+    {
+      "name": "Static",
+      "title": "Static"
+    },
+    {
+      "name": "WithValues",
+      "title": "With values"
+    },
+    {
+      "name": "Toggleable",
+      "title": "Controlled toggles"
+    }
+  ],
+  "limits": [
+    "aria-pressed means \"series visible\": the meaning is implied by the chart context, not announced with dedicated text."
+  ]
+}

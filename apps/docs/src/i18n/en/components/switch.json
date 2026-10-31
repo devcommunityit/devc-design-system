@@ -1,0 +1,87 @@
+{
+  "source": "32d1c66170e9",
+  "summary": "On/off toggle for settings that take effect immediately, with an optional description and the label before or after the track.",
+  "whenToUse": [
+    "Preferences applied immediately (notifications, modes).",
+    "Settings lists."
+  ],
+  "whenNotToUse": [
+    "Choices confirmed with a “Save” button: use Checkbox.",
+    "More than two states: use RadioGroup or ToggleGroup."
+  ],
+  "props": [
+    {
+      "name": "children",
+      "description": "Label."
+    },
+    {
+      "name": "isSelected / defaultSelected",
+      "description": "Controlled or uncontrolled state."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives the new state."
+    },
+    {
+      "name": "description",
+      "description": "Linked help text."
+    },
+    {
+      "name": "labelPosition",
+      "description": "start: label on the left (right in RTL) and switch aligned to the end, for settings lists."
+    },
+    {
+      "name": "isDisabled / isReadOnly",
+      "description": "Control states."
+    },
+    {
+      "name": "name / value",
+      "description": "Form submission (like a checkbox)."
+    }
+  ],
+  "inherits": "Props of react-aria-components SwitchField.",
+  "keyboard": [
+    {
+      "keys": "Spazio",
+      "action": "Toggles on or off."
+    },
+    {
+      "keys": "Tab",
+      "action": "Moves focus."
+    }
+  ],
+  "accessibility": [
+    "role=\"switch\" on a native input; the state is announced as on/off.",
+    "The thumb position and fill indicate the state, in addition to color; in forced-colors mode it uses system colors.",
+    "Animation disabled with prefers-reduced-motion."
+  ],
+  "responsive": [
+    "With labelPosition=\"start\", a long label wraps without moving the switch."
+  ],
+  "customization": [
+    "Colors from color.action.primary and color.border.strong; sizes from the density token."
+  ],
+  "commonMistakes": [
+    "Requiring a “Save” after a Switch: it is confusing, use Checkbox.",
+    "Labels that describe the state (“On”) instead of the function (“Notifications”)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "SettingsList",
+      "title": "Settings list"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

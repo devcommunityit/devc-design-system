@@ -1,0 +1,72 @@
+{
+  "source": "403aa5940b74",
+  "summary": "Short, non-interactive label for statuses, categories or counts.",
+  "whenToUse": [
+    "Status of an item (Paid, Overdue).",
+    "Counts next to tabs or menu items."
+  ],
+  "whenNotToUse": [
+    "Removable or selectable items: use Tag.",
+    "Messages that require action: use Alert or Banner."
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "description": "Semantic role of the color."
+    },
+    {
+      "name": "variant",
+      "description": "Visual emphasis."
+    },
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative leading icon."
+    },
+    {
+      "name": "dot",
+      "description": "Decorative status dot."
+    }
+  ],
+  "inherits": "HTML attributes of <span>.",
+  "keyboard": [],
+  "accessibility": [
+    "Neither focusable nor interactive.",
+    "The meaning must be in the text: color, dot and icon are decorative.",
+    "For a standalone count, add context (e.g. an aria-label on the container or hidden text: “4 notifications”)."
+  ],
+  "responsive": [
+    "Single-line text with an ellipsis when space is insufficient."
+  ],
+  "customization": [
+    "Colors: feedback-*-surface/-foreground/-border; selectors .dc-badge-badge[data-tone][data-variant]."
+  ],
+  "commonMistakes": [
+    "Using color alone to distinguish statuses.",
+    "Making a Badge clickable: use Button or Tag."
+  ],
+  "examples": [
+    {
+      "name": "Tones",
+      "title": "Tones"
+    },
+    {
+      "name": "Variants",
+      "title": "Variants, dot and icon"
+    },
+    {
+      "name": "SizesAndLongLabels",
+      "title": "Sizes, long text and languages",
+      "description": "sm/md comparison, a long label that wraps, and English text marked with lang=\"en\"."
+    },
+    {
+      "name": "LiveCount",
+      "title": "Controlled counter",
+      "description": "The count lives in the example's state: tone and the “99+” format change with the value."
+    }
+  ],
+  "limits": []
+}

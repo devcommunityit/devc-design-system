@@ -1,0 +1,79 @@
+{
+  "source": "a830e12edbf2",
+  "summary": "Navigation between pages of results with current page, previous/next and ellipses.",
+  "whenToUse": [
+    "Long lists where users want to return to a specific position.",
+    "Server-side paginated results."
+  ],
+  "whenNotToUse": [
+    "Continuous feeds: consider “Show more”.",
+    "A few items that fit on one page."
+  ],
+  "props": [
+    {
+      "name": "totalPages",
+      "description": "Number of pages."
+    },
+    {
+      "name": "page / defaultPage",
+      "description": "Controlled / initial current page (1-based)."
+    },
+    {
+      "name": "onPageChange",
+      "description": "Page change request."
+    },
+    {
+      "name": "siblingCount",
+      "description": "Neighboring pages shown around the current one."
+    },
+    {
+      "name": "showFirstLast",
+      "description": "First/last page buttons."
+    },
+    {
+      "name": "getPageHref",
+      "description": "Renders real links (SEO, opening in a new tab)."
+    },
+    {
+      "name": "size",
+      "description": "Size of the controls."
+    }
+  ],
+  "inherits": "HTML attributes of <nav>.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter / Space",
+      "action": "Each page is a standard button or link."
+    }
+  ],
+  "accessibility": [
+    "nav landmark with a translatable name.",
+    "Current page with aria-current=\"page\".",
+    "Every control has a full name (“Pagina 3”, “Pagina successiva”); ellipses are hidden."
+  ],
+  "responsive": [
+    "Below a 420 px container only previous/next and “Pagina x di y” remain (container query)."
+  ],
+  "customization": [
+    "Current page: action.secondary and border.selected."
+  ],
+  "commonMistakes": [
+    "Passing an out-of-range page: it gets clamped, but fix the consumer state.",
+    "Forgetting to move focus/scroll back to the top of the list after a page change."
+  ],
+  "examples": [
+    {
+      "name": "Uncontrolled",
+      "title": "Uncontrolled"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with first/last"
+    },
+    {
+      "name": "WithLinks",
+      "title": "With links"
+    }
+  ],
+  "limits": []
+}

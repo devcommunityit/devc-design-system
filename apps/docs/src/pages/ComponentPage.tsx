@@ -2,6 +2,7 @@ import { Suspense, use, useState } from "react";
 import { useParams } from "react-router";
 import { BookOpen, CheckCircle2, ExternalLink } from "lucide-react";
 import {
+  Alert,
   Badge,
   Breadcrumb,
   BreadcrumbItem,
@@ -24,6 +25,7 @@ import {
 import {
   CATEGORY_LABELS,
   CATEGORY_ORDER,
+  categoryLabel,
   components,
   findComponent,
   isComponent,
@@ -44,10 +46,14 @@ import {
 import { HAS_STORYBOOK, STORYBOOK_PATH } from "../base";
 import { PageMeta } from "../components/PageMeta";
 import { NotFound } from "./NotFound";
+import { useI18n } from "../settings";
+import { loadEnglishOverlays, localizeDoc } from "../i18n/componentDocs";
+import type { Messages } from "../i18n/messages";
 
 function Bullets({ items }: { items: string[] }) {
+  const { t } = useI18n();
   if (items.length === 0)
-    return <Text tone="secondary">Nessuna nota specifica.</Text>;
+    return <Text tone="secondary">{t.component.noNotes}</Text>;
   return (
     <List>
       {items.map((item) => (
@@ -72,18 +78,23 @@ const ORDERED = CATEGORY_ORDER.flatMap((category) =>
   components.filter((c) => c.doc.category === category),
 );
 
+/** Section anchors stay the Italian slugs in every language, so shared links keep working. */
 const SECTIONS = [
-  "Quando usarlo",
-  "Import",
-  "Esempi",
-  "Props",
-  "Tastiera",
-  "Accessibilità",
-  "Comportamento responsive",
-  "Personalizzazione",
-  "Errori comuni",
-  "Stato e limiti",
-];
+  ["usage", "Quando usarlo"],
+  ["import", "Import"],
+  ["examples", "Esempi"],
+  ["props", "Props"],
+  ["keyboard", "Tastiera"],
+  ["accessibility", "Accessibilità"],
+  ["responsive", "Comportamento responsive"],
+  ["customization", "Personalizzazione"],
+  ["mistakes", "Errori comuni"],
+  ["status", "Stato e limiti"],
+] as const satisfies ReadonlyArray<readonly [keyof Messages["component"]["sections"], string]>;
+
+const SECTION_ID = Object.fromEntries(
+  SECTIONS.map(([key, title]) => [key, slugify(title)]),
+) as Record<(typeof SECTIONS)[number][0], string>;
 
 function ExampleView({
   entry,
@@ -98,17 +109,18 @@ function ExampleView({
   description?: string;
   minimal: boolean;
 }) {
+  const { t } = useI18n();
   const [tab, setTab] = useState<"preview" | "code">("preview");
   const key = entry.examplesKey;
-  if (!key) return <Text tone="secondary">Nessun esempio disponibile.</Text>;
+  if (!key) return <Text tone="secondary">{t.component.noExamples}</Text>;
   const { module, source } = use(loadExamples(key));
   const Example = module[name];
   if (!isComponent(Example))
-    return <LoadError error={new Error(`Esempio "${name}" non trovato`)} />;
+    return <LoadError error={new Error(t.component.exampleNotFound(name))} />;
   const id = `esempio-${name.toLowerCase()}`;
   return (
     <DocSection
-      title={minimal ? `Esempio minimo: ${title}` : title}
+      title={minimal ? t.component.minimalExample(title) : title}
       id={id}
       level={3}
     >
@@ -118,9 +130,9 @@ function ExampleView({
         onSelectionChange={(k) => setTab(k === "code" ? "code" : "preview")}
         className="docs-example"
       >
-        <TabList aria-label={`${title}: anteprima o codice`}>
-          <Tab id="preview">Anteprima</Tab>
-          <Tab id="code">Codice</Tab>
+        <TabList aria-label={t.component.previewOrCode(title)}>
+          <Tab id="preview">{t.component.preview}</Tab>
+          <Tab id="code">{t.component.code}</Tab>
         </TabList>
         <TabPanel id="preview" className="docs-example-preview">
           <ErrorBoundary fallback={(error) => <LoadError error={error} />}>
@@ -134,12 +146,12 @@ function ExampleView({
               href={`${STORYBOOK_PATH}?path=/story/${storyId(CATEGORY_LABELS[entry.doc.category], entry.doc.name, name)}`}
               variant="standalone"
             >
-              <BookOpen aria-hidden="true" size={14} /> Apri “{title}” in
-              Storybook
+              <BookOpen aria-hidden="true" size={14} />{" "}
+              {t.component.openStorybook(title)}
             </Link>
           ) : null}
           <Collapsible
-            title="File completo degli esempi"
+            title={t.component.fullSource}
             className="docs-full-source"
           >
             <Code>{source}</Code>
@@ -152,42 +164,52 @@ function ExampleView({
 
 export function ComponentPage() {
   const { slug } = useParams();
+  const { lang, t } = useI18n();
   const entry = findComponent(slug);
+  // Suspends once (DocsLayout's Suspense) while the English overlays load.
+  const overlays = lang === "en" ? use(loadEnglishOverlays()) : undefined;
   if (!entry) return <NotFound />;
-  const { doc } = entry;
+  const overlay = overlays?.[entry.doc.slug];
+  const doc = localizeDoc(entry.doc, overlay);
+  const c = t.component;
+  const isPattern = doc.category === "patterns";
   const index = ORDERED.indexOf(entry);
   const prev = index > 0 ? ORDERED[index - 1] : undefined;
   const next = index >= 0 ? ORDERED[index + 1] : undefined;
-  const toc: TocItem[] = SECTIONS.map((title) => ({
-    id: slugify(title),
-    label: title,
+  const toc: TocItem[] = SECTIONS.map(([key]) => ({
+    id: SECTION_ID[key],
+    label: c.sections[key],
     children:
-      title === "Esempi"
+      key === "examples"
         ? doc.examples.map((ex, i) => ({
             id: `esempio-${ex.name.toLowerCase()}`,
-            label: i === 0 ? `Esempio minimo: ${ex.title}` : ex.title,
+            label: i === 0 ? c.minimalExample(ex.title) : ex.title,
           }))
         : undefined,
   }));
-  const importLine = `import { ${doc.exports.join(", ")} } from '@dev-community/ui';`;
+  const importLine = `import { ${doc.exports.join(", ")} } from '@dev-community/ui${doc.entry ? `/${doc.entry}` : ""}';`;
 
   return (
     <article className="docs-article docs-article--toc">
       <PageMeta title={doc.name} description={doc.summary} />
       <div className="docs-article-head">
         <Breadcrumb>
-          <BreadcrumbItem href="/">Documentazione</BreadcrumbItem>
-          <BreadcrumbItem href="/componenti">Componenti</BreadcrumbItem>
+          <BreadcrumbItem href="/">{t.site.docs}</BreadcrumbItem>
+          {isPattern ? (
+            <BreadcrumbItem href="/pattern">{t.areas.patterns}</BreadcrumbItem>
+          ) : (
+            <BreadcrumbItem href="/componenti">{t.areas.components}</BreadcrumbItem>
+          )}
           <BreadcrumbItem>{doc.name}</BreadcrumbItem>
         </Breadcrumb>
         <header className="docs-page-header">
           <Inline gap={2} align="center" wrap>
             <Badge tone="brand" variant="soft">
-              {CATEGORY_LABELS[doc.category]}
+              {categoryLabel(doc.category, lang)}
             </Badge>
             {doc.status.tests.length > 0 ? (
               <Badge tone="success" variant="soft" icon={<CheckCircle2 />}>
-                Testato
+                {c.tested}
               </Badge>
             ) : null}
           </Inline>
@@ -195,39 +217,47 @@ export function ComponentPage() {
           <Text variant="body-lg" tone="secondary">
             {doc.summary}
           </Text>
+          {lang === "en" && !overlay ? (
+            <Alert tone="info">{c.fallback}</Alert>
+          ) : null}
         </header>
       </div>
 
       <PageToc items={toc} />
 
       <div className="docs-article-body">
-        <DocSection title="Quando usarlo">
+        <DocSection title={c.sections.usage} id={SECTION_ID.usage}>
           <div className="docs-two-col">
             <div>
               <Heading level={3} size="title-sm">
-                Usalo per
+                {c.useFor}
               </Heading>
               <Bullets items={doc.whenToUse} />
             </div>
             <div>
               <Heading level={3} size="title-sm">
-                Evitalo per
+                {c.avoidFor}
               </Heading>
               <Bullets items={doc.whenNotToUse} />
             </div>
           </div>
         </DocSection>
 
-        <DocSection title="Import">
+        <DocSection title={c.sections.import} id={SECTION_ID.import}>
           <Code language="ts">{importLine}</Code>
           <Text variant="body-sm" tone="secondary">
-            Gli stili sono inclusi in{" "}
-            <InlineCode>@dev-community/ui/styles.css</InlineCode>, da importare
-            una sola volta nell’applicazione.
+            {c.stylesNote[0]}
+            <InlineCode>@dev-community/ui/styles.css</InlineCode>
+            {c.stylesNote[1]}
           </Text>
         </DocSection>
 
-        <DocSection title="Esempi">
+        <DocSection title={c.sections.examples} id={SECTION_ID.examples}>
+          {lang === "en" ? (
+            <Text variant="body-sm" tone="secondary">
+              {c.examplesLanguage}
+            </Text>
+          ) : null}
           <Suspense fallback={<Skeleton height="240px" />}>
             <ErrorBoundary fallback={(error) => <LoadError error={error} />}>
               <Stack gap={8}>
@@ -246,11 +276,11 @@ export function ComponentPage() {
           </Suspense>
         </DocSection>
 
-        <DocSection title="Props">
+        <DocSection title={c.sections.props} id={SECTION_ID.props}>
           {doc.props.length > 0 ? (
             <RefTable
-              label={`Props di ${doc.name}`}
-              columns={["Prop", "Tipo", "Default", "Descrizione"]}
+              label={c.propsOf(doc.name)}
+              columns={c.propColumns}
               rows={doc.props.map((p) => [
                 <InlineCode key="n">
                   {p.required ? `${p.name}*` : p.name}
@@ -261,85 +291,80 @@ export function ComponentPage() {
               ])}
             />
           ) : (
-            <Text tone="secondary">
-              Nessuna prop specifica oltre a quelle ereditate.
-            </Text>
+            <Text tone="secondary">{c.noProps}</Text>
           )}
           {doc.props.some((p) => p.required) ? (
             <Text variant="body-sm" tone="secondary">
-              * obbligatoria
+              {c.required}
             </Text>
           ) : null}
           {doc.inherits ? (
             <Text variant="body-sm" tone="secondary">
-              Inoltre: {doc.inherits}
+              {c.inherits} {doc.inherits}
             </Text>
           ) : null}
         </DocSection>
 
-        <DocSection title="Tastiera">
+        <DocSection title={c.sections.keyboard} id={SECTION_ID.keyboard}>
           {doc.keyboard.length > 0 ? (
             <RefTable
-              label={`Interazioni da tastiera di ${doc.name}`}
-              columns={["Tasti", "Azione"]}
+              label={c.keyboardOf(doc.name)}
+              columns={c.keyboardColumns}
               rows={doc.keyboard.map((k) => [
                 <Kbd key="k">{k.keys}</Kbd>,
                 k.action,
               ])}
             />
           ) : (
-            <Text tone="secondary">
-              Nessuna interazione da tastiera propria: il componente non è
-              interattivo o usa elementi nativi.
-            </Text>
+            <Text tone="secondary">{c.noKeyboard}</Text>
           )}
         </DocSection>
 
-        <DocSection title="Accessibilità">
+        <DocSection title={c.sections.accessibility} id={SECTION_ID.accessibility}>
           <Bullets items={doc.accessibility} />
           {doc.apg ? (
             <Link href={doc.apg} external>
-              Pattern WAI-ARIA APG di riferimento{" "}
+              {c.apg}{" "}
               <ExternalLink aria-hidden="true" size={14} />
             </Link>
           ) : null}
         </DocSection>
 
-        <DocSection title="Comportamento responsive">
+        <DocSection title={c.sections.responsive} id={SECTION_ID.responsive}>
           <Bullets items={doc.responsive} />
         </DocSection>
 
-        <DocSection title="Personalizzazione">
+        <DocSection title={c.sections.customization} id={SECTION_ID.customization}>
           <Bullets items={doc.customization} />
         </DocSection>
 
-        <DocSection title="Errori comuni">
+        <DocSection title={c.sections.mistakes} id={SECTION_ID.mistakes}>
           <Bullets items={doc.commonMistakes} />
         </DocSection>
 
-        <DocSection title="Stato e limiti">
+        <DocSection title={c.sections.status} id={SECTION_ID.status}>
           <RefTable
-            label={`Stato di ${doc.name}`}
-            columns={["Aspetto", "Stato"]}
+            label={c.statusOf(doc.name)}
+            columns={c.statusColumns}
             rows={[
-              ["Implementato", doc.status.implemented ? "Sì" : "No"],
-              ["Documentato", doc.status.documented ? "Sì" : "No"],
+              [c.implemented, doc.status.implemented ? c.yes : c.no],
+              [c.documented, doc.status.documented ? c.yes : c.no],
               [
-                "Test",
+                c.tests,
                 doc.status.tests.length > 0
                   ? doc.status.tests.join(", ")
-                  : "Nessun test dedicato",
+                  : c.noTests,
               ],
             ]}
           />
           <Heading level={3} size="title-sm">
-            Limiti noti
+            {c.limits}
           </Heading>
           <Bullets items={doc.status.limits} />
         </DocSection>
 
         <PrevNext
-          label="Componente precedente e successivo"
+          label={t.doc.prevNextComponent}
           prev={
             prev
               ? { href: `/componenti/${prev.doc.slug}`, label: prev.doc.name }

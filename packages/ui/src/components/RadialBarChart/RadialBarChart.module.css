@@ -1,0 +1,44 @@
+/* Shared plot, fill and gradient styles live in ../charts-internal/Chart.module.css. */
+.radialBarChart {
+  inline-size: 100%;
+}
+
+.svg {
+  max-inline-size: var(--_size);
+  block-size: auto;
+  margin-inline: auto;
+}
+
+.track {
+  fill: var(--dc-color-surface-subtle);
+}
+
+.svg .bar {
+  stroke-width: 1;
+}
+
+.svg [data-active] > .track {
+  fill: var(--dc-color-border-subtle);
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .svg .bar {
+  stroke-linejoin: round;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .track {
+  fill: color-mix(in srgb, var(--_series) 12%, var(--dc-color-surface-subtle));
+}
+
+@media (forced-colors: active) {
+  .track,
+  .svg [data-active] > .track {
+    fill: Canvas;
+    stroke: GrayText;
+    stroke-width: 1;
+  }
+
+  .svg [data-active] > .bar {
+    stroke: Highlight;
+    stroke-width: 3;
+  }
+}

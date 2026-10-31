@@ -1,0 +1,29 @@
+.stage {
+  position: relative;
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow: hidden;
+  touch-action: none;
+  vertical-align: top;
+}
+
+.image {
+  display: block;
+  max-inline-size: 100%;
+  max-block-size: 32rem;
+  user-select: none;
+}
+
+.selection {
+  position: absolute;
+  box-sizing: border-box;
+  border: var(--dc-border-width-thick) dashed var(--dc-color-focus-ring);
+  box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--dc-color-overlay-scrim) 55%, transparent);
+  pointer-events: none;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--dc-space-3);
+}

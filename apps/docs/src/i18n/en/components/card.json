@@ -1,0 +1,92 @@
+{
+  "source": "f64e686deaca",
+  "summary": "Surface that groups content and actions about a single subject.",
+  "whenToUse": [
+    "Entity summaries (projects, articles, plans).",
+    "Groups of KPIs or content in a grid."
+  ],
+  "whenNotToUse": [
+    "To frame every section of the page: use Section.",
+    "For comparable tabular data: use Table or DataTable."
+  ],
+  "props": [
+    {
+      "name": "as",
+      "description": "Semantic element; use li inside a list."
+    },
+    {
+      "name": "variant",
+      "description": "Surface emphasis. accent uses a two-tone frame (brand → tertiary gradient) for featured content; in forced-colors mode it becomes a system border."
+    },
+    {
+      "name": "padding",
+      "description": "Inner spacing (follows density)."
+    },
+    {
+      "name": "isSelected",
+      "description": "Selected state (border and data-selected). Does not replace a control with an accessible state."
+    },
+    {
+      "name": "CardHeader.title / subtitle / media / actions",
+      "description": "Header with title (heading), subtitle, leading media, and actions."
+    },
+    {
+      "name": "CardHeader.headingLevel",
+      "description": "Heading level that matches the page hierarchy."
+    },
+    {
+      "name": "CardFooter.justify",
+      "description": "Alignment of the actions."
+    },
+    {
+      "name": "CardImage.ratio",
+      "description": "Aspect ratio of the media."
+    },
+    {
+      "name": "CardLink",
+      "description": "Link whose clickable area extends to the whole card (stretched link)."
+    }
+  ],
+  "inherits": "HTML attributes of the rendered element; ref is forwarded.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the links and buttons inside; the card itself is not focusable."
+    }
+  ],
+  "accessibility": [
+    "With CardLink the whole card is clickable, but there is a single link with a clear name (the title).",
+    "Other interactive controls in a card with CardLink stay above the link layer and remain clickable.",
+    "Choose a headingLevel consistent with the page structure."
+  ],
+  "responsive": [
+    "Fluid width: the container grid decides the columns.",
+    "Footer actions wrap on narrow viewports."
+  ],
+  "customization": [
+    "className/style; --dc-color-surface-*, --dc-radius-lg, --dc-shadow-* tokens."
+  ],
+  "commonMistakes": [
+    "Wrapping the whole card in an <a> with buttons inside: nested interactive elements are invalid.",
+    "Using isSelected without a control (button, checkbox) that conveys the state."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Variants",
+      "title": "Variants"
+    },
+    {
+      "name": "LinkedCards",
+      "title": "Linked cards in a list"
+    },
+    {
+      "name": "Selectable",
+      "title": "Selection with toggle buttons"
+    }
+  ],
+  "limits": []
+}

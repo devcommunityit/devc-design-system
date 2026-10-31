@@ -1,0 +1,62 @@
+{
+  "source": "79b94d2a67db",
+  "summary": "Step-by-step contextual guide anchored to interface elements.",
+  "whenToUse": [
+    "Introducing key features in an optional guide."
+  ],
+  "whenNotToUse": [
+    "For a multi-step form use FormWizard.",
+    "Do not replace essential labels or documentation with a guide."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the guide."
+    },
+    {
+      "name": "steps",
+      "description": "Steps with id, title, content and a target selector or function."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or initial guide state."
+    },
+    {
+      "name": "currentStep / defaultCurrentStep / onStepChange",
+      "description": "Current step, zero-based index."
+    },
+    {
+      "name": "onFinish / onSkip / onTargetMissing / onError",
+      "description": "Completion, exit and missing-target events."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Escape",
+      "action": "Navigates, advances or closes the guide."
+    }
+  ],
+  "accessibility": [
+    "Non-modal popover with managed name and focus; the guide can be skipped.",
+    "A missing target is announced and does not block navigation."
+  ],
+  "responsive": [
+    "The popover repositions within the viewport; the target is scrolled into view."
+  ],
+  "customization": [
+    "Highlighting and surfaces use tokens."
+  ],
+  "commonMistakes": [
+    "Make sure the target is visible and that selectors are unique.",
+    "Handle completion and persistence of the guide in the consumer; to restart, reset the current step."
+  ],
+  "examples": [
+    {
+      "name": "Guided",
+      "title": "Getting started guide"
+    }
+  ],
+  "limits": [
+    "Does not save state and does not navigate between pages automatically."
+  ]
+}

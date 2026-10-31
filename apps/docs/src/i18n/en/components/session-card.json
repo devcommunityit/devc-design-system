@@ -1,0 +1,60 @@
+{
+  "source": "90a86767e121",
+  "summary": "Standalone card for a session, with time, content, speakers, and an action slot.",
+  "whenToUse": [
+    "Showing a session independently of a schedule grid."
+  ],
+  "whenNotToUse": [
+    "Linear schedules: use Agenda and AgendaItem. For speakers use ProfileCard."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Session title."
+    },
+    {
+      "name": "startTime",
+      "description": "Visible start time."
+    },
+    {
+      "name": "endTime",
+      "description": "Optional end time."
+    },
+    {
+      "name": "speakers",
+      "description": "Slot for speaker names or links."
+    },
+    {
+      "name": "action",
+      "description": "Action controlled by the consumer."
+    }
+  ],
+  "inherits": "HTML attributes of the <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the title link, if present, and the controls provided in the action."
+    }
+  ],
+  "accessibility": [
+    "Uses an article labelled by the title; the title can be a link without extending the link to the actions."
+  ],
+  "responsive": [
+    "Metadata and slots adapt to the available width."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Don’t duplicate the speaker profile presentation: reuse ProfileCard when you need a real speaker card."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Session with speakers and action"
+    }
+  ],
+  "limits": [
+    "Does not handle booking or calendar sync."
+  ]
+}

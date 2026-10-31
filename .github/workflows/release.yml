@@ -1,0 +1,189 @@
+# Publishes @dev-community/ui or @dev-community/ui-mcp to GitHub Packages and creates a GitHub
+# Release with the .tgz (+ SHA-256) attached, so React projects can install it from the registry
+# or from the tarball.
+#
+# Two ways to start a release:
+#   1. Push a tag:   ui-v0.2.0 | mcp-v0.2.0 | ui-v0.3.0-beta.0 (version must match package.json)
+#   2. Run manually: Actions → Release → choose package + bump. The workflow updates package.json,
+#      package-lock.json and the CHANGELOG ("## [Non rilasciato]" → "## [x.y.z] — date"),
+#      verifies everything, then commits, tags and pushes before publishing.
+#
+# Prereleases (x.y.z-<id>.n) are published with the npm dist-tag <id> (e.g. "next", "beta")
+# and marked as prerelease on GitHub; stable versions use "latest".
+#
+# Requirement: GitHub Packages only accepts a scope equal to the repository owner, so the
+# repository must belong to the "dev-community" user/organisation (or rename the scope).
+name: Release
+
+on:
+  push:
+    tags:
+      - 'ui-v*'
+      - 'mcp-v*'
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to release
+        type: choice
+        options: [ui, mcp]
+        default: ui
+      bump:
+        description: Version increment
+        type: choice
+        options: [patch, minor, major, prepatch, preminor, premajor, prerelease]
+        default: patch
+      preid:
+        description: Prerelease identifier (only for pre* bumps)
+        type: string
+        default: next
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      SCOPE: '@dev-community'
+      REGISTRY: https://npm.pkg.github.com/
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          registry-url: ${{ env.REGISTRY }}
+          scope: ${{ env.SCOPE }}
+
+      - name: Check that the npm scope matches the repository owner
+        run: |
+          owner="@$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')"
+          if [ "$owner" != "$SCOPE" ]; then
+            echo "::error::GitHub Packages accetta solo lo scope $owner (proprietario del repository), i pacchetti usano $SCOPE. Sposta il repository sotto 'dev-community' oppure rinomina lo scope nei package.json."
+            exit 1
+          fi
+
+      - name: Bump version (manual run)
+        id: bump
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          PACKAGE: ${{ inputs.package }}
+          BUMP: ${{ inputs.bump }}
+          PREID: ${{ inputs.preid }}
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "branch" ]; then
+            echo "::error::Avvia il rilascio manuale da un branch (di solito main)."
+            exit 1
+          fi
+          node scripts/release.mjs bump "$PACKAGE" "$BUMP" "$PREID"
+          tag="$(grep '^tag=' "$GITHUB_OUTPUT" | tail -n1 | cut -d= -f2)"
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null || git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
+            echo "::error::Il tag $tag esiste già."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json packages/*/package.json packages/*/CHANGELOG.md
+          git commit -m "chore(release): $tag"
+          git tag -a "$tag" -m "$tag"
+
+      - name: Resolve package and version from the tag
+        id: plan
+        env:
+          TAG: ${{ steps.bump.outputs.tag || github.ref_name }}
+        run: |
+          node scripts/release.mjs plan "$TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      # The lockfile points to a private mirror; runners install the same versions from npmjs.org.
+      # Runs after the release commit, so the rewritten lockfile is never committed.
+      - name: Use the public npm registry
+        run: node scripts/use-public-registry.mjs
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+      - name: Install Playwright (Chromium)
+        if: steps.plan.outputs.key == 'ui'
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify the packed library in an external consumer
+        if: steps.plan.outputs.key == 'ui'
+        run: npm run verify:package -- --skip-build
+
+      # Links the package to this repository on GitHub Packages (not committed).
+      - name: Set repository metadata
+        working-directory: ${{ steps.plan.outputs.dir }}
+        env:
+          DIR: ${{ steps.plan.outputs.dir }}
+        run: |
+          npm pkg set repository.type=git \
+            "repository.url=git+${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git" \
+            "repository.directory=$DIR"
+
+      - name: Pack
+        id: pack
+        run: node scripts/release-pack.mjs --package "${{ steps.plan.outputs.key }}" --skip-build --out release-out
+
+      - name: Check licence / registry guard
+        run: node packages/ui/scripts/prepublish-check.mjs "${{ steps.plan.outputs.dir }}/package.json"
+
+      - name: Push release commit and tag (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TAG: ${{ steps.plan.outputs.tag }}
+        run: git push --atomic origin "HEAD:${GITHUB_REF_NAME}" "refs/tags/$TAG"
+
+      # Publishes the exact tarball attached to the release; lifecycle scripts already ran above.
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+          DIST_TAG: ${{ steps.plan.outputs.dist_tag }}
+        run: npm publish "$TARBALL" --tag "$DIST_TAG" --registry "$REGISTRY" --ignore-scripts
+
+      - name: Release notes
+        run: node scripts/release.mjs notes "${{ steps.plan.outputs.key }}" "${{ steps.plan.outputs.version }}" release-notes.md
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.plan.outputs.tag }}
+          TITLE: ${{ steps.plan.outputs.name }} ${{ steps.plan.outputs.version }}
+          PRERELEASE: ${{ steps.plan.outputs.prerelease }}
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+        run: |
+          flags=()
+          if [ "$PRERELEASE" = "true" ]; then flags+=(--prerelease); fi
+          gh release create "$TAG" "$TARBALL" "$TARBALL.sha256" \
+            --title "$TITLE" \
+            --notes-file release-notes.md \
+            --generate-notes \
+            --verify-tag \
+            "${flags[@]}"
+
+      - name: Summary
+        env:
+          NAME: ${{ steps.plan.outputs.name }}
+          VERSION: ${{ steps.plan.outputs.version }}
+          DIST_TAG: ${{ steps.plan.outputs.dist_tag }}
+          SHA: ${{ steps.pack.outputs.sha256 }}
+        run: |
+          {
+            echo "### $NAME@$VERSION pubblicato"
+            echo ""
+            echo "- Registry: $REGISTRY (dist-tag \`$DIST_TAG\`)"
+            echo "- SHA-256 tarball: \`$SHA\`"
+            echo ""
+            echo '```bash'
+            echo "npm install $NAME@$VERSION"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

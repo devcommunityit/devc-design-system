@@ -1,0 +1,83 @@
+{
+  "source": "3f7c4e4b00fd",
+  "summary": "Conversation message from a user, assistant, or system, with composable author, status, content, and actions.",
+  "whenToUse": [
+    "AI or support conversations.",
+    "Showing partial content and keeping it available after an error."
+  ],
+  "whenNotToUse": [
+    "Rendering model HTML without validation.",
+    "Replacing the transport logic or conversation history."
+  ],
+  "props": [
+    {
+      "name": "speaker",
+      "description": "Semantic identity and visual variant. Default names are localized."
+    },
+    {
+      "name": "author",
+      "description": "Custom display name."
+    },
+    {
+      "name": "avatar",
+      "description": "Decorative avatar; the name stays in the text."
+    },
+    {
+      "name": "status",
+      "description": "Status provided by the consumer; does not start generation."
+    },
+    {
+      "name": "statusText",
+      "description": "Status or error text; localized default."
+    },
+    {
+      "name": "footer",
+      "description": "Sources, feedback, copy, or consumer actions."
+    },
+    {
+      "name": "children",
+      "description": "Text or safe React components; no Markdown parser included."
+    }
+  ],
+  "inherits": "HTML attributes of article, aria-label, className, style, and an HTMLElement ref.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches any actions and links in the footer."
+    }
+  ],
+  "accessibility": [
+    "Streaming content is aria-busy, not a live region that announces every token.",
+    "Status uses role=status; errors use role=alert.",
+    "Does not add automatic focus or scrolling."
+  ],
+  "responsive": [
+    "Long text and newlines wrap within the container."
+  ],
+  "customization": [
+    "data-speaker and data-status distinguish variants and states.",
+    "Surface and color tokens also follow nested providers."
+  ],
+  "commonMistakes": [
+    "Inserting untrusted output with dangerouslySetInnerHTML.",
+    "Treating the assistant label as a guarantee of accuracy."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Conversation"
+    },
+    {
+      "name": "Streaming",
+      "title": "Chunks appended locally"
+    },
+    {
+      "name": "ErrorState",
+      "title": "Error and local recovery"
+    }
+  ],
+  "limits": [
+    "No Markdown, streaming transport, storage, or virtualization.",
+    "The consumer defines how the completed response is announced and the scrolling strategy."
+  ]
+}

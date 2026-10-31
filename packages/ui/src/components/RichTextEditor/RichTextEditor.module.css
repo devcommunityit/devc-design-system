@@ -1,0 +1,701 @@
+/* RichTextEditor / RichTextContent. ProseMirror base rules are scoped under component classes (no global selectors). */
+
+.root {
+  min-inline-size: 0;
+}
+
+/* ------------------------------------------------------------------ frame */
+
+.frame {
+  --_border: var(--dc-color-border-default);
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  border: var(--dc-border-width-thin) solid var(--_border);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  transition:
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.frame:hover {
+  --_border: var(--dc-color-border-strong);
+}
+
+.frame:focus-within {
+  --_border: var(--dc-color-border-selected);
+
+  box-shadow: 0 0 0 1px var(--dc-color-border-selected);
+}
+
+.frame:has(.editable:focus-visible) {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.root[data-invalid] .frame {
+  --_border: var(--dc-color-feedback-danger);
+}
+
+.root[data-invalid] .frame:focus-within {
+  box-shadow: 0 0 0 1px var(--dc-color-feedback-danger);
+}
+
+.root[data-disabled] .frame {
+  --_border: var(--dc-color-border-subtle);
+
+  background-color: var(--dc-color-surface-subtle);
+  color: var(--dc-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.root[data-readonly] .frame {
+  background-color: var(--dc-color-surface-subtle);
+}
+
+.toolbar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--dc-z-raised);
+  padding: var(--dc-space-1);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-start-start-radius: var(--dc-radius-md);
+  border-start-end-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-surface-default);
+}
+
+.styleButton {
+  min-inline-size: 8rem;
+  justify-content: space-between;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.kbd {
+  font-family: var(--dc-font-family-mono);
+  font-size: var(--dc-typography-label-sm-size);
+  opacity: 0.8;
+}
+
+.scroller {
+  position: relative;
+  min-block-size: var(--rte-min-height, 8rem);
+  max-block-size: var(--rte-max-height, none);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.content {
+  min-block-size: inherit;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-block: var(--dc-space-1);
+  padding-inline: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.counter {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+.counter[data-near-limit] {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.anchor {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  pointer-events: none;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------- editable area */
+
+.editable {
+  box-sizing: border-box;
+  min-block-size: var(--rte-min-height, 8rem);
+  padding-block: var(--dc-space-3);
+  padding-inline: var(--dc-space-4);
+  outline: none;
+  cursor: text;
+}
+
+.editable[data-variant='blocks'] {
+  padding-inline-start: calc(var(--dc-density-control-height-sm) * 2 + var(--dc-space-3));
+}
+
+.editable[contenteditable='false'] {
+  cursor: default;
+}
+
+.root[data-disabled] .editable {
+  cursor: not-allowed;
+}
+
+/* ProseMirror / Tiptap base behaviour (normally injected globally by Tiptap; injected CSS is disabled). */
+.editable,
+.prose {
+  position: relative;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0;
+}
+
+.prose :global([contenteditable='false']) {
+  white-space: normal;
+}
+
+.prose :global([contenteditable='false'] [contenteditable='true']) {
+  white-space: pre-wrap;
+}
+
+.prose :global(img.ProseMirror-separator) {
+  display: inline;
+  inline-size: 0;
+  block-size: 0;
+  margin: 0;
+  border: none;
+}
+
+.prose :global(.ProseMirror-hideselection) ::selection,
+.prose:global(.ProseMirror-hideselection) ::selection {
+  background: transparent;
+}
+
+.prose:global(.ProseMirror-hideselection) {
+  caret-color: transparent;
+}
+
+.prose :global(.ProseMirror-gapcursor) {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+}
+
+.prose :global(.ProseMirror-gapcursor)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset-block-start: -2px;
+  inline-size: 20px;
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-text-primary);
+  animation: rte-cursor-blink 1.1s steps(2, start) infinite;
+}
+
+.prose:global(.ProseMirror-focused) :global(.ProseMirror-gapcursor) {
+  display: block;
+}
+
+@keyframes rte-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.prose :global(.ProseMirror-selectednode) {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-border-selected);
+  outline-offset: 2px;
+}
+
+.root :global(.dc-rte-dropcursor) {
+  background-color: var(--dc-color-border-selected);
+}
+
+/* Placeholders (Tiptap Placeholder extension sets `data-placeholder` on the empty node). */
+.editable :global(.is-empty)::before {
+  content: attr(data-placeholder);
+  float: inline-start;
+  block-size: 0;
+  color: var(--dc-color-text-muted);
+  pointer-events: none;
+}
+
+.editable:not(:global(.ProseMirror-focused)) :global(.is-empty:not(.is-editor-empty))::before {
+  content: none;
+}
+
+.editable :global(.suggestion) {
+  border-radius: var(--dc-radius-xs);
+  background-color: var(--dc-color-surface-muted);
+}
+
+/* ------------------------------------------------------------ typography */
+
+.prose {
+  color: var(--dc-color-text-primary);
+  font-family: var(--dc-font-family-sans);
+  font-size: var(--dc-typography-body-md-size);
+  font-weight: var(--dc-typography-body-md-weight);
+  line-height: var(--dc-typography-body-md-line-height);
+  letter-spacing: var(--dc-typography-body-md-letter-spacing);
+}
+
+.prose > :first-child {
+  margin-block-start: 0;
+}
+
+.prose > :last-child {
+  margin-block-end: 0;
+}
+
+.prose :global(p) {
+  margin-block: 0 var(--dc-space-3);
+}
+
+.prose :global(h1),
+.prose :global(h2),
+.prose :global(h3),
+.prose :global(h4),
+.prose :global(h5),
+.prose :global(h6) {
+  margin-block: var(--dc-space-6) var(--dc-space-2);
+  color: var(--dc-color-text-primary);
+  text-wrap: balance;
+}
+
+.prose :global(h1) {
+  font-size: var(--dc-typography-headline-lg-size);
+  font-weight: var(--dc-typography-headline-lg-weight);
+  line-height: var(--dc-typography-headline-lg-line-height);
+  letter-spacing: var(--dc-typography-headline-lg-letter-spacing);
+}
+
+.prose :global(h2) {
+  font-size: var(--dc-typography-headline-md-size);
+  font-weight: var(--dc-typography-headline-md-weight);
+  line-height: var(--dc-typography-headline-md-line-height);
+  letter-spacing: var(--dc-typography-headline-md-letter-spacing);
+}
+
+.prose :global(h3) {
+  font-size: var(--dc-typography-headline-sm-size);
+  font-weight: var(--dc-typography-headline-sm-weight);
+  line-height: var(--dc-typography-headline-sm-line-height);
+  letter-spacing: var(--dc-typography-headline-sm-letter-spacing);
+}
+
+.prose :global(h4) {
+  font-size: var(--dc-typography-title-lg-size);
+  font-weight: var(--dc-typography-title-lg-weight);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.prose :global(h5) {
+  font-size: var(--dc-typography-title-md-size);
+  font-weight: var(--dc-typography-title-md-weight);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.prose :global(h6) {
+  font-size: var(--dc-typography-title-sm-size);
+  font-weight: var(--dc-typography-title-sm-weight);
+  line-height: var(--dc-typography-title-sm-line-height);
+}
+
+.prose :global(a) {
+  color: var(--dc-color-text-link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.editable :global(a) {
+  cursor: text;
+}
+
+.prose :global(strong) {
+  font-weight: var(--dc-font-weight-bold);
+}
+
+.prose :global(mark) {
+  padding-inline: 0.1em;
+  border-radius: var(--dc-radius-xs);
+  background-color: var(--dc-color-feedback-warning-surface);
+  color: var(--dc-color-text-primary);
+}
+
+.prose :global(code) {
+  padding-block: 0.1em;
+  padding-inline: 0.3em;
+  border-radius: var(--dc-radius-sm);
+  background-color: var(--dc-color-surface-muted);
+  font-family: var(--dc-font-family-mono);
+  font-size: 0.9em;
+}
+
+.prose :global(pre) {
+  margin-block: 0 var(--dc-space-3);
+  padding: var(--dc-space-3) var(--dc-space-4);
+  overflow-x: auto;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-surface-subtle);
+  font-family: var(--dc-font-family-mono);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  white-space: pre;
+  tab-size: 2;
+}
+
+.prose :global(pre code) {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.prose :global(blockquote) {
+  margin-block: 0 var(--dc-space-3);
+  margin-inline: 0;
+  padding-inline-start: var(--dc-space-4);
+  border-inline-start: var(--dc-border-width-thick) solid var(--dc-color-border-strong);
+  color: var(--dc-color-text-secondary);
+}
+
+.prose :global(ul),
+.prose :global(ol) {
+  margin-block: 0 var(--dc-space-3);
+  padding-inline-start: var(--dc-space-6);
+}
+
+.prose :global(li) {
+  position: relative;
+}
+
+.prose :global(li > p) {
+  margin-block: 0 var(--dc-space-1);
+}
+
+.prose :global(li::marker) {
+  color: var(--dc-color-text-secondary);
+}
+
+.prose :global(ul[data-type='taskList']) {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.prose :global(ul[data-type='taskList'] li) {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dc-space-2);
+}
+
+.prose :global(ul[data-type='taskList'] li > label) {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  block-size: calc(1em * var(--dc-typography-body-md-line-height));
+  user-select: none;
+}
+
+.prose :global(ul[data-type='taskList'] li > label input) {
+  inline-size: 1.05em;
+  block-size: 1.05em;
+  margin: 0;
+  accent-color: var(--dc-color-action-primary);
+  cursor: pointer;
+}
+
+.prose :global(ul[data-type='taskList'] li > div) {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.prose :global(ul[data-type='taskList'] li[data-checked='true'] > div) {
+  color: var(--dc-color-text-muted);
+  text-decoration: line-through;
+}
+
+.prose :global(ul[data-type='taskList'] ul[data-type='taskList']) {
+  margin-block-start: var(--dc-space-1);
+}
+
+.prose :global(hr) {
+  margin-block: var(--dc-space-6);
+  border: 0;
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+}
+
+.prose :global(img) {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-block: 0 var(--dc-space-3);
+  border-radius: var(--dc-radius-md);
+}
+
+.prose :global(.tableWrapper) {
+  margin-block: 0 var(--dc-space-3);
+  overflow-x: auto;
+}
+
+.prose :global(table) {
+  inline-size: 100%;
+  margin-block: 0 var(--dc-space-3);
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.prose :global(.tableWrapper table) {
+  margin-block-end: 0;
+}
+
+.prose :global(th),
+.prose :global(td) {
+  position: relative;
+  box-sizing: border-box;
+  min-inline-size: 4rem;
+  padding: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose :global(th) {
+  background-color: var(--dc-color-surface-subtle);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.prose :global(th > p),
+.prose :global(td > p) {
+  margin: 0;
+}
+
+.prose :global(.selectedCell)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--dc-color-surface-muted);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------- blocks: block handle */
+
+.handle {
+  position: absolute;
+  inset-inline-start: var(--dc-space-1);
+  z-index: var(--dc-z-raised);
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.scroller:hover .handle,
+.handle:focus-within,
+.handleActive {
+  opacity: 1;
+}
+
+.handle[data-hidden] {
+  visibility: hidden;
+}
+
+.grip {
+  cursor: grab;
+}
+
+.grip:active {
+  cursor: grabbing;
+}
+
+@media (hover: none) {
+  .handle {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------- bubble + slash */
+
+.bubble {
+  z-index: var(--dc-z-popover);
+}
+
+.bubbleToolbar {
+  flex-wrap: nowrap;
+  max-inline-size: calc(100vw - var(--dc-space-4));
+  padding: var(--dc-space-1);
+  overflow-x: auto;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-raised);
+  box-shadow: var(--dc-shadow-2);
+}
+
+.slash {
+  position: fixed;
+  z-index: var(--dc-z-popover);
+  box-sizing: border-box;
+  inline-size: min(18rem, calc(100vw - var(--dc-space-4)));
+  max-block-size: 20rem;
+  padding: var(--dc-space-1);
+  overflow-y: auto;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-raised);
+  box-shadow: var(--dc-shadow-2);
+}
+
+.slashList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-0-5);
+}
+
+.slashOption {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-block-size: var(--dc-density-control-height-sm);
+  padding-inline: var(--dc-space-2);
+  border-radius: var(--dc-radius-sm);
+  color: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-body-md-size);
+  cursor: pointer;
+}
+
+.slashOption[data-active] {
+  background-color: var(--dc-color-surface-muted);
+}
+
+.slashIcon {
+  display: inline-flex;
+  flex: none;
+  color: var(--dc-color-text-secondary);
+}
+
+.slashIcon > svg {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.slashLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slashEmpty {
+  padding: var(--dc-space-2);
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+/* ---------------------------------------------------------------- dialogs */
+
+.popover {
+  inline-size: min(22rem, calc(100vw - var(--dc-space-8)));
+}
+
+.dialogForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+}
+
+.dialogActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--dc-space-2);
+}
+
+.dialogStart {
+  margin-inline-end: auto;
+}
+
+.uploadRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.uploadStatus {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+/* ------------------------------------------------- preferences & modes */
+
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .handle {
+    transition: none;
+  }
+
+  .prose :global(.ProseMirror-gapcursor)::after {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .frame,
+  .toolbar,
+  .bubbleToolbar,
+  .slash {
+    border-color: CanvasText;
+  }
+
+  .frame:focus-within {
+    outline: 2px solid Highlight;
+  }
+
+  .slashOption[data-active] {
+    background-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+
+  .prose :global(mark) {
+    background-color: Mark;
+    color: MarkText;
+    forced-color-adjust: none;
+  }
+
+  .prose :global(th),
+  .prose :global(td),
+  .prose :global(pre),
+  .prose :global(hr) {
+    border-color: CanvasText;
+  }
+
+  .prose :global(.ProseMirror-selectednode) {
+    outline-color: Highlight;
+  }
+
+  .root :global(.dc-rte-dropcursor) {
+    background-color: Highlight;
+  }
+}

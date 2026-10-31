@@ -1,0 +1,65 @@
+.section {
+  display: grid;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+}
+
+.scroll {
+  max-inline-size: 100%;
+  overflow-x: auto;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+}
+
+.table {
+  inline-size: 100%;
+  min-inline-size: var(--dc-container-sm);
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding: var(--dc-space-3);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.table thead {
+  background: var(--dc-color-surface-subtle);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.table tbody th {
+  font-weight: var(--dc-font-weight-medium);
+}
+
+.table tbody tr:last-child > * {
+  border-block-end: 0;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: var(--dc-space-1);
+  block-size: var(--dc-space-1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (forced-colors: active) {
+  .scroll,
+  .table th,
+  .table td {
+    border-color: CanvasText;
+  }
+}

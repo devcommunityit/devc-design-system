@@ -1,0 +1,111 @@
+{
+  "source": "2f9cfe068ee1",
+  "summary": "Selecting a value or a numeric range by dragging a thumb, with localized formatting.",
+  "whenToUse": [
+    "Approximate values within a known range (volume, max price).",
+    "Range filters with RangeSlider."
+  ],
+  "whenNotToUse": [
+    "Precise values to type in: use NumberInput.",
+    "Very wide ranges where one pixel equals many units."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible label, linked to all thumbs."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled value."
+    },
+    {
+      "name": "onChangeEnd",
+      "description": "Called on release: useful for saving or filtering."
+    },
+    {
+      "name": "minValue / maxValue / step",
+      "description": "Bounds and step."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value formatting (currency, unit, percent) according to the locale."
+    },
+    {
+      "name": "showValue",
+      "description": "Shows the formatted value next to the label."
+    },
+    {
+      "name": "showBounds",
+      "description": "Shows the minimum and maximum below the track."
+    },
+    {
+      "name": "name / startName / endName",
+      "description": "Names of the fields submitted with the form."
+    },
+    {
+      "name": "thumbLabels",
+      "description": "Accessible names of the two thumbs (localized defaults “Minimum”/“Maximum”)."
+    },
+    {
+      "name": "description",
+      "description": "Help text."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables interaction."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Slider (orientation, isDisabled, aria-*).",
+  "keyboard": [
+    {
+      "keys": "Frecce",
+      "action": "Changes the value by one step."
+    },
+    {
+      "keys": "Pagina su / giù",
+      "action": "Changes by a large step."
+    },
+    {
+      "keys": "Home / End",
+      "action": "Minimum / maximum."
+    },
+    {
+      "keys": "Tab",
+      "action": "Moves to the next thumb (RangeSlider)."
+    }
+  ],
+  "accessibility": [
+    "Each thumb is a hidden <input type=\"range\">: it works with screen readers and keyboards.",
+    "The announced value uses the same Intl formatting shown on screen.",
+    "In RTL the direction is reversed automatically."
+  ],
+  "responsive": [
+    "The track takes the full available width; thumbs have a 24 px touch area."
+  ],
+  "customization": [
+    "className and style on the container; colors derive from color.action.primary and color.border.*."
+  ],
+  "commonMistakes": [
+    "Using onChange for expensive requests: use onChangeEnd.",
+    "Hiding the value without a text alternative where precision matters."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with unit"
+    },
+    {
+      "name": "Range",
+      "title": "Price range"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

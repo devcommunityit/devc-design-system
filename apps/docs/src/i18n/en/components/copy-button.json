@@ -1,0 +1,86 @@
+{
+  "source": "32510334be27",
+  "summary": "Button that copies a value to the clipboard with the async Clipboard API, shows the result (“Copied” / “Copy failed”), and announces it to screen readers. Includes the useCopyToClipboard hook for building your own controls.",
+  "whenToUse": [
+    "Codes, IDs, invite links, install commands, public keys.",
+    "Next to an already visible value that the user needs to paste elsewhere."
+  ],
+  "whenNotToUse": [
+    "For secrets that should not be visible: consider a dedicated flow (explicit reveal, expiration).",
+    "As the only way to obtain the value: keep the text selectable."
+  ],
+  "props": [
+    {
+      "name": "value",
+      "description": "Text to copy or a function evaluated at press time."
+    },
+    {
+      "name": "children",
+      "description": "Visible label; with iconOnly it becomes the accessible name."
+    },
+    {
+      "name": "iconOnly",
+      "description": "Shows only the icon (the name stays in aria-label)."
+    },
+    {
+      "name": "variant",
+      "description": "Button appearance."
+    },
+    {
+      "name": "resetAfter",
+      "description": "Milliseconds before returning to the initial state."
+    },
+    {
+      "name": "onCopy",
+      "description": "Called after a successful copy."
+    },
+    {
+      "name": "onCopyError",
+      "description": "Called if the API is unavailable or permission is denied."
+    },
+    {
+      "name": "useCopyToClipboard(options)",
+      "description": "Headless hook with the same logic; never throws."
+    }
+  ],
+  "inherits": "Button props (size, isDisabled, className, style, data-*…) except onPress, startIcon, endIcon, isPending.",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio",
+      "action": "Copies the value."
+    }
+  ],
+  "accessibility": [
+    "It is a native <button>; the result is communicated with text and icon, not color alone.",
+    "A role=\"status\" region announces “Copied” or “Copy failed”.",
+    "In iconOnly mode the accessible name stays stable; the result comes from the live region."
+  ],
+  "responsive": [
+    "In tight spaces use iconOnly with size=\"sm\": the target stays at least 24 × 24 px."
+  ],
+  "customization": [
+    "Selector [data-status=\"copied\" | \"error\" | \"idle\"] for dedicated styles.",
+    "Text via messages (copy, copied, copyFailed)."
+  ],
+  "commonMistakes": [
+    "Assuming the copy succeeds: the Clipboard API requires a secure context (HTTPS) and can be denied. Handle onCopyError.",
+    "Changing the copied value without updating the visible text next to it."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Install command"
+    },
+    {
+      "name": "IconOnly",
+      "title": "Icon only"
+    },
+    {
+      "name": "WithCallbacks",
+      "title": "Computed value, callback, and disabled state"
+    }
+  ],
+  "limits": [
+    "Does not use the document.execCommand(\"copy\") fallback (deprecated): without the Clipboard API the status becomes “error”."
+  ]
+}

@@ -24,7 +24,7 @@ modificarli a mano: cambia la sorgente e rigenera con `npm run tokens`.
 | `palette/aurora`, `lagoon`, `ember`, `graphite` | Palette tonali (0–100) di brand, neutral, neutral-variant e feedback | `palette.brand.40` |
 | `scheme/light`, `scheme/dark` | Ruoli semantici come **alias** delle palette | `color.text.primary` = `{palette.neutral.10}` |
 
-`$themes.json` definisce 36 temi (9 preset × 2 schemi × 2 densità), ad esempio `aurora / dark / compact`. In ogni tema
+`$themes.json` definisce 104 temi (26 preset × 2 schemi × 2 densità), ad esempio `aurora / dark / compact`. In ogni tema
 la palette è marcata `source` (risolve gli alias, non diventa variabile), mentre `base`, `density` e `scheme` sono
 `enabled`.
 
@@ -38,7 +38,7 @@ la palette è marcata `source` (risolve gli alias, non diventa variabile), mentr
 5. Usa **Export to Figma → Variables** (o "Create variables") selezionando i temi: Tokens Studio crea collezioni e
    modalità. Una configurazione tipica:
    - collezione `Scheme` con modalità `light` / `dark` per i ruoli `color.*`;
-   - collezione `Palette` con una modalità per preset (aurora, lagoon, ember, graphite, ocean, forest, berry, saffron);
+   - collezione `Palette` con una modalità per preset (aurora, lagoon, ember, graphite, ocean, forest, berry, saffron, nebula, ruby, tangerine, mint, sky, violet, cocoa, olive, lavender, sunset, borealis, citrus, candy, tropical, dusk, flame, glacier, orchid);
    - collezione `Density` con `comfortable` / `compact`;
    - `base` come collezione a modalità singola.
 6. Crea gli stili tipografici dai token `typography.*` (dimensione, interlinea, peso, spaziatura).

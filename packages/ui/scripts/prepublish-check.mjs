@@ -1,12 +1,14 @@
 // Guard executed by `prepublishOnly`: blocks accidental publication to the public npm registry
-// while the licence has not been decided. Private registries (GitHub Packages, Azure Artifacts,
+// if the licence is missing or UNLICENSED. Private registries (GitHub Packages, Azure Artifacts,
 // Verdaccio, …) are allowed because access is controlled by the registry itself.
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
+// Checks the package being published: an explicit path, the one npm is running the lifecycle for, or this one.
+const manifestPath = process.argv[2] ? resolve(process.argv[2]) : (process.env.npm_package_json ?? resolve(root, 'package.json'));
+const pkg = JSON.parse(readFileSync(manifestPath, 'utf8'));
 
 const registry = (pkg.publishConfig?.registry ?? process.env.npm_config_registry ?? 'https://registry.npmjs.org/').toLowerCase();
 const isPublicNpm = /^https?:\/\/registry\.(npmjs\.org|yarnpkg\.com)\/?/.test(registry);

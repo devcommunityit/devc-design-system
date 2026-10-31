@@ -1,0 +1,85 @@
+{
+  "source": "bb0661a1cfd6",
+  "summary": "Non-modal floating panel anchored to a trigger, with interactive content.",
+  "whenToUse": [
+    "Short contextual information or controls.",
+    "Quick settings for a view."
+  ],
+  "whenNotToUse": [
+    "Only a text description: use Tooltip.",
+    "Lists of actions: use DropdownMenu.",
+    "Content that requires exclusive attention: use Dialog."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Visible heading, also used as the accessible name."
+    },
+    {
+      "name": "aria-label",
+      "description": "Accessible name when there is no title."
+    },
+    {
+      "name": "children",
+      "description": "Content."
+    },
+    {
+      "name": "placement",
+      "description": "Preferred placement; flips when there is not enough space."
+    },
+    {
+      "name": "showArrow",
+      "description": "Arrow pointing to the trigger."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled state."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Popover. PopoverSurface is the surface reused by Select, Combobox, Menu and DatePicker.",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio",
+      "action": "On the trigger, opens the popover and moves focus inside."
+    },
+    {
+      "keys": "Escape",
+      "action": "Closes and returns focus to the trigger."
+    }
+  ],
+  "accessibility": [
+    "Non-modal dialog semantics with a required accessible name (title or aria-label).",
+    "The trigger exposes aria-expanded.",
+    "Rendered in the nearest ThemeProvider portal."
+  ],
+  "responsive": [
+    "Repositions and limits its height to stay within the viewport."
+  ],
+  "customization": [
+    "className/style; surface, radius and elevation tokens."
+  ],
+  "commonMistakes": [
+    "Opening popovers on hover only: the content must also be reachable via keyboard and touch."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Informational"
+    },
+    {
+      "name": "Interactive",
+      "title": "With controls"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with an edit form",
+      "description": "isOpen + onOpenChange on PopoverTrigger: Salva updates the name and closes, Annulla closes without changes."
+    },
+    {
+      "name": "WithoutTitle",
+      "title": "Without title, without arrow and with long text",
+      "description": "Accessible name from aria-label; long content wraps within a maximum width."
+    }
+  ],
+  "limits": []
+}

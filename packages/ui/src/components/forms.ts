@@ -16,3 +16,9 @@ export * from './Tag';
 export * from './MultiSelect';
 export * from './PinInput';
 export * from './Rating';
+export * from './MentionInput';
+export * from './FormWizard';
+// ImageCropper ships from the separate '@dev-community/ui/widgets' entry (src/widgets.ts).
+export * from './PermissionMatrix';
+export * from './NotificationPreferences';
+export * from './PrivacyPreferences';

@@ -1,0 +1,110 @@
+{
+  "source": "83357cc6c3a2",
+  "summary": "Learning path card: gradient icon tile, title (optionally a link covering the whole card), description, meta (level, duration), the user's “x / y modules” progress on a progress bar or a “New” chip, and a footer for an action.",
+  "whenToUse": [
+    "Catalog of paths, courses or learning paths on a community or academy page.",
+    "Resuming a started path by showing how many modules are left."
+  ],
+  "whenNotToUse": [
+    "Progress of an operation (upload, loading): use Progress.",
+    "Sequential steps of a flow to complete now: use Stepper.",
+    "Numeric dashboard goals: use GoalCard."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Path name; also the accessible name of the card and the bar."
+    },
+    {
+      "name": "href",
+      "description": "Path URL: the title becomes a link whose clickable area covers the whole card."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Title heading level."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon in the gradient tile."
+    },
+    {
+      "name": "tone",
+      "description": "Gradient of the icon tile."
+    },
+    {
+      "name": "description",
+      "description": "Short description of the content."
+    },
+    {
+      "name": "meta",
+      "description": "Short details: level, duration, number of modules."
+    },
+    {
+      "name": "completed",
+      "description": "Modules completed by the user (clamped between 0 and total)."
+    },
+    {
+      "name": "total",
+      "description": "Total modules: the bar appears if it is > 0 and completed is set."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of the module numbers."
+    },
+    {
+      "name": "isNew",
+      "description": "Shows the localized “New” chip."
+    },
+    {
+      "name": "footer",
+      "description": "Action, note or link at the bottom; stays clickable above the extended link."
+    }
+  ],
+  "inherits": "HTML attributes of <article> (id, style, data-*, aria-*).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the title link (if href) and then the interactive elements in the footer."
+    }
+  ],
+  "accessibility": [
+    "The card is an <article> named by its title (aria-labelledby).",
+    "Progress uses Progress (role=\"progressbar\") named by the title, with aria-valuemin/max/now and a localized aria-valuetext (“5 / 8 modules”); the visible text below the bar is aria-hidden to avoid repetition.",
+    "The “New” chip is text, not just color; the icon is decorative.",
+    "With href there is a single link: the clickable area is extended with a pseudo-element and the focus ring is drawn around the whole card.",
+    "In forced-colors, borders use CanvasText; with prefers-reduced-motion hovering does not move the card."
+  ],
+  "responsive": [
+    "Column layout that works from 320px; meta and footer wrap.",
+    "In a grid (Grid minItemWidth ≈16rem) the bar and footer align at the bottom."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent / --dc-gradient-accent-subtle for the icon tile, --dc-look-radius-container, --dc-look-shadow-primary; the bar inherits the Progress style (gradient in the expressive look).",
+    "Stable selectors: .dc-learning-path-card-path[data-tone][data-linked][data-new], .dc-learning-path-card-icon, .dc-learning-path-card-progress, .dc-learning-path-card-footer."
+  ],
+  "commonMistakes": [
+    "Hand-writing “5 / 8 modules”: pass completed and total, the text is localized.",
+    "Passing a percentage as completed with total 100: you lose the module count.",
+    "Wrapping the card in an <a> with buttons inside: use href."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "In-progress path with a progress bar."
+    },
+    {
+      "name": "PathsGrid",
+      "title": "Grid of paths",
+      "description": "Two paths in progress and a new one, with meta."
+    },
+    {
+      "name": "WithAction",
+      "title": "With a footer action",
+      "description": "Title without a link, “New” chip and a button."
+    }
+  ],
+  "limits": [
+    "The bar shows whole completed modules, not partial progress within a module."
+  ]
+}

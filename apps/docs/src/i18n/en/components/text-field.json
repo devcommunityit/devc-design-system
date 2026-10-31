@@ -1,0 +1,140 @@
+{
+  "source": "db3b3b8dbc3b",
+  "summary": "Single-line (TextField) and multi-line (Textarea) text fields with an automatically linked label, description, and error message. Field provides the same anatomy to custom controls; Form coordinates validation.",
+  "whenToUse": [
+    "Short (name, email, code) or long (notes, descriptions) free-text input.",
+    "Field: to integrate a native or third-party control while keeping labels and errors consistent."
+  ],
+  "whenNotToUse": [
+    "Numeric values with increments: use NumberInput.",
+    "Choosing from a known list: use Select, Combobox, or RadioGroup.",
+    "Passwords: use PasswordInput; search: SearchInput (with a clear button)."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible label. If absent, provide aria-label or aria-labelledby."
+    },
+    {
+      "name": "description",
+      "description": "Help text linked with aria-describedby."
+    },
+    {
+      "name": "errorMessage",
+      "description": "Message shown when the field is invalid; the function receives the validation details."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled or uncontrolled mode (do not switch between the two)."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives the new value (not the event)."
+    },
+    {
+      "name": "isRequired",
+      "description": "Required field: native required + localized visual and text indicator."
+    },
+    {
+      "name": "necessityIndicator",
+      "description": "How to indicate that a field is required."
+    },
+    {
+      "name": "isInvalid",
+      "description": "Forces the invalid state (e.g. a server error)."
+    },
+    {
+      "name": "validate",
+      "description": "Custom validation; return the error message."
+    },
+    {
+      "name": "validationBehavior",
+      "description": "native: errors shown on submit and submission blocked; aria: real-time errors without blocking."
+    },
+    {
+      "name": "isDisabled / isReadOnly",
+      "description": "Disabled and read-only states (a read-only value stays selectable and is submitted with the form)."
+    },
+    {
+      "name": "startAdornment / endAdornment",
+      "description": "Icon or content before/after the input (start is decorative)."
+    },
+    {
+      "name": "inputProps",
+      "description": "Props of the <input> element (inputMode, list, enterKeyHint…)."
+    },
+    {
+      "name": "type, name, autoComplete, minLength, maxLength, pattern",
+      "description": "Native attributes forwarded to the input."
+    },
+    {
+      "name": "Textarea: rows / showCount",
+      "description": "Visible rows and character counter (requires maxLength)."
+    }
+  ],
+  "inherits": "Props of react-aria-components TextField (onFocus, onBlur, onKeyDown, autoFocus, name, form…) and global DOM attributes on the container.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Enters and leaves the field."
+    },
+    {
+      "keys": "Enter (in un Form)",
+      "action": "Submits the form; focus moves to the first invalid field."
+    }
+  ],
+  "accessibility": [
+    "Native <label for>, with description and error linked via aria-describedby.",
+    "The invalid state uses aria-invalid; the message is preceded by an icon (not color alone).",
+    "The asterisk is aria-hidden: the screen reader reads the localized text “required”.",
+    "With validationBehavior=\"native\", submitting moves focus to the first invalid field.",
+    "The placeholder does not replace the label."
+  ],
+  "responsive": [
+    "The field fills the container width; long labels and messages wrap.",
+    "The input font is 16 px to prevent automatic zoom on iOS.",
+    "Use the correct type/inputMode (email, tel, url) for suitable mobile keyboards."
+  ],
+  "customization": [
+    "Height and padding from the density token (comfortable/compact).",
+    "Shared classes .dc-field-field, .dc-field-control, .dc-field-input; states [data-invalid], [data-disabled], [data-readonly].",
+    "Border: color.border.default/strong/selected tokens; error: color.feedback.danger."
+  ],
+  "commonMistakes": [
+    "Showing errors with a red border only: always pass an errorMessage.",
+    "Using onChange as on a native input: here it receives a string.",
+    "Passing value without onChange (locked field): use defaultValue or isReadOnly.",
+    "Treating client-side validation as sufficient: always repeat it on the server."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithDescriptionAndRequired",
+      "title": "Description and required"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "Validation",
+      "title": "Validation and submit"
+    },
+    {
+      "name": "MultiLine",
+      "title": "Textarea with counter"
+    },
+    {
+      "name": "CustomControl",
+      "title": "Field with a custom control"
+    }
+  ],
+  "limits": []
+}

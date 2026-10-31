@@ -1,0 +1,146 @@
+/*
+ * Inverse panel: dark on a light page, light on a dark page. Text uses the paired
+ * --dc-color-text-inverse so contrast holds in both schemes; glows are decorative.
+ */
+.newsletter {
+  --_fg: var(--dc-color-text-inverse);
+  --_muted: color-mix(in srgb, var(--dc-color-text-inverse) 76%, var(--dc-color-surface-inverse));
+  --_glass: color-mix(in srgb, var(--dc-color-text-inverse) 10%, transparent);
+  --_glass-border: color-mix(in srgb, var(--dc-color-text-inverse) 18%, transparent);
+
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--_glass-border);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-inverse);
+  color: var(--_fg);
+  box-shadow: var(--dc-shadow-2);
+  overflow-wrap: anywhere;
+}
+
+.newsletter::before,
+.newsletter::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inline-size: 16rem;
+  block-size: 16rem;
+  border-radius: var(--dc-radius-full);
+  pointer-events: none;
+}
+
+.newsletter::before {
+  inset-block-start: -40%;
+  inset-inline-end: -40%;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--dc-color-action-primary) 60%, transparent), transparent 62%);
+}
+
+.newsletter::after {
+  inset-block-end: -55%;
+  inset-inline-start: -45%;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--dc-color-accent-default) 32%, transparent), transparent 62%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-inline-size: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1-5);
+  margin: 0 0 var(--dc-space-3);
+  padding: var(--dc-space-1) var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--_glass-border);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_glass);
+  font-size: var(--dc-typography-label-md-size);
+  line-height: var(--dc-typography-label-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  text-wrap: balance;
+}
+
+.description {
+  margin-block-start: var(--dc-space-1-5);
+  color: var(--_muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.description > :where(p) {
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--dc-space-2);
+  align-self: stretch;
+  margin-block-start: var(--dc-space-4);
+}
+
+/* The field takes the free space; once the button wraps, the button fills the row. */
+.field {
+  flex: 999 1 12rem;
+}
+
+.submit {
+  flex: 1 0 auto;
+}
+
+/* Validation text sits on the inverse surface: keep the paired foreground (an icon marks it). */
+.form [slot='errorMessage'] {
+  color: var(--_fg);
+}
+
+.message {
+  margin: 0;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.message:not(:empty) {
+  margin-block-start: var(--dc-space-3);
+}
+
+.footer {
+  margin-block-start: var(--dc-space-3);
+  color: var(--_muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.footer :where(a) {
+  color: inherit;
+}
+
+@media (forced-colors: active) {
+  .newsletter {
+    border-color: CanvasText;
+  }
+
+  .newsletter::before,
+  .newsletter::after {
+    display: none;
+  }
+
+  .eyebrow {
+    border-color: CanvasText;
+  }
+}

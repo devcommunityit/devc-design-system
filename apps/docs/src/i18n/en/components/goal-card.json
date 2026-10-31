@@ -1,0 +1,92 @@
+{
+  "source": "5105a7f8c457",
+  "summary": "Dashboard goal card: progress ring with the percentage in the center, current value and target formatted with Intl, and how much is left to reach the goal.",
+  "whenToUse": [
+    "Showing progress toward a numeric goal (sales, sign-ups, budget).",
+    "Pairing KpiCard with an indicator that has an explicit target."
+  ],
+  "whenNotToUse": [
+    "Values without a target: use KpiCard or Statistic.",
+    "Progress of an ongoing operation (upload, loading): use Progress.",
+    "Multiple goals compared in the same chart: use a bar or radial chart."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Goal name; also the accessible name of the meter."
+    },
+    {
+      "name": "value",
+      "description": "Current value."
+    },
+    {
+      "name": "target",
+      "description": "Value to reach (the meter's maximum)."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of the value, target, and remaining amount (currency, percentage…)."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon."
+    },
+    {
+      "name": "description",
+      "description": "Context (period, source)."
+    },
+    {
+      "name": "footer",
+      "description": "Link to details, a small action, or a note."
+    },
+    {
+      "name": "tone",
+      "description": "Ring color; brand uses the accent gradient."
+    },
+    {
+      "name": "headingLevel",
+      "description": "When set, the label becomes a heading of that level."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "The ring is a role=\"meter\" with aria-valuemin 0, aria-valuemax equal to the target, aria-valuenow, and aria-valuetext (formatted percentage, value, and target); its name comes from the label via aria-labelledby.",
+    "The SVG is decorative (aria-hidden): value, target, and remaining amount are visible text.",
+    "Reaching the goal is stated in text (“Obiettivo raggiunto”), not conveyed by color alone.",
+    "With prefers-reduced-motion the ring doesn't animate; in forced-colors mode it uses Highlight on a GrayText track."
+  ],
+  "responsive": [
+    "Ring and figures sit side by side and wrap in narrow containers.",
+    "Use Grid with minItemWidth for rows of goals."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, --dc-color-action-primary and --dc-color-accent-default (brand gradient), feedback colors for success/warning, --dc-color-surface-muted for the track.",
+    "Stable selectors: .dc-goal-card-goal[data-tone][data-reached], .dc-goal-card-ring, .dc-goal-card-arc, .dc-goal-card-footer."
+  ],
+  "commonMistakes": [
+    "Passing the percentage as value with target 100 when you have absolute values: you lose the format (currency, unit).",
+    "Using tone=\"success\" for a goal that is far off: the color must reflect the actual status.",
+    "Formatting numbers by hand and ignoring the locale."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Tones",
+      "title": "Tones",
+      "description": "brand, success (goal exceeded), warning, and neutral."
+    },
+    {
+      "name": "WithFooter",
+      "title": "With title and footer",
+      "description": "Label as an h3 heading and a link to details."
+    }
+  ],
+  "limits": [
+    "Beyond 100% the ring stays full: the actual percentage is in the center text and in aria-valuetext.",
+    "With target ≤ 0 the percentage is meaningless: the ring is full if value > 0."
+  ]
+}

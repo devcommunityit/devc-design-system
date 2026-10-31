@@ -1,0 +1,96 @@
+{
+  "source": "f71f110da062",
+  "summary": "Welcome or highlight card at the top of a dashboard: eyebrow, title, description, actions and media, on a brand, accent (gradient) or subtle surface.",
+  "whenToUse": [
+    "Personalized welcome message when the portal opens.",
+    "Highlighting something new, an onboarding flow or a priority action on the page."
+  ],
+  "whenNotToUse": [
+    "Status messages or errors: use Alert or Banner.",
+    "Several highlighted cards on the same screen: one HeroCard per view, otherwise none stands out.",
+    "Fully clickable banners: use PromoBanner."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title; also provides the accessible name of the region (aria-labelledby)."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Title heading level, chosen according to the page hierarchy."
+    },
+    {
+      "name": "eyebrow",
+      "description": "Short line above the title (date, category, context)."
+    },
+    {
+      "name": "description",
+      "description": "Supporting text."
+    },
+    {
+      "name": "actions",
+      "description": "Buttons or links; prefer variant=\"secondary\", which keeps its own contrast on every surface."
+    },
+    {
+      "name": "media",
+      "description": "Illustration or image: next to the text in wide containers, below it in narrow ones."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon (aria-hidden) next to the eyebrow."
+    },
+    {
+      "name": "variant",
+      "description": "brand: primary surface (gradient in the expressive look); accent: primary→accent gradient in every look; subtle: tonal surface."
+    },
+    {
+      "name": "as",
+      "description": "Semantic element."
+    }
+  ],
+  "inherits": "HTML attributes of <section>/<article> (id, style, data-*, aria-*); a passed aria-label or aria-labelledby overrides the default name.",
+  "keyboard": [],
+  "accessibility": [
+    "Renders a <section> (region named by the title) or an <article>; the title is a real heading at the chosen level.",
+    "Text always uses the *-foreground role paired with the surface (action-primary-foreground on brand/accent, action-secondary-foreground on subtle): contrast is guaranteed by the theme, even on gradients and in dark mode.",
+    "In forced-colors, gradients are removed and the card gets a system border.",
+    "Decorative icons and media: pass alt=\"\" to decorative images, or a meaningful alt."
+  ],
+  "responsive": [
+    "Intrinsic layout: the media moves below the text when space runs short (flex-wrap), without breakpoints.",
+    "Fluid padding (clamp) and a smaller title below 640px."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent, --dc-look-fill-primary, --dc-look-fill-tonal, --dc-look-radius-container, --dc-look-shadow-primary.",
+    "Stable selectors: .dc-hero-card-hero[data-variant], .dc-hero-card-title, .dc-hero-card-actions, .dc-hero-card-media."
+  ],
+  "commonMistakes": [
+    "Using Button variant=\"primary\" in the actions on the brand variant: it blends into the surface. Use secondary.",
+    "Skipping heading levels: set headingLevel consistently with the page.",
+    "Putting essential information only in the media."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Welcome"
+    },
+    {
+      "name": "Variants",
+      "title": "Variants"
+    },
+    {
+      "name": "WithMedia",
+      "title": "With media",
+      "description": "The media moves below the text in narrow containers."
+    },
+    {
+      "name": "Onboarding",
+      "title": "Step-by-step onboarding",
+      "description": "Content driven by local state."
+    }
+  ],
+  "limits": [
+    "Content colors in the actions slot are not adapted to the surface: use components with their own contrast (secondary Button/LinkButton).",
+    "Contrast on the accent variant depends on the theme's primary/accent pair: the bundled themes pair foregrounds of equal luminance; custom themes must be checked."
+  ]
+}

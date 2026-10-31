@@ -95,7 +95,7 @@ export function componentSlugs(): string[] {
   return slugs.sort();
 }
 
-export const SHOWCASE_PAGES = ['dashboard', 'admin', 'elenco', 'dettaglio', 'modulo', 'impostazioni', 'account', 'errori', 'accesso', 'landing'];
+export const SHOWCASE_PAGES = ['dashboard', 'admin', 'kanban', 'elenco', 'dettaglio', 'modulo', 'impostazioni', 'account', 'errori', 'accesso', 'landing'];
 export const DOC_PAGES = [
   '/',
   '/componenti',
@@ -107,6 +107,7 @@ export const DOC_PAGES = [
   '/guide/token',
   '/guide/accessibilita',
   '/guide/grafici-dashboard',
+  '/guide/stati-di-caricamento',
   '/guide/ai-content',
   '/foundations/typography',
   '/foundations/spacing',

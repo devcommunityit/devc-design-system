@@ -22,6 +22,7 @@ export const doc: ComponentDoc = {
     { name: 'thickness', type: 'number', default: '18% di size', description: 'Spessore dell’anello in px.' },
     { name: 'centerLabel', type: 'string', default: 'messages.chartTotal ("Totale")', description: 'Etichetta sotto il totale e nella riga del totale della tabella.' },
     { name: 'showLegend', type: 'boolean', default: 'true', description: 'Legenda con valore e percentuale di ogni fetta.' },
+    { name: 'appearance', type: "'auto' | 'flat' | 'vivid'", default: "'auto'", description: 'Stile grafico: vivid usa gradienti, forme arrotondate e bagliori con gli stessi colori del tema; auto diventa vivid nel look expressive.' },
   ],
   inherits: 'Attributi HTML di <figure> (id, style, data-*, aria-*…); il ref punta alla <figure>.',
   keyboard: [
@@ -38,6 +39,7 @@ export const doc: ComponentDoc = {
   ],
   responsive: ['SVG con viewBox: si ridimensiona fino a size px mantenendo le proporzioni.', 'Animazione di comparsa solo con prefers-reduced-motion: no-preference.'],
   customization: [
+    'Aspetto vivid: appearance="vivid" (o look expressive) dipinge con gradienti tra --dc-color-data-N e --dc-color-accent-default; in forced-colors torna piatto.',
     'Colori: --dc-color-data-1…6 (ciclici); traccia --dc-color-surface-subtle.',
     'Selettori stabili: .dc-donut-chart-donutChart (fetta attiva: g[data-active]), .dc-donut-chart-centerValue, .dc-chart-table.',
   ],
@@ -46,6 +48,7 @@ export const doc: ComponentDoc = {
     { name: 'Basic', title: 'Base' },
     { name: 'Currency', title: 'Valuta e etichetta del centro' },
     { name: 'InCard', title: 'In una card' },
+    { name: 'Vivid', title: 'Aspetto vivid', description: 'Gradienti e bagliori con i colori del tema.' },
   ],
   status: {
     implemented: true,

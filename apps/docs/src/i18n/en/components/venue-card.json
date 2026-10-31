@@ -1,0 +1,57 @@
+{
+  "source": "ad21c510f300",
+  "summary": "Text information about a venue, accessibility details, and a map link provided by the consumer.",
+  "whenToUse": [
+    "Presenting a venue's address, directions, and accessibility information."
+  ],
+  "whenNotToUse": [
+    "Embedding an interactive map: use VenueMap.",
+    "Showing the indoor floor plan of the venue: use VenueFloorPlan."
+  ],
+  "props": [
+    {
+      "name": "name",
+      "description": "Venue name."
+    },
+    {
+      "name": "address",
+      "description": "Postal address."
+    },
+    {
+      "name": "accessibility",
+      "description": "Accessibility details."
+    },
+    {
+      "name": "mapHref",
+      "description": "Map link provided by the application."
+    }
+  ],
+  "inherits": "HTML attributes of <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter",
+      "action": "Reaches the external directions link, if present."
+    }
+  ],
+  "accessibility": [
+    "The address uses <address>; the link that opens a new tab announces this to screen readers."
+  ],
+  "responsive": [
+    "Content flows vertically without a fixed width."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Provide mapHref pointing to a provider chosen by the consumer; no map is generated or embedded."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Venue with accessibility information"
+    }
+  ],
+  "limits": [
+    "Does not embed map providers."
+  ]
+}

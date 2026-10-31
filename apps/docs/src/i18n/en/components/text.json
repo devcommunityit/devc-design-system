@@ -1,0 +1,90 @@
+{
+  "source": "a0c8b5d4ef8c",
+  "summary": "Text applies the typographic roles (display, headline, title, body, label) and semantic tones. Heading separates the semantic level (h1–h6) from the visual size.",
+  "whenToUse": [
+    "All interface text, to keep scale and tones consistent with the tokens."
+  ],
+  "whenNotToUse": [
+    "Long text with rich markup (articles): use semantic HTML with your CMS class and the tokens."
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "description": "Typographic role (typography.* tokens)."
+    },
+    {
+      "name": "tone",
+      "description": "Semantic color."
+    },
+    {
+      "name": "weight",
+      "description": "Weight, if different from the role's."
+    },
+    {
+      "name": "as",
+      "description": "Rendered element."
+    },
+    {
+      "name": "truncate",
+      "description": "Single line with an ellipsis. For multiple lines and access to the full text, use Truncate."
+    },
+    {
+      "name": "align",
+      "description": "Logical alignment (RTL-safe)."
+    },
+    {
+      "name": "Heading.level",
+      "description": "Semantic level."
+    },
+    {
+      "name": "Heading.size",
+      "description": "Visual size; defaults based on the level."
+    },
+    {
+      "name": "Heading.gradient",
+      "description": "Two-color brand → tertiary fill for emphasis headings (hero). Only if the browser supports background-clip: text and oklch interpolation; otherwise, and in forced-colors mode, the tone's solid color is kept."
+    }
+  ],
+  "inherits": "Global HTML attributes; ref to the element.",
+  "keyboard": [],
+  "accessibility": [
+    "Tone is not the only carrier of meaning: pair danger/success/warning with text or an icon.",
+    "Tones meet AA contrast on the default theme's surfaces; check custom themes in the Theme Builder.",
+    "With truncate, make the full text available (title, tooltip, or Truncate with a button).",
+    "Heading gradient: both ends of the gradient (text.link and accent.default) share the same HCT tone and are verified AA on surfaces by the presets' contrast gate."
+  ],
+  "responsive": [
+    "Sizes are in rem: they follow the user's zoom and text size."
+  ],
+  "customization": [
+    "--dc-typography-<role>-{size,line-height,weight,letter-spacing} tokens; .dc-typography-text[data-variant][data-tone] selector."
+  ],
+  "commonMistakes": [
+    "Choosing the Heading level for appearance: use size.",
+    "Using tone=\"muted\" for essential text (lower contrast).",
+    "Using gradient on body text or many headings: it is an emphasis to reserve for one or two headings per page."
+  ],
+  "examples": [
+    {
+      "name": "Scale",
+      "title": "Type scale"
+    },
+    {
+      "name": "Tones",
+      "title": "Semantic tones"
+    },
+    {
+      "name": "HeadingLevels",
+      "title": "Level and size"
+    },
+    {
+      "name": "GradientHeading",
+      "title": "Two-color heading"
+    },
+    {
+      "name": "SingleLineTruncate",
+      "title": "Single-line truncation"
+    }
+  ],
+  "limits": []
+}

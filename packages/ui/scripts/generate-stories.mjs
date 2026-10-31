@@ -22,6 +22,8 @@ const CATEGORY_LABELS = {
   dashboard: 'Dashboard',
   ai: 'AI',
   website: 'Gestione siti',
+  community: 'Community',
+  editor: 'Editor',
   feedback: 'Feedback',
   overlay: 'Overlay',
   patterns: 'Pattern',

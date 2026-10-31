@@ -1,0 +1,101 @@
+{
+  "source": "fe229522f549",
+  "summary": "Segmented time field with a popover of fixed-step times, unavailable times, and clearing.",
+  "whenToUse": [
+    "Choosing a time from regular slots (every 15/30/60 minutes).",
+    "Opening hours, reminders, shifts."
+  ],
+  "whenNotToUse": [
+    "Date and time together: use DateTimePicker.",
+    "Arbitrary times down to the second without a list: use TimeInput.",
+    "Durations: use NumberInput with a unit."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Standard field anatomy."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Wall-clock time, with no date or time zone."
+    },
+    {
+      "name": "step",
+      "description": "Step, in minutes, of the list."
+    },
+    {
+      "name": "minValue / maxValue",
+      "description": "Limits: out-of-range times are disabled and validated."
+    },
+    {
+      "name": "isTimeUnavailable",
+      "description": "Disables individual times in the list."
+    },
+    {
+      "name": "hourCycle",
+      "description": "Forces the format (by default it follows the language)."
+    },
+    {
+      "name": "isClearable",
+      "description": "Button to clear the field."
+    },
+    {
+      "name": "popoverProps",
+      "description": "Popover positioning and classes."
+    }
+  ],
+  "inherits": "Props of react-aria-components TimeField (granularity, name, isRequired, validate…).",
+  "keyboard": [
+    {
+      "keys": "Frecce su/giù, cifre",
+      "action": "Changes the segment."
+    },
+    {
+      "keys": "Alt + Freccia giù",
+      "action": "Opens the time list."
+    },
+    {
+      "keys": "Frecce / Home / Fine nell’elenco",
+      "action": "Moves the selection; Enter confirms and closes."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the list; focus returns to the field."
+    }
+  ],
+  "accessibility": [
+    "Button with the localized name “Choose time”; the popover is a dialog with a “Times” listbox.",
+    "On open, focus moves to the selected time, which is scrolled into view."
+  ],
+  "responsive": [
+    "The list has a maximum height and scrolls; the popover stays within the viewport."
+  ],
+  "customization": [
+    "className on the field, popoverProps.className on the popover."
+  ],
+  "commonMistakes": [
+    "Using TimePicker for a precise instant with a time zone: use DateTimePicker with ZonedDateTime.",
+    "Relying on step as validation: the field accepts any typed time."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "OpeningHours",
+      "title": "Step and limits"
+    },
+    {
+      "name": "Clearable",
+      "title": "Clearable"
+    },
+    {
+      "name": "TwelveHour",
+      "title": "12-hour format"
+    }
+  ],
+  "limits": [
+    "The list shows hours and minutes; seconds can only be set from the segments."
+  ]
+}

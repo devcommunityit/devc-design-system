@@ -1,0 +1,17 @@
+.section {
+  display: grid;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--dc-space-3);
+}

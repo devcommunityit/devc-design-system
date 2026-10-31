@@ -1,6 +1,6 @@
-import type { ColorRole, PresetName, Density } from '../tokens/generated';
+import type { ColorRole, PresetKind, PresetName, Density } from '../tokens/generated';
 
-export type { ColorRole, PresetName, Density };
+export type { ColorRole, PresetKind, PresetName, Density };
 
 /** User preference. `system` follows `prefers-color-scheme`. */
 export type ThemeMode = 'light' | 'dark' | 'system';

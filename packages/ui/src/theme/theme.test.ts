@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   COLOR_ROLES,
   CONTRAST_PAIRS,
+  PRESET_COLORS,
   PRESET_NAMES,
   THEME_SCHEMA_VERSION,
   ThemeValidationError,
@@ -52,6 +53,10 @@ describe('createTheme', () => {
     expect(seeded.colors.light['accent.default']).not.toBe(derived.colors.light['accent.default']);
     expect(seeded.colors.light['action.primary']).toBe(derived.colors.light['action.primary']);
     expect(() => createTheme({ name: 'bad', seeds: { tertiary: 'pink' } })).toThrow(ThemeValidationError);
+  });
+
+  it('decodes packed preset colors to exactly the generated PRESET_COLORS', () => {
+    for (const name of PRESET_NAMES) expect(getPreset(name).colors, name).toEqual(PRESET_COLORS[name]);
   });
 
   it('keeps generated preset palettes above the declared contrast minimums', () => {

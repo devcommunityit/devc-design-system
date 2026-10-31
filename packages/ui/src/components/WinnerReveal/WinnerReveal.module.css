@@ -1,0 +1,80 @@
+.reveal {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-muted);
+  color: var(--dc-color-text-primary);
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.winner {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--dc-space-12);
+  block-size: var(--dc-space-12);
+  overflow: hidden;
+  border-radius: var(--dc-radius-full);
+  background: var(--dc-gradient-accent);
+  color: var(--dc-color-action-primary-foreground);
+}
+
+.mark > svg {
+  inline-size: var(--dc-space-6);
+  block-size: var(--dc-space-6);
+}
+
+.identity {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-font-weight-bold);
+}
+
+.detail,
+.entryNumber,
+.empty {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.entryNumber {
+  color: var(--dc-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .reveal {
+    border-color: CanvasText;
+  }
+
+  .mark {
+    border: var(--dc-border-width-thin) solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+}

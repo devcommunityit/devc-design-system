@@ -1,0 +1,64 @@
+{
+  "source": "97bf4081805a",
+  "summary": "Call for papers status banner with a deadline and an optional consumer-provided action.",
+  "whenToUse": [
+    "Communicating the current status of a call and its deadline."
+  ],
+  "whenNotToUse": [
+    "Opening or closing a call, submitting proposals, or managing workflows."
+  ],
+  "props": [
+    {
+      "name": "status",
+      "description": "Current status provided by the consumer."
+    },
+    {
+      "name": "title",
+      "description": "Banner title."
+    },
+    {
+      "name": "description",
+      "description": "Supporting information."
+    },
+    {
+      "name": "deadline",
+      "description": "Human-readable and machine-readable deadline."
+    },
+    {
+      "name": "action",
+      "description": "Link or control provided by the consumer."
+    }
+  ],
+  "inherits": "HTML attributes of <aside> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter",
+      "action": "Reaches any controls provided in the banner."
+    }
+  ],
+  "accessibility": [
+    "The aside is labelled by the title; the status is conveyed with text, not color alone."
+  ],
+  "responsive": [
+    "Content and action wrap when space is limited."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Do not derive the status from a local clock: pass the status decided by the application."
+  ],
+  "examples": [
+    {
+      "name": "Open",
+      "title": "Open call"
+    },
+    {
+      "name": "Closed",
+      "title": "Closed call"
+    }
+  ],
+  "limits": [
+    "No built-in CFP flow or automatic actions."
+  ]
+}

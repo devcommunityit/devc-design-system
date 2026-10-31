@@ -1,0 +1,113 @@
+{
+  "source": "16940c525397",
+  "summary": "Controlled operational summary for community events: tickets, passes, check-in, multi-track schedule, CFP, accessibility, and registration states.",
+  "whenToUse": [
+    "To present event operational information and actions to attendees and organizers in a single view."
+  ],
+  "whenNotToUse": [
+    "To process payments, perform scans, or send requests to the server.",
+    "To create QR codes or certificates: the content is provided by the consumer.",
+    "For an event gallery: use EventCard."
+  ],
+  "props": [
+    {
+      "name": "title / startsAt",
+      "description": "Event title and ISO date/time."
+    },
+    {
+      "name": "now",
+      "description": "Explicit reference instant for deterministic countdowns; the pattern does not update a timer."
+    },
+    {
+      "name": "timeZone",
+      "description": "IANA time zone used to format times."
+    },
+    {
+      "name": "registrationDeadline",
+      "description": "ISO registration deadline and its countdown."
+    },
+    {
+      "name": "tickets",
+      "description": "Tiers, availability, controlled quantities, and registration/waitlist callbacks."
+    },
+    {
+      "name": "pass",
+      "description": "Pass status and consumer-provided QR ReactNode content."
+    },
+    {
+      "name": "checkIn",
+      "description": "Manual check-in status, details, and onCheckIn callback."
+    },
+    {
+      "name": "tracks",
+      "description": "Sessions ordered by track; dates and data are provided by the consumer."
+    },
+    {
+      "name": "cfp",
+      "description": "Proposal status, deadline, submission link or callback, and scorecard with reviewer feedback."
+    },
+    {
+      "name": "venue",
+      "description": "Venue, directions, and accessibility information."
+    },
+    {
+      "name": "cancellation",
+      "description": "Cancellation and refund status already determined by the consumer."
+    },
+    {
+      "name": "calendarHref / certificateHref",
+      "description": "External links to export the calendar and view the certificate."
+    }
+  ],
+  "inherits": "HTML attributes of section, including className.",
+  "keyboard": [
+    {
+      "keys": "Tab / Maiusc+Tab",
+      "action": "Reaches quantity controls, buttons, and links in reading order."
+    },
+    {
+      "keys": "Freccia su/giù, Home/Fine",
+      "action": "NumberInput handles quantities according to its own accessible behavior."
+    },
+    {
+      "keys": "Enter / Spazio",
+      "action": "Activates a focused action or link."
+    }
+  ],
+  "accessibility": [
+    "Sections are identified by headings; the schedule uses Agenda and its semantic lists.",
+    "Availability and states are described in text as well as by color.",
+    "Quantities are NumberInput fields with a tier-specific label.",
+    "QR and action results are consumer-supplied data; the pattern does not access the camera or server."
+  ],
+  "responsive": [
+    "Panels are laid out in an adaptive grid; tiers, actions, and tracks wrap in narrow containers."
+  ],
+  "customization": [
+    "Icons, Badge, Button, Link, NumberInput, and Agenda reuse design system primitives.",
+    "Internal styles are based exclusively on --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting quantities or states to persist: update the data in the consumer via callbacks.",
+    "Passing QR content generated here: the pass only accepts a ReactNode already created by the consumer.",
+    "Expecting live countdowns: provide a new now value externally if the time reference needs updating.",
+    "Using callbacks for payments, scans, or certificate generation: they are intentionally out of scope."
+  ],
+  "examples": [
+    {
+      "name": "AttendeeOperations",
+      "title": "Attendee operational details",
+      "description": "Selectable tiers, waitlist, pass, accessibility, links, and countdowns based on fixed instants."
+    },
+    {
+      "name": "OrganizerOperations",
+      "title": "Organizer view",
+      "description": "Manual check-in, CFP status, refunds, and multi-track schedule."
+    }
+  ],
+  "limits": [
+    "Does not perform server calls, payments, scanning/camera, raffles, or QR/certificate generation.",
+    "Countdowns and states do not update on their own: they are controlled by the consumer.",
+    "Ordering of tracks and sessions is left to the consumer."
+  ]
+}

@@ -14,6 +14,40 @@
   overflow-wrap: anywhere;
 }
 
+/* Brand gradient surface: every text role inherits primary-foreground, the pairing designed for both gradient ends. */
+.kpi[data-variant='vivid'] {
+  border-color: transparent;
+  background-color: var(--dc-color-action-primary);
+  background-image: var(--dc-gradient-accent);
+  color: var(--dc-color-action-primary-foreground);
+  box-shadow: var(--dc-look-shadow-primary);
+}
+
+.kpi[data-variant='vivid'] :global(:is(.dc-statistic-label, .dc-statistic-value, .dc-statistic-trend, .dc-statistic-trendLabel, .dc-statistic-description)),
+.kpi[data-variant='vivid'] [data-sentiment] {
+  color: inherit;
+}
+
+.kpi[data-variant='vivid'] :global(.dc-statistic-icon) {
+  background-color: color-mix(in srgb, currentcolor 16%, transparent);
+  color: inherit;
+}
+
+.kpi[data-variant='vivid'] .sparkline {
+  --_trend: currentcolor;
+}
+
+.kpi[data-variant='vivid'] .footer {
+  border-block-start-color: color-mix(in srgb, currentcolor 30%, transparent);
+  color: inherit;
+}
+
+.kpi[data-variant='tinted'] {
+  background-color: var(--dc-color-action-secondary);
+  background-image: var(--dc-look-fill-tonal);
+  color: var(--dc-color-action-secondary-foreground);
+}
+
 .sparkline {
   display: block;
   inline-size: 100%;
@@ -66,8 +100,12 @@
 }
 
 @media (forced-colors: active) {
-  .kpi {
+  .kpi,
+  .kpi[data-variant] {
     border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: none;
   }
 
   .line {

@@ -1,0 +1,120 @@
+{
+  "source": "e870c84f6bdb",
+  "summary": "UI components for sign-in, sign-up and password recovery: accessible validation, correct autocomplete, submitting state and error messages. They contain no authentication logic.",
+  "whenToUse": [
+    "Sign-in, sign-up and password recovery pages connected to your identity provider or backend."
+  ],
+  "whenNotToUse": [
+    "If you use an identity provider with hosted pages (e.g. Entra ID, Auth0, Keycloak login): redirect to those.",
+    "As a security system: client-side validation does not replace server-side validation."
+  ],
+  "props": [
+    {
+      "name": "AuthLayout: title, description, brand, footer",
+      "description": "Content of the central card."
+    },
+    {
+      "name": "AuthLayout: headingLevel",
+      "description": "Title level (use 2 if the page already has an h1)."
+    },
+    {
+      "name": "AuthLayout: aside",
+      "description": "Side panel shown from 1024 px (image, testimonial). Don't put essential content in it: it is hidden on small screens."
+    },
+    {
+      "name": "AuthLayout: fullHeight",
+      "description": "Fills the viewport height (100dvh); false to embed it in a section or preview."
+    },
+    {
+      "name": "LoginForm: onSubmit",
+      "description": "Called after validation. If it returns a Promise, the button shows the loading state until it settles."
+    },
+    {
+      "name": "LoginForm: identifierType",
+      "description": "Identifier type and its validation."
+    },
+    {
+      "name": "LoginForm: forgotPasswordHref / showRememberMe",
+      "description": "Recovery link and “Stay signed in” checkbox."
+    },
+    {
+      "name": "SignUpForm: showName, passwordMinLength, confirmPassword, termsLabel",
+      "description": "Name field, minimum length (in Unicode characters), password confirmation, required terms checkbox."
+    },
+    {
+      "name": "PasswordResetForm: onSubmit, defaultEmail, isSubmitted, successMessage",
+      "description": "Shows a neutral message after a successful submission; isSubmitted makes it controlled."
+    },
+    {
+      "name": "error",
+      "description": "Error returned by your service (wrong credentials, attempt limit), announced with role=\"alert\"."
+    },
+    {
+      "name": "isPending",
+      "description": "Controlled submitting state; otherwise driven by the onSubmit Promise."
+    },
+    {
+      "name": "providers / footer / submitLabel",
+      "description": "Alternative sign-in (SSO, passkey) below the “or” separator, trailing content and button text."
+    },
+    {
+      "name": "defaultValues",
+      "description": "Initial values (never the password for SignUpForm)."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Form (action, method, validationErrors, className…), except onSubmit and validationBehavior. Ref forwarded to the <form>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves through the fields in visual order."
+    },
+    {
+      "keys": "Enter",
+      "action": "Submits the form; if there are errors, focus moves to the first invalid field."
+    }
+  ],
+  "accessibility": [
+    "Visible labels, with descriptions and errors linked to the field (aria-describedby) and announced.",
+    "autocomplete: username/email, current-password on sign-in, new-password on sign-up, name: password managers work.",
+    "PasswordInput lets users reveal the password; pasting is never blocked.",
+    "While submitting, the button stays focusable and announces progress (react-aria isPending); double submissions are ignored.",
+    "Server errors use role=\"alert\"; the password recovery confirmation uses role=\"status\"."
+  ],
+  "responsive": [
+    "The card is fluid up to 28rem with padding that shrinks on narrow screens; the aside panel appears from 1024 px.",
+    "No fixed widths: works at 320 px and at 200% zoom."
+  ],
+  "customization": [
+    "For forms with different fields, compose Form, TextField, PasswordInput and Checkbox inside AuthLayout.",
+    "System messages are translated via LocaleProvider (auth* keys)."
+  ],
+  "commonMistakes": [
+    "Revealing whether an account exists (“email not registered”): use neutral messages, as PasswordResetForm does.",
+    "Letting onSubmit reject the Promise to show an error: handle the error and pass it to error. A rejected Promise is propagated (submitting state reset) and surfaces as an unhandled error.",
+    "Requiring password confirmation when the field already lets users reveal the text (NIST SP 800-63B doesn't require it): that's why confirmPassword defaults to false.",
+    "Treating these components as an authentication system: rate limiting, MFA, sessions and CSRF protection are the backend's responsibility."
+  ],
+  "examples": [
+    {
+      "name": "SignIn",
+      "title": "Sign-in flow",
+      "description": "Simulated delay; the password “errata” simulates an error. Links switch between sign-in, sign-up and recovery via RouterProvider."
+    },
+    {
+      "name": "UsernameLogin",
+      "title": "Sign in with username"
+    },
+    {
+      "name": "SignUp",
+      "title": "Sign-up with password confirmation and terms"
+    },
+    {
+      "name": "ForgotPassword",
+      "title": "Password recovery with neutral confirmation"
+    }
+  ],
+  "limits": [
+    "UI only: no sessions, tokens, MFA or network calls.",
+    "Fixed fields: for different forms, compose Form, TextField and PasswordInput."
+  ]
+}

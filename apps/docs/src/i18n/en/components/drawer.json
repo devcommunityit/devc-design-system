@@ -1,0 +1,71 @@
+{
+  "source": "08af7acfabe7",
+  "summary": "Modal panel that slides in from an edge of the screen; with placement=\"bottom\" it works as a bottom sheet.",
+  "whenToUse": [
+    "Filters, secondary details, mobile navigation.",
+    "Content taller than a dialog that benefits from keeping the page context."
+  ],
+  "whenNotToUse": [
+    "Confirmations: use AlertDialog.",
+    "Main page content."
+  ],
+  "props": [
+    {
+      "name": "placement",
+      "description": "Entry edge; start/end follow the writing direction."
+    },
+    {
+      "name": "title / description / children / footer",
+      "description": "Same structure as Dialog."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled."
+    }
+  ],
+  "inherits": "All Dialog props except size.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Focus is contained within the panel."
+    },
+    {
+      "keys": "Escape",
+      "action": "Closes and returns focus to the trigger."
+    }
+  ],
+  "accessibility": [
+    "Semantics and focus management identical to a modal Dialog.",
+    "Entry animation disabled with prefers-reduced-motion."
+  ],
+  "responsive": [
+    "Limited width on desktop, nearly full width on mobile; the bottom sheet has a maximum height and internal scrolling."
+  ],
+  "customization": [
+    "className/style; surface and elevation tokens."
+  ],
+  "commonMistakes": [
+    "Using fixed left/right: use start/end to support RTL."
+  ],
+  "examples": [
+    {
+      "name": "Filters",
+      "title": "Filter panel"
+    },
+    {
+      "name": "Placements",
+      "title": "Placements"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with description and long content",
+      "description": "isOpen + onOpenChange without DialogTrigger; long lines wrap inside the panel."
+    },
+    {
+      "name": "NestedConfirm",
+      "title": "AlertDialog nested in the panel",
+      "description": "The destructive confirmation opens on top of the Drawer; with Annulla or Esc, focus returns to the Rimuovi button in the panel."
+    }
+  ],
+  "limits": []
+}

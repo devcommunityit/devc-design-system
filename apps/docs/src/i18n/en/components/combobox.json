@@ -1,0 +1,108 @@
+{
+  "source": "f767bbe9dc7c",
+  "summary": "Text field with a filterable list of suggestions for single selection, with support for async results provided by the consumer.",
+  "whenToUse": [
+    "Long lists where the user knows the value to search for.",
+    "Remote searches: the component makes no network requests; you handle fetch/debounce."
+  ],
+  "whenNotToUse": [
+    "Few options: use Select or RadioGroup.",
+    "Multiple values: use MultiSelect."
+  ],
+  "props": [
+    {
+      "name": "defaultItems",
+      "description": "Options filtered automatically (contains, locale-sensitive)."
+    },
+    {
+      "name": "items",
+      "description": "Options already filtered by the consumer (async mode): no internal filtering."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Selected key (alternatively selectedKey / onSelectionChange)."
+    },
+    {
+      "name": "inputValue / defaultInputValue / onInputChange",
+      "description": "Search text."
+    },
+    {
+      "name": "allowsCustomValue",
+      "description": "Allows text that does not match an option."
+    },
+    {
+      "name": "isLoading",
+      "description": "Shows a spinner and a localized loading message."
+    },
+    {
+      "name": "emptyState",
+      "description": "Message shown when there are no results (localized default)."
+    },
+    {
+      "name": "menuTrigger",
+      "description": "When to open the list."
+    },
+    {
+      "name": "inputRef / inputProps / popoverProps",
+      "description": "Access to the input and the popover."
+    }
+  ],
+  "inherits": "Props of the react-aria-components ComboBox (name, isRequired, validate…).",
+  "keyboard": [
+    {
+      "keys": "Digitazione",
+      "action": "Filters and opens the list."
+    },
+    {
+      "keys": "Freccia giù / su",
+      "action": "Opens the list and moves the active option."
+    },
+    {
+      "keys": "Invio",
+      "action": "Selects the active option."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the list; pressing it again restores the text."
+    }
+  ],
+  "accessibility": [
+    "APG Combobox pattern with aria-activedescendant: focus stays in the input.",
+    "The number of results is announced to screen readers."
+  ],
+  "responsive": [
+    "The popover matches the field width; on touch it opens when the arrow button is tapped."
+  ],
+  "customization": [
+    "Same anatomy as TextField; startAdornment for an icon."
+  ],
+  "commonMistakes": [
+    "Passing items (unfiltered) and expecting internal filtering: use defaultItems.",
+    "Making a network request on every keystroke without debouncing or cancellation."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Local search"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "AsyncSimulated",
+      "title": "Async results (simulated)"
+    },
+    {
+      "name": "CustomValue",
+      "title": "Custom value"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": [
+    "No list virtualization."
+  ]
+}

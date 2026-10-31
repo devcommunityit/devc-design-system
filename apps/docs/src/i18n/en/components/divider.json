@@ -1,0 +1,67 @@
+{
+  "source": "de1e9b102e0a",
+  "summary": "Divider is a semantic horizontal or vertical separator, optionally with a centered label. Spacer is presentational empty space.",
+  "whenToUse": [
+    "Separate groups of related content.",
+    "Spacer to push items to the ends of a flex row."
+  ],
+  "whenNotToUse": [
+    "To create space between elements: prefer the gap of Stack/Inline/Grid."
+  ],
+  "props": [
+    {
+      "name": "orientation",
+      "description": "Orientation (aria-orientation)."
+    },
+    {
+      "name": "label",
+      "description": "Centered text (horizontal only), e.g. “or”."
+    },
+    {
+      "name": "spacing",
+      "description": "Margin around the line."
+    },
+    {
+      "name": "Spacer.size",
+      "description": "Fixed size; without it, the Spacer fills the available space in a flex container."
+    },
+    {
+      "name": "Spacer.axis",
+      "description": "Axis of the fixed size."
+    }
+  ],
+  "inherits": "Divider: react-aria-components Separator props. Spacer: HTML attributes of <span>.",
+  "keyboard": [],
+  "accessibility": [
+    "Divider exposes role=\"separator\"; Spacer is aria-hidden.",
+    "The Divider label is regular text, read by screen readers."
+  ],
+  "responsive": [
+    "The vertical Divider stretches to the height of the flex row."
+  ],
+  "customization": [
+    "Color: color.border.subtle token; selector .dc-layout-divider[data-orientation]."
+  ],
+  "commonMistakes": [
+    "Using many Dividers where more white space would suffice."
+  ],
+  "examples": [
+    {
+      "name": "Horizontal",
+      "title": "Horizontal"
+    },
+    {
+      "name": "WithLabel",
+      "title": "With label"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    },
+    {
+      "name": "PushApart",
+      "title": "Flexible spacer"
+    }
+  ],
+  "limits": []
+}

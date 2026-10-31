@@ -1,0 +1,103 @@
+{
+  "source": "c0e5da7e3590",
+  "summary": "Bell with an unread count and a panel (non-modal dialog) listing notifications with relative time, “Mark as read” and “Mark all as read”.",
+  "whenToUse": [
+    "In the actions area of Header or AppShell for non-urgent asynchronous notices."
+  ],
+  "whenNotToUse": [
+    "Confirmations of an action just performed: use Toast.",
+    "Critical or blocking information: use Banner, Alert or AlertDialog."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "{ id, title, description?, date, read?, href?, icon? }, newest first."
+    },
+    {
+      "name": "onMarkRead",
+      "description": "When provided, shows the “Mark as read” button on unread items."
+    },
+    {
+      "name": "onMarkAllRead",
+      "description": "When provided, shows “Mark all as read”."
+    },
+    {
+      "name": "onItemAction",
+      "description": "Called when a title with href is activated, before navigation."
+    },
+    {
+      "name": "title",
+      "description": "Panel title."
+    },
+    {
+      "name": "now",
+      "description": "Reference time for relative times (deterministic demos and tests)."
+    },
+    {
+      "name": "footer",
+      "description": "Content at the bottom (e.g. “View all”)."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content when there are no notifications."
+    },
+    {
+      "name": "placement",
+      "description": "Panel placement."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled open state."
+    }
+  ],
+  "inherits": "className on the trigger container.",
+  "keyboard": [
+    {
+      "keys": "Enter / Spazio",
+      "action": "On the bell: opens the panel; focus moves into the dialog."
+    },
+    {
+      "keys": "Tab / Maiusc+Tab",
+      "action": "Between links and buttons in the panel."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes and returns focus to the bell."
+    }
+  ],
+  "accessibility": [
+    "The bell’s name includes the count (“Notifiche, 3 non lette”); the numeric badge is aria-hidden.",
+    "Unread items have a dot and hidden text (“Non letta”): the state does not rely on color alone.",
+    "After “Mark as read”, focus moves to the next button (or to the list), never to the body.",
+    "The panel is a dialog with a title (Heading slot=\"title\"), rendered in the ThemeProvider portal."
+  ],
+  "responsive": [
+    "The panel never exceeds the viewport width and scrolls vertically with many notifications."
+  ],
+  "customization": [
+    "Per-type icons via icon; footer for links; text via messages."
+  ],
+  "commonMistakes": [
+    "Expecting the component to fetch or store notifications: data, read state and delivery (polling, websocket, push) are the consumer’s responsibility.",
+    "Announcing every new notification with a live region: it can be intrusive; consider a Toast only for important ones."
+  ],
+  "examples": [
+    {
+      "name": "InHeader",
+      "title": "In a header with local state",
+      "description": "Marking as read updates the count and the bell’s name; “Carica notifiche precedenti” appends local items."
+    },
+    {
+      "name": "EmptyEnglish",
+      "title": "Empty, in English"
+    },
+    {
+      "name": "ManyUnread",
+      "title": "More than 99 unread, read-only"
+    }
+  ],
+  "limits": [
+    "No built-in pagination or grouping by date.",
+    "New notifications arriving while the panel is closed are not announced automatically."
+  ]
+}

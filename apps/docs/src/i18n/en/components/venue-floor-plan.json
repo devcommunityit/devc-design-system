@@ -1,0 +1,120 @@
+{
+  "source": "ef1c73b04c5b",
+  "summary": "Interactive venue floor plan with selectable rooms, stages, booths and services, multiple floors, a legend and details.",
+  "whenToUse": [
+    "Helping attendees find rooms, sponsor booths, food and services.",
+    "Highlighting the rooms of a track or the room of the next session.",
+    "Venues on several floors with different areas per level."
+  ],
+  "whenNotToUse": [
+    "Geographic location of the venue: use VenueMap.",
+    "Seat booking or maps with hundreds of elements: a dedicated component is needed."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Accessible name of the floor plan."
+    },
+    {
+      "name": "areas",
+      "description": "Areas with id, label, kind, shape (rectangle or points) and optional level, capacity, isAccessible, isDisabled, description."
+    },
+    {
+      "name": "width / height",
+      "description": "Size of the SVG coordinate system used by shape and markers."
+    },
+    {
+      "name": "outline",
+      "description": "Building perimeter; by default a rectangle as large as the plan."
+    },
+    {
+      "name": "levels",
+      "description": "Available floors; with more than one floor a switcher is shown. Areas without level belong to the first one."
+    },
+    {
+      "name": "level / defaultLevel / onLevelChange",
+      "description": "Controlled and initial active floor, and its change callback."
+    },
+    {
+      "name": "selectedId / defaultSelectedId / onSelectionChange",
+      "description": "Controlled and initial selected area, and its change callback."
+    },
+    {
+      "name": "highlightedIds",
+      "description": "Areas highlighted with a dashed border, for example the rooms of a track."
+    },
+    {
+      "name": "markers",
+      "description": "Points such as \"You are here\", with a brand or danger tone and an optional floor."
+    },
+    {
+      "name": "showLegend / showLabels",
+      "description": "Show the legend of area kinds and the labels inside the areas."
+    },
+    {
+      "name": "renderDetails",
+      "description": "Extra content in the details panel, for example the scheduled sessions."
+    }
+  ],
+  "inherits": "HTMLAttributes<HTMLDivElement> (without children and onChange).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Enters the plan on the selected area or the first area (roving tabindex)."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Move focus to the nearest area in the chosen direction."
+    },
+    {
+      "keys": "Home / End",
+      "action": "Go to the first or last area of the floor."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Select the area and show its details."
+    },
+    {
+      "keys": "Esc",
+      "action": "Clears the selection."
+    }
+  ],
+  "accessibility": [
+    "Each area is a button with name and kind, aria-pressed for selection and aria-disabled for closed areas.",
+    "Keyboard instructions are linked to the plan with aria-describedby.",
+    "The details panel is an aria-live region that announces the selected area.",
+    "The area kind is conveyed by text as well as color; in forced-colors mode areas use system colors.",
+    "After \"Clear selection\" focus returns to the area that was selected."
+  ],
+  "responsive": [
+    "The SVG adapts to the container width while keeping its proportions.",
+    "From a 48rem container width the details sit next to the plan; below that they wrap underneath."
+  ],
+  "customization": [
+    "Per-kind colors use the accent, action-primary and feedback-* tokens; redefine them in the theme.",
+    "Use renderDetails for schedules, speakers or booking links."
+  ],
+  "commonMistakes": [
+    "Using pixel coordinates that do not match width/height: areas would be out of scale.",
+    "Very long labels in small areas: shorten them or set showLabels to false and rely on the legend.",
+    "Forgetting level on areas when passing levels."
+  ],
+  "examples": [
+    {
+      "name": "Conference",
+      "title": "Conference center with marker"
+    },
+    {
+      "name": "MultiLevel",
+      "title": "Venue on several floors"
+    },
+    {
+      "name": "TrackHighlight",
+      "title": "Rooms highlighted by track"
+    }
+  ],
+  "limits": [
+    "No zoom or pan: split very large plans into floors or zones.",
+    "Shapes are rectangles or polygons; curves and background images go in the outline or outside the component."
+  ]
+}

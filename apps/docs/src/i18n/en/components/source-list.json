@@ -1,0 +1,59 @@
+{
+  "source": "ceb3fe4b0139",
+  "summary": "Ordered list of sources with title, link, and description; can be composed in the footer of a response.",
+  "whenToUse": [
+    "Making the sources of a response browsable.",
+    "Presenting editorial references selected by the consumer."
+  ],
+  "whenNotToUse": [
+    "Claiming that citations were verified automatically.",
+    "Showing confidential documents without server-side authorization."
+  ],
+  "props": [
+    {
+      "name": "sources",
+      "description": "Unique id, title, and href; optional description."
+    },
+    {
+      "name": "label",
+      "description": "Visible section name; localized default."
+    }
+  ],
+  "inherits": "HTML attributes of the section, className, style, and HTMLElement ref.",
+  "keyboard": [
+    {
+      "keys": "Tab / Invio",
+      "action": "Reaches and follows links with the consumer’s router."
+    }
+  ],
+  "accessibility": [
+    "Semantic ordered list, links with descriptive text, and a named section."
+  ],
+  "responsive": [
+    "Long titles and descriptions wrap."
+  ],
+  "customization": [
+    "Text and spacing tokens; label and description accept ReactNode."
+  ],
+  "commonMistakes": [
+    "Passing untrusted URLs without validating them in the consumer.",
+    "Confusing the presence of a source with the correctness of the response."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Sources with descriptions"
+    },
+    {
+      "name": "CustomLabel",
+      "title": "Custom label"
+    },
+    {
+      "name": "InMessage",
+      "title": "Sources in a message"
+    }
+  ],
+  "limits": [
+    "Does not download, verify, or index sources; URLs, permissions, and trustworthiness are the consumer’s responsibility."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "source": "0530abfa129a",
+  "summary": "Controlled filter editor for defining an audience segment.",
+  "whenToUse": [
+    "Composing audience criteria that remain managed by the consumer app."
+  ],
+  "whenNotToUse": [
+    "Saving segments or querying an audience: persistence is external."
+  ],
+  "props": [
+    {
+      "name": "filters / fields / operators",
+      "description": "Controlled values and choices."
+    },
+    {
+      "name": "onFilterChange",
+      "description": "Updates an existing filter."
+    },
+    {
+      "name": "onAddFilter / onRemoveFilter",
+      "description": "Change requests to the consumer."
+    },
+    {
+      "name": "fieldLabel / operatorLabel / valueLabel",
+      "description": "Customizable control labels."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio, frecce",
+      "action": "Edit fields through Select, TextField and Button."
+    }
+  ],
+  "accessibility": [
+    "Every input has a visible label.",
+    "Selections are provided by the system's accessible components."
+  ],
+  "responsive": [
+    "Fields stack on narrow viewports."
+  ],
+  "customization": [
+    "Composed with Select, TextField and Button; --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting the component to save or run the filters."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Segment filters"
+    }
+  ],
+  "limits": [
+    "No segment persistence or evaluation."
+  ]
+}

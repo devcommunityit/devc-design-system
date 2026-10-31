@@ -30,6 +30,7 @@ export const doc: ComponentDoc = {
     { name: 'showLegend', type: 'boolean', default: 'true', description: 'Legenda; con più serie ogni voce è un pulsante che mostra/nasconde la serie.' },
     { name: 'hiddenSeries / defaultHiddenSeries', type: 'string[]', description: 'Id delle serie nascoste (controllato / non controllato).' },
     { name: 'onHiddenSeriesChange', type: '(ids: string[]) => void', description: 'Chiamata quando la legenda cambia le serie visibili.' },
+    { name: 'appearance', type: "'auto' | 'flat' | 'vivid'", default: "'auto'", description: 'Stile grafico: vivid usa gradienti, forme arrotondate e bagliori con gli stessi colori del tema; auto diventa vivid nel look expressive.' },
   ],
   inherits: 'Attributi HTML di <figure> (id, style, data-*, aria-*…); il ref punta alla <figure>.',
   keyboard: [
@@ -51,6 +52,7 @@ export const doc: ComponentDoc = {
     'Animazione di comparsa solo con prefers-reduced-motion: no-preference.',
   ],
   customization: [
+    'Aspetto vivid: appearance="vivid" (o look expressive) dipinge con gradienti tra --dc-color-data-N e --dc-color-accent-default; in forced-colors torna piatto.',
     'Colori delle serie: token --dc-color-data-1…6 (ruoli generati dal tema), assegnati ciclicamente.',
     'Griglia, assi e testo: --dc-color-border-subtle, --dc-color-border-strong, --dc-color-text-muted.',
     'Selettori stabili: .dc-line-chart-lineChart[data-variant], .dc-chart-plot, .dc-chart-line, .dc-chart-area, .dc-chart-marker, .dc-chart-table.',
@@ -65,6 +67,7 @@ export const doc: ComponentDoc = {
     { name: 'Area', title: 'Area con valuta compatta' },
     { name: 'WithGaps', title: 'Dati mancanti', description: 'I valori null interrompono la linea; i punti isolati restano visibili come marker.' },
     { name: 'ControlledSeries', title: 'Serie visibili controllate' },
+    { name: 'Vivid', title: 'Aspetto vivid', description: 'Gradienti e bagliori con i colori del tema.' },
   ],
   status: {
     implemented: true,

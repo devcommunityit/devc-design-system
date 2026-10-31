@@ -1,0 +1,97 @@
+{
+  "source": "2052d909362b",
+  "summary": "Reorderable list (role=\"grid\") with pointer dragging, keyboard dragging via the handle, and “Move up/down” buttons as a single-pointer alternative. Every move calls onReorder and is announced.",
+  "whenToUse": [
+    "Priorities, column order, process stages, favorites."
+  ],
+  "whenNotToUse": [
+    "Long lists (hundreds of items): offer a “position” field or sorting by criteria.",
+    "Sorting tabular data: use DataTable’s column sorting."
+  ],
+  "props": [
+    {
+      "name": "items / defaultItems",
+      "description": "Controlled / initial order."
+    },
+    {
+      "name": "onReorder",
+      "description": "New complete array after every move."
+    },
+    {
+      "name": "getLabel",
+      "description": "Item text for typeahead, the handle, and announcements."
+    },
+    {
+      "name": "children",
+      "description": "Row content."
+    },
+    {
+      "name": "showMoveButtons",
+      "description": "Move up/down buttons (WCAG 2.5.7, alternative to dragging)."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables reordering; rows remain readable and navigable."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content when the list is empty."
+    },
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the list."
+    }
+  ],
+  "inherits": "Props of the react-aria-components GridList except items, children, selectionMode, and dragAndDropHooks.",
+  "keyboard": [
+    {
+      "keys": "↑ / ↓",
+      "action": "Previous / next row."
+    },
+    {
+      "keys": "← / →",
+      "action": "Between the row’s handle and buttons."
+    },
+    {
+      "keys": "Enter sulla maniglia",
+      "action": "Starts keyboard dragging; arrows to choose the position, Enter to drop, Esc to cancel."
+    },
+    {
+      "keys": "Enter / Spazio su Sposta su/giù",
+      "action": "Moves by one position; focus stays on the moved row’s button (at the edge it moves to the other button)."
+    }
+  ],
+  "accessibility": [
+    "Accessible drag-and-drop from react-aria-components (handle with a localized name and drag announcements).",
+    "Move up/down buttons as a non-dragging alternative (WCAG 2.2, 2.5.7 Dragging Movements).",
+    "A role=\"status\" region announces the new position (messages.itemMoved)."
+  ],
+  "responsive": [
+    "On touch, the handle and buttons have adequate targets; row content wraps."
+  ],
+  "customization": [
+    "Row content via children; selectors [data-dragging], [data-drop-target], [data-disabled]."
+  ],
+  "commonMistakes": [
+    "Using indexes as ids: ids must stay stable after a move.",
+    "Not persisting the order: onReorder doesn’t save anything on its own."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Uncontrolled"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with custom content"
+    },
+    {
+      "name": "Variants",
+      "title": "Without buttons, disabled, and empty (English)"
+    }
+  ],
+  "limits": [
+    "Pointer and keyboard dragging is provided by react-aria and isn’t covered by unit tests (jsdom); tests cover buttons, announcements, states, and onReorder.",
+    "No dragging between different lists and no virtualization."
+  ]
+}

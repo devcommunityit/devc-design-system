@@ -1,0 +1,76 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  entry: 'patterns',
+  exports: [
+    'CommunityMembershipAccount',
+    'type CommunityMembershipAccountProps',
+    'type MembershipAccountDetails',
+    'type MembershipBillingCadence',
+    'type MembershipCommunicationPreference',
+    'type MembershipCouponInput',
+    'type MembershipCouponStatus',
+    'type MembershipCookiePreference',
+    'type MembershipInvoice',
+    'type MembershipInvoiceStatus',
+    'type MembershipOrderSummary',
+    'type MembershipPaymentMethod',
+    'type MembershipPlanOption',
+    'type MembershipSubscription',
+    'type MembershipSubscriptionStatus',
+    'type MembershipUsage',
+  ],
+  name: 'CommunityMembershipAccount',
+  slug: 'community-membership-account',
+  category: 'patterns',
+  summary:
+    'Vista controllata dell’account membership: tessera digitale, piano e riepilogo, pagamento, stato e utilizzo, fatture e preferenze.',
+  whenToUse: ['In un’area account di community per riepilogare membership, fatturazione e preferenze.'],
+  whenNotToUse: [
+    'Per raccogliere o processare pagamenti: il pattern mostra dati di presentazione e notifica le selezioni al consumer.',
+    'Per eseguire richieste privacy o salvare consensi: l’integrazione applicativa deve gestire tali azioni.',
+  ],
+  props: [
+    { name: 'member', type: 'MembershipAccountDetails', required: true, description: 'Identità e metadati mostrati sulla tessera digitale.' },
+    { name: 'plans', type: 'Record<MembershipBillingCadence, MembershipPlanOption>', required: true, description: 'Etichette e importi presentazionali mensile e annuale.' },
+    { name: 'billingCadence / onBillingCadenceChange', type: 'MembershipBillingCadence / (cadence) => void', required: true, description: 'Selezione controllata della cadenza.' },
+    { name: 'orderSummary', type: 'MembershipOrderSummary', required: true, description: 'Totale, sconto e stato del coupon; non esegue checkout.' },
+    { name: 'couponInput', type: 'MembershipCouponInput', description: 'Campo e callback controllati per inserire/applicare un coupon; il consumer gestisce validazione e risposta.' },
+    { name: 'paymentMethods', type: 'MembershipPaymentMethod[]', required: true, description: 'Metodi di pagamento già disponibili da visualizzare e selezionare.' },
+    { name: 'selectedPaymentMethodId / onPaymentMethodChange', type: 'string / (id) => void', description: 'Selezione controllata del metodo; non raccoglie dati carta.' },
+    { name: 'subscription', type: 'MembershipSubscription', required: true, description: 'Stato, prossima data di fatturazione e utilizzo facoltativo.' },
+    { name: 'invoices', type: 'MembershipInvoice[]', required: true, description: 'Righe di cronologia fatture, con link facoltativo fornito dal consumer.' },
+    { name: 'communicationPreferences / onCommunicationPreferenceChange', type: 'MembershipCommunicationPreference[] / (id, selected) => void', required: true, description: 'Preferenze controllate; il consumer decide se e come salvarle.' },
+    { name: 'cookiePreferences', type: 'MembershipCookiePreference[]', required: true, description: 'Riepilogo in sola lettura delle preferenze cookie.' },
+    { name: 'onRequestDataExport / onRequestDeletion', type: '() => void', description: 'Callback opzionali dei pulsanti richiesta; nessuna richiesta viene eseguita o confermata dal pattern.' },
+    { name: 'className', type: 'string', description: 'Classe aggiuntiva sul contenitore.' },
+  ],
+  keyboard: [
+    { keys: 'Tab', action: 'Raggiunge controlli di piano, metodi di pagamento, preferenze e azioni.' },
+    { keys: 'Spazio / Invio', action: 'Attiva la cadenza o l’azione con focus; le radio native seguono il comportamento del browser.' },
+  ],
+  accessibility: [
+    'Le sezioni hanno intestazioni; tessera, controlli radio, switch e tabella fatture mantengono semantica nativa.',
+    'La cadenza è indicata da aria-pressed oltre allo stile visivo; gli stati sono etichettati testualmente nei Badge.',
+    'L’utilizzo è esposto con l’elemento progress e un nome accessibile.',
+  ],
+  responsive: ['I pannelli si adattano al contenitore; la cronologia fatture scorre orizzontalmente sui viewport stretti.'],
+  customization: ['Dati, callback, superfici, spaziature, stati e tipografia sono forniti dal consumer o dai token --dc-*.'],
+  commonMistakes: [
+    'Aspettarsi che il pattern addebiti, aggiorni o persista i dati: tutte le mutazioni restano responsabilità del consumer.',
+    'Interpretare le callback di esportazione o cancellazione come conferma di completamento: sono solo handler di richiesta.',
+  ],
+  examples: [
+    { name: 'ControlledMembership', title: 'Membership controllata', description: 'Tessera, switch mensile/annuale e callback locali per selezioni e richieste.' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['patterns/CommunityMembershipAccount/CommunityMembershipAccount.test.tsx'],
+    limits: [
+      'Non esegue checkout, non raccoglie dati di pagamento e non salva consensi.',
+      'Le callback privacy notificano soltanto il consumer; il pattern non dichiara che export o cancellazione siano avvenuti.',
+      'I valori monetari e le date sono formattati dal consumer.',
+    ],
+  },
+};

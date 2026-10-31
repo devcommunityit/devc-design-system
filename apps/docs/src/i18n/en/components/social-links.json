@@ -1,0 +1,97 @@
+{
+  "source": "d2b19c326dfc",
+  "summary": "List of links to the community’s social profiles (GitHub, LinkedIn, YouTube, Discord…): round icons, pills with names, or a vertical list for footers. Each network’s icon and name come from the socialNetworks map, shared with ShareButtons.",
+  "whenToUse": [
+    "“Follow us” footer column or contact section.",
+    "Social profiles of a speaker or member in a card or profile page.",
+    "Row of social icons in a dark hero (tone=\"inverse\")."
+  ],
+  "whenNotToUse": [
+    "Sharing the current page: use ShareButtons.",
+    "Internal site navigation: use NavList or NavigationMenu.",
+    "A single text link: use Link."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Profiles to link, in display order. label replaces the text (accessible name in icon, visible label in pill and list); icon replaces the default icon."
+    },
+    {
+      "name": "aria-label",
+      "description": "Name of the list for assistive technologies (e.g. “Follow us on social media”). Strongly recommended; alternatively use aria-labelledby pointing to the column heading."
+    },
+    {
+      "name": "variant",
+      "description": "icon: round icon-only buttons; pill: icon + name; list: vertical icon + name list for footers."
+    },
+    {
+      "name": "size",
+      "description": "Size, aligned with the control heights of the current density."
+    },
+    {
+      "name": "tone",
+      "description": "neutral on light surfaces, brand with the accent colors, inverse (glass, inherits the text color) for dark sections and heroes."
+    },
+    {
+      "name": "openInNewTab",
+      "description": "http(s) links open in a new tab with rel=\"noopener noreferrer\" and announce it with hidden text (messages.opensInNewTab). mailto: and relative links stay in the same tab."
+    }
+  ],
+  "inherits": "HTML attributes of the <ul> (id, style, data-*, aria-*); ref to the <ul>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves from one profile to the next."
+    },
+    {
+      "keys": "Enter",
+      "action": "Opens the profile."
+    }
+  ],
+  "accessibility": [
+    "Semantic <ul>/<li> list: assistive technologies announce the number of profiles; give it a name with aria-label or aria-labelledby.",
+    "In the icon variant the accessible name is visually hidden text: messages.socialProfile(name), e.g. “GitHub profile”, or label.",
+    "Links that open in a new tab add “(opens in a new tab)” as hidden text.",
+    "Icons are decorative (aria-hidden); no transitions with prefers-reduced-motion; in forced-colors mode border and text use LinkText, focus uses Highlight.",
+    "On touch screens targets are at least 44 × 44 px."
+  ],
+  "responsive": [
+    "icon and pill wrap when space runs out; list stays in a column.",
+    "With pointer: coarse the minimum touch area increases to 44 px."
+  ],
+  "customization": [
+    "Tokens: --dc-color-action-neutral / --dc-color-action-secondary for the background, --dc-color-action-primary on hover (brand), --dc-density-control-height-* for sizes, --dc-color-focus-ring.",
+    "Icons: the installed version of lucide-react doesn’t include brand logos, so each network uses a generic glyph (e.g. CodeXml for GitHub, AtSign for X); pass icon on the item for an official logo.",
+    "Custom networks: any string as network uses the capitalized name and a generic link icon.",
+    "Stable selectors: .dc-social-links-list[data-variant][data-tone], .dc-social-links-link[data-network][data-variant][data-size][data-tone], .dc-social-links-icon, .dc-social-links-label."
+  ],
+  "commonMistakes": [
+    "Forgetting aria-label: an icon-only list is left without context.",
+    "Using tone=\"neutral\" on a dark hero: use inverse.",
+    "Recoloring icons with official brand colors: it breaks contrast in dark mode and forced-colors mode."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Icons"
+    },
+    {
+      "name": "Variants",
+      "title": "Variants",
+      "description": "icon, pill, and list (with RSS and email)."
+    },
+    {
+      "name": "SizesAndTones",
+      "title": "Sizes and tones"
+    },
+    {
+      "name": "FooterInverse",
+      "title": "Dark “Follow us” footer",
+      "description": "List with aria-labelledby pointing to the column heading, inverse tone."
+    }
+  ],
+  "limits": [
+    "No official brand logos: generic icons from lucide-react, replaceable with the icon prop.",
+    "No official brand colors: tones use semantic tokens only."
+  ]
+}

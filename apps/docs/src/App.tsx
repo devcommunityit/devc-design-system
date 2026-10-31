@@ -4,7 +4,7 @@ import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, 
 import { BASE_URL, isStaticAppPath } from './base';
 import { DocsLayout } from './components/DocsLayout';
 import { DOCS_DEFAULT_LOOK, DOCS_DEFAULT_THEME } from './docs-defaults';
-import { DocsSettingsProvider, docsLocale, useDocsSettings } from './settings';
+import { DocsSettingsProvider, docsLocale, useDocsSettings, useI18n } from './settings';
 import { Home } from './pages/Home';
 import { ComponentsIndex } from './pages/ComponentsIndex';
 import { ComponentPage } from './pages/ComponentPage';
@@ -19,13 +19,14 @@ const ThemeDesigner = lazy(() => import('./theme-designer/ThemeDesigner').then((
 const Showcase = lazy(() => import('./showcase/ShowcaseRoutes').then((m) => ({ default: m.ShowcaseRoutes })));
 
 function Localized({ children }: { children: ReactNode }) {
-  const { language, rtl } = useDocsSettings();
+  const { lang, language, rtl } = useDocsSettings();
   const isRtl = rtl || language === 'ar';
   const locale = rtl && language !== 'ar' ? 'ar-EG' : docsLocale(language);
   useEffect(() => {
-    document.documentElement.lang = rtl ? 'ar' : language;
+    // The page prose is in the portal language; the RTL preview switches the whole document.
+    document.documentElement.lang = rtl ? 'ar' : lang;
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
-  }, [language, rtl, isRtl]);
+  }, [lang, rtl, isRtl]);
   return (
     <LocaleProvider locale={locale} messages={builtInMessages[language]}>
       {children}
@@ -44,9 +45,10 @@ function useRouterHref(href: string): string {
 }
 
 function Loading() {
+  const { t } = useI18n();
   return (
     <div className="docs-loading">
-      <Spinner label="Caricamento" />
+      <Spinner label={t.site.loading} />
     </div>
   );
 }

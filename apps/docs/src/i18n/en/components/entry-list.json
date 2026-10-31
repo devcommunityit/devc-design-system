@@ -1,0 +1,59 @@
+{
+  "source": "606809372b06",
+  "summary": "Semantic, accessible list of raffle entries, in the order provided.",
+  "whenToUse": [
+    "Showing participants and their ticket numbers.",
+    "Highlighting a winner already determined by the application."
+  ],
+  "whenNotToUse": [
+    "Accepting sign-ups or assigning tickets.",
+    "Reordering entries or picking winners at random."
+  ],
+  "props": [
+    {
+      "name": "entries",
+      "description": "Items to display, in the order provided."
+    },
+    {
+      "name": "label",
+      "description": "Accessible name of the list."
+    },
+    {
+      "name": "winnerLabel",
+      "description": "Visible text for an entry marked as the winner."
+    },
+    {
+      "name": "emptyMessage",
+      "description": "Message shown when the list is empty."
+    }
+  ],
+  "inherits": "HTML attributes of <ul>. RaffleEntry: id, name, entryNumber?, detail?, avatar?, isWinner?.",
+  "keyboard": [],
+  "accessibility": [
+    "Uses a ul/li list with a configurable accessible name.",
+    "The winner is indicated by text as well as color.",
+    "Avatars are decorative and hidden from screen readers."
+  ],
+  "responsive": [
+    "Long names and details wrap; numbers and markers stay distinct."
+  ],
+  "customization": [
+    "Uses the theme's --dc-* tokens; className and the list's HTML attributes are forwarded."
+  ],
+  "commonMistakes": [
+    "Using the list to manage or persist entries: it is a presentational component only."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Participant list"
+    },
+    {
+      "name": "WinnerAndEmpty",
+      "title": "Winner and empty state"
+    }
+  ],
+  "limits": [
+    "Does not handle sign-ups or random selection."
+  ]
+}

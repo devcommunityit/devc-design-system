@@ -1,0 +1,90 @@
+{
+  "source": "1eac7d8b3815",
+  "summary": "Star rating built on a radio group: arrow keys to choose, a localized name for each star (“4 su 5”), preview on pointer hover.",
+  "whenToUse": [
+    "Feedback on services, products, support replies.",
+    "Displaying a read-only rating."
+  ],
+  "whenNotToUse": [
+    "Continuous or decimal values: use Slider.",
+    "Choices whose meaning isn't ordinal: use RadioGroup with labels."
+  ],
+  "props": [
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled / initial value (1…max)."
+    },
+    {
+      "name": "onChange",
+      "description": "New rating."
+    },
+    {
+      "name": "max",
+      "description": "Number of stars."
+    },
+    {
+      "name": "showValue",
+      "description": "Shows “4/5” next to the stars (decorative: the value is already in the selected radio)."
+    },
+    {
+      "name": "size",
+      "description": "Star size."
+    },
+    {
+      "name": "label / description / errorMessage",
+      "description": "Field parts."
+    },
+    {
+      "name": "isReadOnly / isDisabled / isRequired / isInvalid",
+      "description": "Field states."
+    },
+    {
+      "name": "name",
+      "description": "Radio name for native form submission."
+    }
+  ],
+  "inherits": "react-aria-components RadioGroup props (except orientation, value, onChange).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the selected star (or the first one)."
+    },
+    {
+      "keys": "← / → / ↑ / ↓",
+      "action": "Selects the previous/next star; follows the reading direction in RTL."
+    }
+  ],
+  "accessibility": [
+    "Native radiogroup: each star is a radio input named “n su max” (messages.ratingValue).",
+    "Selection is conveyed by filled/empty stars (shape), not only by color; in forced-colors mode it uses system colors.",
+    "The hover preview doesn't change the value and is canceled by keyboard interaction."
+  ],
+  "responsive": [
+    "With a high max and size=\"lg\" the stars wrap; each target stays at least 24 × 24 px."
+  ],
+  "customization": [
+    "[data-size] and [data-filled] selectors on the stars."
+  ],
+  "commonMistakes": [
+    "Using color as the only indication of the value.",
+    "Showing a decimal average with a read-only Rating: round it and show the value as text."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Uncontrolled"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with description"
+    },
+    {
+      "name": "SizesAndStates",
+      "title": "Sizes and states (English)"
+    }
+  ],
+  "limits": [
+    "Integer values only: no half stars.",
+    "Once chosen, the rating can't be cleared (radio semantics): offer a “Rimuovi” button if needed."
+  ]
+}

@@ -30,6 +30,7 @@ export const doc: ComponentDoc = {
     { name: 'showLegend', type: 'boolean', default: 'true', description: 'Legenda; con più serie ogni voce è un pulsante che mostra/nasconde la serie.' },
     { name: 'hiddenSeries / defaultHiddenSeries', type: 'string[]', description: 'Id delle serie nascoste (controllato / non controllato).' },
     { name: 'onHiddenSeriesChange', type: '(ids: string[]) => void', description: 'Chiamata quando la legenda cambia le serie visibili.' },
+    { name: 'appearance', type: "'auto' | 'flat' | 'vivid'", default: "'auto'", description: 'Stile grafico: vivid usa gradienti, forme arrotondate e bagliori con gli stessi colori del tema; auto diventa vivid nel look expressive.' },
   ],
   inherits: 'Attributi HTML di <figure> (id, style, data-*, aria-*…); il ref punta alla <figure>.',
   keyboard: [
@@ -51,6 +52,7 @@ export const doc: ComponentDoc = {
     'Animazione di comparsa solo con prefers-reduced-motion: no-preference.',
   ],
   customization: [
+    'Aspetto vivid: appearance="vivid" (o look expressive) dipinge con gradienti tra --dc-color-data-N e --dc-color-accent-default; in forced-colors torna piatto.',
     'Colori: --dc-color-data-1…6 (ciclici); fascia attiva --dc-color-surface-subtle; griglia --dc-color-border-subtle.',
     'Selettori stabili: .dc-bar-chart-barChart[data-orientation][data-layout], .dc-chart-fill, .dc-chart-activeBand, .dc-chart-table.',
   ],
@@ -64,6 +66,7 @@ export const doc: ComponentDoc = {
     { name: 'Stacked', title: 'Impilato' },
     { name: 'Horizontal', title: 'Orizzontale con etichette lunghe' },
     { name: 'NegativeValues', title: 'Valori negativi' },
+    { name: 'Vivid', title: 'Aspetto vivid', description: 'Gradienti e bagliori con i colori del tema.' },
   ],
   status: {
     implemented: true,

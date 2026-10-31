@@ -1,0 +1,11 @@
+.picker {
+  min-inline-size: 0;
+}
+
+.empty {
+  margin: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  color: var(--dc-color-text-secondary);
+}

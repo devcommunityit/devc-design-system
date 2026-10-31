@@ -5,12 +5,14 @@ Design system React/TypeScript per siti pubblici, portali e dashboard. Contiene:
 - **`packages/ui`**: libreria `@dev-community/ui`, con token, temi, componenti, pattern e Storybook.
 - **`apps/docs`**: sito di documentazione, Theme Builder e showcase con pagine realistiche.
 - **`apps/playground`**: consumer separato che installa il pacchetto compilato (`npm pack`), non i sorgenti.
+- **`packages/mcp`**: server MCP `@dev-community/ui-mcp`, che espone catalogo, token, setup, pattern e un validatore
+  agli assistenti AI. Vedi [packages/mcp/README.md](packages/mcp/README.md).
 - **`e2e`**: test Playwright e axe sul sito compilato.
 - **`design/figma`**: token DTCG, set per Tokens Studio e specifiche dei componenti. **Non è un file Figma.**
 - **`scripts/verify-package.mjs`**: verifica il tarball in un consumer temporaneo.
 
-> **Licenza: decisione necessaria.** Il progetto non dichiara una licenza. La scelta spetta al proprietario e va fatta
-> prima di qualsiasi pubblicazione. Il pacchetto non è stato pubblicato e non è stato fatto nessun deploy.
+> **Licenza: [MIT](LICENSE)**, © 2026 Dev Community. Vale per tutto il monorepo; i pacchetti `@dev-community/ui` e
+> `@dev-community/ui-mcp` includono una copia del file `LICENSE`. Il pacchetto non è ancora stato pubblicato.
 
 ## Requisiti
 
@@ -26,10 +28,12 @@ npm run storybook        # Storybook: http://localhost:6006
 npm run tokens           # rigenera CSS/TS/DTCG/Tokens Studio dalla fonte unica dei token
 npm run lint             # ESLint, Stylelint, riferimenti ai token
 npm run typecheck
-npm test                 # Vitest + Testing Library + axe (packages/ui)
-npm run build            # libreria (packages/ui/dist) e sito (apps/docs/dist)
+npm test                 # Vitest + Testing Library + axe (packages/ui) e test del server MCP
+npm run build            # libreria (packages/ui/dist), sito (apps/docs/dist) e server MCP (packages/mcp/dist)
+npm run mcp              # compila e avvia il server MCP su stdio (npm run mcp:http per HTTP, porta 3333)
 npm run build:storybook
 npm run verify:package   # npm pack + installazione e prove in un consumer separato
+npm run size             # budget gzip del bundle (size-limit, dopo la build)
 npm run test:e2e         # Playwright sul sito compilato (dopo npm run build)
 npm run verify           # tutto quanto sopra, in sequenza
 npm run build:pages      # sito statico per GitHub Pages (docs + Theme Builder + Storybook)

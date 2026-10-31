@@ -1,0 +1,50 @@
+{
+  "source": "3cc69091f2b4",
+  "summary": "Centers content with a token-based max width and fluid horizontal padding (mobile-first).",
+  "whenToUse": [
+    "Main content of public pages and portals.",
+    "Long text: size=\"prose\" limits line length (~70 characters)."
+  ],
+  "whenNotToUse": [
+    "Inside a Card or Dialog that already has padding: use disableGutters or no Container."
+  ],
+  "props": [
+    {
+      "name": "size",
+      "description": "Maximum width (container.* tokens)."
+    },
+    {
+      "name": "as",
+      "description": "Semantic element."
+    },
+    {
+      "name": "disableGutters",
+      "description": "Removes horizontal padding."
+    }
+  ],
+  "inherits": "Global HTML attributes and events; ref to the element.",
+  "keyboard": [],
+  "accessibility": [
+    "No role added; use as=\"main\" only once per page (AppShell already does this)."
+  ],
+  "responsive": [
+    "Horizontal padding grows with the viewport (space.4 → space.8); at 320 px the content does not overflow."
+  ],
+  "customization": [
+    "Widths: --dc-container-* tokens. Selector .dc-layout-container[data-size]."
+  ],
+  "commonMistakes": [
+    "Nesting multiple Containers: the effective width is that of the narrowest one and the padding adds up."
+  ],
+  "examples": [
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    },
+    {
+      "name": "WithoutGutters",
+      "title": "Without horizontal padding"
+    }
+  ],
+  "limits": []
+}

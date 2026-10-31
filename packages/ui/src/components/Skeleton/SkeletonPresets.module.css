@@ -1,0 +1,513 @@
+.region {
+  min-inline-size: 0;
+}
+
+/* Box rendered by components with isLoading: the preset fills it. */
+.placeholder {
+  display: grid;
+  min-inline-size: 0;
+}
+
+/* Text bones are 1em tall: font-size sets the line height of each placeholder. */
+.small {
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.heading {
+  font-size: var(--dc-typography-title-lg-size);
+}
+
+.title {
+  font-size: var(--dc-typography-title-md-size);
+}
+
+.label {
+  font-size: var(--dc-typography-label-lg-size);
+}
+
+.kpiLabel {
+  font-size: var(--dc-typography-label-md-size);
+}
+
+.value {
+  font-size: var(--dc-typography-headline-md-size);
+}
+
+.tick {
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.noShrink {
+  flex-shrink: 0;
+}
+
+/* Text */
+.text {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+/* Avatar / media object */
+.avatar,
+.media {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.mediaText {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+/* Card */
+.card,
+.kpi {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+}
+
+.card {
+  overflow: hidden;
+}
+
+.cardMedia {
+  flex-shrink: 0;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-4);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+  padding-block-start: var(--dc-space-1);
+}
+
+/* List */
+.list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.list[data-variant='card'] {
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+}
+
+.listRow {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+  padding-block: var(--dc-space-3);
+}
+
+.list[data-variant='card'] .listRow {
+  padding-inline: var(--dc-space-4);
+}
+
+.list[data-dividers] .listRow + .listRow {
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+/* Table */
+.table {
+  box-sizing: border-box;
+  container-type: inline-size;
+  min-inline-size: 0;
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-lg);
+  background-color: var(--dc-color-surface-default);
+}
+
+.table[data-responsive='scroll'] {
+  overflow-x: auto;
+}
+
+.table[data-responsive='scroll'] .tableInner {
+  min-inline-size: calc(var(--_cols) * 8rem);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: var(--_tpl);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.tableRow:last-child {
+  border-block-end: 0;
+}
+
+.tableRow[data-part='header'] {
+  background-color: var(--dc-color-surface-subtle);
+}
+
+.tableCell {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  padding-block: var(--dc-density-cell-padding-block);
+  padding-inline: var(--dc-density-cell-padding-inline);
+}
+
+@container (width < 30rem) {
+  .table[data-responsive='collapse'] .tableRow {
+    grid-template-columns: var(--_tpl-narrow);
+  }
+
+  .table[data-responsive='collapse'] .tableCell[data-extra] {
+    display: none;
+  }
+}
+
+/* KPI */
+.kpi {
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-4);
+}
+
+.kpiTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-3);
+}
+
+.spark {
+  block-size: 2.5rem;
+}
+
+/* Chart */
+.chart {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.plotWrap {
+  display: flex;
+  gap: var(--dc-space-2);
+  block-size: var(--_plot-h);
+  min-inline-size: 0;
+}
+
+.yAxis {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plot {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 0;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  padding-inline: var(--dc-space-2);
+  border-inline-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.bar {
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+
+.svg {
+  display: block;
+  inline-size: 100%;
+  overflow: visible;
+  color: var(--dc-color-surface-strong);
+}
+
+.plotSvg {
+  block-size: 100%;
+}
+
+.line {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.area {
+  fill: currentcolor;
+  opacity: 0.5;
+}
+
+.donutWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dc-space-6);
+  min-inline-size: 0;
+}
+
+.donut {
+  box-sizing: border-box;
+  display: block;
+  inline-size: min(100%, var(--_plot-h));
+  aspect-ratio: 1;
+  border: var(--dc-space-6) solid var(--dc-color-surface-strong);
+  border-radius: var(--dc-radius-full);
+}
+
+.legend {
+  display: flex;
+  flex: 1 1 8rem;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+  max-inline-size: 14rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+/* SVG and ring parts cannot carry the shimmer gradient: they pulse instead. */
+.svg:is([data-animation='pulse'], [data-animation='wave']),
+.chart:not([data-animation='none']) .donut {
+  animation: dc-skeleton-fade 1.6s var(--dc-motion-easing-standard) infinite;
+}
+
+@keyframes dc-skeleton-fade {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--dc-density-form-gap);
+  min-inline-size: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-density-field-gap);
+  min-inline-size: 0;
+}
+
+/* Page */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-6);
+  min-inline-size: 0;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageTitle {
+  font-size: var(--dc-typography-headline-sm-size);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+}
+
+.search {
+  flex: 1 1 12rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--dc-space-4);
+}
+
+/* Profile (matches ProfileCard: band, overlapping avatar, centered text) */
+.profile {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+}
+
+.profileBand {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  inline-size: auto;
+}
+
+.profileAvatar {
+  position: relative;
+  margin-block: var(--dc-space-3) var(--dc-space-2);
+  box-shadow: 0 0 0 var(--dc-space-1) var(--dc-color-surface-default);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--dc-space-2);
+  padding-block: var(--dc-space-1);
+}
+
+.profileStats {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  align-self: stretch;
+  padding-block-start: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.profileStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Comments / feed */
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-5);
+  min-inline-size: 0;
+}
+
+.commentGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-4);
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+}
+
+.comment[data-reply] {
+  padding-inline-start: var(--dc-space-8);
+}
+
+.commentBody {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.commentHead,
+.commentActions {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+}
+
+.commentActions {
+  padding-block-start: var(--dc-space-1);
+}
+
+/* Kanban */
+.kanban {
+  display: grid;
+  grid-auto-columns: minmax(15rem, 1fr);
+  grid-auto-flow: column;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.kanbanColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-3);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-muted);
+}
+
+.kanbanHead,
+.kanbanFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.kanbanCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-surface-default);
+}
+
+.kanbanFoot {
+  padding-block-start: var(--dc-space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg[data-animation],
+  .chart[data-animation] .donut {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .svg {
+    color: GrayText;
+  }
+
+  .donut {
+    border-color: GrayText;
+  }
+}

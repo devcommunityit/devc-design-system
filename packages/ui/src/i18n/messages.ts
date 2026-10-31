@@ -3,15 +3,10 @@
  * `<LocaleProvider messages={...}>`; nothing is hard-coded in components.
  */
 import type { ThemeIssue, ThemeIssueCode, ThemeIssueParams } from '../theme/types';
-import { ar } from './locales/ar';
-import { de } from './locales/de';
-import { es } from './locales/es';
-import { fr } from './locales/fr';
-import { pt } from './locales/pt';
-
-export { ar, de, es, fr, pt };
+import { componentMessagesEn, componentMessagesIt, type ComponentMessages } from './componentMessages';
 
 export interface Messages {
+  components: ComponentMessages;
   aiPrompt: string;
   aiSend: string;
   aiStop: string;
@@ -104,6 +99,22 @@ export interface Messages {
   nextMonth: string;
   chooseDate: string;
   openCalendar: string;
+  /** Date/time picker shortcuts and actions. */
+  today: string;
+  now: string;
+  tomorrow: string;
+  yesterday: string;
+  nextWeek: string;
+  last7Days: string;
+  last30Days: string;
+  thisMonth: string;
+  lastMonth: string;
+  done: string;
+  datePresets: string;
+  chooseTime: string;
+  timeSlots: string;
+  calendarMonth: string;
+  calendarYear: string;
   selectedItems: string;
   increase: string;
   decrease: string;
@@ -156,6 +167,165 @@ export interface Messages {
   chartTotal: string;
   chartKeyboardHint: string;
   chartValue: string;
+  chartTarget: string;
+  /** Funnel step share of the first step. */
+  chartConversion: string;
+  chartSeries: string;
+  /** GoalCard: amount still missing (already formatted). */
+  goalRemaining: (value: string) => string;
+  goalReached: string;
+  /** Community: event attendance mode. */
+  eventModeOnline: string;
+  eventModeHybrid: string;
+  eventModeInPerson: string;
+  /** Community: pricing table selection and comparison labels. */
+  pricingSelectPlan: string;
+  pricingFeatures: string;
+  pricingIncluded: string;
+  pricingNotIncluded: string;
+  /** Community: seats taken out of capacity (already formatted). */
+  eventSeats: (taken: string, capacity: string) => string;
+  /** Community: few seats left; `count` drives plural, `formatted` is displayed. */
+  eventSeatsLeft: (count: number, formatted: string) => string;
+  eventSoldOut: string;
+  /** Community: reading time (minutes already formatted). */
+  readingTime: (minutes: string) => string;
+  reactionLike: string;
+  reactionComment: string;
+  reactionBookmark: string;
+  upvote: string;
+  removeUpvote: string;
+  votes: (count: number, formatted: string) => string;
+  replies: (count: number, formatted: string) => string;
+  /** Community: leaderboard points (already formatted). */
+  points: (formatted: string) => string;
+  /** Community: completed modules out of total (already formatted). */
+  modulesProgress: (done: string, total: string) => string;
+  newsletterEmail: string;
+  newsletterSubscribe: string;
+  newsletterSubscribed: string;
+  live: string;
+  liveViewers: (count: number, formatted: string) => string;
+  isNew: string;
+  /** Website release stage labels (StageLabel). */
+  stageAlpha: string;
+  stageBeta: string;
+  stagePreview: string;
+  stageDemo: string;
+  stageExperimental: string;
+  stageDeprecated: string;
+  stageComingSoon: string;
+  /** Sharing (ShareButtons). */
+  share: string;
+  copyLink: string;
+  linkCopied: string;
+  /** `network` is the brand name, e.g. "LinkedIn". */
+  shareOn: (network: string) => string;
+  /** Social profile link accessible name; `network` is the brand name. */
+  socialProfile: (network: string) => string;
+  /** AchievementBadge. */
+  achievementLocked: string;
+  achievementTierBronze: string;
+  achievementTierSilver: string;
+  achievementTierGold: string;
+  achievementTierPlatinum: string;
+  /** Earned on (date already formatted). */
+  achievementEarned: (date: string) => string;
+  editorLabel: string;
+  editorToolbar: string;
+  editorPlaceholder: string;
+  editorSlashHint: string;
+  editorUndo: string;
+  editorRedo: string;
+  editorBold: string;
+  editorItalic: string;
+  editorUnderline: string;
+  editorStrike: string;
+  editorCode: string;
+  editorHighlight: string;
+  editorLink: string;
+  editorRemoveLink: string;
+  editorLinkUrl: string;
+  editorOpenInNewTab: string;
+  editorApply: string;
+  editorCancel: string;
+  editorTextStyle: string;
+  editorParagraph: string;
+  editorHeading: (level: number) => string;
+  editorBulletList: string;
+  editorOrderedList: string;
+  editorTaskList: string;
+  editorBlockquote: string;
+  editorCodeBlock: string;
+  editorDivider: string;
+  editorImage: string;
+  editorImageUrl: string;
+  editorImageAlt: string;
+  editorTable: string;
+  editorAddRow: string;
+  editorAddColumn: string;
+  editorDeleteRow: string;
+  editorDeleteColumn: string;
+  editorDeleteTable: string;
+  editorAlign: string;
+  editorAlignStart: string;
+  editorAlignCenter: string;
+  editorAlignEnd: string;
+  editorAlignJustify: string;
+  editorClearFormatting: string;
+  editorInsert: string;
+  editorInsertBlock: string;
+  editorNoResults: string;
+  editorBlockActions: string;
+  editorDragBlock: string;
+  editorMoveUp: string;
+  editorMoveDown: string;
+  editorDuplicate: string;
+  editorDelete: string;
+  editorWords: (count: number, formatted: string) => string;
+  editorCharacters: (count: number, formatted: string) => string;
+  editorCharactersLeft: (count: number, formatted: string) => string;
+  emailEditor: string;
+  emailBlocks: string;
+  emailAddBlock: string;
+  emailBlockHeading: string;
+  emailBlockText: string;
+  emailBlockButton: string;
+  emailBlockImage: string;
+  emailBlockDivider: string;
+  emailBlockSpacer: string;
+  emailBlockColumns: string;
+  emailBlockSocial: string;
+  emailBlockFooter: string;
+  emailCanvas: string;
+  emailEmpty: string;
+  emailSettings: string;
+  emailBlockSettings: string;
+  emailNoSelection: string;
+  emailSubject: string;
+  emailPreheader: string;
+  emailEdit: string;
+  emailPreview: string;
+  emailViewport: string;
+  emailDesktop: string;
+  emailMobile: string;
+  emailButtonLabel: string;
+  emailLinkUrl: string;
+  emailBackground: string;
+  emailContentBackground: string;
+  emailTextColor: string;
+  emailAccentColor: string;
+  emailFont: string;
+  emailWidth: string;
+  emailHeight: string;
+  emailPadding: string;
+  emailCopyHtml: string;
+  emailHtmlCopied: string;
+  emailExportHtml: string;
+  emailBlockPosition: (index: number, total: number) => string;
+  emailBlockAdded: (name: string) => string;
+  emailBlockRemoved: (name: string) => string;
+  emailBlockMoved: (name: string, index: number, total: number) => string;
   expandNavigation: string;
   collapseNavigation: string;
   /** Text summary of a series (values already formatted), used by Sparkline. */
@@ -168,6 +338,7 @@ export interface Messages {
 }
 
 export const en: Messages = {
+  components: componentMessagesEn,
   aiPrompt: 'Write a prompt',
   aiSend: 'Send',
   aiStop: 'Stop generating',
@@ -261,6 +432,21 @@ export const en: Messages = {
   nextMonth: 'Next month',
   chooseDate: 'Choose date',
   openCalendar: 'Open calendar',
+  today: 'Today',
+  now: 'Now',
+  tomorrow: 'Tomorrow',
+  yesterday: 'Yesterday',
+  nextWeek: 'In one week',
+  last7Days: 'Last 7 days',
+  last30Days: 'Last 30 days',
+  thisMonth: 'This month',
+  lastMonth: 'Last month',
+  done: 'Done',
+  datePresets: 'Shortcuts',
+  chooseTime: 'Choose time',
+  timeSlots: 'Times',
+  calendarMonth: 'Month',
+  calendarYear: 'Year',
   selectedItems: 'Selected items',
   increase: 'Increase',
   decrease: 'Decrease',
@@ -312,6 +498,150 @@ export const en: Messages = {
   chartTotal: 'Total',
   chartKeyboardHint: 'Use the arrow keys to move between data points.',
   chartValue: 'Value',
+  chartTarget: 'Target',
+  chartConversion: 'Conversion',
+  chartSeries: 'Series',
+  goalRemaining: (value) => `${value} to go`,
+  goalReached: 'Target reached',
+  eventModeOnline: 'Online',
+  eventModeHybrid: 'Hybrid',
+  eventModeInPerson: 'In person',
+  pricingSelectPlan: 'Select plan',
+  pricingFeatures: 'Features',
+  pricingIncluded: 'Included',
+  pricingNotIncluded: 'Not included',
+  eventSeats: (t, c) => `${t} / ${c} seats`,
+  eventSeatsLeft: (n, f) => (n === 1 ? 'Last seat' : `Last ${f} seats`),
+  eventSoldOut: 'Sold out',
+  readingTime: (m) => `${m} min read`,
+  reactionLike: 'Like',
+  reactionComment: 'Comments',
+  reactionBookmark: 'Save',
+  upvote: 'Upvote',
+  removeUpvote: 'Remove upvote',
+  votes: (n, f) => (n === 1 ? '1 vote' : `${f} votes`),
+  replies: (n, f) => (n === 1 ? '1 reply' : `${f} replies`),
+  points: (f) => `${f} pts`,
+  modulesProgress: (d, t) => `${d} / ${t} modules`,
+  newsletterEmail: 'Email',
+  newsletterSubscribe: 'Subscribe',
+  newsletterSubscribed: 'Subscribed',
+  live: 'Live',
+  liveViewers: (n, f) => (n === 1 ? '1 viewer' : `${f} viewers`),
+  isNew: 'New',
+  stageAlpha: 'Alpha',
+  stageBeta: 'Beta',
+  stagePreview: 'Preview',
+  stageDemo: 'Demo',
+  stageExperimental: 'Experimental',
+  stageDeprecated: 'Deprecated',
+  stageComingSoon: 'Coming soon',
+  share: 'Share',
+  copyLink: 'Copy link',
+  linkCopied: 'Link copied',
+  shareOn: (n) => `Share on ${n}`,
+  socialProfile: (n) => `${n} profile`,
+  achievementLocked: 'Locked',
+  achievementTierBronze: 'Bronze',
+  achievementTierSilver: 'Silver',
+  achievementTierGold: 'Gold',
+  achievementTierPlatinum: 'Platinum',
+  achievementEarned: (d) => `Earned on ${d}`,
+  editorLabel: 'Rich text editor',
+  editorToolbar: 'Formatting',
+  editorPlaceholder: 'Start writing…',
+  editorSlashHint: 'Type “/” for commands',
+  editorUndo: 'Undo',
+  editorRedo: 'Redo',
+  editorBold: 'Bold',
+  editorItalic: 'Italic',
+  editorUnderline: 'Underline',
+  editorStrike: 'Strikethrough',
+  editorCode: 'Inline code',
+  editorHighlight: 'Highlight',
+  editorLink: 'Link',
+  editorRemoveLink: 'Remove link',
+  editorLinkUrl: 'Link address',
+  editorOpenInNewTab: 'Open in a new tab',
+  editorApply: 'Apply',
+  editorCancel: 'Cancel',
+  editorTextStyle: 'Text style',
+  editorParagraph: 'Paragraph',
+  editorHeading: (l) => `Heading ${l}`,
+  editorBulletList: 'Bulleted list',
+  editorOrderedList: 'Numbered list',
+  editorTaskList: 'Checklist',
+  editorBlockquote: 'Quote',
+  editorCodeBlock: 'Code block',
+  editorDivider: 'Divider',
+  editorImage: 'Image',
+  editorImageUrl: 'Image address',
+  editorImageAlt: 'Alternative text',
+  editorTable: 'Table',
+  editorAddRow: 'Add row',
+  editorAddColumn: 'Add column',
+  editorDeleteRow: 'Delete row',
+  editorDeleteColumn: 'Delete column',
+  editorDeleteTable: 'Delete table',
+  editorAlign: 'Alignment',
+  editorAlignStart: 'Align start',
+  editorAlignCenter: 'Center',
+  editorAlignEnd: 'Align end',
+  editorAlignJustify: 'Justify',
+  editorClearFormatting: 'Clear formatting',
+  editorInsert: 'Insert',
+  editorInsertBlock: 'Insert block',
+  editorNoResults: 'No matching blocks',
+  editorBlockActions: 'Block actions',
+  editorDragBlock: 'Drag to move',
+  editorMoveUp: 'Move up',
+  editorMoveDown: 'Move down',
+  editorDuplicate: 'Duplicate',
+  editorDelete: 'Delete',
+  editorWords: (c, f) => (c === 1 ? '1 word' : `${f} words`),
+  editorCharacters: (c, f) => (c === 1 ? '1 character' : `${f} characters`),
+  editorCharactersLeft: (c, f) => (c === 1 ? '1 character left' : `${f} characters left`),
+  emailEditor: 'Email editor',
+  emailBlocks: 'Blocks',
+  emailAddBlock: 'Add block',
+  emailBlockHeading: 'Heading',
+  emailBlockText: 'Text',
+  emailBlockButton: 'Button',
+  emailBlockImage: 'Image',
+  emailBlockDivider: 'Divider',
+  emailBlockSpacer: 'Spacer',
+  emailBlockColumns: 'Columns',
+  emailBlockSocial: 'Social links',
+  emailBlockFooter: 'Footer',
+  emailCanvas: 'Email content',
+  emailEmpty: 'Add a block to start building your email',
+  emailSettings: 'Email settings',
+  emailBlockSettings: 'Block settings',
+  emailNoSelection: 'Select a block to edit its settings',
+  emailSubject: 'Subject',
+  emailPreheader: 'Preview text',
+  emailEdit: 'Edit',
+  emailPreview: 'Preview',
+  emailViewport: 'Preview size',
+  emailDesktop: 'Desktop',
+  emailMobile: 'Mobile',
+  emailButtonLabel: 'Button text',
+  emailLinkUrl: 'Link address',
+  emailBackground: 'Background',
+  emailContentBackground: 'Content background',
+  emailTextColor: 'Text color',
+  emailAccentColor: 'Accent color',
+  emailFont: 'Font',
+  emailWidth: 'Width',
+  emailHeight: 'Height',
+  emailPadding: 'Padding',
+  emailCopyHtml: 'Copy HTML',
+  emailHtmlCopied: 'HTML copied',
+  emailExportHtml: 'Export HTML',
+  emailBlockPosition: (i, t) => `Block ${i} of ${t}`,
+  emailBlockAdded: (b) => `${b} added`,
+  emailBlockRemoved: (b) => `${b} removed`,
+  emailBlockMoved: (b, i, t) => `${b} moved to position ${i} of ${t}`,
   expandNavigation: 'Expand navigation',
   collapseNavigation: 'Collapse navigation',
   chartSummary: ({ first, last, min, max }) => `From ${first} to ${last}; minimum ${min}, maximum ${max}.`,
@@ -335,6 +665,7 @@ export const en: Messages = {
 };
 
 export const it: Messages = {
+  components: componentMessagesIt,
   aiPrompt: 'Scrivi una richiesta',
   aiSend: 'Invia',
   aiStop: 'Interrompi generazione',
@@ -428,6 +759,21 @@ export const it: Messages = {
   nextMonth: 'Mese successivo',
   chooseDate: 'Scegli la data',
   openCalendar: 'Apri calendario',
+  today: 'Oggi',
+  now: 'Adesso',
+  tomorrow: 'Domani',
+  yesterday: 'Ieri',
+  nextWeek: 'Tra una settimana',
+  last7Days: 'Ultimi 7 giorni',
+  last30Days: 'Ultimi 30 giorni',
+  thisMonth: 'Questo mese',
+  lastMonth: 'Mese scorso',
+  done: 'Fatto',
+  datePresets: 'Scorciatoie',
+  chooseTime: 'Scegli orario',
+  timeSlots: 'Orari',
+  calendarMonth: 'Mese',
+  calendarYear: 'Anno',
   selectedItems: 'Elementi selezionati',
   increase: 'Aumenta',
   decrease: 'Diminuisci',
@@ -479,6 +825,150 @@ export const it: Messages = {
   chartTotal: 'Totale',
   chartKeyboardHint: 'Usa i tasti freccia per spostarti tra i punti dati.',
   chartValue: 'Valore',
+  chartTarget: 'Obiettivo',
+  chartConversion: 'Conversione',
+  chartSeries: 'Serie',
+  goalRemaining: (value) => `Mancano ${value}`,
+  goalReached: 'Obiettivo raggiunto',
+  eventModeOnline: 'Online',
+  eventModeHybrid: 'Ibrido',
+  eventModeInPerson: 'In presenza',
+  pricingSelectPlan: 'Seleziona piano',
+  pricingFeatures: 'Funzionalità',
+  pricingIncluded: 'Incluso',
+  pricingNotIncluded: 'Non incluso',
+  eventSeats: (t, c) => `${t} / ${c} posti`,
+  eventSeatsLeft: (n, f) => (n === 1 ? 'Ultimo posto' : `Ultimi ${f} posti`),
+  eventSoldOut: 'Esaurito',
+  readingTime: (m) => `${m} min di lettura`,
+  reactionLike: 'Mi piace',
+  reactionComment: 'Commenti',
+  reactionBookmark: 'Salva',
+  upvote: 'Vota',
+  removeUpvote: 'Rimuovi voto',
+  votes: (n, f) => (n === 1 ? '1 voto' : `${f} voti`),
+  replies: (n, f) => (n === 1 ? '1 risposta' : `${f} risposte`),
+  points: (f) => `${f} pt`,
+  modulesProgress: (d, t) => `${d} / ${t} moduli`,
+  newsletterEmail: 'Email',
+  newsletterSubscribe: 'Iscriviti',
+  newsletterSubscribed: 'Iscrizione completata',
+  live: 'Live',
+  liveViewers: (n, f) => (n === 1 ? '1 spettatore' : `${f} spettatori`),
+  isNew: 'Nuovo',
+  stageAlpha: 'Alpha',
+  stageBeta: 'Beta',
+  stagePreview: 'Anteprima',
+  stageDemo: 'Demo',
+  stageExperimental: 'Sperimentale',
+  stageDeprecated: 'Deprecato',
+  stageComingSoon: 'In arrivo',
+  share: 'Condividi',
+  copyLink: 'Copia link',
+  linkCopied: 'Link copiato',
+  shareOn: (n) => `Condividi su ${n}`,
+  socialProfile: (n) => `Profilo ${n}`,
+  achievementLocked: 'Bloccato',
+  achievementTierBronze: 'Bronzo',
+  achievementTierSilver: 'Argento',
+  achievementTierGold: 'Oro',
+  achievementTierPlatinum: 'Platino',
+  achievementEarned: (d) => `Ottenuto il ${d}`,
+  editorLabel: 'Editor di testo',
+  editorToolbar: 'Formattazione',
+  editorPlaceholder: 'Inizia a scrivere…',
+  editorSlashHint: 'Digita “/” per i comandi',
+  editorUndo: 'Annulla',
+  editorRedo: 'Ripeti',
+  editorBold: 'Grassetto',
+  editorItalic: 'Corsivo',
+  editorUnderline: 'Sottolineato',
+  editorStrike: 'Barrato',
+  editorCode: 'Codice in linea',
+  editorHighlight: 'Evidenzia',
+  editorLink: 'Link',
+  editorRemoveLink: 'Rimuovi link',
+  editorLinkUrl: 'Indirizzo del link',
+  editorOpenInNewTab: 'Apri in una nuova scheda',
+  editorApply: 'Applica',
+  editorCancel: 'Annulla',
+  editorTextStyle: 'Stile del testo',
+  editorParagraph: 'Paragrafo',
+  editorHeading: (l) => `Titolo ${l}`,
+  editorBulletList: 'Elenco puntato',
+  editorOrderedList: 'Elenco numerato',
+  editorTaskList: 'Lista di controllo',
+  editorBlockquote: 'Citazione',
+  editorCodeBlock: 'Blocco di codice',
+  editorDivider: 'Divisore',
+  editorImage: 'Immagine',
+  editorImageUrl: 'Indirizzo dell’immagine',
+  editorImageAlt: 'Testo alternativo',
+  editorTable: 'Tabella',
+  editorAddRow: 'Aggiungi riga',
+  editorAddColumn: 'Aggiungi colonna',
+  editorDeleteRow: 'Elimina riga',
+  editorDeleteColumn: 'Elimina colonna',
+  editorDeleteTable: 'Elimina tabella',
+  editorAlign: 'Allineamento',
+  editorAlignStart: 'Allinea all’inizio',
+  editorAlignCenter: 'Centra',
+  editorAlignEnd: 'Allinea alla fine',
+  editorAlignJustify: 'Giustifica',
+  editorClearFormatting: 'Cancella formattazione',
+  editorInsert: 'Inserisci',
+  editorInsertBlock: 'Inserisci blocco',
+  editorNoResults: 'Nessun blocco corrispondente',
+  editorBlockActions: 'Azioni sul blocco',
+  editorDragBlock: 'Trascina per spostare',
+  editorMoveUp: 'Sposta su',
+  editorMoveDown: 'Sposta giù',
+  editorDuplicate: 'Duplica',
+  editorDelete: 'Elimina',
+  editorWords: (c, f) => (c === 1 ? '1 parola' : `${f} parole`),
+  editorCharacters: (c, f) => (c === 1 ? '1 carattere' : `${f} caratteri`),
+  editorCharactersLeft: (c, f) => (c === 1 ? '1 carattere rimasto' : `${f} caratteri rimasti`),
+  emailEditor: 'Editor email',
+  emailBlocks: 'Blocchi',
+  emailAddBlock: 'Aggiungi blocco',
+  emailBlockHeading: 'Titolo',
+  emailBlockText: 'Testo',
+  emailBlockButton: 'Pulsante',
+  emailBlockImage: 'Immagine',
+  emailBlockDivider: 'Divisore',
+  emailBlockSpacer: 'Spaziatore',
+  emailBlockColumns: 'Colonne',
+  emailBlockSocial: 'Link social',
+  emailBlockFooter: 'Piè di pagina',
+  emailCanvas: 'Contenuto dell’email',
+  emailEmpty: 'Aggiungi un blocco per iniziare a comporre l’email',
+  emailSettings: 'Impostazioni email',
+  emailBlockSettings: 'Impostazioni del blocco',
+  emailNoSelection: 'Seleziona un blocco per modificarne le impostazioni',
+  emailSubject: 'Oggetto',
+  emailPreheader: 'Testo di anteprima',
+  emailEdit: 'Modifica',
+  emailPreview: 'Anteprima',
+  emailViewport: 'Dimensione dell’anteprima',
+  emailDesktop: 'Desktop',
+  emailMobile: 'Mobile',
+  emailButtonLabel: 'Testo del pulsante',
+  emailLinkUrl: 'Indirizzo del link',
+  emailBackground: 'Sfondo',
+  emailContentBackground: 'Sfondo del contenuto',
+  emailTextColor: 'Colore del testo',
+  emailAccentColor: 'Colore di accento',
+  emailFont: 'Carattere',
+  emailWidth: 'Larghezza',
+  emailHeight: 'Altezza',
+  emailPadding: 'Spaziatura interna',
+  emailCopyHtml: 'Copia HTML',
+  emailHtmlCopied: 'HTML copiato',
+  emailExportHtml: 'Esporta HTML',
+  emailBlockPosition: (i, t) => `Blocco ${i} di ${t}`,
+  emailBlockAdded: (b) => `${b} aggiunto`,
+  emailBlockRemoved: (b) => `${b} rimosso`,
+  emailBlockMoved: (b, i, t) => `${b} spostato in posizione ${i} di ${t}`,
   expandNavigation: 'Espandi navigazione',
   collapseNavigation: 'Comprimi navigazione',
   chartSummary: ({ first, last, min, max }) => `Da ${first} a ${last}; minimo ${min}, massimo ${max}.`,
@@ -502,23 +992,15 @@ export const it: Messages = {
   },
 };
 
-/** Language subtags with a built-in bundle. */
-export type BuiltInLanguage = 'en' | 'it' | 'es' | 'fr' | 'de' | 'pt' | 'ar';
+/** Languages bundled with `LocaleProvider` by default; other built-in languages are opt-in (see `builtIn.ts`). */
+export type CoreLanguage = 'en' | 'it';
 
 /**
- * Built-in bundles keyed by BCP 47 language subtag. `es`, `fr`, `de`, `pt` (Brazilian usage)
- * and `ar` are first translations: have them reviewed by native speakers before production use.
+ * Picks the core bundle (`it` or `en`) by BCP 47 language subtag, falling back to English.
+ * Kept separate from `getDefaultMessages` so apps that do not import the other bundles don't ship them.
  */
-export const builtInMessages: Readonly<Record<BuiltInLanguage, Messages>> = { en, it, es, fr, de, pt, ar };
-
-function isBuiltInLanguage(lang: string): lang is BuiltInLanguage {
-  return Object.prototype.hasOwnProperty.call(builtInMessages, lang);
-}
-
-/** Picks built-in messages by BCP 47 language subtag, falling back to English. */
-export function getDefaultMessages(locale: string): Messages {
-  const lang = locale.toLowerCase().split('-')[0] ?? 'en';
-  return isBuiltInLanguage(lang) ? builtInMessages[lang] : en;
+export function getCoreMessages(locale: string): Messages {
+  return locale.toLowerCase().split('-')[0] === 'it' ? it : en;
 }
 
 /** Localized, end-user message for a theme validation issue (without the JSON path). */

@@ -1,0 +1,124 @@
+{
+  "source": "72ad1eea96bc",
+  "summary": "List of community posts: gradient thumbnail with a label, clickable title, metadata row (author, duration, tags) and a vote box. Accepts an items array or PostListItem children; VoteButton is also exported on its own.",
+  "whenToUse": [
+    "Feeds of trending posts or articles with community voting.",
+    "Compact content lists where the title is the main element.",
+    "VoteButton: voting on a question, idea or proposal."
+  ],
+  "whenNotToUse": [
+    "A single featured article with cover and excerpt: use ArticleCard.",
+    "Numbered threads with replies and time: use DiscussionList.",
+    "Rankings of people with points: use Leaderboard."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Posts to display; alternatively pass PostListItem children."
+    },
+    {
+      "name": "onVote",
+      "description": "Called when the vote of an items row changes."
+    },
+    {
+      "name": "headingLevel",
+      "description": "When set, titles become headings of that level."
+    },
+    {
+      "name": "variant",
+      "description": "card: surface with border and radius; plain: only the dividers between rows."
+    },
+    {
+      "name": "PostListItem.thumb",
+      "description": "Custom thumbnail content (image, icon) instead of thumbLabel."
+    },
+    {
+      "name": "PostListItem.tone",
+      "description": "Thumbnail gradient."
+    },
+    {
+      "name": "PostListItem.onVoteChange",
+      "description": "Vote change for the row (composed children)."
+    },
+    {
+      "name": "VoteButton.count",
+      "description": "Total votes, including the user's own when active."
+    },
+    {
+      "name": "VoteButton.isSelected / defaultSelected / onChange",
+      "description": "Vote state, controlled or uncontrolled."
+    },
+    {
+      "name": "VoteButton.formatOptions",
+      "description": "Format of the visible count."
+    },
+    {
+      "name": "isLoading",
+      "description": "Replaces the rows with a SkeletonList (aria-busy) while keeping the <ul> element and the frame."
+    },
+    {
+      "name": "loadingRows",
+      "description": "Skeleton rows during isLoading."
+    }
+  ],
+  "inherits": "PostList: HTML attributes of <ul>. PostListItem: attributes of <li>. VoteButton: React Aria ToggleButton props (isDisabled, autoFocus…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves from the title link to the row's vote, then to the next row."
+    },
+    {
+      "keys": "Invio",
+      "action": "Opens the post from the title link."
+    },
+    {
+      "keys": "Spazio / Invio",
+      "action": "Adds or removes the vote."
+    }
+  ],
+  "accessibility": [
+    "Semantic <ul>/<li> list; name the list with aria-label or aria-labelledby when there is more than one.",
+    "The title link covers the row (stretched link); vote and tags stay on top and clickable.",
+    "VoteButton is a ToggleButton with aria-pressed; its name is “Vota” or “Rimuovi voto” and the description (aria-describedby) reports the full count (“186 voti”). The visible number uses compact notation.",
+    "The labeled thumbnail is decorative (aria-hidden); a custom thumbnail stays exposed, so give images an alt or make them decorative.",
+    "In forced-colors mode thumbnails and vote use system colors, and the active vote uses Highlight."
+  ],
+  "responsive": [
+    "Container query: below 24rem the thumbnail is 48px with reduced spacing; the vote box stays at least 52 × 44px.",
+    "Metadata wraps; the title takes all the available space."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container (list), --dc-look-radius-control (vote), --dc-color-action-primary, --dc-color-accent-default and --dc-color-data-1…6 for thumbnails, --dc-gradient-accent for the active vote.",
+    "Stable selectors: .dc-post-list-list[data-variant], .dc-post-list-item[data-tone], .dc-post-list-thumb, .dc-post-list-vote[data-selected]."
+  ],
+  "commonMistakes": [
+    "Passing isVoted without updating it in onVote: controlled state does not change on its own.",
+    "Expecting the count to change on its own: count/votes is always the total passed by the parent.",
+    "Putting important text only in the thumbnail: it is decorative."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "items array with votes managed in the parent."
+    },
+    {
+      "name": "Composable",
+      "title": "Composition",
+      "description": "PostListItem children without a frame."
+    },
+    {
+      "name": "StandaloneVote",
+      "title": "Standalone VoteButton"
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "PostList's headingLevel applies only to rows created from items; composed children receive it individually.",
+    "No built-in sorting or pagination."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "source": "aa169ec0feae",
+  "summary": "XP progress toward the next level, composed using the existing Progress component.",
+  "whenToUse": [
+    "Showing current XP, threshold, and current level in a profile or community area."
+  ],
+  "whenNotToUse": [
+    "Displaying circular goals or KPI cards: use GoalCard.",
+    "Calculating XP or levels on the application side."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible and accessible name of the progress."
+    },
+    {
+      "name": "currentXp",
+      "description": "Current XP."
+    },
+    {
+      "name": "targetXp",
+      "description": "XP required for the next level."
+    },
+    {
+      "name": "level",
+      "description": "Current level shown above the bar."
+    },
+    {
+      "name": "levelLabel",
+      "description": "Localizable level label."
+    },
+    {
+      "name": "description",
+      "description": "Optional context."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [],
+  "accessibility": [
+    "Reuses Progress for the progressbar role, accessible name, and values.",
+    "The displayed value is text, formatted according to the active locale."
+  ],
+  "responsive": [
+    "The linear bar adapts to the available width."
+  ],
+  "customization": [
+    "The bar is the shared Progress; the container uses --dc-* tokens and accepts className."
+  ],
+  "commonMistakes": [
+    "Passing XP as a percentage: currentXp and targetXp are absolute values."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "XP progress"
+    },
+    {
+      "name": "NearlyComplete",
+      "title": "Level reached"
+    }
+  ],
+  "limits": [
+    "Does not calculate XP awards or level progression."
+  ]
+}

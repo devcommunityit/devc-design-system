@@ -1,0 +1,64 @@
+{
+  "source": "7d701054fe28",
+  "summary": "Real hyperlink (<a href>) built on react-aria-components Link, compatible with any router via RouterProvider.",
+  "whenToUse": [
+    "Navigating to another page or section, including external ones."
+  ],
+  "whenNotToUse": [
+    "To perform an action: use Button.",
+    "For a link that looks like a button: use LinkButton."
+  ],
+  "props": [
+    {
+      "name": "href",
+      "description": "Destination. Without href a <span role=\"link\"> is rendered: avoid it."
+    },
+    {
+      "name": "variant",
+      "description": "inline is underlined within text; standalone is underlined on hover/focus."
+    },
+    {
+      "name": "external",
+      "description": "Opens in a new tab with rel=\"noopener noreferrer\", an icon and localized hidden text."
+    },
+    {
+      "name": "target / rel",
+      "description": "Native attributes (ignored if external)."
+    }
+  ],
+  "inherits": "Props of react-aria-components Link (onPress, routerOptions, download, hrefLang…) and DOM attributes.",
+  "keyboard": [
+    {
+      "keys": "Enter",
+      "action": "Follows the link."
+    }
+  ],
+  "accessibility": [
+    "Inline links are underlined: they are not distinguished by color alone (WCAG 1.4.1).",
+    "The external link announces “(opens in a new tab)” through translated hidden text."
+  ],
+  "responsive": [
+    "Long URLs wrap without causing overflow (overflow-wrap)."
+  ],
+  "customization": [
+    "Color: color.text.link token; selector .dc-typography-link[data-variant]."
+  ],
+  "commonMistakes": [
+    "Generic link text (“click here”): the text must describe the destination."
+  ],
+  "examples": [
+    {
+      "name": "Inline",
+      "title": "Inline in text"
+    },
+    {
+      "name": "External",
+      "title": "External"
+    },
+    {
+      "name": "Standalone",
+      "title": "Standalone (navigation)"
+    }
+  ],
+  "limits": []
+}

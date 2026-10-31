@@ -1,0 +1,51 @@
+/* Shared plot, fill and gradient styles live in ../charts-internal/Chart.module.css. */
+.funnelChart {
+  inline-size: 100%;
+}
+
+.connector {
+  fill: var(--dc-color-surface-subtle);
+}
+
+.label {
+  fill: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-label-md-size);
+}
+
+.value {
+  font-size: var(--dc-typography-label-md-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.amount {
+  fill: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.conversion {
+  fill: var(--dc-color-text-secondary);
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .connector {
+  fill: var(--_series);
+  fill-opacity: 0.16;
+}
+
+@media (forced-colors: active) {
+  .connector {
+    fill: Canvas;
+    stroke: GrayText;
+    stroke-width: 1;
+  }
+
+  .label,
+  .amount,
+  .conversion {
+    fill: CanvasText;
+  }
+
+  .funnelChart [data-active] > .bar {
+    stroke: Highlight;
+    stroke-width: 3;
+  }
+}

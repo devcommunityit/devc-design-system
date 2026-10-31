@@ -7,11 +7,12 @@
 
 .skeleton {
   display: block;
+  box-sizing: border-box;
   inline-size: var(--_w, 100%);
+  max-inline-size: 100%;
   block-size: var(--_h, auto);
   border-radius: var(--dc-radius-sm);
-  background: var(--dc-color-surface-strong);
-  animation: dc-skeleton-pulse 1.6s var(--dc-motion-easing-standard) infinite;
+  background-color: var(--dc-color-surface-strong);
 }
 
 .group > .skeleton {
@@ -19,7 +20,7 @@
 }
 
 .skeleton[data-shape='text'] {
-  block-size: 1em;
+  block-size: var(--_h, 1em);
   margin-block: 0.25em;
 }
 
@@ -33,9 +34,50 @@
 }
 
 .skeleton[data-shape='circle'] {
+  flex-shrink: 0;
   inline-size: var(--_w, var(--dc-space-10));
   block-size: var(--_h, var(--_w, var(--dc-space-10)));
   border-radius: var(--dc-radius-full);
+}
+
+.skeleton[data-radius='none'] {
+  border-radius: var(--dc-radius-none);
+}
+
+.skeleton[data-radius='sm'] {
+  border-radius: var(--dc-radius-sm);
+}
+
+.skeleton[data-radius='md'] {
+  border-radius: var(--dc-radius-md);
+}
+
+.skeleton[data-radius='lg'] {
+  border-radius: var(--dc-radius-lg);
+}
+
+.skeleton[data-radius='full'] {
+  border-radius: var(--dc-radius-full);
+}
+
+.skeleton[data-radius='control'] {
+  border-radius: var(--dc-look-radius-control);
+}
+
+.skeleton[data-animation='pulse'] {
+  animation: dc-skeleton-pulse 1.6s var(--dc-motion-easing-standard) infinite;
+}
+
+/* Shimmer: a lighter band sweeps along the inline axis (start → end, so right-to-left in RTL). */
+.skeleton[data-animation='wave'] {
+  background-image: linear-gradient(90deg, transparent, var(--dc-color-surface-muted), transparent);
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  animation: dc-skeleton-wave 1.6s linear infinite;
+}
+
+.skeleton[data-animation='wave']:dir(rtl) {
+  animation-direction: reverse;
 }
 
 @keyframes dc-skeleton-pulse {
@@ -44,8 +86,19 @@
   }
 }
 
+@keyframes dc-skeleton-wave {
+  from {
+    background-position: -100% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .skeleton {
+  .skeleton[data-animation] {
+    background-image: none;
     animation: none;
   }
 }
@@ -53,5 +106,9 @@
 @media (forced-colors: active) {
   .skeleton {
     border: 1px solid GrayText;
+  }
+
+  .skeleton[data-animation] {
+    background-image: none;
   }
 }

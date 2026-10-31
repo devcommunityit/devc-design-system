@@ -1,0 +1,67 @@
+{
+  "source": "16a9dab1f772",
+  "summary": "Accessible preview of a job opening with a link to the details.",
+  "whenToUse": [
+    "Showing a job offer in a list or a community."
+  ],
+  "whenNotToUse": [
+    "For a team member use ProfileCard."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Job title."
+    },
+    {
+      "name": "company",
+      "description": "Company or organization."
+    },
+    {
+      "name": "href",
+      "description": "Link to the job offer's details page."
+    },
+    {
+      "name": "description",
+      "description": "Short description."
+    },
+    {
+      "name": "location",
+      "description": "Location or work arrangement."
+    },
+    {
+      "name": "employmentType",
+      "description": "Employment type."
+    },
+    {
+      "name": "postedAt",
+      "description": "Publication date as text."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio",
+      "action": "Reaches the title link."
+    }
+  ],
+  "accessibility": [
+    "The job is an article with a heading and descriptive metadata."
+  ],
+  "responsive": [
+    "Metadata columns can wrap."
+  ],
+  "customization": [
+    "Uses --dc-* tokens for text, surfaces and spacing."
+  ],
+  "commonMistakes": [
+    "The link opens the details; this component does not submit applications."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Job offer"
+    }
+  ],
+  "limits": [
+    "The consumer provides the content and destination."
+  ]
+}

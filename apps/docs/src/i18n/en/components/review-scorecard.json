@@ -1,0 +1,56 @@
+{
+  "source": "c3b5079ff48d",
+  "summary": "Visual summary of per-criterion scores and the reviewer's recommendation.",
+  "whenToUse": [
+    "Showing reviewers or organizers the scores recorded for a proposal."
+  ],
+  "whenNotToUse": [
+    "Collecting or saving judgments: the component only displays data already provided."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Review title."
+    },
+    {
+      "name": "criteria",
+      "description": "Criteria, scores and optional comments."
+    },
+    {
+      "name": "recommendation",
+      "description": "Text recommendation."
+    },
+    {
+      "name": "summary",
+      "description": "Review summary."
+    }
+  ],
+  "inherits": "HTML attributes of <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Adds no interactive controls."
+    }
+  ],
+  "accessibility": [
+    "Criteria are a description list; scores use native meters with accessible labels."
+  ],
+  "responsive": [
+    "Scores move below the criterion name in narrow spaces."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Passing a score outside the range defined by maxScore."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Review with criteria"
+    }
+  ],
+  "limits": [
+    "Does not collect or persist scores."
+  ]
+}

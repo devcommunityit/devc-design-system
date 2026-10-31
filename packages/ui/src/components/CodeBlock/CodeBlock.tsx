@@ -6,6 +6,8 @@ import { cx } from '../../utils';
 import { useCopyToClipboard } from '../CopyButton/CopyButton';
 import styles from './CodeBlock.module.css';
 
+export type CodeBlockVariant = 'default' | 'window';
+
 export interface CodeBlockProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> {
   /** Source code shown verbatim (no syntax highlighting is applied). */
   code: string;
@@ -21,6 +23,8 @@ export interface CodeBlockProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
   maxHeight?: string;
   /** Called after a successful copy. */
   onCopyCode?: (code: string) => void;
+  /** `'window'` renders a dark editor chrome with decorative traffic-light dots. @default 'default' */
+  variant?: CodeBlockVariant;
 }
 
 /**
@@ -28,7 +32,7 @@ export interface CodeBlockProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
  * The scrollable area is keyboard focusable and labelled. No highlighting dependency.
  */
 export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function CodeBlock(
-  { code, language, title, copyable = true, defaultWrap = false, maxHeight, onCopyCode, className, style, ...rest },
+  { code, language, title, copyable = true, defaultWrap = false, maxHeight, onCopyCode, variant = 'default', className, style, ...rest },
   ref,
 ) {
   const messages = useMessages();
@@ -36,8 +40,15 @@ export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function Cod
   const { status, copy } = useCopyToClipboard({ onCopy: onCopyCode });
   const label = typeof title === 'string' ? title : language ? `${messages.codeBlock} ${language}` : messages.codeBlock;
   return (
-    <div ref={ref} className={cx(styles.codeBlock, className)} data-wrap={wrap || undefined} style={style} {...rest}>
+    <div ref={ref} className={cx(styles.codeBlock, className)} data-wrap={wrap || undefined} data-variant={variant} style={style} {...rest}>
       <div className={styles.toolbar}>
+        {variant === 'window' ? (
+          <span className={styles.dots} aria-hidden="true">
+            <span className={styles.dot} />
+            <span className={styles.dot} />
+            <span className={styles.dot} />
+          </span>
+        ) : null}
         <span className={styles.title}>{title ?? language}</span>
         <div className={styles.tools}>
           <RACButton className={styles.tool} aria-pressed={wrap} onPress={() => setWrap((w) => !w)}>

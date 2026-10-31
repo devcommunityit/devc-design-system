@@ -108,6 +108,85 @@
   white-space: nowrap;
 }
 
+/* Window variant: dark editor chrome in light mode, inverted surface in dark mode. */
+.codeBlock[data-variant='window'] {
+  border-color: transparent;
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-inverse);
+  background-color: light-dark(var(--dc-color-surface-inverse), var(--dc-color-surface-canvas));
+  color: var(--dc-color-text-inverse);
+  color: light-dark(var(--dc-color-text-inverse), var(--dc-color-text-primary));
+  box-shadow: var(--dc-shadow-3);
+}
+
+.codeBlock[data-variant='window'] .toolbar {
+  justify-content: flex-start;
+  gap: var(--dc-space-3);
+  padding-inline-start: var(--dc-space-4);
+  border-block-end-color: color-mix(in srgb, currentcolor 15%, transparent);
+  background-color: color-mix(in srgb, currentcolor 6%, transparent);
+}
+
+.codeBlock[data-variant='window'] .title {
+  flex: 1;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.codeBlock[data-variant='window'] .tools {
+  margin-inline-start: auto;
+}
+
+.codeBlock[data-variant='window'] .tool {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.codeBlock[data-variant='window'] .tool[data-hovered],
+.codeBlock[data-variant='window'] .tool[aria-pressed='true'] {
+  background-color: color-mix(in srgb, currentcolor 14%, transparent);
+  color: inherit;
+  opacity: 1;
+}
+
+.codeBlock[data-variant='window'] .tool[aria-pressed='true'] {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentcolor 40%, transparent);
+}
+
+.dots {
+  display: inline-flex;
+  flex: none;
+  gap: var(--dc-space-1-5);
+}
+
+.dot {
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-feedback-danger);
+}
+
+.dot:nth-child(2) {
+  background-color: var(--dc-color-feedback-warning);
+}
+
+.dot:nth-child(3) {
+  background-color: var(--dc-color-feedback-success);
+}
+
+@media (forced-colors: active) {
+  .codeBlock[data-variant='window'] {
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .dot {
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+}
+
 @media (width < 640px) {
   .toolLabel {
     position: absolute;

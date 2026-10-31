@@ -1,0 +1,116 @@
+{
+  "source": "a07b512d531d",
+  "summary": "Profile card for speakers and mentors: gradient top band, large overlapping avatar, name (optionally a link covering the whole card), role, tags, a row of stats formatted with Intl and actions such as “Segui”.",
+  "whenToUse": [
+    "Grids of featured speakers, mentors, authors or members on a community page.",
+    "Profile preview with a few key figures (talks, followers, articles)."
+  ],
+  "whenNotToUse": [
+    "Long or compact lists of people: use a list with Avatar or a table.",
+    "Rankings with position and score: use RankingCard or Leaderboard.",
+    "Just the person's image: use Avatar."
+  ],
+  "props": [
+    {
+      "name": "name",
+      "description": "Person's name: card title, avatar initials and accessible name of the article."
+    },
+    {
+      "name": "jobTitle",
+      "description": "Role or title (e.g. “AI Engineer”). It is not called role to avoid shadowing the ARIA attribute."
+    },
+    {
+      "name": "company",
+      "description": "Company or organization, shown after the role."
+    },
+    {
+      "name": "href",
+      "description": "Profile URL: the name becomes a link whose clickable area covers the whole card."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level of the name."
+    },
+    {
+      "name": "avatarSrc",
+      "description": "Avatar image; if missing or it fails to load, the initials remain."
+    },
+    {
+      "name": "avatar",
+      "description": "Custom avatar instead of the default one."
+    },
+    {
+      "name": "tags",
+      "description": "Tags or Badges (topics, technologies)."
+    },
+    {
+      "name": "stats",
+      "description": "Short figures; numbers are formatted with Intl according to the locale (e.g. compact notation)."
+    },
+    {
+      "name": "actions",
+      "description": "Actions (e.g. a “Segui” Button): they stay clickable above the stretched link."
+    },
+    {
+      "name": "tone",
+      "description": "Gradient of the top band."
+    },
+    {
+      "name": "isLoading",
+      "description": "Renders a SkeletonProfile of the same shape in its place (aria-busy, hidden non-live “Caricamento…” text) while keeping className and style, so it stays in the grid. Wrap the area in SkeletonGroup for a single announcement."
+    }
+  ],
+  "inherits": "HTML attributes of <article> (id, style, data-*, aria-*).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the name link (if href) and then the actions."
+    }
+  ],
+  "accessibility": [
+    "The card is an <article> whose accessible name comes from the title (aria-labelledby).",
+    "With href there is a single link (the name): the clickable area is extended with a pseudo-element, so screen readers don't hear duplicate links; focus draws the ring around the whole card.",
+    "The avatar is decorative because the name is already visible; the gradient band is aria-hidden.",
+    "Stats are a description list (<dl>): label in <dt>, value in <dd>, even though the value is visually above.",
+    "In forced-colors mode borders use CanvasText; with prefers-reduced-motion hover does not move the card."
+  ],
+  "responsive": [
+    "Centered column layout: works from 320px; tags, stats and actions wrap.",
+    "Use Grid with minItemWidth (≈14rem) for a speaker grid."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent / --dc-gradient-accent-subtle for the band, --dc-look-radius-container, --dc-look-shadow-primary on hover.",
+    "Stable selectors: .dc-profile-card-profile[data-tone][data-linked], .dc-profile-card-band, .dc-profile-card-avatar, .dc-profile-card-stats, .dc-profile-card-actions."
+  ],
+  "commonMistakes": [
+    "Wrapping the whole card in an <a>: the inner actions would become nested interactive elements. Use href.",
+    "Formatting numbers by hand (“2.1K”): pass the number and formatOptions { notation: \"compact\" }.",
+    "Passing a non-decorative avatar: the name would be read twice."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "Speaker with profile link, tags and compact stats."
+    },
+    {
+      "name": "SpeakerGrid",
+      "title": "Speaker grid",
+      "description": "The four band tones with a “Segui” action."
+    },
+    {
+      "name": "Mentor",
+      "title": "Mentor without link",
+      "description": "Text stat and primary action."
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "The default avatar has a fixed size (≈76px); for other sizes pass an element in avatar.",
+    "Actions are designed for one or two buttons: with many items the card grows taller."
+  ]
+}

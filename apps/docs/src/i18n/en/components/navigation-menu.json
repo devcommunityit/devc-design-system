@@ -1,0 +1,81 @@
+{
+  "source": "84b520fcebb6",
+  "summary": "Main site navigation with links and expandable groups (disclosure pattern).",
+  "whenToUse": [
+    "Site and portal headers with sections and subsections.",
+    "Side navigation with groups (vertical orientation)."
+  ],
+  "whenNotToUse": [
+    "Actions on an item: use DropdownMenu.",
+    "Alternative content on the same page: use Tabs."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Links ({ id, label, href, description?, current?, linkProps? }) or groups ({ id, label, items })."
+    },
+    {
+      "name": "orientation",
+      "description": "Horizontal: flyout panels. Vertical: always-visible groups."
+    },
+    {
+      "name": "aria-label",
+      "description": "Name of the nav landmark."
+    }
+  ],
+  "inherits": "HTML attributes of <nav>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves through group buttons and links."
+    },
+    {
+      "keys": "Enter / Space",
+      "action": "Opens or closes the group."
+    },
+    {
+      "keys": "Escape",
+      "action": "Closes the open group and returns focus to its button."
+    }
+  ],
+  "accessibility": [
+    "APG “Disclosure navigation” pattern: buttons with aria-expanded and aria-controls, real links.",
+    "The current page link has aria-current=\"page\".",
+    "The panel closes when focus leaves it or on an outside click.",
+    "Does not use role=\"menu\": links stay links (the approach recommended by the APG for site navigation)."
+  ],
+  "responsive": [
+    "On mobile, use the vertical orientation inside a Drawer (see AppShell) or BottomNavigation.",
+    "Items wrap; panels have a maximum width limited to the viewport."
+  ],
+  "customization": [
+    "Selectors: .dc-navigation-menu-trigger[aria-expanded], .dc-navigation-menu-top-link[aria-current], .dc-navigation-menu-sub-link[aria-current]."
+  ],
+  "commonMistakes": [
+    "Using groups without direct links for important pages.",
+    "Placing actions (logout) as navigation links."
+  ],
+  "examples": [
+    {
+      "name": "Horizontal",
+      "title": "Horizontal with panels"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    },
+    {
+      "name": "CurrentPage",
+      "title": "Current page managed by state",
+      "description": "current and linkProps.onPress update aria-current; the Servizi group indicates when it contains the current page."
+    },
+    {
+      "name": "LongLabels",
+      "title": "Long labels in limited space",
+      "description": "Long items and descriptions wrap without horizontal overflow."
+    }
+  ],
+  "limits": [
+    "A single level of groups: for deeper hierarchies use a dedicated side navigation."
+  ]
+}

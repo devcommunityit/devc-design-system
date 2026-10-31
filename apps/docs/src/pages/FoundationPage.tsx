@@ -1,17 +1,19 @@
 import { Suspense, useRef } from 'react';
 import { useParams } from 'react-router';
-import { Heading, Skeleton, Stack, Text } from '@dev-community/ui';
+import { Alert, Heading, Skeleton, Stack, Text } from '@dev-community/ui';
 import { ErrorBoundary, LoadError, PageToc, PrevNext, useSectionHeadings } from '../components/Doc';
-import { findFoundation, FOUNDATION_COMPONENTS, FOUNDATIONS } from '../content/foundations';
+import { findFoundation, FOUNDATION_COMPONENTS, FOUNDATIONS, hasFoundationTranslation } from '../content/foundations';
+import { useI18n } from '../settings';
 import { NotFound } from './NotFound';
 import { PageMeta } from '../components/PageMeta';
 
 export function FoundationPage() {
   const { slug } = useParams();
+  const { lang, t } = useI18n();
   const foundation = findFoundation(slug);
-  const Body = foundation ? FOUNDATION_COMPONENTS[foundation.slug] : undefined;
+  const Body = foundation ? FOUNDATION_COMPONENTS[lang][foundation.slug] : undefined;
   const bodyRef = useRef<HTMLDivElement>(null);
-  const headings = useSectionHeadings(bodyRef, slug ?? '');
+  const headings = useSectionHeadings(bodyRef, `${slug ?? ''}-${lang}`);
   if (!foundation || !Body) return <NotFound />;
 
   const index = FOUNDATIONS.indexOf(foundation);
@@ -20,11 +22,12 @@ export function FoundationPage() {
 
   return (
     <article className="docs-article docs-article--toc docs-prose">
-      <PageMeta title={foundation.title} description={foundation.description} />
+      <PageMeta title={foundation.title[lang]} description={foundation.description[lang]} />
       <div className="docs-article-head">
         <header className="docs-page-header">
-          <Heading level={1}>{foundation.title}</Heading>
-          <Text variant="body-lg" tone="secondary">{foundation.description}</Text>
+          <Heading level={1}>{foundation.title[lang]}</Heading>
+          <Text variant="body-lg" tone="secondary">{foundation.description[lang]}</Text>
+          {hasFoundationTranslation(foundation.slug, lang) ? null : <Alert tone="info">{t.language.notTranslated}</Alert>}
         </header>
       </div>
       <PageToc items={headings} />
@@ -37,9 +40,9 @@ export function FoundationPage() {
           </ErrorBoundary>
         </div>
         <PrevNext
-          label="Fondamenta precedente e successiva"
-          prev={prev ? { href: `/foundations/${prev.slug}`, label: prev.title } : undefined}
-          next={next ? { href: `/foundations/${next.slug}`, label: next.title } : undefined}
+          label={t.doc.prevNextFoundation}
+          prev={prev ? { href: `/foundations/${prev.slug}`, label: prev.title[lang] } : undefined}
+          next={next ? { href: `/foundations/${next.slug}`, label: next.title[lang] } : undefined}
         />
       </div>
     </article>

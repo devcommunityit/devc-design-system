@@ -1,0 +1,44 @@
+{
+  "source": "31efdb0fe54a",
+  "summary": "KPI grid for email campaign metrics, composed with KpiCard.",
+  "whenToUse": [
+    "Summarizing opens, clicks, and results of a campaign."
+  ],
+  "whenNotToUse": [
+    "Showing funnel details: use FunnelChart.",
+    "Building KPIs from scratch: use KpiCard directly."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Section name."
+    },
+    {
+      "name": "stats",
+      "description": "Formatted metrics and optional trends."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [],
+  "accessibility": [
+    "Reuses KpiCard, which expresses trends and values as text."
+  ],
+  "responsive": [
+    "The grid adapts to the number and width of the KPIs."
+  ],
+  "customization": [
+    "Composed with KpiCard and --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Using a metric as the only visual information without a label."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Campaign statistics"
+    }
+  ],
+  "limits": [
+    "Does not collect or update the metrics."
+  ]
+}

@@ -53,3 +53,17 @@ export function ControlledSeries() {
     </div>
   );
 }
+
+export function Vivid() {
+  return (
+    <LineChart
+      appearance="vivid"
+      variant="area"
+      title="Visite mensili"
+      description="Sessioni per canale, 2026"
+      categories={months}
+      series={traffic}
+      formatOptions={{ notation: 'compact' }}
+    />
+  );
+}

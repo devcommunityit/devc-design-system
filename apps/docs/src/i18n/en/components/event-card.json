@@ -1,0 +1,150 @@
+{
+  "source": "17ca07fe6703",
+  "summary": "Community event card: gradient cover with date and mode, title, location and time, seat bar, attendees, and an action.",
+  "whenToUse": [
+    "Lists and grids of community events, meetups, webinars, and workshops.",
+    "Highlighting seat availability (last seats, sold out) directly in the card."
+  ],
+  "whenNotToUse": [
+    "Events in a dense agenda or calendar: use a compact list or table.",
+    "Editorial content without a date: use ArticleCard."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Event title; with `href` it becomes the card's link."
+    },
+    {
+      "name": "href",
+      "description": "Event page: the whole card becomes clickable (stretched link) while tags and actions stay clickable."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level of the title."
+    },
+    {
+      "name": "date",
+      "description": "Event day, shown with DateBadge on the cover."
+    },
+    {
+      "name": "tone",
+      "description": "Cover gradient (brand token or data palette)."
+    },
+    {
+      "name": "mode",
+      "description": "Attendance mode, shown as a “glass” label on the cover."
+    },
+    {
+      "name": "watermark",
+      "description": "Large, transparent decorative text on the cover (hidden from assistive technologies)."
+    },
+    {
+      "name": "tags",
+      "description": "Tags or badges above the title."
+    },
+    {
+      "name": "description",
+      "description": "Short description below the title."
+    },
+    {
+      "name": "location",
+      "description": "Location or “Streaming”; the icon follows `mode`."
+    },
+    {
+      "name": "time",
+      "description": "Time, e.g. “18:30 – 21:00”."
+    },
+    {
+      "name": "seatsTaken",
+      "description": "Seats taken (requires `capacity`)."
+    },
+    {
+      "name": "capacity",
+      "description": "Total seats: when set, shows the capacity bar."
+    },
+    {
+      "name": "lowSeatsThreshold",
+      "description": "Remaining-seats threshold below which the “Last seats” warning appears."
+    },
+    {
+      "name": "attendees",
+      "description": "Attendees shown with AvatarGroup."
+    },
+    {
+      "name": "maxAttendees",
+      "description": "Avatars shown before the “+N” counter."
+    },
+    {
+      "name": "attendeesLabel",
+      "description": "Accessible name of the attendee group."
+    },
+    {
+      "name": "action",
+      "description": "Footer action, e.g. a “Iscriviti” Button."
+    },
+    {
+      "name": "isLoading",
+      "description": "Renders a SkeletonCard in its place with a cover and action of the same shape (aria-busy, hidden non-live “Loading…” text), keeping className and style so it stays in the grid. Wrap the area in SkeletonGroup for a single announcement."
+    }
+  ],
+  "inherits": "HTML attributes of <article> (except `title`); ref forwarded to the article element.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the title link (if `href`), then interactive tags and actions."
+    },
+    {
+      "keys": "Enter",
+      "action": "On the title, opens the event page."
+    }
+  ],
+  "accessibility": [
+    "<article> element labelled by the title (aria-labelledby).",
+    "The stretched link is a single link on the title: no nested links, and actions remain separately focusable.",
+    "The date has full text for screen readers; the watermark and the mode dot are decorative.",
+    "The seat bar is a meter with a text value (“86 / 120 posti”) and a status (last seats / sold out) that is also visible as text."
+  ],
+  "responsive": [
+    "Adapts to the container width; meta and footer wrap. Ideal in a Grid with minItemWidth ~18rem."
+  ],
+  "customization": [
+    "`className` on the root; stable classes are `dc-event-card-*`.",
+    "The `brand` tone uses `--dc-gradient-accent`; the other tones use the `--dc-color-data-*` tokens.",
+    "In forced-colors mode, the cover becomes Canvas with a border."
+  ],
+  "commonMistakes": [
+    "Putting a Link or Button inside `title` when using `href`: it creates nested controls.",
+    "Passing `seatsTaken` without `capacity`: the bar is not shown."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Hybrid event",
+      "description": "Cover, tags, meta, capacity, attendees, and action."
+    },
+    {
+      "name": "Online",
+      "title": "Online event",
+      "description": "Streaming with a cyan tone and watermark."
+    },
+    {
+      "name": "SeatsStatus",
+      "title": "Last seats and sold out",
+      "description": "Capacity status with warning and sold out."
+    },
+    {
+      "name": "Gallery",
+      "title": "Event grid",
+      "description": "Multiple cards in a responsive grid."
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "The brand bar color overrides Meter's private `--_color` variable.",
+    "The date's time zone follows the DateBadge rules."
+  ]
+}

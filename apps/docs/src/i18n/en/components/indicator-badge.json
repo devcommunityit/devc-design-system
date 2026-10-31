@@ -1,0 +1,98 @@
+{
+  "source": "bf0681a16a51",
+  "summary": "Indicator positioned on the corner of an element (Avatar, IconButton, icon): an Intl-formatted count with “99+” overflow, or a status dot, with dedicated accessible text.",
+  "whenToUse": [
+    "Unread notifications or messages on a top-bar IconButton.",
+    "Presence status (online) or something new on an avatar.",
+    "Count of new replies on a navigation icon."
+  ],
+  "whenNotToUse": [
+    "Inline labels or counts in text, next to tabs or menu items: use Badge.",
+    "Release stage of a feature or site: use StageLabel.",
+    "Labels on the corner of cards or images: use Ribbon.",
+    "“Live” status with text: use LiveIndicator."
+  ],
+  "props": [
+    {
+      "name": "children",
+      "description": "Element the indicator is anchored to."
+    },
+    {
+      "name": "count",
+      "description": "Number shown; above max it becomes “max+”."
+    },
+    {
+      "name": "max",
+      "description": "Maximum value shown before the “+”."
+    },
+    {
+      "name": "dot",
+      "description": "Dot without a number (takes precedence over count)."
+    },
+    {
+      "name": "tone",
+      "description": "Color; brand uses the accent gradient."
+    },
+    {
+      "name": "placement",
+      "description": "Logical corner (mirrored in RTL)."
+    },
+    {
+      "name": "showZero",
+      "description": "Shows the indicator even when count is 0."
+    },
+    {
+      "name": "label",
+      "description": "Accessible text (e.g. “3 unread notifications”), visually hidden; the bubble becomes aria-hidden."
+    },
+    {
+      "name": "pulse",
+      "description": "Pulsing halo to draw attention; disabled with prefers-reduced-motion."
+    },
+    {
+      "name": "overlap",
+      "description": "circular moves the indicator closer to the edge of round elements (avatars)."
+    }
+  ],
+  "inherits": "HTML attributes of <span> (the inline-flex container).",
+  "keyboard": [],
+  "accessibility": [
+    "Without label only the number is read (“3”): always pass a label with context (“3 unread notifications”).",
+    "With label the bubble is aria-hidden and the text sits in a VisuallyHidden right after the child: it is not part of the accessible name of a child IconButton. If it is needed in the name, include the count in the IconButton label too.",
+    "The dot without label is not announced: add a label when it conveys information (“Online”).",
+    "When the indicator is hidden (count 0 without showZero) the label is not rendered either.",
+    "Count updates are not announced automatically: use a live region (Toast or VisuallyHidden role=\"status\") if needed.",
+    "In forced-colors the bubble has a system border and the dot uses the Mark color; pulse is disabled."
+  ],
+  "responsive": [
+    "The indicator is absolutely positioned on the child and does not affect the surrounding layout.",
+    "The bubble widens with the number of digits (“99+”)."
+  ],
+  "customization": [
+    "Tokens: --dc-color-action-danger (default), --dc-gradient-accent (brand), feedback colors and --dc-color-surface-inverse, --dc-color-surface-default for the separation ring.",
+    "Stable selectors: .dc-indicator-badge-root, .dc-indicator-badge-indicator[data-tone][data-placement][data-overlap][data-dot][data-pulse]."
+  ],
+  "commonMistakes": [
+    "Omitting label: the screen reader reads a number with no context.",
+    "Using pulse permanently: reserve it for recent news.",
+    "Placing the indicator inside an element with hidden overflow: it gets clipped."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic",
+      "description": "Counts on IconButtons and a presence dot on an avatar."
+    },
+    {
+      "name": "PlacementsAndTones",
+      "title": "Placements and tones",
+      "description": "Four corners with circular overlap and all tones."
+    },
+    {
+      "name": "LiveCount",
+      "title": "Controlled count",
+      "description": "“99+” overflow, hidden at zero and pulse on new items."
+    }
+  ],
+  "limits": []
+}

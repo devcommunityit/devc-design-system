@@ -1,0 +1,82 @@
+{
+  "source": "da9abc72ed78",
+  "summary": "A modular collection of directories, activities, recognition, and opportunities to engage community members.",
+  "whenToUse": [
+    "As a configurable page or section for community portals with multiple initiatives and content."
+  ],
+  "whenNotToUse": [
+    "To replace a backend, an authentication system, persistent polls, or a contest platform."
+  ],
+  "props": [
+    {
+      "name": "title / description",
+      "description": "Panel title and introductory text."
+    },
+    {
+      "name": "members / sponsors / testimonials",
+      "description": "Summaries of members, sponsors, and testimonials."
+    },
+    {
+      "name": "polls / nps / questions",
+      "description": "Polls, 0–10 NPS rating, and questions with votes/answers."
+    },
+    {
+      "name": "invite",
+      "description": "Invitation details; any sharing is delegated to the callback."
+    },
+    {
+      "name": "volunteerShifts / jobs",
+      "description": "Selectable volunteer shifts and related job listings."
+    },
+    {
+      "name": "badges / streakDays",
+      "description": "Badge collection and participation streak provided by the consumer."
+    },
+    {
+      "name": "raffle",
+      "description": "List of entries and the winner, if chosen elsewhere."
+    },
+    {
+      "name": "onPollVote / onNpsRate / onQuestionVote / onQuestionReact",
+      "description": "Pure action callbacks; the component does not persist votes or reactions."
+    },
+    {
+      "name": "onInviteShare / onShiftSelect / onRaffleEnter",
+      "description": "Actions delegated to the consumer, with no automatic invitations, bookings, or draws."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus between the buttons and links in the content."
+    },
+    {
+      "keys": "Enter / Spazio",
+      "action": "Activates an action via the native React Aria button."
+    }
+  ],
+  "accessibility": [
+    "Sections have readable labels, each participant is also identified by name, and controls have text labels.",
+    "Trend and winner data are presented as text in addition to visual indicators."
+  ],
+  "responsive": [
+    "Grids adapt to the available width and lists keep actions usable on narrow viewports."
+  ],
+  "customization": [
+    "Sections are enabled by their respective data; colors, typography, and spacing use --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "The parent must update the data after the callbacks: the selection is not saved locally.",
+    "The raffle winner must be chosen and provided by an external process; no draw happens here."
+  ],
+  "examples": [
+    {
+      "name": "CommunityOverview",
+      "title": "Community overview",
+      "description": "Directory, activities, NPS feedback, opportunities, and content controlled via props."
+    }
+  ],
+  "limits": [
+    "No persistence, invitation sending, authentication, voting, or random winner selection."
+  ]
+}

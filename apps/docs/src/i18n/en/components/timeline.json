@@ -1,0 +1,68 @@
+{
+  "source": "f8f356a75c25",
+  "summary": "Chronological sequence of events rendered as an ordered list.",
+  "whenToUse": [
+    "History of orders, tickets, or activity."
+  ],
+  "whenNotToUse": [
+    "Step-by-step processes to complete: use Stepper."
+  ],
+  "props": [
+    {
+      "name": "TimelineItem.title",
+      "description": "Event description."
+    },
+    {
+      "name": "time / dateTime",
+      "description": "Visible label and ISO value for <time datetime>."
+    },
+    {
+      "name": "tone",
+      "description": "Indicator tone, with equivalent hidden text."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon in the indicator."
+    },
+    {
+      "name": "children",
+      "description": "Additional details."
+    }
+  ],
+  "inherits": "HTML attributes of <ol> and <li>.",
+  "keyboard": [],
+  "accessibility": [
+    "Native ordered list; give Timeline an aria-label if there are multiple timelines.",
+    "The tone is also conveyed as text for screen readers, not just by color."
+  ],
+  "responsive": [
+    "Single column with wrapping text."
+  ],
+  "customization": [
+    "className/style; feedback tokens for the tones."
+  ],
+  "commonMistakes": [
+    "Providing only relative dates (“2 days ago”) without dateTime."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Order history"
+    },
+    {
+      "name": "WithIcons",
+      "title": "Icons and errors"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled events and ordering",
+      "description": "Events live in the example's state: a button adds them and the Switch reverses the order."
+    },
+    {
+      "name": "LongAndMissing",
+      "title": "Long text and missing date",
+      "description": "Long wrapping titles, an event without a time, and one in English with lang=\"en\"."
+    }
+  ],
+  "limits": []
+}

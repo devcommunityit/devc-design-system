@@ -1,0 +1,73 @@
+{
+  "source": "a659522d0ad6",
+  "summary": "Bottom navigation bar for 3–5 top-level destinations on mobile.",
+  "whenToUse": [
+    "Apps and portals used primarily on smartphones."
+  ],
+  "whenNotToUse": [
+    "More than 5 destinations: use a navigation Drawer.",
+    "Desktop: use Sidebar or NavigationMenu (hideFrom hides the bar)."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "{ id, label, icon, href?, linkProps?, badge?, badgeLabel? }. With href they render as links."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Active destination (controlled / initial)."
+    },
+    {
+      "name": "onChange",
+      "description": "Called when the destination changes."
+    },
+    {
+      "name": "position",
+      "description": "Fixed to the bottom (with safe area) or in the normal flow."
+    },
+    {
+      "name": "hideFrom",
+      "description": "Breakpoint from which the bar is hidden."
+    }
+  ],
+  "inherits": "HTML attributes of <nav>.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter / Space",
+      "action": "Each destination is a native link or button."
+    }
+  ],
+  "accessibility": [
+    "nav landmark; the active destination has aria-current=\"page\".",
+    "Labels are always visible (not icons only).",
+    "badgeLabel provides the accessible text for the badge (e.g. “3 unread”)."
+  ],
+  "responsive": [
+    "Targets of at least 48 px; respects env(safe-area-inset-bottom).",
+    "With position fixed, reserve space at the bottom of the content (AppShell handles this)."
+  ],
+  "customization": [
+    "Selectors: .dc-bottom-navigation-item[aria-current=\"page\"]."
+  ],
+  "commonMistakes": [
+    "Using the bar for actions (e.g. “Salva”) instead of destinations.",
+    "Hiding the labels."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Controlled with badges"
+    },
+    {
+      "name": "UncontrolledLinks",
+      "title": "Five destinations as links, uncontrolled",
+      "description": "defaultValue sets the initial item; onChange records the latest destinations. Badges have an accessible badgeLabel."
+    },
+    {
+      "name": "LongLabels",
+      "title": "Three destinations with long labels",
+      "description": "Controlled value that can also be changed from external buttons; long labels wrap in a narrow space."
+    }
+  ],
+  "limits": []
+}

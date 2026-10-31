@@ -1,0 +1,70 @@
+{
+  "source": "481f89f3f7cb",
+  "summary": "Shows progress through a multi-step process and, optionally, lets users go back to completed steps.",
+  "whenToUse": [
+    "Guided procedures (sign-up, checkout, onboarding)."
+  ],
+  "whenNotToUse": [
+    "Independent sections that can be viewed in any order: use Tabs.",
+    "Page hierarchy: use Breadcrumb."
+  ],
+  "props": [
+    {
+      "name": "steps",
+      "description": "{ id, label, description?, hasError? }."
+    },
+    {
+      "name": "currentStep",
+      "description": "Index (0-based) of the current step. State is always owned by the consumer."
+    },
+    {
+      "name": "onStepPress",
+      "description": "When provided, completed steps become buttons."
+    },
+    {
+      "name": "orientation",
+      "description": "Below a 560 px container it becomes vertical regardless."
+    }
+  ],
+  "inherits": "HTML attributes of <nav>.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter / Space",
+      "action": "Reaches and activates completed steps (if onStepPress is provided)."
+    }
+  ],
+  "accessibility": [
+    "Ordered list; the current step has aria-current=\"step\".",
+    "The status (completed, current, error) is announced with translatable hidden text, in addition to icon and color."
+  ],
+  "responsive": [
+    "Container query: below 560 px it automatically switches to the vertical layout."
+  ],
+  "customization": [
+    "Selectors: .dc-stepper-step[data-status=complete|current|upcoming|error]."
+  ],
+  "commonMistakes": [
+    "Allowing users to jump to future steps that have not been validated.",
+    "Not moving focus to the start of the new content when the step changes."
+  ],
+  "examples": [
+    {
+      "name": "Interactive",
+      "title": "Interactive"
+    },
+    {
+      "name": "WithError",
+      "title": "With error"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    },
+    {
+      "name": "GuidedForm",
+      "title": "Guided form with validation",
+      "description": "Next validates the step's fields: if data is missing the step shows hasError; completed steps let users go back."
+    }
+  ],
+  "limits": []
+}

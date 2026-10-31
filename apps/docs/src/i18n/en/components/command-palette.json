@@ -1,0 +1,90 @@
+{
+  "source": "9ff65d9689ba",
+  "summary": "Quick search dialog for commands and destinations, which can also be opened with Ctrl/⌘+K.",
+  "whenToUse": [
+    "Feature-rich portals, for power users who rely on the keyboard."
+  ],
+  "whenNotToUse": [
+    "As the only way to access a feature: every command must also exist in the interface.",
+    "Content search with complex remote results: use a search page."
+  ],
+  "props": [
+    {
+      "name": "commands",
+      "description": "{ id, label, section?, keywords?, description?, icon?, shortcut?, isDisabled? }."
+    },
+    {
+      "name": "onAction",
+      "description": "Command executed; the palette closes."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled open state."
+    },
+    {
+      "name": "hotkey",
+      "description": "Enables Ctrl/⌘+K (opt-in global listener, removed on unmount)."
+    },
+    {
+      "name": "placeholder",
+      "description": "Search field text."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content shown when there are no results."
+    }
+  ],
+  "inherits": "No direct HTML attributes: className is applied to the dialog.",
+  "keyboard": [
+    {
+      "keys": "Ctrl/⌘ + K",
+      "action": "Opens/closes (if hotkey is set)."
+    },
+    {
+      "keys": "Frecce su/giù",
+      "action": "Highlight a command (focus stays in the field)."
+    },
+    {
+      "keys": "Enter",
+      "action": "Runs the highlighted command."
+    },
+    {
+      "keys": "Escape",
+      "action": "First clears the search, then closes and restores focus."
+    }
+  ],
+  "accessibility": [
+    "Modal dialog with initial focus on the field, focus containment, and focus restoration.",
+    "Combobox with aria-activedescendant on the list (virtual focus).",
+    "Search is case- and accent-insensitive; keywords extend matching."
+  ],
+  "responsive": [
+    "Limited maximum width; on mobile it takes up almost the whole viewport with a scrollable list."
+  ],
+  "customization": [
+    "Surface: surface.raised with shadow-4; selectors .dc-command-palette-dialog, .dc-command-palette-search-field."
+  ],
+  "commonMistakes": [
+    "Enabling hotkey on multiple instances at the same time.",
+    "Running destructive commands without confirmation (AlertDialog)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "With sections and theme switching"
+    },
+    {
+      "name": "RecentCommands",
+      "title": "Grouped commands with a Recent section",
+      "description": "Executed commands appear at the top in the Recent section; the shortcuts shown are visual hints only."
+    },
+    {
+      "name": "ControlledStates",
+      "title": "Controlled open state, disabled items, and empty state",
+      "description": "Items are enabled based on the project state; emptyState customizes the no-results message."
+    }
+  ],
+  "limits": [
+    "Local filtering of the provided commands: for async results, filter in the consumer and update commands."
+  ]
+}

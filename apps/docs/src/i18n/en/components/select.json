@@ -1,0 +1,107 @@
+{
+  "source": "dbaf28c4d3e1",
+  "summary": "Single selection with a button and a list in a popover, with rich options (descriptions, icons, sections) and built-in validation.",
+  "whenToUse": [
+    "5 to ~30 options with rich content.",
+    "When you need consistent styling across browsers."
+  ],
+  "whenNotToUse": [
+    "Many options or search: use Combobox.",
+    "Multiple selection: use MultiSelect.",
+    "Forms that must work without JavaScript: use NativeSelect."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible label (otherwise aria-label)."
+    },
+    {
+      "name": "items / children",
+      "description": "Static (ListBoxItem, ListBoxSection) or dynamic options."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled selection."
+    },
+    {
+      "name": "placeholder",
+      "description": "Text shown when nothing is selected."
+    },
+    {
+      "name": "startAdornment",
+      "description": "Icon at the start of the trigger."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content when there are no options."
+    },
+    {
+      "name": "description / errorMessage",
+      "description": "Linked help and error text."
+    },
+    {
+      "name": "isRequired / isInvalid / isDisabled",
+      "description": "Field states; with name, the value is submitted with the form."
+    },
+    {
+      "name": "triggerRef",
+      "description": "Ref to the button (the component is generic, so it doesn’t use forwardRef)."
+    },
+    {
+      "name": "popoverProps",
+      "description": "Popover placement and classes."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Select (name, isOpen, onOpenChange, validate…).",
+  "keyboard": [
+    {
+      "keys": "Invio / Spazio / Freccia giù",
+      "action": "Opens the list."
+    },
+    {
+      "keys": "Frecce, Home, End, lettere",
+      "action": "Navigation and typeahead."
+    },
+    {
+      "keys": "Invio",
+      "action": "Selects and closes; focus returns to the button."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes without changes."
+    }
+  ],
+  "accessibility": [
+    "APG “Select-only combobox” pattern; label, description, and error are linked.",
+    "A hidden <select> takes part in form submission and autofill."
+  ],
+  "responsive": [
+    "The popover matches the trigger width and stays within the viewport."
+  ],
+  "customization": [
+    "Same field anatomy as TextField; classes via className and popoverProps.className."
+  ],
+  "commonMistakes": [
+    "Using it for immediate actions: use DropdownMenu.",
+    "Passing items to the ListBox instead of the Select."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Dynamic options with description"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with icon"
+    },
+    {
+      "name": "Sections",
+      "title": "Sections"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": []
+}

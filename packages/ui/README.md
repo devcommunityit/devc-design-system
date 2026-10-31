@@ -1,14 +1,14 @@
 # @dev-community/ui
 
-Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 9 preset, temi
+Design system React/TypeScript per siti pubblici, portali e dashboard: token, temi (light/dark/system, 26 preset tra tinta unica e gradiente bicolore, temi
 personalizzati), componenti accessibili basati su React Aria e pattern pronti (header, footer, menu utente, autenticazione).
 
-> **Licenza**: non ancora definita (`"license": "UNLICENSED"`, nessun diritto concesso). La scelta spetta al proprietario del
-> progetto; `prepublishOnly` blocca la pubblicazione su npmjs.com finché la licenza non viene scelta.
+> **Licenza**: [MIT](LICENSE), © 2026 Dev Community. Puoi usare, modificare e ridistribuire la libreria anche in progetti
+> commerciali, mantenendo l'avviso di copyright e il testo della licenza.
 
 ## Interfacce AI e gestione siti
 
-- AI: `PromptComposer`, `ChatMessage`, `PromptSuggestions`, `SourceList`, `ResponseFeedback`.
+- AI: `PromptComposer`, `ChatMessage`, `PromptSuggestions`, `SourceList`, `ResponseFeedback`, `AIToolCall`.
 - Gestione contenuti: `PublishStatus`, `BulkActionBar`, `SeoPreview`.
 
 Sono componenti UI senza client AI o richieste di rete implicite. Usa `onSend`, `onStop`, `onAction` e `onChange`
@@ -35,19 +35,24 @@ npm run release:pack
 npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
 ``
 
-Da registry privato (GitHub Packages, Azure Artifacts, Verdaccio…), con `.npmrc` nel progetto consumer:
+Da GitHub Packages (pubblicato dal workflow `Release`), con `.npmrc` nel progetto consumer e un token con
+permesso `read:packages`:
 
-``ini
+```ini
 @dev-community:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
-``
+```
 
-``bash
-npm install @dev-community/ui
-``
+```bash
+npm install @dev-community/ui          # ultima stabile
+npm install @dev-community/ui@next     # anteprima (prerelease)
+```
 
-Per pubblicare su un registry privato impostare `publishConfig.registry` in questo `package.json`, poi
-`npm version <patch|minor|major> -w @dev-community/ui` e `npm publish -w @dev-community/ui`. Il token non va mai committato.
+Ogni GitHub Release allega anche il tarball con checksum, installabile senza registry con
+`npm install ./dev-community-ui-<versione>.tgz`.
+
+Per rilasciare: *Actions → Release → Run workflow* (pacchetto + incremento semver), oppure aggiorna `version` e
+invia un tag `ui-v<versione>`. Dettagli nella guida *Installazione* del sito. Il token non va mai committato.
 
 ## Stili
 
@@ -136,6 +141,75 @@ import { BarChart, KpiCard, NavList } from '@dev-community/ui';
   tastiera con annuncio `aria-live` e tabella dati accessibile. Niente zoom, assi temporali o curve.
 - Dashboard: `HeroCard`, `PromoBanner` (l'intera superficie è un link o un pulsante), `KpiCard`, `QuickAction`.
 - `NavList`: menu verticale od orizzontale, con o senza icone, gruppi espandibili e rail compattabile con tooltip.
+
+## Nuovi componenti per contenuti e workflow
+
+- `FilterBar` compone filtri controllati e viste salvate; la persistenza e l'applicazione delle viste restano al consumer.
+- `KanbanBoard` supporta drag & drop tra colonne, riordino interno e pulsanti alternativi. Con `showStatusSelect`
+  ogni card offre anche un selettore di stato. La colonna di appartenenza è lo stato della card: salva `onColumnsChange`
+  nel consumer; `onCardMove` identifica la card e le posizioni effettivamente coinvolte. Il template
+  `/showcase/kanban` mostra un workflow completo con cinque colonne e riepilogo attività.
+- `FileManager` presenta file selezionabili e azioni fornite dal consumer; `FileBrowser` aggiunge cartelle, breadcrumb
+  e anteprime. Nessuno dei due esegue upload o richieste di rete proprie.
+- `MentionInput` e `MentionTextarea` suggeriscono menzioni `@handle` e, se configurati, hashtag da liste locali.
+- `SplitPane` ridimensiona due pannelli con puntatore o tastiera.
+- `Agenda`, `EventCalendar` e `PricingTable` coprono agenda, calendario giorno/settimana/mese e confronto dei piani.
+  Il calendario usa `CalendarDate` e considera inclusiva la data finale di un evento.
+- `FormWizard` gestisce passaggi, validazione anche asincrona e conclusione; i valori dei campi restano al consumer,
+  perché il contenuto dei passaggi non attivi viene smontato.
+- `CommentThread` mostra commenti annidati con risposte e reazioni; `DiffViewer` confronta testi riga per riga in
+  vista unificata o affiancata, con un limite esplicito alla dimensione del confronto.
+- `ImageGallery` apre un visualizzatore navigabile da tastiera; `ImageCropper` seleziona un rettangolo con puntatore
+  o campi numerici e restituisce un Blob. Per immagini remote il server deve consentire la lettura del canvas via CORS;
+  `crossOrigin` usa `anonymous` per impostazione iniziale e le credenziali solo su richiesta.
+- `OnboardingTour` evidenzia elementi esistenti e guida tra passaggi opzionali; la persistenza del progresso resta
+  all'applicazione.
+- `PermissionMatrix`, `NotificationPreferences` e `PrivacyPreferences` raccolgono scelte senza salvarle implicitamente.
+  Le preferenze privacy facoltative partono disattivate: l'applicazione gestisce informativa, consenso e persistenza.
+  `PermissionMatrix` è solo un'interfaccia: i controlli di autorizzazione devono essere applicati sul server.
+- `AIToolCall` rende visibili stato, dettagli e approvazione umana per un'operazione dell'assistente; non esegue tool.
+
+`ArticleCard` accetta una copertina immagine con testo alternativo esplicito, oltre al contenuto personalizzato `cover`:
+
+```tsx
+<ArticleCard
+  title="Progettare componenti accessibili"
+  image={{ src: '/images/accessibility.jpg', alt: 'Interfaccia mostrata su un portatile' }}
+/>
+```
+
+## Editor WYSIWYG
+
+```tsx
+import { RichTextEditor, EmailBuilder, renderEmailHtml } from '@dev-community/ui/editor';
+
+<RichTextEditor label="Articolo" variant="blocks" onChange={({ html }) => save(html)} />
+<EmailBuilder aria-label="Newsletter" onExport={(html) => send(html)} />
+```
+
+- Gli editor vivono nell'entry `@dev-community/ui/editor`: Tiptap viene caricato solo da chi lo importa.
+- `RichTextEditor`: modalità `toolbar` (barra classica) o `blocks` (stile Notion, con menu “/”). L'HTML salvato va
+  sanificato lato server prima di mostrarlo con `RichTextContent`.
+- `EmailBuilder`: documento JSON a blocchi, anteprima desktop/mobile e `renderEmailHtml(doc)` per HTML a tabelle con stili
+  inline, compatibile con i principali client di posta.
+
+## Pattern di pagina della community
+
+```tsx
+import { CommunityEventOperations, CommunityEngagementHub } from '@dev-community/ui/patterns';
+```
+
+- `CommunityEventOperations`, `CommunityMembershipAccount`, `CommunityEngagementHub` e `CommunityOrganizerOperations`
+  vivono nell'entry `@dev-community/ui/patterns`, così le app che non li usano non li includono nel bundle.
+
+## Widget interattivi
+
+```tsx
+import { KanbanBoard, ImageCropper, SplitPane } from '@dev-community/ui/widgets';
+```
+
+- `KanbanBoard`, `ImageCropper`, `OnboardingTour`, `DiffViewer` (con `diffLines`), `FileBrowser` e `SplitPane` vivono
+  nell'entry `@dev-community/ui/widgets`, separata dall'entry principale per contenerne il peso.
 
 ## Punti chiave
 

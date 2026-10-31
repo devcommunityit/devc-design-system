@@ -1,0 +1,76 @@
+{
+  "source": "8ef7a3c1eac6",
+  "summary": "Shows the page's position in the hierarchy and lets users navigate back up to parent levels.",
+  "whenToUse": [
+    "Deep hierarchical structures (sections, subsections, detail pages)."
+  ],
+  "whenNotToUse": [
+    "Sequential flows: use Stepper.",
+    "Flat sites with a single level."
+  ],
+  "props": [
+    {
+      "name": "maxItems",
+      "description": "Beyond this number, the middle items are collapsed into an expandable “…” button."
+    },
+    {
+      "name": "aria-label",
+      "description": "Name of the landmark."
+    },
+    {
+      "name": "BreadcrumbItem: href",
+      "description": "Destination. Without href, the item is the current page."
+    },
+    {
+      "name": "BreadcrumbItem: isCurrent",
+      "description": "Forces aria-current=\"page\"."
+    },
+    {
+      "name": "BreadcrumbItem: linkProps",
+      "description": "Props for the inner link (routerOptions, target…)."
+    }
+  ],
+  "inherits": "HTML attributes of <nav> and <li>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves through the links and the expand button."
+    }
+  ],
+  "accessibility": [
+    "nav landmark with an ordered list.",
+    "The current page has aria-current=\"page\" and is not a link.",
+    "Separators are decorative (aria-hidden) and are mirrored in RTL."
+  ],
+  "responsive": [
+    "Items wrap; with maxItems the trail stays short on mobile."
+  ],
+  "customization": [
+    "Colors: text.secondary for links, text.primary for the current page."
+  ],
+  "commonMistakes": [
+    "Making the current page a link to itself.",
+    "Using the breadcrumb as the only navigation on mobile."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Collapsed",
+      "title": "Collapsed with maxItems"
+    },
+    {
+      "name": "FolderNavigation",
+      "title": "Stateful folder navigation",
+      "description": "The path is kept in state: linkProps.onPress goes back to a parent folder, and the buttons open subfolders."
+    },
+    {
+      "name": "LongLabels",
+      "title": "Long labels and current page with href",
+      "description": "Long items wrap in a narrow container; isCurrent makes the last item the current page even with href."
+    }
+  ],
+  "limits": []
+}

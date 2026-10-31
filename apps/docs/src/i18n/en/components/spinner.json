@@ -1,0 +1,63 @@
+{
+  "source": "7d4f3a31b758",
+  "summary": "Indeterminate loading indicator for short waits.",
+  "whenToUse": [
+    "Short waits with no duration estimate.",
+    "Pending state of a button (Button isPending includes it)."
+  ],
+  "whenNotToUse": [
+    "Loading structured content: use Skeleton.",
+    "Measurable progress: use Progress."
+  ],
+  "props": [
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "label",
+      "description": "Accessible name; null when nearby text already announces the loading."
+    }
+  ],
+  "inherits": "HTML attributes of the <span>; ref to the <span>.",
+  "keyboard": [],
+  "accessibility": [
+    "role=\"status\" with a localized label.",
+    "With prefers-reduced-motion the rotation slows down significantly.",
+    "Use label={null} to avoid duplicate announcements."
+  ],
+  "responsive": [
+    "Fixed size, inline."
+  ],
+  "customization": [
+    "The color follows currentColor."
+  ],
+  "commonMistakes": [
+    "Using a full-page spinner for long loads: prefer Skeleton."
+  ],
+  "examples": [
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    },
+    {
+      "name": "WithText",
+      "title": "With visible text"
+    },
+    {
+      "name": "InButton",
+      "title": "Inside a button"
+    },
+    {
+      "name": "SimulatedLoading",
+      "title": "Controlled loading",
+      "description": "The button starts a locally simulated load (setTimeout with cleanup); Cancel stops it."
+    },
+    {
+      "name": "LocalizedLabels",
+      "title": "Localized and custom labels",
+      "description": "Default label in Italian and English (LocaleProvider en-US) and a long custom text."
+    }
+  ],
+  "limits": []
+}

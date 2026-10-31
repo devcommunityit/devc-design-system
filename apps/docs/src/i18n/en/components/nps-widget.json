@@ -1,0 +1,59 @@
+{
+  "source": "fd2449f89039",
+  "summary": "Controlled 0–10 scale for a recommendation question.",
+  "whenToUse": [
+    "Collecting a numeric NPS response to be processed by the consumer."
+  ],
+  "whenNotToUse": [
+    "For star ratings use Rating; the NPS score is not calculated here."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Question associated with the scale."
+    },
+    {
+      "name": "value",
+      "description": "Selected value from 0 to 10, or null."
+    },
+    {
+      "name": "onChange",
+      "description": "Request to change the response."
+    },
+    {
+      "name": "lowLabel",
+      "description": "Description of the lower end."
+    },
+    {
+      "name": "highLabel",
+      "description": "Description of the upper end."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Frecce / Spazio",
+      "action": "Navigates and selects a value via RadioGroup."
+    }
+  ],
+  "accessibility": [
+    "The question names the radio group; each value has a numeric accessible name."
+  ],
+  "responsive": [
+    "The scale can wrap on narrow viewports and containers."
+  ],
+  "customization": [
+    "The radio group uses design system components and tokens."
+  ],
+  "commonMistakes": [
+    "Interpreting the selected value as an aggregate score."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "NPS scale"
+    }
+  ],
+  "limits": [
+    "No calculation, submission or tracking included."
+  ]
+}

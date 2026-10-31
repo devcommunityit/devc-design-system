@@ -1,0 +1,104 @@
+{
+  "source": "69c1f52995f3",
+  "summary": "Shortcut tile with icon, label and optional description, for quick-action grids in admin panels. It is a real <a href> or a <button>.",
+  "whenToUse": [
+    "Grids of shortcuts to the most used sections (users, API keys, settings).",
+    "Frequent in-place actions (export, sync) with onPress."
+  ],
+  "whenNotToUse": [
+    "Main portal navigation: use NavList or Sidebar.",
+    "Secondary actions in a toolbar: use Button or IconButton.",
+    "Rich content with multiple links: use Card."
+  ],
+  "props": [
+    {
+      "name": "icon",
+      "description": "Decorative icon (aria-hidden)."
+    },
+    {
+      "name": "label",
+      "description": "Visible label; together with the description it forms the accessible name."
+    },
+    {
+      "name": "description",
+      "description": "Short secondary text."
+    },
+    {
+      "name": "badge",
+      "description": "Trailing element, e.g. a Badge with a count (included in the accessible name)."
+    },
+    {
+      "name": "href",
+      "description": "When present, renders an <a href> (React Aria Link props: target, rel, routerOptions…)."
+    },
+    {
+      "name": "onPress",
+      "description": "Without href, renders a <button> (React Aria Button props)."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables the tile."
+    },
+    {
+      "name": "layout",
+      "description": "Icon above (tile) or beside (row) the text."
+    }
+  ],
+  "inherits": "All react-aria-components Link (with href) or Button (without href) props and global DOM attributes.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the tile."
+    },
+    {
+      "keys": "Enter",
+      "action": "Follows the link or activates the button."
+    },
+    {
+      "keys": "Space",
+      "action": "Activates the button (<button> variant only)."
+    }
+  ],
+  "accessibility": [
+    "Native <a href> or <button> element: no clickable div.",
+    "Place multiple tiles in a list (<ul>/<li>) so screen readers announce how many there are.",
+    "Minimum 44px target; visible focus ring and system border in forced-colors mode; the disabled state uses GrayText."
+  ],
+  "responsive": [
+    "Fills its cell: use Grid with minItemWidth for grids that adapt without breakpoints."
+  ],
+  "customization": [
+    "Tokens: --dc-look-fill-tonal (icon in the expressive look), --dc-look-radius-container.",
+    "Stable selectors: .dc-quick-action-action[data-layout], states [data-hovered], [data-pressed], [data-focus-visible], [data-disabled]."
+  ],
+  "commonMistakes": [
+    "Using onPress with window.location to navigate: pass href.",
+    "Long labels: the tile is a shortcut, so the description should stay short."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "AdminGrid",
+      "title": "Admin grid"
+    },
+    {
+      "name": "Horizontal",
+      "title": "Horizontal layout"
+    },
+    {
+      "name": "AsButton",
+      "title": "As a button",
+      "description": "In-place action with local state."
+    },
+    {
+      "name": "Disabled",
+      "title": "Disabled"
+    }
+  ],
+  "limits": [
+    "Has no pending state: disable the tile and update the description during the action, announcing the outcome with a live region."
+  ]
+}

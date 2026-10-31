@@ -1,0 +1,102 @@
+.selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.options {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin-block-end: var(--dc-space-2);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+  cursor: pointer;
+}
+
+.option:has(input:checked) {
+  border-color: var(--dc-color-border-selected);
+  background: var(--dc-color-surface-brand);
+}
+
+.option input {
+  accent-color: var(--dc-color-action-primary);
+}
+
+.option input:focus-visible,
+.quantity input:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.name {
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.description {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.price {
+  font-weight: var(--dc-font-weight-semibold);
+  text-align: end;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+}
+
+.quantity input {
+  inline-size: 5rem;
+  padding: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-radius-sm);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  font: inherit;
+}
+
+@media (width <= 30rem) {
+  .option {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .price {
+    grid-column: 2;
+    text-align: start;
+  }
+}

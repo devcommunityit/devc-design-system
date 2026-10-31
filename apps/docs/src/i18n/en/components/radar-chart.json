@@ -1,0 +1,136 @@
+{
+  "source": "59e41096acf9",
+  "summary": "Dependency-free SVG radar (spider) chart: compares one or more series across three or more dimensions arranged around a center, with keyboard navigation between axes and an accessible data table.",
+  "whenToUse": [
+    "Multidimensional profiles: skills, evaluation scores, product characteristics.",
+    "Comparing a few series (2–4) on the same dimensions, all expressed on the same scale.",
+    "Highlighting strengths and gaps at a glance."
+  ],
+  "whenNotToUse": [
+    "Dimensions with different units or scales: normalize the data or use multiple BarCharts.",
+    "Trends over time: use LineChart.",
+    "Precise values to compare or many overlapping series: use BarChart or a table.",
+    "Fewer than three dimensions: the polygon is meaningless, use BarChart."
+  ],
+  "props": [
+    {
+      "name": "axes",
+      "description": "Dimensions arranged clockwise starting at 12 o'clock (at least 3)."
+    },
+    {
+      "name": "series",
+      "description": "Series; data[i] maps to axes[i]. null skips the axis (the polygon connects the available axes)."
+    },
+    {
+      "name": "max",
+      "description": "Value of the outer ring; defaults to the “rounded” maximum of the visible data. Values are clamped to 0…max."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title (scale, period, source)."
+    },
+    {
+      "name": "size",
+      "description": "Maximum radar diameter in px; the chart shrinks with its container."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of values and ring labels (percent, unit, decimals…) in the current locale."
+    },
+    {
+      "name": "showLegend",
+      "description": "Legend; with multiple series each entry is a button that shows/hides the series."
+    },
+    {
+      "name": "hiddenSeries / defaultHiddenSeries",
+      "description": "Ids of hidden series (controlled / uncontrolled)."
+    },
+    {
+      "name": "onHiddenSeriesChange",
+      "description": "Called when the legend changes the visible series."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses gradient areas, glows and soft rings with the same theme colors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area (then to the legend and the table button)."
+    },
+    {
+      "keys": "Freccia destra / giù",
+      "action": "Next axis clockwise (wraps from last to first): shows and announces the values of all visible series."
+    },
+    {
+      "keys": "Freccia sinistra / su",
+      "action": "Previous axis."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last axis."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> + <figcaption> structure; the chart area is a focusable role=\"group\", named by the title and described by a hint on using the arrow keys.",
+    "Keyboard movement updates an aria-live=\"polite\" region with the axis and formatted values; the active axis is highlighted (spoke and label).",
+    "The SVG is decorative (aria-hidden): the full data is in the table (rows = axes, columns = series) opened by the \"Mostra tabella dati\" button.",
+    "Series don't rely on color alone: outline dash pattern and marker shape vary per series; the legend uses aria-pressed.",
+    "In forced-colors mode outlines and areas use CanvasText, the active axis Highlight."
+  ],
+  "responsive": [
+    "The SVG uses a viewBox: it scales down proportionally with its container up to size px in diameter, leaving room for the axis labels.",
+    "Entrance animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints areas with gradients between --dc-color-data-N and --dc-color-accent-default, rings filled with --dc-color-surface-subtle and the active spoke in --dc-color-action-primary.",
+    "Series colors: --dc-color-data-1…6 tokens, assigned cyclically.",
+    "Grid and text: --dc-color-border-subtle, --dc-color-border-strong, --dc-color-text-muted, --dc-color-text-secondary.",
+    "Stable selectors: .dc-radar-chart-radarChart, .dc-chart-area, .dc-chart-line, .dc-chart-marker, [data-series]."
+  ],
+  "commonMistakes": [
+    "Mixing dimensions with different scales (e.g. euros and percentages) on the same radar.",
+    "Passing fewer than three axes or data with a different length than axes.",
+    "Leaving max automatic when the scale is known (e.g. 100 or 5): set max for consistent comparisons across charts.",
+    "Overlaying too many series: beyond 3–4 the polygons become unreadable."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Series comparison"
+    },
+    {
+      "name": "SingleSeries",
+      "title": "Single series without legend"
+    },
+    {
+      "name": "WithMissingValues",
+      "title": "Missing values",
+      "description": "null skips the axis; the polygon connects the available values."
+    },
+    {
+      "name": "ControlledSeries",
+      "title": "Controlled visible series"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradient areas and glows with the theme colors."
+    }
+  ],
+  "limits": [
+    "A single linear radial scale from 0 to max for all axes; negative values are treated as 0.",
+    "Label width is estimated (no text measurement): very long labels reduce the radar's space.",
+    "Axes are arranged clockwise even in RTL."
+  ]
+}

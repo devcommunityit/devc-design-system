@@ -8,3 +8,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module 'virtual:dc-en-summaries' {
+  export const SUMMARIES: Record<string, string>;
+  export const EXAMPLE_TITLES: Record<string, Record<string, { title: string; description?: string }>>;
+}

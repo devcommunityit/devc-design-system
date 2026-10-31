@@ -1,0 +1,59 @@
+{
+  "source": "30547bcc2a72",
+  "summary": "Editable matrix of roles and permissions with row and column selection.",
+  "whenToUse": [
+    "Configuring permissions for multiple roles."
+  ],
+  "whenNotToUse": [
+    "Authorizing operations: security checks must remain on the server."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the matrix."
+    },
+    {
+      "name": "roles",
+      "description": "Columns with unique ids and names."
+    },
+    {
+      "name": "permissions",
+      "description": "Rows with unique ids and names."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Map from role id to selected permission ids."
+    },
+    {
+      "name": "isCellDisabled / showBulkActions",
+      "description": "Locks individual cells and configures bulk selection."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Spazio",
+      "action": "Reach and toggle the checkboxes."
+    }
+  ],
+  "accessibility": [
+    "Row and column headers, cell names and mixed state for bulk selections."
+  ],
+  "responsive": [
+    "The table scrolls within its container."
+  ],
+  "customization": [
+    "Colors and spacing come from tokens."
+  ],
+  "commonMistakes": [
+    "Do not use the client-side matrix as an authorization check."
+  ],
+  "examples": [
+    {
+      "name": "Roles",
+      "title": "Roles and permissions"
+    }
+  ],
+  "limits": [
+    "Persistence and authorization are delegated to the consumer."
+  ]
+}

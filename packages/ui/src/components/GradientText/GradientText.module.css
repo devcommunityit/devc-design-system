@@ -1,0 +1,43 @@
+.gradientText {
+  --_solid: var(--dc-color-action-primary);
+  --_gradient: var(--dc-gradient-accent);
+
+  color: var(--_solid);
+}
+
+.gradientText[data-tone='text'] {
+  --_solid: var(--dc-color-text-link);
+  --_gradient: var(--dc-gradient-text);
+}
+
+/* For text on inverse surfaces (dark hero in light mode): light tints of brand and accent, flipping with the scheme. */
+.gradientText[data-tone='inverse'] {
+  --_solid: var(--dc-color-text-inverse);
+  --_gradient: linear-gradient(
+    in oklch 90deg,
+    color-mix(in oklch, var(--dc-color-action-primary) 55%, var(--dc-color-text-inverse)),
+    color-mix(in oklch, var(--dc-color-accent-default) 60%, var(--dc-color-text-inverse))
+  );
+}
+
+.gradientText:where(mark) {
+  background-color: transparent;
+}
+
+/* Only when gradients with oklch interpolation and text clipping are supported; otherwise the solid tone stays. */
+@supports (background-clip: text) and (background-image: linear-gradient(in oklch 90deg, red, blue)) {
+  .gradientText {
+    background-image: var(--_gradient);
+    background-clip: text;
+    box-decoration-break: clone;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .gradientText {
+    background-image: none;
+    color: CanvasText;
+    -webkit-text-fill-color: currentcolor;
+  }
+}

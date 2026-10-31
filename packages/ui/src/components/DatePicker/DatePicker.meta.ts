@@ -7,7 +7,7 @@ export const doc: ComponentDoc = {
   category: 'forms',
   summary: 'Campo data a segmenti digitabili con calendario in popover; supporta date senza orario, date con orario e istanti con fuso.',
   whenToUse: ['Date in form, con digitazione rapida e calendario facoltativo.', 'Intervalli (soggiorni, report) con DateRangePicker.'],
-  whenNotToUse: ['Solo orario: usa TimeInput.', 'Calendario sempre visibile: usa Calendar.'],
+  whenNotToUse: ['Data e ora con elenco orari: usa DateTimePicker.', 'Solo orario: usa TimePicker o TimeInput.', 'Calendario sempre visibile: usa Calendar.'],
   props: [
     { name: 'label / description / errorMessage', type: 'ReactNode', description: 'Anatomia di campo standard.' },
     { name: 'value / defaultValue / onChange', type: 'CalendarDate | CalendarDateTime | ZonedDateTime | null (range: { start, end })', description: 'Il tipo del valore determina il significato: data civile o istante con fuso.' },
@@ -15,6 +15,9 @@ export const doc: ComponentDoc = {
     { name: 'minValue / maxValue / isDateUnavailable', type: 'DateValue / (date) => boolean', description: 'Vincoli, validati anche al submit.' },
     { name: 'firstDayOfWeek', type: "'sun' | 'mon' | …", description: 'Primo giorno della settimana nel calendario.' },
     { name: 'visibleMonths', type: 'number', default: '1', description: 'Mesi nel popover.' },
+    { name: 'presets', type: "DatePreset[] | DateRangePreset[] | 'default'", description: 'Scorciatoie nel popover. "default": Oggi/Domani/Tra una settimana (range: Ultimi 7/30 giorni, Questo mese, Mese scorso). Le scorciatoie fuori limite sono disabilitate.' },
+    { name: 'isClearable', type: 'boolean', default: 'false', description: 'Pulsante per svuotare il campo.' },
+    { name: 'showMonthYearPicker', type: 'boolean', default: 'true con un mese (DatePicker), false (range)', description: 'Selettori di mese e anno nell’intestazione del calendario.' },
     { name: 'calendarErrorMessage', type: 'ReactNode', description: 'Messaggio nel calendario per date non disponibili.' },
     { name: 'name (startName / endName)', type: 'string', description: 'Valori ISO inviati con il form.' },
     { name: 'isRequired / isInvalid / isDisabled / isReadOnly', type: 'boolean', description: 'Stati del campo.' },
@@ -45,6 +48,9 @@ export const doc: ComponentDoc = {
     { name: 'Range', title: 'Intervallo' },
     { name: 'ZonedInstant', title: 'Istante con fuso orario' },
     { name: 'Validation', title: 'Validazione nel form' },
+    { name: 'Presets', title: 'Scorciatoie e cancellazione' },
+    { name: 'RangePresets', title: 'Intervallo con scorciatoie' },
+    { name: 'CustomPresets', title: 'Scorciatoie personalizzate' },
   ],
   status: {
     implemented: true,
@@ -52,7 +58,7 @@ export const doc: ComponentDoc = {
     tests: ['components/DatePicker/DatePicker.test.tsx'],
     limits: [
       'Con ZonedDateTime, modificare il giorno attraverso un cambio d’ora legale può spostare l’orario locale (es. 01:30 → 02:30): comportamento di @internationalized/date, da verificare nei casi critici.',
-      'Nessun input di testo libero (es. “domani”): solo segmenti.',
+      'Nessun input di testo libero (es. “domani”): usa le scorciatoie (presets).',
     ],
   },
 };

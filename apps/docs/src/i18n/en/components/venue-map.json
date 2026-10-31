@@ -1,0 +1,103 @@
+{
+  "source": "12b536d713ad",
+  "summary": "Event venue map with OpenStreetMap loaded only after consent, plus the address and directions links.",
+  "whenToUse": [
+    "Showing where a meetup, conference or workshop takes place.",
+    "Offering directions to the venue with Google Maps, Apple Maps or OpenStreetMap."
+  ],
+  "whenNotToUse": [
+    "Compact venue summaries in lists: use VenueCard with mapHref.",
+    "Maps with several points, routes or custom layers: integrate a dedicated mapping library.",
+    "Indoor venue plans: use VenueFloorPlan."
+  ],
+  "props": [
+    {
+      "name": "name",
+      "description": "Venue name, used in the iframe title, the placeholder and the links."
+    },
+    {
+      "name": "latitude / longitude",
+      "description": "WGS84 coordinates of the venue, used for the marker and the directions."
+    },
+    {
+      "name": "address",
+      "description": "Address shown in the caption inside an address element."
+    },
+    {
+      "name": "zoom",
+      "description": "OpenStreetMap zoom level, clamped between 3 and 19."
+    },
+    {
+      "name": "isLoaded / defaultLoaded",
+      "description": "Controlled or initial consent: the iframe is created only when true."
+    },
+    {
+      "name": "onLoadedChange",
+      "description": "Called when the user loads the map; use it to remember the consent."
+    },
+    {
+      "name": "directions",
+      "description": "External links shown below the map; an empty array hides them."
+    },
+    {
+      "name": "aspectRatio",
+      "description": "CSS aspect ratio of the map area."
+    },
+    {
+      "name": "placeholder",
+      "description": "Custom placeholder content shown before consent, for example a static image."
+    },
+    {
+      "name": "consentNote",
+      "description": "Replaces the default privacy note next to the load button."
+    }
+  ],
+  "inherits": "HTMLAttributes<HTMLElement> (without children), applied to the root figure.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the \"Load map\" button, then the map and the directions links."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Loads the map from the placeholder button."
+    }
+  ],
+  "accessibility": [
+    "Before consent the illustrated placeholder is decorative; the venue name and the privacy note are readable text.",
+    "The iframe has a title that includes the venue name and is loaded lazily and sandboxed.",
+    "External links announce that they open in a new tab.",
+    "After loading, focus moves to the map because the button disappears.",
+    "The address remains available as text even when the map is not loaded."
+  ],
+  "responsive": [
+    "The map fills the container width and keeps the aspectRatio proportions.",
+    "In narrow containers the consent box uses smaller spacing and text thanks to container queries."
+  ],
+  "customization": [
+    "Customize colors and borders with the --dc-color-* tokens and --dc-look-radius-container.",
+    "Pass placeholder to show a static image of the area instead of the illustration."
+  ],
+  "commonMistakes": [
+    "Setting defaultLoaded to true without previously collected consent: the request to OpenStreetMap would fire on first render.",
+    "Swapping latitude and longitude: latitude comes first (e.g. 45.48 for Milan)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Venue with address"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled consent"
+    },
+    {
+      "name": "CustomLinks",
+      "title": "Custom links and proportions"
+    }
+  ],
+  "limits": [
+    "Uses the public OpenStreetMap embed: no custom styles, multiple markers or routes.",
+    "Consent is not persisted: store it yourself via onLoadedChange."
+  ]
+}

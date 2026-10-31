@@ -1,0 +1,85 @@
+{
+  "source": "3b9ac9719e8e",
+  "summary": "Hex color field with a popover editor (saturation/brightness area, hue, swatches).",
+  "whenToUse": [
+    "Customizing themes, labels, or categories."
+  ],
+  "whenNotToUse": [
+    "Choosing among a few predefined colors: use RadioGroup or ToggleGroup with swatches and names."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Standard field anatomy."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled color; use parseColor to create values."
+    },
+    {
+      "name": "swatches",
+      "description": "Predefined swatches in the popover."
+    },
+    {
+      "name": "name",
+      "description": "Hex value submitted with the form."
+    },
+    {
+      "name": "isDisabled / isReadOnly / isRequired / isInvalid",
+      "description": "States; in read-only mode the popover does not open."
+    },
+    {
+      "name": "popoverProps",
+      "description": "Popover positioning and classes."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Swatch button, then the hex field."
+    },
+    {
+      "keys": "Frecce (area)",
+      "action": "Saturation and brightness."
+    },
+    {
+      "keys": "Frecce (tonalità)",
+      "action": "Changes the hue."
+    },
+    {
+      "keys": "Frecce (campioni)",
+      "action": "Picks a swatch; Esc closes and restores focus."
+    }
+  ],
+  "accessibility": [
+    "The area and slider announce the color name (e.g. “vivid blue”), not just numeric values.",
+    "The hex field remains the complete text alternative.",
+    "In forced-colors mode the swatches keep their actual color."
+  ],
+  "responsive": [
+    "Fixed-width popover kept within the viewport; the area supports touch."
+  ],
+  "customization": [
+    "className and style on the field; popoverProps.className on the popover."
+  ],
+  "commonMistakes": [
+    "Assuming a chosen color is accessible: check the contrast (the Theme Builder shows it)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with swatches"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": [
+    "No alpha channel in the editor."
+  ]
+}

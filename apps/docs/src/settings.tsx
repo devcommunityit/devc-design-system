@@ -1,5 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import type { BuiltInLanguage } from '@dev-community/ui';
+import { readInitialLang, storeLang, type DocsLang as PortalLang } from './i18n/lang';
+import { MESSAGES, type Messages } from './i18n/messages';
 
 export type DocsLanguage = BuiltInLanguage;
 
@@ -23,7 +25,11 @@ export function docsLocale(language: DocsLanguage): string {
 }
 
 export interface DocsSettings {
-  /** Language of the library system strings (examples stay in Italian). */
+  /** Portal language: prose, navigation and labels. */
+  lang: PortalLang;
+  /** Also switches the library system strings to the same language. */
+  setLang: (lang: PortalLang) => void;
+  /** Language of the library system strings (defaults to the portal language). */
   language: DocsLanguage;
   setLanguage: (language: DocsLanguage) => void;
   /** RTL preview: switches the library locale to an RTL locale (ar-EG) keeping the chosen messages. */
@@ -34,9 +40,24 @@ export interface DocsSettings {
 const SettingsContext = createContext<DocsSettings | null>(null);
 
 export function DocsSettingsProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<DocsLanguage>('it');
+  const [lang, setLangState] = useState<PortalLang>(readInitialLang);
+  const [language, setLanguage] = useState<DocsLanguage>(lang);
   const [rtl, setRtl] = useState(false);
-  const value = useMemo(() => ({ language, setLanguage, rtl, setRtl }), [language, rtl]);
+  const value = useMemo(
+    () => ({
+      lang,
+      setLang: (next: PortalLang) => {
+        setLangState(next);
+        setLanguage(next);
+        storeLang(next);
+      },
+      language,
+      setLanguage,
+      rtl,
+      setRtl,
+    }),
+    [lang, language, rtl],
+  );
   return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
 }
 
@@ -44,4 +65,9 @@ export function useDocsSettings(): DocsSettings {
   const ctx = useContext(SettingsContext);
   if (!ctx) throw new Error('useDocsSettings must be used inside DocsSettingsProvider');
   return ctx;
+}
+/** Portal language and its UI messages. */
+export function useI18n(): { lang: PortalLang; setLang: (lang: PortalLang) => void; t: Messages } {
+  const { lang, setLang } = useDocsSettings();
+  return { lang, setLang, t: MESSAGES[lang] };
 }

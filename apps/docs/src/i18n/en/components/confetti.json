@@ -1,0 +1,51 @@
+{
+  "source": "a439ce64af76",
+  "summary": "Deterministic CSS confetti decoration for a celebration; non-interactive and ignored by screen readers.",
+  "whenToUse": [
+    "Add a decorative accent to an achievement or celebration.",
+    "Use only when motion is not needed to understand the content."
+  ],
+  "whenNotToUse": [
+    "Communicating a result or state through animation alone.",
+    "In reduced-motion or forced-colors environments, where it is hidden."
+  ],
+  "props": [
+    {
+      "name": "particleCount",
+      "description": "Deterministic number of decorative elements, limited to 1–16."
+    },
+    {
+      "name": "className",
+      "description": "Additional CSS class."
+    }
+  ],
+  "inherits": "HTML attributes of <span> (without children).",
+  "keyboard": [],
+  "accessibility": [
+    "The decorative container has aria-hidden=\"true\" and does not receive focus.",
+    "Animation is disabled by hiding the effect with prefers-reduced-motion.",
+    "The effect is also hidden in forced-colors mode."
+  ],
+  "responsive": [
+    "Fills the container positioned by the caller without intercepting pointer or touch input."
+  ],
+  "customization": [
+    "Colors and sizes derive from --dc-* tokens; particleCount is limited to 16."
+  ],
+  "commonMistakes": [
+    "Using the effect to convey important information or making it interactive."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Decorative celebration"
+    },
+    {
+      "name": "FewerPieces",
+      "title": "Fewer elements"
+    }
+  ],
+  "limits": [
+    "CSS-only: does not pick random colors or positions; the effect is hidden with reduced motion."
+  ]
+}

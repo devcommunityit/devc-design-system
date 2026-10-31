@@ -46,6 +46,7 @@ export {
   type ValidateOptions,
   type OverridableToken,
   type ColorRole,
+  type PresetKind,
   type PresetName,
   type Density,
 } from './types';

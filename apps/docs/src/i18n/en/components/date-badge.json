@@ -1,0 +1,71 @@
+{
+  "source": "0771426ad40d",
+  "summary": "Compact box showing an event date: prominent day, uppercase abbreviated month, and optionally the weekday. Formatted with Intl according to the locale and rendered as <time dateTime>.",
+  "whenToUse": [
+    "Covers and rows for events, meetups, webinars, deadlines.",
+    "Compact lists where the date is the first thing users scan."
+  ],
+  "whenNotToUse": [
+    "Dates with times or complex ranges in text: use Intl.DateTimeFormat in a regular <time>.",
+    "Selecting a date: use DatePicker or Calendar."
+  ],
+  "props": [
+    {
+      "name": "date",
+      "description": "Day to display: Date, ISO string (“2026-11-12”), or a CalendarDate-like object (1-based month)."
+    },
+    {
+      "name": "variant",
+      "description": "solid: light box to place on colored covers; gradient: box with the brand gradient."
+    },
+    {
+      "name": "size",
+      "description": "Box size."
+    },
+    {
+      "name": "showWeekday",
+      "description": "Shows the abbreviated weekday above the number."
+    },
+    {
+      "name": "timeZone",
+      "description": "IANA time zone used to read the day from a Date object (default: the user's)."
+    }
+  ],
+  "inherits": "HTML attributes of <time> (id, style, data-*, aria-*); ref to the <time> element.",
+  "keyboard": [],
+  "accessibility": [
+    "Rendered as <time dateTime=\"YYYY-MM-DD\">, readable by search engines and assistive technologies.",
+    "The abbreviated visual parts are aria-hidden: screen readers read the full localized date (e.g. “Thursday, November 12, 2026”).",
+    "In forced-colors mode the box uses Canvas/CanvasText with a visible border."
+  ],
+  "responsive": [
+    "Intrinsic size: it does not stretch; use size=\"sm\" in dense lists or sidebars."
+  ],
+  "customization": [
+    "Tokens: --dc-color-surface-default and --dc-color-text-link (solid), --dc-gradient-accent with --dc-color-action-primary-foreground (gradient), --dc-radius-md.",
+    "Stable selectors: .dc-date-badge-date-badge[data-variant][data-size], .dc-date-badge-day, .dc-date-badge-month."
+  ],
+  "commonMistakes": [
+    "Passing a string with a UTC time (“2026-11-12T23:30:00Z”) and expecting the UTC day: dates with times follow the user's time zone or timeZone.",
+    "Repeating the same date as text next to the badge: it is already announced in full."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Variants",
+      "title": "Variants",
+      "description": "solid on a colored cover and gradient on a neutral surface."
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes and weekday"
+    }
+  ],
+  "limits": [
+    "Shows a single day: for multi-day ranges place two badges side by side or use text.",
+    "Invalid values render nothing."
+  ]
+}

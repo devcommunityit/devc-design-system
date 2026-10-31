@@ -1,0 +1,108 @@
+{
+  "source": "9a113e9f1f90",
+  "summary": "SVG radial bar chart: concentric rings filled clockwise in proportion to value / maximum, with legend, keyboard navigation and an accessible data table.",
+  "whenToUse": [
+    "Showing the progress of a few items (2–5) toward their respective targets in a compact space.",
+    "Dashboard summaries with completion percentages."
+  ],
+  "whenNotToUse": [
+    "Precisely comparing close values: outer rings are longer for the same value, use BarChart.",
+    "A single value on a scale with thresholds: use GaugeChart.",
+    "Parts of a whole: use DonutChart."
+  ],
+  "props": [
+    {
+      "name": "data",
+      "description": "Rings from outside to inside; negative values count as 0, max overrides the chart maximum."
+    },
+    {
+      "name": "max",
+      "description": "Value of a full ring, when the item doesn't specify its own max."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of values and maximums in the current locale; percentages always use Intl with style percent."
+    },
+    {
+      "name": "size",
+      "description": "Maximum diameter in px; the chart shrinks with its container."
+    },
+    {
+      "name": "showLegend",
+      "description": "Legend with the value, maximum and percentage of each ring."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses gradients and glows with the same theme colors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area, then to the table button."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Next/previous ring: highlights the ring and announces label, value, maximum and percentage."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last ring."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> with <figcaption>; focusable role=\"group\" area with a hint and aria-live=\"polite\" announcements.",
+    "Rings are distinguishable without color too (textures repeated in the legend), and the legend reports values and percentages as text.",
+    "Data table with \"Valore\", \"Obiettivo\" (maximum) and percentage columns.",
+    "In forced-colors mode rings become Canvas with CanvasText border and texture; the active ring has a Highlight border."
+  ],
+  "responsive": [
+    "SVG with viewBox: scales up to size px while keeping its proportions.",
+    "Entrance animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints rings with gradients between --dc-color-data-N and --dc-color-accent-default and tints the tracks; in forced-colors mode it goes back to flat.",
+    "Colors: --dc-color-data-1…6 (cyclic); track --dc-color-surface-subtle.",
+    "Stable selectors: .dc-radial-bar-chart-radialBarChart (active ring: g[data-active]), .dc-radial-bar-chart-track, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "Using more than 5 rings: they become thin and hard to tell apart.",
+    "Comparing items with different maximums without saying so: the legend always shows value / maximum."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "PerItemMax",
+      "title": "Per-item maximum and currency"
+    },
+    {
+      "name": "InCard",
+      "title": "In a card"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradients and glows with the theme colors."
+    }
+  ],
+  "limits": [
+    "Values above the maximum fill the whole ring (the actual percentage remains in the text).",
+    "No labels on the rings: values are in the legend, the active readout and the table."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "source": "4995bcb3d905",
+  "summary": "Select and crop an image with a pointer or numeric fields.",
+  "whenToUse": [
+    "Cropping avatars and other images before saving or uploading them."
+  ],
+  "whenNotToUse": [
+    "To display images without editing them, use ImageGallery."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Component name."
+    },
+    {
+      "name": "src",
+      "description": "Image source."
+    },
+    {
+      "name": "alt",
+      "description": "Alternative text of the image."
+    },
+    {
+      "name": "crossOrigin",
+      "description": "CORS mode; credentials are optional."
+    },
+    {
+      "name": "onCrop",
+      "description": "Receives the rectangle and the cropped Blob."
+    },
+    {
+      "name": "crop / defaultCrop / onCropChange",
+      "description": "Rectangle in pixels of the original image."
+    },
+    {
+      "name": "mimeType / quality / onError",
+      "description": "Blob format and quality, and error handling."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / frecce",
+      "action": "Changes position and size via the numeric fields."
+    }
+  ],
+  "accessibility": [
+    "The numeric fields let you select the same area without dragging.",
+    "Errors are announced."
+  ],
+  "responsive": [
+    "The image resizes while keeping coordinates in original pixels."
+  ],
+  "customization": [
+    "Border and mask use tokens."
+  ],
+  "commonMistakes": [
+    "Remote images require correct CORS for the canvas to be read.",
+    "Saving and uploading remain the consumer's responsibility."
+  ],
+  "examples": [
+    {
+      "name": "Crop",
+      "title": "Crop"
+    }
+  ],
+  "limits": [
+    "Free-form rectangle, no rotation or fixed aspect ratio."
+  ]
+}

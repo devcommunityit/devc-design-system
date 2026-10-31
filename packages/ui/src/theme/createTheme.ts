@@ -3,7 +3,7 @@ import {
   DEFAULT_PRESET,
   FEEDBACK_SEEDS,
   PALETTE_RULES,
-  PRESET_COLORS,
+  PRESET_COLORS_PACKED,
   PRESET_META,
   PRESET_NAMES,
   ROLE_SPECS,
@@ -236,8 +236,8 @@ function parseInput(raw: unknown, opts: ValidateOptions, issues: ThemeIssue[]): 
 
 function resolveTheme(input: ThemeInput): Theme {
   const base = input.extends ?? DEFAULT_PRESET;
-  let light: Record<ColorRole, string> = { ...PRESET_COLORS[base].light };
-  let dark: Record<ColorRole, string> = { ...PRESET_COLORS[base].dark };
+  let light: Record<ColorRole, string> = { ...presetColors(base).light };
+  let dark: Record<ColorRole, string> = { ...presetColors(base).dark };
   const seeds = input.seeds;
   if (seeds && Object.keys(seeds).length > 0) {
     const palettes = createTonalPalettes(
@@ -307,6 +307,23 @@ export function createTheme(input: Omit<ThemeInput, 'schemaVersion'> & { schemaV
   return result.theme;
 }
 
+const presetColorCache = new Map<PresetName, Theme['colors']>();
+
+/** Decodes the packed preset colors; the full PRESET_COLORS map stays out of the runtime bundle. */
+function presetColors(name: PresetName): Theme['colors'] {
+  let colors = presetColorCache.get(name);
+  if (!colors) {
+    const packed = PRESET_COLORS_PACKED[name];
+    const read = (offset: number) =>
+      Object.freeze(
+        Object.fromEntries(COLOR_ROLES.map((role, i) => [role, `#${packed.slice((offset + i) * 6, (offset + i + 1) * 6)}`])) as Record<ColorRole, string>,
+      );
+    colors = Object.freeze({ light: read(0), dark: read(COLOR_ROLES.length) });
+    presetColorCache.set(name, colors);
+  }
+  return colors;
+}
+
 const presetCache = new Map<PresetName, Theme>();
 
 /** Returns the resolved built-in preset. */
@@ -322,7 +339,7 @@ export function getPreset(name: PresetName): Theme {
       label: PRESET_META[name].label.en,
       kind: 'preset' as const,
       extends: name,
-      colors: PRESET_COLORS[name],
+      colors: presetColors(name),
       tokens: Object.freeze({}),
       input: { schemaVersion: THEME_SCHEMA_VERSION, name, extends: name },
     });

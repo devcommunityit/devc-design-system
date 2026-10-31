@@ -1,0 +1,62 @@
+{
+  "source": "7caddd17edf2",
+  "summary": "“Live” indicator: pulsing red dot, localized “Live” label and an optional Intl-formatted viewer count.",
+  "whenToUse": [
+    "Signaling a live stream, an ongoing event or a live session.",
+    "Event cards, heroes, video player headers."
+  ],
+  "whenNotToUse": [
+    "A person's online status: use Avatar with a presence Badge.",
+    "Notifications or counts not related to a live stream: use Badge."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible label; defaults to “Live” (messages.live)."
+    },
+    {
+      "name": "viewers",
+      "description": "Connected viewers, shown after the label (messages.liveViewers)."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Viewer count format, e.g. { notation: \"compact\" }."
+    },
+    {
+      "name": "pulse",
+      "description": "Animates the dot (always disabled with prefers-reduced-motion)."
+    }
+  ],
+  "inherits": "HTML attributes of <span> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "Visible text, no role: the information does not rely on the color of the dot alone, which is decorative (aria-hidden).",
+    "It is not a live region: if the viewer count changes often, avoid announcing it on every update.",
+    "With prefers-reduced-motion the dot does not pulse; in forced-colors it uses Mark with an outline."
+  ],
+  "responsive": [
+    "Compact inline element: wraps with the surrounding text."
+  ],
+  "customization": [
+    "Tokens: --dc-color-feedback-danger for the dot; the text inherits the color (works on light and dark backgrounds).",
+    "Stable selectors: .dc-live-indicator-live[data-pulse], .dc-live-indicator-dot."
+  ],
+  "commonMistakes": [
+    "Leaving it visible after the event has ended: remove it or replace it with a “Replay” Badge.",
+    "Formatting the viewer count by hand and ignoring the locale."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithViewers",
+      "title": "With viewers",
+      "description": "Formatted number, including compact, on a dark background."
+    }
+  ],
+  "limits": [
+    "The dot color is fixed (feedback danger) for consistency with the “on air” convention."
+  ]
+}

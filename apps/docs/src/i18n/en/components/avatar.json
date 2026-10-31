@@ -1,0 +1,78 @@
+{
+  "source": "bd47053c2da6",
+  "summary": "Represents a person or entity with an image or fallback initials.",
+  "whenToUse": [
+    "Lists of users, authors, assignees.",
+    "Compact groups of participants (AvatarGroup)."
+  ],
+  "whenNotToUse": [
+    "As the only identifier: show the name alongside when space allows."
+  ],
+  "props": [
+    {
+      "name": "name",
+      "description": "Person's name: accessible name and source of the initials."
+    },
+    {
+      "name": "src",
+      "description": "Image URL; on error the initials are shown."
+    },
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "shape",
+      "description": "Shape."
+    },
+    {
+      "name": "fallback",
+      "description": "Alternative content to the initials (e.g. an icon)."
+    },
+    {
+      "name": "isDecorative",
+      "description": "Hides the avatar from assistive technologies when the name is already written next to it."
+    },
+    {
+      "name": "AvatarGroup.max",
+      "description": "Maximum number visible; the rest becomes “+N”."
+    }
+  ],
+  "inherits": "HTML attributes of <span> (Avatar) and <div> (AvatarGroup).",
+  "keyboard": [],
+  "accessibility": [
+    "role=\"img\" with aria-label = name.",
+    "The “+N” counter has a localized name (“N more”).",
+    "The fallback color is derived deterministically from the name: it carries no information."
+  ],
+  "responsive": [
+    "Fixed sizes for optical alignment; choose size based on context."
+  ],
+  "customization": [
+    "className/style; --dc-color-surface-* tokens, fallback tone palette."
+  ],
+  "commonMistakes": [
+    "Repeating the name twice for screen readers: use isDecorative when the text is next to it."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Initials, shape and unavailable image"
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    },
+    {
+      "name": "Group",
+      "title": "Group with overflow"
+    },
+    {
+      "name": "WithName",
+      "title": "With visible name"
+    }
+  ],
+  "limits": [
+    "No presence indicator (online/offline) included."
+  ]
+}

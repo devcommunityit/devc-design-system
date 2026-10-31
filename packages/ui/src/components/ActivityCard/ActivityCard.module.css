@@ -1,0 +1,146 @@
+.activity {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-typography-title-sm-weight);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  --_dot: var(--dc-color-border-strong);
+
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+  padding-block-end: var(--dc-space-4);
+}
+
+.item:last-child {
+  padding-block-end: 0;
+}
+
+/* Vertical timeline line joining the avatars. */
+.item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  inset-block: var(--dc-space-8) 0;
+  inset-inline-start: calc(var(--dc-space-8) / 2 - var(--dc-border-width-thin) / 2);
+  border-inline-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.item[data-tone='success'] {
+  --_dot: var(--dc-color-feedback-success);
+}
+
+.item[data-tone='warning'] {
+  --_dot: var(--dc-color-feedback-warning);
+}
+
+.item[data-tone='danger'] {
+  --_dot: var(--dc-color-feedback-danger);
+}
+
+.item[data-tone='info'] {
+  --_dot: var(--dc-color-feedback-info);
+}
+
+.marker {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  justify-content: center;
+  inline-size: var(--dc-space-8);
+}
+
+.dot {
+  position: absolute;
+  inset-block-end: calc(-1 * var(--dc-space-0-5));
+  inset-inline-end: calc(-1 * var(--dc-space-0-5));
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border: var(--dc-border-width-thick) solid var(--dc-color-surface-default);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_dot);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--dc-space-0-5);
+  min-inline-size: 0;
+}
+
+.text {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+}
+
+.actor {
+  color: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.time {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.empty {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  margin-block-start: auto;
+  padding-block-start: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+@media (forced-colors: active) {
+  .activity {
+    border-color: CanvasText;
+  }
+
+  .item:not(:last-child)::before {
+    border-inline-start-color: CanvasText;
+  }
+
+  .dot {
+    border-color: Canvas;
+    background-color: CanvasText;
+  }
+}

@@ -1,0 +1,47 @@
+.countdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  color: var(--dc-color-text-primary);
+}
+
+.label {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.unit {
+  display: flex;
+  flex: 1 1 4.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-1);
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.value {
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+  font-weight: var(--dc-font-weight-bold);
+}
+
+.unitLabel {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+}
+
+.expired {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+}

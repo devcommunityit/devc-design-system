@@ -1,0 +1,102 @@
+{
+  "source": "afdd236e5b3f",
+  "summary": "Modal window for short, focused tasks that require attention before returning to the page.",
+  "whenToUse": [
+    "Short forms (rename, invite).",
+    "Details that don't warrant a page."
+  ],
+  "whenNotToUse": [
+    "Confirming destructive actions: use AlertDialog.",
+    "Long content or multi-step flows: use a page.",
+    "Side filter panels: use Drawer."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Visible title, used as the accessible name."
+    },
+    {
+      "name": "description",
+      "description": "Text linked with aria-describedby."
+    },
+    {
+      "name": "children",
+      "description": "Scrollable body."
+    },
+    {
+      "name": "footer",
+      "description": "Actions aligned to the end."
+    },
+    {
+      "name": "size",
+      "description": "Maximum width."
+    },
+    {
+      "name": "isOpen / defaultOpen / onOpenChange",
+      "description": "Controlled or uncontrolled state (omitted inside DialogTrigger)."
+    },
+    {
+      "name": "isDismissable",
+      "description": "Close on backdrop click."
+    },
+    {
+      "name": "isKeyboardDismissDisabled",
+      "description": "Disables Escape."
+    },
+    {
+      "name": "hideCloseButton",
+      "description": "Hides the X: provide another visible way to close."
+    }
+  ],
+  "inherits": "react-aria-components Dialog props (role, aria-*). DialogTrigger: RAC DialogTrigger props.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Cycles focus within the dialog (focus trap)."
+    },
+    {
+      "keys": "Escape",
+      "action": "Closes the topmost dialog and returns focus to the trigger."
+    }
+  ],
+  "accessibility": [
+    "APG Dialog (Modal) pattern: role=\"dialog\", aria-modal, initial focus in the dialog, focus containment and restoration.",
+    "Page scrolling is locked and outside content is inert while open.",
+    "Close button with a localized label.",
+    "Rendered in the portal of the nearest ThemeProvider: inherits theme and density even with nested providers."
+  ],
+  "responsive": [
+    "On narrow viewports it takes up almost the full width; the body scrolls while the header and footer stay visible.",
+    "size=\"fullscreen\" for mobile-first full screen."
+  ],
+  "customization": [
+    "className/style on the panel; surface, radius, and elevation tokens."
+  ],
+  "commonMistakes": [
+    "Opening dialogs without a trigger and without handling focus return.",
+    "Putting destructive actions in a plain Dialog."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "FormDialog",
+      "title": "With form and actions"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "LongContent",
+      "title": "Long content"
+    },
+    {
+      "name": "Nested",
+      "title": "Nested"
+    }
+  ],
+  "limits": []
+}

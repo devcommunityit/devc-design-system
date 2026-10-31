@@ -1,0 +1,96 @@
+{
+  "source": "d5dd13e22d40",
+  "summary": "Label for the release stage of a site or feature (Alpha, Beta, Preview, Demo, New, Experimental, Deprecated, Coming soon): an inline chip or a full-width banner with description, action, and dismiss.",
+  "whenToUse": [
+    "Indicating that a section or feature is in alpha, beta, preview, or experimental.",
+    "Warning at the top of the site that it is a demo environment (“Demo environment: data is reset every night”).",
+    "Highlighting a menu item or a newly released feature (“New”)."
+  ],
+  "whenNotToUse": [
+    "Generic item statuses (Paid, Draft, Active): use Badge.",
+    "Counts or dots on icons and avatars: use IndicatorBadge.",
+    "Labels overlaid on the corner of cards or images: use Ribbon.",
+    "System messages that require action or have a severity (errors, maintenance): use Banner or Alert."
+  ],
+  "props": [
+    {
+      "name": "stage",
+      "description": "Release stage: determines the localized default text and style."
+    },
+    {
+      "name": "children",
+      "description": "Replaces the stage's default text."
+    },
+    {
+      "name": "variant",
+      "description": "Inline chip or full-width strip (role=\"note\")."
+    },
+    {
+      "name": "size",
+      "description": "Chip size / banner density."
+    },
+    {
+      "name": "icon",
+      "description": "Leading decorative icon."
+    },
+    {
+      "name": "description",
+      "description": "Banner only: explanatory text next to the label."
+    },
+    {
+      "name": "action",
+      "description": "Banner only: action slot, e.g. the “Send feedback” link."
+    },
+    {
+      "name": "onDismiss",
+      "description": "Banner only: shows a dismiss IconButton with the localized label “Dismiss”."
+    }
+  ],
+  "inherits": "HTML attributes of <span> (chip) or <div> (banner).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "In the banner, moves focus to the action and the dismiss button; the chip is not focusable."
+    }
+  ],
+  "accessibility": [
+    "The stage text is always real, localized text: color is only supporting.",
+    "The banner has role=\"note\" and is named by the stage label (aria-labelledby); you can override role and aria-label via props.",
+    "The dismiss button is an IconButton with the accessible name “Dismiss”; after dismissing, move focus to a sensible element.",
+    "The description is not shown in a Tooltip on the chip: the chip is not focusable, so a tooltip would be unreachable by keyboard and touch.",
+    "In forced-colors mode, chips and banners use system borders instead of backgrounds and gradients."
+  ],
+  "responsive": [
+    "The banner wraps: label and description take the first line, while actions and dismiss move below in narrow containers.",
+    "The chip stays on one line, with an ellipsis if space runs out."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent (beta), --dc-color-accent-default (new, experimental), --dc-color-data-6 (demo, cyan), warning/info feedback colors (alpha, preview), --dc-color-surface-muted and --dc-color-text-muted (deprecated).",
+    "Stable selectors: .dc-stage-label-chip[data-stage][data-size], .dc-stage-label-banner[data-stage], .dc-stage-label-description, .dc-stage-label-actions."
+  ],
+  "commonMistakes": [
+    "Using StageLabel for content statuses (Draft, Published): that is PublishStatus or Badge.",
+    "Stacking multiple stage banners on top of each other: pick the most important message.",
+    "Making the banner non-dismissible on every page when the message is not critical."
+  ],
+  "examples": [
+    {
+      "name": "Stages",
+      "title": "Stages",
+      "description": "All stages with their localized default text."
+    },
+    {
+      "name": "InContext",
+      "title": "In context",
+      "description": "Next to headings and items, with custom text and icon."
+    },
+    {
+      "name": "Banner",
+      "title": "Site banner",
+      "description": "“Demo environment” strip with a feedback link and dismiss."
+    }
+  ],
+  "limits": [
+    "The description prop is only used by the banner variant."
+  ]
+}

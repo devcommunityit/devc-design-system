@@ -1,0 +1,56 @@
+{
+  "source": "9ca8f2509fb8",
+  "summary": "Summary of, or link to, an existing certificate, without generating it.",
+  "whenToUse": [
+    "Showing that a certificate exists and linking to where it can be viewed."
+  ],
+  "whenNotToUse": [
+    "Generating certificates, signing them or verifying credentials."
+  ],
+  "props": [
+    {
+      "name": "recipient",
+      "description": "Recipient's name."
+    },
+    {
+      "name": "eventName",
+      "description": "Event attended."
+    },
+    {
+      "name": "issuedDate",
+      "description": "Issue date in human-readable and machine-readable form."
+    },
+    {
+      "name": "certificateHref",
+      "description": "URL of an existing certificate."
+    }
+  ],
+  "inherits": "HTML attributes of <article> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter",
+      "action": "Reaches the certificate link, if available."
+    }
+  ],
+  "accessibility": [
+    "The certificate name and details are text; the link exists only when a URL is provided."
+  ],
+  "responsive": [
+    "Content stacks and adapts to the container."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Don't link to a generation endpoint: the component is presentational only."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Available certificate"
+    }
+  ],
+  "limits": [
+    "Does not create or download certificates."
+  ]
+}

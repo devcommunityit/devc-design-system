@@ -1,6 +1,6 @@
 import { Euro, ShoppingCart, TicketCheck, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Grid, KpiCard, Link, Toggle, ToggleGroup } from '@dev-community/ui';
+import { Grid, KpiCard, Link, Toggle, ToggleGroup, Stack, Switch } from '@dev-community/ui';
 
 export function Basic() {
   return (
@@ -70,5 +70,51 @@ export function Periods() {
         </ToggleGroup>
       }
     />
+  );
+}
+
+/** Hero KPI on the brand gradient: label, trend and sparkline inherit the paired foreground. */
+export function Vivid() {
+  return (
+    <Grid minItemWidth="15rem" gap={4}>
+      <KpiCard
+        variant="vivid"
+        label="Ricavi del trimestre"
+        value={248900}
+        formatOptions={{ style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }}
+        icon={<Euro />}
+        trend={{ direction: 'up', value: '+12,4%', label: 'rispetto al trimestre precedente' }}
+        sparkline={[180, 192, 205, 199, 221, 236, 249]}
+        footer={<span>Aggiornato alle 9:30</span>}
+      />
+      <KpiCard label="Ordini" value={1312} icon={<ShoppingCart />} trend={{ direction: 'down', value: '−3%' }} sparkline={[1400, 1380, 1390, 1350, 1330, 1320, 1312]} />
+    </Grid>
+  );
+}
+
+/** Tonal fill to group secondary indicators next to neutral cards. */
+export function Tinted() {
+  return (
+    <Grid minItemWidth="15rem" gap={4}>
+      <KpiCard variant="tinted" label="Utenti attivi" value={12480} icon={<Users />} trend={{ direction: 'up', value: '+4,1%', label: 'ultima settimana' }} sparkline={[9800, 10120, 10050, 10900, 11320, 11800, 12480]} />
+      <KpiCard variant="tinted" label="Ticket risolti" value={0.92} formatOptions={{ style: 'percent' }} icon={<TicketCheck />} trend={{ direction: 'neutral', value: '0 pt' }} description="Obiettivo mensile: 90%" />
+    </Grid>
+  );
+}
+
+/** While loading, each card becomes a SkeletonKpi of the same shape; pass `sparkline={[]}` to reserve the trend line. */
+export function Loading() {
+  const [isLoading, setIsLoading] = useState(true);
+  return (
+    <Stack gap={4}>
+      <Switch isSelected={isLoading} onChange={setIsLoading}>
+        Simula caricamento
+      </Switch>
+      <Grid minItemWidth="14rem" gap={4}>
+        <KpiCard isLoading={isLoading} label="Iscritti" value={1284} icon={<Users />} sparkline={isLoading ? [] : [980, 1040, 1120, 1190, 1284]} />
+        <KpiCard isLoading={isLoading} label="Biglietti venduti" value={342} icon={<TicketCheck />} trend={{ direction: 'up', value: '+12%' }} />
+        <KpiCard isLoading={isLoading} label="Ordini" value={57} icon={<ShoppingCart />} />
+      </Grid>
+    </Stack>
   );
 }

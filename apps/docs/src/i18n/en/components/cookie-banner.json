@@ -1,0 +1,67 @@
+{
+  "source": "28548cd84252",
+  "summary": "Controlled interface for privacy and cookie preferences.",
+  "whenToUse": [
+    "Present consent categories and choices via PrivacyPreferences."
+  ],
+  "whenNotToUse": [
+    "For notification preferences use NotificationPreferences."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title and accessible name of the section."
+    },
+    {
+      "name": "description",
+      "description": "Short notice."
+    },
+    {
+      "name": "categories",
+      "description": "Consent categories."
+    },
+    {
+      "name": "value",
+      "description": "Controlled active categories."
+    },
+    {
+      "name": "onChange",
+      "description": "Request to change the selection."
+    },
+    {
+      "name": "onSave",
+      "description": "Callback to the consumer when the user confirms."
+    },
+    {
+      "name": "errorMessage",
+      "description": "Message shown when the callback fails."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Spazio",
+      "action": "Navigates and edits the PrivacyPreferences categories and buttons."
+    }
+  ],
+  "accessibility": [
+    "The section is associated with its own title and composes already accessible controls."
+  ],
+  "responsive": [
+    "Categories and actions adapt to narrow containers."
+  ],
+  "customization": [
+    "PrivacyPreferences keeps checkboxes and actions consistent; styles use --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "No consent is saved here: the consumer handles policy and persistence."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Cookie preferences"
+    }
+  ],
+  "limits": [
+    "The onSave callback belongs to the consumer."
+  ]
+}

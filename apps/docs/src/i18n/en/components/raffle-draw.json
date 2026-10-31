@@ -1,0 +1,71 @@
+{
+  "source": "f1ca2dc42974",
+  "summary": "Visual summary of a draw with a winner provided by the caller, without selection logic.",
+  "whenToUse": [
+    "Showing the outcome of a draw already determined by the application.",
+    "Presenting the raffle title and the number of participants."
+  ],
+  "whenNotToUse": [
+    "Randomly selecting a winner or running a draw procedure.",
+    "Managing entries, persistence or backend state."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Draw title."
+    },
+    {
+      "name": "winner",
+      "description": "External winner; null shows the empty state."
+    },
+    {
+      "name": "entryCount",
+      "description": "Number of eligible entries."
+    },
+    {
+      "name": "entryCountLabel",
+      "description": "Localizable label with singular and plural forms."
+    },
+    {
+      "name": "description",
+      "description": "Context text."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level; the winner's heading uses the next level."
+    },
+    {
+      "name": "emptyMessage",
+      "description": "Custom text when winner is null."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [],
+  "accessibility": [
+    "The section is named by its title and uses headings in hierarchical order.",
+    "The winner is rendered by WinnerReveal; the no-winner state is visible text.",
+    "The component starts no animation or random selection."
+  ],
+  "responsive": [
+    "The summary spans its container and lets long content wrap."
+  ],
+  "customization": [
+    "Uses the theme's --dc-* tokens; className and HTML attributes are forwarded to the section."
+  ],
+  "commonMistakes": [
+    "Expecting the component to draw the winner: always pass the result determined by the application."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Draw with winner"
+    },
+    {
+      "name": "AwaitingWinner",
+      "title": "Awaiting the result"
+    }
+  ],
+  "limits": [
+    "Does not handle entries, randomness, persistence or backend."
+  ]
+}

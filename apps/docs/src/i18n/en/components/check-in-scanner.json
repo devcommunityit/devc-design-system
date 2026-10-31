@@ -1,0 +1,60 @@
+{
+  "source": "4315a3796d5d",
+  "summary": "Controlled interface for manual code entry, with an optional host-provided viewport.",
+  "whenToUse": [
+    "Collecting a ticket code for a check-in flow managed by the consumer."
+  ],
+  "whenNotToUse": [
+    "Accessing the camera or scanning codes: the component does not do this."
+  ],
+  "props": [
+    {
+      "name": "code",
+      "description": "Code controlled by the consumer."
+    },
+    {
+      "name": "onCodeChange",
+      "description": "Controlled update of the field."
+    },
+    {
+      "name": "onCheckIn",
+      "description": "Receives the submitted manual code."
+    },
+    {
+      "name": "scannerViewport",
+      "description": "Optional scanner content created and managed by the host."
+    }
+  ],
+  "inherits": "HTML attributes of <section> except title and onSubmit.",
+  "keyboard": [
+    {
+      "keys": "Tab / Enter",
+      "action": "Reaches the field and submits a valid code from the button or with Enter."
+    }
+  ],
+  "accessibility": [
+    "The manual field is associated with a label; the button stays disabled when the code is empty or the component is disabled."
+  ],
+  "responsive": [
+    "The manual field and the button wrap when space is limited."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Do not pass components that open the camera without host-provided consent and logic."
+  ],
+  "examples": [
+    {
+      "name": "ManualEntry",
+      "title": "Manual entry"
+    },
+    {
+      "name": "HostViewport",
+      "title": "Host-provided viewport"
+    }
+  ],
+  "limits": [
+    "No camera access and no scanning performed by the component."
+  ]
+}

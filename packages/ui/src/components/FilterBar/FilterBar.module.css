@@ -1,0 +1,68 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+}
+
+.filters,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--dc-space-2);
+}
+
+.filters {
+  flex: 1 1 16rem;
+}
+
+.actions {
+  margin-inline-start: auto;
+}
+
+.filter,
+.viewField {
+  display: grid;
+  gap: var(--dc-space-1);
+  min-inline-size: 8rem;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.filter select,
+.viewField select {
+  box-sizing: border-box;
+  min-block-size: 2.5rem;
+  max-inline-size: 100%;
+  padding: var(--dc-space-2) var(--dc-space-3);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-strong);
+  border-radius: var(--dc-radius-md);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  font: inherit;
+}
+
+.filter select:focus-visible,
+.viewField select:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+@media (width <= 40rem) {
+  .bar,
+  .filters,
+  .actions {
+    align-items: stretch;
+  }
+
+  .filter,
+  .viewField {
+    flex: 1 1 100%;
+  }
+}

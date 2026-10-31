@@ -1,0 +1,188 @@
+{
+  "source": "9f7ba8bc4511",
+  "summary": "Decorative placeholders that preview the shape of loading content: basic shapes, an accessible loading region (SkeletonGroup), and ready-made presets for text, avatars, cards, lists, tables, KPIs, charts, forms, profiles, comments, kanban boards, and full pages. The main data cards and lists also have isLoading, which uses the matching preset.",
+  "whenToUse": [
+    "Initial loading of cards, lists, tables, and dashboards with a known layout.",
+    "Full pages loading (SkeletonPage) to avoid blank screens and layout shifts.",
+    "Automatic skeleton → real content replacement with SkeletonGroup and the skeleton prop.",
+    "Hand-composed layouts: for KpiCard, ProfileCard, ArticleCard, EventCard, PostList, DiscussionList, and Leaderboard prefer the component’s isLoading prop; for charts, swap the chart with SkeletonChart."
+  ],
+  "whenNotToUse": [
+    "User actions in progress (saving, submitting): use Spinner or Progress.",
+    "Very short waits (< 300 ms): showing a skeleton only causes flicker.",
+    "Unknown or highly variable layout: a skeleton that doesn’t resemble the content is disorienting."
+  ],
+  "props": [
+    {
+      "name": "shape",
+      "description": "Skeleton: shape."
+    },
+    {
+      "name": "lines",
+      "description": "Skeleton: lines of text; the last one is shorter."
+    },
+    {
+      "name": "width / height",
+      "description": "Skeleton: CSS dimensions (for text, height replaces 1em)."
+    },
+    {
+      "name": "animation",
+      "description": "Skeleton, SkeletonGroup, and presets: pulse, shimmering wave (shimmer, follows the reading direction, including RTL), or no animation. If omitted, it is inherited from SkeletonGroup or the containing preset."
+    },
+    {
+      "name": "radius",
+      "description": "Skeleton: corner radius; control mimics buttons and fields. Defaults based on the shape."
+    },
+    {
+      "name": "isLoading",
+      "description": "SkeletonGroup: loading state; sets aria-busy and the status text."
+    },
+    {
+      "name": "skeleton",
+      "description": "SkeletonGroup: placeholder shown while loading; with isLoading=false it is replaced by children. If omitted, children is always shown (container mode)."
+    },
+    {
+      "name": "label",
+      "description": "SkeletonGroup: status text for screen readers while loading."
+    },
+    {
+      "name": "loadedLabel",
+      "description": "SkeletonGroup: text announced when loading completes (e.g. “12 results loaded”)."
+    },
+    {
+      "name": "lines / heading",
+      "description": "SkeletonText: paragraph lines (the last one shorter) and an optional heading line."
+    },
+    {
+      "name": "size / lines",
+      "description": "SkeletonAvatar: same scale as Avatar; with lines > 0 it adds lines beside it (media object)."
+    },
+    {
+      "name": "media / mediaRatio / avatar / heading / lines / actions",
+      "description": "SkeletonCard: full-width media area with aspect ratio, header with avatar or title, lines of text, and footer buttons."
+    },
+    {
+      "name": "rows / leading / trailing / dividers / variant",
+      "description": "SkeletonList: rows with a leading element, two lines of text, an optional trailing action, and separators like PostList/ListBox."
+    },
+    {
+      "name": "rows / columns / header / responsive",
+      "description": "SkeletonTable: rows × columns with a header row and cell padding based on density. Below 30rem, collapse keeps the first two columns and scroll scrolls horizontally inside the table."
+    },
+    {
+      "name": "sparkline / icon",
+      "description": "SkeletonKpi: sparkline area and icon as in KpiCard."
+    },
+    {
+      "name": "variant / height / bars",
+      "description": "SkeletonChart: axes with bars of varying heights, a wavy line, an area, or a donut with a legend."
+    },
+    {
+      "name": "fields / textarea / action",
+      "description": "SkeletonForm: fields (label + input at control height), text area, and submit button."
+    },
+    {
+      "name": "cards / toolbar",
+      "description": "SkeletonPage: page header, toolbar, and a responsive grid of cards."
+    },
+    {
+      "name": "tags / stats / actions",
+      "description": "SkeletonProfile: banner, large centered avatar, name, role, chips, stats, and buttons like ProfileCard."
+    },
+    {
+      "name": "rows / replies / lines / actions",
+      "description": "SkeletonComment: comments or feeds with avatar, author and date, text, and actions; replies adds indented replies below the first one."
+    },
+    {
+      "name": "columns / cards",
+      "description": "SkeletonKanban: columns with a header and counter, and cards with title, text, label, and assignee; scrolls horizontally in tight spaces."
+    }
+  ],
+  "inherits": "Skeleton: HTML attributes of the <span>. SkeletonGroup and presets: HTML attributes of the <div>; all accept className.",
+  "keyboard": [],
+  "accessibility": [
+    "All skeletons are decorative (aria-hidden): screen readers don’t announce individual shapes.",
+    "SkeletonGroup sets aria-busy=\"true\" on the region and adds a single visually hidden status text (role=\"status\", by default from the loading i18n string).",
+    "The status text stays mounted: when loading finishes it can announce loadedLabel.",
+    "No keyboard interaction: the skeleton is never focusable.",
+    "Animations are disabled with prefers-reduced-motion; in forced-colors mode shapes get a GrayText border."
+  ],
+  "responsive": [
+    "Percentage widths and flexible layouts: no horizontal scrolling at 320px.",
+    "SkeletonTable uses a container query (collapse or scroll); SkeletonPage uses an auto-fill grid.",
+    "SkeletonKanban keeps columns at least 15rem wide and scrolls horizontally like a real board.",
+    "Spacing, control heights, and cell padding follow the density tokens."
+  ],
+  "customization": [
+    "className/style on every component; color from color.surface.strong, wave toward color.surface.muted.",
+    "Logical properties and a direction-aware wave for RTL; dark theme handled by the tokens.",
+    "Deterministic widths (no random values): identical markup on server and client."
+  ],
+  "commonMistakes": [
+    "Leaving the skeleton without a text alternative: use SkeletonGroup or aria-busy + status text.",
+    "Nesting multiple SkeletonGroups: each region adds its own announcement.",
+    "Skeletons with dimensions very different from the real content: they cause layout shifts when loading finishes."
+  ],
+  "examples": [
+    {
+      "name": "Shapes",
+      "title": "Shapes"
+    },
+    {
+      "name": "Wave",
+      "title": "Wave animation",
+      "description": "Text and avatar with synchronized shimmer via SkeletonGroup."
+    },
+    {
+      "name": "Cards",
+      "title": "Card",
+      "description": "Card with media area, header with avatar, and actions."
+    },
+    {
+      "name": "ListAndTable",
+      "title": "Lists and tables",
+      "description": "PostList-style list and tables with responsive collapse and scroll behavior."
+    },
+    {
+      "name": "Dashboard",
+      "title": "Dashboard",
+      "description": "KPIs with sparklines and bar, line, area, and donut charts."
+    },
+    {
+      "name": "Form",
+      "title": "Form"
+    },
+    {
+      "name": "Page",
+      "title": "Full page",
+      "description": "Header, toolbar, and card grid."
+    },
+    {
+      "name": "LoadingSwap",
+      "title": "Replacing with content",
+      "description": "The Switch toggles between skeletons and real KpiCards; the state is announced only once."
+    },
+    {
+      "name": "Toggle",
+      "title": "Toggling with content"
+    },
+    {
+      "name": "CardPlaceholder",
+      "title": "Loading profile card",
+      "description": "The skeleton mirrors the structure of the real card; the button toggles between the two states."
+    },
+    {
+      "name": "CommunityPresets",
+      "title": "Profiles, comments, and kanban",
+      "description": "SkeletonProfile, SkeletonComment with replies, and SkeletonKanban in a single region."
+    },
+    {
+      "name": "ListPlaceholder",
+      "title": "Loading list",
+      "description": "Rows with varying widths and hidden status text."
+    }
+  ],
+  "limits": [
+    "SVG parts and the donut ring use the pulse even with animation=\"wave\"."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "source": "a5a06dbca56d",
+  "summary": "Thumbnail gallery with a modal viewer and keyboard navigation.",
+  "whenToUse": [
+    "Showing a collection of images and enlarging them without leaving the page."
+  ],
+  "whenNotToUse": [
+    "To edit or crop an image, use ImageCropper."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Gallery name."
+    },
+    {
+      "name": "images",
+      "description": "Images with id, src, alt and optional thumbnails or captions."
+    },
+    {
+      "name": "selectedId / defaultSelectedId / onSelectionChange",
+      "description": "Active image; null closes the viewer."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Escape",
+      "action": "Opens the gallery, reaches the controls and closes the dialog."
+    },
+    {
+      "keys": "Frecce / Home / Fine",
+      "action": "Navigates images in the viewer; arrow keys respect RTL."
+    }
+  ],
+  "accessibility": [
+    "Uses Dialog to manage focus, closing and the accessible name.",
+    "Thumbnails are buttons with an accessible name."
+  ],
+  "responsive": [
+    "The grid adapts to the available width."
+  ],
+  "customization": [
+    "Colors, borders and spacing use tokens."
+  ],
+  "commonMistakes": [
+    "Provide descriptive alternative text and unique ids."
+  ],
+  "examples": [
+    {
+      "name": "Gallery",
+      "title": "Image gallery"
+    }
+  ],
+  "limits": [
+    "Does not upload files or apply edits to images."
+  ]
+}

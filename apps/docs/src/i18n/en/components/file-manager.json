@@ -1,0 +1,86 @@
+{
+  "source": "e0ce9b0ca273",
+  "summary": "Accessible file list with checkbox selection and consumer-provided actions; it does not upload, download, or send files.",
+  "whenToUse": [
+    "Showing already available documents with metadata and contextual actions.",
+    "Allowing single or multiple selection in a file list."
+  ],
+  "whenNotToUse": [
+    "Choosing or uploading local files: use FileUpload.",
+    "Browsing folder hierarchies: use TreeView or a dedicated file browser."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the list."
+    },
+    {
+      "name": "files",
+      "description": "Files to display with required id and name; description, size, and date are optional."
+    },
+    {
+      "name": "selectedIds / defaultSelectedIds",
+      "description": "Controlled or initial selection based on file ids."
+    },
+    {
+      "name": "onSelectionChange",
+      "description": "Receives the updated list of selected ids."
+    },
+    {
+      "name": "renderActions",
+      "description": "Returns consumer-controlled actions for each file."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content shown when files is empty."
+    },
+    {
+      "name": "className",
+      "description": "CSS class applied to the list."
+    }
+  ],
+  "inherits": "FileManagerFile: { id: string; name: string; description?: string; size?: string; modified?: string }.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Reaches the selection controls and the consumer-provided actions."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Selects or deselects the file when the checkbox has focus."
+    }
+  ],
+  "accessibility": [
+    "The list has an accessible name and each checkbox is named after its file.",
+    "Actions passed via renderActions remain regular keyboard-reachable controls.",
+    "Selection is not conveyed by color alone and can be controlled by the application."
+  ],
+  "responsive": [
+    "Long names and metadata wrap; on narrow viewports actions move to a new line."
+  ],
+  "customization": [
+    "renderActions lets you provide buttons or menus managed by the consumer."
+  ],
+  "commonMistakes": [
+    "Using duplicate or unstable ids.",
+    "Expecting uploads, downloads, or network requests: all operations remain the consumer's responsibility."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "File list"
+    },
+    {
+      "name": "WithActions",
+      "title": "Consumer-provided actions"
+    },
+    {
+      "name": "ControlledSelection",
+      "title": "Controlled selection"
+    }
+  ],
+  "limits": [
+    "No file system, upload, download, or network handling.",
+    "Does not include shift-click multiple selection or virtualized navigation."
+  ]
+}

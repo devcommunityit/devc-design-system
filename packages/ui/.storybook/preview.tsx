@@ -1,11 +1,21 @@
 import '../src/styles/index.css';
 import type { Decorator, Preview } from '@storybook/react-vite';
-import { LocaleProvider, PRESET_NAMES, ThemeProvider, messagesEn, messagesIt, type Density, type PresetName, type ThemeMode } from '../src';
+import { LocaleProvider, PRESET_NAMES, ThemeProvider, getDefaultMessages, type Density, type PresetName, type ThemeMode } from '../src';
 
 const MODES: readonly ThemeMode[] = ['light', 'dark', 'system'];
 const DENSITIES: readonly Density[] = ['comfortable', 'compact'];
-const LOCALES = ['it-IT', 'en-US', 'ar-EG'] as const;
-type StoryLocale = (typeof LOCALES)[number];
+/** Locales with a built-in message bundle; the first one is the default. */
+const LOCALE_ITEMS = [
+  { value: 'it-IT', title: 'Italiano' },
+  { value: 'en-US', title: 'English' },
+  { value: 'es-ES', title: 'Español' },
+  { value: 'fr-FR', title: 'Français' },
+  { value: 'de-DE', title: 'Deutsch' },
+  { value: 'pt-BR', title: 'Português (Brasil)' },
+  { value: 'ar-EG', title: 'العربية (RTL)' },
+] as const;
+const LOCALES = LOCALE_ITEMS.map((item) => item.value);
+type StoryLocale = (typeof LOCALE_ITEMS)[number]['value'];
 
 const pick = <T extends string>(options: readonly T[], value: unknown, fallback: T): T =>
   options.find((option) => option === value) ?? fallback;
@@ -17,7 +27,7 @@ const withProviders: Decorator = (Story, context) => {
   const locale = pick<StoryLocale>(LOCALES, context.globals.locale, 'it-IT');
   const dir = locale === 'ar-EG' ? 'rtl' : 'ltr';
   return (
-    <LocaleProvider locale={locale} messages={locale === 'it-IT' ? messagesIt : messagesEn}>
+    <LocaleProvider locale={locale} messages={getDefaultMessages(locale)}>
       <ThemeProvider mode={mode} theme={palette} density={density} surface lang={locale} dir={dir} style={{ padding: '1.5rem', minBlockSize: '100vh' }}>
         <Story />
       </ThemeProvider>
@@ -41,11 +51,7 @@ const preview: Preview = {
       toolbar: {
         title: 'Locale',
         icon: 'globe',
-        items: [
-          { value: 'it-IT', title: 'Italiano' },
-          { value: 'en-US', title: 'English' },
-          { value: 'ar-EG', title: 'العربية (RTL)' },
-        ],
+        items: [...LOCALE_ITEMS],
         dynamicTitle: true,
       },
     },

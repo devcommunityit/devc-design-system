@@ -1,0 +1,60 @@
+{
+  "source": "d373a8f709f9",
+  "summary": "Privacy preferences with required and optional categories, plus accept and reject.",
+  "whenToUse": [
+    "Collecting explicit choices for privacy categories."
+  ],
+  "whenNotToUse": [
+    "As a substitute for a privacy notice, legal assessment or consent management platform."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the preferences."
+    },
+    {
+      "name": "categories",
+      "description": "Categories with optional description and required flag."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Ids of the active choices; optional categories are off by default."
+    },
+    {
+      "name": "onSave",
+      "description": "Saves the explicit choices through the consumer."
+    },
+    {
+      "name": "onError / errorMessage",
+      "description": "Reports and customizes save errors."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Spazio / Invio",
+      "action": "Changes choices and triggers actions."
+    }
+  ],
+  "accessibility": [
+    "Required categories are marked and cannot be changed.",
+    "Errors are announced."
+  ],
+  "responsive": [
+    "Controls wrap on narrow viewports."
+  ],
+  "customization": [
+    "Colors and spacing come from tokens."
+  ],
+  "commonMistakes": [
+    "Enabling optional categories without consent, or saving choices only in memory."
+  ],
+  "examples": [
+    {
+      "name": "Consent",
+      "title": "Privacy preferences"
+    }
+  ],
+  "limits": [
+    "Privacy notice, legal basis, tracker blocking and persistence are the consumer's responsibility."
+  ]
+}

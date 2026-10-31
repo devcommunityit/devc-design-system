@@ -1,0 +1,61 @@
+{
+  "source": "b2e245e9f598",
+  "summary": "Groups related buttons, either spaced apart or joined into a segmented control.",
+  "whenToUse": [
+    "Related actions on the same object (duplicate, archive, delete).",
+    "Quick format choices in a toolbar."
+  ],
+  "whenNotToUse": [
+    "For a persistent selection: use ToggleGroup.",
+    "For many actions: use DropdownMenu."
+  ],
+  "props": [
+    {
+      "name": "attached",
+      "description": "Joins the buttons so they share borders."
+    },
+    {
+      "name": "orientation",
+      "description": "Direction."
+    },
+    {
+      "name": "aria-label",
+      "description": "Name of the group (recommended)."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Each button is an independent tab stop."
+    }
+  ],
+  "accessibility": [
+    "role=\"group\" with an accessible name.",
+    "Does not add arrow-key navigation: it is a plain grouping."
+  ],
+  "responsive": [
+    "Without attached, buttons wrap; with attached, use short labels or orientation=\"vertical\" on mobile."
+  ],
+  "customization": [
+    "Gap: space.2 token. Selector .dc-button-group-group[data-attached][data-orientation]."
+  ],
+  "commonMistakes": [
+    "Using it for selected states: the buttons do not expose aria-pressed."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Attached",
+      "title": "Segmented"
+    },
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    }
+  ],
+  "limits": []
+}

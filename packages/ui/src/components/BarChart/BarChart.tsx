@@ -5,6 +5,7 @@ import { ChartLegend } from '../ChartLegend/ChartLegend';
 import {
   ChartFrame,
   ChartPlot,
+  GradientDefs,
   PatternDefs,
   Swatch,
   estimateTextWidth,
@@ -12,8 +13,8 @@ import {
   niceTicks,
   patternFill,
   scaleLinear,
-  seriesStyle,
   svgId,
+  vividSeriesStyle,
   useChartNavigation,
   useElementWidth,
   useNumberFormatter,
@@ -261,6 +262,13 @@ export const BarChart = forwardRef<HTMLElement, BarChartProps>(function BarChart
       >
         <svg className={chart.svg} viewBox={`0 0 ${width} ${height}`} height={height} aria-hidden="true" focusable="false">
           <PatternDefs prefix={prefix} className={chart.patternStroke} />
+          <GradientDefs
+            prefix={prefix}
+            indexes={visible.map(({ index }) => index)}
+            direction={vertical ? 'vertical' : 'horizontal'}
+            stopBaseClassName={chart.stopBase}
+            stopVividClassName={chart.stopVivid}
+          />
           {active !== null ? <rect className={chart.activeBand} {...plotRect(active)} /> : null}
           {valueAxis}
           {categoryAxis}
@@ -268,7 +276,7 @@ export const BarChart = forwardRef<HTMLElement, BarChartProps>(function BarChart
             const geometry = rectProps(bar.b0, bar.bw, bar.v0, bar.v1);
             const texture = patternFill(prefix, bar.index);
             return (
-              <g key={bar.key} style={seriesStyle(bar.index)}>
+              <g key={bar.key} style={vividSeriesStyle(prefix, bar.index)}>
                 <rect className={chart.fill} {...geometry} />
                 {texture ? <rect className={chart.patternOverlay} fill={texture} {...geometry} /> : null}
               </g>

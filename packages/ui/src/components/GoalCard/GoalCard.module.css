@@ -1,0 +1,188 @@
+.goal {
+  --_arc: var(--dc-color-action-primary);
+  --_arc-end: var(--dc-color-accent-default);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.goal[data-tone='success'] {
+  --_arc: var(--dc-color-feedback-success);
+}
+
+.goal[data-tone='warning'] {
+  --_arc: var(--dc-color-feedback-warning);
+}
+
+.goal[data-tone='neutral'] {
+  --_arc: var(--dc-color-text-secondary);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.label {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-md-size);
+  line-height: var(--dc-typography-label-md-line-height);
+  font-weight: var(--dc-typography-label-md-weight);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  padding: var(--dc-space-1-5);
+  border-radius: var(--dc-radius-md);
+  background-color: var(--dc-color-action-secondary);
+  color: var(--dc-color-action-secondary-foreground);
+}
+
+.icon > svg {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-4);
+}
+
+.ring {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: 7.5rem;
+  block-size: 7.5rem;
+}
+
+.svg {
+  grid-area: 1 / 1;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.track {
+  fill: none;
+  stroke: var(--dc-color-surface-muted);
+  stroke-width: 12;
+}
+
+.arc {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: var(--_progress) 100;
+  transition: stroke-dasharray var(--dc-motion-duration-slow) var(--dc-motion-easing-emphasized);
+}
+
+.goal:not([data-tone='brand']) .arc {
+  stroke: var(--_arc);
+}
+
+.stopStart {
+  stop-color: var(--_arc);
+}
+
+.stopEnd {
+  stop-color: var(--_arc-end);
+}
+
+.percent {
+  grid-area: 1 / 1;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.figures {
+  display: flex;
+  flex: 1 1 9rem;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.value {
+  font-size: var(--dc-typography-headline-sm-size);
+  line-height: var(--dc-typography-headline-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.target,
+.description {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.goal[data-reached] .status {
+  color: var(--dc-color-feedback-success-foreground);
+}
+
+.statusIcon {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-2);
+  margin-block-start: auto;
+  padding-block-start: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .goal {
+    border-color: CanvasText;
+  }
+
+  .track {
+    stroke: GrayText;
+  }
+
+  .goal .arc,
+  .goal:not([data-tone='brand']) .arc {
+    stroke: Highlight;
+  }
+}

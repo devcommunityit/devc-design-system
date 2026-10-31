@@ -1,0 +1,59 @@
+{
+  "source": "c5f2481034c4",
+  "summary": "Multi-step form flow with validation, navigation, and completion.",
+  "whenToUse": [
+    "Guiding a sign-up or a process split into steps."
+  ],
+  "whenNotToUse": [
+    "To show progress only, use Stepper."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the form and the stepper."
+    },
+    {
+      "name": "steps",
+      "description": "Steps with content and optional validation, including async validation."
+    },
+    {
+      "name": "currentStep / defaultCurrentStep / onStepChange",
+      "description": "Controlled or initial step."
+    },
+    {
+      "name": "onComplete",
+      "description": "Called after the last step is validated."
+    },
+    {
+      "name": "onError / validationMessage / errorMessage",
+      "description": "Error handling and messages."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio",
+      "action": "Navigates and submits the current step."
+    }
+  ],
+  "accessibility": [
+    "The stepper indicates the current step; focus follows the content and errors are announced."
+  ],
+  "responsive": [
+    "The stepper adapts to its container and actions wrap."
+  ],
+  "customization": [
+    "The consumer provides content, field state, and error messages."
+  ],
+  "commonMistakes": [
+    "Keep values in the consumer: the content of inactive steps is unmounted."
+  ],
+  "examples": [
+    {
+      "name": "Registration",
+      "title": "Guided sign-up"
+    }
+  ],
+  "limits": [
+    "Does not persist data or send network requests."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "source": "cc94129236e9",
+  "summary": "Navigation list for portals and admin panels: links with icon and badge, single-level expandable groups, a collapsed rail with tooltips, and a scrollable horizontal variant.",
+  "whenToUse": [
+    "Primary navigation of an admin sidebar or a portal.",
+    "Horizontal sub-navigation between sections of a page (Overview, Activity, Settings…).",
+    "Icon-only collapsed vertical rail when space is limited."
+  ],
+  "whenNotToUse": [
+    "Switching panels within the same page without changing the URL: use Tabs.",
+    "Action menus (not navigation): use DropdownMenu.",
+    "Global navigation with flyout menus in the header: use NavigationMenu.",
+    "Primary mobile navigation with 3–5 destinations: use BottomNavigation."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Accessible name of the <nav> landmark (aria-label)."
+    },
+    {
+      "name": "items",
+      "description": "Links { id, label, href, icon?, badge?, isDisabled?, linkProps? } or groups { id, label, icon?, items: NavListLink[] } (a single level of nesting)."
+    },
+    {
+      "name": "currentId",
+      "description": "Id of the current page: receives aria-current=\"page\"; the group containing it is highlighted and expanded by default."
+    },
+    {
+      "name": "orientation",
+      "description": "In horizontal orientation, groups are flattened into their links."
+    },
+    {
+      "name": "variant",
+      "description": "Style of the current item: side indicator, filled pill or underline."
+    },
+    {
+      "name": "showIcons",
+      "description": "Shows item icons."
+    },
+    {
+      "name": "collapsible",
+      "description": "Shows the button to collapse/expand the rail (vertical only)."
+    },
+    {
+      "name": "collapsed / defaultCollapsed / onCollapsedChange",
+      "description": "Icon-only rail state, controlled or uncontrolled."
+    },
+    {
+      "name": "expandedIds / defaultExpandedIds / onExpandedChange",
+      "description": "Open groups, controlled or uncontrolled."
+    },
+    {
+      "name": "onNavigate",
+      "description": "Called when a link is clicked: integrate a router with event.preventDefault() without dependencies."
+    }
+  ],
+  "inherits": "HTML attributes of <nav> (id, style, data-*), except aria-label, which is replaced by label.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Moves focus between links, groups and the collapse button."
+    },
+    {
+      "keys": "Invio",
+      "action": "Follows the link or opens/closes the group."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Opens/closes the group or activates the collapse button."
+    }
+  ],
+  "accessibility": [
+    "Semantic structure: <nav aria-label> with <ul>/<li> and real <a> elements; no menu role.",
+    "The current page is indicated by aria-current=\"page\", not by color alone.",
+    "Groups are buttons with aria-expanded and aria-controls pointing to the sub-list.",
+    "In the collapsed rail, labels remain in the accessible name (visually hidden) and appear as tooltips on focus and hover.",
+    "The collapse button uses the localized strings “Comprimi/Espandi navigazione”.",
+    "Icons are aria-hidden; indicators and focus remain visible in forced-colors mode."
+  ],
+  "responsive": [
+    "In horizontal orientation the list scrolls locally (overflow-x) below 768px and wraps from 768px up.",
+    "Targets are at least 40px tall; in the rail, items are square.",
+    "Chevron and collapse icons are mirrored in RTL."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-control, --dc-look-fill-tonal, action colors and focus ring.",
+    "Stable selectors: .dc-nav-list-nav[data-variant][data-orientation][data-collapsed], .dc-nav-list-link, .dc-nav-list-sublist."
+  ],
+  "commonMistakes": [
+    "Omitting currentId: users lose their sense of orientation.",
+    "Nesting more than one level: the structure only supports group → link.",
+    "Using the collapsed rail without meaningful icons: items show only an initial.",
+    "Placing actions (e.g. “Log out”) as navigation links: use a separate Button."
+  ],
+  "examples": [
+    {
+      "name": "Vertical",
+      "title": "Vertical"
+    },
+    {
+      "name": "WithGroups",
+      "title": "With groups",
+      "description": "The group containing the current page is open by default."
+    },
+    {
+      "name": "CollapsibleRail",
+      "title": "Collapsible rail",
+      "description": "Controlled state and router integration via onNavigate."
+    },
+    {
+      "name": "Horizontal",
+      "title": "Horizontal",
+      "description": "Scrolls locally on narrow viewports."
+    },
+    {
+      "name": "Variants",
+      "title": "Variants"
+    }
+  ],
+  "limits": [
+    "A single level of nesting (group → link).",
+    "In horizontal orientation, groups are flattened and collapsing is ignored.",
+    "Rail tooltips cannot be reached on touch devices; labels still remain in the accessible name.",
+    "No arrow-key navigation (roving tabindex): Tab is used as with regular links."
+  ]
+}

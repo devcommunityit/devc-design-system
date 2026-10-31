@@ -1,0 +1,67 @@
+{
+  "source": "62901f23f65d",
+  "summary": "Event calendar with day, week, and month views.",
+  "whenToUse": [
+    "Showing events across multiple dates and navigating between periods."
+  ],
+  "whenNotToUse": [
+    "To pick a date use Calendar; for a linear schedule use Agenda."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the calendar."
+    },
+    {
+      "name": "events",
+      "description": "Events with CalendarDate dates and an optional inclusive end."
+    },
+    {
+      "name": "date / defaultDate / onDateChange",
+      "description": "Controlled or initial visible date."
+    },
+    {
+      "name": "view / defaultView / onViewChange",
+      "description": "Controlled or initial view."
+    },
+    {
+      "name": "firstDayOfWeek",
+      "description": "Overrides the first day of the week derived from the locale."
+    },
+    {
+      "name": "onEventPress",
+      "description": "Action for events without href."
+    },
+    {
+      "name": "emptyState",
+      "description": "Message in the day view when there are no events."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio",
+      "action": "Navigates periods, switches views, and activates interactive events."
+    }
+  ],
+  "accessibility": [
+    "Uses a table with headers and readable dates, with announcements of the current period."
+  ],
+  "responsive": [
+    "Seven-column views scroll within their own container on narrow viewports."
+  ],
+  "customization": [
+    "Colors and spacing use the design system tokens."
+  ],
+  "commonMistakes": [
+    "Use CalendarDate for time-zone-less dates; an event's end is inclusive."
+  ],
+  "examples": [
+    {
+      "name": "Events",
+      "title": "Event calendar"
+    }
+  ],
+  "limits": [
+    "Does not handle bookings, time zones, recurrence, or persistence."
+  ]
+}

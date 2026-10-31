@@ -1,0 +1,69 @@
+{
+  "source": "dde57060dba3",
+  "summary": "Action bar for selected items, with an announced count, a clear button, and optional sticky positioning.",
+  "whenToUse": [
+    "Managing selected pages, media, or users.",
+    "Composing bulk actions next to a DataTable or list."
+  ],
+  "whenNotToUse": [
+    "Replacing confirmations and permissions for destructive actions.",
+    "Adding a toolbar with arrow-key navigation: use Toolbar."
+  ],
+  "props": [
+    {
+      "name": "count",
+      "description": "Non-negative safe integer. Zero hides the bar; invalid values throw a RangeError."
+    },
+    {
+      "name": "onClear",
+      "description": "Shows the localized button to clear the selection."
+    },
+    {
+      "name": "sticky",
+      "description": "Sticky positioning toward the bottom of the container."
+    },
+    {
+      "name": "children",
+      "description": "The consumer's actual actions, with disabled/pending states managed by the application."
+    }
+  ],
+  "inherits": "HTML attributes of div, aria-label, className, style, and an HTMLDivElement ref.",
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Spazio",
+      "action": "Standard navigation between actions and the clear button."
+    }
+  ],
+  "accessibility": [
+    "Named group, with the count in role=status.",
+    "Does not move focus automatically. When the bar disappears, the consumer restores focus if needed."
+  ],
+  "responsive": [
+    "Actions and count wrap; sticky is not a fixed overlay."
+  ],
+  "customization": [
+    "Brand surface, selected border, and radius tokens; data-sticky."
+  ],
+  "commonMistakes": [
+    "Not keeping count in sync with the actual selection.",
+    "Hiding the bar while focus is on one of its actions without handling focus restoration."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Local archiving"
+    },
+    {
+      "name": "WithSelection",
+      "title": "Explicit page selection"
+    },
+    {
+      "name": "Sticky",
+      "title": "Sticky positioning"
+    }
+  ],
+  "limits": [
+    "Does not handle selection, authorization, confirmations, or server transactions.",
+    "Sticky depends on the consumer's scroll container."
+  ]
+}

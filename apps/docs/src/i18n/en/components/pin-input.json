@@ -1,0 +1,119 @@
+{
+  "source": "372a56ea68ba",
+  "summary": "Verification code (OTP, PIN) split into one field per character. The value stays contiguous: typing advances, Backspace goes back, and paste and “one-time-code” autofill fill all positions.",
+  "whenToUse": [
+    "Short fixed-length codes received via SMS, email or an authenticator app."
+  ],
+  "whenNotToUse": [
+    "Passwords or variable-length codes: use PasswordInput or TextField.",
+    "Long codes (more than 8 characters): a single field is easier to correct."
+  ],
+  "props": [
+    {
+      "name": "length",
+      "description": "Number of characters."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled / initial value (contiguous characters)."
+    },
+    {
+      "name": "onChange",
+      "description": "Every change."
+    },
+    {
+      "name": "onComplete",
+      "description": "When all positions are filled."
+    },
+    {
+      "name": "type",
+      "description": "Accepted characters; numeric sets inputMode=\"numeric\"."
+    },
+    {
+      "name": "mask",
+      "description": "Masks characters like a password."
+    },
+    {
+      "name": "label / description / errorMessage",
+      "description": "Field parts, linked to the group and to each cell."
+    },
+    {
+      "name": "isInvalid / isDisabled / isRequired",
+      "description": "Field states."
+    },
+    {
+      "name": "name",
+      "description": "Hidden input holding the value for native form submission."
+    },
+    {
+      "name": "autoFocus",
+      "description": "Focuses the first empty position on mount."
+    },
+    {
+      "name": "size",
+      "description": "Cell size."
+    }
+  ],
+  "inherits": "HTML attributes of the container (className, style, data-*, aria-label…); ref on the role=\"group\" container.",
+  "keyboard": [
+    {
+      "keys": "Carattere",
+      "action": "Enters a character and moves to the next position."
+    },
+    {
+      "keys": "Backspace",
+      "action": "Deletes; on an empty cell, deletes the previous one and moves focus there."
+    },
+    {
+      "keys": "← / →",
+      "action": "Previous / next cell (up to the first empty one)."
+    },
+    {
+      "keys": "Home / End",
+      "action": "First cell / first empty cell."
+    },
+    {
+      "keys": "Ctrl/⌘ + V",
+      "action": "Paste: filters out disallowed characters and fills the positions."
+    }
+  ],
+  "accessibility": [
+    "role=\"group\" with the field label; each cell is named “Carattere n di N” (messages.pinDigit).",
+    "The first cell declares autocomplete=\"one-time-code\" for operating system autofill.",
+    "Focus cannot skip past the first empty cell: the value always stays contiguous.",
+    "Error and description are linked via aria-describedby; aria-invalid on every cell."
+  ],
+  "responsive": [
+    "Cells stay on one row and shrink on narrow viewports (minimum 2rem each).",
+    "On touch devices the numeric keypad appears thanks to inputMode."
+  ],
+  "customization": [
+    "Selectors [data-size]; cells reuse the field tokens (border, focus, invalid)."
+  ],
+  "commonMistakes": [
+    "Verifying the code only on the client: verification must happen on the server, with attempt limits.",
+    "Submitting the form automatically in onComplete without an alternative confirm action for users who correct the code."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "SMS code"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled with simulated verification (English)"
+    },
+    {
+      "name": "MaskedInForm",
+      "title": "Masked in a native form"
+    },
+    {
+      "name": "Disabled",
+      "title": "Disabled"
+    }
+  ],
+  "limits": [
+    "Cells are always laid out left to right (dir=\"ltr\"), even in RTL, like numeric codes.",
+    "No configurable visual separator between digit groups."
+  ]
+}

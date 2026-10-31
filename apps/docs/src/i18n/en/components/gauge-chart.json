@@ -1,0 +1,113 @@
+{
+  "source": "ad750e81a2cf",
+  "summary": "SVG semicircle gauge for a single value on a bounded scale, with an optional target and status bands; exposed as role=\"meter\".",
+  "whenToUse": [
+    "Showing a single value against a known minimum and maximum (usage, score, progress toward a budget).",
+    "Highlighting which band (ok, warning, critical) a dashboard indicator falls in."
+  ],
+  "whenNotToUse": [
+    "Comparing multiple values: use BarChart or RadialBarChart.",
+    "Values without a meaningful maximum: use KpiCard or Statistic.",
+    "Trends over time: use LineChart or Sparkline."
+  ],
+  "props": [
+    {
+      "name": "value",
+      "description": "Current value; the arc is clamped to [min, max], the text shows the actual value."
+    },
+    {
+      "name": "min",
+      "description": "Start of the scale (9 o'clock)."
+    },
+    {
+      "name": "max",
+      "description": "End of the scale (3 o'clock); if it isn't greater than min, min + 1 is used."
+    },
+    {
+      "name": "target",
+      "description": "Target, drawn as a tick on the arc with the \"Obiettivo\" label."
+    },
+    {
+      "name": "bands",
+      "description": "Colored bands of the scale using status colors; each band starts where the previous one ends (the first starts at min)."
+    },
+    {
+      "name": "label",
+      "description": "Caption below the value in the center; names the meter when there is no title."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the meter."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of the value, target, minimum, and maximum in the current locale."
+    },
+    {
+      "name": "size",
+      "description": "Arc diameter in px (plus margins for the target label); the chart shrinks with its container."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses a gradient and a glow on the value arc; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "—",
+      "action": "Not interactive: the meter doesn't receive focus; screen readers read the value during normal navigation."
+    }
+  ],
+  "accessibility": [
+    "<figure> with <figcaption>; the chart area has role=\"meter\" with aria-valuenow, aria-valuemin, aria-valuemax, and aria-valuetext (formatted value and target).",
+    "The meter's name is the title (aria-labelledby) or label.",
+    "The SVG is aria-hidden: all information is in the meter, so there is no data table.",
+    "In forced-colors mode, the value arc uses Highlight, and the track and bands use Canvas with a CanvasText border."
+  ],
+  "responsive": [
+    "SVG with viewBox: scales up to size px while preserving its aspect ratio; margins adapt to the target label.",
+    "Arc fill animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints the arc with a gradient between --dc-color-data-1 and --dc-color-accent-default; it falls back to flat in forced-colors mode.",
+    "Colors: arc --dc-color-data-1; track --dc-color-surface-subtle; bands --dc-color-feedback-success/warning/danger (neutral: --dc-color-border-subtle).",
+    "Stable selectors: .dc-gauge-chart-gaugeChart, .dc-gauge-chart-value, .dc-gauge-chart-band[data-tone], .dc-gauge-chart-centerValue."
+  ],
+  "commonMistakes": [
+    "Using the gauge for values without a natural maximum: the position on the arc is meaningless.",
+    "Relying only on band color for status: also state the threshold in text (label or description).",
+    "Placing many gauges side by side to compare values: a RadialBarChart or BarChart is easier to read."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithTargetAndBands",
+      "title": "Target and status bands"
+    },
+    {
+      "name": "Currency",
+      "title": "Currency and custom scale"
+    },
+    {
+      "name": "InCard",
+      "title": "In a card"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradient and glow with the theme colors."
+    }
+  ],
+  "limits": [
+    "Semicircle only (180°): no 270° arcs and no needle.",
+    "Bands are not announced by screen readers: describe the thresholds in text if they matter."
+  ]
+}

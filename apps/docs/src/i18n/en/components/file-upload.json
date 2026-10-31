@@ -1,0 +1,100 @@
+{
+  "source": "6697f51e63f0",
+  "summary": "File selection via button or drag and drop, with type, size, and count checks, and a list with status and removal. Uploading is delegated to the consumer.",
+  "whenToUse": [
+    "Form attachments, document or image uploads."
+  ],
+  "whenNotToUse": [
+    "Avatars or images with cropping: a dedicated editor is needed.",
+    "Uploading entire folders."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Field anatomy; the group is labelled by the label."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Controlled or uncontrolled list ({ id, file, status, progress?, error? })."
+    },
+    {
+      "name": "onFilesAdded",
+      "description": "New accepted files: start the upload here and update the status via value."
+    },
+    {
+      "name": "onReject",
+      "description": "Rejected files with a reason: type, size, or count."
+    },
+    {
+      "name": "accept",
+      "description": "MIME types (image/png), wildcards (image/*), or extensions (.pdf)."
+    },
+    {
+      "name": "maxSize",
+      "description": "Maximum size of each file in bytes."
+    },
+    {
+      "name": "maxFiles",
+      "description": "Maximum total number of files."
+    },
+    {
+      "name": "allowsMultiple",
+      "description": "With false, a new file replaces the previous one."
+    },
+    {
+      "name": "showPreviews",
+      "description": "Image thumbnails: object URLs are revoked on removal/unmount."
+    },
+    {
+      "name": "isDisabled / isInvalid",
+      "description": "Field states."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches “Sfoglia file” and the remove buttons."
+    },
+    {
+      "keys": "Invio / Spazio",
+      "action": "Opens the system file picker."
+    }
+  ],
+  "accessibility": [
+    "Drag and drop is an alternative: everything is also possible with the button.",
+    "Constraints and errors are linked to the button via aria-describedby; rejected files are announced in a live region.",
+    "Each file's status is shown as text (Pronto, Caricamento, Caricato, Non riuscito), not just color."
+  ],
+  "responsive": [
+    "Full-width drop zone and list; long names wrap."
+  ],
+  "customization": [
+    "className and style on the container; all system strings can be translated with LocaleProvider."
+  ],
+  "commonMistakes": [
+    "Treating client-side validation as sufficient: type and size must be checked again on the server (including the content, not just the extension).",
+    "Forgetting to update the status after the upload: the component makes no network requests."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Constraints",
+      "title": "Type, size, count, and previews"
+    },
+    {
+      "name": "SimulatedUpload",
+      "title": "Simulated upload (controlled)"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": [
+    "Client-side validation doesn't replace server-side validation.",
+    "The type check relies on the MIME type/extension reported by the browser, not on the content."
+  ]
+}

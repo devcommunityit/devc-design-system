@@ -1,0 +1,10 @@
+[
+  { "name": "ThemeProvider + Button", "path": "dist/index.js", "import": "{ ThemeProvider, LocaleProvider, Button }", "ignore": ["react", "react-dom"], "gzip": true, "limit": "36 kB" },
+  { "name": "Dashboard (7 components)", "path": "dist/index.js", "import": "{ ThemeProvider, Button, DataTable, KpiCard, BarChart, Dialog, Skeleton }", "ignore": ["react", "react-dom"], "gzip": true, "limit": "115 kB" },
+  { "name": "Whole main entry", "path": "dist/index.js", "import": "*", "ignore": ["react", "react-dom"], "gzip": true, "limit": "400 kB" },
+  { "name": "Editor entry", "path": "dist/editor.js", "import": "{ RichTextEditor, EmailBuilder }", "ignore": ["react", "react-dom"], "gzip": true, "limit": "375 kB" },
+  { "name": "Patterns entry", "path": "dist/patterns.js", "import": "*", "ignore": ["react", "react-dom"], "gzip": true, "limit": "80 kB" },
+  { "name": "Widgets entry", "path": "dist/widgets.js", "import": "*", "ignore": ["react", "react-dom"], "gzip": true, "limit": "145 kB" },
+  { "name": "styles.css", "path": "dist/styles.css", "gzip": true, "limit": "65 kB" },
+  { "name": "tokens.css", "path": "dist/tokens.css", "gzip": true, "limit": "16 kB" }
+]

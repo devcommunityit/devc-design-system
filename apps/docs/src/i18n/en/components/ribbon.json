@@ -1,0 +1,72 @@
+{
+  "source": "dee6cf367b1d",
+  "summary": "Ribbon overlaid on the corner of cards or images (“Beta”, “New”, “-20%”, “Sold out”): wraps the content in a positioned container and overlays a short label as a diagonal band, bookmark, or flag.",
+  "whenToUse": [
+    "Highlight a card in a grid (sold-out event, new course, discount).",
+    "Mark a preview or image with a short, highly visible status."
+  ],
+  "whenNotToUse": [
+    "Inline labels in text or next to a heading: use Badge or StageLabel.",
+    "Counts or dots on avatars and icons: use IndicatorBadge.",
+    "Long information or information essential to understanding the card: put it in the content; the ribbon truncates long text."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Short ribbon text; it is real text, read before the content."
+    },
+    {
+      "name": "children",
+      "description": "Content the ribbon is overlaid on (card, image…)."
+    },
+    {
+      "name": "variant",
+      "description": "Diagonal band in the corner, vertical bookmark with a V-shaped tail, or flag that protrudes from the edge."
+    },
+    {
+      "name": "position",
+      "description": "Logical corner: automatically mirrored in RTL."
+    },
+    {
+      "name": "tone",
+      "description": "Color; brand uses the accent gradient."
+    }
+  ],
+  "inherits": "HTML attributes of the <div> (the container).",
+  "keyboard": [],
+  "accessibility": [
+    "The ribbon text is not hidden: it comes before the content in the DOM, so screen readers read it first.",
+    "The ribbon does not intercept clicks (pointer-events: none): links and buttons underneath remain usable.",
+    "Don’t rely on the ribbon alone for essential information (e.g. “Sold out”): repeat it near the action, for example by disabling the button with explicit text.",
+    "In forced-colors mode the ribbon uses a system border instead of background and gradient; in print it keeps colors and border."
+  ],
+  "responsive": [
+    "The container takes the width of the content; corner and bookmark are clipped to the rounded corners.",
+    "The corner variant truncates text longer than ~10 characters with an ellipsis: prefer short labels."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent (brand), --dc-color-accent-default, feedback colors and --dc-color-surface-inverse for the other tones, --dc-look-radius-container for clipping.",
+    "The container uses overflow: hidden and a border-radius equal to --dc-look-radius-container (overridable via className/style); the banner variant uses visible overflow because it protrudes from the edge.",
+    "Stable selectors: .dc-ribbon-ribbon[data-variant][data-position][data-tone], .dc-ribbon-label, .dc-ribbon-text."
+  ],
+  "commonMistakes": [
+    "Using long text (“Registration closed on March 12”): the ribbon is designed for one or two words.",
+    "Wrapping an element that has outer margins: clipping follows the container, not the card.",
+    "Using the banner variant inside a container with hidden overflow: the flag gets clipped."
+  ],
+  "examples": [
+    {
+      "name": "Variants",
+      "title": "Variants",
+      "description": "corner, bookmark, and banner on community cards."
+    },
+    {
+      "name": "TonesAndPositions",
+      "title": "Tones and positions",
+      "description": "All tones, alternating top-start and top-end."
+    }
+  ],
+  "limits": [
+    "The banner variant protrudes --dc-space-2 beyond the edge: leave space around the container."
+  ]
+}

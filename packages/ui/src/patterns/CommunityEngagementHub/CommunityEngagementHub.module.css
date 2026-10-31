@@ -1,0 +1,324 @@
+.hub {
+  display: grid;
+  gap: var(--dc-space-6);
+  color: var(--dc-color-text-primary);
+}
+
+.header,
+.section {
+  min-inline-size: 0;
+}
+
+.header {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.title,
+.sectionTitle,
+.cardTitle {
+  margin: 0;
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.title {
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.description,
+.copy {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  line-height: var(--dc-typography-body-md-line-height);
+}
+
+.section {
+  display: grid;
+  gap: var(--dc-space-3);
+}
+
+.sectionTitle {
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+}
+
+.memberGrid,
+.testimonialGrid,
+.cardGrid,
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--dc-space-3);
+}
+
+.member,
+.card,
+.testimonial,
+.badgeCard,
+.sponsor,
+.invite,
+.raffle {
+  position: relative;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-radius-lg);
+  background: var(--dc-color-surface-raised);
+}
+
+.member {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dc-space-3);
+}
+
+.memberBody,
+.card,
+.badgeCard {
+  display: grid;
+  align-content: start;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.cardTitle {
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  overflow-wrap: anywhere;
+}
+
+.cardTitle a,
+.invite a,
+.jobLink {
+  color: var(--dc-color-action-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.meta {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.tags,
+.person,
+.actions,
+.optionRow,
+.invite,
+.raffle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.sponsorGrid,
+.list,
+.badgeGrid,
+.entryList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sponsorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--dc-space-3);
+}
+
+.sponsor {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-block-size: 6rem;
+  gap: var(--dc-space-2);
+  text-align: center;
+}
+
+.sponsorLogo {
+  max-inline-size: 100%;
+  max-block-size: 3rem;
+  object-fit: contain;
+}
+
+.sponsorName {
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.stretchedLink::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.testimonial {
+  margin: 0;
+  display: grid;
+  align-content: space-between;
+  gap: var(--dc-space-4);
+}
+
+.testimonial blockquote {
+  margin: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.person {
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.pollOption {
+  display: grid;
+  gap: var(--dc-space-2);
+}
+
+.npsScale {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(2rem, 1fr));
+  gap: var(--dc-space-1);
+}
+
+.npsLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+  padding-block: var(--dc-space-2);
+}
+
+.optionRow {
+  justify-content: space-between;
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.meter {
+  block-size: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--dc-radius-full);
+  background: var(--dc-color-border-subtle);
+}
+
+.meter span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--dc-color-action-primary);
+}
+
+.list {
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--dc-space-3);
+  padding-block: var(--dc-space-3);
+  border-block-end: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.questionBody {
+  display: grid;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+}
+
+.actions {
+  flex: none;
+}
+
+.invite,
+.raffle {
+  justify-content: space-between;
+}
+
+.invite > div,
+.raffle > div {
+  display: grid;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.jobLink {
+  flex: none;
+}
+
+.badgeGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.badgeCard {
+  list-style: none;
+}
+
+.progress {
+  display: grid;
+  gap: var(--dc-space-1);
+}
+
+.progress progress {
+  inline-size: 100%;
+  accent-color: var(--dc-color-action-primary);
+}
+
+.streak {
+  margin: 0;
+  padding: var(--dc-space-3);
+  border-radius: var(--dc-radius-md);
+  background: var(--dc-color-surface-raised);
+}
+
+.streak strong {
+  color: var(--dc-color-action-primary);
+  font-size: var(--dc-typography-title-md-size);
+}
+
+.entryList {
+  display: grid;
+  gap: var(--dc-space-1);
+  max-block-size: 12rem;
+  overflow: auto;
+  font-size: var(--dc-typography-body-sm-size);
+}
+
+.winner {
+  margin: var(--dc-space-3) 0 0;
+  padding: var(--dc-space-3);
+  border-inline-start: var(--dc-border-width-thick) solid var(--dc-color-feedback-success-border);
+  background: var(--dc-color-feedback-success-surface);
+}
+
+.empty {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (width <= 40rem) {
+  .npsScale {
+    grid-template-columns: repeat(6, minmax(2rem, 1fr));
+  }
+
+  .invite,
+  .raffle {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -49,3 +49,7 @@ export function InCard() {
     </Card>
   );
 }
+
+export function Vivid() {
+  return <DonutChart appearance="vivid" title="Ordini per canale" description="Ottobre 2026" data={channels} />;
+}

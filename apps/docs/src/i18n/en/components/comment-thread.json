@@ -1,0 +1,59 @@
+{
+  "source": "745a3a66f1c9",
+  "summary": "Discussion with nested comments, replies, and controlled reactions.",
+  "whenToUse": [
+    "Showing a conversation and allowing replies to individual comments."
+  ],
+  "whenNotToUse": [
+    "For an index of discussions, use DiscussionList."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the discussion."
+    },
+    {
+      "name": "comments",
+      "description": "Comments and nested replies with unique ids."
+    },
+    {
+      "name": "onReply / onLike",
+      "description": "Actions delegated to the consumer."
+    },
+    {
+      "name": "mentionSuggestions / hashtagSuggestions",
+      "description": "Suggestions for the reply field."
+    },
+    {
+      "name": "renderActions / emptyState",
+      "description": "Additional actions and empty state."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Spazio",
+      "action": "Activates replies and reactions; mentions can be navigated with the arrow keys."
+    }
+  ],
+  "accessibility": [
+    "Replies are nested lists; each action identifies its comment and the reaction exposes aria-pressed."
+  ],
+  "responsive": [
+    "Content and actions wrap; reply indentation is limited."
+  ],
+  "customization": [
+    "Content and actions are provided by the consumer."
+  ],
+  "commonMistakes": [
+    "Update the comment model after the callbacks; the component does not save or moderate data."
+  ],
+  "examples": [
+    {
+      "name": "Discussion",
+      "title": "Discussion"
+    }
+  ],
+  "limits": [
+    "No built-in persistence, moderation, or networking."
+  ]
+}

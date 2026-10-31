@@ -1,0 +1,63 @@
+{
+  "source": "82d820920cd1",
+  "summary": "Presents a referral code and link, delegating copy-to-clipboard to the consumer.",
+  "whenToUse": [
+    "Showing referral details and requesting a copy action from the consumer."
+  ],
+  "whenNotToUse": [
+    "To share content, use ShareButtons when sending or copying is desired."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Card title."
+    },
+    {
+      "name": "description",
+      "description": "Optional explanation."
+    },
+    {
+      "name": "referralCode",
+      "description": "Displayed referral code."
+    },
+    {
+      "name": "referralUrl",
+      "description": "Referral URL displayed as a link."
+    },
+    {
+      "name": "copyLabel",
+      "description": "Label of the copy button."
+    },
+    {
+      "name": "onCopyRequest",
+      "description": "Request callback: the copying itself is up to the consumer."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Spazio",
+      "action": "Reaches the link and the copy request button."
+    }
+  ],
+  "accessibility": [
+    "Code and URL have visible terms in a description list."
+  ],
+  "responsive": [
+    "Long URLs wrap without widening the card."
+  ],
+  "customization": [
+    "Colors, borders and spacing use --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Assuming the button copies directly or tracks the action."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Referral"
+    }
+  ],
+  "limits": [
+    "The actual copying is implemented by the consumer."
+  ]
+}

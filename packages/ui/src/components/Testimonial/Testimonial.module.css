@@ -1,0 +1,31 @@
+.testimonial {
+  display: grid;
+  gap: var(--dc-space-4);
+  margin: 0;
+  padding: var(--dc-space-5);
+  border-inline-start: var(--dc-border-width-thick) solid var(--dc-color-action-primary);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-subtle);
+  color: var(--dc-color-text-primary);
+}
+
+.quote {
+  margin: 0;
+  font-size: var(--dc-typography-body-lg-size);
+  line-height: var(--dc-typography-body-lg-line-height);
+}
+
+.attribution {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}
+
+.author {
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.role {
+  color: var(--dc-color-text-secondary);
+}

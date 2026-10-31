@@ -1,0 +1,109 @@
+{
+  "source": "1e7bc826c8c9",
+  "summary": "Selects a single option among mutually exclusive, fully visible alternatives, with per-option descriptions and group validation.",
+  "whenToUse": [
+    "2 to ~6 exclusive alternatives to compare at a glance.",
+    "When options have different descriptions or costs."
+  ],
+  "whenNotToUse": [
+    "Many options: use Select or Combobox.",
+    "On/off choice: use Switch or Checkbox.",
+    "Switching views: use Tabs or ToggleGroup."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Group label (or aria-label)."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Selected option, controlled or uncontrolled."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives the chosen value."
+    },
+    {
+      "name": "orientation",
+      "description": "Layout and arrow-key direction."
+    },
+    {
+      "name": "description / errorMessage / isRequired / validate",
+      "description": "Group anatomy and validation."
+    },
+    {
+      "name": "isDisabled / isReadOnly / isInvalid",
+      "description": "Group states."
+    },
+    {
+      "name": "Radio: value",
+      "description": "Option value."
+    },
+    {
+      "name": "Radio: description",
+      "description": "Option detail, linked with aria-describedby."
+    },
+    {
+      "name": "Radio: isDisabled",
+      "description": "Disables the individual option."
+    }
+  ],
+  "inherits": "react-aria-components RadioGroup and RadioField props (name, form…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Enters the group on the selected option (or the first one)."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Move focus and select the next/previous option (RTL-aware)."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Selects the focused option."
+    }
+  ],
+  "accessibility": [
+    "Native radio inputs with roving tabindex.",
+    "An individual option's description is added to the group's in the announcement.",
+    "Selection is indicated by an inner dot, not only by color."
+  ],
+  "responsive": [
+    "The horizontal layout wraps; prefer vertical with long text."
+  ],
+  "customization": [
+    "Shares Checkbox styles (data-shape=\"radio\").",
+    "Colors from color.action.primary."
+  ],
+  "commonMistakes": [
+    "Using onChange to perform actions (the choice must be reversible before submission).",
+    "Leaving the group without an initial value when a sensible default exists."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithDescriptions",
+      "title": "Options with descriptions"
+    },
+    {
+      "name": "Horizontal",
+      "title": "Horizontal"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    },
+    {
+      "name": "Validation",
+      "title": "Validation"
+    }
+  ],
+  "limits": []
+}

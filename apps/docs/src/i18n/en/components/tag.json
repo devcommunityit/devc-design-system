@@ -1,0 +1,95 @@
+{
+  "source": "4f096068f176",
+  "summary": "Group of chips for labels, selectable filters, or removable values, keyboard-navigable like a grid.",
+  "whenToUse": [
+    "Showing categories or keywords.",
+    "Toggleable quick filters (selectionMode).",
+    "Removable values, such as recipients."
+  ],
+  "whenNotToUse": [
+    "A single, non-interactive status: use Badge.",
+    "Actions: use Button or ToggleGroup."
+  ],
+  "props": [
+    {
+      "name": "label / description / errorMessage",
+      "description": "Group label and linked text (otherwise aria-label)."
+    },
+    {
+      "name": "items / children",
+      "description": "Static or dynamic tags."
+    },
+    {
+      "name": "onRemove",
+      "description": "Enables the remove button and the Delete/Backspace keys."
+    },
+    {
+      "name": "selectionMode / selectedKeys / onSelectionChange",
+      "description": "Selectable chips (filters)."
+    },
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "renderEmptyState",
+      "description": "Content shown when there are no tags."
+    },
+    {
+      "name": "Tag: icon / textValue / isDisabled",
+      "description": "Leading icon, accessible text, disabled state."
+    }
+  ],
+  "inherits": "Props of react-aria-components TagGroup and Tag.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Enters the group (a single tab stop)."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Moves between tags."
+    },
+    {
+      "keys": "Canc / Backspace",
+      "action": "Removes the tag (if onRemove)."
+    },
+    {
+      "keys": "Spazio / Invio",
+      "action": "Selects (if selectionMode)."
+    }
+  ],
+  "accessibility": [
+    "role=\"grid\": each tag is a row; the remove button has a localized name (“Remove …”).",
+    "Selected tags show a checkmark in addition to color."
+  ],
+  "responsive": [
+    "Tags wrap; long text is visually truncated, while the accessible name contains the full text."
+  ],
+  "customization": [
+    "data-selected, data-size, and the --dc-color-* tokens for colors."
+  ],
+  "commonMistakes": [
+    "Using Tag for informational statuses: Badge is lighter.",
+    "Forgetting the group label."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Static"
+    },
+    {
+      "name": "Removable",
+      "title": "Removable"
+    },
+    {
+      "name": "Selectable",
+      "title": "Selectable filters"
+    },
+    {
+      "name": "Sizes",
+      "title": "Sizes"
+    }
+  ],
+  "limits": []
+}

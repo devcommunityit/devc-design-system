@@ -1,0 +1,59 @@
+{
+  "source": "0c4e69a1590e",
+  "summary": "Controlled choice among poll options, without submission or results.",
+  "whenToUse": [
+    "Collecting a single selection to pass to the consumer."
+  ],
+  "whenNotToUse": [
+    "To vote on content use PostList and VoteButton; submission and results stay external."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Label of the option group."
+    },
+    {
+      "name": "options",
+      "description": "Selectable options."
+    },
+    {
+      "name": "value",
+      "description": "Controlled selected id."
+    },
+    {
+      "name": "onChange",
+      "description": "Selection change request."
+    },
+    {
+      "name": "description",
+      "description": "Optional instructions."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Frecce / Spazio",
+      "action": "Navigates and selects an option via RadioGroup."
+    }
+  ],
+  "accessibility": [
+    "Uses the design system’s accessible RadioGroup and a visible label."
+  ],
+  "responsive": [
+    "Options take the available width."
+  ],
+  "customization": [
+    "RadioGroup manages states; the layout uses --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "This component does not submit votes, calculate results or pick a winner."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Poll"
+    }
+  ],
+  "limits": [
+    "The consumer handles submission and counts."
+  ]
+}

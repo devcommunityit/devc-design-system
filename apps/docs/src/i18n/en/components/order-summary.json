@@ -1,0 +1,55 @@
+{
+  "source": "af7784d9e5d4",
+  "summary": "Summary of items and amounts provided by the caller, without performing transactions.",
+  "whenToUse": [
+    "Showing an order breakdown before confirmation."
+  ],
+  "whenNotToUse": [
+    "Calculating taxes or handling checkout: amounts are provided by the caller."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Order items."
+    },
+    {
+      "name": "subtotal / total",
+      "description": "Pre-calculated amounts."
+    },
+    {
+      "name": "currency",
+      "description": "ISO 4217 currency code."
+    },
+    {
+      "name": "discount / tax",
+      "description": "Optional pre-calculated rows."
+    },
+    {
+      "name": "subtotalLabel / discountLabel / taxLabel / totalLabel",
+      "description": "Localizable labels for the summary rows."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [],
+  "accessibility": [
+    "Uses a description list to associate each amount with its label."
+  ],
+  "responsive": [
+    "Long labels wrap without overlapping the amounts."
+  ],
+  "customization": [
+    "Uses --dc-* tokens for surfaces, borders and typography."
+  ],
+  "commonMistakes": [
+    "Passing inconsistent amounts: the component does not recalculate the total."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Simple summary"
+    }
+  ],
+  "limits": [
+    "Does not calculate taxes, discounts or payments."
+  ]
+}

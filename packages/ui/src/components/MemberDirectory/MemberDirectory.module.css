@@ -1,0 +1,33 @@
+.directory {
+  display: grid;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+}
+
+.search {
+  max-inline-size: 32rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--dc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.empty {
+  margin: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  color: var(--dc-color-text-secondary);
+}

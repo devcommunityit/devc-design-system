@@ -1,0 +1,42 @@
+{
+  "source": "c2fa2afa1b37",
+  "summary": "Inline code (<code>) and keyboard keys or shortcuts (<kbd>).",
+  "whenToUse": [
+    "Names of commands, files, properties; keyboard shortcuts."
+  ],
+  "whenNotToUse": [
+    "Multi-line code blocks: use CodeBlock."
+  ],
+  "props": [
+    {
+      "name": "Kbd.keys",
+      "description": "Key combination, e.g. ['Ctrl', 'K']; alternatively use children."
+    }
+  ],
+  "inherits": "Global HTML attributes; ref to the element.",
+  "keyboard": [],
+  "accessibility": [
+    "The “+” symbol between keys is decorative (aria-hidden); keys are read in sequence.",
+    "On macOS, consider showing ⌘ instead of Ctrl."
+  ],
+  "responsive": [
+    "Inline code wraps to avoid overflow."
+  ],
+  "customization": [
+    "Selectors .dc-typography-code, .dc-typography-kbd; font: font.family.mono token."
+  ],
+  "commonMistakes": [
+    "Using Code to highlight words that are not code."
+  ],
+  "examples": [
+    {
+      "name": "InlineCode",
+      "title": "Inline code"
+    },
+    {
+      "name": "Shortcut",
+      "title": "Shortcuts"
+    }
+  ],
+  "limits": []
+}

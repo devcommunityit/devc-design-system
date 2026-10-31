@@ -13,10 +13,16 @@ export {
 } from './theme/ThemeProvider';
 
 // i18n
-export { LocaleProvider, useMessages, useLocale, type LocaleProviderProps } from './i18n/LocaleProvider';
+export { LocaleProvider, useMessages, useLocale, type LocaleProviderProps, type MessageOverrides } from './i18n/LocaleProvider';
+export type { ComponentMessages } from './i18n/componentMessages';
 export {
   en as messagesEn,
   it as messagesIt,
+  formatThemeIssue,
+  type CoreLanguage,
+  type Messages,
+} from './i18n/messages';
+export {
   es as messagesEs,
   fr as messagesFr,
   de as messagesDe,
@@ -24,10 +30,8 @@ export {
   ar as messagesAr,
   builtInMessages,
   getDefaultMessages,
-  formatThemeIssue,
   type BuiltInLanguage,
-  type Messages,
-} from './i18n/messages';
+} from './i18n/builtIn';
 
 // Components
 export * from './components/layout';
@@ -41,6 +45,7 @@ export * from './components/charts';
 export * from './components/dashboard';
 export * from './components/ai';
 export * from './components/website';
+export * from './components/community';
 export * from './components/feedback';
 export * from './components/overlays';
 
@@ -57,9 +62,11 @@ export {
   ZonedDateTime,
   Time,
   parseDate,
+  parseDateTime,
   parseTime,
   parseZonedDateTime,
   today,
+  now,
   getLocalTimeZone,
   isWeekend,
 } from '@internationalized/date';

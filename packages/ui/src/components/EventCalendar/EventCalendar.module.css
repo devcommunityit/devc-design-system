@@ -1,0 +1,35 @@
+.calendar[data-view='week'],
+.calendar[data-view='month'] {
+  min-inline-size: 56rem;
+  table-layout: fixed;
+}
+
+.calendar td {
+  block-size: 6rem;
+}
+
+.calendar td[data-outside] {
+  background: var(--dc-color-surface-subtle);
+  color: var(--dc-color-text-secondary);
+}
+
+.event {
+  margin-block-start: var(--dc-space-2);
+  overflow-wrap: anywhere;
+}
+
+.event button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--dc-color-text-link);
+  font: inherit;
+  text-align: start;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.event button:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}

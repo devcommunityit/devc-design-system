@@ -1,0 +1,60 @@
+{
+  "source": "9ff4c227ed16",
+  "summary": "Semantic quote attributed to a person.",
+  "whenToUse": [
+    "Showing a testimonial or quote with author and role."
+  ],
+  "whenNotToUse": [
+    "For a biography or a full profile, use ProfileCard."
+  ],
+  "props": [
+    {
+      "name": "quote",
+      "description": "Quoted text or content."
+    },
+    {
+      "name": "author",
+      "description": "Author's name."
+    },
+    {
+      "name": "role",
+      "description": "Role or organization."
+    },
+    {
+      "name": "avatarSrc",
+      "description": "Optional author image."
+    },
+    {
+      "name": "cite",
+      "description": "URL of the quote's source."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "—",
+      "action": "Non-interactive component."
+    }
+  ],
+  "accessibility": [
+    "The quote uses blockquote and the attribution is the figure caption.",
+    "The avatar is decorative because the name is visible."
+  ],
+  "responsive": [
+    "Text wraps without requiring a minimum width."
+  ],
+  "customization": [
+    "Text, surfaces, and spacing derive from --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Do not use the quote for content that is not actually attributed."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Testimonial"
+    }
+  ],
+  "limits": [
+    "Does not verify or format the cited source."
+  ]
+}

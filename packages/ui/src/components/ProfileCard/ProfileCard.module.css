@@ -1,0 +1,189 @@
+.profile {
+  --_band: var(--dc-gradient-accent);
+  --_band-color: var(--dc-color-action-primary);
+
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  text-align: center;
+  overflow-wrap: anywhere;
+  transition:
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    translate var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.profile[data-tone='accent'] {
+  --_band: linear-gradient(in oklch 115deg, var(--dc-color-accent-default), var(--dc-color-action-primary));
+  --_band-color: var(--dc-color-accent-default);
+}
+
+.profile[data-tone='subtle'] {
+  --_band: var(--dc-gradient-accent-subtle);
+  --_band-color: var(--dc-color-action-secondary);
+}
+
+.profile[data-tone='neutral'] {
+  --_band: none;
+  --_band-color: var(--dc-color-surface-muted);
+}
+
+.profile[data-linked]:hover {
+  border-color: var(--dc-color-border-strong);
+  box-shadow: var(--dc-look-shadow-primary);
+  translate: 0 calc(var(--dc-space-1) * -0.5);
+}
+
+.profile:has(.link:focus-visible) {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.band {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 4.5rem;
+  background-color: var(--_band-color);
+  background-image: var(--_band);
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  margin-block: var(--dc-space-3) var(--dc-space-2);
+  border: var(--dc-space-1) solid var(--dc-color-surface-default);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-default);
+  box-shadow: var(--dc-shadow-2);
+}
+
+/* Larger than Avatar's xl size; the extra class beats Avatar's own [data-size] rule. */
+.profile .avatar > [data-size] {
+  --_size: 4.75rem;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.role {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.tags,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--dc-space-1-5);
+}
+
+/* Interactive content stays clickable above the stretched name link. */
+.tags :where(a, button, input, select, textarea, [tabindex]),
+.actions :where(a, button, input, select, textarea, [tabindex]) {
+  position: relative;
+  z-index: 1;
+}
+
+.tags {
+  margin-block: var(--dc-space-2);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--dc-space-2) var(--dc-space-5);
+  align-self: stretch;
+  margin: var(--dc-space-1) 0 0;
+  padding-block-start: var(--dc-space-3);
+  border-block-start: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  min-inline-size: 0;
+}
+
+.statLabel {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.statValue {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  align-self: stretch;
+  margin-block-start: var(--dc-space-2);
+}
+
+.actions > :only-child {
+  flex: 1 1 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile {
+    transition: none;
+  }
+
+  .profile[data-linked]:hover {
+    translate: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .profile {
+    border-color: CanvasText;
+  }
+
+  .band {
+    border-block-end: var(--dc-border-width-thin) solid CanvasText;
+  }
+
+  .profile:has(.link:focus-visible) {
+    outline-color: Highlight;
+  }
+}

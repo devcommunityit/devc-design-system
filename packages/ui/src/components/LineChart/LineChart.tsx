@@ -5,6 +5,7 @@ import { ChartLegend } from '../ChartLegend/ChartLegend';
 import {
   ChartFrame,
   ChartPlot,
+  GradientDefs,
   Swatch,
   areaPath,
   estimateTextWidth,
@@ -16,7 +17,8 @@ import {
   scaleLinear,
   segments,
   seriesDash,
-  seriesStyle,
+  svgId,
+  vividSeriesStyle,
   useChartNavigation,
   useElementWidth,
   useNumberFormatter,
@@ -73,6 +75,7 @@ export const LineChart = forwardRef<HTMLElement, LineChartProps>(function LineCh
 ) {
   const t = useMessages();
   const titleId = useId();
+  const prefix = svgId(useId());
   const formatter = useNumberFormatter(formatOptions);
   const { ref: plotRef, width } = useElementWidth<HTMLDivElement>();
   const [hidden, setHidden] = useControllableState(hiddenSeries, defaultHiddenSeries, onHiddenSeriesChange, 'hiddenSeries');
@@ -147,6 +150,9 @@ export const LineChart = forwardRef<HTMLElement, LineChartProps>(function LineCh
         }
       >
         <svg className={chart.svg} viewBox={`0 0 ${width} ${height}`} height={height} aria-hidden="true" focusable="false">
+          {variant === 'area' ? (
+            <GradientDefs prefix={prefix} kind="area" indexes={visible.map(({ index }) => index)} stopBaseClassName={chart.stopAreaBottom} stopVividClassName={chart.stopAreaTop} />
+          ) : null}
           {domain.ticks.map((v, i) => (
             <g key={v}>
               {showGrid ? <line className={chart.gridLine} x1={marginStart} x2={marginStart + plotWidth} y1={yAt(v)} y2={yAt(v)} /> : null}
@@ -168,7 +174,7 @@ export const LineChart = forwardRef<HTMLElement, LineChartProps>(function LineCh
             const runs = segments(s.data, xAt, yAt);
             const shape = markerShape(index);
             return (
-              <g key={s.id} style={seriesStyle(index)} data-series={s.id}>
+              <g key={s.id} style={vividSeriesStyle(prefix, index, ['area'])} data-series={s.id}>
                 {variant === 'area' ? <path className={chart.area} d={areaPath(runs, baseY)} /> : null}
                 <path className={chart.line} d={linePath(runs)} strokeDasharray={seriesDash(index)} />
                 {s.data.map((v, i) =>

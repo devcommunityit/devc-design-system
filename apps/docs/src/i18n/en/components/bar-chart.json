@@ -1,0 +1,140 @@
+{
+  "source": "e9b7125eb54f",
+  "summary": "Dependency-free SVG bar chart: vertical or horizontal, grouped or stacked, with per-series textures, keyboard navigation and an accessible data table.",
+  "whenToUse": [
+    "Comparing quantities across categories (regions, products, quarters).",
+    "Stacked, to show composition and total per category.",
+    "Horizontal, when category labels are long or numerous."
+  ],
+  "whenNotToUse": [
+    "Continuous trends over time with many points: use LineChart.",
+    "Shares of a single total: use DonutChart.",
+    "A single value against a maximum: use Meter or Progress."
+  ],
+  "props": [
+    {
+      "name": "categories",
+      "description": "Categories (one group of bars each), in order."
+    },
+    {
+      "name": "series",
+      "description": "Series; data[i] maps to categories[i]. null draws no bar."
+    },
+    {
+      "name": "orientation",
+      "description": "Vertical columns or horizontal bars."
+    },
+    {
+      "name": "layout",
+      "description": "Side-by-side or stacked series (positive and negative values stacked separately)."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title."
+    },
+    {
+      "name": "height",
+      "description": "Height in px; width follows the container."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of values and ticks in the current locale."
+    },
+    {
+      "name": "showGrid",
+      "description": "Gridlines at the value ticks."
+    },
+    {
+      "name": "showLegend",
+      "description": "Legend; with multiple series each entry is a button that shows/hides the series."
+    },
+    {
+      "name": "hiddenSeries / defaultHiddenSeries",
+      "description": "Ids of hidden series (controlled / uncontrolled)."
+    },
+    {
+      "name": "onHiddenSeriesChange",
+      "description": "Called when the legend changes the visible series."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses gradients, rounded shapes and glows with the same theme colors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area, then to the legend and the table button."
+    },
+    {
+      "keys": "Freccia destra / giù",
+      "action": "Next category: highlights the band and announces the values."
+    },
+    {
+      "keys": "Freccia sinistra / su",
+      "action": "Previous category."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last category."
+    },
+    {
+      "keys": "Esc",
+      "action": "Dismisses the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> with <figcaption>; focusable role=\"group\" chart area with a hint (aria-describedby) and aria-live=\"polite\" announcements.",
+    "Series are distinguishable without color: every series after the first has a texture (hatching, dots, stripes) repeated in the legend.",
+    "Complete data table (caption, column and row headers) opened by a button with aria-expanded.",
+    "In forced-colors mode bars become Canvas with a CanvasText border and texture; the active category has a Highlight outline."
+  ],
+  "responsive": [
+    "Width measured with ResizeObserver (560 px SSR fallback); labels are thinned out when space is short.",
+    "In horizontal orientation long labels are truncated with \"…\" (at most 40% of the width); the full text is in the table.",
+    "Entrance animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints gradients between --dc-color-data-N and --dc-color-accent-default; it reverts to flat in forced-colors mode.",
+    "Colors: --dc-color-data-1…6 (cyclic); active band --dc-color-surface-subtle; grid --dc-color-border-subtle.",
+    "Stable selectors: .dc-bar-chart-barChart[data-orientation][data-layout], .dc-chart-fill, .dc-chart-activeBand, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "Stacking series with different units: the total is meaningless.",
+    "Using vertical orientation with long labels: prefer orientation=\"horizontal\".",
+    "Using 0 instead of null for missing data."
+  ],
+  "examples": [
+    {
+      "name": "Grouped",
+      "title": "Grouped"
+    },
+    {
+      "name": "Stacked",
+      "title": "Stacked"
+    },
+    {
+      "name": "Horizontal",
+      "title": "Horizontal with long labels"
+    },
+    {
+      "name": "NegativeValues",
+      "title": "Negative values"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradients and glows with the theme colors."
+    }
+  ],
+  "limits": [
+    "A single linear value axis; no value labels above the bars.",
+    "Label width is estimated, not measured: very wide fonts may overlap.",
+    "No zoom or virtualization; the SVG is still drawn left to right in RTL."
+  ]
+}

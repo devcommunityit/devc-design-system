@@ -1,0 +1,52 @@
+{
+  "source": "380c7ae2e28f",
+  "summary": "Contextual container for displaying usage and quota with the existing Meter.",
+  "whenToUse": [
+    "Showing usage of a quota such as members, sends, or storage."
+  ],
+  "whenNotToUse": [
+    "Representing an in-progress task: use Progress."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Quota name."
+    },
+    {
+      "name": "value / limit",
+      "description": "Current usage and maximum capacity."
+    },
+    {
+      "name": "unit",
+      "description": "Unit shown next to the values."
+    },
+    {
+      "name": "thresholds",
+      "description": "Thresholds for the Meter tones."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [],
+  "accessibility": [
+    "Reuses Meter with role=\"meter\" and a readable value text.",
+    "Additional descriptions are linked by the Meter."
+  ],
+  "responsive": [
+    "Fills the container width."
+  ],
+  "customization": [
+    "Composed with Meter; --dc-* tokens for the container."
+  ],
+  "commonMistakes": [
+    "Using the component to represent loading."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Member quota"
+    }
+  ],
+  "limits": [
+    "The quota must be provided and updated by the caller."
+  ]
+}

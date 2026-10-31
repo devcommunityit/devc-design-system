@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "dev-community-ui": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/packages/mcp/dist/stdio.js"]
+    }
+  }
+}

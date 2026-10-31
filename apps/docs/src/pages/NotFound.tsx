@@ -2,22 +2,25 @@ import { useLocation } from 'react-router';
 import { FileQuestion } from 'lucide-react';
 import { LinkButton, EmptyState, Inline } from '@dev-community/ui';
 import { PageMeta } from '../components/PageMeta';
+import { useI18n } from '../settings';
 
 export function NotFound() {
   const { pathname } = useLocation();
+  const { t } = useI18n();
+  const m = t.notFound;
   return (
     <article className="docs-article">
-      <PageMeta title="Pagina non trovata" description="La pagina richiesta non esiste." />
+      <PageMeta title={m.title} description={m.description} />
       <EmptyState
         icon={<FileQuestion />}
-        title="Pagina non trovata"
+        title={m.title}
         headingLevel={1}
-        description={`Non esiste alcuna pagina all’indirizzo ${pathname}. Controlla il link oppure usa la ricerca (Ctrl K).`}
+        description={m.body(pathname)}
         actions={
           <Inline gap={2} wrap>
-            <LinkButton href="/">Torna all’introduzione</LinkButton>
+            <LinkButton href="/">{m.home}</LinkButton>
             <LinkButton href="/componenti" variant="secondary">
-              Catalogo componenti
+              {m.catalog}
             </LinkButton>
           </Inline>
         }

@@ -1,0 +1,86 @@
+import type { ComponentDoc } from '../../docs-meta/types';
+
+export const doc: ComponentDoc = {
+  exports: ['ArticleCard', 'ArticleCardProps', 'ArticleCardTone', 'ArticleCardAuthor', 'ReactionBar', 'ReactionBarProps'],
+  name: 'ArticleCard',
+  slug: 'article-card',
+  category: 'community',
+  summary:
+    'Card articolo per portali community: copertina con gradiente scuro (snippet di codice o immagine), tag, titolo cliccabile, estratto, autore con avatar, data e tempo di lettura, barra delle reazioni (mi piace, commenti, salvati) anche interattiva.',
+  whenToUse: [
+    'Mettere in evidenza un articolo o un post del blog della community (variante featured).',
+    'Elencare articoli in una griglia di card compatte con autore e reazioni.',
+    'Riutilizzare ReactionBar sotto un articolo o un contenuto con mi piace e salvataggi.',
+  ],
+  whenNotToUse: [
+    'Liste dense di post con voto: usa PostList.',
+    'Thread di discussione senza estratto né copertina: usa DiscussionList.',
+    'Contenuti generici senza autore né reazioni: usa Card.',
+  ],
+  props: [
+    { name: 'title', type: 'ReactNode', required: true, description: 'Titolo dell’articolo; con href l’intera card diventa cliccabile (stretched link).' },
+    { name: 'href', type: 'string', description: 'URL dell’articolo.' },
+    { name: 'headingLevel', type: '1 | 2 | 3 | 4 | 5 | 6', default: '3', description: 'Livello del titolo.' },
+    { name: 'variant', type: "'featured' | 'compact'", default: "'featured'", description: 'featured: copertina accanto (contenitore largo) o sopra (stretto); compact: senza copertina e più raccolta.' },
+    { name: 'cover', type: 'ReactNode', description: 'Contenuto della copertina (un <pre> di codice, un’immagine). Solo nella variante featured.' },
+    { name: 'image', type: '{ src: string; alt: string }', description: 'Immagine di copertina dell’articolo. Sostituisce cover; usa alt="" se decorativa.' },
+    { name: 'tone', type: "'brand' | 'accent' | 'data-1' … 'data-6'", default: "'brand'", description: 'Colori dei bagliori della copertina.' },
+    { name: 'tags', type: 'ReactNode', description: 'Chip o Badge sopra il titolo.' },
+    { name: 'excerpt', type: 'ReactNode', description: 'Breve riassunto.' },
+    { name: 'author', type: '{ name: string; src?: string }', description: 'Autore: nome visibile e Avatar (immagine o iniziali).' },
+    { name: 'date', type: 'ReactNode | Date', description: 'Data di pubblicazione: un Date diventa RelativeTime, altrimenti viene mostrato così com’è.' },
+    { name: 'readingMinutes', type: 'number', description: 'Tempo di lettura in minuti (“9 min di lettura”).' },
+    { name: 'likes / comments / bookmarks', type: 'number', description: 'Conteggi delle reazioni, formattati con Intl (notazione compatta).' },
+    { name: 'isLiked / onLike', type: 'boolean / (isLiked: boolean) => void', description: 'Con onLike il mi piace diventa un toggle button (aria-pressed).' },
+    { name: 'isBookmarked / onBookmark', type: 'boolean / (isBookmarked: boolean) => void', description: 'Con onBookmark il salvataggio diventa un toggle button (aria-pressed).' },
+    { name: 'commentsHref', type: 'string', description: 'Trasforma il conteggio dei commenti in un link.' },
+    { name: 'ReactionBar.formatOptions', type: 'Intl.NumberFormatOptions', default: "{ notation: 'compact' }", description: 'Formato dei conteggi quando usi ReactionBar da sola.' },
+    { name: 'isLoading', type: 'boolean', default: 'false', description: 'Mostra al suo posto uno SkeletonCard (cover solo in variant featured) della stessa forma (aria-busy, testo nascosto “Caricamento…” non live) mantenendo className e style, così resta nella griglia. Avvolgi l’area in SkeletonGroup per un solo annuncio.' },
+  ],
+  inherits: 'ArticleCard: attributi HTML di <article>. ReactionBar: attributi HTML di <div>.',
+  keyboard: [
+    { keys: 'Tab', action: 'Porta il focus sul link del titolo, poi su tag interattivi e reazioni.' },
+    { keys: 'Invio', action: 'Apre l’articolo dal link del titolo.' },
+    { keys: 'Spazio / Invio', action: 'Attiva o disattiva mi piace e salvataggio.' },
+  ],
+  accessibility: [
+    'Elemento <article> con nome dal titolo (aria-labelledby); il titolo è un heading del livello scelto.',
+    'Il link del titolo copre tutta la card con uno pseudo-elemento: un solo punto di tabulazione, mentre tag e reazioni restano sopra e cliccabili.',
+    'Mi piace e salvataggio interattivi sono ToggleButton di React Aria con aria-pressed; il nome include etichetta e conteggio (“Mi piace: 412”).',
+    'Le icone sono decorative; i conteggi statici hanno l’etichetta in testo nascosto visivamente.',
+    'L’avatar è decorativo perché il nome dell’autore è già visibile.',
+    'In forced-colors la copertina usa Canvas/CanvasText e lo stato attivo delle reazioni Highlight.',
+  ],
+  responsive: [
+    'Container query: sopra i 40rem di larghezza la copertina affianca il contenuto, sotto va in alto.',
+    'Tag, metadati e reazioni vanno a capo; resta usabile a 320px.',
+    'Usa Grid con minItemWidth per griglie di card compatte.',
+  ],
+  customization: [
+    'Token: --dc-look-radius-container, --dc-color-surface-inverse e --dc-color-text-inverse (copertina, schiarimento limitato via relative color), --dc-color-action-primary, --dc-color-accent-default e --dc-color-data-1…6 per i bagliori, --dc-color-accent-container per il mi piace attivo.',
+    'Selettori stabili: .dc-article-card-card[data-variant][data-tone], .dc-article-card-cover, .dc-article-card-body, .dc-article-card-reaction[data-kind][data-selected].',
+  ],
+  commonMistakes: [
+    'Mettere link o bottoni nel titolo: l’intera card è già il link, usa tag e reazioni per le altre azioni.',
+    'Passare isLiked senza aggiornare il conteggio likes: il numero mostrato è sempre quello delle props.',
+    'Usare una copertina con testo importante senza alternativa: la copertina è un contenuto come un altro, dai un alt alle immagini.',
+  ],
+  examples: [
+    { name: 'Featured', title: 'In evidenza', description: 'Copertina con snippet di codice, tag e reazioni statiche.' },
+    { name: 'ArticleImage', title: 'Copertina fotografica', description: 'Immagine responsive con testo alternativo esplicito.' },
+    { name: 'InteractiveReactions', title: 'Reazioni interattive', description: 'Mi piace e salvataggio come toggle con stato nel componente padre.' },
+    { name: 'Compact', title: 'Compatta', description: 'Griglia di card senza copertina.' },
+    { name: 'StandaloneReactionBar', title: 'ReactionBar da sola' },
+    { name: 'Loading', title: 'Caricamento', description: 'Attiva/disattiva isLoading: lo skeleton ha la stessa forma del contenuto.' },
+  ],
+  status: {
+    implemented: true,
+    documented: true,
+    tests: ['components/ArticleCard/ArticleCard.test.tsx'],
+    limits: [
+      'La variante compact ignora cover.',
+      'Il conteggio non cambia da solo al toggle: aggiornalo nel padre (anche in modalità non controllata).',
+      'Nei browser senza relative color syntax la copertina usa --dc-color-surface-inverse, che nel tema scuro è chiaro.',
+    ],
+  },
+};

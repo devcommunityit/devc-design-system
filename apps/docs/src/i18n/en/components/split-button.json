@@ -1,0 +1,105 @@
+{
+  "source": "b963b94cccf4",
+  "summary": "A primary action paired with a button that opens a menu of related secondary actions. Two real buttons in a named group.",
+  "whenToUse": [
+    "A default action with variants (Save / Save as copy, Send / Schedule send)."
+  ],
+  "whenNotToUse": [
+    "Unrelated actions: use separate buttons or a DropdownMenu.",
+    "When there is no obvious default action: use DropdownMenu alone."
+  ],
+  "props": [
+    {
+      "name": "children",
+      "description": "Label of the primary action."
+    },
+    {
+      "name": "onPress",
+      "description": "Primary action."
+    },
+    {
+      "name": "menu",
+      "description": "MenuItem (with id), MenuSection, MenuSeparator."
+    },
+    {
+      "name": "onAction",
+      "description": "Called with the id of the chosen item."
+    },
+    {
+      "name": "disabledKeys",
+      "description": "Disabled menu items."
+    },
+    {
+      "name": "menuLabel",
+      "description": "Accessible name of the menu button."
+    },
+    {
+      "name": "variant",
+      "description": "Appearance of both buttons."
+    },
+    {
+      "name": "size",
+      "description": "Size."
+    },
+    {
+      "name": "isPending",
+      "description": "Spinner on the primary action; the menu stays available."
+    },
+    {
+      "name": "isDisabled",
+      "description": "Disables both buttons."
+    },
+    {
+      "name": "startIcon",
+      "description": "Decorative icon for the primary action."
+    },
+    {
+      "name": "type",
+      "description": "Type of the primary button (submit inside a form)."
+    }
+  ],
+  "inherits": "className, id, and aria-label on the group (role=\"group\"; default name: the label, if it is text).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the primary action first, then the menu button."
+    },
+    {
+      "keys": "Enter / Spazio / ↓ / ↑",
+      "action": "On the menu button: opens the menu."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the menu and returns focus to the menu button."
+    }
+  ],
+  "accessibility": [
+    "The menu button has aria-haspopup and aria-expanded; the menu follows the APG Menu Button pattern.",
+    "Dangerous items (tone=\"danger\") must also be understandable from their text."
+  ],
+  "responsive": [
+    "The menu button keeps the minimum target size; the menu never exceeds the viewport width."
+  ],
+  "customization": [
+    "[data-variant] selector on the group; items accept MenuItem's icon, tone, and shortcut."
+  ],
+  "commonMistakes": [
+    "Leaving the menu button without a name when you change the language: pass menuLabel or use messages.",
+    "Duplicating the primary action inside the menu."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Save with options"
+    },
+    {
+      "name": "Pending",
+      "title": "Action in progress (English)"
+    },
+    {
+      "name": "SizesAndDisabled",
+      "title": "Sizes and disabled state"
+    }
+  ],
+  "limits": []
+}

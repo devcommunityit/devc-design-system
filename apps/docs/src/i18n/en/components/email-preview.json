@@ -1,0 +1,57 @@
+{
+  "source": "57f6e70898ec",
+  "summary": "Preview of a message and its metadata that reuses the sandboxed preview of EmailBuilder.",
+  "whenToUse": [
+    "Reviewing an existing email document before the app sends it."
+  ],
+  "whenNotToUse": [
+    "Composing or sending campaigns: use EmailBuilder and the app's integrations."
+  ],
+  "props": [
+    {
+      "name": "title / document",
+      "description": "Controlled title and email document."
+    },
+    {
+      "name": "previewDevice / onPreviewDeviceChange",
+      "description": "Controlled preview viewport."
+    },
+    {
+      "name": "subject / preheader / sender",
+      "description": "Optional email metadata."
+    },
+    {
+      "name": "senderLabel / subjectLabel / preheaderLabel",
+      "description": "Localizable metadata labels."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Uses the accessible preview controls of EmailBuilder."
+    }
+  ],
+  "accessibility": [
+    "Reuses the isolated preview of EmailBuilder with an empty sandboxed iframe.",
+    "Metadata structured as a description list."
+  ],
+  "responsive": [
+    "Width and viewport are handled by EmailBuilder; metadata wraps."
+  ],
+  "customization": [
+    "Composed with EmailBuilder and --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Expecting to send the email or edit the document in this read-only preview."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Mobile preview"
+    }
+  ],
+  "limits": [
+    "Does not edit or send emails."
+  ]
+}

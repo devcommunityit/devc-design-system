@@ -1,0 +1,120 @@
+{
+  "source": "9f08ba6bb418",
+  "summary": "Dashboard KPI tile: label, Intl-formatted value, textual change, icon, a small decorative trend line and a footer slot.",
+  "whenToUse": [
+    "Rows of indicators at the top of an admin dashboard.",
+    "Showing the recent trend of a metric next to its current value."
+  ],
+  "whenNotToUse": [
+    "Detailed time-series analysis: use LineChart or a table.",
+    "Metrics without their own surface inside another card: use Statistic."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Metric name."
+    },
+    {
+      "name": "value",
+      "description": "Numbers are formatted with Intl.NumberFormat in the current locale; null shows emptyValue."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Currency, percent, decimals…"
+    },
+    {
+      "name": "trend",
+      "description": "Change; the direction is announced in localized words. sentiment also colors the trend line."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon."
+    },
+    {
+      "name": "description",
+      "description": "Context (period, source)."
+    },
+    {
+      "name": "emptyValue",
+      "description": "Shown when value is null/undefined."
+    },
+    {
+      "name": "sparkline",
+      "description": "Recent values drawn as a decorative SVG line (aria-hidden); non-finite values are ignored, at least 2 points are required."
+    },
+    {
+      "name": "footer",
+      "description": "Link to details, a small action or a note."
+    },
+    {
+      "name": "variant",
+      "description": "Surface: default (neutral), vivid (brand gradient with primary-foreground text, for the main KPI), tinted (tonal fill)."
+    },
+    {
+      "name": "isLoading",
+      "description": "Renders a SkeletonKpi of the same shape in its place (aria-busy, hidden non-live “Loading…” text) while keeping className and style, so it stays in the grid. Wrap the area in SkeletonGroup for a single announcement. With sparkline={[]} or icon the placeholder reserves room for the line and the icon."
+    }
+  ],
+  "inherits": "HTML attributes of <div> (id, style, data-*, aria-*).",
+  "keyboard": [],
+  "accessibility": [
+    "Value and change are text: the trend line is aria-hidden and carries no exclusive information.",
+    "The trend direction is written out for screen readers (“increase”, “decrease”…), not just an arrow or color.",
+    "In forced-colors the line uses CanvasText and the shaded area is hidden; the vivid and tinted variants fall back to Canvas/CanvasText with a border.",
+    "The vivid variant uses the brand gradient/foreground pair, designed for contrast at both ends of the gradient."
+  ],
+  "responsive": [
+    "Fluid width: use Grid with minItemWidth for KPI rows that wrap.",
+    "The trend line adapts to the width while keeping the stroke thickness."
+  ],
+  "customization": [
+    "Tokens: --dc-look-radius-container, feedback colors for the trend; vivid uses --dc-gradient-accent, --dc-color-action-primary-foreground and --dc-look-shadow-primary; tinted uses --dc-look-fill-tonal on --dc-color-action-secondary.",
+    "In vivid, label, description, trend and trend line inherit the primary-foreground color (currentColor): the sentiment stays readable thanks to the arrow and text.",
+    "Stable selectors: .dc-kpi-card-kpi[data-variant], .dc-kpi-card-sparkline[data-sentiment], .dc-kpi-card-footer."
+  ],
+  "commonMistakes": [
+    "Conveying information through the trend line alone: repeat it in the trend or the description.",
+    "Formatting numbers by hand and ignoring the locale.",
+    "Treating a decrease as negative when it is positive (e.g. errors): set sentiment.",
+    "Using vivid on every card in a row: reserve it for the main KPI, otherwise it loses emphasis."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithSparkline",
+      "title": "With trend line"
+    },
+    {
+      "name": "Dashboard",
+      "title": "KPI row",
+      "description": "Intrinsic grid that wraps in narrow containers."
+    },
+    {
+      "name": "Periods",
+      "title": "Changing period",
+      "description": "Series and change computed from local state."
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid variant",
+      "description": "Main KPI on the brand gradient."
+    },
+    {
+      "name": "Tinted",
+      "title": "Tinted variant",
+      "description": "Tonal fill next to neutral cards."
+    },
+    {
+      "name": "Loading",
+      "title": "Loading",
+      "description": "Toggle isLoading: the skeleton has the same shape as the content."
+    }
+  ],
+  "limits": [
+    "The built-in trend line is deliberately minimal (no axes, tooltip or highlighted point): for explorable charts use Sparkline or LineChart.",
+    "The footer is not a clickable area: to make the whole card navigable, place the KpiCard in a structure with an explicit link."
+  ]
+}

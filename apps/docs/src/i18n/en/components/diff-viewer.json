@@ -1,0 +1,55 @@
+{
+  "source": "bf923e875cad",
+  "summary": "Line-by-line text comparison in a unified or side-by-side view.",
+  "whenToUse": [
+    "Show changes to text, configuration, or code."
+  ],
+  "whenNotToUse": [
+    "To edit text, use a dedicated editor."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the comparison."
+    },
+    {
+      "name": "before",
+      "description": "Original text, treated as plain text."
+    },
+    {
+      "name": "after",
+      "description": "Modified text, treated as plain text."
+    },
+    {
+      "name": "mode / defaultMode / onModeChange",
+      "description": "Controlled or initial view."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / frecce",
+      "action": "Switches view and scrolls the comparison."
+    }
+  ],
+  "accessibility": [
+    "Added and removed lines have text and symbols in addition to color."
+  ],
+  "responsive": [
+    "The comparison scrolls within its own container on narrow viewports."
+  ],
+  "customization": [
+    "Feedback colors and spacing derive from tokens."
+  ],
+  "commonMistakes": [
+    "Do not use for very large files: the LCS comparison has an explicit limit."
+  ],
+  "examples": [
+    {
+      "name": "Changes",
+      "title": "Configuration comparison"
+    }
+  ],
+  "limits": [
+    "Line-based comparison, not word-based; limit of one million LCS cells."
+  ]
+}

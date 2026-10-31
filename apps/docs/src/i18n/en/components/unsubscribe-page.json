@@ -1,0 +1,71 @@
+{
+  "source": "6ec8f29162d9",
+  "summary": "Controlled notification preferences page with an unsubscribe-from-all request.",
+  "whenToUse": [
+    "Letting users change notification categories and channels or request to unsubscribe."
+  ],
+  "whenNotToUse": [
+    "For cookie or data consent, use PrivacyPreferences or CookieBanner."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Page title and name of the matrix."
+    },
+    {
+      "name": "description",
+      "description": "Optional instructions."
+    },
+    {
+      "name": "categories",
+      "description": "Notification categories."
+    },
+    {
+      "name": "channels",
+      "description": "Notification channels."
+    },
+    {
+      "name": "value",
+      "description": "Controlled preferences."
+    },
+    {
+      "name": "onChange",
+      "description": "Request to change the preferences."
+    },
+    {
+      "name": "unsubscribeAllLabel",
+      "description": "Label of the unsubscribe-from-all request."
+    },
+    {
+      "name": "onUnsubscribeAll",
+      "description": "Callback to the consumer; it does not send or persist anything."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Spazio",
+      "action": "Navigates the preferences and the unsubscribe button."
+    }
+  ],
+  "accessibility": [
+    "The preferences matrix is built with NotificationPreferences and the title describes the page."
+  ],
+  "responsive": [
+    "The container and the matrix adapt to narrow widths."
+  ],
+  "customization": [
+    "Reuses NotificationPreferences and Button with --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "The unsubscribe request is not sent automatically."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Email preferences"
+    }
+  ],
+  "limits": [
+    "Request handling and persistence are external."
+  ]
+}

@@ -1,0 +1,53 @@
+/* Shared plot, axis, marker and table styles live in ../charts-internal/Chart.module.css. */
+.scatterChart {
+  inline-size: 100%;
+}
+
+.axisTitle {
+  fill: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-medium);
+}
+
+.crosshair {
+  pointer-events: none;
+}
+
+/* Bubbles (points with `size`): translucent fill so overlapping points stay visible. */
+.scatterChart .bubble {
+  fill: var(--_series);
+  fill-opacity: 0.22;
+  stroke-width: 1.5;
+}
+
+.scatterChart .bubble[data-active] {
+  fill-opacity: 0.6;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']).scatterChart .bubble {
+  fill: var(--_paint, var(--_series));
+  fill-opacity: 0.55;
+  stroke: var(--_series);
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']).scatterChart .bubble[data-active] {
+  fill-opacity: 0.85;
+}
+
+@media (forced-colors: active) {
+  .axisTitle {
+    fill: CanvasText;
+  }
+
+  [data-chart-appearance].scatterChart .bubble {
+    fill: CanvasText;
+    fill-opacity: 0.2;
+    stroke: CanvasText;
+  }
+
+  [data-chart-appearance].scatterChart .bubble[data-active] {
+    fill: Highlight;
+    fill-opacity: 0.6;
+    stroke: Highlight;
+  }
+}

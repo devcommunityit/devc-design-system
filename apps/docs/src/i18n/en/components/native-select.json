@@ -1,0 +1,82 @@
+{
+  "source": "14c3da6086e1",
+  "summary": "Native <select> with the system’s field styling and anatomy. Uses the operating system picker, ideal on mobile and in SSR forms without JavaScript.",
+  "whenToUse": [
+    "Short, simple lists, especially on mobile.",
+    "Forms that must work before hydration."
+  ],
+  "whenNotToUse": [
+    "Rich options, search or multiple selection: use Select, Combobox or MultiSelect."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Visible label."
+    },
+    {
+      "name": "options",
+      "description": "{ value, label, disabled? }; alternatively <option>/<optgroup> children."
+    },
+    {
+      "name": "placeholder",
+      "description": "Empty first option (disabled when isRequired)."
+    },
+    {
+      "name": "value / defaultValue / onChange",
+      "description": "Native React API."
+    },
+    {
+      "name": "isInvalid / errorMessage / description",
+      "description": "Linked error and helper text."
+    },
+    {
+      "name": "isRequired / isDisabled",
+      "description": "Mapped to native required/disabled."
+    },
+    {
+      "name": "wrapperProps",
+      "description": "Props of the field container."
+    }
+  ],
+  "inherits": "Native <select> attributes (name, autoComplete, form…), except multiple.",
+  "keyboard": [
+    {
+      "keys": "Frecce / lettere",
+      "action": "Native browser behavior."
+    }
+  ],
+  "accessibility": [
+    "Fully native semantics and keyboard support.",
+    "Errors linked via aria-describedby and aria-invalid."
+  ],
+  "responsive": [
+    "On mobile it opens the operating system picker."
+  ],
+  "customization": [
+    "Decorative arrow replaceable via CSS; logical positioning (RTL)."
+  ],
+  "commonMistakes": [
+    "Using the placeholder as a label."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled"
+    },
+    {
+      "name": "Groups",
+      "title": "Option groups"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    }
+  ],
+  "limits": [
+    "The style of the open menu depends on the browser/OS."
+  ]
+}

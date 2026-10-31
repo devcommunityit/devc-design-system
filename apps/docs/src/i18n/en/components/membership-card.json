@@ -1,0 +1,58 @@
+{
+  "source": "a9ca38f4b05d",
+  "summary": "Presentational summary of a membership's status and plan.",
+  "whenToUse": [
+    "Showing the plan, status and next renewal date of a membership."
+  ],
+  "whenNotToUse": [
+    "Comparing plans: use PricingTable.",
+    "Handling payments: it is not a checkout."
+  ],
+  "props": [
+    {
+      "name": "title / plan",
+      "description": "Membership name and current plan."
+    },
+    {
+      "name": "status / statusLabel",
+      "description": "Structured status and its visible label."
+    },
+    {
+      "name": "renewal",
+      "description": "Renewal date or text provided by the caller."
+    },
+    {
+      "name": "actionLabel / onAction",
+      "description": "Optional action delegated to the caller."
+    }
+  ],
+  "inherits": "HTML attributes of <section>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Reaches and triggers the optional action."
+    }
+  ],
+  "accessibility": [
+    "The card is a named region.",
+    "Status is conveyed with text, not just color."
+  ],
+  "responsive": [
+    "The header wraps in narrow containers."
+  ],
+  "customization": [
+    "Colors, borders and spacing use --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Using this card as a checkout flow or a source of status."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Active membership"
+    }
+  ],
+  "limits": [
+    "Does not handle payments or renewals."
+  ]
+}

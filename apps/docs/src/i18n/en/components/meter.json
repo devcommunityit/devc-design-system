@@ -1,0 +1,88 @@
+{
+  "source": "464a4cfa2954",
+  "summary": "Scalar measurement within a known range (role=\"meter\"): used storage, quotas, capacity, password strength. Optional thresholds change the tone.",
+  "whenToUse": [
+    "Values that represent a level, not the progress of a task."
+  ],
+  "whenNotToUse": [
+    "Loading or tasks in progress: use Progress or CircularProgress.",
+    "Values without a meaningful minimum/maximum: use Statistic."
+  ],
+  "props": [
+    {
+      "name": "value",
+      "description": "Current value."
+    },
+    {
+      "name": "minValue / maxValue",
+      "description": "Range."
+    },
+    {
+      "name": "label",
+      "description": "Visible label; otherwise aria-label."
+    },
+    {
+      "name": "valueLabel",
+      "description": "Value text (e.g. “7.2 GB / 10 GB”), also used for aria-valuetext."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value formatting based on the locale."
+    },
+    {
+      "name": "showValue",
+      "description": "Shows the formatted value."
+    },
+    {
+      "name": "tone",
+      "description": "Fixed tone; when omitted it is computed from the thresholds (or brand)."
+    },
+    {
+      "name": "thresholds",
+      "description": "Ascending inclusive thresholds; below them the tone is success."
+    },
+    {
+      "name": "description",
+      "description": "Helper text linked via aria-describedby."
+    },
+    {
+      "name": "size",
+      "description": "Bar thickness."
+    }
+  ],
+  "inherits": "Props of the react-aria-components Meter.",
+  "keyboard": [],
+  "accessibility": [
+    "role=\"meter\" with aria-valuenow/min/max and a localized aria-valuetext.",
+    "Tone is only a visual aid: also convey the meaning in text (valueLabel, description).",
+    "In forced-colors mode the bar uses system colors."
+  ],
+  "responsive": [
+    "Fills the container width; label and value wrap with long text."
+  ],
+  "customization": [
+    "Selectors [data-tone], [data-size]."
+  ],
+  "commonMistakes": [
+    "Using it for loading.",
+    "Relying on color alone to convey “full/almost full”.",
+    "Thresholds for decreasing values (e.g. battery): set tone explicitly."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Storage space"
+    },
+    {
+      "name": "Thresholds",
+      "title": "Interactive thresholds"
+    },
+    {
+      "name": "CustomRange",
+      "title": "Custom ranges and formats (English)"
+    }
+  ],
+  "limits": [
+    "Thresholds assume that higher values are worse."
+  ]
+}

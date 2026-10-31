@@ -1,0 +1,111 @@
+{
+  "source": "d92f59fd490a",
+  "summary": "Fully clickable promotional banner: the whole surface is a single <a href> (navigation) or <button> (action), with icon, title, description, chevron and an optional dismiss button.",
+  "whenToUse": [
+    "Promoting a feature, plan upgrade, event or content in a dashboard.",
+    "Highly visible shortcut to a single destination or action."
+  ],
+  "whenNotToUse": [
+    "System messages or errors: use Banner or Alert.",
+    "Content with multiple inner links or controls: use Card with CardLink or HeroCard with actions."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Main text; part of the accessible name."
+    },
+    {
+      "name": "description",
+      "description": "Secondary text; also part of the accessible name, so keep it short."
+    },
+    {
+      "name": "href",
+      "description": "Destination: the surface is an <a href>. Alternative to onPress."
+    },
+    {
+      "name": "linkProps",
+      "description": "React Aria Link props (target, rel, routerOptions, onPress…), only with href."
+    },
+    {
+      "name": "onPress",
+      "description": "Action: the surface is a <button>. Alternative to href."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon (aria-hidden)."
+    },
+    {
+      "name": "tone",
+      "description": "Surface; brand and accent use the expressive gradients."
+    },
+    {
+      "name": "onDismiss",
+      "description": "Shows a separate dismiss button (sibling, not nested). You persist the dismissal."
+    },
+    {
+      "name": "dismissLabel",
+      "description": "Accessible name of the dismiss button."
+    }
+  ],
+  "inherits": "HTML attributes of <div> on the container (id, style, data-*, aria-*); the ref points to the container.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the surface and then to the dismiss button."
+    },
+    {
+      "keys": "Enter",
+      "action": "Follows the link (or activates the button)."
+    },
+    {
+      "keys": "Space",
+      "action": "Activates the surface when it is a <button>."
+    }
+  ],
+  "accessibility": [
+    "A single native interactive element for the surface: no clickable div, no nested interactive elements.",
+    "The dismiss button is a sibling of the surface, with a localized name (messages.dismiss).",
+    "Icon and chevron are decorative (aria-hidden); the chevron is mirrored in RTL.",
+    "brand/accent use action-primary-foreground on a gradient; success/warning use text-primary on feedback surfaces.",
+    "Clickable area at least 56px tall; focus ring visible in forced-colors mode too."
+  ],
+  "responsive": [
+    "Full container width; text wraps while icon and chevron stay aligned."
+  ],
+  "customization": [
+    "Tokens: --dc-gradient-accent, --dc-look-fill-primary, --dc-look-radius-container, feedback surfaces.",
+    "Stable selectors: .dc-promo-banner-promo[data-tone], .dc-promo-banner-surface, .dc-promo-banner-dismiss."
+  ],
+  "commonMistakes": [
+    "Using onPress to navigate: pass href so that open in new tab and copy link work.",
+    "Long descriptions: they end up entirely in the link's accessible name.",
+    "Forgetting to persist the dismissal: onDismiss does not hide the banner on its own."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Tones",
+      "title": "Tones"
+    },
+    {
+      "name": "AsButton",
+      "title": "As a button"
+    },
+    {
+      "name": "Dismissible",
+      "title": "Dismissible",
+      "description": "Visibility is the consumer's local state."
+    },
+    {
+      "name": "ExternalLink",
+      "title": "External link"
+    }
+  ],
+  "limits": [
+    "The dismiss button is positioned over the surface: its area does not activate the link (reserved padding).",
+    "For links that open a new tab, add the textual hint to the description yourself."
+  ]
+}

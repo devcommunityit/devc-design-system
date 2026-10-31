@@ -1,0 +1,66 @@
+{
+  "source": "8562ae7ed8a3",
+  "summary": "<section> element with optional header (title, description, actions), vertical rhythm, and surface.",
+  "whenToUse": [
+    "Thematic blocks of a page: settings, content groups, landing page sections."
+  ],
+  "whenNotToUse": [
+    "Standalone, reusable content such as a news item: use Card with as=\"article\"."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Visible title; also provides the accessible name of the region (aria-labelledby)."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level, chosen according to the page structure."
+    },
+    {
+      "name": "description",
+      "description": "Supporting text below the title."
+    },
+    {
+      "name": "actions",
+      "description": "Actions aligned with the header."
+    },
+    {
+      "name": "spacing",
+      "description": "Vertical padding."
+    },
+    {
+      "name": "surface",
+      "description": "Section background."
+    },
+    {
+      "name": "container",
+      "description": "Wraps header and content in a Container: the background spans the full width while the text stays aligned with the page. Omit if the Section is already inside a Container."
+    }
+  ],
+  "inherits": "Global HTML attributes; ref to the <section>.",
+  "keyboard": [],
+  "accessibility": [
+    "With a title, the section becomes a named “region” landmark; without a title or aria-label it remains a plain grouping.",
+    "Choose headingLevel based on the actual hierarchy, not the appearance."
+  ],
+  "responsive": [
+    "Actions move below the title when there isn’t enough space."
+  ],
+  "customization": [
+    "Selectors .dc-layout-section[data-spacing][data-surface], .dc-layout-section-title."
+  ],
+  "commonMistakes": [
+    "Skipping heading levels (h2 → h4)."
+  ],
+  "examples": [
+    {
+      "name": "WithHeader",
+      "title": "With header and actions"
+    },
+    {
+      "name": "Plain",
+      "title": "Without header"
+    }
+  ],
+  "limits": []
+}

@@ -1,0 +1,59 @@
+{
+  "source": "4e9f873bbd5a",
+  "summary": "Controlled picker for a volunteer shift.",
+  "whenToUse": [
+    "Letting users choose an available shift before the consumer handles registration."
+  ],
+  "whenNotToUse": [
+    "To schedule events and times, use Agenda."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Group label."
+    },
+    {
+      "name": "shifts",
+      "description": "Selectable or disabled shifts."
+    },
+    {
+      "name": "value",
+      "description": "Id of the selected shift."
+    },
+    {
+      "name": "onChange",
+      "description": "Selection change request."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content for the empty list."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Frecce / Spazio",
+      "action": "Navigates and selects a shift with RadioGroup."
+    }
+  ],
+  "accessibility": [
+    "Options use the design system's accessible radio controls."
+  ],
+  "responsive": [
+    "Shifts are laid out in an adaptive column."
+  ],
+  "customization": [
+    "Uses RadioGroup and --dc-* tokens for surfaces and spacing."
+  ],
+  "commonMistakes": [
+    "Selecting does not book a shift or register a volunteer."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Shifts"
+    }
+  ],
+  "limits": [
+    "Availability and registration are provided by the consumer."
+  ]
+}

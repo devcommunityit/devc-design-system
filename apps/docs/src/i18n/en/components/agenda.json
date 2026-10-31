@@ -1,0 +1,71 @@
+{
+  "source": "d0a4d86ac6e3",
+  "summary": "Agenda view for events: a semantic list with times, details and composable actions.",
+  "whenToUse": [
+    "Showing a day's events or a schedule in agenda order.",
+    "Composing event rows with custom content and actions."
+  ],
+  "whenNotToUse": [
+    "Navigating between dates or selecting a day: use a calendar component.",
+    "Comparing events as editorial cards: use EventCard."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Title of the agenda section, also used to label it."
+    },
+    {
+      "name": "children",
+      "description": "AgendaItem elements to render as a list."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content shown when there are no items."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Semantic level of the section title."
+    }
+  ],
+  "inherits": "HTML attributes of <section> (except title); ref forwarded to the section.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the links and controls placed inside agenda items."
+    },
+    {
+      "keys": "Enter",
+      "action": "Activates a standard link or control in the item."
+    }
+  ],
+  "accessibility": [
+    "The section is labeled by the title and events are contained in an ordered list.",
+    "Times use <time>; pass ISO values via startDateTime/endDateTime to provide machine-readable dates.",
+    "Actions are content slots; the component creates no nested interactive controls."
+  ],
+  "responsive": [
+    "Rows switch to a single column in narrow containers; details and actions can wrap."
+  ],
+  "customization": [
+    "`className` on the root and on rows; colors, surfaces and spacing use `--dc-*` tokens."
+  ],
+  "commonMistakes": [
+    "Using AgendaItem outside Agenda: it is an <li> element and requires a containing list.",
+    "Passing human-readable values as `startDateTime`; visible text belongs in `startTime`."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Daily schedule",
+      "description": "Ordered events with time, link, location and action."
+    },
+    {
+      "name": "Empty",
+      "title": "Empty state",
+      "description": "Message shown when the agenda contains no events."
+    }
+  ],
+  "limits": [
+    "Sorting events and grouping them by date remain the caller's responsibility."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "source": "28252c4b1be8",
+  "summary": "Controlled selector for ticket types and quantities for an event.",
+  "whenToUse": [
+    "Presenting ticket options and availability before registration."
+  ],
+  "whenNotToUse": [
+    "Handling payments, orders, or server-side availability: these responsibilities stay with the consumer."
+  ],
+  "props": [
+    {
+      "name": "tickets",
+      "description": "Ticket options to display."
+    },
+    {
+      "name": "selectedTicketId",
+      "description": "Selected ID, controlled by the consumer."
+    },
+    {
+      "name": "quantity",
+      "description": "Current quantity, controlled by the consumer."
+    },
+    {
+      "name": "onTicketChange",
+      "description": "Reports the selection."
+    },
+    {
+      "name": "onQuantityChange",
+      "description": "Reports quantity changes."
+    }
+  ],
+  "inherits": "HTML attributes of <section> except title.",
+  "keyboard": [
+    {
+      "keys": "Tab / frecce",
+      "action": "Navigates the native radio buttons; Tab reaches the quantity field."
+    }
+  ],
+  "accessibility": [
+    "Uses fieldset and legend for the radio group; each choice has a label, and unavailable tickets are disabled."
+  ],
+  "responsive": [
+    "Options adapt to narrow spaces and move the price below the name on small viewports."
+  ],
+  "customization": [
+    "Surfaces, borders, and typography use --dc-* tokens; className is applied to the section."
+  ],
+  "commonMistakes": [
+    "Do not attach purchase or payment callbacks: the component only provides controlled selection."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Ticket types"
+    }
+  ],
+  "limits": [
+    "Does not make bookings or payments."
+  ]
+}

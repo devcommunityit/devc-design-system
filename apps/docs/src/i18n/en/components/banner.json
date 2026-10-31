@@ -1,0 +1,70 @@
+{
+  "source": "c70d58e8cc28",
+  "summary": "Full-width message for page-level or system communications (maintenance, announcements).",
+  "whenToUse": [
+    "Information that concerns the entire application."
+  ],
+  "whenNotToUse": [
+    "Messages about a section: use Alert.",
+    "Temporary notifications: use Toast."
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "description": "neutral uses the brand surface for announcements."
+    },
+    {
+      "name": "action",
+      "description": "Link or button."
+    },
+    {
+      "name": "onDismiss",
+      "description": "Shows the close button; persist the preference yourself if needed."
+    },
+    {
+      "name": "sticky",
+      "description": "Stays at the top while scrolling."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the action and the close button."
+    }
+  ],
+  "accessibility": [
+    "Not a live region: for dynamic messages use Toast or a live Alert.",
+    "The tone is also conveyed via hidden text."
+  ],
+  "responsive": [
+    "Centered content that wraps on mobile."
+  ],
+  "customization": [
+    "className/style."
+  ],
+  "commonMistakes": [
+    "Stacking multiple banners: merge the messages or prioritize them."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Tones"
+    },
+    {
+      "name": "Dismissible",
+      "title": "Dismissible"
+    },
+    {
+      "name": "ToneAndAction",
+      "title": "Controlled tone, action and dismissal",
+      "description": "The tone is chosen with a RadioGroup; the action updates a counter and dismissing hides the banner."
+    },
+    {
+      "name": "StickyInScrollArea",
+      "title": "Sticky banner in a scrolling container",
+      "description": "With sticky, the banner stays at the top of the ScrollArea while scrolling."
+    }
+  ],
+  "limits": []
+}

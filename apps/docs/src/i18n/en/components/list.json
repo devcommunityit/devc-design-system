@@ -1,0 +1,70 @@
+{
+  "source": "f5004a71f50f",
+  "summary": "Semantic lists (<ul>/<ol>) with token-based spacing, and quotes (<blockquote> in a <figure> with optional attribution).",
+  "whenToUse": [
+    "Bulleted or numbered content lists; quotes and testimonials."
+  ],
+  "whenNotToUse": [
+    "Interactive selectable lists: use ListBox.",
+    "Term/value pairs: use DescriptionList."
+  ],
+  "props": [
+    {
+      "name": "ordered",
+      "description": "Renders <ol>."
+    },
+    {
+      "name": "variant",
+      "description": "Markers, no markers (keeps the semantics) or horizontal."
+    },
+    {
+      "name": "gap",
+      "description": "Spacing between items."
+    },
+    {
+      "name": "start",
+      "description": "Starting number for ordered lists."
+    },
+    {
+      "name": "Quote.attribution",
+      "description": "Author or source, in <figcaption>."
+    },
+    {
+      "name": "Quote.cite",
+      "description": "Source URL (cite attribute)."
+    }
+  ],
+  "inherits": "HTML attributes of ul/ol/li/figure; ref forwarded.",
+  "keyboard": [],
+  "accessibility": [
+    "With variant none/inline, role=\"list\" is set because Safari removes list semantics when there are no markers."
+  ],
+  "responsive": [
+    "The inline variant wraps."
+  ],
+  "customization": [
+    "Selectors .dc-typography-list[data-variant], .dc-typography-quote."
+  ],
+  "commonMistakes": [
+    "Using <br> to fake lists."
+  ],
+  "examples": [
+    {
+      "name": "Unordered",
+      "title": "Unordered"
+    },
+    {
+      "name": "Ordered",
+      "title": "Ordered"
+    },
+    {
+      "name": "InlineList",
+      "title": "Inline"
+    },
+    {
+      "name": "Quotation",
+      "title": "Quote"
+    }
+  ],
+  "limits": []
+}

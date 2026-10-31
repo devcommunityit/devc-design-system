@@ -1,0 +1,58 @@
+{
+  "source": "26c4bc443d2c",
+  "summary": "Term/value pairs on a native <dl> for detail views and summaries.",
+  "whenToUse": [
+    "Detail pages, order summaries, metadata."
+  ],
+  "whenNotToUse": [
+    "Data compared across multiple rows: use Table."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "{ id?, term, description }."
+    },
+    {
+      "name": "layout",
+      "description": "stacked: term above the value; inline: term and value side by side; grid: columns based on available space (container query)."
+    },
+    {
+      "name": "emptyValue",
+      "description": "Shown when description is null, undefined, or an empty string."
+    },
+    {
+      "name": "dividers",
+      "description": "Separators between pairs."
+    }
+  ],
+  "inherits": "HTML attributes of <dl>.",
+  "keyboard": [],
+  "accessibility": [
+    "Native dt/dd semantics.",
+    "Missing values are stated explicitly in text, never left blank."
+  ],
+  "responsive": [
+    "inline falls back to stacked below the container's minimum width; grid adapts its columns to the container."
+  ],
+  "customization": [
+    "className/style; label and body typography tokens."
+  ],
+  "commonMistakes": [
+    "Using emptyValue “—” without context in critical forms: prefer explicit text such as “Not specified”."
+  ],
+  "examples": [
+    {
+      "name": "Stacked",
+      "title": "Stacked"
+    },
+    {
+      "name": "Inline",
+      "title": "Inline with separators"
+    },
+    {
+      "name": "GridLayout",
+      "title": "Grid"
+    }
+  ],
+  "limits": []
+}

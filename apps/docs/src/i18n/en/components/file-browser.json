@@ -1,0 +1,63 @@
+{
+  "source": "22801a39fc9d",
+  "summary": "Folder navigation with breadcrumbs, file selection, and consumer-controlled previews.",
+  "whenToUse": [
+    "Browsing documents organized in folders."
+  ],
+  "whenNotToUse": [
+    "To upload local files use FileUpload; for a flat list use FileManager."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Name of the browser."
+    },
+    {
+      "name": "items",
+      "description": "Tree of files and folders with globally unique ids."
+    },
+    {
+      "name": "folderId / defaultFolderId / onFolderChange",
+      "description": "Controlled or initial folder; null means the root."
+    },
+    {
+      "name": "selectedIds / defaultSelectedIds / onSelectionChange",
+      "description": "File selection."
+    },
+    {
+      "name": "onOpenFile / renderPreview / renderActions",
+      "description": "Opening, preview, and actions provided by the consumer."
+    },
+    {
+      "name": "rootLabel / emptyState",
+      "description": "Root label and empty state."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab / Invio / Spazio",
+      "action": "Navigates folders, selects files, and opens previews."
+    }
+  ],
+  "accessibility": [
+    "Breadcrumbs, buttons, and checkboxes have accessible names; images use alt text provided by the consumer."
+  ],
+  "responsive": [
+    "Actions wrap and previews respect the available width."
+  ],
+  "customization": [
+    "Use renderPreview and renderActions to integrate the formats and operations you need."
+  ],
+  "commonMistakes": [
+    "Use unique ids across the whole tree; don't expect automatic file system access."
+  ],
+  "examples": [
+    {
+      "name": "Browser",
+      "title": "Folders and previews"
+    }
+  ],
+  "limits": [
+    "No built-in file system, remote loading, moving, or persistence."
+  ]
+}

@@ -1,0 +1,42 @@
+.draw {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--dc-space-4);
+  min-inline-size: 0;
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.header {
+  display: grid;
+  gap: var(--dc-space-1);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+  font-weight: var(--dc-font-weight-bold);
+}
+
+.description,
+.entryCount {
+  margin: 0;
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.entryCount {
+  color: var(--dc-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .draw {
+    border-color: CanvasText;
+  }
+}

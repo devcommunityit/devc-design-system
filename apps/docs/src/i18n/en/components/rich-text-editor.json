@@ -1,0 +1,240 @@
+{
+  "source": "749b55ededba",
+  "summary": "WYSIWYG editor for page content built on Tiptap: classic toolbar or Notion-style block mode with a “/” menu, bubble menu, and block handle. Shipped from the separate @dev-community/ui/editor entry point; RichTextContent renders saved HTML with the same typography.",
+  "whenToUse": [
+    "Writing articles, pages, event descriptions, or posts with headings, lists, tables, images, and links.",
+    "Comments or notes with light formatting (disable unneeded features with `features`).",
+    "Displaying already-saved content read-only with RichTextContent."
+  ],
+  "whenNotToUse": [
+    "Plain or multiline text without formatting: use TextArea.",
+    "Source code: use a dedicated code editor.",
+    "HTML email: use EmailBuilder, which produces markup compatible with email clients.",
+    "Critical bundles: the editor loads Tiptap/ProseMirror (import it only on the pages that need it, possibly with lazy())."
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "description": "Fixed (sticky) toolbar above the text, or block editor with a “/” menu, a bubble menu on selection, and a block handle."
+    },
+    {
+      "name": "value / defaultValue",
+      "description": "Controlled or initial content, as HTML or Tiptap JSON. In controlled mode the content is replaced only when the external value actually differs: the cursor does not reset on every keystroke."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives HTML (empty string if the editor is empty), JSON, and plain text on every change."
+    },
+    {
+      "name": "label / aria-label / aria-labelledby",
+      "description": "Accessible name of the editable area. Without label or aria-label, the localized text “Text editor” is used."
+    },
+    {
+      "name": "description / errorMessage",
+      "description": "Help and error text, linked with aria-describedby as in the other fields."
+    },
+    {
+      "name": "isInvalid / isRequired / isDisabled / isReadOnly",
+      "description": "Field states, reflected in aria-invalid, aria-required, aria-disabled, and aria-readonly. Toolbars are not shown in read-only mode."
+    },
+    {
+      "name": "necessityIndicator",
+      "description": "Required field indicator, as in TextField."
+    },
+    {
+      "name": "placeholder",
+      "description": "Text shown when the editor is empty. In the blocks variant, empty paragraphs show the “/” hint."
+    },
+    {
+      "name": "features",
+      "description": "Enables/disables groups: 'headings', 'lists', 'taskList', 'blockquote', 'codeBlock', 'link', 'image', 'table', 'align', 'highlight', 'horizontalRule'. Bold, italic, underline, strikethrough, and inline code are always available."
+    },
+    {
+      "name": "headingLevels",
+      "description": "Heading levels available in the toolbar, “/” menu, and shortcuts."
+    },
+    {
+      "name": "characterLimit",
+      "description": "Character limit enforced on input; shows the remaining characters and announces them politely near the limit."
+    },
+    {
+      "name": "showCount",
+      "description": "Live counter below the area. `true` is equivalent to 'characters'."
+    },
+    {
+      "name": "onImageUpload",
+      "description": "Enables pasting/dropping images and the upload button in the image dialog. Without it, the dialog asks only for a URL and alt text."
+    },
+    {
+      "name": "onImageUploadError",
+      "description": "Reports upload errors (paste, drop, or dialog)."
+    },
+    {
+      "name": "minHeight / maxHeight",
+      "description": "Height of the writing area; beyond maxHeight the content scrolls and the toolbar stays visible."
+    },
+    {
+      "name": "autoFocus",
+      "description": "Moves focus into the editor on mount."
+    },
+    {
+      "name": "onEditorReady",
+      "description": "Escape hatch to the Tiptap instance (commands, events, custom extensions). Also called if the editor is recreated."
+    },
+    {
+      "name": "onFocus / onBlur",
+      "description": "Focus and blur of the editable area."
+    },
+    {
+      "name": "name",
+      "description": "Adds a hidden input with the current HTML for submission with native forms."
+    },
+    {
+      "name": "id / className",
+      "description": "id of the editable area; class on the outer container (ref to the container)."
+    },
+    {
+      "name": "RichTextContent html",
+      "description": "HTML to display with the editor typography. It is inserted as-is: it must be trusted or already sanitized."
+    },
+    {
+      "name": "RichTextContent json",
+      "description": "Safe alternative: the JSON is converted with the editor schema (generateHTML), so unexpected elements and attributes are discarded. Client-side rendering only."
+    },
+    {
+      "name": "RichTextContent sanitize",
+      "description": "Sanitization function (e.g. DOMPurify) applied to `html` before rendering."
+    },
+    {
+      "name": "RichTextContent as",
+      "description": "Container element."
+    }
+  ],
+  "inherits": "RichTextContent also accepts the container’s HTML attributes (className, style, id, aria-*). isSafeRichTextUrl(url, kind?) exposes the URL validation used by links and images.",
+  "keyboard": [
+    {
+      "keys": "Mod+B / Mod+I / Mod+U",
+      "action": "Bold, italic, underline (Mod = Cmd on macOS, Ctrl elsewhere)."
+    },
+    {
+      "keys": "Mod+Maiusc+S / Mod+E / Mod+Maiusc+H",
+      "action": "Strikethrough, inline code, highlight."
+    },
+    {
+      "keys": "Mod+K",
+      "action": "Opens the link popover (URL, open in new tab, remove)."
+    },
+    {
+      "keys": "Mod+Alt+0 / Mod+Alt+1…6",
+      "action": "Paragraph / heading of the given level (if enabled)."
+    },
+    {
+      "keys": "Mod+Maiusc+7 / 8 / 9",
+      "action": "Numbered list, bulleted list, checklist."
+    },
+    {
+      "keys": "Mod+Maiusc+B / Mod+Alt+C",
+      "action": "Blockquote / code block."
+    },
+    {
+      "keys": "Mod+Maiusc+L / E / R / J",
+      "action": "Align start, center, end, justify (logical: respects RTL)."
+    },
+    {
+      "keys": "Mod+Z / Mod+Maiusc+Z",
+      "action": "Undo / redo."
+    },
+    {
+      "keys": "Tab / Maiusc+Tab",
+      "action": "In lists: increases/decreases indentation; in tables: next/previous cell. Elsewhere Tab leaves the editor."
+    },
+    {
+      "keys": "Alt+F10",
+      "action": "Moves focus to the toolbar (toolbar variant), to the bubble menu if there is a selection, otherwise opens the action menu of the current block."
+    },
+    {
+      "keys": "Frecce / Home / Fine (toolbar)",
+      "action": "Roving-focus navigation between controls; Esc returns to the text, preserving the selection."
+    },
+    {
+      "keys": "/",
+      "action": "Blocks variant: opens the block insertion menu; keep typing to filter."
+    },
+    {
+      "keys": "Freccia su/giù, Home/Fine, Invio o Tab, Esc (menu “/”)",
+      "action": "Moves the active option, inserts the block, closes the menu."
+    },
+    {
+      "keys": "Mod+Alt+Freccia su / giù",
+      "action": "Moves the current block up/down (alternative to dragging)."
+    }
+  ],
+  "accessibility": [
+    "The editable area has role=\"textbox\" and aria-multiline=\"true\", is labelled by the label and described by the description, error, and counter; it exposes aria-invalid, aria-required, aria-readonly, and aria-disabled.",
+    "Toolbars use the library’s Toolbar (roving focus); formatting buttons are ToggleButtons with aria-pressed reflecting the active marks; every control has a tooltip showing its shortcut.",
+    "The “/” menu is a listbox: the editor exposes aria-expanded, aria-controls, and aria-activedescendant, and a live region announces the active option and the “No results” state.",
+    "Every pointer action has a keyboard alternative: block menu with Alt+F10, moving with Mod+Alt+arrows, links with Mod+K.",
+    "Images always have an alt text field; links accept only http(s), mailto, tel, and relative URLs, and those opening in a new tab get rel=\"noopener noreferrer\".",
+    "Checklist checkboxes have a localized accessible name.",
+    "Respects prefers-reduced-motion and forced-colors (borders and focus remain visible)."
+  ],
+  "responsive": [
+    "The toolbar wraps on narrow screens; controls have targets of at least 32px; the bubble menu scrolls horizontally if it doesn’t fit.",
+    "The bubble menu and “/” menu are positioned with floating-ui and stay within the viewport (flip/shift and max height).",
+    "Images and tables adapt to the width; wide tables scroll horizontally.",
+    "Logical properties only: layout, alignment, and the block handle work in RTL."
+  ],
+  "customization": [
+    "Semantic tokens for surface, borders, text, code (mono font), highlight, and focus; the dark theme works automatically.",
+    "minHeight/maxHeight control the writing area; className applies to the outer container.",
+    "onEditorReady gives access to the Tiptap instance for commands or integrations (e.g. autosave).",
+    "RichTextContent shares the editor’s typography CSS: saved content looks identical."
+  ],
+  "commonMistakes": [
+    "Passing untrusted `html` to RichTextContent without `sanitize`: prefer `json` or server-side sanitization.",
+    "Regenerating `value` from `html` on every render in controlled mode with transformations (e.g. trim): the editor receives a different value and replaces the content.",
+    "Treating `characterLimit` as validation: it must be repeated server-side.",
+    "Importing the editor from @dev-community/ui: use @dev-community/ui/editor.",
+    "Leaving the alt text of informative images empty."
+  ],
+  "examples": [
+    {
+      "name": "Classic",
+      "title": "Classic toolbar"
+    },
+    {
+      "name": "Blocks",
+      "title": "Notion-style block editor",
+      "description": "Type “/” to insert blocks, select text for the bubble menu, use the handle or Alt+F10 for block actions."
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled value with live HTML"
+    },
+    {
+      "name": "CharacterLimit",
+      "title": "Character limit and counter"
+    },
+    {
+      "name": "ReadOnlyContent",
+      "title": "Read-only and RichTextContent"
+    },
+    {
+      "name": "ImageUpload",
+      "title": "Simulated image upload",
+      "description": "Paste, drop, or upload a file: the upload is simulated with a data URL."
+    },
+    {
+      "name": "Minimal",
+      "title": "Comment box with reduced features"
+    }
+  ],
+  "limits": [
+    "No sanitizer included: `RichTextContent html` is inserted as-is; use `json` or `sanitize`.",
+    "`RichTextContent json` is rendered client-side only (in SSR the container is empty until hydration).",
+    "Dragging the handle uses native HTML5 drag: it does not work with touch; use the block menu or Mod+Alt+arrows.",
+    "Left/right alignments pasted from other sources are ignored (only start/center/end/justify are supported).",
+    "No real-time collaboration, comments, mentions, or version history.",
+    "Tables cannot be resized with the mouse; rows and columns are managed from the table menu."
+  ]
+}

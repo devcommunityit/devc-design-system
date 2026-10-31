@@ -1,0 +1,80 @@
+{
+  "source": "df288735a78e",
+  "summary": "Relative time (“3 minuti fa”, “domani”) in a semantic <time datetime> element, formatted with Intl.RelativeTimeFormat according to the locale; the absolute date is in the title.",
+  "whenToUse": [
+    "Recent activity, notifications, comments, last updated."
+  ],
+  "whenNotToUse": [
+    "Deadlines, appointments or legal data: show the absolute date and time.",
+    "Dates without time (birthdays, calendar days): use Intl.DateTimeFormat on a CalendarDate."
+  ],
+  "props": [
+    {
+      "name": "date",
+      "description": "Instant: Date, ISO 8601 string with offset, or epoch milliseconds."
+    },
+    {
+      "name": "now",
+      "description": "Reference instant: deterministic output with no updates (tests, SSR, lists)."
+    },
+    {
+      "name": "updateInterval",
+      "description": "Update interval in ms when now is not set; 0 disables it."
+    },
+    {
+      "name": "numeric",
+      "description": "“yesterday” or “1 day ago”."
+    },
+    {
+      "name": "formatStyle",
+      "description": "Unit length."
+    },
+    {
+      "name": "absoluteFormat",
+      "description": "Format of the absolute date in the title."
+    },
+    {
+      "name": "selectRelativeUnit(diffMs)",
+      "description": "Pure function that picks the unit (e.g. 90 minutes → 2 hours)."
+    }
+  ],
+  "inherits": "HTML attributes of <time> (className, style, title, data-*); ref on the element.",
+  "keyboard": [],
+  "accessibility": [
+    "The relative text is read normally; datetime holds the ISO instant for machines and assistive technologies.",
+    "The title isn't accessible to everyone (touch, keyboard): if the exact time matters, also show it as text.",
+    "Periodic updates are not announced (no live region) to avoid disruption."
+  ],
+  "responsive": [
+    "Inline text; formatStyle=\"short\" reduces length in tight spaces."
+  ],
+  "customization": [
+    "Locale from LocaleProvider; styles via className."
+  ],
+  "commonMistakes": [
+    "Passing ISO strings without an offset (“2024-06-12T10:00”): they are interpreted in the browser's time zone.",
+    "Computing relative time on the server without now: the text differs between server and client (the hydration warning is suppressed, but the text changes)."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Last updated"
+    },
+    {
+      "name": "PastAndFuture",
+      "title": "Past and future"
+    },
+    {
+      "name": "EnglishShort",
+      "title": "English, short style"
+    },
+    {
+      "name": "Live",
+      "title": "Automatic updates"
+    }
+  ],
+  "limits": [
+    "Months and years are approximated (30 and 365 days).",
+    "With an invalid date it renders nothing and logs a warning in development."
+  ]
+}

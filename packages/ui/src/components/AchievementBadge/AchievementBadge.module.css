@@ -1,0 +1,238 @@
+.achievement {
+  --_metal-a: var(--dc-color-action-primary);
+  --_metal-b: var(--dc-color-accent-default);
+  --_size: 4.5rem;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  color: var(--dc-color-text-primary);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.achievement[data-layout='inline'] {
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.achievement[data-size='sm'] {
+  --_size: 3rem;
+
+  gap: var(--dc-space-2);
+}
+
+.achievement[data-size='lg'] {
+  --_size: 6rem;
+
+  gap: var(--dc-space-4);
+}
+
+/* Metallic tiers derived from semantic tokens (no dedicated metal palette). */
+.achievement[data-tier='bronze'] {
+  --_metal-a: color-mix(in oklch, var(--dc-color-feedback-warning) 75%, var(--dc-color-feedback-danger));
+  --_metal-b: color-mix(in oklch, var(--dc-color-feedback-warning) 55%, var(--dc-color-text-primary));
+}
+
+.achievement[data-tier='silver'] {
+  --_metal-a: color-mix(in oklch, var(--dc-color-border-strong) 60%, var(--dc-color-surface-default));
+  --_metal-b: var(--dc-color-text-muted);
+}
+
+.achievement[data-tier='gold'] {
+  --_metal-a: color-mix(in oklch, var(--dc-color-feedback-warning) 45%, var(--dc-color-feedback-warning-border));
+  --_metal-b: var(--dc-color-feedback-warning);
+}
+
+.achievement[data-tier='platinum'] {
+  --_metal-a: color-mix(in oklch, var(--dc-color-feedback-info-border) 60%, var(--dc-color-surface-default));
+  --_metal-b: color-mix(in oklch, var(--dc-color-data-6) 45%, var(--dc-color-text-muted));
+}
+
+.medal {
+  position: relative;
+  display: grid;
+  flex: none;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  filter: drop-shadow(0 0.25rem 0.5rem color-mix(in srgb, var(--_metal-b) 35%, transparent));
+}
+
+.face,
+.icon {
+  display: grid;
+  place-items: center;
+  clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+}
+
+.achievement[data-shape='circle'] .face,
+.achievement[data-shape='circle'] .icon {
+  border-radius: var(--dc-radius-full);
+  clip-path: none;
+}
+
+.face {
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--_metal-b);
+  background-image: linear-gradient(in oklch 135deg, var(--_metal-a), var(--_metal-b) 55%, var(--_metal-a));
+}
+
+.achievement[data-tier='brand'] .face {
+  background-image: var(--dc-gradient-accent-sheen);
+}
+
+.icon {
+  inline-size: 80%;
+  block-size: 80%;
+  background-color: color-mix(in srgb, var(--_metal-a) 22%, var(--dc-color-surface-default));
+  color: color-mix(in srgb, var(--_metal-b) 70%, var(--dc-color-text-primary));
+}
+
+.icon > svg {
+  inline-size: 45%;
+  block-size: 45%;
+}
+
+.lock {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  inline-size: max(1.25rem, 36%);
+  block-size: max(1.25rem, 36%);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-default);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-secondary);
+}
+
+.lock > svg {
+  inline-size: 55%;
+  block-size: 55%;
+}
+
+.achievement[data-locked] .medal {
+  filter: none;
+}
+
+.achievement[data-locked] .face {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.achievement[data-layout='inline'] .body {
+  align-items: flex-start;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.achievement[data-size='sm'] .title {
+  font-size: var(--dc-typography-label-lg-size);
+  line-height: var(--dc-typography-label-lg-line-height);
+}
+
+.achievement[data-size='lg'] .title {
+  font-size: var(--dc-typography-title-md-size);
+  line-height: var(--dc-typography-title-md-line-height);
+}
+
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  gap: var(--dc-space-1);
+}
+
+.tier {
+  border-color: color-mix(in srgb, var(--_metal-b) 60%, transparent);
+}
+
+.description,
+.earned {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.earned {
+  color: var(--dc-color-text-muted);
+}
+
+.progress {
+  align-self: stretch;
+  margin-block-start: var(--dc-space-1);
+}
+
+.group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--_min, 9rem)), 1fr));
+  gap: var(--dc-space-6) var(--dc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  min-inline-size: 0;
+}
+
+@media (forced-colors: active) {
+  .medal {
+    filter: none;
+  }
+
+  .face,
+  .icon,
+  .achievement[data-shape='circle'] .face,
+  .achievement[data-shape='circle'] .icon {
+    border-radius: var(--dc-radius-full);
+    clip-path: none;
+  }
+
+  .achievement[data-tier] .face {
+    border: var(--dc-border-width-thick) solid CanvasText;
+    background-image: none;
+  }
+
+  .achievement[data-locked] .face {
+    border-style: dashed;
+  }
+
+  .lock {
+    border-color: CanvasText;
+  }
+}
+
+@media print {
+  .medal {
+    filter: none;
+  }
+
+  .face {
+    print-color-adjust: exact;
+  }
+}

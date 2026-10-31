@@ -1,0 +1,97 @@
+.list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-1);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--dc-color-text-primary);
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-control);
+  background-color: var(--dc-color-surface-default);
+}
+
+.item[data-winner] {
+  border-color: var(--dc-color-feedback-success-border);
+  background-color: var(--dc-color-feedback-success-surface);
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+}
+
+.identity {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.name {
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.detail,
+.empty {
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.entryNumber {
+  flex: none;
+  color: var(--dc-color-text-secondary);
+  font-family: var(--dc-font-family-mono);
+  font-size: var(--dc-typography-body-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.winner {
+  flex: none;
+  padding: var(--dc-space-0-5) var(--dc-space-2);
+  border-radius: var(--dc-radius-full);
+  background-color: var(--dc-color-feedback-success-foreground);
+  color: var(--dc-color-feedback-success-surface);
+  font-size: var(--dc-typography-label-sm-size);
+  line-height: var(--dc-typography-label-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.empty {
+  padding: var(--dc-space-3);
+  border: var(--dc-border-width-thin) dashed var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-control);
+}
+
+@media (forced-colors: active) {
+  .item,
+  .empty {
+    border-color: CanvasText;
+  }
+
+  .item[data-winner] {
+    border-color: Highlight;
+    border-width: var(--dc-border-width-thick);
+  }
+
+  .winner {
+    border: var(--dc-border-width-thin) solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+}

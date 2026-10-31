@@ -1,0 +1,93 @@
+{
+  "source": "568ffab641ba",
+  "summary": "Application layout for portals: skip link, header, responsive sidebar (drawer below 1024 px), main area and footer. Does not depend on any router.",
+  "whenToUse": [
+    "Portals, back offices and dashboards with persistent navigation."
+  ],
+  "whenNotToUse": [
+    "Simple public pages: use Header + Container + Footer without Sidebar."
+  ],
+  "props": [
+    {
+      "name": "header / sidebar / footer",
+      "description": "Slots; typically Header, Sidebar and Footer."
+    },
+    {
+      "name": "isSidebarOpen / defaultSidebarOpen / onSidebarOpenChange",
+      "description": "State of the navigation drawer on compact screens (controlled or uncontrolled)."
+    },
+    {
+      "name": "sidebarTitle",
+      "description": "Title of the mobile drawer."
+    },
+    {
+      "name": "mainId / mainProps",
+      "description": "id of the <main> (skip link target) and other props."
+    },
+    {
+      "name": "Header: brand, navigation, actions, sticky",
+      "description": "Header slots; inside an AppShell with a Sidebar, the menu button appears below 1024 px."
+    },
+    {
+      "name": "Sidebar: sections, currentId, onNavigate, footer",
+      "description": "Link groups (optionally collapsible), current item (aria-current=\"page\"), navigation callback."
+    },
+    {
+      "name": "Footer: columns, brand, legal, legalLinks, social, variant",
+      "description": "Link columns, brand, legal text, legal links and social links in the bottom row; “compact” shows a single row. See also the SiteHeader and Footer page."
+    }
+  ],
+  "inherits": "HTML attributes of the respective elements (div, header, nav, footer); ref forwarded.",
+  "keyboard": [
+    {
+      "keys": "Tab (primo)",
+      "action": "Shows the “Skip to content” link."
+    },
+    {
+      "keys": "Enter / Spazio sul pulsante menu",
+      "action": "Opens the navigation drawer on compact screens."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the drawer and returns focus to the menu button."
+    }
+  ],
+  "accessibility": [
+    "Landmarks: banner, navigation (named), main, contentinfo.",
+    "The menu button exposes aria-expanded and aria-controls; the drawer traps focus and can be closed with Esc.",
+    "Navigation items are real <a href> links; the current item has aria-current=\"page\".",
+    "The <main> has tabIndex=-1 to receive focus from the skip link."
+  ],
+  "responsive": [
+    "Below 1024 px the Sidebar becomes a drawer (real mobile navigation) and the Header navigation is hidden when a Sidebar is present.",
+    "The breakpoint is exported as APP_SHELL_COMPACT_QUERY."
+  ],
+  "customization": [
+    "Client routing: wrap the app in react-aria-components RouterProvider to use the consumer's router.",
+    "useAppShell() exposes the state for custom headers."
+  ],
+  "commonMistakes": [
+    "Adding a second <main> inside the content.",
+    "Handling navigation with onNavigate without href: links must remain openable in a new tab."
+  ],
+  "examples": [
+    {
+      "name": "PortalShell",
+      "title": "Portal shell",
+      "description": "Links only update the example's local state."
+    },
+    {
+      "name": "ControlledSidebar",
+      "title": "Controlled drawer and collapsible sections",
+      "description": "isSidebarOpen + onSidebarOpenChange, Reports section collapsed on start, a disabled item and a Sidebar footer; useAppShell() shows the button only in the compact layout."
+    },
+    {
+      "name": "WithoutSidebar",
+      "title": "Public site without Sidebar",
+      "description": "Header with NavigationMenu and a sign-in action, Footer with link columns."
+    }
+  ],
+  "limits": [
+    "The switch to a drawer uses matchMedia on the viewport, not the container width."
+  ]
+}

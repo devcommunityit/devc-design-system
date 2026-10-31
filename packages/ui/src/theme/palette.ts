@@ -16,6 +16,7 @@ export type PaletteName =
   | 'warning'
   | 'success'
   | 'info'
+  | 'data-2'
   | 'data-3'
   | 'data-4'
   | 'data-5'
@@ -30,6 +31,7 @@ export const PALETTE_NAMES: readonly PaletteName[] = [
   'warning',
   'success',
   'info',
+  'data-2',
   'data-3',
   'data-4',
   'data-5',
@@ -71,6 +73,9 @@ export type Scheme = 'light' | 'dark';
 
 export type TonalPalettes = Record<PaletteName, (tone: number) => string>;
 
+/** Minimum HCT hue distance between chart series 1 (brand) and 2 (tertiary). */
+const MIN_DATA_HUE_DISTANCE = 30;
+
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
 const HEX_RE = /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i;
@@ -110,6 +115,11 @@ export function createTonalPalettes(seeds: PaletteSeeds, rules: PaletteRules): T
     ? paletteFromHex(seeds.tertiary, tertiaryChroma)
     : TonalPalette.fromHueAndChroma((brand.hue + rules.tertiary.hueShift + 360) % 360, tertiaryChroma(brand.chroma));
   const fixed = (hex: string) => paletteFromHex(hex);
+  // Series 2 follows the tertiary accent, unless it shares the brand hue (single-colour themes): then rotate it so charts stay distinguishable.
+  const hueDistance = Math.abs(((tertiary.hue - brand.hue + 540) % 360) - 180);
+  const data2 = hueDistance < MIN_DATA_HUE_DISTANCE
+    ? TonalPalette.fromHueAndChroma((brand.hue + rules.tertiary.hueShift + 360) % 360, rules.data.chroma)
+    : tertiary;
   const dataHue = (i: 0 | 1 | 2 | 3) => TonalPalette.fromHueAndChroma((brand.hue + rules.data.hueShifts[i] + 360) % 360, rules.data.chroma);
   const palettes: Record<PaletteName, TonalPalette> = {
     brand,
@@ -120,6 +130,7 @@ export function createTonalPalettes(seeds: PaletteSeeds, rules: PaletteRules): T
     warning: fixed(seeds.warning),
     success: fixed(seeds.success),
     info: fixed(seeds.info),
+    'data-2': data2,
     'data-3': dataHue(0),
     'data-4': dataHue(1),
     'data-5': dataHue(2),

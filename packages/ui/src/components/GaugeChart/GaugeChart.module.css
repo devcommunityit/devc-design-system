@@ -1,0 +1,130 @@
+/* Shared plot, fill and gradient styles live in ../charts-internal/Chart.module.css. */
+.gaugeChart {
+  inline-size: 100%;
+}
+
+.meter {
+  min-inline-size: 0;
+}
+
+.svg {
+  max-inline-size: var(--_size);
+  block-size: auto;
+  margin-inline: auto;
+}
+
+.track {
+  fill: var(--dc-color-surface-subtle);
+}
+
+.band {
+  fill: var(--dc-color-border-subtle);
+}
+
+.band[data-tone='success'] {
+  fill: var(--dc-color-feedback-success);
+}
+
+.band[data-tone='warning'] {
+  fill: var(--dc-color-feedback-warning);
+}
+
+.band[data-tone='danger'] {
+  fill: var(--dc-color-feedback-danger);
+}
+
+.sweep {
+  transform-box: view-box;
+  transform-origin: var(--_cx) var(--_cy);
+}
+
+.targetTick {
+  stroke: var(--dc-color-text-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.targetLabel {
+  fill: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.targetValue {
+  fill: var(--dc-color-text-primary);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.centerValue {
+  fill: var(--dc-color-text-primary);
+  font-size: var(--dc-typography-title-lg-size);
+  font-weight: var(--dc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.centerLabel {
+  fill: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-label-md-size);
+}
+
+.scaleLabel {
+  fill: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-label-sm-size);
+  font-variant-numeric: tabular-nums;
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .svg .value {
+  filter: drop-shadow(0 0.25rem 0.5rem color-mix(in srgb, var(--_series) 45%, transparent));
+}
+
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .band {
+  fill-opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sweep {
+    animation: gauge-sweep var(--dc-motion-duration-slow) var(--dc-motion-easing-decelerate);
+  }
+}
+
+@keyframes gauge-sweep {
+  from {
+    transform: rotate(var(--_from));
+  }
+}
+
+@media (forced-colors: active) {
+  .svg * {
+    filter: none !important;
+  }
+
+  .track {
+    fill: Canvas;
+    stroke: CanvasText;
+    stroke-width: 1;
+  }
+
+  .band,
+  .band[data-tone] {
+    fill: Canvas;
+    stroke: CanvasText;
+    stroke-width: 1;
+  }
+
+  .gaugeChart .svg .value {
+    fill: Highlight;
+    stroke: CanvasText;
+    stroke-width: 1;
+  }
+
+  .targetTick {
+    stroke: CanvasText;
+  }
+
+  .targetLabel,
+  .centerValue,
+  .centerLabel,
+  .scaleLabel {
+    fill: CanvasText;
+  }
+}

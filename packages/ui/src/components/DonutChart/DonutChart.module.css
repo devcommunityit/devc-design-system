@@ -18,6 +18,11 @@
   stroke-width: 2;
 }
 
+:is([data-chart-appearance='vivid'], :where([data-dc-look='expressive']) [data-chart-appearance='auto']) .svg .slice {
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
 .centerValue {
   fill: var(--dc-color-text-primary);
   font-size: var(--dc-typography-title-lg-size);

@@ -1,0 +1,58 @@
+{
+  "source": "2d5f6c76e030",
+  "summary": "Presents a winner already provided by the application, or an empty-state message.",
+  "whenToUse": [
+    "Prominently displaying the result of a draw.",
+    "Pairing with RaffleDraw to show the winner's details."
+  ],
+  "whenNotToUse": [
+    "Choosing or animating a random selection.",
+    "Managing participant data or persisting the outcome."
+  ],
+  "props": [
+    {
+      "name": "winner",
+      "description": "External winner data; null shows the empty state."
+    },
+    {
+      "name": "heading",
+      "description": "Section heading."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level."
+    },
+    {
+      "name": "emptyMessage",
+      "description": "Message shown when winner is null."
+    }
+  ],
+  "inherits": "HTML attributes of <section>. RaffleWinner: id, name, entryNumber?, detail?, avatar?.",
+  "keyboard": [],
+  "accessibility": [
+    "The section is named by its heading and the empty message uses role=status.",
+    "The avatar or icon is decorative; the winner's name is text."
+  ],
+  "responsive": [
+    "Long names and details wrap without shrinking the icon."
+  ],
+  "customization": [
+    "Uses the theme's --dc-* tokens; className and HTML attributes are forwarded."
+  ],
+  "commonMistakes": [
+    "Using WinnerReveal as a draw engine: the winner must be passed in by the caller."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Winner"
+    },
+    {
+      "name": "Empty",
+      "title": "No result"
+    }
+  ],
+  "limits": [
+    "Does not select or persist winners."
+  ]
+}

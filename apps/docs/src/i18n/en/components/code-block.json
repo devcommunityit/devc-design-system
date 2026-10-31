@@ -1,0 +1,92 @@
+{
+  "source": "c2609a79c693",
+  "summary": "Multi-line code block with a title, a “word wrap” button, and copy to clipboard.",
+  "whenToUse": [
+    "Documentation, configuration snippets, command output."
+  ],
+  "whenNotToUse": [
+    "Short snippets within text: use Code."
+  ],
+  "props": [
+    {
+      "name": "code",
+      "description": "Code text (not interpreted as HTML)."
+    },
+    {
+      "name": "language",
+      "description": "Language label, displayed and used in the accessible name."
+    },
+    {
+      "name": "title",
+      "description": "Title (e.g. file name)."
+    },
+    {
+      "name": "copyable",
+      "description": "Shows the Copy button (navigator.clipboard)."
+    },
+    {
+      "name": "defaultWrap",
+      "description": "Initial word wrap state."
+    },
+    {
+      "name": "maxHeight",
+      "description": "Maximum height before scrolling."
+    },
+    {
+      "name": "onCopyCode",
+      "description": "Called after a successful copy."
+    },
+    {
+      "name": "variant",
+      "description": "Appearance: `window` shows a dark editor window with three decorative dots, ideal for landing pages and heroes."
+    }
+  ],
+  "inherits": "HTML attributes of <div>; ref to the container.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches the buttons and then the code area (scrollable with the arrow keys)."
+    },
+    {
+      "keys": "Enter / Spazio",
+      "action": "Activates “Word wrap” or “Copy”."
+    }
+  ],
+  "accessibility": [
+    "The code area is a named region, focusable for keyboard scrolling.",
+    "The copy result (success or error) is announced in a live region.",
+    "“Word wrap” is a toggle with aria-pressed.",
+    "In the window variant the three dots are decorative (aria-hidden)."
+  ],
+  "responsive": [
+    "Below 640 px the “Copy” label is kept only for screen readers; horizontal scrolling is local to the block."
+  ],
+  "customization": [
+    "Selectors .dc-code-block-code-block[data-wrap], .dc-code-block-code-block[data-variant=\"window\"], .dc-code-block-pre, .dc-code-block-dots."
+  ],
+  "commonMistakes": [
+    "Relying on copy in insecure contexts (http): the Clipboard API may be unavailable and an error is shown."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic example"
+    },
+    {
+      "name": "LongLines",
+      "title": "Long lines and maximum height"
+    },
+    {
+      "name": "NotCopyable",
+      "title": "Without copy"
+    },
+    {
+      "name": "Window",
+      "title": "Editor window",
+      "description": "`window` variant with a dark bar and dots, as in landing page snippets."
+    }
+  ],
+  "limits": [
+    "No built-in syntax highlighting (to avoid adding dependencies); the consumer can preprocess the code."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "source": "8596b8107fe3",
+  "summary": "Displays a saved payment method using masked data only.",
+  "whenToUse": [
+    "Listing a payment method with brand, last four digits and expiration date."
+  ],
+  "whenNotToUse": [
+    "Collecting card data or processing payments."
+  ],
+  "props": [
+    {
+      "name": "brand / lastFour / expiry",
+      "description": "Masked method data."
+    },
+    {
+      "name": "selected",
+      "description": "Indicates the controlled current method."
+    },
+    {
+      "name": "onSelect / onRemove",
+      "description": "Actions delegated to the caller."
+    }
+  ],
+  "inherits": "HTML attributes of <article>.",
+  "keyboard": [
+    {
+      "keys": "Tab, Invio, Spazio",
+      "action": "Reaches and activates the available actions."
+    }
+  ],
+  "accessibility": [
+    "Actions are native design system buttons.",
+    "The interface shows only the last four digits; it does not accept full card data."
+  ],
+  "responsive": [
+    "Details and actions wrap in narrow containers."
+  ],
+  "customization": [
+    "Composed with Button and --dc-* tokens."
+  ],
+  "commonMistakes": [
+    "Passing or requesting the PAN, CVV or other full card data."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Masked saved method"
+    }
+  ],
+  "limits": [
+    "Does not store or process payment data."
+  ]
+}

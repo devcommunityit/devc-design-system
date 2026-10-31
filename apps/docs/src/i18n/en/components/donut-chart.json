@@ -1,0 +1,112 @@
+{
+  "source": "34de77a3f3fa",
+  "summary": "SVG donut chart with the total in the center, a legend with values and percentages, keyboard navigation between slices, and an accessible data table.",
+  "whenToUse": [
+    "Showing the shares of a single total with few parts (ideally 2–6).",
+    "Dashboard summaries where the total matters as much as the breakdown."
+  ],
+  "whenNotToUse": [
+    "Comparing similar values or many categories: use BarChart (lengths are easier to compare than angles).",
+    "Trends over time: use LineChart.",
+    "Negative values or values that don't add up to a meaningful total."
+  ],
+  "props": [
+    {
+      "name": "data",
+      "description": "Slices clockwise from 12 o'clock; negative values count as 0."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Format of the values and the total in the current locale; percentages always use Intl with style percent."
+    },
+    {
+      "name": "size",
+      "description": "Maximum diameter in px; the chart shrinks with its container."
+    },
+    {
+      "name": "thickness",
+      "description": "Ring thickness in px."
+    },
+    {
+      "name": "centerLabel",
+      "description": "Label below the total and in the total row of the table."
+    },
+    {
+      "name": "showLegend",
+      "description": "Legend with the value and percentage of each slice."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses gradients, rounded shapes, and glows with the same theme colors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area, then to the table button."
+    },
+    {
+      "keys": "Frecce",
+      "action": "Next/previous slice (wraps around): highlights the slice and announces its label, value, and percentage."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last slice."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> with <figcaption>; focusable role=\"group\" area with a hint and aria-live=\"polite\" announcements.",
+    "Slices are distinguishable without color (distinct textures repeated in the legend), and the legend always shows values and percentages as text.",
+    "Data table with a \"Value\" column and a total row.",
+    "In forced-colors mode, slices become Canvas with a CanvasText border and texture; the active slice has a Highlight border."
+  ],
+  "responsive": [
+    "SVG with viewBox: scales up to size px while preserving its aspect ratio.",
+    "Entry animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) paints with gradients between --dc-color-data-N and --dc-color-accent-default; it falls back to flat in forced-colors mode.",
+    "Colors: --dc-color-data-1…6 (cycled); track --dc-color-surface-subtle.",
+    "Stable selectors: .dc-donut-chart-donutChart (active slice: g[data-active]), .dc-donut-chart-centerValue, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "Using more than 6 slices: colors repeat and angles become unreadable; group minor items into \"Other\".",
+    "Showing only percentages without the total."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Currency",
+      "title": "Currency and center label"
+    },
+    {
+      "name": "InCard",
+      "title": "In a card"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Gradients and glows with the theme colors."
+    }
+  ],
+  "limits": [
+    "No labels on slices: values are in the legend, the active readout, and the table.",
+    "Beyond 6 slices, colors and textures repeat."
+  ]
+}

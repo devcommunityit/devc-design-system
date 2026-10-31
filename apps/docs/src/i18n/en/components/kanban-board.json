@@ -1,0 +1,98 @@
+{
+  "source": "a6f4634ebe67",
+  "summary": "Kanban board with drag & drop between columns, card reordering, an optional status selector and non-drag alternative controls.",
+  "whenToUse": [
+    "Visual workflows with a limited number of columns and cards.",
+    "Task management when users must be able to move cards without dragging."
+  ],
+  "whenNotToUse": [
+    "Very long lists or tables: prefer DataTable or a virtualized list."
+  ],
+  "props": [
+    {
+      "name": "aria-label",
+      "description": "Accessible name of the board region."
+    },
+    {
+      "name": "columns / defaultColumns",
+      "description": "Controlled or initial columns; each column contains its own cards."
+    },
+    {
+      "name": "onColumnsChange",
+      "description": "Receives the new state after a card is moved."
+    },
+    {
+      "name": "onCardMove",
+      "description": "Identifies the moved card, the previous and new columns and positions."
+    },
+    {
+      "name": "showStatusSelect",
+      "description": "Shows a selector to move a card directly to any column. The column a card belongs to represents its status."
+    },
+    {
+      "name": "renderCard",
+      "description": "Custom card content; the move controls remain managed by the component."
+    },
+    {
+      "name": "emptyState",
+      "description": "Content shown in empty columns."
+    },
+    {
+      "name": "className",
+      "description": "CSS class applied to the board container."
+    }
+  ],
+  "inherits": "KanbanCard includes required id and title, an optional ReactNode description and optional string[] labels. KanbanColumn includes id, title, an optional description and cards.",
+  "keyboard": [
+    {
+      "keys": "Tab / Shift+Tab",
+      "action": "Reaches each card's move actions."
+    },
+    {
+      "keys": "Invio sulla maniglia, Tab, frecce, Invio",
+      "action": "Starts dragging, picks the column and position, and drops. Esc cancels."
+    },
+    {
+      "keys": "Enter / Spazio",
+      "action": "Triggers the action and moves the card to the indicated adjacent column; focus stays on the moved card."
+    }
+  ],
+  "accessibility": [
+    "The board is a named region; each column is a section with a heading and a list of cards.",
+    "Each action has an accessible name specifying the card and the destination column.",
+    "Drag & drop via React Aria: pointer, touch and keyboard, insertion indicators and accessible announcements.",
+    "Move buttons and the optional selector are non-drag alternatives."
+  ],
+  "responsive": [
+    "Columns scroll horizontally on narrow viewports; long content wraps."
+  ],
+  "customization": [
+    "Use renderCard to customize the card content and className for external styling."
+  ],
+  "commonMistakes": [
+    "Using unstable or duplicate ids for columns and cards.",
+    "Expecting automatic persistence: save columns in the consumer via onColumnsChange."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Initial board"
+    },
+    {
+      "name": "Controlled",
+      "title": "Controlled state"
+    },
+    {
+      "name": "CustomCards",
+      "title": "Custom card content"
+    },
+    {
+      "name": "Workflow",
+      "title": "Full workflow with status changes"
+    }
+  ],
+  "limits": [
+    "No persistence or network handling; save the new state in the consumer.",
+    "No column reordering or virtualization. Dragging is limited to the same board."
+  ]
+}

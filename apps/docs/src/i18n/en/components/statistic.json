@@ -1,0 +1,85 @@
+{
+  "source": "8030e1809a32",
+  "summary": "KPI with a label, a value formatted with Intl, and an optional change.",
+  "whenToUse": [
+    "Dashboards and numeric summaries."
+  ],
+  "whenNotToUse": [
+    "Time series: use a chart (not included) or a table."
+  ],
+  "props": [
+    {
+      "name": "label",
+      "description": "Metric name."
+    },
+    {
+      "name": "value",
+      "description": "Numbers are formatted with Intl.NumberFormat in the current locale."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Currency, percent, decimals…"
+    },
+    {
+      "name": "trend",
+      "description": "Change; the direction is announced in (localized) words."
+    },
+    {
+      "name": "description",
+      "description": "Context (period, source)."
+    },
+    {
+      "name": "emptyValue",
+      "description": "For null/undefined value."
+    },
+    {
+      "name": "icon",
+      "description": "Decorative icon."
+    },
+    {
+      "name": "size",
+      "description": "Size of the value."
+    }
+  ],
+  "inherits": "HTML attributes of <div>.",
+  "keyboard": [],
+  "accessibility": [
+    "The trend direction is text, not just an arrow or color.",
+    "sentiment separates direction from judgment (e.g. a positive drop in churn)."
+  ],
+  "responsive": [
+    "Value with tabular figures; text wraps in narrow containers."
+  ],
+  "customization": [
+    "className/style; headline typography tokens."
+  ],
+  "commonMistakes": [
+    "Formatting numbers manually and ignoring the locale."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "Dashboard",
+      "title": "KPIs in a dashboard"
+    },
+    {
+      "name": "SizesAndStates",
+      "title": "Sizes, long labels, and missing data",
+      "description": "sm, md, and lg variants; a downward but positive trend, units of measure, and a missing value."
+    },
+    {
+      "name": "LocaleComparison",
+      "title": "Italian and English formatting",
+      "description": "The same value formatted with LocaleProvider it-IT and en-US, including compact notation."
+    },
+    {
+      "name": "LiveValue",
+      "title": "Controlled value",
+      "description": "The value lives in the example's state; the trend direction and text update with the buttons."
+    }
+  ],
+  "limits": []
+}

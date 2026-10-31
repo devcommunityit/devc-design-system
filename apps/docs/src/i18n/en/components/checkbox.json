@@ -1,0 +1,113 @@
+{
+  "source": "4c015828b257",
+  "summary": "Single checkbox (consents, boolean options) or a group of checkboxes for multiple choices with a shared label, description, and validation. Supports the indeterminate state for “select all”.",
+  "whenToUse": [
+    "Independent multiple choices among a few visible options (up to ~7).",
+    "Explicit consents that require confirmation before submitting.",
+    "Hierarchical selection with an indeterminate state."
+  ],
+  "whenNotToUse": [
+    "Settings that take effect immediately: use Switch.",
+    "A single choice among mutually exclusive options: use RadioGroup.",
+    "Many options or search: use MultiSelect."
+  ],
+  "props": [
+    {
+      "name": "children",
+      "description": "Checkbox label (clickable)."
+    },
+    {
+      "name": "isSelected / defaultSelected",
+      "description": "Controlled or uncontrolled mode."
+    },
+    {
+      "name": "onChange",
+      "description": "Receives the new state."
+    },
+    {
+      "name": "isIndeterminate",
+      "description": "Mixed state (aria-checked=\"mixed\"), usually for “select all”."
+    },
+    {
+      "name": "value",
+      "description": "Value submitted with the form and used by CheckboxGroup."
+    },
+    {
+      "name": "description / errorMessage",
+      "description": "Associated help text and error message."
+    },
+    {
+      "name": "isDisabled / isReadOnly / isInvalid / isRequired",
+      "description": "Control states."
+    },
+    {
+      "name": "CheckboxGroup: value / defaultValue / onChange",
+      "description": "Selected values of the group."
+    },
+    {
+      "name": "CheckboxGroup: label, description, errorMessage, validate",
+      "description": "Field anatomy and validation for the whole group."
+    },
+    {
+      "name": "CheckboxGroup: orientation",
+      "description": "Layout of the options (horizontal options wrap)."
+    }
+  ],
+  "inherits": "Props of the react-aria-components CheckboxField/CheckboxGroup (name, form, onFocus, onBlur…).",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus between checkboxes."
+    },
+    {
+      "keys": "Spazio",
+      "action": "Selects or deselects."
+    }
+  ],
+  "accessibility": [
+    "Visually hidden native checkbox input: native semantics and form submission.",
+    "The group is announced with its label; description and error are associated.",
+    "The indeterminate state uses a distinct icon (not color alone).",
+    "Clickable area extends to the label: target ≥ 24×24 px."
+  ],
+  "responsive": [
+    "Long labels wrap aligned with the text, not under the checkbox.",
+    "In horizontal orientation, options wrap on narrow viewports."
+  ],
+  "customization": [
+    "Size from density; colors from color.action.primary and color.border.strong.",
+    "States via [data-selected], [data-indeterminate], [data-invalid], [data-disabled]."
+  ],
+  "commonMistakes": [
+    "Using a checkbox for immediate actions (prefer Switch).",
+    "Omitting the visible label: provide at least aria-label.",
+    "Handling “select all” without isIndeterminate when the selection is partial."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Basic"
+    },
+    {
+      "name": "WithDescription",
+      "title": "With description"
+    },
+    {
+      "name": "States",
+      "title": "States"
+    },
+    {
+      "name": "SelectAll",
+      "title": "Select all (controlled, indeterminate)"
+    },
+    {
+      "name": "GroupValidation",
+      "title": "Group with validation"
+    },
+    {
+      "name": "Terms",
+      "title": "Required consent"
+    }
+  ],
+  "limits": []
+}

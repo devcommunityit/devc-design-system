@@ -55,6 +55,25 @@ describe('KpiCard', () => {
     expect(screen.getByText(/aumento/)).toBeInTheDocument();
   });
 
+  it('renders the variant as a data attribute (default when omitted)', () => {
+    const { rerender } = render(<KpiCard data-testid="kpi" label="Ricavi" value={1} />);
+    expect(screen.getByTestId('kpi')).toHaveAttribute('data-variant', 'default');
+    rerender(<KpiCard data-testid="kpi" label="Ricavi" value={1} variant="vivid" />);
+    expect(screen.getByTestId('kpi')).toHaveAttribute('data-variant', 'vivid');
+    rerender(<KpiCard data-testid="kpi" label="Ricavi" value={1} variant="tinted" />);
+    expect(screen.getByTestId('kpi')).toHaveAttribute('data-variant', 'tinted');
+  });
+
+  it('has no axe violations in the vivid and tinted variants', async () => {
+    const { container } = render(
+      <LocaleProvider locale="en-US">
+        <KpiCard variant="vivid" label="Revenue" value={248900} sparkline={[1, 3, 2, 5]} trend={{ direction: 'up', value: '+12%' }} footer="Q3" />
+        <KpiCard variant="tinted" label="Users" value={12480} trend={{ direction: 'down', value: '−2%' }} />
+      </LocaleProvider>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <KpiCard label="Utenti attivi" value={12480} sparkline={[1, 3, 2, 5]} trend={{ direction: 'up', value: '+4%' }} footer="Ultimi 30 giorni" />,

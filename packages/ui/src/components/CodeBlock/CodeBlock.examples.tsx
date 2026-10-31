@@ -28,3 +28,18 @@ export function LongLines() {
 export function NotCopyable() {
   return <CodeBlock code={'--dc-color-action-primary: #3457d5;'} language="css" copyable={false} />;
 }
+
+const communityConfig = `// community.config.ts
+const community = {
+  name: 'dev-community',
+  members: 12_480,
+  join: () => 'Benvenuto a bordo!',
+  attend: (event: string) => \`Ci vediamo a \${event}\`,
+  share: () => 'Il codice è di tutti.',
+};
+
+export default community;`;
+
+export function Window() {
+  return <CodeBlock variant="window" code={communityConfig} language="ts" title="community.config.ts" />;
+}

@@ -1,0 +1,110 @@
+{
+  "source": "5aaf08659eb6",
+  "summary": "Header for public sites with main links, actions (Sign in or UserMenu), and a real mobile menu in a drawer; full multi-column or compact footer for portals.",
+  "whenToUse": [
+    "Public sites, landing pages, informational areas, and sign-in pages.",
+    "Compact footer in portals and back-office apps."
+  ],
+  "whenNotToUse": [
+    "Portals with many sections: use AppShell with Sidebar.",
+    "Multi-level menus with panels: use NavigationMenu in the navigation slot of Header."
+  ],
+  "props": [
+    {
+      "name": "links",
+      "description": "Main links: inline from 768 px, in the drawer below."
+    },
+    {
+      "name": "currentId",
+      "description": "Link of the current page (aria-current=\"page\" and a visual indicator that isn’t color-only)."
+    },
+    {
+      "name": "onNavigate",
+      "description": "Notifies that a link was activated; the href is still followed (browser or RouterProvider)."
+    },
+    {
+      "name": "brand / actions / sticky",
+      "description": "Slots inherited from Header."
+    },
+    {
+      "name": "navigationLabel",
+      "description": "Name of the <nav> landmark and title of the drawer."
+    },
+    {
+      "name": "drawerFooter",
+      "description": "Content at the bottom of the mobile drawer (e.g. sign-in buttons)."
+    },
+    {
+      "name": "isMenuOpen / defaultMenuOpen / onMenuOpenChange",
+      "description": "Mobile drawer state, controlled or uncontrolled."
+    },
+    {
+      "name": "Footer: columns, brand, legal",
+      "description": "Link columns, brand, and legal text."
+    },
+    {
+      "name": "Footer: legalLinks",
+      "description": "Short links in the bottom row (privacy, cookies, accessibility statement)."
+    },
+    {
+      "name": "Footer: social",
+      "description": "Social or contact links in the bottom row."
+    },
+    {
+      "name": "Footer: variant",
+      "description": "“compact” shows a single row (brand, legal links, text) without columns."
+    }
+  ],
+  "inherits": "SiteHeader: <header> attributes (ref forwarded). Footer: <footer> attributes.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Reaches links and actions in visual order."
+    },
+    {
+      "keys": "Enter / Spazio sul pulsante menu",
+      "action": "Opens the drawer with the links (below 768 px)."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the drawer and returns focus to the menu button."
+    }
+  ],
+  "accessibility": [
+    "Named banner and navigation landmarks; the footer is contentinfo when not nested in article/section.",
+    "The menu button exposes aria-expanded and aria-controls; the drawer is modal and traps focus.",
+    "The current item uses aria-current=\"page\" and an underline, not just color; in forced-colors mode it uses system colors.",
+    "Links are real <a href> elements that can be opened in a new tab."
+  ],
+  "responsive": [
+    "Mobile-first: below 768 px the links are in the drawer; from 768 px they are inline. The drawer closes if the viewport widens.",
+    "Footer: columns reflow into a fluid grid; the bottom row wraps without overflow."
+  ],
+  "customization": [
+    "Client-side routing: wrap the app in RouterProvider (react-aria-components) with your router’s navigate function.",
+    "To show different actions in the drawer, use drawerFooter."
+  ],
+  "commonMistakes": [
+    "More than 5–6 main links: the bar wraps. Move secondary items to the footer.",
+    "Two <nav> landmarks with the same name on the same page: pass different navigationLabel values."
+  ],
+  "examples": [
+    {
+      "name": "PublicSiteHeader",
+      "title": "Public site header",
+      "description": "RouterProvider routes links to local state: the example shows the simulated path."
+    },
+    {
+      "name": "SiteFooter",
+      "title": "Full footer",
+      "description": "Columns, legal links, and copyright."
+    },
+    {
+      "name": "CompactFooter",
+      "title": "Compact footer for portals"
+    }
+  ],
+  "limits": [
+    "Switching to the drawer uses a media query on the viewport, not the container width."
+  ]
+}

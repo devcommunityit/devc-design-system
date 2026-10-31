@@ -1,0 +1,51 @@
+{
+  "source": "ecb46d9282bc",
+  "summary": "Multi-track schedule that composes the existing semantic agendas.",
+  "whenToUse": [
+    "Comparing the schedules of multiple tracks side by side."
+  ],
+  "whenNotToUse": [
+    "A single sequence of sessions: compose Agenda and AgendaItem directly."
+  ],
+  "props": [
+    {
+      "name": "title",
+      "description": "Schedule title."
+    },
+    {
+      "name": "tracks",
+      "description": "Tracks and sessions."
+    },
+    {
+      "name": "headingLevel",
+      "description": "Heading level of the schedule title."
+    }
+  ],
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Navigates session links and actions in DOM order."
+    }
+  ],
+  "accessibility": [
+    "Each track reuses Agenda and each session reuses AgendaItem for the list structure and time metadata."
+  ],
+  "responsive": [
+    "Tracks form responsive columns that collapse to a single column when needed."
+  ],
+  "customization": [
+    "Uses --dc-* tokens and className on the container."
+  ],
+  "commonMistakes": [
+    "Don’t assume that parallel columns represent a global chronological order."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Two-track schedule"
+    }
+  ],
+  "limits": [
+    "Does not provide filtering or synchronization controls across tracks."
+  ]
+}

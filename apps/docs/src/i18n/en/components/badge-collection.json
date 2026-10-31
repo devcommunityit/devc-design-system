@@ -1,0 +1,49 @@
+{
+  "source": "4768f0b66881",
+  "summary": "Data-driven composition of the existing AchievementBadge and AchievementBadgeGroup components.",
+  "whenToUse": [
+    "Showing a collection of earned or locked badges from a typed array."
+  ],
+  "whenNotToUse": [
+    "Replacing AchievementBadge for a single achievement.",
+    "Replicating badges with different styles or logic."
+  ],
+  "props": [
+    {
+      "name": "items",
+      "description": "Badges rendered with AchievementBadge."
+    },
+    {
+      "name": "label",
+      "description": "Accessible name of the list."
+    },
+    {
+      "name": "minItemWidth",
+      "description": "Minimum width of the responsive columns."
+    }
+  ],
+  "inherits": "HTML attributes of <ul>. BadgeCollectionItem adds id to the AchievementBadge props.",
+  "keyboard": [],
+  "accessibility": [
+    "Reuses the semantic list and accessible labels provided by AchievementBadgeGroup and AchievementBadge.",
+    "The list label is configurable."
+  ],
+  "responsive": [
+    "The auto-fill grid and minItemWidth are handled by AchievementBadgeGroup."
+  ],
+  "customization": [
+    "All visuals and tokens come from AchievementBadge and AchievementBadgeGroup."
+  ],
+  "commonMistakes": [
+    "Forgetting a stable id for items or reusing duplicate ids."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Achievement collection"
+    }
+  ],
+  "limits": [
+    "Adds no duplicate badge styles or logic."
+  ]
+}

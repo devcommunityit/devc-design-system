@@ -172,7 +172,21 @@ const cssVarMap = Object.fromEntries(baseTokens.map((t) => [t.path.join('.'), to
 const densityMap = Object.fromEntries(
   Object.entries(densities).map(([d, src]) => [d, Object.fromEntries(walk(src).map((t) => [t.path.join('.'), toCss(t)]))]),
 );
-const presetMeta = Object.fromEntries(presetNames.map((n) => [n, { label: colorConfig.presets[n].label, brand: colorConfig.presets[n].brand, ...(colorConfig.presets[n].tertiary ? { tertiary: colorConfig.presets[n].tertiary } : {}), description: colorConfig.presets[n].description }]));
+// solid: one hue everywhere; gradient: explicit second accent; auto: accent derived by rotating the brand hue.
+const presetKind = (p) => (!p.tertiary ? 'auto' : p.tertiary.toLowerCase() === p.brand.toLowerCase() ? 'solid' : 'gradient');
+const presetMeta = Object.fromEntries(presetNames.map((n) => [n, { label: colorConfig.presets[n].label, brand: colorConfig.presets[n].brand, ...(colorConfig.presets[n].tertiary ? { tertiary: colorConfig.presets[n].tertiary } : {}), description: colorConfig.presets[n].description, kind: presetKind(colorConfig.presets[n]) }]));
+
+// Compact form for the runtime bundle: 6-digit hex per role, COLOR_ROLES order, light then dark.
+const presetColorsPacked = Object.fromEntries(
+  presetNames.map((n) => [
+    n,
+    ['light', 'dark'].flatMap((scheme) => roleNames.map((r) => {
+      const hex = presetColors[n][scheme][r];
+      if (!/^#[0-9a-f]{6}$/.test(hex)) throw new Error(`Unexpected color ${hex} for ${n}/${scheme}/${r}`);
+      return hex.slice(1);
+    })).join(''),
+  ]),
+);
 
 const ts = `${HEADER.replace('/*', '/*').trim()}
 /* eslint-disable */
@@ -183,11 +197,16 @@ export type ColorRole = (typeof COLOR_ROLES)[number];
 
 export const ROLE_SPECS = ${JSON.stringify(roles, null, 2)} as const;
 
+export type PresetKind = 'solid' | 'gradient' | 'auto';
+
 export const PRESET_NAMES = ${JSON.stringify(presetNames)} as const;
 export type PresetName = (typeof PRESET_NAMES)[number];
 export const DEFAULT_PRESET: PresetName = ${JSON.stringify(defaultPreset)};
 
-export const PRESET_META: Record<PresetName, { label: { it: string; en: string }; brand: string; tertiary?: string; description: string }> = ${JSON.stringify(presetMeta, null, 2)};
+export const PRESET_META: Record<PresetName, { label: { it: string; en: string }; brand: string; tertiary?: string; description: string; kind: PresetKind }> = ${JSON.stringify(presetMeta, null, 2)};
+
+/** Packed PRESET_COLORS used at runtime (decoded by createTheme): 6-digit hex per role, COLOR_ROLES order, light then dark. */
+export const PRESET_COLORS_PACKED: Record<PresetName, string> = ${JSON.stringify(presetColorsPacked, null, 2)};
 
 export const PRESET_COLORS: Record<PresetName, { light: Record<ColorRole, string>; dark: Record<ColorRole, string> }> = ${JSON.stringify(presetColors, null, 2)};
 

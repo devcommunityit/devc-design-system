@@ -1,9 +1,15 @@
 import { forwardRef, useId, type HTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../utils';
 import { Statistic, type StatisticTrend } from '../Statistic/Statistic';
+import { LoadingPlaceholder } from '../Skeleton/LoadingPlaceholder';
+import { SkeletonKpi } from '../Skeleton/SkeletonPresets';
 import styles from './KpiCard.module.css';
 
+export type KpiCardVariant = 'default' | 'vivid' | 'tinted';
+
 export interface KpiCardProps extends HTMLAttributes<HTMLDivElement> {
+  /** Shows a SkeletonKpi skeleton of the same shape, marked `aria-busy`, while the data loads. @default false */
+  isLoading?: boolean;
   label: ReactNode;
   /** Numbers are formatted with Intl.NumberFormat in the current locale; `null` shows `emptyValue`. */
   value: number | ReactNode;
@@ -20,6 +26,11 @@ export interface KpiCardProps extends HTMLAttributes<HTMLDivElement> {
   sparkline?: number[];
   /** Bottom slot: a link to the detail page, a small action or a note. */
   footer?: ReactNode;
+  /**
+   * Surface. `vivid` uses the brand gradient with its paired foreground (hero KPI),
+   * `tinted` a tonal fill. @default 'default'
+   */
+  variant?: KpiCardVariant;
 }
 
 const WIDTH = 100;
@@ -65,12 +76,19 @@ function TrendLine({ data, sentiment }: { data: readonly number[]; sentiment: st
  * with an optional decorative trend line and a footer slot.
  */
 export const KpiCard = forwardRef<HTMLDivElement, KpiCardProps>(function KpiCard(
-  { label, value, formatOptions, trend, icon, description, emptyValue, sparkline, footer, className, ...rest },
+  { label, value, formatOptions, trend, icon, description, emptyValue, sparkline, footer, variant = 'default', isLoading = false, className, ...rest },
   ref,
 ) {
   const sentiment = trend?.sentiment ?? (trend?.direction === 'up' ? 'positive' : trend?.direction === 'down' ? 'negative' : 'neutral');
+  if (isLoading) {
+    return (
+      <LoadingPlaceholder ref={ref} className={className} {...rest}>
+        <SkeletonKpi sparkline={Boolean(sparkline)} icon={Boolean(icon)} />
+      </LoadingPlaceholder>
+    );
+  }
   return (
-    <div ref={ref} className={cx(styles.kpi, className)} {...rest}>
+    <div ref={ref} data-variant={variant} className={cx(styles.kpi, className)} {...rest}>
       <Statistic label={label} value={value} formatOptions={formatOptions} trend={trend} icon={icon} description={description} emptyValue={emptyValue} size="lg" />
       {sparkline ? <TrendLine data={sparkline} sentiment={sentiment} /> : null}
       {footer ? <div className={styles.footer}>{footer}</div> : null}

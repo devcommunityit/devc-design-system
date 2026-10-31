@@ -1,0 +1,127 @@
+{
+  "source": "ecfc1d7382ce",
+  "summary": "Dependency-free SVG heatmap: a rows × columns grid where color intensity grows with the value, with two-dimensional keyboard navigation, a min–max scale and an accessible data table.",
+  "whenToUse": [
+    "Values across two categorical dimensions: day × hour, channel × device, team × month.",
+    "Spotting peaks, dips and recurring patterns in a matrix at a glance.",
+    "Moderately sized matrices (tens of rows and columns)."
+  ],
+  "whenNotToUse": [
+    "Values that must be compared precisely: color intensity is approximate, use BarChart or a table.",
+    "Trends over time for a few series: use LineChart.",
+    "Signed values (positive/negative): the scale is sequential, single-color.",
+    "Very large matrices (thousands of cells): they need a dedicated visualization."
+  ],
+  "props": [
+    {
+      "name": "rows",
+      "description": "Row labels, top to bottom."
+    },
+    {
+      "name": "columns",
+      "description": "Column labels, left to right."
+    },
+    {
+      "name": "values",
+      "description": "Value matrix: values[r][c] maps to rows[r] × columns[c]. null is a cell with no data."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title (period, unit, source)."
+    },
+    {
+      "name": "formatOptions",
+      "description": "Value format (percent, currency, compact…) in the current locale."
+    },
+    {
+      "name": "cellHeight",
+      "description": "Height of each row in px; cell width follows the container."
+    },
+    {
+      "name": "colorIndex",
+      "description": "Data color of the scale (0 = --dc-color-data-1 … 5 = --dc-color-data-6, cyclic)."
+    },
+    {
+      "name": "showLegend",
+      "description": "Color scale from minimum to maximum with formatted values."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid uses rounder, more spaced cells and a gradient inside the cell; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area (and then to the table button)."
+    },
+    {
+      "keys": "Freccia destra / sinistra",
+      "action": "Next / previous column in the same row (the first press activates the first cell)."
+    },
+    {
+      "keys": "Freccia giù / su",
+      "action": "Next / previous row in the same column."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "First / last cell of the row."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> + <figcaption> structure; the chart area is a focusable role=\"group\", named by the title and described by a hint on using the arrow keys.",
+    "Each keyboard move announces \"row · column: value\" in an aria-live=\"polite\" region; the active cell is outlined and its labels are bold.",
+    "The SVG is decorative (aria-hidden): the full matrix is in the table (rows and columns with headers) opened by the \"Show data table\" button.",
+    "Cells with no data are not just “lighter”: they show a dash, distinguishable from a minimum value.",
+    "In forced-colors, cells use CanvasText with the same opacity and the active outline uses Highlight."
+  ],
+  "responsive": [
+    "Width is measured with ResizeObserver (falls back to 560 px in SSR); columns shrink and labels are thinned out when space runs short.",
+    "Height depends on the number of rows (cellHeight × rows).",
+    "Entrance animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Scale color via colorIndex (tokens --dc-color-data-1…6); empty cells and background use --dc-color-surface-subtle.",
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) rounds and spaces the cells and paints them with a gradient toward --dc-color-accent-default.",
+    "Stable selectors: .dc-heatmap-chart-heatmapChart, [data-cell], [data-empty], .dc-chart-fill, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "values rows whose length differs from columns: missing cells are treated as empty.",
+    "Using 0 instead of null for missing data, which then becomes indistinguishable from a low value.",
+    "Relying on color alone for critical values: add the data table or a text summary."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Days × time slots"
+    },
+    {
+      "name": "Percent",
+      "title": "Percentages and custom color"
+    },
+    {
+      "name": "WithMissingValues",
+      "title": "Cells with no data",
+      "description": "null shows only the background with a dash."
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Rounded, gradient-filled cells using the theme colors."
+    }
+  ],
+  "limits": [
+    "Linear, single-color sequential scale (no diverging or threshold scales).",
+    "Column labels are thinned out, not rotated; text width is estimated.",
+    "The grid is still drawn left to right in RTL."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "source": "58d102d40a8b",
+  "summary": "Localized editorial status: draft, published, scheduled or archived, built on Badge.",
+  "whenToUse": [
+    "CMS tables and detail pages.",
+    "Showing the actual status returned by the backend."
+  ],
+  "whenNotToUse": [
+    "Authorizing or performing a publication.",
+    "Showing a save still in progress as published."
+  ],
+  "props": [
+    {
+      "name": "status",
+      "description": "draft | published | scheduled | archived."
+    },
+    {
+      "name": "children",
+      "description": "Replaces the default label, for example with the publication date."
+    },
+    {
+      "name": "variant / size / dot",
+      "description": "Badge appearance; the tone depends on the status."
+    }
+  ],
+  "inherits": "Badge HTML props, className, style and an HTMLSpanElement ref. tone is assigned semantically.",
+  "keyboard": [],
+  "accessibility": [
+    "Status is expressed as text, not just color.",
+    "No automatic live region; for important updates use a role=status container."
+  ],
+  "responsive": [
+    "The badge follows its content and allows long labels."
+  ],
+  "customization": [
+    "Badge variants and data-publish-status."
+  ],
+  "commonMistakes": [
+    "Confusing the badge display with an actually persisted workflow."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "All statuses"
+    },
+    {
+      "name": "Workflow",
+      "title": "Local editorial workflow"
+    },
+    {
+      "name": "CustomLabels",
+      "title": "Labels and variants"
+    }
+  ],
+  "limits": [
+    "Does not schedule, publish or archive content; performs no authorization checks."
+  ]
+}

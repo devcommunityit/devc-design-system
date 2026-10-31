@@ -1,0 +1,364 @@
+.card {
+  --_glow-1: var(--dc-color-action-primary);
+  --_glow-2: var(--dc-color-accent-default);
+
+  position: relative;
+  box-sizing: border-box;
+  container-type: inline-size;
+  min-inline-size: 0;
+  overflow: hidden;
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background-color: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+  overflow-wrap: anywhere;
+  transition:
+    box-shadow var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    border-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.card[data-tone='accent'] {
+  --_glow-1: var(--dc-color-accent-default);
+  --_glow-2: var(--dc-color-action-primary);
+}
+
+.card[data-tone='data-1'] {
+  --_glow-1: var(--dc-color-data-1);
+}
+
+.card[data-tone='data-2'] {
+  --_glow-1: var(--dc-color-data-2);
+}
+
+.card[data-tone='data-3'] {
+  --_glow-1: var(--dc-color-data-3);
+}
+
+.card[data-tone='data-4'] {
+  --_glow-1: var(--dc-color-data-4);
+}
+
+.card[data-tone='data-5'] {
+  --_glow-1: var(--dc-color-data-5);
+}
+
+.card[data-tone='data-6'] {
+  --_glow-1: var(--dc-color-data-6);
+}
+
+.card:has(.link):hover {
+  border-color: var(--dc-color-border-strong);
+  box-shadow: var(--dc-shadow-2);
+}
+
+.card:has(.link:focus-visible) {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  block-size: 100%;
+}
+
+/* Ink stays dark in every scheme: the inverse surface, clamped to a low lightness where relative colors work. */
+.cover {
+  --_ink: var(--dc-color-surface-inverse);
+  --_ink-fg: var(--dc-color-text-inverse);
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-block-size: 10rem;
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+  overflow: hidden;
+  background-color: var(--_ink);
+  background-image:
+    radial-gradient(circle at 30% 30%, color-mix(in oklch, var(--_glow-1) 70%, transparent), transparent 50%),
+    radial-gradient(circle at 80% 70%, color-mix(in oklch, var(--_glow-2) 55%, transparent), transparent 45%);
+  color: var(--_ink-fg);
+}
+
+@supports (color: oklch(from currentcolor l c h)) {
+  .cover {
+    --_ink: oklch(from var(--dc-color-surface-inverse) min(l, 0.2) c h);
+    --_ink-fg: oklch(from var(--dc-color-text-inverse) max(l, 0.96) c h);
+  }
+}
+
+.coverContent {
+  position: relative;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.coverImage {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.coverContent > :where(pre) {
+  margin: 0;
+  padding: var(--dc-space-3) var(--dc-space-4);
+  overflow: auto;
+  border: var(--dc-border-width-thin) solid color-mix(in oklch, var(--_ink-fg) 14%, transparent);
+  border-radius: var(--dc-radius-lg);
+  background-color: color-mix(in oklch, var(--_ink) 55%, transparent);
+  backdrop-filter: blur(6px);
+  font-family: var(--dc-font-family-mono);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-md-line-height);
+  white-space: pre;
+}
+
+.coverContent > :where(img, svg, video) {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--dc-radius-lg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dc-space-3);
+  min-inline-size: 0;
+  padding: var(--dc-space-5);
+}
+
+.card[data-variant='compact'] .body {
+  gap: var(--dc-space-2);
+  padding: var(--dc-space-4);
+}
+
+.tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-1-5);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-lg-size);
+  line-height: var(--dc-typography-title-lg-line-height);
+  font-weight: var(--dc-font-weight-bold);
+  letter-spacing: var(--dc-typography-title-lg-letter-spacing);
+  text-wrap: balance;
+}
+
+.card[data-variant='compact'] .title {
+  font-size: var(--dc-typography-title-sm-size);
+  line-height: var(--dc-typography-title-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+  letter-spacing: var(--dc-typography-title-sm-letter-spacing);
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.excerpt {
+  color: var(--dc-color-text-secondary);
+  font-size: var(--dc-typography-body-md-size);
+  line-height: var(--dc-typography-body-md-line-height);
+}
+
+.excerpt > :where(p) {
+  margin: 0;
+}
+
+.card[data-variant='compact'] .excerpt {
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-2);
+  min-inline-size: 0;
+}
+
+.bylineText {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.author {
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--dc-space-1);
+  color: var(--dc-color-text-muted);
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+}
+
+.metaPart {
+  display: inline-flex;
+  gap: var(--dc-space-1);
+}
+
+.reactions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dc-space-1);
+}
+
+.cardReactions {
+  margin-block-start: auto;
+  margin-inline-start: calc(var(--dc-space-2) * -1);
+}
+
+.reaction {
+  --_bg: transparent;
+  --_fg: var(--dc-color-text-secondary);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dc-space-1-5);
+  min-block-size: 2rem;
+  margin: 0;
+  padding-inline: var(--dc-space-2);
+  border: var(--dc-border-width-thin) solid transparent;
+  border-radius: var(--dc-radius-full);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font: inherit;
+  font-size: var(--dc-typography-body-sm-size);
+  line-height: var(--dc-typography-body-sm-line-height);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  transition:
+    background-color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard),
+    color var(--dc-motion-duration-fast) var(--dc-motion-easing-standard);
+}
+
+.reaction[data-interactive] {
+  cursor: pointer;
+}
+
+.reaction[data-interactive][data-hovered],
+a.reaction:hover {
+  --_bg: var(--dc-color-surface-muted);
+  --_fg: var(--dc-color-text-primary);
+}
+
+.reaction[data-focus-visible],
+a.reaction:focus-visible {
+  outline: var(--dc-focus-ring-width) solid var(--dc-color-focus-ring);
+  outline-offset: var(--dc-focus-ring-offset);
+}
+
+.reaction[data-selected] {
+  --_bg: var(--dc-color-action-secondary);
+  --_fg: var(--dc-color-action-secondary-foreground);
+}
+
+.reaction[data-kind='like'][data-selected] {
+  --_bg: var(--dc-color-accent-container);
+  --_fg: var(--dc-color-accent-container-foreground);
+}
+
+.reaction[data-selected] .reactionCount {
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.reactionIcon {
+  display: inline-flex;
+  flex: none;
+}
+
+.reactionIcon > svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.reaction[data-selected] .reactionIcon > svg {
+  fill: currentcolor;
+}
+
+@container (inline-size >= 40rem) {
+  .card[data-variant='featured'] .layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+
+  .card[data-variant='featured'] .cover {
+    min-block-size: 16rem;
+    padding: var(--dc-space-6);
+  }
+
+  .card[data-variant='featured'] .body {
+    padding: var(--dc-space-6);
+  }
+
+  .card[data-variant='featured'] .title {
+    font-size: var(--dc-typography-headline-sm-size);
+    line-height: var(--dc-typography-headline-sm-line-height);
+    letter-spacing: var(--dc-typography-headline-sm-letter-spacing);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .reaction {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .card {
+    border-color: CanvasText;
+  }
+
+  .cover {
+    border-block-end: var(--dc-border-width-thin) solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .coverContent > :where(pre) {
+    border-color: CanvasText;
+    background: Canvas;
+  }
+
+  .reaction[data-interactive] {
+    border-color: ButtonText;
+  }
+
+  .reaction[data-selected] {
+    background: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}

@@ -1,0 +1,56 @@
+.status {
+  display: grid;
+  gap: var(--dc-space-3);
+  padding: var(--dc-space-4);
+  border: var(--dc-border-width-thin) solid var(--dc-color-border-subtle);
+  border-radius: var(--dc-look-radius-container);
+  background: var(--dc-color-surface-default);
+  color: var(--dc-color-text-primary);
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dc-space-2);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dc-typography-title-sm-size);
+}
+
+.badge {
+  padding: var(--dc-space-1) var(--dc-space-2);
+  border-radius: var(--dc-radius-full);
+  background: var(--dc-color-surface-subtle);
+  font-size: var(--dc-typography-label-sm-size);
+  font-weight: var(--dc-font-weight-semibold);
+}
+
+.badge[data-status='active'],
+.badge[data-status='trial'] {
+  background: var(--dc-color-feedback-success-surface);
+  color: var(--dc-color-feedback-success-foreground);
+}
+
+.badge[data-status='past-due'] {
+  background: var(--dc-color-feedback-warning-surface);
+  color: var(--dc-color-feedback-warning-foreground);
+}
+
+.badge[data-status='canceled'] {
+  background: var(--dc-color-feedback-danger-surface);
+  color: var(--dc-color-feedback-danger-foreground);
+}
+
+.detail {
+  color: var(--dc-color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dc-space-2);
+}

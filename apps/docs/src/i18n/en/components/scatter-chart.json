@@ -1,0 +1,131 @@
+{
+  "source": "dc8387784366",
+  "summary": "Dependency-free SVG scatter (and bubble) chart: points on two linear numeric axes, series distinguished by color and marker shape, keyboard navigation between points, and an accessible data table.",
+  "whenToUse": [
+    "Showing the relationship between two numeric quantities (floor area and revenue, effort and value).",
+    "Spotting correlations, clusters, and outliers.",
+    "Adding a third quantity with the bubble size (size)."
+  ],
+  "whenNotToUse": [
+    "Trends across ordered categories or over time: use LineChart.",
+    "Comparing quantities across categories: use BarChart.",
+    "Thousands of points or interactive zoom: use a dedicated library."
+  ],
+  "props": [
+    {
+      "name": "series",
+      "description": "Point series; label names the point (otherwise its position is used), size turns it into a bubble."
+    },
+    {
+      "name": "xLabel / yLabel",
+      "description": "Horizontal and vertical axis titles; they are also the data table headers."
+    },
+    {
+      "name": "xFormatOptions / yFormatOptions",
+      "description": "Format of the values and ticks of each axis (currency, percent, compact…) in the current locale."
+    },
+    {
+      "name": "title",
+      "description": "Visible title (figcaption); names the chart and the data table."
+    },
+    {
+      "name": "description",
+      "description": "Visible description below the title (period, unit, source)."
+    },
+    {
+      "name": "height",
+      "description": "Chart height in px; the width follows the container."
+    },
+    {
+      "name": "showGrid",
+      "description": "Horizontal and vertical gridlines at the ticks."
+    },
+    {
+      "name": "showLegend",
+      "description": "Legend; with multiple series each entry is a button that shows/hides the series."
+    },
+    {
+      "name": "hiddenSeries / defaultHiddenSeries",
+      "description": "Ids of the hidden series (controlled / uncontrolled)."
+    },
+    {
+      "name": "onHiddenSeriesChange",
+      "description": "Called when the legend changes the visible series."
+    },
+    {
+      "name": "appearance",
+      "description": "Visual style: vivid fills markers and bubbles with gradients and glows using the same theme colors; auto becomes vivid in the expressive look."
+    }
+  ],
+  "inherits": "HTML attributes of the <figure> (id, style, data-*, aria-*…); the ref points to the <figure>.",
+  "keyboard": [
+    {
+      "keys": "Tab",
+      "action": "Moves focus to the chart area (then to the legend and the table button)."
+    },
+    {
+      "keys": "Freccia destra / giù",
+      "action": "Next point in ascending x order (across all visible series): shows and announces series, point, and values."
+    },
+    {
+      "keys": "Freccia sinistra / su",
+      "action": "Previous point."
+    },
+    {
+      "keys": "Home / Fine",
+      "action": "Point with minimum / maximum x."
+    },
+    {
+      "keys": "Esc",
+      "action": "Closes the active readout."
+    }
+  ],
+  "accessibility": [
+    "<figure> + <figcaption> structure; the chart area is a focusable role=\"group\", named by the title and described by a hint on using the arrow keys.",
+    "Keyboard navigation announces \"series — point: x, y\" in an aria-live=\"polite\" region; the active point is enlarged and marked by guide lines on both axes.",
+    "The SVG is decorative (aria-hidden): all points are in the table (point, series, x, y) opened by the \"Show data table\" button.",
+    "Series don’t rely on color alone: the marker shape changes per series; the legend uses aria-pressed.",
+    "In forced-colors mode markers and bubbles use CanvasText, the active point Highlight."
+  ],
+  "responsive": [
+    "The width is measured with ResizeObserver (falls back to 560 px in SSR); the number of X-axis ticks adapts and labels are thinned out when there isn’t enough space.",
+    "Entrance animation only with prefers-reduced-motion: no-preference."
+  ],
+  "customization": [
+    "Series colors: tokens --dc-color-data-1…6, assigned cyclically; grid and axes use --dc-color-border-subtle and --dc-color-border-strong.",
+    "Bubbles: radius from 4 to 18 px proportional to the square root of size (the area grows with the value).",
+    "Vivid appearance: appearance=\"vivid\" (or the expressive look) fills the markers and fades the bubbles toward --dc-color-accent-default.",
+    "Stable selectors: .dc-scatter-chart-scatterChart, [data-series], .dc-chart-marker, .dc-chart-guide, .dc-chart-table."
+  ],
+  "commonMistakes": [
+    "Using ScatterChart for categories (months, names): the X axis is numeric and linear.",
+    "Forgetting xLabel and yLabel: without axis titles the values are ambiguous, even in the table.",
+    "Passing values already converted to a radius in size: size is a quantity; the square-root scale is applied by the component."
+  ],
+  "examples": [
+    {
+      "name": "Basic",
+      "title": "Multiple series with axis titles"
+    },
+    {
+      "name": "Bubbles",
+      "title": "Bubble chart",
+      "description": "size controls the area of each bubble."
+    },
+    {
+      "name": "ControlledSeries",
+      "title": "Controlled visible series"
+    },
+    {
+      "name": "Vivid",
+      "title": "Vivid appearance",
+      "description": "Filled markers and glows with the theme colors."
+    }
+  ],
+  "limits": [
+    "Linear axes only (no logarithmic scale) and no trend line.",
+    "No zoom or virtualization: designed for tens/hundreds of points; overlapping points stay overlapped.",
+    "Label width is estimated (no text measurement).",
+    "The SVG is still drawn left to right in RTL."
+  ]
+}
