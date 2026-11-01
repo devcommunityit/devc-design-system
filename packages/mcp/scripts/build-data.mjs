@@ -314,7 +314,7 @@ const pages = SHOWCASE.map((entry) => {
   const file = join(showcaseDir, `${importMatch[1]}.tsx`);
   const code = read(file);
   const localImports = [...code.matchAll(/^import [\s\S]*? from '(\.{1,2}\/[^']+)';$/gm)].map((m) => m[1]);
-  return { ...entry, component: componentName, file: rel(file), localImports, code };
+  return { ...entry, title: entry.title.it, description: entry.description.it, component: componentName, file: rel(file), localImports, code };
 }).filter(Boolean);
 
 // ---------- Write ----------

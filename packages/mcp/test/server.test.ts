@@ -81,6 +81,23 @@ describe('MCP server (in memory)', () => {
     expect(textOf(await client.callTool({ name: 'get_setup', arguments: {} }))).toContain('styles.css');
   });
 
+  it('lists readable page templates and resolves them by slug, title and component', async () => {
+    const listing = textOf(await client.callTool({ name: 'list_patterns', arguments: {} }));
+    expect(listing).not.toContain('[object Object]');
+    for (const page of loadCatalog().pages) {
+      expect(listing).toContain(`**${page.title}** (\`${page.slug}\`) — ${page.description}`);
+      for (const slug of [page.slug, page.title.toUpperCase(), page.component]) {
+        const result = await client.callTool({ name: 'get_page_template', arguments: { slug } }) as TextResult;
+        expect(result.isError).not.toBe(true);
+        expect(textOf(result)).toContain(`# ${page.title}\n${page.description}`);
+        expect(textOf(result)).toContain(page.code);
+      }
+    }
+    const unknown = await client.callTool({ name: 'get_page_template', arguments: { slug: 'unknown-template' } }) as TextResult;
+    expect(unknown.isError).toBe(true);
+    expect(textOf(unknown)).toContain('Unknown template "unknown-template"');
+  });
+
   it('validates code with structured output', async () => {
     const result = (await client.callTool({
       name: 'validate_usage',

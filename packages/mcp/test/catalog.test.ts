@@ -20,6 +20,15 @@ describe('catalog', () => {
     }
   });
 
+  it('generates page titles and descriptions as text', () => {
+    for (const page of catalog.pages) {
+      expect(typeof page.title, page.slug).toBe('string');
+      expect(typeof page.description, page.slug).toBe('string');
+      expect(page.title.length).toBeGreaterThan(0);
+      expect(page.description.length).toBeGreaterThan(0);
+    }
+  });
+
   it('exports every documented symbol from its documented entry point', () => {
     for (const component of catalog.components) {
       for (const name of component.exports.map((e) => e.replace(/^type\s+/, ''))) {
