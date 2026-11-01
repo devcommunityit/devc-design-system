@@ -9,6 +9,12 @@ export const test = base.extend<{ consoleGuard: void }>({
   consoleGuard: [
     async ({ page }, use) => {
       const problems: string[] = [];
+      await page.route('https://picsum.photos/**', (route) =>
+        route.fulfill({
+          contentType: 'image/svg+xml',
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" />',
+        }),
+      );
       page.on('console', (message) => {
         const text = message.text();
         // The script-disabled preview frame intentionally blocks Axe's injected runner.

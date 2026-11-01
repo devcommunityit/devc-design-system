@@ -25,7 +25,7 @@ export function Tones() {
           color: 'var(--dc-color-text-inverse)',
         }}
       >
-        <Heading level={3}>
+        <Heading level={3} tone="inherit">
           Su hero scura: <GradientText tone="inverse" as="strong">impara e condividi</GradientText>
         </Heading>
       </div>
