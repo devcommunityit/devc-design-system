@@ -29,8 +29,8 @@ test('image cropper draws a source-pixel selection and exports it', async ({ pag
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.75, { steps: 8 });
   await page.mouse.up();
-  const width = Number(await page.getByLabel('Larghezza ritaglio').inputValue());
-  const height = Number(await page.getByLabel('Altezza ritaglio').inputValue());
+  const width = Number(await page.getByRole('textbox', { name: 'Larghezza ritaglio' }).inputValue());
+  const height = Number(await page.getByRole('textbox', { name: 'Altezza ritaglio' }).inputValue());
   expect(width).toBeGreaterThanOrEqual(238);
   expect(width).toBeLessThanOrEqual(243);
   expect(height).toBeGreaterThanOrEqual(158);

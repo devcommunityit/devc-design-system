@@ -200,12 +200,12 @@ function publicExports() {
   }).sort((a, b) => a.name.localeCompare(b.name));
 }
 const exportsList = publicExports();
-const exportEntry = new Map(exportsList.map((e) => [e.name, e.entry]));
+const exportEntries = new Set(exportsList.map((e) => `${e.entry ?? ''}:${e.name}`));
 for (const c of components) {
   const where = c.entry ? `@dev-community/ui/${c.entry}` : '@dev-community/ui';
   // Type-only exports are documented as "type Name".
   for (const name of c.exports.map((e) => e.replace(/^type\s+/, ''))) {
-    if (!exportEntry.has(name) || exportEntry.get(name) !== c.entry) problems.push(`${c.slug}: documented export ${name} is not exported by ${where}`);
+    if (!exportEntries.has(`${c.entry ?? ''}:${name}`)) problems.push(`${c.slug}: documented export ${name} is not exported by ${where}`);
   }
 }
 
@@ -314,7 +314,7 @@ const pages = SHOWCASE.map((entry) => {
   const file = join(showcaseDir, `${importMatch[1]}.tsx`);
   const code = read(file);
   const localImports = [...code.matchAll(/^import [\s\S]*? from '(\.{1,2}\/[^']+)';$/gm)].map((m) => m[1]);
-  return { ...entry, component: componentName, file: rel(file), localImports, code };
+  return { ...entry, title: entry.title.it, description: entry.description.it, component: componentName, file: rel(file), localImports, code };
 }).filter(Boolean);
 
 // ---------- Write ----------

@@ -52,8 +52,8 @@ export interface VoteButtonProps extends Omit<
 const COMPACT: Intl.NumberFormatOptions = { notation: "compact" };
 
 /**
- * Upvote toggle (`aria-pressed`) with a chevron and the formatted vote count. The accessible name is
- * "Upvote" / "Remove upvote"; the full count ("186 votes") is the accessible description.
+ * Upvote toggle (`aria-pressed`) with a chevron and the formatted vote count. Its accessible name
+ * includes the visible count; the full count ("186 votes") is the accessible description.
  */
 export const VoteButton = forwardRef<HTMLButtonElement, VoteButtonProps>(
   function VoteButton(
@@ -92,7 +92,7 @@ export const VoteButton = forwardRef<HTMLButtonElement, VoteButtonProps>(
         ref={ref}
         isSelected={selected}
         onChange={setSelected}
-        aria-label={selected ? t.removeUpvote : t.upvote}
+        aria-label={`${selected ? t.removeUpvote : t.upvote} ${formatter.format(value)}`}
         aria-describedby={descriptionId}
         className={composeRenderProps(className, (cn) => cx(styles.vote, cn))}
         {...rest}

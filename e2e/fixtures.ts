@@ -9,8 +9,17 @@ export const test = base.extend<{ consoleGuard: void }>({
   consoleGuard: [
     async ({ page }, use) => {
       const problems: string[] = [];
+      await page.route('https://picsum.photos/**', (route) =>
+        route.fulfill({
+          contentType: 'image/svg+xml',
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" />',
+        }),
+      );
       page.on('console', (message) => {
-        if (message.type() === 'error' || message.type() === 'warning') problems.push(`${message.type()}: ${message.text()}`);
+        const text = message.text();
+        // The script-disabled preview frame intentionally blocks Axe's injected runner.
+        if (text === "Blocked script execution in 'about:srcdoc' because the document's frame is sandboxed and the 'allow-scripts' permission is not set.") return;
+        if (message.type() === 'error' || message.type() === 'warning') problems.push(`${message.type()}: ${text}`);
       });
       page.on('pageerror', (error) => problems.push(`pageerror: ${error.message}`));
       await use();
@@ -43,7 +52,11 @@ export async function expectNoHorizontalOverflow(page: Page): Promise<void> {
  *   name, so WCAG 2.5.3 is met.
  */
 export async function expectNoA11yViolations(page: Page): Promise<void> {
-  const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  // Axe cannot inject into intentionally script-disabled frames; their isolation is tested separately.
+  const results = await new AxeBuilder({ page })
+    .exclude('iframe[sandbox]')
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .analyze();
   const report: string[] = [];
   for (const violation of results.violations) {
     for (const node of violation.nodes) {

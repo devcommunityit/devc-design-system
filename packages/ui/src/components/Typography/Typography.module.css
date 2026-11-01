@@ -129,7 +129,7 @@
 .text[data-tone='danger'] { --_color: var(--dc-color-feedback-danger); }
 .text[data-tone='success'] { --_color: var(--dc-color-feedback-success); }
 .text[data-tone='warning'] { --_color: var(--dc-color-feedback-warning); }
-.text[data-tone='inherit'] { --_color: inherit; }
+.text[data-tone='inherit'] { --_color: currentcolor; }
 .text[data-weight='regular'] { --_weight: var(--dc-font-weight-regular); }
 .text[data-weight='medium'] { --_weight: var(--dc-font-weight-medium); }
 .text[data-weight='semibold'] { --_weight: var(--dc-font-weight-semibold); }

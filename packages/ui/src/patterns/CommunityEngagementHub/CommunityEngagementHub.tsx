@@ -314,7 +314,7 @@ export function CommunityEngagementHub({
                   <p className={styles.meta}>Asked by {item.author} · {item.answers} answers</p>
                 </div>
                 <div className={styles.actions}>
-                  {onQuestionVote ? <Button size="sm" variant="outline" aria-label={`Upvote question by ${item.author}`} onPress={() => onQuestionVote(item.id)}>▲ {item.votes}</Button> : <span className={styles.meta}>{item.votes} votes</span>}
+                  {onQuestionVote ? <Button size="sm" variant="outline" aria-label={`Upvote question by ${item.author}: ${item.votes}`} onPress={() => onQuestionVote(item.id)}>▲ {item.votes}</Button> : <span className={styles.meta}>{item.votes} votes</span>}
                   {onQuestionReact ? <Button size="sm" variant={item.reacted ? 'secondary' : 'ghost'} aria-pressed={item.reacted ?? false} onPress={() => onQuestionReact(item.id)}>♥ React</Button> : null}
                 </div>
               </li>
