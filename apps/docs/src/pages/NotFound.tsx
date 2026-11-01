@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 import { FileQuestion } from 'lucide-react';
-import { LinkButton, EmptyState, Inline } from '@dev-community/ui';
+import { LinkButton, EmptyState, Inline } from '@devcommunityit/ui';
 import { PageMeta } from '../components/PageMeta';
 import { useI18n } from '../settings';
 

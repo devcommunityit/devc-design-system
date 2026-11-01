@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RangeSlider, Slider, Stack, Text } from '@dev-community/ui';
+import { RangeSlider, Slider, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Slider label="Volume" defaultValue={40} />;

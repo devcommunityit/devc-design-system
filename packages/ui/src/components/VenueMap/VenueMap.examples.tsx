@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@dev-community/ui';
-import { VenueMap } from '@dev-community/ui/widgets';
+import { Button } from '@devcommunityit/ui';
+import { VenueMap } from '@devcommunityit/ui/widgets';
 
 export function Basic() {
   return (

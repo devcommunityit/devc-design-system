@@ -13,7 +13,7 @@ const ISSUES: Issue[] = [
     cause: 'The stylesheet is not imported, or the components are rendered outside ThemeProvider (the variables only exist inside data-dc-theme).',
     fix: (
       <>
-        Import <code>@dev-community/ui/styles.css</code> once at startup and wrap the application in <code>ThemeProvider</code>.
+        Import <code>@devcommunityit/ui/styles.css</code> once at startup and wrap the application in <code>ThemeProvider</code>.
       </>
     ),
   },
@@ -120,7 +120,7 @@ export default function Troubleshooting() {
       ))}
       <DocSection title="Quick diagnostics">
         <Code language="bash">{`
-npm ls react react-dom @dev-community/ui   # a single copy of React and the library
+npm ls react react-dom @devcommunityit/ui   # a single copy of React and the library
 npm ls react-aria-components                # no duplicate versions
 `}</Code>
         <p>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Inline, Meter, Stack } from '@dev-community/ui';
+import { Button, Inline, Meter, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Meter label="Spazio di archiviazione" value={42} description="5,8 GB liberi su 10 GB" />;

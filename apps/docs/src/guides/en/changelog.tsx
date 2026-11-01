@@ -1,4 +1,4 @@
-import { Alert } from '@dev-community/ui';
+import { Alert } from '@devcommunityit/ui';
 import { DocSection, RefTable } from '../../components/Doc';
 
 export default function Changelog() {
@@ -85,7 +85,7 @@ export default function Changelog() {
       <DocSection title="Before publishing">
         <Alert tone="info" title="License: MIT">
           The project is released under the MIT license (© 2026 Dev Community). The <code>LICENSE</code> file ships with the{' '}
-          <code>@dev-community/ui</code> and <code>@dev-community/ui-mcp</code> packages.
+          <code>@devcommunityit/ui</code> and <code>@devcommunityit/ui-mcp</code> packages.
         </Alert>
       </DocSection>
     </>

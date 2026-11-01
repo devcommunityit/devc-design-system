@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ColorPicker, Stack, Text, parseColor, type Color } from '@dev-community/ui';
+import { ColorPicker, Stack, Text, parseColor, type Color } from '@devcommunityit/ui';
 
 export function Basic() {
   return <ColorPicker label="Colore etichetta" defaultValue="#0f62fe" />;

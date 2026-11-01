@@ -1,4 +1,4 @@
-import { Link, Stack, Text } from '@dev-community/ui';
+import { Link, Stack, Text } from '@devcommunityit/ui';
 
 export function Inline() {
   return (

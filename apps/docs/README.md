@@ -2,7 +2,7 @@
 
 Applicazione Vite/React del design system. Include documentazione navigabile,
 catalogo dei componenti, Theme Builder e showcase interattiva. Il sito importa
-`@dev-community/ui` come pacchetto, non dai sorgenti della libreria.
+`@devcommunityit/ui` come pacchetto, non dai sorgenti della libreria.
 
 ## Avvio e build
 
@@ -12,7 +12,7 @@ Dalla directory principale del repository:
 npm install
 npm run dev
 npm run build:docs
-npm run preview -w @dev-community/docs
+npm run preview -w @devcommunityit/docs
 ```
 
 Il server di sviluppo è disponibile su `http://localhost:5173`; la preview della
@@ -71,7 +71,7 @@ fonte divergente nella documentazione.
 Dalla root:
 
 ```bash
-npm run typecheck -w @dev-community/docs
+npm run typecheck -w @devcommunityit/docs
 npm run build:docs
 npx playwright test
 npm run build:pages -- --base /design-system/

@@ -17,7 +17,7 @@ import {
   useTheme,
   type NotificationItem,
   type SidebarSection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { PageMeta } from '../components/PageMeta';
 import { Landing } from './Landing';
 import { Community } from './Community';

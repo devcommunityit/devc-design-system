@@ -101,11 +101,11 @@ npm run test:e2e:pages                            # default base: /design-system
         </p>
         <ul>
           <li>
-            After adding or changing a <code>*.meta.ts</code>, run <code>npm run i18n:extract -w @dev-community/docs</code> and translate the new
+            After adding or changing a <code>*.meta.ts</code>, run <code>npm run i18n:extract -w @devcommunityit/docs</code> and translate the new
             fields.
           </li>
           <li>
-            <code>npm run i18n:check -w @dev-community/docs</code> reports missing or stale overlays. Until a translation exists the page shows
+            <code>npm run i18n:check -w @devcommunityit/docs</code> reports missing or stale overlays. Until a translation exists the page shows
             the Italian text with a notice.
           </li>
           <li>Live examples and templates keep their demo content in Italian.</li>
@@ -115,7 +115,7 @@ npm run test:e2e:pages                            # default base: /design-system
       <DocSection title="License">
         <p>
           The project is released under the <strong>MIT</strong> license (© 2026 Dev Community): the <code>LICENSE</code> file is in the
-          repository root and ships with the <code>@dev-community/ui</code> and <code>@dev-community/ui-mcp</code> packages. By contributing you
+          repository root and ships with the <code>@devcommunityit/ui</code> and <code>@devcommunityit/ui-mcp</code> packages. By contributing you
           agree that your code is released under the same license. Do not add dependencies with incompatible licenses (for example GPL) without
           discussing it first.
         </p>

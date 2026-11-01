@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IconButton, Inline, Stack, Switch, Text, Tooltip } from '@dev-community/ui';
+import { Button, IconButton, Inline, Stack, Switch, Text, Tooltip } from '@devcommunityit/ui';
 import { Download, Info, Link2, Pencil, Save, Trash2 } from 'lucide-react';
 
 export function Basic() {

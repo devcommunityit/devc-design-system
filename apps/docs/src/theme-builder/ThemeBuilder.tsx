@@ -29,8 +29,8 @@ import {
   useToast,
   type FileUploadItem,
   type Look,
-} from '@dev-community/ui';
-import { MAX_THEME_JSON_BYTES, PRESET_META, PRESET_NAMES, isPresetName, parseThemeJson, themeToCss, themeToJson, type ThemeIssue } from '@dev-community/ui/theme';
+} from '@devcommunityit/ui';
+import { MAX_THEME_JSON_BYTES, PRESET_META, PRESET_NAMES, isPresetName, parseThemeJson, themeToCss, themeToJson, type ThemeIssue } from '@devcommunityit/ui/theme';
 import { DocSection, RefTable } from '../components/Doc';
 import { PageMeta } from '../components/PageMeta';
 import type { DocsLang } from '../i18n/lang';

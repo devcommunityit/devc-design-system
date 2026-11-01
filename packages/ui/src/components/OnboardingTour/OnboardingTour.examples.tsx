@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@dev-community/ui';
-import { OnboardingTour } from '@dev-community/ui/widgets';
+import { Button } from '@devcommunityit/ui';
+import { OnboardingTour } from '@devcommunityit/ui/widgets';
 
 export function Guided() {
   const [open, setOpen] = useState(false);

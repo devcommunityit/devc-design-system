@@ -1,4 +1,4 @@
-import { NotificationPreferences } from '@dev-community/ui';
+import { NotificationPreferences } from '@devcommunityit/ui';
 
 export function Channels() {
   return <NotificationPreferences aria-label="Notifiche" categories={[{ id: 'news', label: 'Novità' }, { id: 'mentions', label: 'Menzioni' }]}

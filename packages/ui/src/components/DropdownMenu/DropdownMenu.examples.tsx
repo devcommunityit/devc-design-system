@@ -12,7 +12,7 @@ import {
   SubmenuTrigger,
   Text,
   type Selection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function Basic() {
   const [last, setLast] = useState<string>('nessuna');

@@ -34,7 +34,7 @@ import {
   Tooltip,
   type Look,
   type Theme,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import type { DocsLang } from '../i18n/lang';
 import { useI18n } from '../settings';
 

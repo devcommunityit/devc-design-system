@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ChatMessage, PromptComposer, PromptSuggestions, ResponseFeedback, SourceList, Stack, Text } from '@dev-community/ui';
+import { Button, ChatMessage, PromptComposer, PromptSuggestions, ResponseFeedback, SourceList, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   const [last, setLast] = useState('');

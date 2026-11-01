@@ -10,7 +10,7 @@ import {
   SkeletonText,
   Stack,
   Switch,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 const POSTS = [
@@ -179,7 +179,7 @@ export default function StatiDiCaricamento() {
             <p>Contenuto</p>
           </SkeletonGroup>
         </div>
-        <Code>{`import { CommentThread, SkeletonComment, SkeletonGroup } from '@dev-community/ui';
+        <Code>{`import { CommentThread, SkeletonComment, SkeletonGroup } from '@devcommunityit/ui';
 
 <SkeletonGroup isLoading={isLoading} skeleton={<SkeletonComment rows={3} replies={1} />}>
   <CommentThread aria-label="Commenti" comments={comments} />

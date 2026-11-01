@@ -11,7 +11,7 @@ import {
   SignUpForm,
   Text,
   type LoginFormValues,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 /*
  * These examples simulate a server with a local delay. They contain no authentication logic:

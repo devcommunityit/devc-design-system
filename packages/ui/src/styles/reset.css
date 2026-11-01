@@ -1,6 +1,6 @@
 /*
  * Optional, minimal reset. Import only if your app has none:
- *   import '@dev-community/ui/reset.css';
+ *   import '@devcommunityit/ui/reset.css';
  * Wrapped in a cascade layer so any app style wins over it.
  */
 @layer dc-reset {

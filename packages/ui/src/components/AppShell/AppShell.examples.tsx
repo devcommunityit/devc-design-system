@@ -15,7 +15,7 @@ import {
   useAppShell,
   type NavigationMenuItem,
   type SidebarSection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 const sections: SidebarSection[] = [
   {

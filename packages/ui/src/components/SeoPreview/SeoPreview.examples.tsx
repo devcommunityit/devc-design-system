@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SeoPreview, Stack, Textarea, TextField } from '@dev-community/ui';
+import { SeoPreview, Stack, Textarea, TextField } from '@devcommunityit/ui';
 
 export function Basic() {
   return <SeoPreview title="Soluzioni digitali per il tuo team" url="https://example.test/soluzioni" description="Strumenti accessibili per gestire progetti, contenuti e relazioni con i clienti." siteName="Studio digitale" />;

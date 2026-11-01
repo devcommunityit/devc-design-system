@@ -53,7 +53,7 @@ describe('MCP server (in memory)', () => {
   it('documents a component', async () => {
     const result = await client.callTool({ name: 'get_component', arguments: { name: 'Button' } });
     const text = textOf(result);
-    expect(text).toContain("import { Button, LinkButton } from '@dev-community/ui';");
+    expect(text).toContain("import { Button, LinkButton } from '@devcommunityit/ui';");
     expect(text).toContain('| `variant` |');
     expect(text).toContain('```tsx');
   });
@@ -73,7 +73,7 @@ describe('MCP server (in memory)', () => {
 
   it('serves patterns, page templates, tokens, themes and setup', async () => {
     expect(textOf(await client.callTool({ name: 'list_patterns', arguments: {} }))).toContain('dashboard');
-    expect(textOf(await client.callTool({ name: 'get_page_template', arguments: { slug: 'dashboard' } }))).toContain("from '@dev-community/ui'");
+    expect(textOf(await client.callTool({ name: 'get_page_template', arguments: { slug: 'dashboard' } }))).toContain("from '@devcommunityit/ui'");
     expect(textOf(await client.callTool({ name: 'get_tokens', arguments: { group: 'space' } }))).toContain('var(--dc-space-4)');
     expect(textOf(await client.callTool({ name: 'resolve_token', arguments: { value: '1rem' } }))).toContain('space.4');
     expect(textOf(await client.callTool({ name: 'get_theme', arguments: {} }))).toContain('createTheme');
@@ -101,7 +101,7 @@ describe('MCP server (in memory)', () => {
   it('validates code with structured output', async () => {
     const result = (await client.callTool({
       name: 'validate_usage',
-      arguments: { code: `import { Buton } from '@dev-community/ui';`, filename: 'a.tsx' },
+      arguments: { code: `import { Buton } from '@devcommunityit/ui';`, filename: 'a.tsx' },
     })) as TextResult;
     expect(result.structuredContent).toMatchObject({ errors: 1 });
     expect(textOf(result)).toContain('unknown-export');
@@ -147,7 +147,7 @@ describe('MCP server (in memory)', () => {
       expect(textOf(await dynamicClient.callTool({ name: 'list_components', arguments: { category: 'runtime-test' } }))).toContain('RuntimeCatalogTest');
       expect((await dynamicClient.listResources()).resources.some((item) => item.uri === 'dc-ui://components/runtime-catalog-test')).toBe(true);
       const validation = await dynamicClient.callTool({
-        name: 'validate_usage', arguments: { code: "import { RuntimeCatalogTest } from '@dev-community/ui';", filename: 'example.tsx' },
+        name: 'validate_usage', arguments: { code: "import { RuntimeCatalogTest } from '@devcommunityit/ui';", filename: 'example.tsx' },
       }) as TextResult;
       expect(validation.structuredContent).toMatchObject({ errors: 0 });
       expect((await fixedClient.callTool({ name: 'get_component', arguments: { name: 'RuntimeCatalogTest' } }) as TextResult).isError).toBe(true);

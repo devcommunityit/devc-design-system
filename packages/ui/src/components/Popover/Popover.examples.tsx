@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IconButton, Inline, Popover, PopoverTrigger, Stack, Switch, Text, TextField } from '@dev-community/ui';
+import { Button, IconButton, Inline, Popover, PopoverTrigger, Stack, Switch, Text, TextField } from '@devcommunityit/ui';
 import { HelpCircle, Info, Pencil } from 'lucide-react';
 
 export function Basic() {

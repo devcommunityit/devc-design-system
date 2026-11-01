@@ -1,4 +1,4 @@
-import { Alert } from '@dev-community/ui';
+import { Alert } from '@devcommunityit/ui';
 import { DocSection, RefTable } from '../../components/Doc';
 
 export default function Figma() {
@@ -19,7 +19,7 @@ export default function Figma() {
             [<code key="2">design/figma/tokens-studio/</code>, 'Sets for Tokens Studio: base, density/*, palette/*, scheme/light|dark, with $themes (26 presets × 2 schemes × 2 densities). The expressive style and gradients are CSS-only and are not exported'],
             [<code key="3">design/figma/README.md</code>, 'Import procedure and token ↔ Figma variable ↔ CSS mapping'],
             [<code key="4">design/figma/components.md</code>, 'Specifications of components, variants, properties, and states to build in Figma'],
-            [<code key="5">@dev-community/ui/tokens.json</code>, 'The same DTCG file, shipped with the package'],
+            [<code key="5">@devcommunityit/ui/tokens.json</code>, 'The same DTCG file, shipped with the package'],
           ]}
         />
         <p>

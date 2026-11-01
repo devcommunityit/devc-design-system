@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { useParams } from "react-router";
-import { Alert, Heading, Skeleton, Stack, Text } from "@dev-community/ui";
+import { Alert, Heading, Skeleton, Stack, Text } from "@devcommunityit/ui";
 import {
   findGuide,
   GUIDE_COMPONENTS,

@@ -80,7 +80,7 @@ export const RelativeTime = forwardRef<HTMLTimeElement, RelativeTimeProps>(funct
   const target = toMs(date);
   if (Number.isNaN(target)) {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn(`@dev-community/ui: RelativeTime received an invalid date (${String(date)}).`);
+      console.warn(`@devcommunityit/ui: RelativeTime received an invalid date (${String(date)}).`);
     }
     return null;
   }

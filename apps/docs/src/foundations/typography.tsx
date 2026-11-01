@@ -1,4 +1,4 @@
-import { BASE_TOKENS, tokenVar } from '@dev-community/ui';
+import { BASE_TOKENS, tokenVar } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 const ROLES = ['display', 'headline-lg', 'headline-md', 'headline-sm', 'title-lg', 'title-md', 'title-sm', 'body-lg', 'body-md', 'body-sm', 'label-lg', 'label-md', 'label-sm'];
@@ -37,7 +37,7 @@ export default function TypographyFoundation() {
       </DocSection>
       <DocSection title="Uso semantico">
         <p>Usa i componenti <code>Heading</code> e <code>Text</code> per mantenere coerenti semantica HTML e gerarchia visiva. I token restano disponibili per componenti custom.</p>
-        <Code language="tsx">{`import { Heading, Text } from '@dev-community/ui';
+        <Code language="tsx">{`import { Heading, Text } from '@devcommunityit/ui';
 
 <Heading level={1} size="headline-lg">Panoramica clienti</Heading>
 <Text variant="body-md" tone="secondary">Aggiornato pochi minuti fa</Text>`}</Code>

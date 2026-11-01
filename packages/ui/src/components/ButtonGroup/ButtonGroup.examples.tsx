@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ButtonGroup, Stack, Text } from '@dev-community/ui';
+import { Button, ButtonGroup, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   const [last, setLast] = useState('nessuna');

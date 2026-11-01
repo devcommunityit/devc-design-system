@@ -1,4 +1,4 @@
-import { Link } from '@dev-community/ui';
+import { Link } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 export default function Personalizzazione() {
@@ -44,7 +44,7 @@ export default function Personalizzazione() {
           element, as well as native events. Components built on React Aria also accept <code>className</code> as a function of state.
         </p>
         <Code>{`
-import { Button, Card } from '@dev-community/ui';
+import { Button, Card } from '@devcommunityit/ui';
 import styles from './Checkout.module.css';
 
 <Card className={styles.summary} data-testid="summary">…</Card>;
@@ -72,7 +72,7 @@ import styles from './Checkout.module.css';
           custom content instead of rigid configuration.
         </p>
         <Code>{`
-import { SiteHeader, UserMenu, MenuItem, LinkButton } from '@dev-community/ui';
+import { SiteHeader, UserMenu, MenuItem, LinkButton } from '@devcommunityit/ui';
 
 <SiteHeader
   brand={<Logo />}

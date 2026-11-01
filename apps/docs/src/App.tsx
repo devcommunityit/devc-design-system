@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { Route, Routes, useHref, useLocation, useNavigate } from 'react-router';
-import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, builtInMessages } from '@dev-community/ui';
+import { LocaleProvider, RouterProvider, Spinner, ThemeProvider, ToastProvider, builtInMessages } from '@devcommunityit/ui';
 import { BASE_URL, isStaticAppPath } from './base';
 import { DocsLayout } from './components/DocsLayout';
 import { DOCS_DEFAULT_LOOK, DOCS_DEFAULT_THEME } from './docs-defaults';

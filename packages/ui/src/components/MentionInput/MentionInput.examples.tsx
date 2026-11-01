@@ -1,4 +1,4 @@
-import { MentionInput, MentionTextarea } from '@dev-community/ui';
+import { MentionInput, MentionTextarea } from '@devcommunityit/ui';
 
 const people = [{ id: 'sara', label: 'Sara Leone', handle: 'sara' }, { id: 'luca', label: 'Luca Bianchi', handle: 'luca' }];
 

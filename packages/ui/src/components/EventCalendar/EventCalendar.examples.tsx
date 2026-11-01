@@ -1,4 +1,4 @@
-import { EventCalendar, parseDate } from '@dev-community/ui';
+import { EventCalendar, parseDate } from '@devcommunityit/ui';
 
 const events = [
   { id: 'meetup', title: 'Incontro community', startDate: parseDate('2026-11-12'), time: '18:00', href: '#meetup' },

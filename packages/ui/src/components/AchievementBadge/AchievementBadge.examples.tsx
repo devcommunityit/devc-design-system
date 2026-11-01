@@ -1,5 +1,5 @@
 import { Award, BookOpen, Code, Flame, Heart, Mic, Star, Users } from 'lucide-react';
-import { AchievementBadge, AchievementBadgeGroup, Stack } from '@dev-community/ui';
+import { AchievementBadge, AchievementBadgeGroup, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

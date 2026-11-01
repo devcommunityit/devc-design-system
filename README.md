@@ -2,17 +2,17 @@
 
 Design system React/TypeScript per siti pubblici, portali e dashboard. Contiene:
 
-- **`packages/ui`**: libreria `@dev-community/ui`, con token, temi, componenti, pattern e Storybook.
+- **`packages/ui`**: libreria `@devcommunityit/ui`, con token, temi, componenti, pattern e Storybook.
 - **`apps/docs`**: sito di documentazione, Theme Builder e showcase con pagine realistiche.
 - **`apps/playground`**: consumer separato che installa il pacchetto compilato (`npm pack`), non i sorgenti.
-- **`packages/mcp`**: server MCP `@dev-community/ui-mcp`, che espone catalogo, token, setup, pattern e un validatore
+- **`packages/mcp`**: server MCP `@devcommunityit/ui-mcp`, che espone catalogo, token, setup, pattern e un validatore
   agli assistenti AI. Vedi [packages/mcp/README.md](packages/mcp/README.md).
 - **`e2e`**: test Playwright e axe sul sito compilato.
 - **`design/figma`**: token DTCG, set per Tokens Studio e specifiche dei componenti. **Non è un file Figma.**
 - **`scripts/verify-package.mjs`**: verifica il tarball in un consumer temporaneo.
 
-> **Licenza: [MIT](LICENSE)**, © 2026 Dev Community. Vale per tutto il monorepo; i pacchetti `@dev-community/ui` e
-> `@dev-community/ui-mcp` includono una copia del file `LICENSE`. Il pacchetto non è ancora stato pubblicato.
+> **Licenza: [MIT](LICENSE)**, © 2026 Dev Community. Vale per tutto il monorepo; i pacchetti `@devcommunityit/ui` e
+> `@devcommunityit/ui-mcp` includono una copia del file `LICENSE`. Il workflow `Release` li distribuisce su GitHub Packages con tarball e checksum.
 
 ## Requisiti
 
@@ -45,20 +45,20 @@ Per il playground manuale, crea il pacchetto e installalo nel consumer:
 
 ```bash
 npm run build:lib
-npm pack -w @dev-community/ui --pack-destination apps/playground/vendor
-cd apps/playground && npm install ./vendor/dev-community-ui-0.1.0.tgz && npm run dev
+npm pack -w @devcommunityit/ui --pack-destination apps/playground/vendor
+cd apps/playground && npm install ./vendor/devcommunityit-ui-0.1.0.tgz && npm run dev
 ```
 
 ## Uso della libreria
 
 ```bash
-npm install @dev-community/ui   # da registry pubblico o privato (.npmrc con @dev-community:registry=…)
+npm install @devcommunityit/ui   # da registry pubblico o privato (.npmrc con @devcommunityit:registry=…)
 ```
 
 ```tsx
-import '@dev-community/ui/styles.css'; // obbligatorio, una sola volta
-// import '@dev-community/ui/reset.css'; // opzionale (opt-in)
-import { ThemeProvider, LocaleProvider, Button } from '@dev-community/ui';
+import '@devcommunityit/ui/styles.css'; // obbligatorio, una sola volta
+// import '@devcommunityit/ui/reset.css'; // opzionale (opt-in)
+import { ThemeProvider, LocaleProvider, Button } from '@devcommunityit/ui';
 
 export function App() {
   return (
@@ -76,7 +76,7 @@ export function App() {
 Tema personalizzato:
 
 ```ts
-import { createTheme } from '@dev-community/ui/theme'; // entry server-safe
+import { createTheme } from '@devcommunityit/ui/theme'; // entry server-safe
 
 export const acme = createTheme({
   name: 'acme',

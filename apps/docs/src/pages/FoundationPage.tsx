@@ -1,6 +1,6 @@
 import { Suspense, useRef } from 'react';
 import { useParams } from 'react-router';
-import { Alert, Heading, Skeleton, Stack, Text } from '@dev-community/ui';
+import { Alert, Heading, Skeleton, Stack, Text } from '@devcommunityit/ui';
 import { ErrorBoundary, LoadError, PageToc, PrevNext, useSectionHeadings } from '../components/Doc';
 import { findFoundation, FOUNDATION_COMPONENTS, FOUNDATIONS, hasFoundationTranslation } from '../content/foundations';
 import { useI18n } from '../settings';

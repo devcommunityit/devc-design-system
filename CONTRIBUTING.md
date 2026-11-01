@@ -16,8 +16,8 @@ Questi sono i punti essenziali.
    `mcp-v<versione>`): pubblica su GitHub Packages e crea la GitHub Release con il tarball. Il workflow **CI** gira su
    ogni pull request e allega i tarball come artifact per provarli in un progetto React.
 8. Il sito di documentazione è in italiano e inglese. Dopo aver aggiunto o modificato un `*.meta.ts` esegui
-   `npm run i18n:extract -w @dev-community/docs`, traduci i campi nuovi in `apps/docs/src/i18n/en/components/` e verifica
-   con `npm run i18n:check -w @dev-community/docs`. Le guide inglesi sono in `apps/docs/src/guides/en/`.
+   `npm run i18n:extract -w @devcommunityit/docs`, traduci i campi nuovi in `apps/docs/src/i18n/en/components/` e verifica
+   con `npm run i18n:check -w @devcommunityit/docs`. Le guide inglesi sono in `apps/docs/src/guides/en/`.
 
 ## Licenza
 

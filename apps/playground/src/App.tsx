@@ -35,9 +35,9 @@ import {
   type LoginFormValues,
   type PublicationStatus,
   type ThemeMode,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 // Server-safe entry: no React, no DOM.
-import { createTheme, contrastRatio } from '@dev-community/ui/theme';
+import { createTheme, contrastRatio } from '@devcommunityit/ui/theme';
 
 const acme = createTheme({
   name: 'acme',

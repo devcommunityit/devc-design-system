@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack, Text, type Time, TimePicker, parseTime } from '@dev-community/ui';
+import { Stack, Text, type Time, TimePicker, parseTime } from '@devcommunityit/ui';
 
 export function Basic() {
   return <TimePicker label="Orario promemoria" defaultValue={parseTime('09:30')} />;

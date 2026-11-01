@@ -323,7 +323,7 @@ export const fr: Messages = {
     invalid_type: ({ expected }) => `Type non valide${nb}: ${expected === 'string' ? 'texte attendu' : 'objet attendu'}.`,
     missing_field: () => 'Un champ obligatoire est manquant.',
     unsupported_version: ({ version, supported }) =>
-      `La version de schéma ${version ?? '?'} n’est pas prise en charge (maximum ${supported ?? '?'}). Mettez à jour @dev-community/ui.`,
+      `La version de schéma ${version ?? '?'} n’est pas prise en charge (maximum ${supported ?? '?'}). Mettez à jour @devcommunityit/ui.`,
     invalid_version: () => 'La version de schéma doit être un entier positif.',
     unknown_key: () => 'Clé inconnue.',
     unknown_token: () => 'Jeton inconnu ou non personnalisable.',

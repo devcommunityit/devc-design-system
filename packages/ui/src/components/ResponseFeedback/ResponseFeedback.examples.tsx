@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, LocaleProvider, ResponseFeedback, Stack, Text, type FeedbackValue } from '@dev-community/ui';
+import { Button, LocaleProvider, ResponseFeedback, Stack, Text, type FeedbackValue } from '@devcommunityit/ui';
 
 export function Basic() {
   const [last, setLast] = useState<FeedbackValue>(null);

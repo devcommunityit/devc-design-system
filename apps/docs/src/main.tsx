@@ -1,5 +1,5 @@
-import '@dev-community/ui/reset.css';
-import '@dev-community/ui/styles.css';
+import '@devcommunityit/ui/reset.css';
+import '@devcommunityit/ui/styles.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';

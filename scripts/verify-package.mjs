@@ -3,7 +3,7 @@
  * Verifies the *packed* library in a consumer that lives outside the repository, so nothing can
  * resolve from the workspace sources or the root node_modules.
  *
- *   1. build @dev-community/ui (skip with --skip-build)
+ *   1. build @devcommunityit/ui (skip with --skip-build)
  *   2. npm pack into a temporary directory
  *   3. copy apps/playground there, point it at the tarball, npm install
  *   4. static checks on the installed package (exports, specifiers, single React, no workspace paths)
@@ -73,18 +73,18 @@ async function isFocusedSoon(locator, timeout = 2000) {
 
 const work = mkdtempSync(join(tmpdir(), 'dc-verify-'));
 const consumer = join(work, 'consumer');
-const pkgDir = join(consumer, 'node_modules', '@dev-community', 'ui');
+const pkgDir = join(consumer, 'node_modules', '@devcommunityit', 'ui');
 console.log(`Cartella di lavoro: ${work}`);
 
 if (!args.has('--skip-build')) {
   await step('Build della libreria', () => {
-    run('npm', ['run', 'build', '-w', '@dev-community/ui'], root);
+    run('npm', ['run', 'build', '-w', '@devcommunityit/ui'], root);
   });
 }
 
 let tarball = '';
 await step('npm pack', () => {
-  const out = run('npm', ['pack', '-w', '@dev-community/ui', '--pack-destination', work, '--json'], root);
+  const out = run('npm', ['pack', '-w', '@devcommunityit/ui', '--pack-destination', work, '--json'], root);
   const info = JSON.parse(out.slice(out.indexOf('[')));
   tarball = join(work, info[0].filename);
   const files = info[0].files.map((f) => f.path);
@@ -100,11 +100,11 @@ await step('Consumer separato fuori dal repository: npm install dal tarball', ()
   const src = join(root, 'apps', 'playground');
   for (const entry of ['index.html', 'tsconfig.json', 'vite.config.ts', 'src']) cpSync(join(src, entry), join(consumer, entry), { recursive: true });
   const pkg = JSON.parse(readFileSync(join(src, 'package.json'), 'utf8'));
-  pkg.dependencies['@dev-community/ui'] = `file:${relative(consumer, tarball).split(sep).join('/')}`;
+  pkg.dependencies['@devcommunityit/ui'] = `file:${relative(consumer, tarball).split(sep).join('/')}`;
   writeFileSync(join(consumer, 'package.json'), `${JSON.stringify(pkg, null, 2)}\n`);
   run('npm', ['install', '--no-audit', '--no-fund'], consumer);
   assert(existsSync(join(pkgDir, 'dist', 'index.js')), 'package not installed');
-  assert(!lstatSync(pkgDir).isSymbolicLink(), '@dev-community/ui is a symlink, not an installed copy');
+  assert(!lstatSync(pkgDir).isSymbolicLink(), '@devcommunityit/ui is a symlink, not an installed copy');
   return relative(work, pkgDir);
 });
 
@@ -162,7 +162,7 @@ await step('Una sola copia di React e React DOM', () => {
 
 await step('Import Node dell’entry server-safe (senza DOM)', () => {
   const script = `
-import * as t from '@dev-community/ui/theme';
+import * as t from '@devcommunityit/ui/theme';
 if (typeof window !== 'undefined' || typeof document !== 'undefined') throw new Error('DOM present');
 const theme = t.createTheme({ name: 'acme', extends: 'graphite', seeds: { brand: '#0f766e' } });
 if (!t.themeToCss(theme).includes('--dc-color-action-primary')) throw new Error('themeToCss output missing variables');

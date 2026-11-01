@@ -29,7 +29,7 @@ import {
   Text,
   TextField,
   useToast,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { euro, formatDay, simulateLatency } from './data';
 
 interface Session {

@@ -1,4 +1,4 @@
-import { Button, CtaPanel, LinkButton } from '@dev-community/ui';
+import { Button, CtaPanel, LinkButton } from '@devcommunityit/ui';
 
 /** Call for speakers from the community landing, with numbered steps. */
 export function Basic() {

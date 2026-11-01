@@ -32,7 +32,7 @@ import {
   ToggleGroup,
   type CommandPaletteItem,
   type SidebarSection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import type { ComponentCategory } from '@ui-src/docs-meta/types';
 import { CATEGORY_GROUPS, categoryLabel, components, type ComponentEntry } from '../content/components';
 import { GUIDES, type GuideGroup } from '../content/guides';

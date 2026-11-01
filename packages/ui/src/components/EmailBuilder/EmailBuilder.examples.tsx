@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { Stack, Switch, Text } from '@dev-community/ui';
-import { EmailBuilder, createEmailBlock, createEmailDocument, emailRichText, renderEmailHtml, type EmailDocument } from '@dev-community/ui/editor';
+import { Stack, Switch, Text } from '@devcommunityit/ui';
+import { EmailBuilder, createEmailBlock, createEmailDocument, emailRichText, renderEmailHtml, type EmailDocument } from '@devcommunityit/ui/editor';
 
 function newsletterDocument(): EmailDocument {
   return createEmailDocument({
@@ -40,7 +40,7 @@ function newsletterDocument(): EmailDocument {
         links: [
           { network: 'github', href: 'https://github.com/dev-community' },
           { network: 'linkedin', href: 'https://www.linkedin.com/company/dev-community' },
-          { network: 'youtube', href: 'https://www.youtube.com/@dev-community' },
+          { network: 'youtube', href: 'https://www.youtube.com/@devcommunityit' },
         ],
       }),
       createEmailBlock('footer', {

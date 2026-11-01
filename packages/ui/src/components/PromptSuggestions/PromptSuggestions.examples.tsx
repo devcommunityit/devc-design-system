@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, PromptComposer, PromptSuggestions, Stack, Text } from '@dev-community/ui';
+import { Button, PromptComposer, PromptSuggestions, Stack, Text } from '@devcommunityit/ui';
 
 const items = [
   { id: 'summary', label: 'Riassumi', prompt: 'Riassumi i punti principali del documento' },

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Euro } from 'lucide-react';
-import { NumberInput, Stack, Text } from '@dev-community/ui';
+import { NumberInput, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <NumberInput label="Ospiti" defaultValue={2} minValue={1} maxValue={10} />;

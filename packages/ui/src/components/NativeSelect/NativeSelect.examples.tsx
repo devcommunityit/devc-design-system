@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NativeSelect, Stack, Text } from '@dev-community/ui';
+import { NativeSelect, Stack, Text } from '@devcommunityit/ui';
 
 const provinces = [
   { value: 'BO', label: 'Bologna' },

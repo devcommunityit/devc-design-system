@@ -1,4 +1,4 @@
-import { createTheme, type Density, type Look, type OverridableToken, type Theme, type ThemeInput } from '@dev-community/ui/theme';
+import { createTheme, type Density, type Look, type OverridableToken, type Theme, type ThemeInput } from '@devcommunityit/ui/theme';
 import type { DocsLang, Localized } from '../i18n/lang';
 
 export interface Swatch {
@@ -156,7 +156,7 @@ export function designerSnippet(state: DesignerState, lang: DocsLang = 'it'): st
     );
   }
   if (state.panel === 'translucent') notes.push(`${PANEL_COMMENT[lang]}\n${PANEL_CSS}`);
-  return `import { createTheme, ThemeProvider } from '@dev-community/ui';
+  return `import { createTheme, ThemeProvider } from '@devcommunityit/ui';
 
 export const theme = createTheme(${body});
 

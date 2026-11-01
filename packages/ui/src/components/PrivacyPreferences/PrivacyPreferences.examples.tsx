@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PrivacyPreferences } from '@dev-community/ui';
+import { PrivacyPreferences } from '@devcommunityit/ui';
 
 export function Consent() {
   const [saved, setSaved] = useState<readonly string[] | null>(null);

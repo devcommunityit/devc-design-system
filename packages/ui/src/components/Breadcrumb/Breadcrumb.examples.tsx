@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Inline, Stack, Text } from '@dev-community/ui';
+import { Breadcrumb, BreadcrumbItem, Button, Inline, Stack, Text } from '@devcommunityit/ui';
 import { Folder } from 'lucide-react';
 
 export function Basic() {

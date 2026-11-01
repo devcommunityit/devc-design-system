@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Lock } from 'lucide-react';
-import { Button, Form, Inline, List, PasswordInput, Stack, Text, TextField, VisuallyHidden } from '@dev-community/ui';
+import { Button, Form, Inline, List, PasswordInput, Stack, Text, TextField, VisuallyHidden } from '@devcommunityit/ui';
 
 export function Basic() {
   return <PasswordInput label="Password" startAdornment={<Lock />} />;

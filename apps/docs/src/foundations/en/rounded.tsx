@@ -1,4 +1,4 @@
-import { BASE_TOKENS, tokenVar } from '@dev-community/ui';
+import { BASE_TOKENS, tokenVar } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 const RADII = Object.keys(BASE_TOKENS).filter((path) => path.startsWith('radius.'));

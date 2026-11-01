@@ -11,7 +11,7 @@ import {
   sortRows,
   type DataTableColumn,
   type SortState,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 type Status = 'attivo' | 'sospeso' | 'invitato';
 interface Customer {

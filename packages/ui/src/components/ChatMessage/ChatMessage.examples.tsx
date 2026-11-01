@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ChatMessage, Inline, ResponseFeedback, Stack } from '@dev-community/ui';
+import { Button, ChatMessage, Inline, ResponseFeedback, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Stack gap={3}><ChatMessage speaker="user">Come posso cambiare la palette?</ChatMessage><ChatMessage footer={<ResponseFeedback />}>Usa il selettore del tema oppure crea un tema personalizzato con createTheme.</ChatMessage><ChatMessage speaker="system">Contenuto dimostrativo, non generato da un modello.</ChatMessage></Stack>;

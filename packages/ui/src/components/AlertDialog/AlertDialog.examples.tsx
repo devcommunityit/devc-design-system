@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertDialog, Button, DialogTrigger, Stack, Switch, Text, TextField } from '@dev-community/ui';
+import { AlertDialog, Button, DialogTrigger, Stack, Switch, Text, TextField } from '@devcommunityit/ui';
 
 export function Destructive() {
   const [deleted, setDeleted] = useState(false);

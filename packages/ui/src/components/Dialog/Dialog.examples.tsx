@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Dialog, DialogTrigger, Stack, Text, TextField } from '@dev-community/ui';
+import { Button, Dialog, DialogTrigger, Stack, Text, TextField } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

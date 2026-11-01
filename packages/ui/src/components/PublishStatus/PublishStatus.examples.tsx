@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Inline, PublishStatus, Stack, Text, type PublicationStatus } from '@dev-community/ui';
+import { Button, Inline, PublishStatus, Stack, Text, type PublicationStatus } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Inline wrap gap={2}><PublishStatus status="draft" /><PublishStatus status="published" /><PublishStatus status="scheduled" /><PublishStatus status="archived" /></Inline>;

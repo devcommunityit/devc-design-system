@@ -24,7 +24,7 @@ import {
   Toggle,
   ToggleGroup,
   type Selection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { euro, formatDay, orderStatusLabel, orderStatusTone, useShowcaseData } from './data';
 
 type Period = 'q1' | 'q2' | 'q3' | 'q4';

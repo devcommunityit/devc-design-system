@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArticleCard, Badge, Grid, ReactionBar, Stack, Switch } from '@dev-community/ui';
+import { ArticleCard, Badge, Grid, ReactionBar, Stack, Switch } from '@devcommunityit/ui';
 
 // Computed once at module load so renders stay pure.
 const twoHoursAgo = new Date(Date.now() - 2 * 3600 * 1000);

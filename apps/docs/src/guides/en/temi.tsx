@@ -1,5 +1,5 @@
-import { Alert, Link } from '@dev-community/ui';
-import { PRESET_COLORS, PRESET_META, PRESET_NAMES, type PresetKind, type PresetName } from '@dev-community/ui/theme';
+import { Alert, Link } from '@devcommunityit/ui';
+import { PRESET_COLORS, PRESET_META, PRESET_NAMES, type PresetKind, type PresetName } from '@devcommunityit/ui/theme';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 function Swatch({ color }: { color: string }) {
@@ -170,7 +170,7 @@ const tema = createTheme({ name: 'brand-x', seeds: { brand: '#0b57d0', tertiary:
 
       <DocSection title="Controlled and uncontrolled usage">
         <Code>{`
-import { ThemeProvider, useTheme } from '@dev-community/ui';
+import { ThemeProvider, useTheme } from '@devcommunityit/ui';
 
 // Uncontrolled: the provider owns the state
 <ThemeProvider defaultMode="system" defaultTheme="lagoon" defaultDensity="comfortable">
@@ -208,7 +208,7 @@ function ModeToggle() {
           overrides. The input is validated: on error it throws <code>ThemeValidationError</code> with the list of issues.
         </p>
         <Code>{`
-import { createTheme, ThemeProvider } from '@dev-community/ui';
+import { createTheme, ThemeProvider } from '@devcommunityit/ui';
 
 export const acme = createTheme({
   name: 'acme',              // lowercase and hyphens, different from the presets
@@ -240,8 +240,8 @@ export const acme = createTheme({
           font families without dangerous characters are accepted: no arbitrary CSS reaches the page.
         </p>
         <Code>{`
-import { formatThemeIssue, useMessages } from '@dev-community/ui';
-import { parseThemeJson, themeToJson } from '@dev-community/ui/theme';
+import { formatThemeIssue, useMessages } from '@devcommunityit/ui';
+import { parseThemeJson, themeToJson } from '@devcommunityit/ui/theme';
 
 const messages = useMessages();                    // inside a component
 const result = parseThemeJson(fileText);           // 64 KB limit
@@ -276,7 +276,7 @@ const json = themeToJson(acme);                    // for download or saving
         <Code>{`
 // build script (Node)
 import { writeFileSync } from 'node:fs';
-import { themeToCss } from '@dev-community/ui/theme';
+import { themeToCss } from '@devcommunityit/ui/theme';
 import { acme } from './theme';
 
 writeFileSync('public/acme-theme.css', themeToCss(acme));

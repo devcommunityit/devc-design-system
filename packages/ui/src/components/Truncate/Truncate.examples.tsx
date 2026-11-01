@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Stack, Text, Truncate } from '@dev-community/ui';
+import { Button, Stack, Text, Truncate } from '@devcommunityit/ui';
 
 const text =
   'Il servizio di assistenza è disponibile dal lunedì al venerdì, dalle 8:30 alle 18:00. Le richieste ricevute fuori orario vengono prese in carico il giorno lavorativo successivo, secondo l’ordine di arrivo e la priorità indicata. Per le segnalazioni urgenti relative a interruzioni di servizio è attivo un numero dedicato, riportato nel contratto di assistenza.';

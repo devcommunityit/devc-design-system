@@ -1,4 +1,4 @@
-import { COLOR_ROLES, colorVar } from '@dev-community/ui';
+import { COLOR_ROLES, colorVar } from '@devcommunityit/ui';
 import { Code, DocSection } from '../components/Doc';
 
 const GROUPS = [

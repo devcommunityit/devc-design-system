@@ -12,7 +12,7 @@ import {
   isWeekend,
   parseDate,
   parseZonedDateTime,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function Basic() {
   return <DatePicker label="Data di nascita" />;

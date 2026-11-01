@@ -1,4 +1,4 @@
-import { Card, CardBody, GaugeChart } from '@dev-community/ui';
+import { Card, CardBody, GaugeChart } from '@devcommunityit/ui';
 
 export function Basic() {
   return <GaugeChart title="Soddisfazione clienti" description="Ottobre 2026" value={72} label="Punteggio CSAT" />;

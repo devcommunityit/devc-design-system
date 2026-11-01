@@ -1,6 +1,6 @@
 import { Euro, ShoppingCart, TicketCheck, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Grid, KpiCard, Link, Toggle, ToggleGroup, Stack, Switch } from '@dev-community/ui';
+import { Grid, KpiCard, Link, Toggle, ToggleGroup, Stack, Switch } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MultiSelect, Stack, Text, type Key, type MultiSelectOption } from '@dev-community/ui';
+import { MultiSelect, Stack, Text, type Key, type MultiSelectOption } from '@devcommunityit/ui';
 
 const skills: MultiSelectOption[] = [
   { id: 'react', label: 'React' },

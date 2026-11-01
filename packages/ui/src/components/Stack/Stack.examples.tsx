@@ -1,4 +1,4 @@
-import { Button, Inline, Stack, Text } from '@dev-community/ui';
+import { Button, Inline, Stack, Text } from '@devcommunityit/ui';
 
 export function VerticalStack() {
   return (

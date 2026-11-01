@@ -1,6 +1,6 @@
 import { FileText, Folder, Image } from 'lucide-react';
 import { useState } from 'react';
-import { Stack, Text, TreeView, TreeViewItem, type Key, type Selection } from '@dev-community/ui';
+import { Stack, Text, TreeView, TreeViewItem, type Key, type Selection } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

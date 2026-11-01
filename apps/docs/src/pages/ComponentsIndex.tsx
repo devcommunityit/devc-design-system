@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Badge, Card, CardHeader, CardLink, Grid, Heading, Inline, SearchInput, Stack, Text } from '@dev-community/ui';
+import { Badge, Card, CardHeader, CardLink, Grid, Heading, Inline, SearchInput, Stack, Text } from '@devcommunityit/ui';
 import { components, componentsByCategory } from '../content/components';
 import { DocSection, RefTable } from '../components/Doc';
 import { PageMeta } from '../components/PageMeta';

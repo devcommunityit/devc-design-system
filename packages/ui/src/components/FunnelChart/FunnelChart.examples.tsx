@@ -1,4 +1,4 @@
-import { Card, CardBody, FunnelChart } from '@dev-community/ui';
+import { Card, CardBody, FunnelChart } from '@devcommunityit/ui';
 
 const checkout = [
   { id: 'visits', label: 'Visite', value: 24800 },

@@ -25,11 +25,11 @@ const withStorybook = process.env.PAGES_STORYBOOK !== 'false';
 const run = (cmd, env = {}) => execSync(cmd, { cwd: repo, stdio: 'inherit', env: { ...process.env, ...env } });
 
 console.log(`\n▸ Docs (base ${base}${withStorybook ? ', con Storybook' : ''})`);
-run('npm run build -w @dev-community/docs', { DOCS_BASE: base, VITE_STORYBOOK: String(withStorybook) });
+run('npm run build -w @devcommunityit/docs', { DOCS_BASE: base, VITE_STORYBOOK: String(withStorybook) });
 
 if (withStorybook) {
   console.log('\n▸ Storybook');
-  run('npm run build-storybook -w @dev-community/ui');
+  run('npm run build-storybook -w @devcommunityit/ui');
   if (!existsSync(join(storybookOut, 'index.html'))) throw new Error('Storybook build did not produce index.html');
   cpSync(storybookOut, join(dist, 'storybook'), { recursive: true });
 }

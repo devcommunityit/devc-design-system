@@ -321,7 +321,7 @@ export const de: Messages = {
     invalid_type: ({ expected }) => `Ungültiger Typ: ${expected === 'string' ? 'Text' : 'Objekt'} erwartet.`,
     missing_field: () => 'Ein Pflichtfeld fehlt.',
     unsupported_version: ({ version, supported }) =>
-      `Schemaversion ${version ?? '?'} wird nicht unterstützt (höchstens ${supported ?? '?'}). Aktualisieren Sie @dev-community/ui.`,
+      `Schemaversion ${version ?? '?'} wird nicht unterstützt (höchstens ${supported ?? '?'}). Aktualisieren Sie @devcommunityit/ui.`,
     invalid_version: () => 'Die Schemaversion muss eine positive ganze Zahl sein.',
     unknown_key: () => 'Unbekannter Schlüssel.',
     unknown_token: () => 'Unbekanntes oder nicht anpassbares Token.',

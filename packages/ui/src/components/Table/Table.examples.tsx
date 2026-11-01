@@ -16,7 +16,7 @@ import {
   TableRow,
   Text,
   VisuallyHidden,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 type InvoiceStatus = 'Pagata' | 'In attesa' | 'Scaduta';
 const invoices: { id: string; client: string; status: InvoiceStatus; amount: number }[] = [

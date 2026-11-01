@@ -1,5 +1,5 @@
 /**
- * Server-safe entry (`@dev-community/ui/theme`): no React, no DOM access at import time.
+ * Server-safe entry (`@devcommunityit/ui/theme`): no React, no DOM access at import time.
  * Use it in Next.js server components, build scripts and Node.
  */
 export {

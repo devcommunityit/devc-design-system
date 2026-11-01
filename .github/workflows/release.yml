@@ -1,4 +1,4 @@
-# Publishes @dev-community/ui or @dev-community/ui-mcp to GitHub Packages and creates a GitHub
+# Publishes @devcommunityit/ui or @devcommunityit/ui-mcp to GitHub Packages and creates a GitHub
 # Release with the .tgz (+ SHA-256) attached, so React projects can install it from the registry
 # or from the tarball.
 #
@@ -12,7 +12,7 @@
 # and marked as prerelease on GitHub; stable versions use "latest".
 #
 # Requirement: GitHub Packages only accepts a scope equal to the repository owner, so the
-# repository must belong to the "dev-community" user/organisation (or rename the scope).
+# repository must belong to the "devcommunityit" user/organisation (or rename the scope).
 name: Release
 
 on:
@@ -49,7 +49,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      SCOPE: '@dev-community'
+      SCOPE: '@devcommunityit'
       REGISTRY: https://npm.pkg.github.com/
     steps:
       - uses: actions/checkout@v7
@@ -64,7 +64,7 @@ jobs:
         run: |
           owner="@$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')"
           if [ "$owner" != "$SCOPE" ]; then
-            echo "::error::GitHub Packages accetta solo lo scope $owner (proprietario del repository), i pacchetti usano $SCOPE. Sposta il repository sotto 'dev-community' oppure rinomina lo scope nei package.json."
+            echo "::error::GitHub Packages accetta solo lo scope $owner (proprietario del repository), i pacchetti usano $SCOPE. Allinea lo scope del workflow e dei package.json al proprietario del repository."
             exit 1
           fi
 

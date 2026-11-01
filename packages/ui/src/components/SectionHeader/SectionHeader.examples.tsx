@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import { Link, LinkButton, SectionHeader, Toggle, ToggleGroup } from '@dev-community/ui';
+import { Link, LinkButton, SectionHeader, Toggle, ToggleGroup } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

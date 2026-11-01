@@ -1,6 +1,6 @@
 import { Bell, Pencil, Settings, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import { IconButton, Inline, Text } from '@dev-community/ui';
+import { IconButton, Inline, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   const [count, setCount] = useState(0);

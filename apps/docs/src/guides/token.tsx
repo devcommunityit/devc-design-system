@@ -1,4 +1,4 @@
-import { Link } from '@dev-community/ui';
+import { Link } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 export default function Token() {
@@ -34,7 +34,7 @@ export default function Token() {
           <code>tokenVar</code> eseguono la stessa conversione in TypeScript.
         </p>
         <Code>{`
-import { colorVar, tokenVar } from '@dev-community/ui/theme';
+import { colorVar, tokenVar } from '@devcommunityit/ui/theme';
 
 const style = {
   color: \`var(\${colorVar('text.secondary')})\`,   // var(--dc-color-text-secondary)
@@ -100,8 +100,8 @@ const style = {
       <DocSection title="Aggiungere o modificare un token">
         <ol>
           <li>Modifica il file sorgente in <code>packages/ui/tokens/</code>.</li>
-          <li>Esegui <code>npm run tokens -w @dev-community/ui</code>.</li>
-          <li>Verifica il controllo di contrasto e <code>npm run lint:tokens -w @dev-community/ui</code>.</li>
+          <li>Esegui <code>npm run tokens -w @devcommunityit/ui</code>.</li>
+          <li>Verifica il controllo di contrasto e <code>npm run lint:tokens -w @devcommunityit/ui</code>.</li>
           <li>Aggiorna la documentazione se il token è nuovo; rinominare o rimuovere un token è una modifica incompatibile (major).</li>
         </ol>
       </DocSection>

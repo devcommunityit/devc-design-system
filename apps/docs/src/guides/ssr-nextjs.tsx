@@ -1,4 +1,4 @@
-import { Alert } from '@dev-community/ui';
+import { Alert } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 export default function SsrNextjs() {
@@ -8,7 +8,7 @@ export default function SsrNextjs() {
         <ul>
           <li>Nessun accesso a window, document o localStorage durante l’importazione dei moduli.</li>
           <li>
-            Il punto di ingresso <code>@dev-community/ui/theme</code> non contiene React né DOM: usalo nei Server Component, negli script di build e
+            Il punto di ingresso <code>@devcommunityit/ui/theme</code> non contiene React né DOM: usalo nei Server Component, negli script di build e
             in Node.
           </li>
           <li>
@@ -34,7 +34,7 @@ export default function SsrNextjs() {
         <Code title="app/providers.tsx">{`
 'use client';
 import type { ReactNode } from 'react';
-import { ThemeProvider, LocaleProvider, createCookieStorageAdapter, isPresetName, type ThemePreferences } from '@dev-community/ui';
+import { ThemeProvider, LocaleProvider, createCookieStorageAdapter, isPresetName, type ThemePreferences } from '@devcommunityit/ui';
 
 const storage = createCookieStorageAdapter({ sameSite: 'Lax', secure: true });
 
@@ -58,8 +58,8 @@ export function Providers({ initial, children }: { initial: ThemePreferences; ch
         <Code title="app/layout.tsx (Server Component)">{`
 import type { ReactNode } from 'react';
 import { headers } from 'next/headers';
-import { getThemePreferencesFromCookie } from '@dev-community/ui/theme';
-import '@dev-community/ui/styles.css';
+import { getThemePreferencesFromCookie } from '@devcommunityit/ui/theme';
+import '@devcommunityit/ui/styles.css';
 import { Providers } from './providers';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -87,7 +87,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           colorare subito sfondo della pagina e <code>color-scheme</code>.
         </p>
         <Code>{`
-import { getThemeScript } from '@dev-community/ui/theme';
+import { getThemeScript } from '@devcommunityit/ui/theme';
 
 // nel template HTML / _document, con nonce generato per richiesta o hash statico
 <script nonce={nonce} dangerouslySetInnerHTML={{ __html: getThemeScript({ storageKey: 'dc-theme' }) }} />
@@ -123,7 +123,7 @@ import { getThemeScript } from '@dev-community/ui/theme';
 
       <DocSection title="Checklist Next.js (App Router)">
         <ul>
-          <li>Importa <code>@dev-community/ui/styles.css</code> una sola volta nel layout radice.</li>
+          <li>Importa <code>@devcommunityit/ui/styles.css</code> una sola volta nel layout radice.</li>
           <li>Mantieni i provider in un file <code>&apos;use client&apos;</code> e passagli dati serializzabili (non funzioni) dai Server Component.</li>
           <li>Per collegare i link al router usa <code>RouterProvider</code> con <code>useRouter().push</code> nel componente client dei provider.</li>
           <li>Non leggere <code>useTheme().resolvedScheme</code> per decidere il markup del primo render: durante SSR vale sempre light.</li>

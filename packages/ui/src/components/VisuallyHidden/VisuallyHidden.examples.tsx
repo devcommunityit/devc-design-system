@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IconButton, Inline, List, Stack, Text, VisuallyHidden } from '@dev-community/ui';
+import { Button, IconButton, Inline, List, Stack, Text, VisuallyHidden } from '@devcommunityit/ui';
 import { Bell, Minus, Plus } from 'lucide-react';
 
 export function Basic() {

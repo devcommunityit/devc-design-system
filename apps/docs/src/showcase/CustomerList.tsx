@@ -20,7 +20,7 @@ import {
   useToast,
   type DataTableColumn,
   type Key,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import {
   actions,
   customerStatusLabel,

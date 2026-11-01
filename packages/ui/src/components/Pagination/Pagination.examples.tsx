@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pagination, Stack, Text } from '@dev-community/ui';
+import { Pagination, Stack, Text } from '@devcommunityit/ui';
 
 export function Uncontrolled() {
   return <Pagination totalPages={12} defaultPage={4} />;

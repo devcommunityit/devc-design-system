@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, Inline, SortableList, Stack, Switch, Text } from '@dev-community/ui';
+import { Badge, Inline, SortableList, Stack, Switch, Text } from '@devcommunityit/ui';
 
 interface Task {
   id: string;

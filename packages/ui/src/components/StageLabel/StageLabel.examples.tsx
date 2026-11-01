@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FlaskConical, Sparkles } from 'lucide-react';
-import { Button, Heading, Inline, Link, Stack, StageLabel, Text } from '@dev-community/ui';
+import { Button, Heading, Inline, Link, Stack, StageLabel, Text } from '@devcommunityit/ui';
 
 export function Stages() {
   return (

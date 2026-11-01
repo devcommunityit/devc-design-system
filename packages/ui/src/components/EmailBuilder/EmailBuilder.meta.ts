@@ -60,7 +60,7 @@ export const doc: ComponentDoc = {
   slug: 'email-builder',
   category: 'editor',
   summary:
-    'Editor a blocchi per email (stile Mailchimp): palette, canvas WYSIWYG riordinabile, pannello impostazioni, anteprima isolata ed export HTML compatibile con i client di posta. Si importa da @dev-community/ui/editor.',
+    'Editor a blocchi per email (stile Mailchimp): palette, canvas WYSIWYG riordinabile, pannello impostazioni, anteprima isolata ed export HTML compatibile con i client di posta. Si importa da @devcommunityit/ui/editor.',
   whenToUse: [
     'Comporre newsletter, inviti a eventi o comunicazioni transazionali semplici direttamente nel prodotto.',
     'Salvare l’email come dati strutturati (EmailDocument JSON) e generare l’HTML lato client o server con renderEmailHtml.',

@@ -21,7 +21,7 @@ import {
   PRESET_NAMES,
   type PresetName,
   type ThemeMode,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { useDocsSettings } from '../settings';
 import { simulateLatency } from './data';
 

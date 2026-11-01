@@ -1,6 +1,6 @@
 import { CalendarClock, FileCheck2, MessageSquare, ShieldAlert } from 'lucide-react';
 import { useState } from 'react';
-import { Button, Header, LocaleProvider, NotificationCenter, Stack, Text, type NotificationItem } from '@dev-community/ui';
+import { Button, Header, LocaleProvider, NotificationCenter, Stack, Text, type NotificationItem } from '@devcommunityit/ui';
 
 // Fixed reference instant: relative times stay deterministic.
 const NOW = '2024-06-12T10:00:00+02:00';

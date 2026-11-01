@@ -1,4 +1,4 @@
-import { Alert, Link } from '@dev-community/ui';
+import { Alert, Link } from '@devcommunityit/ui';
 import { Code, DocSection } from '../components/Doc';
 
 export default function QuickStart() {
@@ -9,7 +9,7 @@ export default function QuickStart() {
           React e React DOM (18.3 o 19) sono peer dependency: usa quelli già presenti nell’applicazione. Il pacchetto non è pubblicato su un registry
           pubblico; vedi <Link href="/guide/installazione">Installazione</Link> per tarball e registry privati.
         </p>
-        <Code language="bash">{`npm install @dev-community/ui`}</Code>
+        <Code language="bash">{`npm install @devcommunityit/ui`}</Code>
       </DocSection>
 
       <DocSection title="2. Importa gli stili una volta">
@@ -19,8 +19,8 @@ export default function QuickStart() {
         </p>
         <Code>{`
 // main.tsx
-import '@dev-community/ui/styles.css';
-// import '@dev-community/ui/reset.css'; // opzionale
+import '@devcommunityit/ui/styles.css';
+// import '@devcommunityit/ui/reset.css'; // opzionale
 `}</Code>
       </DocSection>
 
@@ -31,8 +31,8 @@ import '@dev-community/ui/styles.css';
         </p>
         <Code>{`
 import { createRoot } from 'react-dom/client';
-import { LocaleProvider, ThemeProvider } from '@dev-community/ui';
-import '@dev-community/ui/styles.css';
+import { LocaleProvider, ThemeProvider } from '@devcommunityit/ui';
+import '@devcommunityit/ui/styles.css';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(
@@ -47,7 +47,7 @@ createRoot(document.getElementById('root')!).render(
 
       <DocSection title="4. Il primo componente">
         <Code>{`
-import { Button, Form, Stack, TextField, useToast } from '@dev-community/ui';
+import { Button, Form, Stack, TextField, useToast } from '@devcommunityit/ui';
 
 export function Newsletter() {
   const toast = useToast();

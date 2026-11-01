@@ -3,7 +3,7 @@ import type { ComponentDoc } from '@ui-src/docs-meta/types';
 import type { DocsLang } from './lang';
 import type * as Summaries from './en/summaries';
 
-/** Shape of src/i18n/en/components/<slug>.json (validated by `npm run i18n:check -w @dev-community/docs`). */
+/** Shape of src/i18n/en/components/<slug>.json (validated by `npm run i18n:check -w @devcommunityit/docs`). */
 export interface ComponentOverlay {
   source: string;
   summary: string;

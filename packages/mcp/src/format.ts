@@ -7,7 +7,7 @@ const bullets = (items: string[]) => items.map((i) => `- ${i}`).join('\n');
 export function importLine(component: ComponentEntry): string {
   const values = component.exports.filter((e) => !e.startsWith('type ')).map(exportName);
   const types = component.exports.filter((e) => e.startsWith('type ')).map((e) => `type ${exportName(e)}`);
-  return `import { ${[...values, ...types].join(', ')} } from '@dev-community/ui${component.entry ? `/${component.entry}` : ''}';`;
+  return `import { ${[...values, ...types].join(', ')} } from '@devcommunityit/ui${component.entry ? `/${component.entry}` : ''}';`;
 }
 
 export function componentSummaryLine(catalog: Catalog, c: ComponentEntry): string {

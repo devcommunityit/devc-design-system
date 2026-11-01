@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CloudOff, FolderPlus, Inbox, SearchX } from 'lucide-react';
-import { Button, EmptyState, Inline, List, SearchInput, Spinner, Stack, Text } from '@dev-community/ui';
+import { Button, EmptyState, Inline, List, SearchInput, Spinner, Stack, Text } from '@devcommunityit/ui';
 
 export function NoData() {
   const [projects, setProjects] = useState<string[]>([]);

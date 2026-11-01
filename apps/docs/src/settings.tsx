@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
-import type { BuiltInLanguage } from '@dev-community/ui';
+import type { BuiltInLanguage } from '@devcommunityit/ui';
 import { readInitialLang, storeLang, type DocsLang as PortalLang } from './i18n/lang';
 import { MESSAGES, type Messages } from './i18n/messages';
 

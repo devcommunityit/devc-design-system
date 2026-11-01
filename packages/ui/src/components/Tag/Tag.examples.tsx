@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tag, TagGroup, Stack, Text, type Selection } from '@dev-community/ui';
+import { Tag, TagGroup, Stack, Text, type Selection } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Bell, Ticket } from 'lucide-react';
-import { Badge, Button, EventCard, Grid, Stack, Switch } from '@dev-community/ui';
+import { Badge, Button, EventCard, Grid, Stack, Switch } from '@devcommunityit/ui';
 
 const attendees = [
   { name: 'Giulia Rossi' },

@@ -10,7 +10,7 @@ import {
   Toolbar,
   ToolbarGroup,
   ToolbarSeparator,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 /** Text editor toolbar: one tab stop, arrows move between every control across groups. */
 export function Editor() {

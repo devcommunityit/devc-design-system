@@ -73,7 +73,7 @@ function migrate(raw: Record<string, unknown>, issues: ThemeIssue[]): Record<str
       code: 'unsupported_version',
       severity: 'error',
       path: 'schemaVersion',
-      message: `Theme uses schema version ${version}, but this library supports up to ${THEME_SCHEMA_VERSION}. Update @dev-community/ui.`,
+      message: `Theme uses schema version ${version}, but this library supports up to ${THEME_SCHEMA_VERSION}. Update @devcommunityit/ui.`,
       params: { version, supported: THEME_SCHEMA_VERSION },
     });
     return null;

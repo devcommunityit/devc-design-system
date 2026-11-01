@@ -23,7 +23,7 @@ export function useControllableState<T>(
   const switched = isControlled !== (value !== undefined);
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production' && switched) {
-      console.warn(`@dev-community/ui: a component changed "${name}" from ${isControlled ? 'controlled to uncontrolled' : 'uncontrolled to controlled'}. Keep it consistent for the component's lifetime.`);
+      console.warn(`@devcommunityit/ui: a component changed "${name}" from ${isControlled ? 'controlled to uncontrolled' : 'uncontrolled to controlled'}. Keep it consistent for the component's lifetime.`);
     }
   }, [switched, isControlled, name]);
   const current = isControlled && value !== undefined ? value : internal;

@@ -1,6 +1,6 @@
 import { Accessibility, BarChart3, Boxes, Languages, LayoutTemplate, Moon, Package, Palette, Rocket, Ruler, ShieldCheck, SlidersHorizontal, SwatchBook } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { Card, CardHeader, CardLink, Grid, Heading, Inline, LinkButton, List, ListItem, Stack, Text } from '@dev-community/ui';
+import { Card, CardHeader, CardLink, Grid, Heading, Inline, LinkButton, List, ListItem, Stack, Text } from '@devcommunityit/ui';
 import { components, componentsByCategory } from '../content/components';
 import { SHOWCASE } from '../content/showcase';
 import { Code, DocSection } from '../components/Doc';
@@ -166,7 +166,7 @@ function Principles({ lang }: { lang: DocsLang }) {
         </ListItem>
         <ListItem>
           <strong>Prefixed CSS Modules</strong> <code>dc-</code> and <code>--dc-*</code> variables: no global reset (the reset is optional in{' '}
-          <code>@dev-community/ui/reset.css</code>), no Tailwind imposed.
+          <code>@devcommunityit/ui/reset.css</code>), no Tailwind imposed.
         </ListItem>
         <ListItem>
           <strong>Separated layers</strong>: primitives and components in <code>packages/ui</code>; patterns, templates and demo logic in{' '}
@@ -194,7 +194,7 @@ function Principles({ lang }: { lang: DocsLang }) {
       </ListItem>
       <ListItem>
         <strong>CSS Modules con prefisso</strong> <code>dc-</code> e variabili <code>--dc-*</code>: nessun reset globale (il reset è opzionale in{' '}
-        <code>@dev-community/ui/reset.css</code>), nessun Tailwind imposto.
+        <code>@devcommunityit/ui/reset.css</code>), nessun Tailwind imposto.
       </ListItem>
       <ListItem>
         <strong>Separazione dei livelli</strong>: primitive e componenti in <code>packages/ui</code>; pattern, template e logica dimostrativa in{' '}
@@ -283,8 +283,8 @@ export function Home() {
       </DocSection>
 
       <DocSection title={copy.brief} id="in-breve">
-        <Code language="tsx">{`import '@dev-community/ui/styles.css';
-import { Button, ThemeProvider } from '@dev-community/ui';
+        <Code language="tsx">{`import '@devcommunityit/ui/styles.css';
+import { Button, ThemeProvider } from '@devcommunityit/ui';
 
 export function App() {
   return (

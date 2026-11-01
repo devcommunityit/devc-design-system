@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
-import { ListBoxItem, ListBoxSection, Select, Stack, Text, type Key } from '@dev-community/ui';
+import { ListBoxItem, ListBoxSection, Select, Stack, Text, type Key } from '@devcommunityit/ui';
 
 const roles = [
   { id: 'viewer', name: 'Lettore', description: 'Può solo consultare' },

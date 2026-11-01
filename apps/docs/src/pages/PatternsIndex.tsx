@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardLink, Grid, Heading, List, ListItem, Text } from '@dev-community/ui';
+import { Card, CardHeader, CardLink, Grid, Heading, List, ListItem, Text } from '@devcommunityit/ui';
 import { components } from '../content/components';
 import { SHOWCASE } from '../content/showcase';
 import { DocSection } from '../components/Doc';
@@ -23,12 +23,12 @@ export function PatternsIndex() {
         <Text variant="body-lg" tone="secondary">
           {en ? (
             <>
-              Complete pages built exclusively with the public components of <code>@dev-community/ui</code> and deterministic local data. They open
+              Complete pages built exclusively with the public components of <code>@devcommunityit/ui</code> and deterministic local data. They open
               full screen, outside the documentation; their sample content is in Italian.
             </>
           ) : (
             <>
-              Pagine complete costruite esclusivamente con i componenti pubblici di <code>@dev-community/ui</code> e dati locali deterministici. Si
+              Pagine complete costruite esclusivamente con i componenti pubblici di <code>@devcommunityit/ui</code> e dati locali deterministici. Si
               aprono a tutta pagina, fuori dalla documentazione.
             </>
           )}

@@ -1,4 +1,4 @@
-import { Alert, Link } from '@dev-community/ui';
+import { Alert, Link } from '@devcommunityit/ui';
 import { AssistantWorkspace } from '@ui-src/components/PromptComposer/PromptComposer.examples';
 import { Editor } from '@ui-src/components/SeoPreview/SeoPreview.examples';
 import { Code, DocSection, RefTable } from '../components/Doc';

@@ -321,7 +321,7 @@ export const pt: Messages = {
     invalid_type: ({ expected }) => `Tipo inválido: era esperado ${expected === 'string' ? 'um texto' : 'um objeto'}.`,
     missing_field: () => 'Falta um campo obrigatório.',
     unsupported_version: ({ version, supported }) =>
-      `A versão de esquema ${version ?? '?'} não é suportada (máximo ${supported ?? '?'}). Atualize @dev-community/ui.`,
+      `A versão de esquema ${version ?? '?'} não é suportada (máximo ${supported ?? '?'}). Atualize @devcommunityit/ui.`,
     invalid_version: () => 'A versão de esquema deve ser um número inteiro positivo.',
     unknown_key: () => 'Chave desconhecida.',
     unknown_token: () => 'Token desconhecido ou não personalizável.',

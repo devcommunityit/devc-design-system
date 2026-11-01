@@ -1,6 +1,6 @@
 import { Download, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import { Button, Inline, LinkButton } from '@dev-community/ui';
+import { Button, Inline, LinkButton } from '@devcommunityit/ui';
 
 export function Variants() {
   return (

@@ -14,7 +14,7 @@ import {
   type ThemeInput,
   type ThemeIssue,
   type ThemeSeeds,
-} from '@dev-community/ui/theme';
+} from '@devcommunityit/ui/theme';
 import type { DocsLang, Localized } from '../i18n/lang';
 
 export type Scheme = 'light' | 'dark';
@@ -147,7 +147,7 @@ export function typeScriptSnippet(input: ThemeInput): string {
   const { schemaVersion: _version, ...rest } = input;
   void _version;
   const body = JSON.stringify(rest, null, 2).replace(/"([A-Za-z_$][\w$]*)":/g, '$1:');
-  return `import { createTheme, ThemeProvider } from '@dev-community/ui';
+  return `import { createTheme, ThemeProvider } from '@devcommunityit/ui';
 
 export const ${toIdentifier(input.name)} = createTheme(${body});
 

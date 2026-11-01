@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, CircularProgress, Inline, Progress, Stack, Switch, Text } from '@dev-community/ui';
+import { Button, CircularProgress, Inline, Progress, Stack, Switch, Text } from '@devcommunityit/ui';
 
 export function Linear() {
   return (

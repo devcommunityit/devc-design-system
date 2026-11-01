@@ -1,6 +1,6 @@
-# @dev-community/ui-mcp
+# @devcommunityit/ui-mcp
 
-Server [Model Context Protocol](https://modelcontextprotocol.io) per il design system `@dev-community/ui`. Dà agli
+Server [Model Context Protocol](https://modelcontextprotocol.io) per il design system `@devcommunityit/ui`. Dà agli
 assistenti AI (GitHub Copilot, Claude, Cursor…) il catalogo dei componenti, gli esempi, i token, i temi, la guida di
 setup e i template di pagina, più un validatore che controlla il codice generato.
 
@@ -88,19 +88,19 @@ autenticazione: per esporlo in rete mettilo dietro un reverse proxy che la gesti
 ```json
 {
   "mcpServers": {
-    "dev-community-ui": { "command": "npx", "args": ["-y", "-p", "@dev-community/ui-mcp", "dc-ui-mcp"] }
+    "dev-community-ui": { "command": "npx", "args": ["-y", "-p", "@devcommunityit/ui-mcp", "dc-ui-mcp"] }
   }
 }
 ```
 
-Per HTTP con il pacchetto installato: `npx -p @dev-community/ui-mcp dc-ui-mcp-http`.
+Per HTTP con il pacchetto installato: `npx -p @devcommunityit/ui-mcp dc-ui-mcp-http`.
 
 **HTTP**: `{ "type": "http", "url": "http://127.0.0.1:3333/mcp" }`.
 
 ## Uso programmatico
 
 ```ts
-import { createServer, loadCatalog, validateUsage } from '@dev-community/ui-mcp';
+import { createServer, loadCatalog, validateUsage } from '@devcommunityit/ui-mcp';
 
 const catalog = loadCatalog();
 const result = validateUsage(catalog, code, 'Page.tsx');
@@ -126,8 +126,8 @@ troppo severo, o un esempio non conforme, fa fallire la suite.
 
 Il pacchetto viene pubblicato su GitHub Packages dal workflow `Release` (*Actions → Release → Run workflow* con
 `package: mcp`, oppure un tag `mcp-v<versione>`), che allega anche il tarball alla GitHub Release. Per usarlo con
-`npx` serve lo stesso `.npmrc` della libreria (`@dev-community:registry=https://npm.pkg.github.com/` più un token con
+`npx` serve lo stesso `.npmrc` della libreria (`@devcommunityit:registry=https://npm.pkg.github.com/` più un token con
 `read:packages`). Il pacchetto include `dist`, `data`, il CHANGELOG e questo README; `prepublishOnly` esegue il
-controllo licenza/registry e `npm run build`. La versione dei dati corrisponde alla versione di `@dev-community/ui`
+controllo licenza/registry e `npm run build`. La versione dei dati corrisponde alla versione di `@devcommunityit/ui`
 al momento della build: pubblica il server MCP insieme alla libreria. La licenza è MIT, come per
-`@dev-community/ui` (vedi `LICENSE`).
+`@devcommunityit/ui` (vedi `LICENSE`).

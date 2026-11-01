@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@dev-community/ui';
-import { CommunityEngagementHub, type CommunityPoll, type CommunityQuestion } from '@dev-community/ui/patterns';
+import { Button } from '@devcommunityit/ui';
+import { CommunityEngagementHub, type CommunityPoll, type CommunityQuestion } from '@devcommunityit/ui/patterns';
 
 const polls: CommunityPoll[] = [
   {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, Button, Grid, ProfileCard, Stack, Switch } from '@dev-community/ui';
+import { Badge, Button, Grid, ProfileCard, Stack, Switch } from '@devcommunityit/ui';
 
 const compact = { notation: 'compact', maximumFractionDigits: 1 } as const;
 

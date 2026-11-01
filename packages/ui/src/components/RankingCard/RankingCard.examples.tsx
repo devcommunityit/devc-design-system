@@ -1,5 +1,5 @@
 import { BookOpen, Code, FileText, Mic, Video } from 'lucide-react';
-import { Grid, Link, RankingCard } from '@dev-community/ui';
+import { Grid, Link, RankingCard } from '@devcommunityit/ui';
 
 const articoli = [
   { id: 'react', label: 'Guida a React 19', value: 18420, description: 'Frontend', icon: <FileText /> },

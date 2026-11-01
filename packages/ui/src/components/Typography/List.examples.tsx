@@ -1,4 +1,4 @@
-import { List, ListItem, Quote, Stack } from '@dev-community/ui';
+import { List, ListItem, Quote, Stack } from '@devcommunityit/ui';
 
 export function Unordered() {
   return (

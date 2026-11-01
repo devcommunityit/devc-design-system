@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Banner, Button, Link, Radio, RadioGroup, ScrollArea, Stack, Text } from '@dev-community/ui';
+import { Banner, Button, Link, Radio, RadioGroup, ScrollArea, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

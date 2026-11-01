@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack, Text, type Time, TimeInput, parseTime } from '@dev-community/ui';
+import { Stack, Text, type Time, TimeInput, parseTime } from '@devcommunityit/ui';
 
 export function Basic() {
   return <TimeInput label="Orario di arrivo" showIcon />;

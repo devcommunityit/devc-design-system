@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Grid, Link, NewsletterCard, type NewsletterCardStatus } from '@dev-community/ui';
+import { Grid, Link, NewsletterCard, type NewsletterCardStatus } from '@devcommunityit/ui';
 
 const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 

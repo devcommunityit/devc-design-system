@@ -1,4 +1,4 @@
-import { Card, CardBody, DonutChart } from '@dev-community/ui';
+import { Card, CardBody, DonutChart } from '@devcommunityit/ui';
 
 const channels = [
   { id: 'web', label: 'Sito web', value: 5420 },

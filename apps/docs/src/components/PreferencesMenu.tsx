@@ -1,6 +1,6 @@
 import { Languages, Monitor, Moon, Settings2, Sun } from 'lucide-react';
-import { IconButton, ListBoxItem, Popover, PopoverTrigger, Select, Stack, Switch, Text, Toggle, ToggleGroup, useTheme, type Key, type ThemeMode } from '@dev-community/ui';
-import { PRESET_META, PRESET_NAMES, isPresetName } from '@dev-community/ui/theme';
+import { IconButton, ListBoxItem, Popover, PopoverTrigger, Select, Stack, Switch, Text, Toggle, ToggleGroup, useTheme, type Key, type ThemeMode } from '@devcommunityit/ui';
+import { PRESET_META, PRESET_NAMES, isPresetName } from '@devcommunityit/ui/theme';
 import { DOCS_LANGUAGES, isDocsLanguage, useDocsSettings, useI18n } from '../settings';
 
 const MODES: Array<{ id: ThemeMode; icon: React.ReactNode }> = [

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@dev-community/ui';
-import { VenueFloorPlan, type VenueArea } from '@dev-community/ui/widgets';
+import { Button } from '@devcommunityit/ui';
+import { VenueFloorPlan, type VenueArea } from '@devcommunityit/ui/widgets';
 
 const conferenceAreas: VenueArea[] = [
   { id: 'main', label: 'Sala Plenaria', kind: 'stage', shape: { x: 40, y: 40, width: 420, height: 260 }, capacity: 600, isAccessible: true, description: 'Keynote di apertura e chiusura, traduzione simultanea disponibile.' },

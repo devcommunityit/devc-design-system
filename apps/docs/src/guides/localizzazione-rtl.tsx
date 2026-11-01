@@ -31,21 +31,21 @@ export default function LocalizzazioneRtl() {
           <code>getDefaultMessages</code> scelgono a runtime tra tutti e sette i bundle, ma li includono tutti nella build.
         </p>
         <Code>{`
-import { LocaleProvider } from '@dev-community/ui';
+import { LocaleProvider } from '@devcommunityit/ui';
 
 <LocaleProvider locale="it-IT">
   <App />
 </LocaleProvider>;
 
 // Altre lingue: importa solo il bundle che serve (tree shaking)
-import { messagesDe } from '@dev-community/ui';
+import { messagesDe } from '@devcommunityit/ui';
 
 <LocaleProvider locale="de-AT" messages={messagesDe}>
   <App />
 </LocaleProvider>;
 
 // Scelta a runtime tra tutte le lingue (include tutti i bundle): de-AT → de, ja → en
-import { getDefaultMessages } from '@dev-community/ui';
+import { getDefaultMessages } from '@devcommunityit/ui';
 
 <LocaleProvider locale={userLocale} messages={getDefaultMessages(userLocale)}>
   <App />
@@ -61,7 +61,7 @@ import { getDefaultMessages } from '@dev-community/ui';
           bundle esistente e TypeScript segnalerà le chiavi mancanti:
         </p>
         <Code>{`
-import { LocaleProvider, messagesEn, type Messages } from '@dev-community/ui';
+import { LocaleProvider, messagesEn, type Messages } from '@devcommunityit/ui';
 
 const nl: Messages = {
   ...messagesEn,
@@ -89,8 +89,8 @@ const nl: Messages = {
           <code>formatThemeIssue</code>, che traduce con il bundle corrente.
         </p>
         <Code>{`
-import { formatThemeIssue, useMessages } from '@dev-community/ui';
-import { parseThemeJson } from '@dev-community/ui/theme';
+import { formatThemeIssue, useMessages } from '@devcommunityit/ui';
+import { parseThemeJson } from '@devcommunityit/ui/theme';
 
 function useThemeImport() {
   const messages = useMessages();

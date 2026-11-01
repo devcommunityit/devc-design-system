@@ -1,4 +1,4 @@
-import { RadarChart, Text } from '@dev-community/ui';
+import { RadarChart, Text } from '@devcommunityit/ui';
 import { useState } from 'react';
 
 const skills = ['Frontend', 'Backend', 'DevOps', 'Design', 'Testing', 'Comunicazione'];

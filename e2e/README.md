@@ -21,7 +21,7 @@ Per eseguire un singolo file:
 npx playwright test e2e/flows.spec.ts
 ```
 
-Playwright avvia automaticamente `npm run preview -w @dev-community/docs` sulla
+Playwright avvia automaticamente `npm run preview -w @devcommunityit/docs` sulla
 porta `4173`. Per evitare test contro una build obsoleta, ricompila la docs dopo
 aver modificato l'app o la libreria.
 

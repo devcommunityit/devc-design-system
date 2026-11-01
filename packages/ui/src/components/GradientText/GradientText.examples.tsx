@@ -1,4 +1,4 @@
-import { GradientText, Heading, Stack } from '@dev-community/ui';
+import { GradientText, Heading, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

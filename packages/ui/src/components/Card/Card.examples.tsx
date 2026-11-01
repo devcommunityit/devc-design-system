@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, CardImage, CardLink, Grid, Text } from '@dev-community/ui';
+import { Badge, Button, Card, CardBody, CardFooter, CardHeader, CardImage, CardLink, Grid, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

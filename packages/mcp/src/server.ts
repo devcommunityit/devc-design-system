@@ -7,8 +7,8 @@ import { validateUsage } from './validate.js';
 
 export const SERVER_NAME = 'dev-community-ui';
 
-const INSTRUCTIONS = `Design system @dev-community/ui (React/TypeScript, React Aria, CSS custom properties with prefix --dc-).
-Use these tools whenever you write or review UI code for a project that uses @dev-community/ui:
+const INSTRUCTIONS = `Design system @devcommunityit/ui (React/TypeScript, React Aria, CSS custom properties with prefix --dc-).
+Use these tools whenever you write or review UI code for a project that uses @devcommunityit/ui:
 1. Find components with search_components / list_components and read get_component BEFORE using one (props, when to use, accessibility).
 2. Start from get_setup (providers + styles.css import) and the page templates (list_patterns / get_page_template) for full pages.
 3. Never hard-code colors, spacing or radii: use tokens (get_tokens, resolve_token) via var(--dc-…), and layout components (Stack, Inline, Grid).
@@ -400,7 +400,7 @@ export function createServer(source?: Catalog | (() => Catalog)): McpServer {
     'build-ui',
     {
       title: 'Build UI with the design system',
-      description: 'Guides the assistant to build a screen or feature using only @dev-community/ui components and tokens.',
+      description: 'Guides the assistant to build a screen or feature using only @devcommunityit/ui components and tokens.',
       argsSchema: { request: z.string().describe('What to build, e.g. "a settings page with notification preferences".') },
     },
     ({ request }) => {

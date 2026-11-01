@@ -1,4 +1,4 @@
-import { HeatmapChart } from '@dev-community/ui';
+import { HeatmapChart } from '@devcommunityit/ui';
 
 const days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'];
 const slots = ['08–10', '10–12', '12–14', '14–16', '16–18', '18–20'];

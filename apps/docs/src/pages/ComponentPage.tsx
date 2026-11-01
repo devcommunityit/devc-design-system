@@ -21,7 +21,7 @@ import {
   TabPanel,
   Tabs,
   Text,
-} from "@dev-community/ui";
+} from "@devcommunityit/ui";
 import {
   CATEGORY_LABELS,
   CATEGORY_ORDER,
@@ -187,7 +187,7 @@ export function ComponentPage() {
           }))
         : undefined,
   }));
-  const importLine = `import { ${doc.exports.join(", ")} } from '@dev-community/ui${doc.entry ? `/${doc.entry}` : ""}';`;
+  const importLine = `import { ${doc.exports.join(", ")} } from '@devcommunityit/ui${doc.entry ? `/${doc.entry}` : ""}';`;
 
   return (
     <article className="docs-article docs-article--toc">
@@ -247,7 +247,7 @@ export function ComponentPage() {
           <Code language="ts">{importLine}</Code>
           <Text variant="body-sm" tone="secondary">
             {c.stylesNote[0]}
-            <InlineCode>@dev-community/ui/styles.css</InlineCode>
+            <InlineCode>@devcommunityit/ui/styles.css</InlineCode>
             {c.stylesNote[1]}
           </Text>
         </DocSection>
