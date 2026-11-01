@@ -48,9 +48,9 @@ let count = 0;
 const errors = [];
 for (const metaFile of sources.flatMap(walk).filter((f) => f.endsWith('.meta.ts'))) {
   const meta = readFileSync(metaFile, 'utf8');
-  const name = meta.match(/^ {2}name: '([^']+)'/m)?.[1];
-  const slug = meta.match(/^ {2}slug: '([^']+)'/m)?.[1];
-  const category = meta.match(/^ {2}category: '([^']+)'/m)?.[1];
+  const name = meta.match(/^ {2}name: (['"])(.*?)\1/m)?.[2];
+  const slug = meta.match(/^ {2}slug: (['"])(.*?)\1/m)?.[2];
+  const category = meta.match(/^ {2}category: (['"])(.*?)\1/m)?.[2];
   if (!name || !slug || !category || !(category in CATEGORY_LABELS)) {
     errors.push(`${relative(root, metaFile)}: cannot read name/slug/category`);
     continue;
@@ -60,7 +60,7 @@ for (const metaFile of sources.flatMap(walk).filter((f) => f.endsWith('.meta.ts'
   const examplesStart = meta.search(/^ {2}examples: \[/m);
   const examplesBlock = examplesStart < 0 ? '' : meta.slice(examplesStart, meta.indexOf('\n  status:', examplesStart));
   const titles = new Map(
-    [...examplesBlock.matchAll(/\{ name: '(\w+)', title: '((?:[^'\\]|\\.)*)'/g)].map((m) => [m[1], m[2].replace(/\\'/g, "'")]),
+    [...examplesBlock.matchAll(/\{\s*name:\s*(['"])(\w+)\1,\s*title:\s*(['"])((?:\\.|[^\\])*?)\3/g)].map((m) => [m[2], m[4].replace(/\\(['"\\])/g, '$1')]),
   );
   const examples = [...titles.keys()];
   let source;

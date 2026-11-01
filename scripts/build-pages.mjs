@@ -35,7 +35,7 @@ if (withStorybook) {
 }
 
 // Route list from the same sources the site uses.
-const slugs = (file, pattern = /\bslug:\s*'([^']+)'/g) => [...readFileSync(file, 'utf8').matchAll(pattern)].map((m) => m[1]);
+const slugs = (file, pattern = /\bslug:\s*(['"])(.*?)\1/g) => [...readFileSync(file, 'utf8').matchAll(pattern)].map((m) => m[2]);
 const metaSlugs = [];
 (function walk(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
