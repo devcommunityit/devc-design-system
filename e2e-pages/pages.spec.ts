@@ -39,7 +39,7 @@ test.describe('GitHub Pages (sotto-percorso)', () => {
 
   test('la navigazione interna resta sotto il percorso base e sopravvive al ricaricamento', async ({ page }) => {
     await open(page, url('/'));
-    await page.getByRole('navigation', { name: 'Documentazione' }).getByRole('link', { name: 'Theme Builder' }).click();
+    await page.getByRole('link', { name: 'Apri il Theme Builder' }).click();
     await expect(page).toHaveURL(new RegExp(`${url('/theme-builder')}$`));
     await expect(page.getByRole('heading', { level: 1 })).toContainText(/Theme Builder/i);
     await page.reload();
