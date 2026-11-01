@@ -1,7 +1,8 @@
 import type { ComponentDoc } from '../../docs-meta/types';
 
 export const doc: ComponentDoc = {
-  exports: ['EmailPreview', 'EmailPreviewProps'],
+  entry: 'editor',
+  exports: ['EmailPreview', 'type EmailPreviewProps'],
   name: 'EmailPreview',
   slug: 'email-preview',
   category: 'community',

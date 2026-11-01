@@ -1,7 +1,7 @@
 import type { ComponentDoc } from '../../docs-meta/types';
 
 export const doc: ComponentDoc = {
-  exports: ['VolunteerShiftPicker', 'VolunteerShiftPickerProps', 'VolunteerShift'],
+  exports: ['VolunteerShiftPicker', 'type VolunteerShiftPickerProps', 'type VolunteerShift'],
   name: 'VolunteerShiftPicker',
   slug: 'volunteer-shift-picker',
   category: 'community',

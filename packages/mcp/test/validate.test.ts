@@ -29,6 +29,20 @@ describe('validateUsage', () => {
     expect(diagnostics.find((d) => d.rule === 'invalid-import')?.line).toBe(2);
   });
 
+  it.each(['@dev-community/ui', '@dev-community/ui/patterns'])('accepts shared export names from %s', (entry) => {
+    expect(validateUsage(catalog, `import type { RaffleEntry, VolunteerShift } from '${entry}';`)).toEqual([]);
+  });
+
+  it('accepts EmailPreview only from the editor entry point', () => {
+    expect(validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@dev-community/ui/editor';`)).toEqual([]);
+    const diagnostics = validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@dev-community/ui';`);
+    expect(diagnostics).toHaveLength(2);
+    for (const diagnostic of diagnostics) {
+      expect(diagnostic.rule).toBe('invalid-import');
+      expect(diagnostic.message).toContain('@dev-community/ui/editor');
+    }
+  });
+
   it('checks props of design system components', () => {
     const code = `import { Button } from '@dev-community/ui';
 export const A = () => <Button variant="tertiary" size="md" onClick={() => {}}>Ok</Button>;`;

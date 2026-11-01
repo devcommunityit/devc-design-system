@@ -1,7 +1,7 @@
 import type { ComponentDoc } from '../../docs-meta/types';
 
 export const doc: ComponentDoc = {
-  exports: ['EntryList', 'EntryListProps', 'RaffleEntry'],
+  exports: ['EntryList', 'type EntryListProps', 'type RaffleEntry'],
   name: 'EntryList',
   slug: 'entry-list',
   category: 'community',

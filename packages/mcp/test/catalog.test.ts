@@ -20,6 +20,25 @@ describe('catalog', () => {
     }
   });
 
+  it('exports every documented symbol from its documented entry point', () => {
+    for (const component of catalog.components) {
+      for (const name of component.exports.map((e) => e.replace(/^type\s+/, ''))) {
+        expect(
+          catalog.exports.some((e) => e.name === name && e.entry === component.entry),
+          `${component.slug}: ${name}`,
+        ).toBe(true);
+      }
+    }
+    expect(findComponent(catalog, 'email-preview')?.entry).toBe('editor');
+  });
+
+  it.each(['RaffleEntry', 'VolunteerShift'])('preserves %s in both root and patterns exports', (name) => {
+    expect(catalog.exports.filter((e) => e.name === name)).toEqual([
+      { name, kind: 'type' },
+      { name, kind: 'type', entry: 'patterns' },
+    ]);
+  });
+
   it('finds components by slug, name and any export', () => {
     expect(findComponent(catalog, 'button')?.name).toBe('Button');
     expect(findComponent(catalog, 'LinkButton')?.slug).toBe('button');

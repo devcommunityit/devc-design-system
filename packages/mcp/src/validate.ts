@@ -158,7 +158,7 @@ function validateTsx(catalog: Catalog, code: string, filename: string): Diagnost
     return { line: line + 1, column: character + 1 };
   };
   const exportKinds = new Map(catalog.exports.map((e) => [e.name, e.kind]));
-  const exportEntries = new Map(catalog.exports.map((e) => [e.name, e.entry]));
+  const exportEntries = new Set(catalog.exports.map((e) => `${e.entry ?? ''}:${e.name}`));
   const localToImported = new Map<string, string>();
   let hasStylesImport = false;
   let themeProviderNode: ts.Node | undefined;
@@ -188,8 +188,8 @@ function validateTsx(catalog: Catalog, code: string, filename: string): Diagnost
       const imported = (el.propertyName ?? el.name).text;
       localToImported.set(el.name.text, imported);
       const entry = from === PACKAGE ? undefined : subpath && COMPONENT_SUBPATHS.has(subpath) ? subpath : null;
-      if (entry !== null && exportKinds.has(imported) && exportEntries.get(imported) !== entry) {
-        const right = exportEntries.get(imported);
+      if (entry !== null && exportKinds.has(imported) && !exportEntries.has(`${entry ?? ''}:${imported}`)) {
+        const right = catalog.exports.find((e) => e.name === imported)?.entry;
         out.add({
           severity: 'error',
           rule: 'invalid-import',
