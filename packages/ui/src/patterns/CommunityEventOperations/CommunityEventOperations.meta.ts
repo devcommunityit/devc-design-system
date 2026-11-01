@@ -10,9 +10,9 @@ export const doc: ComponentDoc = {
     "CommunityEventSession",
     "CommunityCfpReview",
   ],
-  name: "CommunityEventOperations",
-  slug: "community-event-operations",
-  category: "patterns",
+  name: 'CommunityEventOperations',
+  slug: 'community-event-operations',
+  category: 'patterns',
   summary:
     "Riepilogo operativo controllato per eventi community: biglietti, pass, check-in, programma multi-track, CFP, accessibilità e stati di registrazione.",
   whenToUse: [
@@ -131,15 +131,11 @@ export const doc: ComponentDoc = {
     "Usare callback per pagamenti, scansioni o generazione di certificati: sono intenzionalmente fuori dallo scope.",
   ],
   examples: [
-    {
-      name: "AttendeeOperations",
-      title: "Dettagli operativi per partecipanti",
+    { name: 'AttendeeOperations', title: 'Dettagli operativi per partecipanti',
       description:
         "Tier selezionabili, waitlist, pass, accessibilità, link e countdown basati su istanti fissi.",
     },
-    {
-      name: "OrganizerOperations",
-      title: "Vista organizzatore",
+    { name: 'OrganizerOperations', title: 'Vista organizzatore',
       description:
         "Check-in manuale, stato CFP, rimborsi e programma multi-track.",
     },
