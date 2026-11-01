@@ -20,7 +20,7 @@ import {
   Toggle,
   ToggleGroup,
   type Selection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import {
   EmailBuilder,
   RichTextContent,
@@ -32,11 +32,11 @@ import {
   type EmailDocument,
   type RichTextJSON,
   type RichTextEditorVariant,
-} from '@dev-community/ui/editor';
+} from '@devcommunityit/ui/editor';
 import { DemoBanner } from './chrome';
 
 const ARTICLE = `<h1>Design system in produzione: cosa abbiamo imparato</h1>
-<p>Dopo un anno di <strong>@dev-community/ui</strong> in tre prodotti, raccogliamo qui le lezioni più utili: dai <em>token</em> ai test di accessibilità.</p>
+<p>Dopo un anno di <strong>@devcommunityit/ui</strong> in tre prodotti, raccogliamo qui le lezioni più utili: dai <em>token</em> ai test di accessibilità.</p>
 <h2>1. I token prima dei componenti</h2>
 <p>Ogni colore, spaziatura e raggio nasce da un’unica fonte. Così cambiare tema è una <mark>modifica di configurazione</mark>, non un refactoring.</p>
 <ul><li><p>Token primitivi per i valori grezzi</p></li><li><p>Token semantici per i ruoli</p></li><li><p>Temi come semplici mappe di valori</p></li></ul>
@@ -64,7 +64,7 @@ function newsletter(): EmailDocument {
       }),
       createEmailBlock('heading', { level: 2, content: emailRichText('Design system in produzione') }),
       createEmailBlock('text', {
-        content: emailRichText('Token, temi e test di accessibilità: le lezioni di un anno di @dev-community/ui in tre prodotti.'),
+        content: emailRichText('Token, temi e test di accessibilità: le lezioni di un anno di @devcommunityit/ui in tre prodotti.'),
       }),
       createEmailBlock('button', { label: 'Leggi l’articolo', href: 'https://example.org/blog/design-system?utm_source=newsletter', align: 'start' }),
       createEmailBlock('divider'),
@@ -88,7 +88,7 @@ function newsletter(): EmailDocument {
         links: [
           { network: 'github', href: 'https://github.com/dev-community' },
           { network: 'linkedin', href: 'https://www.linkedin.com/company/dev-community' },
-          { network: 'youtube', href: 'https://www.youtube.com/@dev-community' },
+          { network: 'youtube', href: 'https://www.youtube.com/@devcommunityit' },
         ],
       }),
       createEmailBlock('footer', {
@@ -185,7 +185,7 @@ export function Editor() {
           <Inline gap={3} align="start" justify="between">
             <Stack gap={2} className="sc-min0">
               <Inline gap={2} align="center">
-                <Badge tone="brand">@dev-community/ui/editor</Badge>
+                <Badge tone="brand">@devcommunityit/ui/editor</Badge>
                 <StageLabel stage="beta" />
               </Inline>
               <Heading level={1} size="headline-lg">

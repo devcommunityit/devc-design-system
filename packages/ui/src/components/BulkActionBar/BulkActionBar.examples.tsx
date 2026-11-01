@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BulkActionBar, Button, Checkbox, Stack, Text } from '@dev-community/ui';
+import { BulkActionBar, Button, Checkbox, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   const [count, setCount] = useState(3);

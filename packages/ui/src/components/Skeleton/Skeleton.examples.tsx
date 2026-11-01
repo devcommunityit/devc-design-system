@@ -26,7 +26,7 @@ import {
   Stack,
   Switch,
   Text,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function Shapes() {
   return (

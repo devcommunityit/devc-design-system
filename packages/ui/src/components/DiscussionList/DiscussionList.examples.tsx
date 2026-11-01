@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, Card, DiscussionList, Stack, Switch } from '@dev-community/ui';
+import { Badge, Card, DiscussionList, Stack, Switch } from '@devcommunityit/ui';
 
 // Computed once at module load so renders stay pure.
 const now = Date.now();

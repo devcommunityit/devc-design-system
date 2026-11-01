@@ -15,5 +15,5 @@ export * from './TreeView';
 export * from './SortableList';
 export * from './RelativeTime';
 export * from './FileManager';
-// FileBrowser, DiffViewer and KanbanBoard ship from the separate '@dev-community/ui/widgets' entry (src/widgets.ts).
+// FileBrowser, DiffViewer and KanbanBoard ship from the separate '@devcommunityit/ui/widgets' entry (src/widgets.ts).
 export * from './ImageGallery';

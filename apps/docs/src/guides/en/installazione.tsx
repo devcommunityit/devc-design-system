@@ -1,11 +1,11 @@
-import { Alert } from '@dev-community/ui';
+import { Alert } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 export default function Installazione() {
   return (
     <>
-      <Alert tone="warning" title="Package not published">
-        The <code>@dev-community/ui</code> package is ready for distribution (tarball, private registry) but has not been published to any registry. It is
+      <Alert tone="info" title="GitHub Packages distribution">
+        The Release workflow distributes <code>@devcommunityit/ui</code> through GitHub Packages and as a tarball with a checksum. It is
         released under the MIT license (the <code>LICENSE</code> file ships with the package).
       </Alert>
 
@@ -28,9 +28,9 @@ export default function Installazione() {
           columns={['Channel', 'Status', 'When to use it']}
           rows={[
             ['Tarball (npm run release:pack or GitHub Release asset)', 'Ready and verified', 'Internal distribution without a registry, integration trials, offline environments.'],
-            ['GitHub Packages (Release workflow)', 'Automated, first publish still pending', 'Multiple portals that update the library following semver.'],
+            ['GitHub Packages (Release workflow)', 'Automated publishing', 'Multiple portals that update the library following semver.'],
             ['Other private registries (Azure Artifacts, Verdaccio, Nexus)', 'Manual publishing', 'When portals cannot use GitHub Packages.'],
-            ['Public npmjs.com', 'Allowed (MIT license), first publish still pending', 'After confirming the @dev-community scope is available.'],
+            ['Public npmjs.com', 'Allowed (MIT license), first publish still pending', 'After confirming the @devcommunityit scope is available.'],
             ['Git dependency (github:org/repo)', 'Not supported', 'The package lives in a workspace (packages/ui) and requires a build: npm cannot install it correctly from git.'],
           ]}
         />
@@ -44,10 +44,10 @@ export default function Installazione() {
         <Code language="bash">{`
 # in the design system repository
 npm run release:pack
-# → releases/dev-community-ui-0.1.0.tgz + .sha256
+# → releases/devcommunityit-ui-0.1.0.tgz + .sha256
 
 # in the consumer project (relative or absolute path)
-npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
+npm install ../design-system/releases/devcommunityit-ui-0.1.0.tgz
 `}</Code>
         <p>
           npm records a <code>file:</code> dependency in <code>package.json</code>: copy the tarball into a folder of the consumer (for example{' '}
@@ -57,22 +57,22 @@ npm install ../design-system/releases/dev-community-ui-0.1.0.tgz
 
       <DocSection title="From a private registry">
         <p>
-          The <code>.github/workflows/release.yml</code> workflow publishes <code>@dev-community/ui</code> and <code>@dev-community/ui-mcp</code> to GitHub
+          The <code>.github/workflows/release.yml</code> workflow publishes <code>@devcommunityit/ui</code> and <code>@devcommunityit/ui-mcp</code> to GitHub
           Packages and creates a GitHub Release with the tarball and checksum attached. GitHub Packages only accepts the scope of the repository owner:
-          the repository must belong to the <code>dev-community</code> organization or user, otherwise the scope must be renamed. In the consumer project,
+          the packages therefore use the <code>@devcommunityit</code> scope, matching the repository owner. In the consumer project,
           create an <code>.npmrc</code> and provide a token with the <code>read:packages</code> permission (in GitHub Actions,{' '}
           <code>secrets.GITHUB_TOKEN</code> is enough if the package grants access to the portal repository):
         </p>
         <Code language="ini" title=".npmrc — GitHub Packages">{`
-@dev-community:registry=https://npm.pkg.github.com/
+@devcommunityit:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken=\${NPM_TOKEN}
 `}</Code>
         <Code language="ini" title=".npmrc — Azure Artifacts">{`
-@dev-community:registry=https://pkgs.dev.azure.com/<org>/<project>/_packaging/<feed>/npm/registry/
+@devcommunityit:registry=https://pkgs.dev.azure.com/<org>/<project>/_packaging/<feed>/npm/registry/
 always-auth=true
 # authentication: npx vsts-npm-auth -config .npmrc (Windows) or a PAT token in ~/.npmrc
 `}</Code>
-        <Code language="bash">{`npm install @dev-community/ui`}</Code>
+        <Code language="bash">{`npm install @devcommunityit/ui`}</Code>
         <p>Provide the token through an environment variable or a pipeline secret; never commit it.</p>
       </DocSection>
 
@@ -91,14 +91,14 @@ always-auth=true
         <p>
           The workflow runs lint, typecheck, tests, build and, for the library, <code>verify:package</code>; it then publishes exactly the tarball attached to
           the release. Prerelease versions (<code>0.3.0-beta.0</code>) use the identifier as dist-tag (<code>beta</code>, <code>next</code>) and never
-          become <code>latest</code>: install them with <code>npm install @dev-community/ui@next</code>. Every CI workflow run on a pull request also
+          become <code>latest</code>: install them with <code>npm install @devcommunityit/ui@next</code>. Every CI workflow run on a pull request also
           uploads the tarballs as artifacts, so you can try a change in a portal before the release.
         </p>
         <Code language="bash">{`
 # manual release from the terminal (alternative to the workflow)
-npm version patch -w @dev-community/ui   # or minor / major
-npm publish -w @dev-community/ui --dry-run   # check contents and registry
-npm publish -w @dev-community/ui
+npm version patch -w @devcommunityit/ui   # or minor / major
+npm publish -w @devcommunityit/ui --dry-run   # check contents and registry
+npm publish -w @devcommunityit/ui
 `}</Code>
         <p>
           <code>prepublishOnly</code> runs the license/registry check, the build and <code>lint:package</code>: a package with unresolvable types or exports
@@ -112,7 +112,7 @@ npm publish -w @dev-community/ui
           The <code>license</code> field is set to <code>"MIT"</code> and the <code>LICENSE</code> file is included in the tarball. The{' '}
           <code>packages/ui/scripts/prepublish-check.mjs</code> script blocks <code>npm publish</code> to <code>registry.npmjs.org</code> only if the
           license is missing or <code>UNLICENSED</code>. After publishing, installation is still{' '}
-          <code>npm install @dev-community/ui</code>.
+          <code>npm install @devcommunityit/ui</code>.
         </p>
       </DocSection>
 
@@ -143,7 +143,7 @@ npm publish -w @dev-community/ui
           The package is <strong>ESM only</strong> (<code>"type": "module"</code>, no CommonJS build). It is verified with Vite (separate consumer) and
           with Next.js at the documentation level only; webpack 5, Rspack and esbuild support ESM and CSS imports but have not been tested. With Node ≥
           20.19, <code>require()</code> of ESM is also supported, but the components are meant to be used through a bundler. Jest in CommonJS mode
-          requires a transform for <code>node_modules/@dev-community</code> and handling of CSS imports: this setup is not verified, so Vitest is
+          requires a transform for <code>node_modules/@devcommunityit</code> and handling of CSS imports: this setup is not verified, so Vitest is
           recommended for consumer tests.
         </p>
       </DocSection>
@@ -153,12 +153,12 @@ npm publish -w @dev-community/ui
           label="Entry points"
           columns={['Import', 'Contents']}
           rows={[
-            [<code key="a">@dev-community/ui</code>, 'Components, patterns, ThemeProvider, LocaleProvider, hooks and utilities (ESM, tree-shakable).'],
-            [<code key="b">@dev-community/ui/styles.css</code>, 'Tokens + component styles. Required; import it once.'],
-            [<code key="c">@dev-community/ui/reset.css</code>, 'Optional minimal reset in the dc-reset layer.'],
-            [<code key="d">@dev-community/ui/tokens.css</code>, 'Token custom properties only (already included in styles.css).'],
-            [<code key="e">@dev-community/ui/tokens.json</code>, 'Tokens in DTCG format for design tools.'],
-            [<code key="f">@dev-community/ui/theme</code>, 'Theme API without React or the DOM: createTheme, themeToCss, getThemeScript, cookie helpers. For servers and builds.'],
+            [<code key="a">@devcommunityit/ui</code>, 'Components, patterns, ThemeProvider, LocaleProvider, hooks and utilities (ESM, tree-shakable).'],
+            [<code key="b">@devcommunityit/ui/styles.css</code>, 'Tokens + component styles. Required; import it once.'],
+            [<code key="c">@devcommunityit/ui/reset.css</code>, 'Optional minimal reset in the dc-reset layer.'],
+            [<code key="d">@devcommunityit/ui/tokens.css</code>, 'Token custom properties only (already included in styles.css).'],
+            [<code key="e">@devcommunityit/ui/tokens.json</code>, 'Tokens in DTCG format for design tools.'],
+            [<code key="f">@devcommunityit/ui/theme</code>, 'Theme API without React or the DOM: createTheme, themeToCss, getThemeScript, cookie helpers. For servers and builds.'],
           ]}
         />
       </DocSection>

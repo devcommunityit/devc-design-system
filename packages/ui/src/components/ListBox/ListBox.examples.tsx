@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ListBox, ListBoxItem, ListBoxSection, Stack, Text, type Selection } from '@dev-community/ui';
+import { ListBox, ListBoxItem, ListBoxSection, Stack, Text, type Selection } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

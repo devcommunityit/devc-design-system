@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Accordion, AccordionItem, Badge, Collapsible, Text } from '@dev-community/ui';
+import { Accordion, AccordionItem, Badge, Collapsible, Text } from '@devcommunityit/ui';
 
 const faqs = [
   { id: 'fatturazione', q: 'Come funziona la fatturazione?', a: 'La fattura viene emessa il primo giorno di ogni mese per gli utenti attivi.' },

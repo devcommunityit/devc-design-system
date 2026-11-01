@@ -38,7 +38,7 @@ import {
   Timeline,
   TimelineItem,
   useToast,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import {
   actions,
   customerStatusLabel,

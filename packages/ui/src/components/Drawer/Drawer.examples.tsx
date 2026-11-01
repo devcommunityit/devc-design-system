@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertDialog, Button, Checkbox, CheckboxGroup, DialogTrigger, Drawer, Inline, Stack, Text } from '@dev-community/ui';
+import { AlertDialog, Button, Checkbox, CheckboxGroup, DialogTrigger, Drawer, Inline, Stack, Text } from '@devcommunityit/ui';
 
 export function Filters() {
   const [applied, setApplied] = useState<string[]>([]);

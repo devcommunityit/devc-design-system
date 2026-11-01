@@ -14,7 +14,7 @@ import {
   Skeleton,
   Stack,
   Text,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function NotFoundTemplate({ headingLevel = 1 }: { headingLevel?: 1 | 2 | 3 }) {
   return (

@@ -1,5 +1,5 @@
 import { Target, Trophy, UserPlus } from 'lucide-react';
-import { GoalCard, Grid, Link } from '@dev-community/ui';
+import { GoalCard, Grid, Link } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

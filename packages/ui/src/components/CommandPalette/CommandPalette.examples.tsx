@@ -16,7 +16,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useState } from 'react';
-import { Button, CommandPalette, Stack, Text, useTheme, type CommandPaletteItem } from '@dev-community/ui';
+import { Button, CommandPalette, Stack, Text, useTheme, type CommandPaletteItem } from '@devcommunityit/ui';
 
 export function Basic() {
   const [isOpen, setOpen] = useState(false);

@@ -5,10 +5,16 @@ Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il p
 
 ## [Non rilasciato]
 
+## [0.1.1] — 2026-11-01
+
+### Modificato
+
+- Scope npm rinominato da `@dev-community/ui` a `@devcommunityit/ui` per pubblicare su GitHub Packages nel repository `devcommunityit/devc-design-system`. Aggiornare gli import e la configurazione `.npmrc` nei progetti consumer.
+
 ### Aggiunto
 
-- `VenueMap` (entry `@dev-community/ui/widgets`): mappa della sede con embed OpenStreetMap caricato solo dopo il consenso dell’utente, segnaposto statico, indirizzo e link alle indicazioni (OpenStreetMap, Google Maps, Apple Maps). Helper `venueMapEmbedUrl` e `venueMapLinks`.
-- `VenueFloorPlan` (entry `@dev-community/ui/widgets`): piantina SVG interattiva con aree selezionabili per tipo (sala, palco, stand, ristoro, servizi, ingresso…), piani multipli, marker "Sei qui", aree evidenziate, legenda, pannello dettagli e navigazione spaziale da tastiera.
+- `VenueMap` (entry `@devcommunityit/ui/widgets`): mappa della sede con embed OpenStreetMap caricato solo dopo il consenso dell’utente, segnaposto statico, indirizzo e link alle indicazioni (OpenStreetMap, Google Maps, Apple Maps). Helper `venueMapEmbedUrl` e `venueMapLinks`.
+- `VenueFloorPlan` (entry `@devcommunityit/ui/widgets`): piantina SVG interattiva con aree selezionabili per tipo (sala, palco, stand, ristoro, servizi, ingresso…), piani multipli, marker "Sei qui", aree evidenziate, legenda, pannello dettagli e navigazione spaziale da tastiera.
 - Messaggi `venueMap*` e `floorPlan*` in tutte le lingue supportate.
 
 ### Modificato
@@ -18,7 +24,7 @@ Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il p
   controllo `prepublishOnly` ora consente la pubblicazione anche sui registry pubblici.
 - **Sito di documentazione bilingue (italiano e inglese)**: lingua iniziale presa dal browser (inglese se non è né italiano né inglese), selettore IT/EN nell'header, scelta salvata nel browser e
   link condivisibili con `?lang=en`. Sono tradotti interfaccia, guide, fondamenta e i metadati di tutti i componenti
-  (overlay JSON in `apps/docs/src/i18n/en/components`, verificati con `npm run i18n:check -w @dev-community/docs`).
+  (overlay JSON in `apps/docs/src/i18n/en/components`, verificati con `npm run i18n:check -w @devcommunityit/docs`).
   Gli esempi dal vivo e i template mantengono i contenuti dimostrativi in italiano.
 - **Navigazione della documentazione riorganizzata** in cinque aree (Inizia, Fondamenta, Componenti, Pattern, Guide)
   con schede nell'header e sidebar contestuale: categorie raggruppate (Base, Dati e visualizzazione, Prodotto) e
@@ -33,16 +39,16 @@ Prima versione.
 - Budget di dimensione del bundle con `size-limit` (`packages/ui/.size-limit.json`, script `npm run size`) verificato in
   CI dopo la build: ThemeProvider + Button, set dashboard, entry principale completa, entry `editor`, entry `patterns`,
   entry `widgets`, `styles.css` e `tokens.css`, misurati minificati e gzip, con React escluso.
-- Entry point separato `@dev-community/ui/patterns` per i pattern di pagina della community
+- Entry point separato `@devcommunityit/ui/patterns` per i pattern di pagina della community
   (`CommunityEventOperations`, `CommunityMembershipAccount`, `CommunityEngagementHub`, `CommunityOrganizerOperations`):
   non fanno parte dell'entry principale, che resta entro il budget di 400 KB gzip.
-- Entry point separato `@dev-community/ui/widgets` per i widget interattivi più pesanti (`KanbanBoard`, `ImageCropper`,
+- Entry point separato `@devcommunityit/ui/widgets` per i widget interattivi più pesanti (`KanbanBoard`, `ImageCropper`,
   `OnboardingTour`, `DiffViewer` con `diffLines`, `FileBrowser`, `SplitPane`), anch'essi fuori dall'entry principale.
 - `LocaleProvider` include solo i messaggi italiani e inglesi (`getCoreMessages`); spagnolo, francese, tedesco,
   portoghese e arabo sono opt-in (`messagesEs`, `builtInMessages`, `getDefaultMessages`) e vanno passati con `messages`.
   Così un'app minima risparmia circa 90 KB di sorgente minificata.
 - I colori dei preset arrivano al runtime in forma compatta (`PRESET_COLORS_PACKED`) e `createTheme`/`getPreset` li
-  decodificano su richiesta. `PRESET_COLORS` resta esportato da `@dev-community/ui/theme`. ThemeProvider + Button passa
+  decodificano su richiesta. `PRESET_COLORS` resta esportato da `@devcommunityit/ui/theme`. ThemeProvider + Button passa
   da 52,6 a circa 32 KB gzip.
 - Storybook: la toolbar della lingua offre italiano, inglese, spagnolo, francese, tedesco, portoghese e arabo (RTL), con
   i messaggi corrispondenti.
@@ -63,7 +69,7 @@ Prima versione.
   e `AchievementBadgeGroup` (livelli bronzo/argento/oro/platino, stato bloccato con progresso).
 - Social: `SocialLinks` (varianti icon, pill, list; helper `socialNetworks` e `getSocialNetwork`) e `ShareButtons`
   (Web Share API nativa, copia link e URL di condivisione via `getShareUrl`). Icone generiche: nessun logo o colore di marca.
-- Entry point separato `@dev-community/ui/editor` (basato su Tiptap 3, dipendenze `@tiptap/*` esterne nel bundle e mai
+- Entry point separato `@devcommunityit/ui/editor` (basato su Tiptap 3, dipendenze `@tiptap/*` esterne nel bundle e mai
   raggiungibili dall'entry principale): `RichTextEditor` per contenuti di pagina, in modalità `toolbar` (barra classica) o
   `blocks` (menu “/”, bubble menu e azioni sul blocco), con `RichTextContent` per il rendering; `EmailBuilder` a blocchi
   (titolo, testo, pulsante, immagine, divisore, spaziatore, colonne, social, footer) con anteprima desktop/mobile e

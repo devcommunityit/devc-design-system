@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormWizard } from '@dev-community/ui';
+import { FormWizard } from '@devcommunityit/ui';
 
 export function Registration() {
   const [name, setName] = useState('');

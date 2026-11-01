@@ -36,7 +36,7 @@ import {
   type DateValue,
   type FileUploadItem,
   type Key,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { simulateLatency } from './data';
 
 const categories = [

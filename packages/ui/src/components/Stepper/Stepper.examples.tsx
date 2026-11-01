@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Inline, Stack, Stepper, Text, TextField, type StepperStep } from '@dev-community/ui';
+import { Button, Inline, Stack, Stepper, Text, TextField, type StepperStep } from '@devcommunityit/ui';
 
 const steps: StepperStep[] = [
   { id: 'account', label: 'Account', description: 'Email e password' },

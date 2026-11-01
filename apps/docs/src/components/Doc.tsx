@@ -30,7 +30,7 @@ import {
   TableRow,
   Text,
   VisuallyHidden,
-} from "@dev-community/ui";
+} from "@devcommunityit/ui";
 import { slugify } from "../content/source";
 import { useI18n } from "../settings";
 

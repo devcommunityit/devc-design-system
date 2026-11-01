@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CalendarClock } from 'lucide-react';
-import { Alert, Button, Form, Inline, Link, List, Stack, TextField } from '@dev-community/ui';
+import { Alert, Button, Form, Inline, Link, List, Stack, TextField } from '@devcommunityit/ui';
 
 export function Tones() {
   return (

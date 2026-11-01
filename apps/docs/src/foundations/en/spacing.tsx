@@ -1,4 +1,4 @@
-import { BASE_TOKENS, tokenVar } from '@dev-community/ui';
+import { BASE_TOKENS, tokenVar } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 const SPACING = Object.keys(BASE_TOKENS).filter((path) => path.startsWith('space.'));
@@ -25,7 +25,7 @@ export default function SpacingFoundation() {
           <div className="docs-foundation-spacing-demo__item">Gap · space.4</div>
           <div className="docs-foundation-spacing-demo__item">Content</div>
         </div>
-        <Code language="tsx">{`import { Stack, Text } from '@dev-community/ui';
+        <Code language="tsx">{`import { Stack, Text } from '@devcommunityit/ui';
 
 <Stack gap={4}>
   <Text variant="title-md">Settings</Text>

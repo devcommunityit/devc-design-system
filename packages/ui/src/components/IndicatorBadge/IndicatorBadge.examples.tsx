@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Bell, Mail, MessageSquare } from 'lucide-react';
-import { Avatar, Button, IconButton, IndicatorBadge, Inline, Stack } from '@dev-community/ui';
+import { Avatar, Button, IconButton, IndicatorBadge, Inline, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

@@ -1,4 +1,4 @@
-import { ShareButtons, Stack } from '@dev-community/ui';
+import { ShareButtons, Stack } from '@devcommunityit/ui';
 
 const article = {
   url: 'https://devcommunity.it/blog/react-aria-accessibilita',

@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Button, Inline, ScrollArea, Stack, Text } from '@dev-community/ui';
+import { Button, Inline, ScrollArea, Stack, Text } from '@devcommunityit/ui';
 
 const events = Array.from({ length: 30 }, (_, i) => {
   const minutes = String(i * 2).padStart(2, '0');

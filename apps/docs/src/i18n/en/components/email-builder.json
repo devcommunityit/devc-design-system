@@ -1,6 +1,6 @@
 {
   "source": "113bcb4832fd",
-  "summary": "Block-based email editor (Mailchimp-style): palette, reorderable WYSIWYG canvas, settings panel, isolated preview, and HTML export compatible with email clients. Import it from @dev-community/ui/editor.",
+  "summary": "Block-based email editor (Mailchimp-style): palette, reorderable WYSIWYG canvas, settings panel, isolated preview, and HTML export compatible with email clients. Import it from @devcommunityit/ui/editor.",
   "whenToUse": [
     "Composing newsletters, event invitations, or simple transactional messages directly in the product.",
     "Saving the email as structured data (EmailDocument JSON) and generating the HTML on the client or server with renderEmailHtml.",

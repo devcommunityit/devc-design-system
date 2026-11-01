@@ -1,4 +1,4 @@
-import { ChatMessage, SourceList } from '@dev-community/ui';
+import { ChatMessage, SourceList } from '@devcommunityit/ui';
 
 const sources = [
   { id: 'tokens', title: 'Design token', href: '/guide/token', description: 'Sorgente unica e ruoli semantici.' },

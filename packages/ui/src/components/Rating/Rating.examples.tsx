@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Rating, Stack, Text } from '@dev-community/ui';
+import { Rating, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Rating label="Valuta il servizio" defaultValue={3} />;

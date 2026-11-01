@@ -1,5 +1,5 @@
 import { Cloud, GitBranch, Sparkles } from 'lucide-react';
-import { Button, Grid, LearningPathCard } from '@dev-community/ui';
+import { Button, Grid, LearningPathCard } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

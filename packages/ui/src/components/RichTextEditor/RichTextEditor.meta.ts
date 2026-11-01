@@ -21,7 +21,7 @@ export const doc: ComponentDoc = {
   category: 'editor',
   entry: 'editor',
   summary:
-    'Editor WYSIWYG per il contenuto delle pagine basato su Tiptap: toolbar classica oppure modalità a blocchi in stile Notion con menu “/”, bubble menu e maniglia dei blocchi. Distribuito dall’entry separato @dev-community/ui/editor; RichTextContent mostra l’HTML salvato con la stessa tipografia.',
+    'Editor WYSIWYG per il contenuto delle pagine basato su Tiptap: toolbar classica oppure modalità a blocchi in stile Notion con menu “/”, bubble menu e maniglia dei blocchi. Distribuito dall’entry separato @devcommunityit/ui/editor; RichTextContent mostra l’HTML salvato con la stessa tipografia.',
   whenToUse: [
     'Scrivere articoli, pagine, descrizioni di eventi o post con titoli, liste, tabelle, immagini e link.',
     'Commenti o note con formattazione leggera (disattiva le funzionalità non necessarie con `features`).',
@@ -204,7 +204,7 @@ export const doc: ComponentDoc = {
     'Passare a RichTextContent `html` non attendibile senza `sanitize`: preferisci `json` o una sanitizzazione lato server.',
     'Rigenerare `value` da `html` a ogni render in modalità controlled con trasformazioni (es. trim): l’editor riceve un valore diverso e sostituisce il contenuto.',
     'Considerare `characterLimit` una validazione: va ripetuta lato server.',
-    'Importare l’editor da @dev-community/ui: usa @dev-community/ui/editor.',
+    'Importare l’editor da @devcommunityit/ui: usa @devcommunityit/ui/editor.',
     'Lasciare vuoto il testo alternativo di immagini informative.',
   ],
   examples: [

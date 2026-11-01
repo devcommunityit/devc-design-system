@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Fieldset, Form, Inline, NativeSelect, Stack, TextField } from '@dev-community/ui';
+import { Button, Fieldset, Form, Inline, NativeSelect, Stack, TextField } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

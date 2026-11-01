@@ -1,4 +1,4 @@
-import { Inline, LiveIndicator } from '@dev-community/ui';
+import { Inline, LiveIndicator } from '@devcommunityit/ui';
 
 export function Basic() {
   return <LiveIndicator />;

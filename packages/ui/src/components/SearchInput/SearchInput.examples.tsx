@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Inline, List, SearchInput, Stack, Text } from '@dev-community/ui';
+import { Button, Inline, List, SearchInput, Stack, Text } from '@devcommunityit/ui';
 
 const cities = ['Bari', 'Bologna', 'Cagliari', 'Firenze', 'Genova', 'Milano', 'Napoli', 'Palermo', 'Roma', 'Torino', 'Venezia', 'Verona'];
 

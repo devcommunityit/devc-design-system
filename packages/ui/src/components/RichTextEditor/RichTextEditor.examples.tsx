@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button, Inline, Stack, Switch, Text } from '@dev-community/ui';
-import { RichTextContent, RichTextEditor, type RichTextEditorValue } from '@dev-community/ui/editor';
+import { Button, Inline, Stack, Switch, Text } from '@devcommunityit/ui';
+import { RichTextContent, RichTextEditor, type RichTextEditorValue } from '@devcommunityit/ui/editor';
 
 const ARTICLE = `<h2>Meetup di primavera</h2>
 <p>Il <strong>community meetup</strong> torna con talk su <em>accessibilità</em>, design system e <a href="https://example.com/programma">open source</a>.</p>

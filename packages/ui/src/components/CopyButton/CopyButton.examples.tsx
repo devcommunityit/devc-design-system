@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Button, Code, CopyButton, Inline, Stack, Text } from '@dev-community/ui';
+import { Button, Code, CopyButton, Inline, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return (
     <Inline gap={3} align="center">
-      <Code>npm install @dev-community/ui</Code>
-      <CopyButton value="npm install @dev-community/ui" />
+      <Code>npm install @devcommunityit/ui</Code>
+      <CopyButton value="npm install @devcommunityit/ui" />
     </Inline>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Button, FileUpload, Inline, Stack, Text, type FileUploadItem } from '@dev-community/ui';
+import { Alert, Button, FileUpload, Inline, Stack, Text, type FileUploadItem } from '@devcommunityit/ui';
 
 export function Basic() {
   return <FileUpload label="Allegati" description="Trascina i file o usa il pulsante." />;

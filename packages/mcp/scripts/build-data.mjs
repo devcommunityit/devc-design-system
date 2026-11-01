@@ -172,9 +172,9 @@ for (const c of components) {
   slugs.add(c.slug);
 }
 
-// ---------- Public exports of @dev-community/ui ----------
+// ---------- Public exports of @devcommunityit/ui ----------
 
-// Root entry plus optional subpath entries (`entry` is the subpath: 'editor' → '@dev-community/ui/editor').
+// Root entry plus optional subpath entries (`entry` is the subpath: 'editor' → '@devcommunityit/ui/editor').
 const ENTRIES = [
   { entry: undefined, file: 'index.ts' },
   { entry: 'editor', file: 'editor.ts' },
@@ -202,7 +202,7 @@ function publicExports() {
 const exportsList = publicExports();
 const exportEntries = new Set(exportsList.map((e) => `${e.entry ?? ''}:${e.name}`));
 for (const c of components) {
-  const where = c.entry ? `@dev-community/ui/${c.entry}` : '@dev-community/ui';
+  const where = c.entry ? `@devcommunityit/ui/${c.entry}` : '@devcommunityit/ui';
   // Type-only exports are documented as "type Name".
   for (const name of c.exports.map((e) => e.replace(/^type\s+/, ''))) {
     if (!exportEntries.has(`${c.entry ?? ''}:${name}`)) problems.push(`${c.slug}: documented export ${name} is not exported by ${where}`);

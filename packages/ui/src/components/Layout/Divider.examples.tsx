@@ -1,4 +1,4 @@
-import { Button, Divider, Inline, Spacer, Stack, Text } from '@dev-community/ui';
+import { Button, Divider, Inline, Spacer, Stack, Text } from '@devcommunityit/ui';
 
 export function Horizontal() {
   return (

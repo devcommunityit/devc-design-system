@@ -1,6 +1,6 @@
 import { CalendarDays, Rocket, Sparkles } from 'lucide-react';
 import { useState } from 'react';
-import { Button, HeroCard, LinkButton, Stack } from '@dev-community/ui';
+import { Button, HeroCard, LinkButton, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Grid, Ribbon, Text } from '@dev-community/ui';
+import { Card, CardBody, CardHeader, Grid, Ribbon, Text } from '@devcommunityit/ui';
 
 export function Variants() {
   return (

@@ -1,5 +1,5 @@
 {
-  "$description": "@dev-community/ui design tokens (DTCG). Generated — do not edit.",
+  "$description": "@devcommunityit/ui design tokens (DTCG). Generated — do not edit.",
   "base": {
     "font": {
       "family": {

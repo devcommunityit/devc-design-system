@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Card, CardBody, Grid, Inline, LocaleProvider, Stack, Statistic } from '@dev-community/ui';
+import { Button, Card, CardBody, Grid, Inline, LocaleProvider, Stack, Statistic } from '@devcommunityit/ui';
 import { Euro, Users } from 'lucide-react';
 
 export function Basic() {

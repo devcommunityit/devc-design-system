@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@dev-community/ui';
+import { Grid, GridItem } from '@devcommunityit/ui';
 
 const cell = {
   padding: 'var(--dc-space-4)',

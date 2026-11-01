@@ -1,6 +1,6 @@
 import { AlignCenter, AlignLeft, AlignRight, Bold, Italic, Star, Underline } from 'lucide-react';
 import { useState } from 'react';
-import { Inline, Stack, Text, Toggle, ToggleGroup, type Selection } from '@dev-community/ui';
+import { Inline, Stack, Text, Toggle, ToggleGroup, type Selection } from '@devcommunityit/ui';
 
 export function Uncontrolled() {
   return (

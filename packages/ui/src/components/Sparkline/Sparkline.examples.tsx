@@ -1,4 +1,4 @@
-import { Card, CardBody, Inline, Sparkline, Stack, Text } from '@dev-community/ui';
+import { Card, CardBody, Inline, Sparkline, Stack, Text } from '@devcommunityit/ui';
 
 const signups = [12, 18, 15, 22, 19, 27, 31, 29, 35, 33, 41, 44];
 

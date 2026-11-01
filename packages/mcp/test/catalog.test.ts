@@ -6,7 +6,7 @@ const catalog = loadCatalog();
 
 describe('catalog', () => {
   it('is generated from the design system sources', () => {
-    expect(catalog.package).toBe('@dev-community/ui');
+    expect(catalog.package).toBe('@devcommunityit/ui');
     expect(catalog.components.length).toBeGreaterThan(90);
     expect(catalog.components.some((c) => c.kind === 'pattern')).toBe(true);
     expect(catalog.pages.length).toBeGreaterThan(5);

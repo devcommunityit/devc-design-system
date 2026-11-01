@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CommentThread, type CommentThreadItem } from '@dev-community/ui';
+import { CommentThread, type CommentThreadItem } from '@devcommunityit/ui';
 
 const initial: CommentThreadItem[] = [
   { id: 'one', author: 'Sara', content: 'Come possiamo migliorare la guida?', replies: [{ id: 'two', author: 'Luca', content: 'Aggiungiamo un esempio.' }] },

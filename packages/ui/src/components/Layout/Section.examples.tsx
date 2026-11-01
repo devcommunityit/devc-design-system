@@ -1,4 +1,4 @@
-import { Button, Section, Text } from '@dev-community/ui';
+import { Button, Section, Text } from '@devcommunityit/ui';
 
 export function WithHeader() {
   return (

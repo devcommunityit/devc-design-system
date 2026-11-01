@@ -1,4 +1,4 @@
-import { ComparisonCard, Grid } from '@dev-community/ui';
+import { ComparisonCard, Grid } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

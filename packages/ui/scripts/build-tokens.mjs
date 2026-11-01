@@ -252,7 +252,7 @@ const hexToDtcg = (hex) => {
   const alpha = hex.length === 9 ? Math.round((Number.parseInt(hex.slice(7), 16) / 255) * 1000) / 1000 : 1;
   return { colorSpace: 'srgb', components: comps, alpha, hex: hex.slice(0, 7) };
 };
-const dtcg = { $description: '@dev-community/ui design tokens (DTCG). Generated — do not edit.', base: {}, density: {}, palette: {}, color: {} };
+const dtcg = { $description: '@devcommunityit/ui design tokens (DTCG). Generated — do not edit.', base: {}, density: {}, palette: {}, color: {} };
 for (const t of walk(base)) setPath(dtcg.base, t.path, { $type: t.type, $value: t.type === 'shadow' ? t.value.map((s) => ({ ...s, color: hexToDtcg(s.color) })) : t.value, ...(t.extensions ? { $extensions: t.extensions } : {}) });
 for (const [d, src] of Object.entries(densities)) for (const t of walk(src)) setPath(dtcg.density, [d, ...t.path], { $type: t.type, $value: t.value });
 for (const name of presetNames) {

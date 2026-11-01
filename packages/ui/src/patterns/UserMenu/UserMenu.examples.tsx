@@ -1,6 +1,6 @@
 import { HelpCircle, Settings, User } from 'lucide-react';
 import { useState } from 'react';
-import { Button, Header, MenuItem, Stack, Text, UserMenu, type Key } from '@dev-community/ui';
+import { Button, Header, MenuItem, Stack, Text, UserMenu, type Key } from '@devcommunityit/ui';
 
 const labels: Record<string, string> = { profile: 'Profilo', settings: 'Impostazioni', help: 'Assistenza' };
 

@@ -1,4 +1,4 @@
-import { ScatterChart, Text } from '@dev-community/ui';
+import { ScatterChart, Text } from '@devcommunityit/ui';
 import { useState } from 'react';
 
 const stores = [

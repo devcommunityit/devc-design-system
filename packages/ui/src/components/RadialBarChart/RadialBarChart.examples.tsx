@@ -1,4 +1,4 @@
-import { Card, CardBody, RadialBarChart } from '@dev-community/ui';
+import { Card, CardBody, RadialBarChart } from '@devcommunityit/ui';
 
 const goals = [
   { id: 'sales', label: 'Vendite', value: 82 },

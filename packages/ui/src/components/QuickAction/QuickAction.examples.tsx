@@ -1,6 +1,6 @@
 import { Database, FileDown, KeyRound, Settings, UserPlus, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Badge, Grid, QuickAction, Stack } from '@dev-community/ui';
+import { Badge, Grid, QuickAction, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

@@ -1,5 +1,5 @@
 {
-  "name": "@dev-community/docs",
+  "name": "@devcommunityit/docs",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "i18n:check": "node scripts/i18n-components.mjs check"
   },
   "dependencies": {
-    "@dev-community/ui": "^0.1.0",
+    "@devcommunityit/ui": "^0.1.0",
     "lucide-react": "^1.61.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

@@ -60,7 +60,7 @@ import {
   type Key,
   type PostListItemData,
   type Selection,
-} from "@dev-community/ui";
+} from "@devcommunityit/ui";
 
 const anchors = [
   { id: "eventi", label: "Eventi" },

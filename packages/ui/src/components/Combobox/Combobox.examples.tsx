@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Combobox, ListBoxItem, Stack, Text, type Key } from '@dev-community/ui';
+import { Combobox, ListBoxItem, Stack, Text, type Key } from '@devcommunityit/ui';
 
 const cities = [
   { id: 'bo', name: 'Bologna', region: 'Emilia-Romagna' },

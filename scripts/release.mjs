@@ -162,7 +162,7 @@ function notes(key, version, outFile) {
     `Da GitHub Packages, con un \`.npmrc\` nel progetto (token con permesso \`read:packages\`):`,
     '',
     '```ini',
-    `@dev-community:registry=${REGISTRY}`,
+    `@devcommunityit:registry=${REGISTRY}`,
     '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}',
     '```',
     '',

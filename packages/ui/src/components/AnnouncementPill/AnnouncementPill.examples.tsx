@@ -1,4 +1,4 @@
-import { AnnouncementPill } from '@dev-community/ui';
+import { AnnouncementPill } from '@devcommunityit/ui';
 
 export function Basic() {
   return <AnnouncementPill href="#call-for-speaker">Call for Speaker 2027 aperta · scade il 15 dicembre</AnnouncementPill>;

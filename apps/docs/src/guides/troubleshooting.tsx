@@ -13,7 +13,7 @@ const ISSUES: Issue[] = [
     cause: 'Il foglio di stile non è importato, oppure i componenti sono fuori da ThemeProvider (le variabili esistono solo dentro data-dc-theme).',
     fix: (
       <>
-        Importa <code>@dev-community/ui/styles.css</code> una volta all’avvio e avvolgi l’applicazione in <code>ThemeProvider</code>.
+        Importa <code>@devcommunityit/ui/styles.css</code> una volta all’avvio e avvolgi l’applicazione in <code>ThemeProvider</code>.
       </>
     ),
   },
@@ -120,7 +120,7 @@ export default function Troubleshooting() {
       ))}
       <DocSection title="Diagnostica rapida">
         <Code language="bash">{`
-npm ls react react-dom @dev-community/ui   # una sola copia di React e della libreria
+npm ls react react-dom @devcommunityit/ui   # una sola copia di React e della libreria
 npm ls react-aria-components                # nessuna versione duplicata
 `}</Code>
         <p>

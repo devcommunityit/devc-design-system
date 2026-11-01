@@ -1,6 +1,6 @@
 import { BarChart3, CreditCard, FileText, LayoutDashboard, Settings, ShieldCheck, Users } from 'lucide-react';
 import { useState, type MouseEvent } from 'react';
-import { Badge, NavList, Stack, Text, type NavListItem } from '@dev-community/ui';
+import { Badge, NavList, Stack, Text, type NavListItem } from '@devcommunityit/ui';
 
 const adminItems: NavListItem[] = [
   { id: 'dashboard', label: 'Dashboard', href: '#dashboard', icon: <LayoutDashboard /> },

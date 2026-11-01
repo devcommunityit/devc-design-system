@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { BASE_TOKENS, COLOR_ROLES, breakpoints, colorVar, tokenVar, Heading, Link } from '@dev-community/ui';
+import { BASE_TOKENS, COLOR_ROLES, breakpoints, colorVar, tokenVar, Heading, Link } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 type TokenPath = keyof typeof BASE_TOKENS;
@@ -130,7 +130,7 @@ export default function Fondamenta() {
           rows={Object.entries(breakpoints).map(([name, px]) => [<code key={name}>{name}</code>, `${px}px`])}
         />
         <Code>{`
-import { breakpoints } from '@dev-community/ui';
+import { breakpoints } from '@devcommunityit/ui';
 
 const isDesktop = window.matchMedia(\`(min-width: \${breakpoints.lg}px)\`).matches;
 `}</Code>

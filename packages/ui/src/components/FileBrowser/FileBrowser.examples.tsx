@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileBrowser, type FileBrowserItem } from '@dev-community/ui/widgets';
+import { FileBrowser, type FileBrowserItem } from '@devcommunityit/ui/widgets';
 
 const preview = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200"><rect width="320" height="200" fill="#dbeafe"/><circle cx="160" cy="100" r="50" fill="#2563eb"/></svg>')}`;
 const items: FileBrowserItem[] = [

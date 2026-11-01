@@ -1,4 +1,4 @@
-import { LineChart, Text } from '@dev-community/ui';
+import { LineChart, Text } from '@devcommunityit/ui';
 import { useState } from 'react';
 
 const months = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];

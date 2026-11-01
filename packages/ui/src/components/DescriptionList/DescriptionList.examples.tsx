@@ -1,4 +1,4 @@
-import { Badge, DescriptionList } from '@dev-community/ui';
+import { Badge, DescriptionList } from '@devcommunityit/ui';
 
 const items = [
   { term: 'Cliente', description: 'Acme S.p.A.' },

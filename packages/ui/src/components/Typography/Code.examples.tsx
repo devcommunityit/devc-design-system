@@ -1,9 +1,9 @@
-import { Code, Kbd, Text } from '@dev-community/ui';
+import { Code, Kbd, Text } from '@devcommunityit/ui';
 
 export function InlineCode() {
   return (
     <Text>
-      Esegui <Code>npm install @dev-community/ui</Code> nella cartella del progetto.
+      Esegui <Code>npm install @devcommunityit/ui</Code> nella cartella del progetto.
     </Text>
   );
 }

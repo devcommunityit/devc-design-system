@@ -12,7 +12,7 @@ export interface Diagnostic {
   column: number;
 }
 
-const PACKAGE = '@dev-community/ui';
+const PACKAGE = '@devcommunityit/ui';
 const ALLOWED_SUBPATHS = new Set(['styles.css', 'reset.css', 'tokens.css', 'tokens.json', 'theme', 'editor', 'patterns', 'widgets', 'package.json']);
 // Subpath entries that export components (their exports are tracked in the catalog with `entry`).
 const COMPONENT_SUBPATHS = new Set(['editor', 'patterns', 'widgets']);

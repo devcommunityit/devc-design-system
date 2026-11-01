@@ -10,11 +10,11 @@ export default defineConfig({
   css: cssOptions,
   resolve: {
     alias: [
-      { find: /^@dev-community\/ui\/theme$/, replacement: src('theme/server.ts') },
-      { find: /^@dev-community\/ui\/editor$/, replacement: src('editor.ts') },
-      { find: /^@dev-community\/ui\/patterns$/, replacement: src('patterns-entry.ts') },
-      { find: /^@dev-community\/ui\/widgets$/, replacement: src('widgets.ts') },
-      { find: /^@dev-community\/ui$/, replacement: src('index.ts') },
+      { find: /^@devcommunityit\/ui\/theme$/, replacement: src('theme/server.ts') },
+      { find: /^@devcommunityit\/ui\/editor$/, replacement: src('editor.ts') },
+      { find: /^@devcommunityit\/ui\/patterns$/, replacement: src('patterns-entry.ts') },
+      { find: /^@devcommunityit\/ui\/widgets$/, replacement: src('widgets.ts') },
+      { find: /^@devcommunityit\/ui$/, replacement: src('index.ts') },
     ],
   },
 });

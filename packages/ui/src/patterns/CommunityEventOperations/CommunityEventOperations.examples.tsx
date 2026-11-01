@@ -1,4 +1,4 @@
-import { Badge } from "@dev-community/ui";
+import { Badge } from "@devcommunityit/ui";
 import {
   CommunityEventOperations,
   type CommunityEventOperationsProps,

@@ -1,4 +1,4 @@
-import { Alert, Link } from '@dev-community/ui';
+import { Alert, Link } from '@devcommunityit/ui';
 import { Code, DocSection } from '../../components/Doc';
 
 export default function Integrazione() {
@@ -23,7 +23,7 @@ export default function Integrazione() {
         <p>No configuration needed: Vite handles ESM and CSS imports. Import the styles in your entry point.</p>
         <Code>{`
 // src/main.tsx
-import '@dev-community/ui/styles.css';
+import '@devcommunityit/ui/styles.css';
 import './app.css'; // app styles after the library's
 `}</Code>
       </DocSection>
@@ -36,7 +36,7 @@ import './app.css'; // app styles after the library's
         </p>
         <Code title="React Router">{`
 import { useHref, useNavigate } from 'react-router';
-import { RouterProvider } from '@dev-community/ui';
+import { RouterProvider } from '@devcommunityit/ui';
 
 // React Router's useHref treats every value as a path: external URLs must be left untouched,
 // otherwise "https://…" becomes "/current-page/https:/…".
@@ -58,7 +58,7 @@ export function UiRouter({ children }: { children: React.ReactNode }) {
         <Code title="Next.js App Router (client component)">{`
 'use client';
 import { useRouter } from 'next/navigation';
-import { RouterProvider } from '@dev-community/ui';
+import { RouterProvider } from '@devcommunityit/ui';
 
 export function UiRouter({ children }: { children: React.ReactNode }) {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import { BarChart3, Settings, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Badge, Tab, TabList, TabPanel, Tabs, Text, type Key } from '@dev-community/ui';
+import { Badge, Tab, TabList, TabPanel, Tabs, Text, type Key } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

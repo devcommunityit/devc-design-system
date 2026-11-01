@@ -1,4 +1,4 @@
-import { Heading, Stack, Text } from '@dev-community/ui';
+import { Heading, Stack, Text } from '@devcommunityit/ui';
 
 export function Scale() {
   return (

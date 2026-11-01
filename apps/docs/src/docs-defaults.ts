@@ -1,4 +1,4 @@
-import type { Look, PresetName } from '@dev-community/ui/theme';
+import type { Look, PresetName } from '@devcommunityit/ui/theme';
 
 /**
  * The docs showcase the Material-inspired expressive look on the Gemini-like `nebula` preset;

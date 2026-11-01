@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, FileManager, Text, type FileManagerFile } from '@dev-community/ui';
+import { Button, FileManager, Text, type FileManagerFile } from '@devcommunityit/ui';
 
 const files: FileManagerFile[] = [
   { id: 'guide', name: 'Team guide.pdf', description: 'Getting started', size: '2.4 MB', modified: 'Updated today' },

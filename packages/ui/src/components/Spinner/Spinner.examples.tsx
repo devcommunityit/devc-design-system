@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Inline, LocaleProvider, Spinner, Stack, Text } from '@dev-community/ui';
+import { Button, Inline, LocaleProvider, Spinner, Stack, Text } from '@devcommunityit/ui';
 
 export function Sizes() {
   return (

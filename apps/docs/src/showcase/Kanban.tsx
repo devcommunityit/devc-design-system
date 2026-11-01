@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Badge, Button, Heading, Inline, Stack, Text } from '@dev-community/ui';
-import { KanbanBoard, type KanbanColumn, type KanbanMove } from '@dev-community/ui/widgets';
+import { Badge, Button, Heading, Inline, Stack, Text } from '@devcommunityit/ui';
+import { KanbanBoard, type KanbanColumn, type KanbanMove } from '@devcommunityit/ui/widgets';
 
 const initialColumns: KanbanColumn[] = [
   { id: 'backlog', title: 'Backlog', description: 'Idee da pianificare', cards: [

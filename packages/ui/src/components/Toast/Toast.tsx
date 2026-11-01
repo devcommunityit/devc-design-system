@@ -167,7 +167,7 @@ export function ToastProvider({ children, queue: externalQueue, maxVisible = 3, 
 /** Imperative API of the closest ToastProvider. */
 export function useToast(): ToastApi {
   const queue = useContext(ToastContext);
-  if (!queue) throw new Error('@dev-community/ui: useToast() must be used inside <ToastProvider>.');
+  if (!queue) throw new Error('@devcommunityit/ui: useToast() must be used inside <ToastProvider>.');
   return { show: queue.show, dismiss: queue.dismiss, clear: queue.clear };
 }
 

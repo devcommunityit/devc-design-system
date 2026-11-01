@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LocaleProvider, RelativeTime, Stack, Text } from '@dev-community/ui';
+import { LocaleProvider, RelativeTime, Stack, Text } from '@devcommunityit/ui';
 
 // Fixed reference instant so that the examples are deterministic.
 const NOW = '2024-06-12T10:00:00+02:00';

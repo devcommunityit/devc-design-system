@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Badge, PostList, PostListItem, VoteButton, Stack, Switch } from '@dev-community/ui';
+import { Badge, PostList, PostListItem, VoteButton, Stack, Switch } from '@devcommunityit/ui';
 
 const posts = [
   {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Search } from 'lucide-react';
-import { Button, Field, Form, Stack, TextField, Textarea } from '@dev-community/ui';
+import { Button, Field, Form, Stack, TextField, Textarea } from '@devcommunityit/ui';
 
 export function Basic() {
   return <TextField label="Nome completo" placeholder="Mario Rossi" autoComplete="name" />;

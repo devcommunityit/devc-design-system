@@ -1,4 +1,4 @@
-import { AspectRatio, Grid } from '@dev-community/ui';
+import { AspectRatio, Grid } from '@devcommunityit/ui';
 
 const placeholder = {
   display: 'grid',

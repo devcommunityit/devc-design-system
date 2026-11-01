@@ -1,4 +1,4 @@
-import { Heading, SocialLinks, Stack } from '@dev-community/ui';
+import { Heading, SocialLinks, Stack } from '@devcommunityit/ui';
 
 const community = [
   { network: 'github', href: 'https://github.com/dev-community-italia' },

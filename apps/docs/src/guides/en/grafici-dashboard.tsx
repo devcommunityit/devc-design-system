@@ -1,4 +1,4 @@
-import { BarChart, DonutChart, Grid, KpiCard, Link, LineChart, Stack } from '@dev-community/ui';
+import { BarChart, DonutChart, Grid, KpiCard, Link, LineChart, Stack } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../../components/Doc';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
@@ -81,7 +81,7 @@ export default function GraficiDashboard() {
       <DocSection title="Live example">
         <p>A dashboard section built only with library components and deterministic local data. Change the theme or mode from the preferences menu: data colors follow the theme.</p>
         <LiveDashboard />
-        <Code>{`import { Grid, KpiCard, LineChart } from '@dev-community/ui';
+        <Code>{`import { Grid, KpiCard, LineChart } from '@devcommunityit/ui';
 
 <Grid minItemWidth="13rem" gap={3}>
   <KpiCard
@@ -108,7 +108,7 @@ export default function GraficiDashboard() {
           light and dark mode and editable in the <Link href="/theme-builder">Theme Builder</Link> (“Data and charts” group). Beyond six series, colors
           repeat: reduce the number of series or group the smaller ones into “Other”.
         </p>
-        <Code language="ts">{`import { createTheme } from '@dev-community/ui';
+        <Code language="ts">{`import { createTheme } from '@devcommunityit/ui';
 
 export const theme = createTheme({
   name: 'analytics',

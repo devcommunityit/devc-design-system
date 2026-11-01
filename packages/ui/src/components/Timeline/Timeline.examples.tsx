@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { Button, Heading, Inline, Stack, Switch, Text, Timeline, TimelineItem } from '@dev-community/ui';
+import { Button, Heading, Inline, Stack, Switch, Text, Timeline, TimelineItem } from '@devcommunityit/ui';
 import { Package, Truck } from 'lucide-react';
 
 export function Basic() {

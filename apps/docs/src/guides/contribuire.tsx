@@ -101,11 +101,11 @@ npm run test:e2e:pages                            # base predefinita: /design-sy
         </p>
         <ul>
           <li>
-            Dopo aver aggiunto o modificato un <code>*.meta.ts</code>, esegui <code>npm run i18n:extract -w @dev-community/docs</code> e traduci i
+            Dopo aver aggiunto o modificato un <code>*.meta.ts</code>, esegui <code>npm run i18n:extract -w @devcommunityit/docs</code> e traduci i
             campi nuovi.
           </li>
           <li>
-            <code>npm run i18n:check -w @dev-community/docs</code> segnala overlay mancanti o non aggiornati. Finché manca la traduzione la pagina
+            <code>npm run i18n:check -w @devcommunityit/docs</code> segnala overlay mancanti o non aggiornati. Finché manca la traduzione la pagina
             mostra il testo italiano con un avviso.
           </li>
           <li>Gli esempi dal vivo e i template mantengono i contenuti dimostrativi in italiano.</li>
@@ -115,7 +115,7 @@ npm run test:e2e:pages                            # base predefinita: /design-sy
       <DocSection title="Licenza">
         <p>
           Il progetto è distribuito con licenza <strong>MIT</strong> (© 2026 Dev Community): il file <code>LICENSE</code> è nella radice del
-          repository ed è incluso nei pacchetti <code>@dev-community/ui</code> e <code>@dev-community/ui-mcp</code>. Contribuendo accetti che il
+          repository ed è incluso nei pacchetti <code>@devcommunityit/ui</code> e <code>@devcommunityit/ui-mcp</code>. Contribuendo accetti che il
           tuo codice sia rilasciato con la stessa licenza. Non aggiungere dipendenze con licenze incompatibili (ad esempio GPL) senza discuterne
           prima.
         </p>

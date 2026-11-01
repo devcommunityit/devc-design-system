@@ -51,7 +51,7 @@ import {
   type ButtonVariant,
   type FeedbackTone,
   type Theme,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { PageMeta } from '../components/PageMeta';
 import type { DocsLang, Localized } from '../i18n/lang';
 import { useI18n } from '../settings';

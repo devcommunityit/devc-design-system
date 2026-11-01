@@ -31,7 +31,7 @@ import {
   type ChartSeries,
   type NavListItem,
   type Selection,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { formatDay, orderStatusLabel, orderStatusTone, useShowcaseData, type OrderStatus, type Plan, type Region } from './data';
 
 const MONTHS = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PermissionMatrix, type PermissionMatrixValue } from '@dev-community/ui';
+import { PermissionMatrix, type PermissionMatrixValue } from '@devcommunityit/ui';
 
 export function Roles() {
   const [value, setValue] = useState<PermissionMatrixValue>({ editor: ['read'] });

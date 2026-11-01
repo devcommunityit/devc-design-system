@@ -22,36 +22,36 @@ describe('validateUsage', () => {
   it('reports unknown exports and deep imports with suggestions', () => {
     const diagnostics = validateUsage(
       catalog,
-      `import { Buton, Stack } from '@dev-community/ui';\nimport x from '@dev-community/ui/dist/index.js';`,
+      `import { Buton, Stack } from '@devcommunityit/ui';\nimport x from '@devcommunityit/ui/dist/index.js';`,
     );
     expect(diagnostics.find((d) => d.rule === 'unknown-export')?.message).toContain('Did you mean Button');
     expect(diagnostics.filter((d) => d.rule === 'invalid-import')).toHaveLength(1);
     expect(diagnostics.find((d) => d.rule === 'invalid-import')?.line).toBe(2);
   });
 
-  it.each(['@dev-community/ui', '@dev-community/ui/patterns'])('accepts shared export names from %s', (entry) => {
+  it.each(['@devcommunityit/ui', '@devcommunityit/ui/patterns'])('accepts shared export names from %s', (entry) => {
     expect(validateUsage(catalog, `import type { RaffleEntry, VolunteerShift } from '${entry}';`)).toEqual([]);
   });
 
   it('accepts EmailPreview only from the editor entry point', () => {
-    expect(validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@dev-community/ui/editor';`)).toEqual([]);
-    const diagnostics = validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@dev-community/ui';`);
+    expect(validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@devcommunityit/ui/editor';`)).toEqual([]);
+    const diagnostics = validateUsage(catalog, `import { EmailPreview, type EmailPreviewProps } from '@devcommunityit/ui';`);
     expect(diagnostics).toHaveLength(2);
     for (const diagnostic of diagnostics) {
       expect(diagnostic.rule).toBe('invalid-import');
-      expect(diagnostic.message).toContain('@dev-community/ui/editor');
+      expect(diagnostic.message).toContain('@devcommunityit/ui/editor');
     }
   });
 
   it('checks props of design system components', () => {
-    const code = `import { Button } from '@dev-community/ui';
+    const code = `import { Button } from '@devcommunityit/ui';
 export const A = () => <Button variant="tertiary" size="md" onClick={() => {}}>Ok</Button>;`;
     expect(rules(code)).toEqual(expect.arrayContaining(['error:invalid-prop-value', 'warning:prefer-onpress']));
     expect(rules(code)).not.toContain('warning:unknown-prop');
   });
 
   it('respects aliased imports', () => {
-    const code = `import { Button as DsButton } from '@dev-community/ui';
+    const code = `import { Button as DsButton } from '@devcommunityit/ui';
 export const A = () => <DsButton variant="nope">Ok</DsButton>;`;
     expect(rules(code)).toContain('error:invalid-prop-value');
   });
@@ -74,8 +74,8 @@ export const A = () => <DsButton variant="nope">Ok</DsButton>;`;
   });
 
   it('reminds to import styles.css with ThemeProvider', () => {
-    expect(rules(`import { ThemeProvider } from '@dev-community/ui';`)).toContain('info:missing-styles');
-    expect(rules(`import '@dev-community/ui/styles.css';\nimport { ThemeProvider } from '@dev-community/ui';`)).not.toContain('info:missing-styles');
+    expect(rules(`import { ThemeProvider } from '@devcommunityit/ui';`)).toContain('info:missing-styles');
+    expect(rules(`import '@devcommunityit/ui/styles.css';\nimport { ThemeProvider } from '@devcommunityit/ui';`)).not.toContain('info:missing-styles');
   });
 
   it('checks CSS sources', () => {
@@ -85,8 +85,8 @@ export const A = () => <DsButton variant="nope">Ok</DsButton>;`;
   });
 
   it('returns nothing for clean code', () => {
-    const code = `import '@dev-community/ui/styles.css';
-import { Button, Stack, ThemeProvider } from '@dev-community/ui';
+    const code = `import '@devcommunityit/ui/styles.css';
+import { Button, Stack, ThemeProvider } from '@devcommunityit/ui';
 export const App = () => (
   <ThemeProvider>
     <Stack gap={4} style={{ color: 'var(--dc-color-text-primary)' }}>

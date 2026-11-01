@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Checkbox, CheckboxGroup, Form, Stack, Text } from '@dev-community/ui';
+import { Button, Checkbox, CheckboxGroup, Form, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Checkbox defaultSelected>Ricordami su questo dispositivo</Checkbox>;

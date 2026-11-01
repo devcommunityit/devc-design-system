@@ -14,7 +14,7 @@ import {
   SignUpForm,
   Stack,
   Text,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 import { Brand } from './chrome';
 import { simulateLatency } from './data';
 

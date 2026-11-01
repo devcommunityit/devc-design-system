@@ -1,4 +1,4 @@
-import { ActivityCard, Grid, Link } from '@dev-community/ui';
+import { ActivityCard, Grid, Link } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

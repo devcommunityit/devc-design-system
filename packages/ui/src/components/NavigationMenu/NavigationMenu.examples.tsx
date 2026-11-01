@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavigationMenu, Stack, Text, type NavigationMenuItem, type NavigationMenuLink } from '@dev-community/ui';
+import { NavigationMenu, Stack, Text, type NavigationMenuItem, type NavigationMenuLink } from '@devcommunityit/ui';
 
 const items: NavigationMenuItem[] = [
   { id: 'home', label: 'Home', href: '#home', current: true },

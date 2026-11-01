@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
-import { Badge, Button, Inline, Stack, Text, VisuallyHidden } from '@dev-community/ui';
+import { Badge, Button, Inline, Stack, Text, VisuallyHidden } from '@devcommunityit/ui';
 
 export function Tones() {
   return (

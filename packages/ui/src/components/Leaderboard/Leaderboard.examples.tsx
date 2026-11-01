@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Leaderboard, Link, Stack, Switch } from '@dev-community/ui';
+import { Leaderboard, Link, Stack, Switch } from '@devcommunityit/ui';
 
 const people = [
   { id: 'sara', name: 'Sara Leone', subtitle: '12 articoli · 3 talk', points: 2840, href: '#sara-leone' },

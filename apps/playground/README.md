@@ -1,7 +1,7 @@
 # Consumer playground
 
 Consumer React/TypeScript separato per verificare l'integrazione con il
-pacchetto **compilato** `@dev-community/ui`. Vite risolve la dipendenza da
+pacchetto **compilato** `@devcommunityit/ui`. Vite risolve la dipendenza da
 `node_modules`; la configurazione non contiene alias ai sorgenti della
 libreria. Il playground non fa parte dei workspace npm della root.
 
@@ -11,7 +11,7 @@ Dalla root del repository, crea la build e il pacchetto:
 
 ```bash
 npm run build:lib
-npm pack -w @dev-community/ui --pack-destination apps/playground/vendor
+npm pack -w @devcommunityit/ui --pack-destination apps/playground/vendor
 ```
 
 Poi installa il tarball nel consumer usando il nome/versione generati da npm
@@ -19,7 +19,7 @@ pack (nell'esempio corrente `0.1.0`):
 
 ```powershell
 cd apps\playground
-npm install .\vendor\dev-community-ui-0.1.0.tgz
+npm install .\vendor\devcommunityit-ui-0.1.0.tgz
 npm run dev
 ```
 

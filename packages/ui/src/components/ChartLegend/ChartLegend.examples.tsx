@@ -1,4 +1,4 @@
-import { ChartLegend, Sparkline, Stack, Text } from '@dev-community/ui';
+import { ChartLegend, Sparkline, Stack, Text } from '@devcommunityit/ui';
 import { useState } from 'react';
 
 const items = [

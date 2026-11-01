@@ -83,14 +83,14 @@ export default defineConfig({
   resolve: {
     // The docs consume library sources for fast feedback; the packed tarball is verified separately (apps/playground).
     alias: [
-      { find: /^@dev-community\/ui\/theme$/, replacement: ui('src/theme/server.ts') },
-      { find: /^@dev-community\/ui\/editor$/, replacement: ui('src/editor.ts') },
-      { find: /^@dev-community\/ui\/patterns$/, replacement: ui('src/patterns-entry.ts') },
-      { find: /^@dev-community\/ui\/widgets$/, replacement: ui('src/widgets.ts') },
-      { find: /^@dev-community\/ui\/reset\.css$/, replacement: ui('src/styles/reset.css') },
+      { find: /^@devcommunityit\/ui\/theme$/, replacement: ui('src/theme/server.ts') },
+      { find: /^@devcommunityit\/ui\/editor$/, replacement: ui('src/editor.ts') },
+      { find: /^@devcommunityit\/ui\/patterns$/, replacement: ui('src/patterns-entry.ts') },
+      { find: /^@devcommunityit\/ui\/widgets$/, replacement: ui('src/widgets.ts') },
+      { find: /^@devcommunityit\/ui\/reset\.css$/, replacement: ui('src/styles/reset.css') },
       // Explicit, like a consumer: the side-effect CSS import inside src/index.ts is tree-shaken in app builds.
-      { find: /^@dev-community\/ui\/styles\.css$/, replacement: ui('src/styles/index.css') },
-      { find: /^@dev-community\/ui$/, replacement: ui('src/index.ts') },
+      { find: /^@devcommunityit\/ui\/styles\.css$/, replacement: ui('src/styles/index.css') },
+      { find: /^@devcommunityit\/ui$/, replacement: ui('src/index.ts') },
       { find: /^@ui-src\//, replacement: `${ui('src')}/` },
     ],
   },

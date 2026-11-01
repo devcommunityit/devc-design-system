@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup, Inline, Text } from '@dev-community/ui';
+import { Avatar, AvatarGroup, Inline, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return (

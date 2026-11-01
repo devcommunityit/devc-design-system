@@ -1,6 +1,6 @@
 import { CalendarClock, Gift, ShieldCheck, Sparkles, TriangleAlert } from 'lucide-react';
 import { useState } from 'react';
-import { Button, PromoBanner, Stack } from '@dev-community/ui';
+import { Button, PromoBanner, Stack } from '@devcommunityit/ui';
 
 export function Basic() {
   return <PromoBanner href="#piani" icon={<Sparkles />} title="Passa al piano Pro" description="Report illimitati, SSO e supporto prioritario." />;

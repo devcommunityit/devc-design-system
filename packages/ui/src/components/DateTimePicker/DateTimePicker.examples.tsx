@@ -8,7 +8,7 @@ import {
   isWeekend,
   parseDateTime,
   parseZonedDateTime,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function Basic() {
   return <DateTimePicker label="Data e ora" />;

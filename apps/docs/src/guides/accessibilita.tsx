@@ -1,4 +1,4 @@
-import { Alert } from '@dev-community/ui';
+import { Alert } from '@devcommunityit/ui';
 import { DocSection, RefTable } from '../components/Doc';
 
 export default function Accessibilita() {

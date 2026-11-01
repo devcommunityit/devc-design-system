@@ -11,7 +11,7 @@ import {
   useToasts,
   type ToastOptions,
   type ToastProviderProps,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 function Demo() {
   const toast = useToast();

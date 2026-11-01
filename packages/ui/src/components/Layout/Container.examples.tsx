@@ -1,4 +1,4 @@
-import { Container, Text } from '@dev-community/ui';
+import { Container, Text } from '@devcommunityit/ui';
 
 const demo = { background: 'var(--dc-color-surface-subtle)', border: '1px dashed var(--dc-color-border-default)', paddingBlock: 'var(--dc-space-4)' };
 

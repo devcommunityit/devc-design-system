@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Divider, Stack, Switch, Text } from '@dev-community/ui';
+import { Divider, Stack, Switch, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <Switch defaultSelected>Notifiche email</Switch>;

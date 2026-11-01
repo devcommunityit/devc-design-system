@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import { Button, Footer, RouterProvider, SiteHeader, Stack, Text, type SiteHeaderLink } from '@dev-community/ui';
+import { Button, Footer, RouterProvider, SiteHeader, Stack, Text, type SiteHeaderLink } from '@devcommunityit/ui';
 
 const links: SiteHeaderLink[] = [
   { id: 'product', label: 'Prodotto', href: '/prodotto' },

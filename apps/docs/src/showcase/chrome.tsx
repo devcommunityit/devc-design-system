@@ -1,4 +1,4 @@
-import { Banner, Inline, Link, Text } from '@dev-community/ui';
+import { Banner, Inline, Link, Text } from '@devcommunityit/ui';
 
 export function Brand() {
   return (

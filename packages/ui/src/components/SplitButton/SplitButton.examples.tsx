@@ -1,6 +1,6 @@
 import { Copy, FileDown, Save, Send, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import { MenuItem, MenuSeparator, SplitButton, Stack, Text, type Key } from '@dev-community/ui';
+import { MenuItem, MenuSeparator, SplitButton, Stack, Text, type Key } from '@devcommunityit/ui';
 
 const labels: Record<string, string> = {
   'save-copy': 'Salva come copia',

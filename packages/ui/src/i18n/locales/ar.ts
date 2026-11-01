@@ -326,7 +326,7 @@ export const ar: Messages = {
     invalid_type: ({ expected }) => `نوع غير صالح: يجب أن تكون القيمة ${expected === 'string' ? 'نصًا' : 'كائنًا'}.`,
     missing_field: () => 'حقل مطلوب مفقود.',
     unsupported_version: ({ version, supported }) =>
-      `إصدار المخطط ${version ?? '?'} غير مدعوم (الحد الأقصى ${supported ?? '?'}). حدِّث @dev-community/ui.`,
+      `إصدار المخطط ${version ?? '?'} غير مدعوم (الحد الأقصى ${supported ?? '?'}). حدِّث @devcommunityit/ui.`,
     invalid_version: () => 'يجب أن يكون إصدار المخطط عددًا صحيحًا موجبًا.',
     unknown_key: () => 'مفتاح غير معروف.',
     unknown_token: () => 'رمز تصميم غير معروف أو غير قابل للتخصيص.',

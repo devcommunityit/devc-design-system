@@ -8,7 +8,7 @@ import {
   Text,
   isWeekend,
   parseDate,
-} from '@dev-community/ui';
+} from '@devcommunityit/ui';
 
 export function Basic() {
   return <Calendar aria-label="Data appuntamento" defaultValue={parseDate('2025-06-12')} />;

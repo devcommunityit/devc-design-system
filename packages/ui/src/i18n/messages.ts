@@ -650,7 +650,7 @@ export const en: Messages = {
     too_large: ({ limitKb }) => `The file exceeds ${limitKb ?? ''} KB.`,
     invalid_type: ({ expected }) => `Wrong type: expected ${expected === 'string' ? 'a string' : 'an object'}.`,
     missing_field: () => 'A required field is missing.',
-    unsupported_version: ({ version, supported }) => `Schema version ${version ?? '?'} is not supported (up to ${supported ?? '?'}). Update @dev-community/ui.`,
+    unsupported_version: ({ version, supported }) => `Schema version ${version ?? '?'} is not supported (up to ${supported ?? '?'}). Update @devcommunityit/ui.`,
     invalid_version: () => 'The schema version must be a positive integer.',
     unknown_key: () => 'Unknown key.',
     unknown_token: () => 'Unknown or non-customizable token.',
@@ -978,7 +978,7 @@ export const it: Messages = {
     invalid_type: ({ expected }) => `Tipo non valido: atteso ${expected === 'string' ? 'un testo' : 'un oggetto'}.`,
     missing_field: () => 'Manca un campo obbligatorio.',
     unsupported_version: ({ version, supported }) =>
-      `La versione dello schema ${version ?? '?'} non è supportata (massimo ${supported ?? '?'}). Aggiorna @dev-community/ui.`,
+      `La versione dello schema ${version ?? '?'} non è supportata (massimo ${supported ?? '?'}). Aggiorna @devcommunityit/ui.`,
     invalid_version: () => 'La versione dello schema deve essere un intero positivo.',
     unknown_key: () => 'Chiave sconosciuta.',
     unknown_token: () => 'Token sconosciuto o non personalizzabile.',

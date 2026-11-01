@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FilterBar, type FilterBarView } from '@dev-community/ui';
+import { FilterBar, type FilterBarView } from '@devcommunityit/ui';
 
 export function SavedViews() {
   const [values, setValues] = useState({ status: 'published', category: '' });

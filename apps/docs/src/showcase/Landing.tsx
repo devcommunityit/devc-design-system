@@ -31,7 +31,7 @@ import {
   Toggle,
   ToggleGroup,
   type Selection,
-} from "@dev-community/ui";
+} from "@devcommunityit/ui";
 import { Brand } from "./chrome";
 
 const anchors = [

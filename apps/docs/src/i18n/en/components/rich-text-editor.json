@@ -1,6 +1,6 @@
 {
   "source": "749b55ededba",
-  "summary": "WYSIWYG editor for page content built on Tiptap: classic toolbar or Notion-style block mode with a “/” menu, bubble menu, and block handle. Shipped from the separate @dev-community/ui/editor entry point; RichTextContent renders saved HTML with the same typography.",
+  "summary": "WYSIWYG editor for page content built on Tiptap: classic toolbar or Notion-style block mode with a “/” menu, bubble menu, and block handle. Shipped from the separate @devcommunityit/ui/editor entry point; RichTextContent renders saved HTML with the same typography.",
   "whenToUse": [
     "Writing articles, pages, event descriptions, or posts with headings, lists, tables, images, and links.",
     "Comments or notes with light formatting (disable unneeded features with `features`).",
@@ -194,7 +194,7 @@
     "Passing untrusted `html` to RichTextContent without `sanitize`: prefer `json` or server-side sanitization.",
     "Regenerating `value` from `html` on every render in controlled mode with transformations (e.g. trim): the editor receives a different value and replaces the content.",
     "Treating `characterLimit` as validation: it must be repeated server-side.",
-    "Importing the editor from @dev-community/ui: use @dev-community/ui/editor.",
+    "Importing the editor from @devcommunityit/ui: use @devcommunityit/ui/editor.",
     "Leaving the alt text of informative images empty."
   ],
   "examples": [

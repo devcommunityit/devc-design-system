@@ -1,7 +1,7 @@
-import { CodeBlock } from '@dev-community/ui';
+import { CodeBlock } from '@devcommunityit/ui';
 
-const snippet = `import { ThemeProvider, Button } from '@dev-community/ui';
-import '@dev-community/ui/styles.css';
+const snippet = `import { ThemeProvider, Button } from '@devcommunityit/ui';
+import '@devcommunityit/ui/styles.css';
 
 export function App() {
   return (
@@ -20,7 +20,7 @@ export function LongLines() {
     <CodeBlock
       language="bash"
       maxHeight="12rem"
-      code={'npm install @dev-community/ui react-aria-components lucide-react --registry=https://npm.example.com/my-company-private-registry/'}
+      code={'npm install @devcommunityit/ui react-aria-components lucide-react --registry=https://npm.example.com/my-company-private-registry/'}
     />
   );
 }

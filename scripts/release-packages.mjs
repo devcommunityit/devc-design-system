@@ -6,13 +6,13 @@ export const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 export const PACKAGES = {
   ui: {
-    name: '@dev-community/ui',
+    name: '@devcommunityit/ui',
     dir: 'packages/ui',
     changelog: 'packages/ui/CHANGELOG.md',
     lint: 'npm run lint:package',
   },
   mcp: {
-    name: '@dev-community/ui-mcp',
+    name: '@devcommunityit/ui-mcp',
     dir: 'packages/mcp',
     changelog: 'packages/mcp/CHANGELOG.md',
     lint: 'npx publint --strict',

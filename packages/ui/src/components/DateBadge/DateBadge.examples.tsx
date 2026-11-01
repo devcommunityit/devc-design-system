@@ -1,4 +1,4 @@
-import { DateBadge, Inline } from '@dev-community/ui';
+import { DateBadge, Inline } from '@devcommunityit/ui';
 
 export function Basic() {
   return <DateBadge date="2026-11-12" variant="gradient" />;

@@ -1,4 +1,4 @@
-import { Link } from '@dev-community/ui';
+import { Link } from '@devcommunityit/ui';
 import { Code, DocSection, RefTable } from '../components/Doc';
 
 export default function Personalizzazione() {
@@ -44,7 +44,7 @@ export default function Personalizzazione() {
           radice, oltre agli eventi nativi. I componenti basati su React Aria accettano anche <code>className</code> come funzione dello stato.
         </p>
         <Code>{`
-import { Button, Card } from '@dev-community/ui';
+import { Button, Card } from '@devcommunityit/ui';
 import styles from './Checkout.module.css';
 
 <Card className={styles.summary} data-testid="riepilogo">…</Card>;
@@ -72,7 +72,7 @@ import styles from './Checkout.module.css';
           contenuti propri invece di configurazioni rigide.
         </p>
         <Code>{`
-import { SiteHeader, UserMenu, MenuItem, LinkButton } from '@dev-community/ui';
+import { SiteHeader, UserMenu, MenuItem, LinkButton } from '@devcommunityit/ui';
 
 <SiteHeader
   brand={<Logo />}

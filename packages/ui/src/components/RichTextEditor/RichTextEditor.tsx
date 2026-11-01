@@ -129,7 +129,7 @@ function selectionAnchor(view: EditorView, scroller: HTMLElement | null): { top:
 }
 
 /**
- * WYSIWYG editor for page content built on Tiptap/ProseMirror. Exported from `@dev-community/ui/editor`.
+ * WYSIWYG editor for page content built on Tiptap/ProseMirror. Exported from `@devcommunityit/ui/editor`.
  */
 export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(function RichTextEditor(
   {

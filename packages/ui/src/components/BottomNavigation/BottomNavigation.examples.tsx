@@ -1,6 +1,6 @@
 import { Bell, CalendarCheck, History, Home, LayoutGrid, LifeBuoy, Package, Search, ShoppingCart, Store, User } from 'lucide-react';
 import { useState } from 'react';
-import { BottomNavigation, Button, Inline, Stack, Text, type BottomNavigationItem } from '@dev-community/ui';
+import { BottomNavigation, Button, Inline, Stack, Text, type BottomNavigationItem } from '@devcommunityit/ui';
 
 const items: BottomNavigationItem[] = [
   { id: 'home', label: 'Home', icon: <Home /> },

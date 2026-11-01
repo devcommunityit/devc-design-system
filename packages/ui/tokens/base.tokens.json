@@ -1,5 +1,5 @@
 {
-  "$description": "Fonte unica dei token non cromatici di @dev-community/ui (formato DTCG). Generato in CSS/TS/Figma da scripts/build-tokens.mjs. Non modificare gli output generati.",
+  "$description": "Fonte unica dei token non cromatici di @devcommunityit/ui (formato DTCG). Generato in CSS/TS/Figma da scripts/build-tokens.mjs. Non modificare gli output generati.",
   "font": {
     "family": {
       "$type": "fontFamily",

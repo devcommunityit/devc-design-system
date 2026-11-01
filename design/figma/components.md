@@ -1,6 +1,6 @@
 # Specifiche dei componenti per Figma
 
-Specifiche per costruire in Figma i component set corrispondenti ai componenti React di `@dev-community/ui`.
+Specifiche per costruire in Figma i component set corrispondenti ai componenti React di `@devcommunityit/ui`.
 Le varianti elencate sono quelle **reali** delle props React (verificate sui tipi in `packages/ui/src`); i nomi delle
 proprietà Figma coincidono con i nomi delle props.
 

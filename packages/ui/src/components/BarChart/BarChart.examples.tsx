@@ -1,4 +1,4 @@
-import { BarChart } from '@dev-community/ui';
+import { BarChart } from '@devcommunityit/ui';
 
 const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
 

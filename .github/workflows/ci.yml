@@ -1,6 +1,6 @@
 # Quality gate for pull requests and main: lint, types, unit tests, package checks, e2e.
 # Each run also uploads installable .tgz files (ui + mcp) so a change can be tried in a
-# React project before it is released: `npm install ./dev-community-ui-<version>.tgz`.
+# React project before it is released: `npm install ./devcommunityit-ui-<version>.tgz`.
 name: CI
 
 on:
@@ -65,10 +65,10 @@ jobs:
       - name: End-to-end tests (docs site)
         run: npm run test:e2e
 
-      - name: Pack @dev-community/ui
+      - name: Pack @devcommunityit/ui
         run: node scripts/release-pack.mjs --package ui --skip-build --out packages-out
 
-      - name: Pack @dev-community/ui-mcp
+      - name: Pack @devcommunityit/ui-mcp
         run: node scripts/release-pack.mjs --package mcp --skip-build --out packages-out
 
       - uses: actions/upload-artifact@v7

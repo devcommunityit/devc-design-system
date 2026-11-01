@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Form, PinInput, Stack, Text } from '@dev-community/ui';
+import { Button, Form, PinInput, Stack, Text } from '@devcommunityit/ui';
 
 export function Basic() {
   return <PinInput label="Codice di verifica" description="Inserisci le 6 cifre inviate via SMS." />;
