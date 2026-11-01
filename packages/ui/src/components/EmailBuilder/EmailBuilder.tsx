@@ -411,15 +411,18 @@ export function EmailBuilder({
   const canvas = (
     <section className={styles.canvasArea} aria-label={t.emailCanvas}>
       {mode === 'preview' ? (
-        <div className={styles.canvasScroller}>
-          <iframe
-            className={styles.previewFrame}
-            style={{ '--_email-width': `${device === 'mobile' ? MOBILE_WIDTH : Math.max(doc.settings.width + 40, 640)}px` } as CSSVariables}
-            title={t.emailPreview}
-            sandbox=""
-            srcDoc={html}
-          />
-        </div>
+        <>
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- keyboard access to the scroll container */}
+          <div className={styles.canvasScroller} role="region" aria-label={t.emailPreview} tabIndex={0}>
+            <iframe
+              className={styles.previewFrame}
+              style={{ '--_email-width': `${device === 'mobile' ? MOBILE_WIDTH : Math.max(doc.settings.width + 40, 640)}px` } as CSSVariables}
+              title={t.emailPreview}
+              sandbox=""
+              srcDoc={html}
+            />
+          </div>
+        </>
       ) : (
         <div className={styles.canvasScroller}>
           <div className={styles.canvasFrame} style={frameStyle} dir={direction} data-device={device}>

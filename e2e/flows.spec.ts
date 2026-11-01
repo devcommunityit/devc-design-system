@@ -36,7 +36,10 @@ test.describe('navigazione mobile', () => {
     await expect.poll(() => isFocused(page.getByRole('button', { name: 'Apri menu' }))).toBe(true);
 
     await page.getByRole('button', { name: 'Apri menu' }).click();
-    await drawer.getByRole('link', { name: 'Theme Builder' }).click();
+    await drawer.getByRole('navigation', { name: 'Sezioni della documentazione' }).getByRole('link', { name: 'Fondamenta' }).click();
+    await expect(page).toHaveURL(/\/foundations\/typography$/);
+    await expect(page.getByRole('heading', { level: 1, name: 'Tipografia' })).toBeVisible();
+    await drawer.getByRole('navigation', { name: 'Navigazione della sezione' }).getByRole('link', { name: 'Theme Builder' }).click();
     await expect(page).toHaveURL(/\/theme-builder$/);
     await expect(page.getByRole('heading', { level: 1, name: 'Theme Builder' })).toBeVisible();
     await expect(page.getByRole('dialog', { name: 'Documentazione' })).toBeHidden();
@@ -68,11 +71,11 @@ test.describe('navigazione mobile', () => {
 test.describe('ricerca e collegamenti', () => {
   test('le fondamenta sono raggiungibili dalla navigazione e le pagine si collegano tra loro', async ({ page }) => {
     await open(page, '/foundations/typography');
-    await expect(page.getByRole('heading', { name: 'Typography', level: 1 })).toBeVisible();
-    await page.getByRole('link', { name: 'Spacing', exact: true }).first().click();
+    await expect(page.getByRole('heading', { name: 'Tipografia', level: 1 })).toBeVisible();
+    await page.getByRole('link', { name: 'Spaziatura', exact: true }).first().click();
     await expect(page).toHaveURL(/\/foundations\/spacing$/);
     await expect(page.getByRole('heading', { name: 'Scala di spaziatura' })).toBeVisible();
-    await page.getByRole('link', { name: 'Rounded', exact: true }).first().click();
+    await page.getByRole('link', { name: 'Arrotondamenti', exact: true }).first().click();
     await expect(page).toHaveURL(/\/foundations\/rounded$/);
     await expect(page.getByRole('heading', { name: 'Scala dei raggi' })).toBeVisible();
   });
@@ -285,15 +288,15 @@ test.describe('tema, persistenza e RTL', () => {
     await open(page, '/');
     await expect(page.getByRole('button', { name: 'Apri menu' })).toBeVisible();
     let prefs = await openPreferences(page);
-    await prefs.getByRole('button', { name: /Lingua dei testi di sistema/ }).click();
+    await prefs.getByRole('button', { name: /Lingua dei testi dei componenti/ }).click();
     await page.getByRole('option', { name: 'Deutsch' }).click();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('button', { name: 'Menü öffnen' })).toBeVisible();
-    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'it');
     await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
 
     prefs = await openPreferences(page);
-    await prefs.getByRole('button', { name: /Lingua dei testi di sistema/ }).click();
+    await prefs.getByRole('button', { name: /Lingua dei testi dei componenti/ }).click();
     await page.getByRole('option', { name: 'العربية' }).click();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('button', { name: 'فتح القائمة' })).toBeVisible();

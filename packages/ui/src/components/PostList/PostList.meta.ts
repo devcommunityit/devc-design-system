@@ -49,7 +49,7 @@ export const doc: ComponentDoc = {
   accessibility: [
     'Lista semantica <ul>/<li>; dai un nome alla lista con aria-label o aria-labelledby quando ce n’è più d’una.',
     'Il link del titolo copre la riga (stretched link); voto e tag restano sopra e cliccabili.',
-    'VoteButton è un ToggleButton con aria-pressed; il nome è “Vota” o “Rimuovi voto” e la descrizione (aria-describedby) riporta il conteggio completo (“186 voti”). Il numero visibile è in notazione compatta.',
+    'VoteButton è un ToggleButton con aria-pressed; il nome include “Vota” o “Rimuovi voto” e il conteggio visibile, mentre la descrizione (aria-describedby) riporta il conteggio completo (“186 voti”).',
     'La miniatura con etichetta è decorativa (aria-hidden); una miniatura personalizzata resta esposta, quindi dai un alt alle immagini o rendile decorative.',
     'In forced-colors miniature e voto usano colori di sistema e il voto attivo Highlight.',
   ],

@@ -24,7 +24,7 @@ export function SponsorWall({ 'aria-label': ariaLabel, sponsors, heading }: Spon
         {sponsors.map((sponsor) => (
           <li className={styles.item} key={sponsor.id}>
             {sponsor.href ? (
-              <a className={styles.link} href={sponsor.href} aria-label={sponsor.name}>
+              <a className={styles.link} href={sponsor.href}>
                 <span className={styles.logo} aria-hidden="true">{sponsor.logo}</span>
                 <span className={styles.name}>{sponsor.name}</span>
               </a>

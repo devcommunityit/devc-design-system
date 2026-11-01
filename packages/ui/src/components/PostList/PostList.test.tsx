@@ -31,10 +31,10 @@ describe('PostList', () => {
   it('exposes vote buttons with pressed state, label and full count description', () => {
     en(<PostList items={items} />);
     const [first, second] = screen.getAllByRole('button');
-    expect(first).toHaveAccessibleName('Upvote');
+    expect(first).toHaveAccessibleName('Upvote 186');
     expect(first).toHaveAttribute('aria-pressed', 'false');
     expect(first).toHaveAccessibleDescription('186 votes');
-    expect(second).toHaveAccessibleName('Remove upvote');
+    expect(second).toHaveAccessibleName('Remove upvote 1.2K');
     expect(second).toHaveAttribute('aria-pressed', 'true');
     expect(second).toHaveAccessibleDescription('1,240 votes');
     expect(second).toHaveTextContent('1.2K');
@@ -44,11 +44,11 @@ describe('PostList', () => {
     const user = userEvent.setup();
     const onVote = vi.fn();
     en(<PostList items={[{ id: 'a', title: 'A', votes: 1 }]} onVote={onVote} />);
-    const vote = screen.getByRole('button', { name: 'Upvote' });
+    const vote = screen.getByRole('button', { name: /Upvote/ });
     await user.click(vote);
     expect(onVote).toHaveBeenCalledWith('a', true);
     expect(vote).toHaveAttribute('aria-pressed', 'true');
-    expect(vote).toHaveAccessibleName('Remove upvote');
+    expect(vote).toHaveAccessibleName('Remove upvote 1');
   });
 
   it('supports composable children', () => {
@@ -92,7 +92,7 @@ describe('VoteButton', () => {
         <VoteButton count={1} />
       </LocaleProvider>,
     );
-    const button = screen.getByRole('button', { name: 'Vota' });
+    const button = screen.getByRole('button', { name: 'Vota 1' });
     expect(button).toHaveAccessibleDescription('1 voto');
   });
 });
