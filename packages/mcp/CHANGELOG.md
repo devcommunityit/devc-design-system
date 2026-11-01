@@ -5,6 +5,8 @@ Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il p
 
 ## [Non rilasciato]
 
+## [0.1.1] — 2026-11-01
+
 ### Modificato
 
 - Pacchetto rinominato da `@dev-community/ui-mcp` a `@devcommunityit/ui-mcp`, con catalogo, esempi e validazione aggiornati per `@devcommunityit/ui`. Aggiornare la configurazione MCP e lo scope `.npmrc` per GitHub Packages.

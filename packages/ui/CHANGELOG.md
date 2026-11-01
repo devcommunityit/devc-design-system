@@ -5,6 +5,8 @@ Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il p
 
 ## [Non rilasciato]
 
+## [0.1.1] — 2026-11-01
+
 ### Modificato
 
 - Scope npm rinominato da `@dev-community/ui` a `@devcommunityit/ui` per pubblicare su GitHub Packages nel repository `devcommunityit/devc-design-system`. Aggiornare gli import e la configurazione `.npmrc` nei progetti consumer.

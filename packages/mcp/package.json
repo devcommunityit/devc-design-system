@@ -1,6 +1,6 @@
 {
   "name": "@devcommunityit/ui-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Server MCP per @devcommunityit/ui: catalogo componenti, token, temi, setup, pattern e validazione del codice generato.",
   "license": "MIT",
   "keywords": [
