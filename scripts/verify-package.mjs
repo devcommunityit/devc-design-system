@@ -88,7 +88,7 @@ await step('npm pack', () => {
   const info = JSON.parse(out.slice(out.indexOf('[')));
   tarball = join(work, info[0].filename);
   const files = info[0].files.map((f) => f.path);
-  const outside = files.filter((f) => !f.startsWith('dist/') && !['package.json', 'README.md', 'CHANGELOG.md'].includes(f));
+  const outside = files.filter((f) => !f.startsWith('dist/') && !['package.json', 'README.md', 'CHANGELOG.md', 'LICENSE'].includes(f));
   assert(outside.length === 0, `unexpected files in tarball: ${outside.join(', ')}`);
   const leaked = files.filter((f) => /\.(test|examples|meta)\.|stories/.test(f));
   assert(leaked.length === 0, `test/docs files in tarball: ${leaked.slice(0, 5).join(', ')}`);
