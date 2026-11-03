@@ -15,13 +15,20 @@ function isStatic(appPath: string): boolean {
   return appPath === '/storybook' || appPath.startsWith(STORYBOOK_PATH);
 }
 
+const APP_PATHS = ['/', '/componenti', '/foundations', '/guide', '/pattern', '/showcase', '/theme-builder', '/theme-designer'];
+
 /**
  * Maps a browser pathname to a router path, or `null` when it is outside the SPA
  * (another base path, or static content such as Storybook that the browser must load itself).
+ * Internal links authored from the domain root also map to the app when deployed under a base path.
  */
 export function toAppPath(pathname: string): string | null {
-  if (pathname !== ROUTER_BASENAME && !pathname.startsWith(BASE_URL)) return null;
-  const appPath = `/${pathname.slice(BASE_URL.length)}`;
+  const isUnderBase = pathname === ROUTER_BASENAME || pathname.startsWith(BASE_URL);
+  const isRootAppPath =
+    BASE_URL !== '/' &&
+    APP_PATHS.some((path) => path === '/' ? pathname === '/' : pathname === path || pathname.startsWith(`${path}/`));
+  if (!isUnderBase && !isRootAppPath) return null;
+  const appPath = isUnderBase ? `/${pathname.slice(BASE_URL.length)}` : pathname;
   return isStatic(appPath) ? null : appPath;
 }
 

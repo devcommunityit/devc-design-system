@@ -46,6 +46,13 @@ test.describe('GitHub Pages (sotto-percorso)', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText(/Theme Builder/i);
   });
 
+  test('il click su una scheda componente resta sotto il percorso base', async ({ page }) => {
+    await open(page, url('/componenti'));
+    await page.getByRole('link', { name: 'Button', exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`${url('/componenti/button')}$`));
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Button');
+  });
+
   test('il Theme Builder è interattivo sotto il percorso base', async ({ page }) => {
     await open(page, url('/theme-builder'));
     await expect(page.getByRole('heading', { level: 1 })).toContainText(/Theme Builder/i);
